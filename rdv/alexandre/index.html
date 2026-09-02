@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Votre rendez-vous — GLR Immobilier</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+  :root {
+    --gold:#c8a96e; --gold-fonce:#b3945a; --dark:#1a1d23; --muted:#6b7280;
+    --bg:#f7f5f1; --carte:#ffffff; --bordure:#e8e3d9; --encre:#3f4550;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+  body { background:var(--bg); color:var(--dark); font-family:'Helvetica Neue',Arial,sans-serif; line-height:1.55; }
+  .wrap { max-width:600px; margin:0 auto; padding:28px 18px 60px; }
+
+  header { text-align:center; padding:22px 0 18px; }
+  .marque { font-family:Georgia,'Times New Roman',serif; letter-spacing:5px; font-size:18px; font-weight:700; }
+  .logo { display:block; height:72px; width:auto; max-width:80%; margin:0 auto; }
+  .filet { width:54px; height:2px; background:var(--gold); margin:14px auto 0; }
+
+  .bloc { background:var(--carte); border:1px solid var(--bordure); border-radius:16px; padding:24px 26px; margin:16px 0; box-shadow:0 2px 12px rgba(26,29,35,.05); }
+  .bloc h1 { font-family:Georgia,serif; font-size:22px; font-weight:600; margin-bottom:8px; }
+  .bloc h2 { font-family:Georgia,serif; font-size:19px; font-weight:600; margin-bottom:6px; }
+  .bloc p { color:var(--encre); font-size:15px; }
+  .sig { margin-top:14px; color:var(--muted); font-size:13px; font-style:italic; }
+
+  /* Le bien sur lequel le client a écrit */
+  .bien-tag { display:inline-block; font-size:10.5px; letter-spacing:1.2px; text-transform:uppercase; font-weight:700; color:#fff; background:var(--gold); border-radius:5px; padding:3px 9px; margin-bottom:10px; }
+  .bien-titre { font-family:Georgia,serif; font-size:19px; font-weight:600; margin-bottom:2px; }
+  .bien-ville { font-size:14px; color:var(--encre); }
+  .bien-prix { font-family:Georgia,serif; font-size:24px; font-weight:700; color:var(--encre); margin-top:8px; }
+  .bien-meta { font-size:12.5px; color:var(--muted); margin-top:8px; }
+
+  /* Choix du créneau */
+  .rdv { border:1px solid var(--gold); background:linear-gradient(180deg,#fffdf8,#fdfaf3); }
+  /* Deux formats : la visio de 30 min, ou l'appel de 10 min */
+  .fmt-choix { display:flex; gap:10px; margin:14px 0 4px; }
+  .fmt { flex:1; text-align:left; border:1px solid var(--bordure); background:#fff; color:var(--encre); border-radius:14px; padding:13px 14px; cursor:pointer; transition:all .15s; font-family:inherit; position:relative; }
+  .fmt:hover { border-color:var(--gold); }
+  .fmt.on { border-color:var(--gold); box-shadow:0 0 0 2px var(--gold) inset; background:#fffdf8; }
+  .fmt-titre { font-family:Georgia,serif; font-size:16px; font-weight:600; color:var(--dark); display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .fmt-duree { font-family:'Helvetica Neue',Arial,sans-serif; font-size:11px; letter-spacing:.8px; text-transform:uppercase; font-weight:700; color:#fff; background:var(--gold); border-radius:5px; padding:2px 7px; }
+  .fmt.on .fmt-duree { background:var(--gold-fonce); }
+  .fmt-sous { font-size:13px; color:var(--encre); margin-top:6px; line-height:1.45; }
+  .fmt-mode { font-size:11.5px; color:var(--muted); margin-top:6px; }
+  .fmt-vide { font-size:13px; color:var(--muted); margin-top:10px; }
+
+  .cren-etape { font-size:11.5px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin:16px 0 8px; }
+  .cren-jrow { display:flex; gap:7px; overflow-x:auto; padding-bottom:6px; -webkit-overflow-scrolling:touch; }
+  .cren-jpill { flex:0 0 auto; display:flex; flex-direction:column; align-items:center; gap:2px; border:1px solid var(--bordure); background:#fff; color:var(--dark); border-radius:12px; padding:8px 14px; cursor:pointer; transition:all .15s; font-family:inherit; }
+  .cren-jpill:hover { border-color:var(--gold); }
+  .cren-jpill-wd { font-size:11px; text-transform:uppercase; letter-spacing:.6px; color:var(--muted); }
+  .cren-jpill-dm { font-size:14px; font-weight:700; }
+  .cren-jpill.on { background:var(--gold); border-color:var(--gold); color:#fff; }
+  .cren-jpill.on .cren-jpill-wd { color:rgba(255,255,255,.85); }
+  .cren-liste { display:flex; gap:7px; flex-wrap:wrap; }
+  .cren { border:1px solid var(--bordure); background:#fff; color:var(--dark); border-radius:10px; padding:10px 16px; font-size:14px; font-weight:600; cursor:pointer; transition:all .15s; font-family:inherit; }
+  .cren:hover { border-color:var(--gold); background:var(--gold); color:#fff; }
+  .cren.off { opacity:.35; cursor:not-allowed; }
+  .cren.choisi { background:var(--gold); border-color:var(--gold); color:#fff; }
+  .cren-autre { margin-top:16px; text-align:center; }
+  .cren-autre button { background:none; border:none; color:var(--muted); font-size:13px; text-decoration:underline; text-underline-offset:3px; cursor:pointer; font-family:inherit; }
+  .cren-autre button:hover { color:var(--gold-fonce); }
+
+  .rdv-form { display:flex; gap:8px; margin-top:12px; }
+  .rdv-form input { flex:1; min-width:0; border:1px solid var(--bordure); background:#fff; border-radius:10px; padding:11px 13px; font-size:14px; color:var(--dark); outline:none; font-family:inherit; }
+  .rdv-form input:focus { border-color:var(--gold); }
+  .rdv-btn { border:none; background:var(--gold); color:#fff; border-radius:10px; padding:11px 18px; font-size:13.5px; font-weight:700; cursor:pointer; white-space:nowrap; font-family:inherit; }
+  .rdv-btn:hover { background:var(--gold-fonce); }
+
+  /* Le visiteur du lien public se présente au moment de confirmer */
+  .form-quand { background:#fff; border:1px solid var(--gold); border-radius:11px; padding:11px 14px; font-size:14px; color:var(--encre); margin-bottom:14px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .form-quand b { color:var(--dark); }
+  .form-quand button { margin-left:auto; background:none; border:none; color:var(--gold-fonce); font-size:13px; text-decoration:underline; text-underline-offset:3px; cursor:pointer; font-family:inherit; }
+  .champs { display:flex; flex-direction:column; gap:11px; }
+  .champ label { display:block; font-size:11px; letter-spacing:.7px; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+  .champ input, .champ textarea { width:100%; border:1px solid var(--bordure); background:#fff; border-radius:10px; padding:11px 13px; font-size:14.5px; color:var(--dark); outline:none; font-family:inherit; }
+  .champ textarea { resize:vertical; min-height:66px; }
+  .champ input:focus, .champ textarea:focus { border-color:var(--gold); }
+  .champ .err { font-size:12.5px; color:#b23c3c; margin-top:4px; display:none; }
+  .champ.faux input, .champ.faux textarea { border-color:#b23c3c; }
+  .champ.faux .err { display:block; }
+  .piege { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+  .btn-large { width:100%; border:none; background:var(--gold); color:#fff; border-radius:12px; padding:14px; font-size:15.5px; font-weight:700; cursor:pointer; font-family:inherit; margin-top:16px; }
+  .btn-large:hover { background:var(--gold-fonce); }
+  .btn-large[disabled] { opacity:.6; cursor:default; }
+  .mention { font-size:12px; color:var(--muted); margin-top:10px; text-align:center; }
+
+  .confirme { text-align:center; }
+  .confirme .quand { font-family:Georgia,serif; font-size:22px; font-weight:700; color:var(--gold-fonce); margin:10px 0 4px; }
+  .confirme .etat { font-size:13px; color:var(--muted); }
+  .coche { width:46px; height:46px; border-radius:50%; background:var(--gold); color:#fff; display:flex; align-items:center; justify-content:center; font-size:24px; margin:0 auto 12px; }
+
+  footer { text-align:center; color:var(--muted); font-size:12.5px; margin-top:22px; }
+  footer a { color:var(--gold-fonce); text-decoration:none; }
+  .etat-vide { text-align:center; color:var(--muted); padding:60px 0; }
+  .etat-vide h2 { font-family:Georgia,serif; color:var(--dark); font-size:20px; margin-bottom:10px; }
+
+  /* Double confirmation : un doigt qui glisse sur un téléphone ne doit pas
+     réserver un rendez-vous. Rien n'est envoyé tant que le client n'a pas
+     relu le jour, l'heure et le mode et appuyé une seconde fois. */
+  #confirm { position:fixed; inset:0; background:rgba(26,29,35,.55); display:none; align-items:center; justify-content:center; padding:22px; z-index:120; }
+  #confirm.show { display:flex; }
+  #confirm .boite { background:#fff; border:1px solid var(--bordure); border-radius:16px; max-width:390px; width:100%; padding:26px 24px 22px; text-align:center; box-shadow:0 18px 50px rgba(0,0,0,.22); }
+  #confirm h3 { font-family:Georgia,serif; font-size:19px; font-weight:600; color:var(--dark); margin:0 0 14px; }
+  #confirm .cf-quand { font-size:17px; font-weight:700; color:var(--dark); }
+  #confirm .cf-comment { font-size:13.5px; color:var(--muted); margin-top:5px; }
+  #confirm .cf-actions { display:flex; gap:10px; margin-top:22px; }
+  #confirm .cf-actions button { flex:1; border-radius:10px; padding:12px 14px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit; }
+  #confirm .cf-non { background:#fff; border:1px solid var(--bordure); color:var(--encre); }
+  #confirm .cf-oui { background:var(--gold); border:none; color:#fff; }
+  #confirm .cf-oui:hover { background:var(--gold-fonce); }
+  #toast { position:fixed; bottom:26px; left:50%; transform:translateX(-50%) translateY(140px); background:var(--dark); color:#fff; border-radius:24px; padding:10px 22px; font-size:13.5px; transition:transform .25s; z-index:80; max-width:88vw; text-align:center; }
+  #toast.show { transform:translateX(-50%) translateY(0); }
+
+  @media (max-width:520px){
+    .bloc { padding:20px; }
+    .logo { height:58px; }
+    .rdv-form { flex-direction:column; }
+    .fmt-choix { flex-direction:column; }
+  }
+</style></head><body>
+<div class="wrap">
+  <header><img class="logo" alt="GLR Immobilier" onerror="this.outerHTML='<div class=&quot;marque&quot;>GLR IMMOBILIER</div>'"><div class="filet"></div></header>
+  <script>
+    // Le logo est à côté de la page sur GitHub Pages, et dans /rdv/ sur le site glrimmobilier.com
+    (function(){ var i = document.querySelector("img.logo"); if (i) i.src = /glrimmobilier\.com$/i.test(location.hostname) ? "/rdv/logo-glr.png" : "logo-glr.png"; })();
+  </script>
+  <div id="contenu"><div class="etat-vide">Chargement…</div></div>
+  <footer>GLR Immobilier — <a href="https://www.glrimmobilier.com" target="_blank" rel="noopener">glrimmobilier.com</a></footer>
+</div>
+<div id="toast">✓</div>
+<div id="confirm"><div class="boite" role="dialog" aria-modal="true" aria-labelledby="cf-titre">
+  <h3 id="cf-titre">On confirme ?</h3>
+  <div class="cf-quand" id="cf-quand"></div>
+  <div class="cf-comment" id="cf-comment"></div>
+  <div class="cf-actions">
+    <button type="button" class="cf-non" id="cf-non">Annuler</button>
+    <button type="button" class="cf-oui" id="cf-oui">Confirmer</button>
+  </div>
+</div></div>
+<script>
+(function(){
+  var SUPA = "https://hydqfbxdtpmbuooexekp.supabase.co";
+  var params = new URLSearchParams(location.search);
+  var token = params.get("t") || "";       // remplacé par le lien personnel après une réservation publique
+  // Adresse par prénom, sans jeton : glrimmobilier.com/rdv/nour (la même page
+  // est déposée dans un dossier par commercial sur le site) ou ?v=nour. Le
+  // serveur retrouve le lien public du commercial et renvoie son jeton.
+  var slugVendeur = (params.get("v") || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  if (!token && !slugVendeur){
+    var m = location.pathname.match(/\/rdv\/([a-z0-9-]+)\/?$/i);
+    if (m) slugVendeur = m[1].toLowerCase().replace(/[^a-z0-9]/g, "");
+  }
+  var FN = token ? SUPA + "/functions/v1/rdv/" + encodeURIComponent(token)
+                 : SUPA + "/functions/v1/rdv/?v=" + encodeURIComponent(slugVendeur);
+  var cont = document.getElementById("contenu");
+  // Deux formats (choix d'Alex, septembre 2026) : la visio de 30 min où l'on
+  // prend le temps de montrer, ou l'appel de 10 min pour une première esquisse.
+  // Des durées courtes, volontairement : un gros créneau fait peur au client.
+  // Le mail présélectionne (?f=visio|appel), la page laisse changer.
+  var FORMATS = {
+    visio: { duree:30, mode:"visio",     titre:"Visio",           sous:"On prend le temps de vous montrer : le bien, le programme, comment se passe un achat dans le neuf, votre financement, et d'autres lots qui pourraient vous plaire.", modeLbl:"En visio, 30 minutes" },
+    appel: { duree:10, mode:"telephone", titre:"Premier échange", sous:"Vous avez moins de temps ? Dix minutes par téléphone suffisent pour une première esquisse : ce bien, votre projet, et les pistes à creuser.", modeLbl:"Par téléphone, 10 minutes" }
+  };
+  // Les disponibilités du conseiller sont découpées en créneaux de 10 min ; pour
+  // ne pas noyer le client sous les horaires, on ne lui montre que les heures
+  // rondes (toutes les 30 min) — plus le premier horaire libre après un
+  // rendez-vous déjà pris (9h10, par exemple), pour ne pas laisser de temps mort.
+  var GRILLE_MIN = 30;
+  function horairesMontres(liste){
+    var finsLibres = {};
+    (liste || []).forEach(function(c){ finsLibres[new Date(c.fin).getTime()] = true; });
+    return (liste || []).filter(function(c){
+      var d = new Date(c.debut);
+      var rond = (d.getMinutes() % GRILLE_MIN) === 0;
+      var debutDePlage = !finsLibres[d.getTime()];
+      return rond || debutDePlage;
+    });
+  }
+  var formatChoisi = FORMATS[params.get("f")] ? params.get("f") : "visio";
+  var modeContact = FORMATS[formatChoisi].mode;
+  var etat = {};                   // état du rendez-vous, copie locale
+  var donnees = null;
+  var estPublic = false;           // lien fixe d'un commercial, visiteur inconnu
+  var choisiPublic = null;         // créneau retenu, en attente de la présentation
+
+  var MODES = { telephone: "Par téléphone", visio: "En visio" };
+  // « Visio · 45 min » à partir de l'état du rendez-vous (durée réelle, sinon format)
+  function libelleRdv(e){
+    var d = e && e.duree;
+    if (!d && e && e.debut && e.fin) d = Math.round((new Date(e.fin) - new Date(e.debut)) / 60000);
+    if (!d && e && FORMATS[e.format]) d = FORMATS[e.format].duree;
+    var m = MODES[e && e.mode] || "";
+    return m + (d ? " · " + d + " min" : "");
+  }
+  function creneauxDuFormat(liste){
+    var besoin = FORMATS[formatChoisi].duree;
+    return horairesMontres((liste || []).filter(function(c){
+      var max = c.duree_max != null ? c.duree_max : Math.round((new Date(c.fin) - new Date(c.debut)) / 60000);
+      return max >= besoin;
+    }));
+  }
+
+  function esc(s){
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+  function toast(m){
+    var t = document.getElementById("toast");
+    t.textContent = m; t.classList.add("show");
+    clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.remove("show"); }, 2600);
+  }
+  // Demande au client de relire son créneau avant de l'engager. Répond une
+  // promesse : true s'il confirme, false s'il annule ou ferme la boîte.
+  function demanderConfirmation(o){
+    return new Promise(function(resoudre){
+      var fond = document.getElementById("confirm");
+      var oui = document.getElementById("cf-oui");
+      var non = document.getElementById("cf-non");
+      if (!fond || !oui || !non) { resoudre(true); return; }
+      document.getElementById("cf-titre").textContent = o.titre || "On confirme ?";
+      document.getElementById("cf-quand").textContent = o.quand || "";
+      document.getElementById("cf-comment").textContent = o.comment || "";
+      oui.textContent = o.ok || "Confirmer";
+      fond.classList.add("show");
+      setTimeout(function(){ oui.focus(); }, 40);
+      function fermer(reponse){
+        fond.classList.remove("show");
+        oui.onclick = null; non.onclick = null; fond.onclick = null;
+        document.removeEventListener("keydown", touche);
+        resoudre(reponse);
+      }
+      function touche(e){ if (e.key === "Escape") fermer(false); }
+      oui.onclick = function(){ fermer(true); };
+      non.onclick = function(){ fermer(false); };
+      fond.onclick = function(e){ if (e.target === fond) fermer(false); };
+      document.addEventListener("keydown", touche);
+    });
+  }
+  function fmtJourLong(d){
+    var s = new Date(d).toLocaleDateString("fr-FR", { weekday:"long", day:"numeric", month:"long" });
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+  function fmtHeure(d){
+    return new Date(d).toLocaleTimeString("fr-FR", { hour:"2-digit", minute:"2-digit" });
+  }
+  function fmtPrix(n){
+    var v = Number(n);
+    if (!isFinite(v) || v <= 0) return "";
+    return new Intl.NumberFormat("fr-FR", { maximumFractionDigits:0 }).format(Math.round(v)) + " €";
+  }
+  function envoyer(corps){
+    return fetch(FN, { method:"POST", headers:{ "content-type":"application/json" }, body:JSON.stringify(corps) })
+      .then(function(r){ return r.json().then(function(j){ return { statut:r.status, corps:j }; }); });
+  }
+
+  // ---------- Le bien sur lequel le client a écrit ----------
+  function htmlBien(d){
+    var b = d.bien || {};
+    var titre = b.programme || b.typologie || "Votre demande";
+    var ville = b.ville || "";
+    var prix = fmtPrix(b.prix);
+    if (!ville && !prix && !b.typologie && !b.programme) return "";
+    var h = "<div class='bloc'>";
+    h += "<div class='bien-tag'>" + (b.programme ? "Le programme qui vous intéresse" : "Le bien qui vous intéresse") + "</div>";
+    h += "<div class='bien-titre'>" + esc(titre) + "</div>";
+    if (ville) h += "<div class='bien-ville'>" + esc(ville) + "</div>";
+    if (prix) h += "<div class='bien-prix'>" + esc(prix) + "</div>";
+    var meta = [];
+    if (b.source) meta.push("Demande reçue via " + b.source);
+    if (b.reference) meta.push("Réf. " + b.reference);
+    if (meta.length) h += "<div class='bien-meta'>" + esc(meta.join(" · ")) + "</div>";
+    return h + "</div>";
+  }
+
+  // ---------- Choix du jour puis de l'heure ----------
+  function htmlCreneaux(liste, action){
+    var jours = {}, ordre = [];
+    liste.forEach(function(c){
+      var k = String(c.debut).slice(0, 10);
+      if (!jours[k]){ jours[k] = []; ordre.push(k); }
+      jours[k].push(c);
+    });
+    ordre.sort();
+    ordre = ordre.slice(0, 21);
+    if (!ordre.length) return "";
+    var h = "<div class='cren-pick'>";
+    h += "<div class='cren-etape'>1. Choisissez un jour</div><div class='cren-jrow'>";
+    ordre.forEach(function(k, i){
+      var dt = new Date(jours[k][0].debut);
+      var wd = dt.toLocaleDateString("fr-FR", { weekday:"short" });
+      var dm = dt.toLocaleDateString("fr-FR", { day:"numeric", month:"short" });
+      h += "<button type='button' class='cren-jpill" + (i === 0 ? " on" : "") + "' data-jour='" + esc(k) + "'>"
+         + "<span class='cren-jpill-wd'>" + esc(wd) + "</span><span class='cren-jpill-dm'>" + esc(dm) + "</span></button>";
+    });
+    h += "</div><div class='cren-etape'>2. Choisissez une heure</div>";
+    ordre.forEach(function(k, i){
+      h += "<div class='cren-liste cren-heures' data-jour='" + esc(k) + "'" + (i === 0 ? "" : " style='display:none'") + ">";
+      jours[k].forEach(function(c){
+        h += "<button class='cren' data-id='" + esc(c.id) + "' data-action='" + action + "' data-debut='" + esc(c.debut) + "'>" + esc(fmtHeure(c.debut)) + "</button>";
+      });
+      h += "</div>";
+    });
+    return h + "</div>";
+  }
+
+  function htmlModes(){
+    var h = "<div class='fmt-choix'>";
+    ["visio", "appel"].forEach(function(k){
+      var f = FORMATS[k];
+      h += "<button type='button' class='fmt" + (formatChoisi === k ? " on" : "") + "' data-format='" + k + "' aria-pressed='" + (formatChoisi === k) + "'>"
+         + "<div class='fmt-titre'>" + esc(f.titre) + " <span class='fmt-duree'>" + f.duree + " min</span></div>"
+         + "<div class='fmt-sous'>" + esc(f.sous) + "</div>"
+         + "<div class='fmt-mode'>" + esc(f.modeLbl) + "</div>"
+         + "</button>";
+    });
+    return h + "</div>";
+  }
+
+  function htmlRdv(d){
+    var qui = d.vendeur ? esc(d.vendeur) : "votre conseiller";
+    if (estPublic) return htmlRdvPublic(d, qui);
+    var h = "";
+
+    // Rendez-vous déjà posé
+    if (etat.reserve && etat.debut && !etat.refuse){
+      var ok = !!etat.confirme;
+      h += "<div class='bloc rdv confirme'>";
+      h += "<div class='coche'>✓</div>";
+      h += "<h2>" + (ok ? "Votre rendez-vous est confirmé" : "Votre créneau est réservé") + "</h2>";
+      h += "<div class='quand'>" + esc(fmtJourLong(etat.debut)) + " à " + esc(fmtHeure(etat.debut)) + "</div>";
+      h += "<div class='etat'>" + (ok ? "✓ Confirmé · " : "En attente de confirmation · ") + esc(libelleRdv(etat)) + "</div>";
+      h += "<p style='margin-top:12px;font-size:14px'>" + (ok ? "À très vite avec " + qui + "." : qui + " vous confirme le rendez-vous très vite.") + "</p>";
+      return h + "</div>";
+    }
+
+    // Le conseiller a proposé d'autres créneaux : le client tranche, c'est confirmé d'office
+    var props = Array.isArray(d.propositions) ? d.propositions : [];
+    if (props.length){
+      h += "<div class='bloc rdv'>";
+      h += "<h2>" + qui + " vous propose ces créneaux</h2>";
+      h += "<p>Le créneau que vous aviez choisi n'était finalement pas disponible. Choisissez celui qui vous arrange : il sera confirmé immédiatement.</p>";
+      h += htmlModes();
+      h += htmlCreneaux(props, "accepter_proposition");
+      return h + "</div>";
+    }
+
+    var cr = Array.isArray(d.creneaux) ? d.creneaux : [];
+    h += "<div class='bloc rdv'>";
+    if (etat.refuse){
+      h += "<h2>Choisissez un autre créneau</h2>";
+      h += "<p>Le créneau retenu n'a finalement pas pu être conservé. " + qui + " reste à votre disposition.</p>";
+    } else {
+      h += "<h2>Choisissez le format, puis le moment</h2>";
+      h += "<p>" + qui + " s'adapte à votre temps : une visio pour tout voir, ou un appel rapide pour commencer. Sans engagement.</p>";
+    }
+    h += htmlModes();
+
+    if (cr.length){
+      var crf = creneauxDuFormat(cr);
+      if (!crf.length) h += "<div class='fmt-vide'>Aucun créneau de " + FORMATS[formatChoisi].duree + " min n'est ouvert pour le moment — essayez l'autre format, ou indiquez vos disponibilités ci-dessous.</div>";
+      h += htmlCreneaux(crf, "reserver");
+      h += "<div class='cren-autre'><button id='rdv-basculer'>Aucun de ces créneaux ne me convient</button></div>";
+      h += "<div id='rdv-libre' style='display:none'><div class='rdv-form'><input id='rdv-creneau' type='text' maxlength='300' placeholder='Ex : mardi après 18h, ou samedi matin'><button class='rdv-btn' id='rdv-envoyer'>Envoyer ma demande</button></div></div>";
+    } else if (etat.demande){
+      h += "<p style='color:var(--gold-fonce);font-weight:600;margin-top:10px'>✓ Votre demande a bien été transmise — " + qui + " revient vers vous très vite.</p>";
+    } else {
+      h += "<div class='rdv-form'><input id='rdv-creneau' type='text' maxlength='300' placeholder='Ex : mardi après 18h, ou samedi matin'><button class='rdv-btn' id='rdv-envoyer'>Demander à être rappelé</button></div>";
+    }
+    return h + "</div>";
+  }
+
+  // Lien public : personne ne sait encore qui vient. Il choisit son créneau,
+  // puis se présente — c'est à ce moment que sa fiche est créée dans le CRM.
+  function htmlRdvPublic(d, qui){
+    if (etat.reserve && etat.debut){
+      return "<div class='bloc rdv confirme'><div class='coche'>✓</div>"
+        + "<h2>Votre créneau est réservé</h2>"
+        + "<div class='quand'>" + esc(fmtJourLong(etat.debut)) + " à " + esc(fmtHeure(etat.debut)) + "</div>"
+        + "<div class='etat'>En attente de confirmation · " + esc(libelleRdv(etat)) + "</div>"
+        + "<p style='margin-top:12px;font-size:14px'>" + qui + " vous confirme le rendez-vous très vite, par mail.</p></div>";
+    }
+    if (etat.demande){
+      return "<div class='bloc rdv confirme'><div class='coche'>✓</div>"
+        + "<h2>Votre demande est transmise</h2>"
+        + "<p style='margin-top:8px;font-size:14px'>" + qui + " vous rappelle très vite pour convenir d'un moment.</p></div>";
+    }
+
+    var cr = Array.isArray(d.creneaux) ? d.creneaux : [];
+    var h = "<div class='bloc rdv'>";
+    if (cr.length){
+      h += "<h2>Choisissez le format, puis votre créneau</h2>";
+      h += htmlModes();
+      var crp = creneauxDuFormat(cr);
+      if (!crp.length) h += "<div class='fmt-vide'>Aucun créneau de " + FORMATS[formatChoisi].duree + " min n'est ouvert pour le moment — essayez l'autre format.</div>";
+      h += htmlCreneaux(crp, "public");
+      h += "<div id='zone-form'>" + (choisiPublic ? htmlFormulaire(choisiPublic) : "") + "</div>";
+    } else {
+      h += "<h2>Laissez-moi vos coordonnées</h2>";
+      h += "<p>Aucun créneau n'est ouvert en ce moment. Dites-moi quand vous êtes disponible, " + qui + " vous rappelle.</p>";
+      h += htmlModes();
+      h += htmlFormulaire(null);
+    }
+    return h + "</div>";
+  }
+
+  function htmlFormulaire(c){
+    var h = "<div class='form-rdv' style='margin-top:16px'>";
+    if (c){
+      h += "<div class='form-quand'>Vous avez choisi <b>" + esc(fmtJourLong(c.debut)) + " à " + esc(fmtHeure(c.debut)) + "</b>"
+         + "<button type='button' id='rdv-changer'>changer</button></div>";
+    }
+    h += "<div class='champs'>";
+    h += "<div class='champ' id='ch-nom'><label for='f-nom'>Votre nom</label><input id='f-nom' type='text' maxlength='80' autocomplete='name' placeholder='Prénom et nom'><div class='err'>Merci d'indiquer votre nom.</div></div>";
+    h += "<div class='champ' id='ch-tel'><label for='f-tel'>Téléphone</label><input id='f-tel' type='tel' maxlength='40' autocomplete='tel' placeholder='06 12 34 56 78'><div class='err'>Numéro incomplet.</div></div>";
+    h += "<div class='champ' id='ch-mail'><label for='f-mail'>Email</label><input id='f-mail' type='email' maxlength='160' autocomplete='email' placeholder='vous@exemple.fr'><div class='err'>Adresse email invalide.</div></div>";
+    h += "<div class='champ'><label for='f-projet'>Votre projet" + (c ? " (facultatif)" : "") + "</label><textarea id='f-projet' maxlength='500' placeholder=\"Ce que vous cherchez, où, pour quand… quelques mots suffisent\"></textarea></div>";
+    if (!c) h += "<div class='champ'><label for='f-dispo'>Vos disponibilités</label><input id='f-dispo' type='text' maxlength='300' placeholder='Ex : en semaine après 18h, ou samedi matin'></div>";
+    h += "<div class='piege'><label>Société<input id='f-societe' type='text' tabindex='-1' autocomplete='off'></label></div>";
+    h += "</div>";
+    h += "<button class='btn-large' id='rdv-valider'>" + (c ? "Confirmer le rendez-vous" : "Demander à être rappelé") + "</button>";
+    h += "<div class='mention'>Vos coordonnées servent uniquement à vous rappeler.</div>";
+    return h + "</div>";
+  }
+
+  function rendu(d){
+    var qui = d.vendeur ? esc(d.vendeur) : "votre conseiller";
+    var h = "<div class='bloc'>";
+    if (estPublic){
+      h += "<h1>Prenons rendez-vous</h1>";
+      h += "<p>Un échange avec " + qui + ", conseiller chez GLR Immobilier : ce que vous cherchez, ce qui existe aujourd'hui près de chez vous, et à quel prix. En visio pour tout voir, ou par téléphone pour commencer — sans engagement.</p>";
+      h += "</div>";
+    } else {
+      h += "<h1>" + (d.prenom ? "Bonjour " + esc(d.prenom) + "," : "Bonjour,") + "</h1>";
+      h += "<p>Nous avons bien reçu votre demande. " + qui + ", votre conseiller GLR Immobilier, vous rappelle pour en parler — choisissez simplement le format et le créneau qui vous conviennent.</p>";
+      h += "</div>";
+      h += htmlBien(d);
+    }
+    h += "<div id='bloc-rdv'>" + htmlRdv(d) + "</div>";
+    cont.innerHTML = h;
+    brancher(d);
+  }
+
+  function redessiner(d){
+    document.getElementById("bloc-rdv").innerHTML = htmlRdv(d);
+    brancher(d);
+  }
+
+  function brancher(d){
+    Array.prototype.forEach.call(document.querySelectorAll(".fmt"), function(btn){
+      btn.addEventListener("click", function(){
+        var k = btn.getAttribute("data-format");
+        if (!FORMATS[k] || k === formatChoisi) return;
+        formatChoisi = k;
+        modeContact = FORMATS[k].mode;
+        choisiPublic = null;
+        redessiner(d);   // les horaires proposés dépendent de la durée
+      });
+    });
+
+    Array.prototype.forEach.call(document.querySelectorAll(".cren-jpill"), function(p){
+      p.addEventListener("click", function(){
+        var k = p.getAttribute("data-jour");
+        Array.prototype.forEach.call(document.querySelectorAll(".cren-jpill"), function(x){ x.classList.toggle("on", x === p); });
+        Array.prototype.forEach.call(document.querySelectorAll(".cren-heures"), function(x){ x.style.display = x.getAttribute("data-jour") === k ? "" : "none"; });
+      });
+    });
+
+    Array.prototype.forEach.call(document.querySelectorAll(".cren"), function(btn){
+      btn.addEventListener("click", function(){
+        if (btn.classList.contains("off")) return;
+        var action = btn.getAttribute("data-action") || "reserver";
+        // Lien public : on ne réserve rien tant qu'on ne sait pas qui vient
+        if (action === "public"){
+          choisiPublic = (d.creneaux || []).filter(function(c){ return c.id === btn.getAttribute("data-id"); })[0];
+          var zone = document.getElementById("zone-form");
+          if (zone){
+            zone.innerHTML = htmlFormulaire(choisiPublic);
+            brancherFormulaire(d);
+            var champ = document.getElementById("f-nom");
+            if (champ) { zone.scrollIntoView({ behavior:"smooth", block:"center" }); setTimeout(function(){ champ.focus(); }, 350); }
+          }
+          Array.prototype.forEach.call(document.querySelectorAll(".cren"), function(b2){ b2.classList.remove("choisi"); });
+          btn.classList.add("choisi");
+          return;
+        }
+        // Double confirmation : le premier appui ne réserve rien, il ouvre la
+        // relecture. Le second rejoue le même clic, drapeau levé.
+        if (!btn._confirme){
+          demanderConfirmation({
+            titre: action === "accepter_proposition" ? "Confirmer ce rendez-vous ?" : "Réserver ce créneau ?",
+            quand: fmtJourLong(btn.getAttribute("data-debut")) + " à " + fmtHeure(btn.getAttribute("data-debut")),
+            comment: FORMATS[formatChoisi].titre + " \u2014 " + FORMATS[formatChoisi].modeLbl.toLowerCase() + (d && d.vendeur ? " avec " + d.vendeur : ""),
+            ok: action === "accepter_proposition" ? "Oui, je confirme" : "Oui, je réserve"
+          }).then(function(daccord){
+            if (!daccord) return;
+            btn._confirme = true;
+            btn.click();
+            btn._confirme = false;
+          });
+          return;
+        }
+        Array.prototype.forEach.call(document.querySelectorAll(".cren"), function(b2){ b2.classList.add("off"); });
+        envoyer({ action:action, creneau_id:btn.getAttribute("data-id"), mode:modeContact, format:formatChoisi })
+        .then(function(res){
+          var c = res.corps && res.corps.creneau;
+          if (res.corps && res.corps.ok && c){
+            etat = { demande:true, reserve:true, confirme:action === "accepter_proposition", refuse:false, debut:c.debut, fin:c.fin, mode:c.mode, lieu:c.lieu, format:formatChoisi };
+            d.propositions = [];
+            redessiner(d);
+            window.scrollTo({ top:document.getElementById("bloc-rdv").offsetTop - 20, behavior:"smooth" });
+            toast(action === "accepter_proposition" ? "✓ Rendez-vous confirmé" : "✓ Créneau réservé");
+            return;
+          }
+          if (res.corps && (res.corps.creneaux || res.corps.propositions)){
+            if (res.corps.creneaux) d.creneaux = res.corps.creneaux;
+            if (res.corps.propositions) d.propositions = res.corps.propositions;
+            redessiner(d);
+            toast("Ce créneau vient d'être pris — choisissez-en un autre");
+            return;
+          }
+          Array.prototype.forEach.call(document.querySelectorAll(".cren"), function(b2){ b2.classList.remove("off"); });
+          toast("Réservation impossible — réessayez");
+        })
+        .catch(function(){
+          Array.prototype.forEach.call(document.querySelectorAll(".cren"), function(b2){ b2.classList.remove("off"); });
+          toast("Réservation impossible — vérifiez votre connexion");
+        });
+      });
+    });
+
+    var btnBasculer = document.getElementById("rdv-basculer");
+    if (btnBasculer) btnBasculer.addEventListener("click", function(){
+      var zone = document.getElementById("rdv-libre");
+      if (!zone) return;
+      zone.style.display = "block";
+      btnBasculer.style.display = "none";
+      var inp = document.getElementById("rdv-creneau");
+      if (inp) inp.focus();
+    });
+
+    brancherFormulaire(d);
+
+    var btnEnvoyer = document.getElementById("rdv-envoyer");
+    if (btnEnvoyer) btnEnvoyer.addEventListener("click", function(){
+      var creneau = (document.getElementById("rdv-creneau").value || "").trim();
+      envoyer({ action:"rdv", creneau:creneau, mode:modeContact, format:formatChoisi }).then(function(res){
+        if (!(res.corps && res.corps.ok)){ toast("Envoi impossible — réessayez"); return; }
+        etat.demande = true;
+        etat.creneau = creneau;
+        etat.mode = modeContact;
+        etat.format = formatChoisi;
+        d.creneaux = [];
+        redessiner(d);
+        toast("✓ Demande transmise");
+      }).catch(function(){ toast("Envoi impossible — vérifiez votre connexion"); });
+    });
+  }
+
+  // Présentation du visiteur : validation à l'écran, puis création de sa fiche
+  function brancherFormulaire(d){
+    var changer = document.getElementById("rdv-changer");
+    if (changer) changer.addEventListener("click", function(){
+      choisiPublic = null;
+      var zone = document.getElementById("zone-form");
+      if (zone) zone.innerHTML = "";
+      Array.prototype.forEach.call(document.querySelectorAll(".cren"), function(b){ b.classList.remove("choisi"); });
+    });
+
+    var valider = document.getElementById("rdv-valider");
+    if (!valider) return;
+    valider.addEventListener("click", function(){
+      var val = function(id){ var e = document.getElementById(id); return e ? (e.value || "").trim() : ""; };
+      var faux = function(id, mauvais){ var e = document.getElementById(id); if (e) e.classList.toggle("faux", !!mauvais); return !mauvais; };
+
+      var nom = val("f-nom"), tel = val("f-tel"), mail = val("f-mail");
+      var okNom  = faux("ch-nom",  nom.length < 2);
+      var okTel  = faux("ch-tel",  tel.replace(/\D/g, "").length < 9);
+      var okMail = faux("ch-mail", !/^[^@\s]{1,64}@[^@\s.]+(\.[^@\s.]+)+$/.test(mail));
+      if (!okNom || !okTel || !okMail){
+        toast("Il manque une information");
+        var premier = document.querySelector(".champ.faux input");
+        if (premier) premier.focus();
+        return;
+      }
+
+      valider.disabled = true;
+      valider.textContent = "Envoi…";
+      envoyer({
+        action: "reserver_public",
+        creneau_id: choisiPublic ? choisiPublic.id : "",
+        mode: modeContact, format: formatChoisi,
+        nom: nom, telephone: tel, email: mail,
+        projet: val("f-projet"),
+        creneau: val("f-dispo"),
+        societe: val("f-societe")
+      }).then(function(res){
+        var corps = res.corps || {};
+        if (corps.ok){
+          // Chacun repart avec son propre lien : un rechargement montre SON rendez-vous
+          if (corps.token && corps.token !== token){
+            token = corps.token;
+            FN = SUPA + "/functions/v1/rdv/" + encodeURIComponent(token);
+            try { history.replaceState(null, "", location.pathname + "?t=" + encodeURIComponent(token)); } catch (e) {}
+          }
+          if (corps.creneau){
+            etat = { demande:true, reserve:true, confirme:false, refuse:false, debut:corps.creneau.debut, fin:corps.creneau.fin, mode:corps.creneau.mode, format:formatChoisi };
+          } else {
+            etat = { demande:true, mode:modeContact, format:formatChoisi };
+          }
+          choisiPublic = null;
+          redessiner(d);
+          window.scrollTo({ top:0, behavior:"smooth" });
+          toast(corps.creneau ? "✓ Créneau réservé" : "✓ Demande transmise");
+          return;
+        }
+        valider.disabled = false;
+        valider.textContent = choisiPublic ? "Confirmer le rendez-vous" : "Demander à être rappelé";
+        if (corps.error === "creneau_indisponible"){
+          if (corps.creneaux) d.creneaux = corps.creneaux;
+          choisiPublic = null;
+          redessiner(d);
+          toast("Ce créneau vient d'être pris — choisissez-en un autre");
+          return;
+        }
+        if (corps.error === "email_invalide"){ toast("Adresse email invalide"); return; }
+        if (corps.error === "telephone_invalide"){ toast("Numéro de téléphone incomplet"); return; }
+        if (corps.error === "trop_de_demandes"){ toast("Trop d'envois — réessayez dans quelques minutes"); return; }
+        toast("Envoi impossible — réessayez");
+      }).catch(function(){
+        valider.disabled = false;
+        valider.textContent = choisiPublic ? "Confirmer le rendez-vous" : "Demander à être rappelé";
+        toast("Envoi impossible — vérifiez votre connexion");
+      });
+    });
+  }
+
+  function charger(){
+    if (!token && !slugVendeur){
+      cont.innerHTML = "<div class='etat-vide'><h2>Lien incomplet</h2><p>Ouvrez le lien reçu par mail, il contient votre identifiant.</p></div>";
+      return;
+    }
+    fetch(FN + (FN.indexOf("?") >= 0 ? "&" : "?") + "data=1", { cache:"no-store" })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (!d || !d.ok){
+          cont.innerHTML = "<div class='etat-vide'><h2>Ce lien n'est plus valable</h2><p>Contactez votre conseiller GLR Immobilier, il vous en renverra un.</p></div>";
+          return;
+        }
+        // Page par prénom : le serveur a retrouvé le lien public, on continue avec son jeton
+        if (!token && d.token){
+          token = d.token;
+          FN = SUPA + "/functions/v1/rdv/" + encodeURIComponent(token);
+        }
+        if (d.expired){
+          cont.innerHTML = "<div class='etat-vide'><h2>Ce lien a expiré</h2><p>Contactez votre conseiller GLR Immobilier, il vous en renverra un.</p></div>";
+          return;
+        }
+        donnees = d;
+        estPublic = !!d.public;
+        etat = (d.rdv && typeof d.rdv === "object") ? d.rdv : {};
+        if (etat.format && FORMATS[etat.format]) { formatChoisi = etat.format; modeContact = FORMATS[etat.format].mode; }
+        else if (etat.mode && MODES[etat.mode]) modeContact = etat.mode;
+        rendu(d);
+      })
+      .catch(function(){
+        cont.innerHTML = "<div class='etat-vide'><h2>Page indisponible</h2><p>Vérifiez votre connexion et rechargez la page.</p></div>";
+      });
+  }
+
+  charger();
+})();
+</script>
+</body></html>
