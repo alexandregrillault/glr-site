@@ -497,13 +497,24 @@
     return h + "</div>";
   }
 
+  // Une sélection d'un seul lot ne parle pas « des biens » : les tournures au
+  // pluriel des textes fixes passent au singulier (même règle que dans le CRM).
+  function accordUnBien(t){
+    if (!Array.isArray(biens) || biens.length !== 1) return t;
+    return String(t || "")
+      .replace(/les biens retenus/gi, "le bien retenu")
+      .replace(/vos coups de cœur/gi, "votre coup de cœur")
+      .replace(/chaque bien/gi, "ce bien")
+      .replace(/les biens/gi, "le bien")
+      .replace(/ces biens/gi, "ce bien");
+  }
   function htmlModes(){
     var h = "<div class='fmt-choix'>";
     ["visio", "appel"].forEach(function(k){
       var f = FORMATS[k];
       h += "<button type='button' class='fmt" + (formatChoisi === k ? " on" : "") + "' data-format='" + k + "' aria-pressed='" + (formatChoisi === k) + "'>"
          + "<div class='fmt-titre'>" + esc(f.titre) + " <span class='fmt-duree'>" + f.duree + " min</span></div>"
-         + "<div class='fmt-sous'>" + esc(f.sous) + "</div>"
+         + "<div class='fmt-sous'>" + esc(accordUnBien(f.sous)) + "</div>"
          + "<div class='fmt-mode'>" + esc(f.modeLbl) + "</div>"
          + "</button>";
     });
@@ -899,7 +910,7 @@
     // Bloc rendez-vous (créneaux proposés, sinon demande libre)
     h += "<div class='rdv' id='bloc-rdv'>" + htmlRdv(d) + "</div>";
 
-    h += "<footer>Donnez votre avis sur chaque bien : votre conseiller adaptera la prochaine sélection.";
+    h += "<footer>" + (biens.length === 1 ? "Donnez votre avis sur ce bien" : "Donnez votre avis sur chaque bien") + " : votre conseiller adaptera la prochaine sélection.";
     h += "<div class='partage'><button id='btn-partage'>Partager cette sélection</button></div>";
     h += "<div style='margin-top:14px'>GLR Immobilier</div></footer>";
 
