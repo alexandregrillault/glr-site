@@ -550,6 +550,10 @@
       var prf = creneauxDuFormat(props);
       if (!prf.length) h += "<div class='fmt-vide'>Aucun de ces créneaux ne tient en " + FORMATS[formatChoisi].duree + " min — essayez l'autre format.</div>";
       h += htmlCreneaux(prf, "accepter_proposition");
+      // Aucun des trois ne va : le client donne ses disponibilités plutôt que
+      // de rester sans issue. La demande repart aussitôt chez le conseiller.
+      h += "<div class='cren-autre'><button id='rdv-basculer'>Aucun de ces créneaux ne me convient</button></div>";
+      h += "<div id='rdv-libre' style='display:none;margin-top:14px'><div class='rdv-form'><input id='rdv-creneau' type='text' maxlength='300' placeholder='Ex : mardi après 18h, ou samedi matin'><button class='rdv-btn' id='rdv-envoyer'>Envoyer mes disponibilités</button></div></div>";
       return h;
     }
 
@@ -1123,6 +1127,8 @@
       envoyer({ action: "rdv", creneau: creneau, bien: rdvContexte, mode: modeContact, format: formatChoisi }, "✓ Demande de rendez-vous transmise").then(function(ok){
         if (!ok) return;
         etatAvis.rdv = { demande: true, creneau: creneau, mode: modeContact, format: formatChoisi };
+        d.propositions = [];
+        d.creneaux = [];
         document.getElementById("bloc-rdv").innerHTML = htmlRdv(d);
         brancherRdv(d);
       });
