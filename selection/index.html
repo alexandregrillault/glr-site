@@ -160,6 +160,11 @@
   .com-annule { background:none; border:none; padding:0; color:var(--muted); font-size:13px; cursor:pointer; }
   .com-lu { margin-top:10px; font-size:13.5px; color:#3b3f47; font-style:italic; line-height:1.45; }
   .com-lu .com-lien { margin-top:4px; display:inline-block; font-style:normal; }
+  /* Demande d'option sur le lot : une case, rien de plus */
+  .opt { display:flex; align-items:flex-start; gap:10px; margin-top:12px; padding:10px 12px; border:1px solid #ddd6c8; border-radius:12px; background:#faf8f4; cursor:pointer; font-size:13.5px; line-height:1.4; }
+  .opt input { margin:3px 0 0; width:16px; height:16px; accent-color:var(--gold); cursor:pointer; flex:none; }
+  .opt.on { border-color:var(--gold); background:#fbf6ec; }
+  .opt small { display:block; color:var(--muted); font-size:12px; margin-top:2px; }
 
   /* ---- Bloc rendez-vous ---- */
   .rdv { background:var(--dark); border-radius:16px; padding:26px 26px 24px; margin:6px 0 28px; text-align:center; color:#fff; }
@@ -960,6 +965,7 @@
       h += "<button class='ab" + (a.choix === "a_discuter" ? " on" : "") + "' data-c='a_discuter'>À discuter</button>";
       h += "<button class='ab" + (a.choix === "pas_pour_moi" ? " on" : "") + "' data-c='pas_pour_moi'>Pas pour moi</button>";
       h += "</div>";
+      h += "<label class='opt" + (a.option ? " on" : "") + "' data-opt='" + i + "'><input type='checkbox'" + (a.option ? " checked" : "") + "><span>Je souhaite que vous posiez une option sur ce lot<small>Sans engagement : le lot est bloqué pour vous quelques jours, le temps d'en parler.</small></span></label>";
       h += htmlCommentaire(i, a.commentaire);
       h += "<button class='cta-rdv'>Demander un rendez-vous</button>";
       h += "</div></div></div>";
@@ -1206,6 +1212,17 @@
     Array.prototype.forEach.call(document.querySelectorAll(".avis"), function(bloc){
       var i = parseInt(bloc.getAttribute("data-i"), 10);
       brancherCommentaire(bloc, i);
+      // Demande d'option : la case part tout de suite, cochée ou décochée
+      var opt = bloc.querySelector("[data-opt] input");
+      if (opt) opt.addEventListener("change", function(){
+        var veut = !!opt.checked;
+        opt.parentNode.className = "opt" + (veut ? " on" : "");
+        envoyer({ action: "avis", index: i, option: veut }, veut ? "✓ Bien noté, votre conseiller revient vers vous pour poser l'option" : "Demande d'option retirée").then(function(ok){
+          if (!ok){ opt.checked = !veut; opt.parentNode.className = "opt" + (!veut ? " on" : ""); return; }
+          etatAvis[String(i)] = etatAvis[String(i)] || {};
+          etatAvis[String(i)].option = veut;
+        });
+      });
       Array.prototype.forEach.call(bloc.querySelectorAll(".ab"), function(btn){
         btn.addEventListener("click", function(){
           Array.prototype.forEach.call(bloc.querySelectorAll(".ab"), function(b2){ b2.classList.remove("on"); });
