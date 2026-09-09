@@ -148,6 +148,18 @@
   .ab { border:1px solid #ddd6c8; background:#faf8f4; border-radius:22px; padding:8px 14px; font-size:13.5px; cursor:pointer; transition:all .15s; }
   .ab:hover { border-color:var(--gold); }
   .ab.on { background:var(--gold); border-color:var(--gold); color:#fff; font-weight:600; }
+  /* Commentaire libre sous l'avis : un lien discret, la zone de saisie n'apparaît qu'à la demande */
+  .com-lien { margin-top:10px; background:none; border:none; padding:0; color:var(--muted); font-size:13px; cursor:pointer; text-decoration:underline; text-underline-offset:3px; }
+  .com-lien:hover { color:var(--gold-fonce); }
+  .com-zone { margin-top:10px; }
+  .com-zone textarea { width:100%; box-sizing:border-box; min-height:64px; resize:vertical; border:1px solid #ddd6c8; background:#faf8f4; border-radius:12px; padding:10px 13px; font:inherit; font-size:13.5px; color:inherit; outline:none; }
+  .com-zone textarea:focus { border-color:var(--gold); }
+  .com-actions { display:flex; gap:8px; align-items:center; margin-top:8px; }
+  .com-env { border:none; background:var(--gold); color:#fff; border-radius:22px; padding:8px 16px; font-size:13px; font-weight:600; cursor:pointer; }
+  .com-env:hover { background:var(--gold-fonce); }
+  .com-annule { background:none; border:none; padding:0; color:var(--muted); font-size:13px; cursor:pointer; }
+  .com-lu { margin-top:10px; font-size:13.5px; color:#3b3f47; font-style:italic; line-height:1.45; }
+  .com-lu .com-lien { margin-top:4px; display:inline-block; font-style:normal; }
 
   /* ---- Bloc rendez-vous ---- */
   .rdv { background:var(--dark); border-radius:16px; padding:26px 26px 24px; margin:6px 0 28px; text-align:center; color:#fff; }
@@ -380,6 +392,52 @@
       non.onclick = function(){ fermer(false); };
       fond.onclick = function(e){ if (e.target === fond) fermer(false); };
       document.addEventListener("keydown", touche);
+    });
+  }
+  // ---------- Commentaire libre sous un bien ----------
+  // Facultatif et discret : un lien « Un commentaire sur ce bien ? » ouvre une
+  // petite zone de texte ; le commentaire envoyé s'affiche en italique avec
+  // « Modifier ». Il arrive sur la fiche du client chez le conseiller.
+  function htmlCommentaire(i, texte){
+    var t = (texte || "").trim();
+    if (t){
+      return "<div class='com-lu' data-com='" + i + "'>« " + esc(t) + " »<br><button class='com-lien' data-c-modif='" + i + "'>Modifier</button></div>";
+    }
+    return "<div data-com='" + i + "'><button class='com-lien' data-c-modif='" + i + "'>Un commentaire sur ce bien ?</button></div>";
+  }
+  function brancherCommentaire(bloc, i){
+    var zone = bloc.querySelector("[data-com]");
+    if (!zone) return;
+    var lien = zone.querySelector("[data-c-modif]");
+    if (!lien) return;
+    lien.addEventListener("click", function(){
+      var actuel = ((etatAvis[String(i)] || {}).commentaire || "");
+      zone.className = "com-zone";
+      zone.innerHTML = "<textarea maxlength='1000' placeholder='Ce qui vous plaît, ce qui vous freine, une question…'></textarea>"
+        + "<div class='com-actions'><button class='com-env'>Envoyer</button><button class='com-annule'>Annuler</button></div>";
+      var ta = zone.querySelector("textarea");
+      ta.value = actuel;
+      ta.focus();
+      var remettre = function(texte){
+        var neuf = document.createElement("div");
+        neuf.innerHTML = htmlCommentaire(i, texte);
+        var el = neuf.firstChild;
+        zone.parentNode.replaceChild(el, zone);
+        brancherCommentaire(bloc, i);
+      };
+      zone.querySelector(".com-annule").addEventListener("click", function(){ remettre(actuel); });
+      zone.querySelector(".com-env").addEventListener("click", function(){
+        var texte = ta.value.trim().slice(0, 1000);
+        if (texte === actuel.trim()){ remettre(actuel); return; }
+        var btn = zone.querySelector(".com-env");
+        btn.disabled = true; btn.textContent = "Envoi…";
+        envoyer({ action: "avis", index: i, commentaire: texte }, texte ? "✓ Merci, votre commentaire a bien été transmis" : "Commentaire retiré").then(function(ok){
+          if (!ok){ btn.disabled = false; btn.textContent = "Envoyer"; return; }
+          etatAvis[String(i)] = etatAvis[String(i)] || {};
+          etatAvis[String(i)].commentaire = texte;
+          remettre(texte);
+        });
+      });
     });
   }
   function envoyer(corps, message){
@@ -902,6 +960,7 @@
       h += "<button class='ab" + (a.choix === "a_discuter" ? " on" : "") + "' data-c='a_discuter'>À discuter</button>";
       h += "<button class='ab" + (a.choix === "pas_pour_moi" ? " on" : "") + "' data-c='pas_pour_moi'>Pas pour moi</button>";
       h += "</div>";
+      h += htmlCommentaire(i, a.commentaire);
       h += "<button class='cta-rdv'>Demander un rendez-vous</button>";
       h += "</div></div></div>";
     });
@@ -1146,6 +1205,7 @@
     // Avis
     Array.prototype.forEach.call(document.querySelectorAll(".avis"), function(bloc){
       var i = parseInt(bloc.getAttribute("data-i"), 10);
+      brancherCommentaire(bloc, i);
       Array.prototype.forEach.call(bloc.querySelectorAll(".ab"), function(btn){
         btn.addEventListener("click", function(){
           Array.prototype.forEach.call(bloc.querySelectorAll(".ab"), function(b2){ b2.classList.remove("on"); });
