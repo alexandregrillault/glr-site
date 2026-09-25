@@ -6,7 +6,7 @@
 <style>
   :root {
     --gold:#c8a96e; --gold-fonce:#b3945a; --dark:#1a1d23; --muted:#6b7280;
-    --bg:#f7f5f1; --carte:#ffffff; --bordure:#e8e3d9; --encre:#3f4550;
+    --bg:#f7f5f1; --carte:#ffffff; --bordure:#e8e3d9; --encre:#3f4550; --gold-clair:#f4ead9;
   }
   * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
   html { scroll-behavior:smooth; }
@@ -15,7 +15,7 @@
 
   header { text-align:center; padding:22px 0 18px; }
   .marque { font-family:Georgia,'Times New Roman',serif; letter-spacing:5px; font-size:18px; font-weight:700; }
-  .logo { display:block; height:72px; width:auto; max-width:80%; margin:0 auto; }
+  .logo { display:block; height:108px; width:auto; max-width:86%; margin:0 auto; }
   .filet { width:54px; height:2px; background:var(--gold); margin:14px auto 0; }
 
   .intro { background:var(--carte); border:1px solid var(--bordure); border-radius:16px; padding:24px 26px; margin:18px 0 10px; box-shadow:0 2px 12px rgba(26,29,35,.05); }
@@ -37,7 +37,7 @@
   /* Le plan du lot : fond blanc et image entière, jamais recadrée par le
      navigateur — un plan tronqué ne veut plus rien dire. */
   .photo.plan { background:#fff; border-bottom:1px solid var(--bordure); height:300px; }
-  .photo.plan img { object-fit:contain; padding:12px; box-sizing:border-box; }
+  .photo.plan img { object-fit:contain; padding:12px; box-sizing:border-box; cursor:default; }
   .voir-plan { position:absolute; right:12px; bottom:12px; z-index:3; display:flex; align-items:center; gap:6px;
     background:rgba(26,29,35,.82); color:#fff; font-size:11.5px; letter-spacing:.3px; padding:5px 12px; border-radius:16px;
     pointer-events:none; transition:opacity .2s; }
@@ -140,6 +140,29 @@
   .prog-docs a { display:inline-flex; align-items:center; gap:7px; border:1px solid var(--gold); color:var(--gold-fonce); background:#fff; border-radius:22px; padding:7px 14px; font-size:13px; font-weight:600; text-decoration:none; transition:all .15s; }
   .prog-docs a:hover { background:var(--gold); color:#fff; }
   .prog-docs a svg { flex:none; }
+  .prog-docs button.doc-toggle { display:inline-flex; align-items:center; gap:7px; border:1px solid var(--gold); color:var(--gold-fonce); background:#fff; border-radius:22px; padding:7px 14px; font-size:13px; font-weight:600; cursor:pointer; font-family:inherit; }
+  .prog-docs button.doc-toggle:hover { background:var(--gold); color:#fff; }
+  .prog-docs button.doc-toggle .chev { flex:none; transition:transform .2s ease; }
+  .prog-docs button.doc-toggle.actif .chev { transform:rotate(180deg); }
+
+  /* Plan du lot / plan de masse : un panneau qui glisse sous l'image plutôt
+     qu'une fenêtre plein écran (choix d'Alex, septembre 2026) — avec un
+     bouton de téléchargement une fois le panneau ouvert. */
+  .plan-ouvrir { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; box-sizing:border-box; border:none; background:var(--gold); color:#fff; padding:13px; font-size:14px; font-weight:700; letter-spacing:.2px; cursor:pointer; font-family:inherit; transition:background .15s; }
+  .plan-ouvrir:hover { background:var(--gold-fonce); }
+  .plan-ouvrir .chev { flex:none; transition:transform .2s ease; }
+  .plan-ouvrir.actif .chev { transform:rotate(180deg); }
+  .tiroir { display:grid; grid-template-rows:0fr; transition:grid-template-rows .28s ease; }
+  .tiroir.ouvert { grid-template-rows:1fr; }
+  .tiroir-inner { overflow:hidden; }
+  .tiroir-panneau { border-top:1px solid var(--bordure); background:#faf8f4; }
+  .tiroir-tete { padding:10px 16px; font-size:11.5px; font-weight:700; letter-spacing:.4px; text-transform:uppercase; color:var(--gold-fonce); background:var(--gold-clair); }
+  .tiroir-img { position:relative; background:#fff; padding:14px; text-align:center; }
+  .tiroir-img img { max-width:100%; max-height:420px; object-fit:contain; }
+  .tiroir-dl { position:absolute; right:14px; bottom:14px; display:inline-flex; align-items:center; gap:6px; background:#fff; border:1px solid var(--gold); color:var(--gold-fonce); border-radius:18px; padding:7px 13px; font-size:12px; font-weight:700; text-decoration:none; box-shadow:0 3px 10px rgba(26,29,35,.14); }
+  .tiroir-dl:hover { background:var(--gold); color:#fff; }
+  .tiroir-pdf { padding:16px; font-size:13.5px; color:var(--encre); text-align:center; }
+  .tiroir-pdf a { color:var(--gold-fonce); font-weight:600; }
 
   .comp-invite { background:#fff; border:1px solid var(--gold); border-radius:16px; padding:22px 24px; margin:2px 0 22px; text-align:center; box-shadow:0 2px 10px rgba(200,169,110,.15); }
   .comp-invite h3 { font-family:Georgia,serif; font-size:18px; font-weight:600; margin-bottom:6px; }
@@ -370,7 +393,7 @@
     .body { padding:18px; }
     .intro { padding:20px; }
     .rdv-form { flex-direction:column; }
-    .logo { height:58px; }
+    .logo { height:84px; }
     .barre-btn { padding:9px 12px; font-size:12.5px; }
   }
 </style></head><body>
@@ -857,6 +880,25 @@
     return [b.adresse, [b.codePostal, b.commune].filter(Boolean).join(" ")].filter(Boolean).join(", ") || b.ville || "";
   }
   var PIN = "<svg class='pin-svg' width='22' height='22' viewBox='0 0 24 24' fill='none'><path d='M12 22s7-6.1 7-12A7 7 0 0 0 5 10c0 5.9 7 12 7 12z' fill='%23c8a96e' stroke='%23fff' stroke-width='1.6'/><circle cx='12' cy='10' r='2.6' fill='%23fff'/></svg>";
+  // Icônes du panneau qui glisse (plan du lot / plan de masse)
+  var ICO_PLAN = "<svg width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='3' width='18' height='18' rx='2'/><path d='M3 9h18M9 21V9'/></svg>";
+  var ICO_CHEV = "<svg class='chev' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>";
+  var ICO_DL = "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/><polyline points='7 10 12 15 17 10'/><line x1='12' y1='15' x2='12' y2='3'/></svg>";
+  // Panneau qui glisse sous un lot ou un programme : plan, ou plan de masse.
+  // Un PDF ne s'affiche pas en image : un lien suffit pour l'ouvrir.
+  function htmlTiroirPanneau(id, titre, url){
+    var h = "<div class='tiroir' id='tiroir-" + id + "'><div class='tiroir-inner'><div class='tiroir-panneau'>";
+    h += "<div class='tiroir-tete'>" + esc(titre) + "</div>";
+    if (!url){
+      h += "<div class='tiroir-pdf'>Document indisponible pour le moment.</div>";
+    } else if (estPdf(url)){
+      h += "<div class='tiroir-pdf'>Document PDF — <a href='" + esc(url) + "' target='_blank' rel='noopener'>l'ouvrir dans un nouvel onglet</a></div>";
+    } else {
+      h += "<div class='tiroir-img'><img src='" + esc(url) + "' alt='" + esc(titre) + "' loading='lazy'>";
+      h += "<a class='tiroir-dl' href='" + esc(url) + "' target='_blank' rel='noopener' download>" + ICO_DL + "<span>Télécharger</span></a></div>";
+    }
+    return h + "</div></div></div>";
+  }
   function htmlAdresse(b, i, a){
     if (adresseSure(b)){
       var g = b.geo, txt = adresseTexte(b);
@@ -1079,10 +1121,13 @@
     var plaquette = premier(items, "plaquette"), masse = premier(items, "masse");
     if (!plaquette && !masse) return "";
     var ico = "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/><polyline points='14 2 14 8 20 8'/></svg>";
+    var idMasse = "masse-" + items[0].i;
     var h = "<div class='prog-docs'>";
     if (plaquette) h += "<a href='" + esc(plaquette) + "' target='_blank' rel='noopener'>" + ico + "Plaquette du programme</a>";
-    if (masse) h += "<a href='" + esc(masse) + "' target='_blank' rel='noopener'>" + ico + "Plan de masse</a>";
-    return h + "</div>";
+    if (masse) h += "<button type='button' class='doc-toggle' data-tiroir-toggle='" + idMasse + "'>" + ico + "<span class='lbl' data-open='Plan de masse' data-close='Masquer le plan de masse'>Plan de masse</span>" + ICO_CHEV + "</button>";
+    h += "</div>";
+    if (masse) h += htmlTiroirPanneau(idMasse, "Plan de masse", masse);
+    return h;
   }
   function htmlLienDoc(b){
     // Un seul bouton documents, au meme format que la demande de rendez-vous :
@@ -1123,11 +1168,18 @@
     var h = "<div class='" + (compact ? "lot" : "card") + "' data-carte='" + i + "'>";
     var neuf = b && b.nouveau ? "<div class='num-neuf'>Nouveau</div>" : "";
     if (visu.url){
-      h += "<div class='photo" + (visu.plan ? " plan" : "") + "' data-g='" + i + "'>";
+      h += "<div class='photo" + (visu.plan ? " plan" : "") + "' data-g='" + i + "'" + (visu.plan ? " data-plan='1'" : "") + ">";
       h += "<div class='num-bien'>Bien " + (i + 1) + "</div>" + neuf;
       h += "<img src='" + esc(visu.url) + "' alt='" + (visu.plan ? "Plan du lot — " : "") + esc(b.titre || "Bien") + "' loading='lazy'>";
-      if (visu.plan) h += "<div class='voir-plan'>Voir le plan en grand</div>";
       h += "</div>";
+      // Le plan s'agrandit dans un panneau qui glisse sous l'image plutôt que
+      // dans une fenêtre plein écran (choix d'Alex, septembre 2026).
+      if (visu.plan){
+        var idPlanLot = "plan-" + i;
+        h += "<button type='button' class='plan-ouvrir' data-tiroir-toggle='" + idPlanLot + "'>" + ICO_PLAN
+          + "<span class='lbl' data-open='Agrandir le plan' data-close='Masquer le plan agrandi'>Agrandir le plan</span>" + ICO_CHEV + "</button>";
+        h += htmlTiroirPanneau(idPlanLot, "Plan du lot" + (nomLot(b) ? " — " + nomLot(b) : ""), planEntier(b) || visu.url);
+      }
     } else if (!compact){
       h += "<div class='img-vide'><div class='num-bien'>Bien " + (i + 1) + "</div>" + neuf + "<img src='" + LOGO_SRC + "' alt='GLR Immobilier' onerror=\"this.outerHTML='<span class=&quot;txt&quot;>GLR</span>'\"></div>";
     }
@@ -1143,7 +1195,7 @@
     var puces = typos.slice();
     if (b.nature && puces.indexOf(b.nature) === -1) puces.unshift(b.nature);
     if (puces.length) h += "<div class='chips'>" + puces.map(function(t){ return "<span class='chip'>" + esc(t) + "</span>"; }).join("") + "</div>";
-    if (!compact) h += htmlDocsProgramme([{ b: b }]);
+    if (!compact) h += htmlDocsProgramme([{ b: b, i: i }]);
     h += htmlPrix(b);
     h += htmlRemises(b);
     h += htmlNote(b, d);
@@ -1528,8 +1580,25 @@
         });
         return;
       }
+      // Le plan a son propre panneau qui glisse (bouton « Agrandir le plan »
+      // sous l'image) : pas de fenêtre plein écran ici.
+      if (g.hasAttribute("data-plan")) return;
       var i = parseInt(g.getAttribute("data-g"), 10);
       im.addEventListener("click", function(){ ouvrirLb(i, 0); });
+    });
+
+    // Panneaux qui glissent : plan du lot, plan de masse
+    Array.prototype.forEach.call(document.querySelectorAll("[data-tiroir-toggle]"), function(btn){
+      btn.addEventListener("click", function(){
+        var id = btn.getAttribute("data-tiroir-toggle");
+        var panneau = document.getElementById("tiroir-" + id);
+        if (!panneau) return;
+        var ouvrir = !panneau.classList.contains("ouvert");
+        panneau.classList.toggle("ouvert", ouvrir);
+        btn.classList.toggle("actif", ouvrir);
+        var lbl = btn.querySelector(".lbl");
+        if (lbl) lbl.textContent = ouvrir ? lbl.getAttribute("data-close") : lbl.getAttribute("data-open");
+      });
     });
 
     // Avis
