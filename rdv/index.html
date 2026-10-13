@@ -637,6 +637,10 @@
 
     var valider = document.getElementById("rdv-valider");
     if (!valider) return;
+    // Projet prérempli depuis une page programme (?p=…) : la sélection de logements du client
+    var prePro = (params.get("p") || "").slice(0, 500);
+    var fPro = document.getElementById("f-projet");
+    if (prePro && fPro && !fPro.value) fPro.value = prePro;
     valider.addEventListener("click", function(){
       var val = function(id){ var e = document.getElementById(id); return e ? (e.value || "").trim() : ""; };
       var faux = function(id, mauvais){ var e = document.getElementById(id); if (e) e.classList.toggle("faux", !!mauvais); return !mauvais; };
