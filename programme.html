@@ -336,7 +336,7 @@
       <div class="typos" id="s-typos"></div>
       <div class="lots-panel" id="lots-panel">
         <div class="lots-head"><h3 id="lots-titre"></h3><span id="lots-sous"></span></div>
-        <div class="lots-cols"><span>Lot</span><span>Étage</span><span>Surface</span><span>Extérieur</span><span>Expo.</span><span>Parking</span><span class="r">Prix</span><span></span></div>
+        <div class="lots-cols" id="lots-cols"><span>Lot</span><span>Étage</span><span>Surface</span><span>Extérieur</span><span>Expo.</span><span>Parking</span><span class="r">Prix</span><span></span></div>
         <div class="lots-list" id="lots-list"></div>
       </div>
       <div class="chips" id="s-chips"></div>
@@ -508,7 +508,13 @@ const m2 = n => (Math.round(n * 100) / 100).toLocaleString('fr-FR') + ' m²';
 const EXPO = {N:'Nord',S:'Sud',E:'Est',O:'Ouest',NE:'Nord-Est',NO:'Nord-Ouest',SE:'Sud-Est',SO:'Sud-Ouest'};
 const etageTxt = e => (e == null || e === '' || e === '0') ? 'Rez-de-chaussée' : (e === '1' || e === 1 ? '1er étage' : e + 'e étage');
 const etageCourt = e => (e == null || e === '' || e === '0') ? 'RDC' : (e === '1' || e === 1 ? '1er' : e + 'e');
-const typoNom = t => ({T1:'Studio / 1 pièce',T2:'2 pièces',T3:'3 pièces',T4:'4 pièces',T5:'5 pièces'}[t] || t);
+const typoNom = t => ({T1:'Studio / 1 pièce',T2:'2 pièces',T3:'3 pièces',T4:'4 pièces',T5:'5 pièces','T5+':'5 pièces',T6:'6 pièces'}[t] || t);
+// Programme de maisons (16/10/2026) : la majorité des lots sont des maisons → vocabulaire, colonnes et regroupement adaptés
+let MAISONS = false, STATIONNEMENT = '';
+const motLogt = (n) => MAISONS ? (n > 1 ? 'maisons' : 'maison') : (n > 1 ? 'appartements' : 'appartement');
+// Clé de regroupement : la typologie ; pour des maisons de même typologie, le modèle (surface arrondie)
+const cleGroupe = l => MAISONS ? l.typo + '|' + Math.round(l.surf) : l.typo;
+const nomGroupe = (k, g) => MAISONS ? 'Maison ' + typoNom(g[0].typo) + ' · ' + Math.round(g[0].surf) + ' m²' : typoNom(k);
 
 async function fetchProgramme(slug){
   if(!slug) return null;
@@ -521,7 +527,7 @@ async function fetchProgramme(slug){
     return {
       nom:r.nom, ville:r.ville, dept:r.dept, eyebrow:r.eyebrow, livraison:r.livraison,
       prixMin:r.prix_min, pitch:r.pitch, image:r.image, quartier:r.quartier, adresse:r.adresse,
-      photos:r.photos || [], transports:r.transports || [],
+      photos:r.photos || [], transports:r.transports || [], mention_prix:r.mention_prix || '',
       dispositifs:r.dispositifs || [], typologies:r.typologies || [], atouts:r.atouts || []
     };
   }catch(e){ return null; }
@@ -585,20 +591,23 @@ function renderTypos(){
   const box = document.getElementById('s-typos');
   if(LOTS.length){
     const groupes = {};
-    LOTS.forEach(l => (groupes[l.typo] = groupes[l.typo] || []).push(l));
-    const ordre = Object.keys(groupes).sort((a, b) => groupes[a][0].pieces - groupes[b][0].pieces);
+    LOTS.forEach(l => (groupes[cleGroupe(l)] = groupes[cleGroupe(l)] || []).push(l));
+    const ordre = Object.keys(groupes).sort((a, b) => (groupes[a][0].pieces - groupes[b][0].pieces) || (groupes[a][0].surf - groupes[b][0].surf));
     box.innerHTML = ordre.map(t => {
       const g = groupes[t], min = Math.min(...g.map(l => l.prix));
       const s = g.map(l => +l.surf), sMin = Math.min(...s), sMax = Math.max(...s);
-      const surf = sMin === sMax ? m2(sMin) : `${Math.floor(sMin)} à ${Math.ceil(sMax)} m²`;
+      const surf = MAISONS ? (() => { const j = g.map(l => l.ext || 0).filter(Boolean); return j.length ? 'jardin ' + Math.round(Math.min(...j)) + (Math.min(...j) !== Math.max(...j) ? ' à ' + Math.round(Math.max(...j)) : '') + ' m²' : m2(sMin); })()
+        : (sMin === sMax ? m2(sMin) : `${Math.floor(sMin)} à ${Math.ceil(sMax)} m²`);
       return `<button class="typo" data-t="${esc(t)}" aria-expanded="false">
-        <div class="t">${esc(typoNom(t))}</div>
+        <div class="t">${esc(nomGroupe(t, g))}</div>
         <div class="s">${surf} · ${g.length} disponible${g.length > 1 ? 's' : ''}</div>
         <div class="p"><small>dès</small> ${euro(min)}&nbsp;<small>€</small></div>
-        <div class="more"><span>Voir les logements</span><span class="chev">⌄</span></div></button>`;
+        <div class="more"><span>Voir les ${MAISONS ? 'maisons' : 'logements'}</span><span class="chev">⌄</span></div></button>`;
     }).join('');
     box.querySelectorAll('.typo').forEach(b => b.onclick = () => ouvrirTypo(b.dataset.t, b));
-    document.getElementById('s-intro').textContent = `${LOTS.length} appartements encore disponibles, prix parking inclus. Ouvrez une typologie, cochez ceux qui vous intéressent : on les passe en revue ensemble en visio.`;
+    document.getElementById('s-intro').textContent = MAISONS
+      ? `${LOTS.length} maisons encore disponibles, stationnement inclus. Ouvrez un modèle, cochez celles qui vous intéressent : on les passe en revue ensemble en visio.`
+      : `${LOTS.length} appartements encore disponibles, prix parking inclus. Ouvrez une typologie, cochez ceux qui vous intéressent : on les passe en revue ensemble en visio.`;
   } else {
     box.innerHTML = (P.typologies || []).map(t =>
       `<a class="typo" href="#booking" style="text-decoration:none"><div class="t">${esc(t.type)}</div><div class="s">${esc(t.surface)}</div>
@@ -614,20 +623,22 @@ function ouvrirTypo(t, btn){
   if(dejaOuvert){ panel.classList.remove('open'); return; }
   btn.classList.add('on'); btn.setAttribute('aria-expanded', 'true');
   if(!_lotsVus){ _lotsVus = true; selRender(); }
-  const g = LOTS.filter(l => l.typo === t);
-  document.getElementById('lots-titre').textContent = typoNom(t);
-  document.getElementById('lots-sous').textContent = `${g.length} logement${g.length > 1 ? 's' : ''} disponible${g.length > 1 ? 's' : ''} · prix parking inclus`;
+  const g = LOTS.filter(l => cleGroupe(l) === t);
+  document.getElementById('lots-titre').textContent = nomGroupe(t, g);
+  document.getElementById('lots-sous').textContent = MAISONS
+    ? `${g.length} maison${g.length > 1 ? 's' : ''} disponible${g.length > 1 ? 's' : ''} · stationnement inclus`
+    : `${g.length} logement${g.length > 1 ? 's' : ''} disponible${g.length > 1 ? 's' : ''} · prix parking inclus`;
   document.getElementById('lots-list').innerHTML = g.map(l =>
     `<button class="lot${SEL.has(l.n) ? ' in' : ''}" data-n="${esc(l.n)}">
       <span class="ref">Lot ${esc(l.n)}</span>
-      <span class="c-et">${etageTxt(l.etage)}</span>
+      <span class="c-et">${MAISONS ? (l.ext ? 'Jardin ' + m2(l.ext) : '—') : etageTxt(l.etage)}</span>
       <span class="c-surf">${m2(l.surf)}</span>
-      <span class="c-ext">${l.ext ? '+ ' + m2(l.ext) + ' ext.' : '—'}</span>
+      <span class="c-ext">${MAISONS ? 'Maison' : (l.ext ? '+ ' + m2(l.ext) + ' ext.' : '—')}</span>
       <span class="c-expo">${esc(EXPO[l.expo] || l.expo || '—')}</span>
-      <span class="c-pk">${l.nb_pk > 1 ? l.nb_pk + ' places' : l.nb_pk ? '1 place' : '—'}</span>
+      <span class="c-pk">${STATIONNEMENT ? 'Inclus' : (l.nb_pk > 1 ? l.nb_pk + ' places' : l.nb_pk ? '1 place' : '—')}</span>
       <span class="px">${euro(l.prix)} €</span>
-      <span class="acts"><span class="plan-btn" role="button" aria-label="Voir le plan du lot ${esc(l.n)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 4h11v6h7v10H3z"/><path d="M9 10v10M3 15h6"/></svg>Voir le plan</span><span class="sel" role="button" aria-label="Sélectionner le lot ${esc(l.n)}"></span></span>
-      <span class="meta">${etageCourt(l.etage)} · ${m2(l.surf)}${l.ext ? ' + ' + m2(l.ext) + ' ext.' : ''} · ${esc(EXPO[l.expo] || l.expo || '')}${l.nb_pk ? ' · ' + (l.nb_pk > 1 ? l.nb_pk + ' pk' : '1 pk') : ''}</span>
+      <span class="acts">${l.plan ? `<span class="plan-btn" role="button" aria-label="Voir le plan du lot ${esc(l.n)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 4h11v6h7v10H3z"/><path d="M9 10v10M3 15h6"/></svg>Voir le plan</span>` : `<span class="plan-btn" role="button">Détails</span>`}<span class="sel" role="button" aria-label="Sélectionner le lot ${esc(l.n)}"></span></span>
+      <span class="meta">${MAISONS ? 'Maison' : etageCourt(l.etage)} · ${m2(l.surf)}${l.ext ? ' + ' + m2(l.ext) + (MAISONS ? ' jardin' : ' ext.') : ''} · ${esc(EXPO[l.expo] || l.expo || '')}${l.nb_pk ? ' · ' + (l.nb_pk > 1 ? l.nb_pk + ' pk' : '1 pk') : ''}</span>
     </button>`).join('');
   document.querySelectorAll('#lots-list .lot').forEach(b => { b.onclick = e => { if(e.target.closest('.sel')){ selToggle(b.dataset.n); return; } ouvrirLot(b.dataset.n); }; b.onmouseenter = () => { const l = LOTS.find(x => x.n === b.dataset.n); if(l && l.plan && !_planCache[l.n]) planImage(l).catch(() => {}); }; });
   // le panneau s'insère juste sous la rangée de la carte cliquée (une carte par ligne sur mobile)
@@ -695,22 +706,26 @@ function ouvrirLot(n){
       im.onclick = open; z.onclick = open;
     }).catch(() => { plan.innerHTML = `<div class="ph"><div class="ic">▭</div>Le plan de ce logement vous est présenté en visio.</div>`; });
   } else {
-    plan.innerHTML = `<div class="ph"><div class="ic">▭</div>Le plan de ce logement vous est présenté en visio.</div>`;
+    // Pas de plan dans la pige : une photo du programme plutôt qu'un cadre vide
+    const ph = (P.photos || [])[1] || (P.photos || [])[0];
+    plan.innerHTML = ph
+      ? `<div style="position:absolute;inset:0;background:url('${ph.url}') center/cover no-repeat"></div><div class="zoom" style="cursor:default">Plan présenté en visio</div>`
+      : `<div class="ph"><div class="ic">▭</div>Le plan de ce logement vous est présenté en visio.</div>`;
   }
   document.getElementById('m-panier').textContent = SEL.has(l.n) ? 'Retirer de ma sélection' : 'Ajouter à ma sélection';
   document.getElementById('m-eyebrow').textContent = `${P.nom.split(/\s[–—-]\s/)[0]} · Lot ${l.n}`;
-  document.getElementById('m-titre').textContent = `${typoNom(l.typo)} de ${m2(l.surf)}`;
+  document.getElementById('m-titre').textContent = `${MAISONS ? 'Maison ' + typoNom(l.typo) : typoNom(l.typo)} de ${m2(l.surf)}`;
   const specs = [
-    ['Étage', etageTxt(l.etage)],
+    MAISONS ? ['Jardin', l.ext ? m2(l.ext) : '—'] : ['Étage', etageTxt(l.etage)],
     ['Surface habitable', m2(l.surf)],
-    ['Espace extérieur', l.ext ? m2(l.ext) : '—'],
+    MAISONS ? ['Type', 'Maison'] : ['Espace extérieur', l.ext ? m2(l.ext) : '—'],
     ['Exposition', EXPO[l.expo] || l.expo || '—'],
-    ['Stationnement', l.nb_pk > 1 ? l.nb_pk + ' places incluses' : '1 place incluse'],
+    ['Stationnement', STATIONNEMENT || (l.nb_pk > 1 ? l.nb_pk + ' places incluses' : '1 place incluse')],
     ['Livraison', P.livraison || '—']
   ];
   document.getElementById('m-specs').innerHTML = specs.map(([k, v]) => `<div class="spec"><div class="k">${k}</div><div class="v">${esc(v)}</div></div>`).join('');
   document.getElementById('m-prix').textContent = euro(l.prix) + ' €';
-  document.getElementById('m-prix-note').textContent = 'TTC, parking inclus';
+  document.getElementById('m-prix-note').textContent = 'TTC, ' + (MAISONS ? 'stationnement' : 'parking') + ' inclus' + (P.mention_prix ? ' · ' + P.mention_prix : '');
   const m = document.getElementById('lot-modal');
   m.classList.add('open'); document.body.classList.add('modal-open');
   document.getElementById('m-interet').focus();
@@ -745,7 +760,7 @@ function selRender(){
   const sv = document.getElementById('sel-vide');
   sv.style.display = lots.length ? 'none' : '';
   document.getElementById('sel-list').innerHTML = lots.map(l =>
-    `<li><div><b>Lot ${esc(l.n)}</b> — ${esc(typoNom(l.typo))}, ${m2(l.surf)}, ${etageTxt(l.etage).toLowerCase()}<small>${euro(l.prix)} € parking inclus${l.ext ? ' · ' + m2(l.ext) + ' extérieur' : ''}</small></div><button aria-label="Retirer" data-n="${esc(l.n)}">✕</button></li>`).join('');
+    `<li><div><b>Lot ${esc(l.n)}</b> — ${esc(typoNom(l.typo))}, ${m2(l.surf)}, ${etageTxt(l.etage).toLowerCase()}<small>${euro(l.prix)} € ${MAISONS ? 'stationnement' : 'parking'} inclus${l.ext ? ' · ' + m2(l.ext) + ' extérieur' : ''}</small></div><button aria-label="Retirer" data-n="${esc(l.n)}">✕</button></li>`).join('');
   document.querySelectorAll('#sel-list button').forEach(b => b.onclick = () => selToggle(b.dataset.n));
   document.querySelectorAll('#lots-list .lot').forEach(b => b.classList.toggle('in', SEL.has(b.dataset.n)));
   if(LOT_CHOISI) document.getElementById('m-panier').textContent = SEL.has(LOT_CHOISI.n) ? 'Retirer de ma sélection' : 'Ajouter à ma sélection';
@@ -815,6 +830,12 @@ function renderEmplacement(pub){
   else p.quartierTexte = '';
   P = p;
   LOTS = (pub && Array.isArray(pub.lots)) ? pub.lots.map(l => Object.assign({}, l, { surf:+l.surf, ext:l.ext == null ? null : +l.ext, prix:+l.prix })) : [];
+  MAISONS = LOTS.length > 0 && LOTS.filter(l => /maison|villa/i.test(l.nature || '')).length * 2 > LOTS.length;
+  STATIONNEMENT = (pub && pub.stationnement) || '';
+  if(MAISONS){
+    const c = document.getElementById('lots-cols');
+    if(c) c.innerHTML = '<span>Lot</span><span>Jardin</span><span>Surface</span><span>Type</span><span>Expo.</span><span>Parking</span><span class="r">Prix</span><span></span>';
+  }
 
   const set = (id, txt) => { const el = document.getElementById(id); if(el) el.textContent = txt; };
   const parts = p.nom.split(/\s[–—-]\s/);
@@ -832,10 +853,11 @@ function renderEmplacement(pub){
   const prixMin = LOTS.length ? euro(Math.min(...LOTS.map(l => l.prix))) : (p.prixMin || '').replace(/\s*€\s*$/, '');
   const typos = LOTS.length ? [...new Set(LOTS.map(l => l.typo))] : (p.typologies || []).map(t => t.type);
   const facts = [];
-  if(prixMin) facts.push({ k:'À partir de', v:`${prixMin} €`, n: LOTS.length ? 'parking inclus' : '' });
+  if(prixMin) facts.push({ k:'À partir de', v:`${prixMin} €`, n: LOTS.length ? (p.mention_prix || (MAISONS ? 'stationnement inclus' : 'parking inclus')) : '' });
+  if(p.mention_prix){ const d = document.getElementById('s-disclaimer'); if(d) d.textContent = 'Prix affichés : ' + p.mention_prix + '. ' + d.textContent; }
   if(p.livraison) facts.push({ k:'Livraison', v:p.livraison });
-  if(typos.length) facts.push({ k:'Typologies', v: typos.length > 1 ? `${typos[0]} au ${typos[typos.length-1]}` : typos[0] });
-  if(LOTS.length) facts.push({ k:'Disponibles', v:`${LOTS.length} logements` });
+  if(typos.length) facts.push({ k: MAISONS ? 'Maisons' : 'Typologies', v: typos.length > 1 ? `${typos[0]} au ${typos[typos.length-1]}` : typoNom(typos[0]) });
+  if(LOTS.length) facts.push({ k:'Disponibles', v:`${LOTS.length} ${MAISONS ? motLogt(LOTS.length) : 'logements'}` });
   document.getElementById('h-facts').innerHTML = facts.map(f =>
     `<div class="f"><div class="k">${f.k}</div><div class="v">${esc(f.v)}${f.n ? ` <small>${f.n}</small>` : ''}</div></div>`).join('');
 
