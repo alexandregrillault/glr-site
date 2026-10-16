@@ -79,6 +79,8 @@
   .car-track::-webkit-scrollbar{display:none}
   .slide{flex:0 0 100%;scroll-snap-align:center;position:relative;aspect-ratio:16/9;max-height:640px}
   .slide img{width:100%;height:100%;object-fit:cover}
+  .slide.plan{background:#fff}
+  .slide.plan img{object-fit:contain;padding:14px 18px;box-sizing:border-box;cursor:zoom-in}
   .slide figcaption{position:absolute;left:18px;bottom:18px;background:rgba(255,253,248,.92);color:var(--green);font-size:12px;font-weight:600;letter-spacing:.06em;padding:7px 14px;border-radius:999px}
   .car-btn{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:none;background:rgba(255,253,248,.92);color:var(--green);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(22,39,29,.18);transition:background .15s ease}
   .car-btn:hover{background:#fff}
@@ -559,12 +561,15 @@ function rdvUrl(){
   return RDV_PAGE + '?v=' + VENDEUR + '&f=visio&p=' + encodeURIComponent(projet.slice(0, 500));
 }
 
+// Plan de masse : une « photo » dont la légende commence par « Plan de masse » (image nettoyée du cartouche promoteur, déposée avec les photos)
+const estPlan = ph => /^plan de masse/i.test((ph && ph.legende) || '');
 function carousel(photos){
   const track = document.getElementById('car-track'), dots = document.getElementById('car-dots');
   const car = document.getElementById('carousel');
   if(!photos.length){ document.querySelector('.gallery').style.display = 'none'; return; }
   track.innerHTML = photos.map((ph, i) =>
-    `<figure class="slide" aria-label="${i+1} sur ${photos.length}"><img src="${esc(ph.url)}" alt="${esc(ph.legende || P.nom)}" ${i ? 'loading="lazy"' : ''}>${ph.legende ? `<figcaption>${esc(ph.legende)}</figcaption>` : ''}</figure>`).join('');
+    `<figure class="slide${estPlan(ph) ? ' plan' : ''}" aria-label="${i+1} sur ${photos.length}"><img src="${esc(ph.url)}" alt="${esc(ph.legende || P.nom)}" ${i ? 'loading="lazy"' : ''}>${ph.legende ? `<figcaption>${esc(ph.legende)}</figcaption>` : ''}</figure>`).join('');
+  track.querySelectorAll('.slide.plan img').forEach(im => im.onclick = () => { const zz = document.getElementById('zoomed'); zz.querySelector('img').src = im.src; zz.classList.add('open'); });
   if(photos.length < 2){ document.getElementById('car-prev').style.display = document.getElementById('car-next').style.display = 'none'; return; }
   dots.innerHTML = photos.map((_, i) => `<button class="dot${i ? '' : ' on'}" aria-label="Photo ${i+1}"></button>`).join('');
   let idx = 0, timer = null;
@@ -748,7 +753,8 @@ function ouvrirLot(n){
     }).catch(() => { plan.innerHTML = `<div class="ph"><div class="ic">▭</div>Le plan de ce logement vous est présenté en visio.</div>`; });
   } else {
     // Pas de plan dans la pige : une photo du programme plutôt qu'un cadre vide
-    const ph = (P.photos || [])[1] || (P.photos || [])[0];
+    const vues = (P.photos || []).filter(x => !estPlan(x));
+    const ph = vues[1] || vues[0];
     plan.innerHTML = ph
       ? `<div style="position:absolute;inset:0;background:url('${ph.url}') center/cover no-repeat"></div><div class="zoom" style="cursor:default">Plan présenté en visio</div>`
       : `<div class="ph"><div class="ic">▭</div>Le plan de ce logement vous est présenté en visio.</div>`;
@@ -821,7 +827,7 @@ function renderAtouts(){
   if(!avecChiffres) box.classList.add('plain');
   box.innerHTML = at.map(a => `<div class="atout">${a.chiffre ? `<div class="c">${esc(a.chiffre)}</div>` : ''}<h3>${esc(a.titre)}</h3><p>${esc(a.texte)}</p></div>`).join('');
   // photo d'accompagnement : une vue intérieure/terrasse si dispo, sinon la 2e photo
-  const ph = (P.photos || []);
+  const ph = (P.photos || []).filter(x => !estPlan(x));
   const pick = ph.find(x => /terrasse|balcon|séjour|sejour|intérieur/i.test(x.legende || x.url)) || ph[1] || ph[0];
   const el = document.getElementById('diff-photo');
   if(pick){ el.style.backgroundImage = `url("${pick.url}")`; el.setAttribute('aria-label', pick.legende || ''); }
