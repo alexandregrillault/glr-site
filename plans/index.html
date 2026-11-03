@@ -98,8 +98,8 @@ footer{border-top:1px solid var(--line);padding:20px 16px;text-align:center;font
       <input type="tel" id="telephone" name="telephone" maxlength="40" autocomplete="tel" inputmode="tel" required>
     </div>
     <div class="champ">
-      <label for="email">E-mail <small>(facultatif, pour recevoir les plans par mail)</small></label>
-      <input type="email" id="email" name="email" maxlength="160" autocomplete="email">
+      <label for="email">E-mail <small>(pour recevoir les plans)</small></label>
+      <input type="email" id="email" name="email" maxlength="160" autocomplete="email" required>
     </div>
     <div class="piege" aria-hidden="true"><label for="societe">Société</label><input type="text" id="societe" name="societe" tabindex="-1" autocomplete="off"></div>
     <label class="accord"><input type="checkbox" id="accord" required><span>J'accepte que GLR Immobilier me contacte par téléphone, SMS ou e-mail pour m'envoyer les plans et une sélection de programmes. <a href="/mentions-legales/" target="_blank" rel="noopener">Données personnelles</a></span></label>
@@ -131,7 +131,7 @@ f.addEventListener("submit", function (ev) {
   if (!d.zone) { err.textContent = "Indique la ville ou le secteur qui t'intéresse."; return; }
   if (!d.prenom) { err.textContent = "Indique ton prénom."; return; }
   if (chiffres.length < 9) { err.textContent = "Indique un numéro de téléphone valide."; return; }
-  if (d.email && !/^[^@\s]+@[^@\s.]+(\.[^@\s.]+)+$/.test(d.email)) { err.textContent = "L'adresse e-mail ne semble pas valide."; return; }
+  if (!/^[^@\s]+@[^@\s.]+(\.[^@\s.]+)+$/.test(d.email)) { err.textContent = d.email ? "L'adresse e-mail ne semble pas valide." : "Indique ton e-mail pour recevoir les plans."; return; }
   if (!d.accord) { err.textContent = "Coche la case pour qu'un conseiller puisse te recontacter."; return; }
   go.disabled = true; go.textContent = "Envoi…";
   fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(d) })
