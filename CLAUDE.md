@@ -13,6 +13,7 @@ Le site vitrine de GLR Immobilier et les pages que les clients ouvrent depuis le
 | `selection/index.html` | Feuille sélection d'un client : `?t=<jeton>`. **Figée** (décision d'Alex du 02/10/2026) : aucune évolution sans demande explicite ; un bug avéré se corrige. Doit rester **identique** à `glrimmobilier/selection.html`. |
 | `programme.html` + `programmes/<slug>/` | Page publique d'un programme en campagne : `?prog=<slug>&v=<prenom>`. Données : table `programmes` + RPC `programme_public`. Les photos sont dans `programmes/<slug>/`. |
 | `quoi-de-neuf/` | Pages hebdo « Quoi de neuf » (~100 pages), **générées** par `pige/current/quoi_de_neuf.py` sur le Mac d'Alex : ne pas les éditer à la main, régénérer. |
+| `plans/index.html` | Formulaire « recevoir les plans des programmes neufs de ton secteur », ouvert depuis le robot Instagram de Quoi de neuf (`?src=instagram&ref=<publication>`). Poste sur l'edge function `qdn-plans` (lead chez Alexandre, source « Quoi de neuf Instagram »). Nomme GLR Immobilier, partenaire de Quoi de neuf, et demande l'accord de recontact (décision d'Alex du 03/11/2026). `noindex`. |
 | `mentions-legales/index.html` | Mentions légales. |
 | `robots.txt`, `sitemap.xml` | Référencement. |
 | `logo-glr.png`, `icone-glr.png` | Identité. Le logo est aussi servi aux mails (`www.glrimmobilier.com/logo-glr.png`) : ne pas le renommer ni le déplacer. |

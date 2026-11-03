@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les plans des programmes neufs de ton secteur | Quoi de neuf × GLR Immobilier</title>
+<meta name="description" content="Reçois les plans des programmes neufs de ton secteur en Île-de-France. Un conseiller de GLR Immobilier, partenaire de Quoi de neuf, t'envoie la sélection.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="/logo-glr.png">
+<meta name="theme-color" content="#F7F6F2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Archivo:wght@400;500;600&display=swap">
+<style>
+:root{color-scheme:light;--paper:#EAE6DD;--surface:#FFFFFF;--ink:#161A1E;--ink-2:#333A41;--muted:#616B75;--line:#D2CCBF;--bronze:#8A6A2F;--glr:#005875;--ok:#2E7D5B;--err:#A33A2B;
+  --display:"Bodoni Moda","Didot","Times New Roman",serif;--body:"Archivo","Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink-2);font-family:var(--body);font-size:16px;line-height:1.55}
+a{color:var(--glr)}
+header{padding:18px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
+header img{display:block;height:46px;width:auto}
+header .avec{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:right}
+header .avec b{display:block;font-size:1rem;letter-spacing:0;text-transform:none;color:#1F5FBF;font-weight:600}
+main{max-width:560px;margin:0 auto;padding:30px 16px 56px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(1.8rem,7vw,2.4rem);line-height:1.12;color:var(--ink);margin:0 0 .6rem}
+.sub{color:var(--muted);margin:0 0 1.6rem}
+form,.merci{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px 20px 20px}
+label{display:block;font-weight:600;color:var(--ink);font-size:.95rem;margin:0 0 .35rem}
+label small{font-weight:400;color:var(--muted)}
+.champ{margin-bottom:1.05rem}
+input[type=text],input[type=tel],input[type=email],select{width:100%;font:inherit;font-size:16px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:6px;padding:12px 12px}
+input:focus,select:focus{outline:2px solid var(--glr);outline-offset:1px;border-color:var(--glr)}
+.choix{display:flex;flex-wrap:wrap;gap:8px}
+.choix label{margin:0;font-weight:500;border:1px solid var(--line);border-radius:22px;padding:9px 15px;cursor:pointer;background:#fff;color:var(--ink-2)}
+.choix input{position:absolute;opacity:0;pointer-events:none}
+.choix input:checked+span{color:#fff}
+.choix label:has(input:checked){background:var(--glr);border-color:var(--glr);color:#fff}
+.accord{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:.9rem;color:var(--ink-2);margin:.4rem 0 1.1rem}
+.accord input{margin-top:3px;width:18px;height:18px;flex:none}
+button{width:100%;font:inherit;font-weight:600;font-size:1.05rem;color:#fff;background:var(--glr);border:0;border-radius:6px;padding:14px;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+.erreur{color:var(--err);font-size:.92rem;margin:.6rem 0 0;min-height:1.2em}
+.piege{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.merci{display:none}
+.merci h2{font-family:var(--display);font-weight:500;font-size:1.5rem;color:var(--ink);margin:0 0 .5rem}
+.note{font-size:.82rem;color:var(--muted);margin:1rem 0 0}
+footer{border-top:1px solid var(--line);padding:20px 16px;text-align:center;font-size:.82rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <a href="/" aria-label="GLR Immobilier — accueil"><img src="/logo-glr.png" alt="GLR Immobilier" width="72" height="58"></a>
+  <div class="avec">en partenariat avec<b>quoi de neuf</b></div>
+</header>
+<main>
+  <h1>Les plans des programmes neufs de ton secteur</h1>
+  <p class="sub">Dis-nous où tu cherches. Un conseiller de GLR Immobilier, commercialisateur de logements neufs et partenaire de Quoi de neuf, t'envoie les plans et une sélection des programmes qui te correspondent.</p>
+
+  <form id="f" novalidate>
+    <div class="champ">
+      <label for="zone">Ville ou secteur</label>
+      <input type="text" id="zone" name="zone" maxlength="160" autocomplete="address-level2" placeholder="Ex. Aubervilliers, ligne 15 Est, Val-de-Marne…" required>
+    </div>
+    <div class="champ">
+      <label>Type de logement</label>
+      <div class="choix" id="typologie">
+        <label><input type="radio" name="typologie" value="Studio / T1"><span>Studio / T1</span></label>
+        <label><input type="radio" name="typologie" value="T2"><span>T2</span></label>
+        <label><input type="radio" name="typologie" value="T3"><span>T3</span></label>
+        <label><input type="radio" name="typologie" value="T4"><span>T4</span></label>
+        <label><input type="radio" name="typologie" value="T5 et plus"><span>T5 et plus</span></label>
+      </div>
+    </div>
+    <div class="champ">
+      <label>Ton projet <small>(facultatif)</small></label>
+      <div class="choix">
+        <label><input type="radio" name="projet" value="Habiter"><span>Y habiter</span></label>
+        <label><input type="radio" name="projet" value="Investir"><span>Investir</span></label>
+      </div>
+    </div>
+    <div class="champ">
+      <label for="budget">Budget</label>
+      <select id="budget" name="budget">
+        <option value="">Choisir…</option>
+        <option>Moins de 200 000 €</option>
+        <option>200 000 à 300 000 €</option>
+        <option>300 000 à 400 000 €</option>
+        <option>400 000 à 550 000 €</option>
+        <option>Plus de 550 000 €</option>
+      </select>
+    </div>
+    <div class="champ">
+      <label for="prenom">Prénom</label>
+      <input type="text" id="prenom" name="prenom" maxlength="60" autocomplete="given-name" required>
+    </div>
+    <div class="champ">
+      <label for="telephone">Téléphone</label>
+      <input type="tel" id="telephone" name="telephone" maxlength="40" autocomplete="tel" inputmode="tel" required>
+    </div>
+    <div class="champ">
+      <label for="email">E-mail <small>(facultatif, pour recevoir les plans par mail)</small></label>
+      <input type="email" id="email" name="email" maxlength="160" autocomplete="email">
+    </div>
+    <div class="piege" aria-hidden="true"><label for="societe">Société</label><input type="text" id="societe" name="societe" tabindex="-1" autocomplete="off"></div>
+    <label class="accord"><input type="checkbox" id="accord" required><span>J'accepte que GLR Immobilier me contacte par téléphone, SMS ou e-mail pour m'envoyer les plans et une sélection de programmes. <a href="/mentions-legales/" target="_blank" rel="noopener">Données personnelles</a></span></label>
+    <button type="submit" id="go">Recevoir les plans</button>
+    <p class="erreur" id="err" role="alert"></p>
+  </form>
+
+  <div class="merci" id="merci" role="status">
+    <h2>C'est noté<span id="mPrenom"></span>.</h2>
+    <p>Un conseiller de GLR Immobilier te contacte sous 24 h ouvrées avec les plans des programmes neufs de ton secteur.</p>
+    <p class="note">Tu peux retourner sur Instagram : on se retrouve dans le prochain épisode de Ligne par ligne.</p>
+  </div>
+</main>
+<footer>GLR Immobilier · SARL, RCS Paris 933 789 612 · <a href="/mentions-legales/">Mentions légales et données personnelles</a></footer>
+<script>
+var ENDPOINT = "https://hydqfbxdtpmbuooexekp.supabase.co/functions/v1/qdn-plans";
+var q = new URLSearchParams(location.search);
+var f = document.getElementById("f"), err = document.getElementById("err"), go = document.getElementById("go");
+function val(n) { var e = f.elements[n]; if (!e) return ""; if (e.length !== undefined && !e.tagName) { for (var i = 0; i < e.length; i++) if (e[i].checked) return e[i].value; return ""; } return (e.value || "").trim(); }
+f.addEventListener("submit", function (ev) {
+  ev.preventDefault();
+  err.textContent = "";
+  var d = {
+    zone: val("zone"), typologie: val("typologie"), projet: val("projet"), budget: val("budget"),
+    prenom: val("prenom"), telephone: val("telephone"), email: val("email"), societe: val("societe"),
+    accord: document.getElementById("accord").checked, origine: q.get("src") || "", ref: q.get("ref") || ""
+  };
+  var chiffres = d.telephone.replace(/\D/g, "");
+  if (!d.zone) { err.textContent = "Indique la ville ou le secteur qui t'intéresse."; return; }
+  if (!d.prenom) { err.textContent = "Indique ton prénom."; return; }
+  if (chiffres.length < 9) { err.textContent = "Indique un numéro de téléphone valide."; return; }
+  if (d.email && !/^[^@\s]+@[^@\s.]+(\.[^@\s.]+)+$/.test(d.email)) { err.textContent = "L'adresse e-mail ne semble pas valide."; return; }
+  if (!d.accord) { err.textContent = "Coche la case pour qu'un conseiller puisse te recontacter."; return; }
+  go.disabled = true; go.textContent = "Envoi…";
+  fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(d) })
+    .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+    .then(function (x) {
+      if (!x.ok || !x.j || !x.j.ok) throw new Error((x.j && x.j.error) || "erreur");
+      document.getElementById("mPrenom").textContent = ", " + d.prenom;
+      f.style.display = "none"; document.getElementById("merci").style.display = "block";
+      window.scrollTo(0, 0);
+    })
+    .catch(function (e) {
+      go.disabled = false; go.textContent = "Recevoir les plans";
+      err.textContent = String(e.message) === "trop_de_demandes"
+        ? "Trop d'envois d'un coup : réessaie dans quelques minutes."
+        : "L'envoi n'a pas marché. Réessaie, ou écris-nous à agl@glrimmobilier.com.";
+    });
+});
+</script>
+</body>
+</html>
