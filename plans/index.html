@@ -35,6 +35,11 @@ input:focus,select:focus{outline:2px solid var(--glr);outline-offset:1px;border-
 .choix input{position:absolute;opacity:0;pointer-events:none}
 .choix input:checked+span{color:#fff}
 .choix label:has(input:checked){background:var(--glr);border-color:var(--glr);color:#fff}
+.jauge output{display:block;font-family:var(--display);font-size:1.45rem;color:var(--muted);margin:0 0 .3rem}
+.jauge.choisi output{color:var(--glr)}
+.jauge input{width:100%;height:28px;margin:0;accent-color:var(--glr);cursor:pointer}
+.jauge:not(.choisi) input{opacity:.55}
+.bornes{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted)}
 .accord{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:.9rem;color:var(--ink-2);margin:.4rem 0 1.1rem}
 .accord input{margin-top:3px;width:18px;height:18px;flex:none}
 button{width:100%;font:inherit;font-weight:600;font-size:1.05rem;color:#fff;background:var(--glr);border:0;border-radius:6px;padding:14px;cursor:pointer}
@@ -79,15 +84,13 @@ footer{border-top:1px solid var(--line);padding:20px 16px;text-align:center;font
       </div>
     </div>
     <div class="champ">
-      <label for="budget">Budget</label>
-      <select id="budget" name="budget">
-        <option value="">Choisir…</option>
-        <option>Moins de 200 000 €</option>
-        <option>200 000 à 300 000 €</option>
-        <option>300 000 à 400 000 €</option>
-        <option>400 000 à 550 000 €</option>
-        <option>Plus de 550 000 €</option>
-      </select>
+      <label for="jauge">Budget <small>(fais glisser)</small></label>
+      <div class="jauge">
+        <output id="budgetVu" for="jauge">Pas encore défini</output>
+        <input type="range" id="jauge" min="150000" max="800000" step="25000" value="350000" aria-describedby="budgetVu">
+        <div class="bornes"><span>150 k€</span><span>800 k€ et plus</span></div>
+      </div>
+      <input type="hidden" id="budget" name="budget" value="">
     </div>
     <div class="champ">
       <label for="prenom">Prénom</label>
@@ -118,6 +121,16 @@ footer{border-top:1px solid var(--line);padding:20px 16px;text-align:center;font
 var ENDPOINT = "https://hydqfbxdtpmbuooexekp.supabase.co/functions/v1/qdn-plans";
 var q = new URLSearchParams(location.search);
 var f = document.getElementById("f"), err = document.getElementById("err"), go = document.getElementById("go");
+// Budget : facultatif, donc rien n'est envoyé tant que la personne n'a pas touché le curseur.
+var jauge = document.getElementById("jauge"), budgetVu = document.getElementById("budgetVu"), budget = document.getElementById("budget");
+function majBudget() {
+  var v = Number(jauge.value), t = v.toLocaleString("fr-FR") + " €";
+  t = v >= Number(jauge.max) ? t + " et plus" : "Environ " + t;
+  budgetVu.textContent = t; budget.value = t;
+  jauge.parentNode.classList.add("choisi");
+}
+jauge.addEventListener("input", majBudget);
+budget.value = ""; jauge.value = 350000; // le navigateur peut restaurer d'anciennes valeurs au retour sur la page
 function val(n) { var e = f.elements[n]; if (!e) return ""; if (e.length !== undefined && !e.tagName) { for (var i = 0; i < e.length; i++) if (e[i].checked) return e[i].value; return ""; } return (e.value || "").trim(); }
 f.addEventListener("submit", function (ev) {
   ev.preventDefault();
