@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Votre budget — GLR Immobilier</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+  :root {
+    --gold:#c8a96e; --gold-fonce:#b3945a; --dark:#1a1d23; --muted:#6b7280;
+    --bg:#f7f5f1; --carte:#ffffff; --bordure:#e8e3d9; --encre:#3f4550; --vert:#1E3A32;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+  body { background:var(--bg); color:var(--dark); font-family:'Helvetica Neue',Arial,sans-serif; line-height:1.55; }
+  .wrap { max-width:560px; margin:0 auto; padding:22px 16px 60px; }
+
+  header { text-align:center; padding:16px 0 14px; }
+  .marque { font-family:Georgia,'Times New Roman',serif; letter-spacing:5px; font-size:18px; font-weight:700; }
+  .logo { display:block; height:62px; width:auto; max-width:80%; margin:0 auto; }
+  .filet { width:54px; height:2px; background:var(--gold); margin:12px auto 0; }
+
+  .bloc { background:var(--carte); border:1px solid var(--bordure); border-radius:16px; padding:24px 24px 22px; margin:14px 0; box-shadow:0 2px 12px rgba(26,29,35,.05); }
+  .bloc h1 { font-family:Georgia,serif; font-size:22px; font-weight:600; margin-bottom:8px; }
+  .bloc h2 { font-family:Georgia,serif; font-size:20px; font-weight:600; margin-bottom:6px; line-height:1.3; }
+  .bloc p { color:var(--encre); font-size:15px; }
+  .aide { color:var(--muted); font-size:13.5px; margin-top:4px; }
+
+  /* Progression */
+  .prog { display:flex; align-items:center; gap:10px; margin:4px 2px 0; }
+  .prog-barre { flex:1; height:5px; background:var(--bordure); border-radius:4px; overflow:hidden; }
+  .prog-barre i { display:block; height:100%; background:var(--gold); border-radius:4px; transition:width .25s; }
+  .prog-txt { font-size:12px; color:var(--muted); white-space:nowrap; }
+
+  /* Choix en boutons */
+  .choix { display:flex; flex-direction:column; gap:9px; margin-top:16px; }
+  .choix.ligne { flex-direction:row; flex-wrap:wrap; }
+  .opt { text-align:left; border:1px solid var(--bordure); background:#fff; color:var(--dark); border-radius:13px; padding:14px 16px; cursor:pointer; font-family:inherit; font-size:15.5px; font-weight:600; transition:border-color .15s, box-shadow .15s; }
+  .opt small { display:block; font-weight:400; font-size:13px; color:var(--muted); margin-top:2px; }
+  .choix.ligne .opt { flex:1 1 auto; text-align:center; padding:12px 14px; min-width:56px; }
+  .opt:hover { border-color:var(--gold); }
+  .opt.on { border-color:var(--gold); box-shadow:0 0 0 2px var(--gold) inset; background:#fffdf8; }
+
+  .sous-q { margin-top:22px; padding-top:18px; border-top:1px solid var(--bordure); }
+  .sous-q .lib { font-size:15px; font-weight:600; color:var(--dark); }
+
+  .champ { margin-top:14px; }
+  .champ label { display:block; font-size:11.5px; letter-spacing:.7px; text-transform:uppercase; color:var(--muted); margin-bottom:5px; }
+  .unit { display:flex; align-items:center; border:1px solid var(--bordure); background:#fff; border-radius:11px; overflow:hidden; }
+  .unit:focus-within { border-color:var(--gold); }
+  .unit input { flex:1; min-width:0; border:none; outline:none; padding:13px 14px; font-size:17px; font-family:inherit; color:var(--dark); background:transparent; }
+  .unit span { padding:0 14px; color:var(--muted); font-size:14px; white-space:nowrap; }
+  .raccourcis { display:flex; flex-wrap:wrap; gap:7px; margin-top:9px; }
+  .raccourcis button { border:1px solid var(--bordure); background:#fff; border-radius:20px; padding:6px 13px; font-size:13px; color:var(--encre); cursor:pointer; font-family:inherit; }
+  .raccourcis button:hover { border-color:var(--gold); color:var(--gold-fonce); }
+  .err { font-size:13px; color:#b23c3c; margin-top:8px; display:none; }
+  .err.on { display:block; }
+
+  .emp { border:1px solid var(--bordure); border-radius:13px; padding:14px 16px 16px; margin-top:14px; background:#fcfbf8; }
+  .emp-titre { font-size:12px; letter-spacing:1px; text-transform:uppercase; font-weight:700; color:var(--gold-fonce); }
+  .emp select { width:100%; border:1px solid var(--bordure); background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b3945a' stroke-width='1.8'/%3E%3C/svg%3E") no-repeat right 14px center; padding-right:36px !important; border-radius:11px; padding:13px 12px; font-size:15.5px; font-family:inherit; color:var(--dark); outline:none; -webkit-appearance:none; appearance:none; }
+  .emp select:focus { border-color:var(--gold); }
+  .deux { display:flex; gap:10px; }
+  .deux > .champ { flex:1; min-width:0; }
+
+  .nav { display:flex; align-items:center; gap:12px; margin-top:22px; }
+  .btn { flex:1; border:none; background:var(--gold); color:#fff; border-radius:12px; padding:15px; font-size:16px; font-weight:700; cursor:pointer; font-family:inherit; }
+  .btn:hover { background:var(--gold-fonce); }
+  .btn.sec { background:#fff; color:var(--gold-fonce); border:1px solid var(--gold); }
+  .retour { background:none; border:none; color:var(--muted); font-size:14px; text-decoration:underline; text-underline-offset:3px; cursor:pointer; font-family:inherit; padding:8px 4px; }
+  .mention { font-size:12.5px; color:var(--muted); margin-top:14px; text-align:center; line-height:1.5; }
+
+  /* Résultat */
+  .res-eyebrow { color:var(--gold-fonce); font-size:12px; letter-spacing:1.4px; text-transform:uppercase; font-weight:700; }
+  .res-montant { font-family:Georgia,serif; font-size:34px; font-weight:700; color:var(--vert); margin:6px 0 2px; line-height:1.15; }
+  .res-sous { font-size:14px; color:var(--encre); }
+  .res-gain { margin-top:12px; padding:11px 14px; background:#fbf8f1; border:1px solid #efe6d2; border-radius:11px; font-size:14px; color:var(--encre); }
+  .res-gain b { color:var(--vert); }
+  .pastilles { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+  .pastille { font-size:12px; font-weight:700; color:var(--vert); background:#eef3ef; border:1px solid #d5e2d9; border-radius:20px; padding:4px 11px; }
+  .kpis { display:flex; gap:10px; margin-top:16px; }
+  .kpi { flex:1; border:1px solid var(--bordure); border-radius:12px; padding:11px 13px; background:#fff; }
+  .kpi .k { font-size:11px; letter-spacing:.6px; text-transform:uppercase; color:var(--muted); }
+  .kpi .v { font-family:Georgia,serif; font-size:18px; font-weight:700; color:var(--dark); margin-top:2px; }
+  .bien-cmp { margin-top:16px; padding:13px 15px; border-radius:12px; font-size:14px; line-height:1.5; }
+  .bien-cmp.ok { background:#eef3ef; border:1px solid #d5e2d9; color:var(--vert); }
+  .bien-cmp.pres { background:#fbf8f1; border:1px solid #efe6d2; color:var(--encre); }
+  .detail-lien { display:block; margin-top:16px; background:none; border:none; color:var(--gold-fonce); font-size:14px; text-decoration:underline; text-underline-offset:3px; cursor:pointer; font-family:inherit; padding:0; }
+  .detail { margin-top:12px; padding-top:12px; border-top:1px solid var(--bordure); }
+  .detail table { width:100%; border-collapse:collapse; font-size:13px; }
+  .detail td { padding:7px 0; border-bottom:1px solid var(--bordure); color:var(--encre); vertical-align:top; }
+  .detail td.n { text-align:right; white-space:nowrap; padding-left:12px; font-weight:600; color:var(--dark); }
+  .detail tr.sub td { color:var(--muted); }
+  .detail tr.total td { font-weight:700; color:var(--dark); border-bottom:none; }
+  .detail .note { font-size:12px; color:var(--muted); margin-top:10px; line-height:1.5; }
+  .enregistre { display:flex; gap:10px; align-items:flex-start; margin-top:4px; font-size:14px; color:var(--encre); }
+  .enregistre .ico { flex:0 0 22px; height:22px; border-radius:50%; background:var(--vert); color:#fff; display:flex; align-items:center; justify-content:center; font-size:13px; margin-top:1px; }
+
+  footer { text-align:center; color:var(--muted); font-size:12.5px; margin-top:22px; }
+  footer a { color:var(--gold-fonce); text-decoration:none; }
+  .etat-vide { text-align:center; color:var(--muted); padding:60px 0; }
+  .etat-vide h2 { font-family:Georgia,serif; color:var(--dark); font-size:20px; margin-bottom:10px; }
+
+  @media (max-width:520px){
+    .bloc { padding:20px 18px; }
+    .logo { height:52px; }
+    .res-montant { font-size:30px; }
+  }
+</style></head><body>
+<div class="wrap">
+  <header><img class="logo" alt="GLR Immobilier" onerror="this.outerHTML='<div class=&quot;marque&quot;>GLR IMMOBILIER</div>'"><div class="filet"></div></header>
+  <script>
+    (function(){ var i = document.querySelector("img.logo"); if (i) i.src = /glrimmobilier\.com$/i.test(location.hostname) ? "/rdv/logo-glr.png" : "../logo-glr.png"; })();
+  </script>
+  <div id="contenu"><div class="etat-vide">Chargement…</div></div>
+  <footer>GLR Immobilier — <a href="https://www.glrimmobilier.com" target="_blank" rel="noopener">glrimmobilier.com</a></footer>
+</div>
+<script>
+/* =====================================================================
+   « Mon budget en 2 minutes » — page client, lien personnel ?t=<jeton>
+   (le même jeton que la page de rendez-vous : rdv_liens.token).
+
+   Le client répond à 7 questions, voit le budget qu'il peut viser, et le
+   résultat s'enregistre sur sa fiche (contacts.simulations, origine
+   « client »), au même format que le simulateur du CRM : le vendeur qui
+   ouvre ensuite le simulateur pour ce client retrouve ses réponses.
+
+   Le CALCUL est celui du simulateur du CRM (glrimmobilier/simulateur.html),
+   recopié à l'identique : barèmes, aides, capacité. Toute évolution d'un
+   barème se fait dans les deux fichiers.
+   ===================================================================== */
+
+/* ===================== BARÈMES (copie de simulateur.html) ===================== */
+const BAR = {
+  ptz: {
+    plafRess: { abis:[49000,73500,88200,102900,117600,132300,147000,161700], a:[49000,73500,88200,102900,117600,132300,147000,161700], b1:[34500,51750,62100,72450,82800,93150,103500,113850] },
+    plafOp:   { abis:[150000,225000,270000,315000,360000], a:[150000,225000,270000,315000,360000], b1:[135000,202500,243000,283500,324000] },
+    coef:[1,1.5,1.8,2.1,2.4,2.7,3.0,3.3],
+    tranches:{ abis:[25000,31000,37000], a:[25000,31000,37000], b1:[21500,26000,30000] },
+    quotColl:[0.5,0.4,0.4,0.2], quotInd:[0.3,0.2,0.2,0.1],
+    duree:[25,20,15,10], differe:[10,8,2,0]
+  },
+  pal: { max:30000, partMax:0.40, dureeMax:25,
+    plaf:{ abis:[43953,65691,86112,102812,122326,137649], a:[43953,65691,78963,94585,111971,126001], b1:[35825,47842,57531,69455,81705,92080] },
+    plafSup:{ abis:15335, a:14039, b1:10273 } },
+  ppl: { m1:24200, m2:39600, duree:15, plaf:[38907,54891,71953,85906,102209] },
+  tva: {
+    paris:[34996,52303,68562,81858,97395,109595], parisSup:12212,
+    idf:[34996,52303,62871,75309,89150,100322], idfSup:11177, majo:1.11 }
+};
+const COMMUNES_LIMITROPHES_PARIS = ['boulogne-billancourt','neuilly-sur-seine','levallois-perret','clichy','saint-ouen-sur-seine','saint-ouen','saint-mande','vincennes','montrouge','malakoff','vanves','issy-les-moulineaux','pantin','le pre-saint-gervais','pre-saint-gervais','ivry-sur-seine','charenton-le-pont','le kremlin-bicetre','kremlin-bicetre'];
+function _normCommune(s){ return String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').trim(); }
+function zoneDepuisCommune(commune, codePostal){
+  const c = _normCommune(commune);
+  const dep = String(codePostal||'').slice(0,2);
+  if (c === 'paris' || dep === '75') return 'paris';
+  if (COMMUNES_LIMITROPHES_PARIS.indexOf(c) !== -1) return 'limitrophe';
+  if (['92','93','94'].indexOf(dep) !== -1) return 'a';
+  if (['77','78','91','95'].indexOf(dep) !== -1) return 'b1';
+  return null;
+}
+// Part des revenus retenue par la banque (copie de REGLES du simulateur)
+const PART_REVENUS = { cdi:1, cdi_essai:1, cdd:1, alternant:0, etudiant:0, indep:1, public:1, retraite:1, sans:0 };
+
+/* Paramètres de calcul : valeurs par défaut du simulateur ; les taux sont
+   remplacés par le baromètre du jour (edge function taux-marche) s'il répond. */
+const P = { t:{15:0.0328,20:0.034,25:0.036}, ass:0.0034, endet:0.35, fNot:0.025, fGar:0.01, pLoyer:0.70, tPAL:0.01, ageFin:75, ravAdulte:800, ravEnfant:300 };
+let TAUX_DATE = null;
+
+/* ===================== FORMULES (copie de simulateur.html) ===================== */
+function mens(C,taux,ans){ const n=ans*12, r=taux/12; if(C<=0) return 0; if(r===0) return C/n; return C*r/(1-Math.pow(1+r,-n)); }
+function schedAide(C,taux,dureeTot,differe){ const n=dureeTot*12, d=differe*12, out=[]; const m=mens(C,taux,dureeTot-differe); for(let i=1;i<=n;i++) out.push(i<=d?0:m); return out; }
+function capitalLisse(M,taux,ans,ass,aides){ const n=ans*12, r=taux/12; let A=0,B=0; for(let t=1;t<=n;t++){ const v=Math.pow(1+r,-t); A+=v; let a=0; aides.forEach(s=>{a+=(s[t-1]||0)}); B+=a*v; } const C=(M*A-B)/(1+ass/12*A); return Math.max(0,C); }
+function mensLisse(C,taux,ans,ass,aides){ const n=ans*12, r=taux/12; let A=0,B=0; for(let t=1;t<=n;t++){ const v=Math.pow(1+r,-t); A+=v; let a=0; aides.forEach(s=>{a+=(s[t-1]||0)}); B+=a*v; } return (C*(1+ass/12*A)+B)/A; }
+function interets(C,taux,ans){ return mens(C,taux,ans)*ans*12-C; }
+function zoneKey(z){ return (z==='paris'||z==='limitrophe'||z==='abis')?'abis':z; }
+function idx(foyer,max){ return Math.min(foyer,max)-1; }
+// Espace insécable classique entre les milliers (l'espace fine de toLocaleString manque à certaines polices)
+const milliers = v=>Math.round(v).toLocaleString('fr-FR').replace(/\u202f/g,'\u00a0');
+const eur = v=>milliers(v)+'\u00a0€';
+const eurM = v=>milliers(v)+'\u00a0€/mois';
+
+function ptz(cl, lot){
+  const z=zoneKey(lot.zone), f=cl.foyer, r={ok:false,montant:0,raisons:[]};
+  if(cl.projet!=='rp'){r.raisons.push('réservé à la résidence principale');return r;}
+  if(!cl.primo){r.raisons.push('pas primo-accédant');return r;}
+  const plafR=BAR.ptz.plafRess[z][idx(f,8)];
+  const revenu=Math.max(cl.rfr, lot.cout/9);
+  if(revenu>plafR){r.raisons.push('RFR > plafond');return r;}
+  const q=revenu/BAR.ptz.coef[idx(f,8)], s=BAR.ptz.tranches[z];
+  const tr = q<=s[0]?0 : q<=s[1]?1 : q<=s[2]?2 : 3;
+  const plafOp=BAR.ptz.plafOp[z][idx(f,5)];
+  const quot=(lot.type==='ind'?BAR.ptz.quotInd:BAR.ptz.quotColl)[tr];
+  r.ok=true; r.tranche=tr+1; r.quot=quot; r.base=Math.min(lot.cout,plafOp); r.montant=Math.round(r.base*quot);
+  r.duree=BAR.ptz.duree[tr]; r.differe=BAR.ptz.differe[tr]; r.plafOp=plafOp; r.plafR=plafR; r.revenuRetenu=revenu; r.plancher = lot.cout/9>cl.rfr;
+  return r;
+}
+function pal(cl, lot, p){
+  const z=zoneKey(lot.zone), f=cl.foyer, r={ok:false,montant:0,raisons:[]};
+  if(cl.projet!=='rp'){r.raisons.push('réservé à la résidence principale');return r;}
+  if(!cl.salarie){r.raisons.push('aucun emprunteur salarié du privé');return r;}
+  if(!cl.primo){r.raisons.push('pas primo-accédant');return r;}
+  const t=BAR.pal.plaf[z]; const plaf= f<=6? t[f-1] : t[5]+(f-6)*BAR.pal.plafSup[z];
+  if(cl.rfr>plaf){r.raisons.push('RFR > plafond');return r;}
+  r.ok=true; r.montant=Math.round(Math.min(BAR.pal.max, BAR.pal.partMax*lot.cout)); r.duree=Math.min(BAR.pal.dureeMax, cl.duree); r.taux=p.tPAL; r.plaf=plaf; return r;
+}
+function ppl(cl, lot, majore){
+  const r={ok:false,montant:0,raisons:[]}, f=cl.foyer;
+  if(cl.projet!=='rp'){r.raisons.push('réservé à la résidence principale');return r;}
+  if(lot.zone!=='paris'){r.raisons.push('lot hors Paris');return r;}
+  if(!cl.parisLoc){r.raisons.push('ne réside pas à Paris depuis 12 mois');return r;}
+  if(!cl.primo){r.raisons.push('pas primo-accédant');return r;}
+  const plaf=BAR.ppl.plaf[idx(f,5)];
+  if(cl.rfr>plaf){r.raisons.push('RFR > plafond');return r;}
+  r.ok=true; r.montant= (f>=2?BAR.ppl.m2:BAR.ppl.m1)*(majore?1.5:1); r.majore=!!majore; r.duree=BAR.ppl.duree; r.plaf=plaf; return r;
+}
+function tva55(cl, lot){
+  const r={ok:false,raisons:[]}, f=cl.foyer;
+  if(cl.projet!=='rp'){r.raisons.push('réservé à la résidence principale');return r;}
+  if(!lot.qpv){r.raisons.push('programme hors QPV/ANRU');return r;}
+  const t=(lot.zone==='paris'||lot.zone==='limitrophe')?BAR.tva.paris:BAR.tva.idf, sup=(lot.zone==='paris'||lot.zone==='limitrophe')?BAR.tva.parisSup:BAR.tva.idfSup;
+  const plaf=Math.round((f<=6? t[f-1] : t[5]+(f-6)*sup)*BAR.tva.majo);
+  if(cl.rfr>plaf){r.raisons.push('RFR > plafond');return r;}
+  r.ok=true; r.plaf=plaf; return r;
+}
+function montage(cl, lot, p){
+  const taux=p.t[cl.duree];
+  const tv=tva55(cl,lot);
+  const prix = tv.ok ? lot.prix/1.20*1.055 : lot.prix;
+  const ecoTVA = tv.ok ? lot.prix-prix : 0;
+  const L={cout:prix, zone:lot.zone, type:lot.type};
+  const aPTZ=ptz(cl,L), aPAL=pal(cl,L,p);
+  let aPPL=ppl(cl,L,false);
+  const notaire=prix*p.fNot;
+  let apport=cl.apport;
+  if(aPPL.ok && apport>0.10*prix){ apport=0.10*prix; }
+  const besoin = prix+notaire-apport;
+  const p0 = Math.min(cl.pret0, Math.max(0,besoin));
+  let ptzM=aPTZ.montant, palM=aPAL.montant, pplM=aPPL.montant;
+  const calc=()=>{ let pr = besoin - ptzM - palM - pplM - p0; pr += Math.max(0,pr)*p.fGar; return Math.max(0,pr); };
+  let principal=calc();
+  if(aPPL.ok && (principal+palM+ptzM+p0-BAR.ppl.m1) > 0.5*prix){ aPPL=ppl(cl,L,true); pplM=aPPL.montant; principal=calc(); }
+  if(aPTZ.ok && ptzM > principal+palM+pplM+p0){ ptzM=Math.max(0,Math.floor(principal+palM+pplM+p0)); principal=calc(); }
+  const aides=[]; if(aPTZ.ok&&ptzM>0) aides.push(schedAide(ptzM,0,aPTZ.duree,aPTZ.differe)); if(aPAL.ok) aides.push(schedAide(palM,aPAL.taux,aPAL.duree,0)); if(aPPL.ok) aides.push(schedAide(pplM,0,aPPL.duree,0)); if(p0>0) aides.push(schedAide(p0,0,Math.min(cl.pret0Duree,cl.duree),0));
+  const M = mensLisse(principal,taux,cl.duree,p.ass,aides);
+  return {prix,ecoTVA,tv,aPTZ,aPAL,aPPL,ptzM,palM,pplM,p0,notaire,apport,principal,M,taux};
+}
+function capacite(cl,p){
+  const taux=p.t[cl.duree];
+  const Mmax = Math.max(0, cl.revenus*p.endet - cl.credits);
+  const Cmax = capitalLisse(Mmax,taux,cl.duree,p.ass,[]);
+  const budgetSans = (Cmax/(1+p.fGar)+cl.apport)/(1+p.fNot);
+  const maxPrix=(qpv)=>{ const hi=Math.max(budgetSans*2.5,150000); const lot={zone:cl.zone,type:'coll',qpv,prix:0}; let best=0, bm=null;
+    for(let x=1000;x<=hi;x+=1000){ lot.prix=x; const m=montage(cl,lot,p); if(m.M<=Mmax){best=x;bm=m;} }
+    let lo=best, hi2=best+1000; for(let i=0;i<12;i++){ const mid=(lo+hi2)/2; lot.prix=mid; const m=montage(cl,lot,p); if(m.M<=Mmax){lo=mid;bm=m;} else hi2=mid; }
+    return {prix:lo, m:bm}; };
+  const r1=maxPrix(false); const budgetAvec=r1.prix, best=r1.m;
+  let budgetQPV=null; const r2=maxPrix(true); if(r2.m&&r2.m.tv.ok) budgetQPV={prixAffiche:r2.prix, prixPaye:r2.m.prix};
+  return {Mmax,Cmax,budgetSans,budgetAvec,best,budgetQPV,taux};
+}
+// Tableau « Comment on arrive à ce montant » : mêmes lignes que le simulateur,
+// donc le même tableau que la feuille sélection affichera ensuite.
+function lignesMontageBudget(c,p,cl){
+  const m=c.best; if(!m) return null;
+  const L=[];
+  L.push({l:'Revenus nets retenus par la banque', v:eurM(cl.revenus)});
+  L.push({l:'Mensualité retenue ('+Math.round(p.endet*100)+' % − crédits en cours)', v:eurM(c.Mmax)});
+  L.push({l:'Prêt bancaire principal ('+cl.duree+' ans, '+(c.taux*100).toFixed(2).replace('.',',')+' % + assurance '+(p.ass*100).toFixed(2).replace('.',',')+' %)', v:eur(m.principal)});
+  if(m.ptzM>0) L.push({l:'PTZ (tranche '+m.aPTZ.tranche+', '+Math.round(m.aPTZ.quot*100)+' % de '+eur(m.aPTZ.base)+', différé '+m.aPTZ.differe+' ans, '+m.aPTZ.duree+' ans)'+(m.aPTZ.plancher?' — revenu retenu = coût/9, le RFR étant plus bas':''), v:eur(m.ptzM)});
+  if(m.aPAL.ok) L.push({l:'Prêt Action Logement ('+(m.aPAL.taux*100).toFixed(1).replace('.',',')+' %, '+m.aPAL.duree+' ans)', v:eur(m.palM)});
+  if(m.aPPL.ok) L.push({l:'Prêt Paris Logement'+(m.aPPL.majore?' majoré':'')+' (0 %, 15 ans)', v:eur(m.pplM)});
+  L.push({l:'Apport (personnel + famille)', v:eur(m.apport)});
+  L.push({l:'− Frais de notaire ('+(p.fNot*100).toFixed(1).replace('.',',')+' %) et garantie ('+(p.fGar*100).toFixed(1).replace('.',',')+' % du prêt)', v:'− '+eur(m.notaire+m.principal*p.fGar/(1+p.fGar)), c:'sub'});
+  L.push({l:'Prix du logement', v:eur(c.budgetAvec), c:'total'});
+  const note='Le PTZ est calculé sur le coût plafonné de l\'opération dans la zone choisie ('+eur(m.aPTZ.plafOp||0)+' pour '+cl.foyer+' personne'+(cl.foyer>1?'s':'')+'). Mensualité lissée : le client paie la même somme tous les mois, y compris quand le PTZ commence à se rembourser. Reste à vivre attendu par les banques pour ce foyer : '+eurM(cl.rav)+'.';
+  return { lignes:L, note, budgetAvec:Math.round(c.budgetAvec), budgetSans:Math.round(c.budgetSans) };
+}
+
+/* ===================== RÉPONSES DU CLIENT ===================== */
+const R = {
+  projet:null,          // 'rp' | 'inv'
+  nb:null,              // 1 | 2 emprunteurs
+  foyer:null,           // personnes qui vivront dans le logement
+  emp:[ {statut:'',rev:'',age:'',prive:null}, {statut:'',rev:'',age:'',prive:null} ],
+  logement:null,        // 'loc' | 'hlm' | 'heberge' | 'proprio'
+  loyer:'',
+  apport:'',
+  credits:null,         // 0 = aucun, sinon montant mensuel
+  creditsMontant:'',
+  zone:null,            // 'paris' | 'limitrophe' | 'a' | 'b1'
+  zoneAuto:false,       // préremplie d'après le bien regardé
+  parisLoc:null
+};
+const STATUTS = [
+  ['cdi','CDI'],['public','Fonctionnaire, secteur public'],['indep','Indépendant, profession libérale, gérant'],
+  ['cdd','CDD, intérim'],['cdi_essai','CDI en période d\'essai'],['retraite','Retraité'],
+  ['alternant','Alternant, apprenti'],['etudiant','Étudiant'],['sans','Sans activité']
+];
+const num = v => { const n = Number(String(v==null?'':v).replace(/\s/g,'').replace(',','.')); return isFinite(n) ? n : 0; };
+
+/* Revenu fiscal de référence : le client ne le connaît presque jamais.
+   Estimation : revenus nets annuels × 0,92 (abattement de 10 % sur le net
+   imposable, un peu supérieur au net perçu). Le vendeur l'ajuste ensuite
+   dans le simulateur, sur l'avis d'imposition. */
+const COEF_RFR = 0.92;
+
+// Profil client au format attendu par le moteur (équivalent de client() du simulateur)
+function profil(){
+  const emps = R.emp.slice(0, R.nb || 1);
+  let revenus = 0, salarie = 0, ageMax = 0, revTous = 0;
+  emps.forEach(e => {
+    const part = PART_REVENUS[e.statut] != null ? PART_REVENUS[e.statut] : 1;
+    revenus += num(e.rev) * part; revTous += num(e.rev);
+    if (['cdi','cdi_essai','cdd','alternant'].indexOf(e.statut) !== -1 && e.prive) salarie = 1;
+    ageMax = Math.max(ageMax, num(e.age) || 0);
+  });
+  const primo = R.logement !== 'proprio';
+  const dureeMaxAge = Math.max(5, Math.min(25, P.ageFin - (ageMax || 30)));
+  const duree = dureeMaxAge >= 25 ? 25 : (dureeMaxAge >= 20 ? 20 : 15);
+  const foyer = Math.max(R.foyer || 1, R.nb || 1);
+  return {
+    projet: R.projet || 'rp', primo, salarie, parisLoc: R.parisLoc ? 1 : 0,
+    foyer, zone: R.zone || 'a', revenus, revTous,
+    credits: R.credits ? num(R.creditsMontant) : 0,
+    rfr: Math.round(revTous * 12 * COEF_RFR),
+    apport: num(R.apport), duree, pret0: 0, pret0Duree: 10, ageMax,
+    rav: P.ravAdulte * Math.min(R.nb || 1, 2) + P.ravEnfant * Math.max(0, foyer - (R.nb || 1))
+  };
+}
+function calculer(){
+  const cl = profil();
+  if (cl.revenus <= 0) return { cl, budget:null };
+  if (cl.projet !== 'rp'){
+    const Mmax = Math.max(0, cl.revenus*P.endet - cl.credits);
+    const Cmax = capitalLisse(Mmax, P.t[cl.duree], cl.duree, P.ass, []);
+    const b = (Cmax/(1+P.fGar) + cl.apport)/(1+P.fNot);
+    return { cl, budget:b, budgetSans:b, Mmax, c:null, montage:null };
+  }
+  const c = capacite(cl, P);
+  return { cl, budget:c.budgetAvec, budgetSans:c.budgetSans, Mmax:c.Mmax, c, montage: lignesMontageBudget(c, P, cl) };
+}
+
+/* État du formulaire au format du simulateur (champ `etat` d'une simulation) :
+   le vendeur qui ouvre le simulateur pour ce client retrouve ces réponses. */
+function etatSimulateur(cl){
+  return {
+    v:1, nb:R.nb || 1, parisLoc:cl.parisLoc, derog:0, caution:0,
+    emp: R.emp.map(e => ({ age:num(e.age)||30, statut:e.statut||'cdi', rev:num(e.rev), prive:e.prive?1:0, rattache:0 })),
+    champs: {
+      projet:cl.projet, foyer:String(cl.foyer), zone:cl.zone, logement:R.logement||'loc',
+      loyerActuel:String(num(R.loyer)), rfr:String(cl.rfr), credits:String(cl.credits),
+      apport:String(cl.apport), donation:'0', pretFam:'0', duree:String(cl.duree), pret0:'0', pret0Duree:'10',
+      mensVoulue:'', prixVise:''
+    },
+    lots:{}
+  };
+}
+
+/* ===================== PAGE ===================== */
+const SUPA = "https://hydqfbxdtpmbuooexekp.supabase.co";
+const ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh5ZHFmYnhkdHBtYnVvb2V4ZWtwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyODA3NDEsImV4cCI6MjA5NDg1Njc0MX0.ylton95WooAxVbIqdgYIaiW8E6lGlxEuKsLEe-hzU0g";
+const params = new URLSearchParams(location.search);
+const token = params.get("t") || "";
+const FN = SUPA + "/functions/v1/rdv/" + encodeURIComponent(token);
+const cont = document.getElementById("contenu");
+let D = {};               // données du lien : prénom, vendeur, bien regardé
+let etape = 0;            // 0 = accueil, 1..N = questions, 'res' = résultat
+let ENREGISTRE = null;    // null = pas encore, true = ok, false = échec
+
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+function qui(){ return D.vendeur ? esc(D.vendeur) : "votre conseiller"; }
+function prixBien(){ const p = Number(D.bien && D.bien.prix); return isFinite(p) && p > 20000 ? p : null; }
+
+// Les étapes affichées dépendent des réponses (foyer seulement pour y habiter…)
+const ETAPES = ['projet','foyer','revenus','logement','apport','credits','secteur'];
+const TOTAL = ETAPES.length;
+
+function progression(n){
+  return "<div class='prog'><div class='prog-barre'><i style='width:" + Math.round(n/TOTAL*100) + "%'></i></div><div class='prog-txt'>" + n + " / " + TOTAL + "</div></div>";
+}
+function opt(groupe, val, titre, sous, on){
+  return "<button type='button' class='opt" + (on ? " on" : "") + "' data-g='" + groupe + "' data-v='" + esc(val) + "'>" + esc(titre) + (sous ? "<small>" + esc(sous) + "</small>" : "") + "</button>";
+}
+function champEuros(id, lib, val, unite, ph, racc){
+  let h = "<div class='champ'><label for='" + id + "'>" + esc(lib) + "</label><div class='unit'><input id='" + id + "' inputmode='numeric' autocomplete='off' value='" + esc(val) + "' placeholder='" + esc(ph||'') + "'><span>" + esc(unite) + "</span></div>";
+  if (racc) h += "<div class='raccourcis'>" + racc.map(r => "<button type='button' data-pour='" + id + "' data-val='" + r[0] + "'>" + esc(r[1]) + "</button>").join("") + "</div>";
+  return h + "</div>";
+}
+function nav(n, lib){
+  return "<div class='err' id='err'></div><div class='nav'>" + (n > 1 ? "<button type='button' class='retour' id='precedent'>Retour</button>" : "") +
+    "<button type='button' class='btn' id='suivant'>" + (lib || "Continuer") + "</button></div>";
+}
+
+function htmlAccueil(){
+  const prenom = D.prenom ? " " + esc(D.prenom) : "";
+  let h = "<div class='bloc'><h1>Bonjour" + prenom + ",</h1>";
+  h += "<p>En 2 minutes, découvrez le budget que vous pouvez viser pour votre achat dans le neuf, <b>aides comprises</b> (prêt à taux zéro, Action Logement, TVA réduite…).</p>";
+  h += "<p style='margin-top:10px'>7 questions, aucun document à fournir. " + qui() + " recevra votre estimation pour préparer votre échange.</p>";
+  h += "<div class='nav'><button type='button' class='btn' id='suivant'>Calculer mon budget</button></div>";
+  h += "<div class='mention'>Sans engagement. Vos réponses servent uniquement à préparer votre projet avec votre conseiller.</div>";
+  return h + "</div>";
+}
+
+function htmlEtape(nom, n){
+  let h = progression(n) + "<div class='bloc'>";
+  if (nom === 'projet'){
+    h += "<h2>Ce logement, c'est pour…</h2>";
+    h += "<div class='choix'>" + opt('projet','rp','Y habiter','Votre future résidence principale', R.projet==='rp') + opt('projet','inv','Investir','Le louer à quelqu\'un', R.projet==='inv') + "</div>";
+  }
+  else if (nom === 'foyer'){
+    h += "<h2>Combien de personnes empruntent ?</h2>";
+    h += "<div class='choix'>" + opt('nb','1','Une personne','Sans co-emprunteur', R.nb===1) + opt('nb','2','Deux personnes','En couple, ou avec un proche', R.nb===2) + "</div>";
+    if (R.projet === 'rp'){
+      h += "<div class='sous-q'><div class='lib'>Combien serez-vous à vivre dans le logement ?</div><div class='aide'>Enfants compris : les aides en dépendent.</div>";
+      h += "<div class='choix ligne'>" + [1,2,3,4,5,6].map(k => opt('foyer', String(k), k === 6 ? '6 et +' : String(k), '', R.foyer===k)).join("") + "</div></div>";
+    }
+  }
+  else if (nom === 'revenus'){
+    h += "<h2>" + (R.nb === 2 ? "Vos situations et vos revenus" : "Votre situation et vos revenus") + "</h2>";
+    h += "<div class='aide'>Revenus nets mensuels, avant prélèvement à la source.</div>";
+    for (let i = 0; i < (R.nb || 1); i++){
+      const e = R.emp[i];
+      h += "<div class='emp'>" + (R.nb === 2 ? "<div class='emp-titre'>" + (i === 0 ? "Vous" : "Votre co-emprunteur") + "</div>" : "");
+      h += "<div class='champ'><label for='st" + i + "'>Situation</label><select id='st" + i + "'><option value=''>Choisir…</option>" + STATUTS.map(s => "<option value='" + s[0] + "'" + (e.statut===s[0]?" selected":"") + ">" + esc(s[1]) + "</option>").join("") + "</select></div>";
+      h += "<div class='deux'>" + champEuros('rev'+i, 'Revenus nets', e.rev, '€ / mois', 'ex. 2 800') + "<div class='champ' style='flex:0 0 108px'><label for='age" + i + "'>Âge</label><div class='unit'><input id='age" + i + "' inputmode='numeric' value='" + esc(e.age) + "' placeholder='35'><span>ans</span></div></div></div>";
+      const sal = ['cdi','cdi_essai','cdd','alternant'].indexOf(e.statut) !== -1;
+      h += "<div class='sous-q' id='prive" + i + "' style='" + (sal ? "" : "display:none;") + "margin-top:14px;padding-top:12px'><div class='lib' style='font-size:14px'>Dans une entreprise privée de 10 salariés ou plus ?</div><div class='aide'>Ouvre droit au prêt Action Logement.</div>";
+      h += "<div class='choix ligne'>" + opt('prive'+i,'1','Oui','', e.prive===1) + opt('prive'+i,'0','Non','', e.prive===0) + "</div></div>";
+      h += "</div>";
+    }
+  }
+  else if (nom === 'logement'){
+    h += "<h2>Aujourd'hui, vous êtes…</h2>";
+    h += "<div class='choix'>" + opt('logement','loc','Locataire','', R.logement==='loc') + opt('logement','hlm','Locataire d\'un logement social','', R.logement==='hlm') +
+      opt('logement','heberge','Hébergé','Chez vos parents ou un proche', R.logement==='heberge') + opt('logement','proprio','Propriétaire de votre logement','', R.logement==='proprio') + "</div>";
+    if (R.logement === 'loc' || R.logement === 'hlm') h += "<div class='sous-q' style='margin-top:18px;padding-top:4px;border-top:none'>" + champEuros('loyer', 'Votre loyer actuel (facultatif)', R.loyer, '€ / mois', 'ex. 1 100') + "</div>";
+  }
+  else if (nom === 'apport'){
+    h += "<h2>Quel apport pouvez-vous mettre ?</h2>";
+    h += "<div class='aide'>Votre épargne, et une éventuelle aide de la famille. Sans apport, c'est possible aussi.</div>";
+    h += champEuros('apport', 'Apport', R.apport, '€', 'ex. 20 000', [['0','Aucun'],['10000','10 000 €'],['20000','20 000 €'],['40000','40 000 €']]);
+  }
+  else if (nom === 'credits'){
+    h += "<h2>Avez-vous des crédits en cours ?</h2>";
+    h += "<div class='aide'>Crédit auto, consommation, immobilier… Un prêt étudiant compte aussi.</div>";
+    h += "<div class='choix'>" + opt('credits','0','Non, aucun','', R.credits===0) + opt('credits','1','Oui','', R.credits===1) + "</div>";
+    if (R.credits === 1) h += champEuros('creditsMontant', 'Total de vos mensualités', R.creditsMontant, '€ / mois', 'ex. 250');
+  }
+  else if (nom === 'secteur'){
+    h += "<h2>Où cherchez-vous ?</h2>";
+    if (R.zoneAuto && D.bien && D.bien.ville) h += "<div class='aide'>Prérempli d'après le bien que vous avez regardé à " + esc(villeCourte(D.bien.ville)) + ".</div>";
+    const zc = R.zone === 'limitrophe' ? 'a' : R.zone;
+    h += "<div class='choix'>" + opt('zone','paris','Paris','', zc==='paris') + opt('zone','a','Petite couronne','Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne', zc==='a') + opt('zone','b1','Grande couronne','Seine-et-Marne, Yvelines, Essonne, Val-d\'Oise', zc==='b1') + "</div>";
+    if (R.zone === 'paris' && R.projet === 'rp'){
+      h += "<div class='sous-q'><div class='lib'>Vivez-vous à Paris depuis au moins un an ?</div><div class='aide'>Ouvre droit au Prêt Paris Logement à 0 %.</div>";
+      h += "<div class='choix ligne'>" + opt('parisLoc','1','Oui','', R.parisLoc===1) + opt('parisLoc','0','Non','', R.parisLoc===0) + "</div></div>";
+    }
+  }
+  return h + nav(n, n === TOTAL ? "Voir mon budget" : null) + "</div>";
+}
+
+function villeCourte(v){ return String(v||'').replace(/\s*\(\d{5}\)\s*$/,'').split(',')[0].trim(); }
+
+function htmlResultat(){
+  const r = calculer(), cl = r.cl;
+  const sansBudget = r.budget == null || r.budget < 30000;
+  let h = "<div class='bloc'>";
+  if (sansBudget){
+    // Revenus non retenus par une banque (étudiant, alternant, sans activité…) :
+    // jamais de verdict, le conseiller a des montages à proposer.
+    h += "<div class='res-eyebrow'>Votre budget</div>";
+    h += "<h2 style='margin-top:6px'>Votre projet mérite qu'on le regarde ensemble</h2>";
+    h += "<p style='margin-top:8px'>Avec ces réponses, une banque ne retiendrait pas encore assez de revenus pour chiffrer un budget seul. Il existe pourtant des solutions : un co-emprunteur, une caution familiale, un apport de la famille, ou attendre la fin d'une période d'essai.</p>";
+    h += "<p style='margin-top:10px'>" + qui() + " a vu vos réponses et vous dira ce qui est possible.</p>";
+  } else {
+    const budget = Math.floor(r.budget / 1000) * 1000;
+    const gain = Math.round(r.budget - r.budgetSans);
+    h += "<div class='res-eyebrow'>Votre estimation</div>";
+    h += "<div class='res-montant'>" + eur(budget) + "</div>";
+    h += "<div class='res-sous'>Le prix du logement que vous pouvez viser, frais de notaire compris.</div>";
+    if (r.c && gain > 500) h += "<div class='res-gain'>Les aides vous font gagner <b>" + eur(gain) + "</b> de budget.</div>";
+    const m = r.c && r.c.best, past = [];
+    if (m){
+      if (m.aPTZ.ok && m.ptzM > 0) past.push("Prêt à taux zéro");
+      if (m.aPAL.ok) past.push("Prêt Action Logement");
+      if (m.aPPL.ok) past.push("Prêt Paris Logement 0 %");
+    }
+    if (past.length) h += "<div class='pastilles'>" + past.map(p => "<span class='pastille'>" + esc(p) + "</span>").join("") + "</div>";
+    h += "<div class='kpis'><div class='kpi'><div class='k'>Mensualité maximale</div><div class='v'>" + eurM(r.Mmax) + "</div></div><div class='kpi'><div class='k'>Durée</div><div class='v'>" + cl.duree + " ans</div></div></div>";
+    if (r.c && r.c.budgetQPV) h += "<div class='res-gain' style='margin-top:12px'>Dans un quartier en TVA réduite, vous pouvez même viser un logement affiché jusqu'à <b>" + eur(Math.floor(r.c.budgetQPV.prixAffiche/1000)*1000) + "</b>.</div>";
+
+    // Le bien sur lequel il a écrit : dans le budget, ou les pistes
+    const pb = prixBien();
+    if (pb){
+      const nomBien = (D.bien.programme || D.bien.typologie || "Le bien que vous avez regardé");
+      if (pb <= budget) h += "<div class='bien-cmp ok'><b>" + esc(nomBien) + "</b> (" + eur(pb) + ") entre dans votre budget.</div>";
+      else h += "<div class='bien-cmp pres'><b>" + esc(nomBien) + "</b> est affiché à " + eur(pb) + ". " + qui() + " vous montrera des biens proches dans votre budget, et les leviers pour vous en approcher (durée, apport, aides).</div>";
+    }
+    if (r.montage){
+      h += "<button type='button' class='detail-lien' id='detail-toggle' aria-expanded='false'>Comment on arrive à ce montant ?</button>";
+      h += "<div class='detail' id='detail' hidden><table>" + r.montage.lignes.map(x => "<tr" + (x.c ? " class='" + x.c + "'" : "") + "><td>" + esc(x.l) + "</td><td class='n'>" + esc(x.v) + "</td></tr>").join("") + "</table><div class='note'>" + esc(r.montage.note) + "</div></div>";
+    }
+  }
+  h += "</div>";
+
+  h += "<div class='bloc'>";
+  if (ENREGISTRE === 'deja') h += "<div class='enregistre'><span class='ico'>✓</span><span>" + qui() + " a déjà préparé un budget pour vous : vous le reverrez ensemble pendant votre rendez-vous.</span></div>";
+  else if (ENREGISTRE === false) h += "<div class='enregistre'><span class='ico' style='background:#b23c3c'>!</span><span>Votre estimation n'a pas pu être transmise. Vous pouvez réessayer, ou en parler directement avec " + qui() + " pendant votre rendez-vous.</span></div><div class='nav'><button type='button' class='btn sec' id='reessayer'>Réessayer l'envoi</button></div>";
+  else h += "<div class='enregistre'><span class='ico'>✓</span><span>" + (ENREGISTRE ? "C'est transmis : " : "Transmission en cours… ") + qui() + (sansBudget ? " a vos réponses sous les yeux pour préparer votre rendez-vous." : " verra votre estimation avant votre rendez-vous, et la confirmera avec vous avant de vous proposer des biens.") + "</span></div>";
+  if (ENREGISTRE !== 'deja') h += "<div class='nav' style='margin-top:8px;justify-content:center'><button type='button' class='retour' id='modifier'>Modifier mes réponses</button></div>";
+  if (token) h += "<div class='nav' style='margin-top:4px;justify-content:center'><a class='retour' href='../rdv/?t=" + encodeURIComponent(token) + "'>Revoir mon rendez-vous</a></div>";
+  if (!sansBudget) h += "<div class='mention'>Estimation indicative et sans engagement, au taux moyen du marché" + (TAUX_DATE ? " du " + esc(TAUX_DATE) : "") + " (" + (P.t[cl.duree]*100).toFixed(2).replace('.',',') + " % sur " + cl.duree + " ans, assurance comprise en plus). Elle ne remplace pas l'étude d'une banque.</div>";
+  return h + "</div>";
+}
+
+/* Validation d'une étape : renvoie un message d'erreur, ou "" si c'est bon */
+function lireEtValider(nom){
+  if (nom === 'projet') return R.projet ? "" : "Choisissez une réponse.";
+  if (nom === 'foyer'){
+    if (!R.nb) return "Indiquez combien de personnes empruntent.";
+    if (R.projet === 'rp' && !R.foyer) return "Indiquez combien vous serez dans le logement.";
+    return "";
+  }
+  if (nom === 'revenus'){
+    for (let i = 0; i < (R.nb || 1); i++){
+      const e = R.emp[i];
+      e.statut = document.getElementById('st'+i).value;
+      e.rev = document.getElementById('rev'+i).value;
+      e.age = document.getElementById('age'+i).value;
+      if (!e.statut) return "Choisissez la situation" + (R.nb === 2 ? " de chacun." : ".");
+      if (PART_REVENUS[e.statut] && num(e.rev) <= 0) return "Indiquez les revenus nets mensuels.";
+      if (num(e.rev) > 0 && num(e.rev) < 100) return "Les revenus s'indiquent par mois, en euros (ex. 2 800).";
+      const a = num(e.age); if (!(a >= 18 && a <= 85)) return "Indiquez l'âge" + (R.nb === 2 ? " de chacun." : ".");
+      if (['cdi','cdi_essai','cdd','alternant'].indexOf(e.statut) !== -1 && e.prive == null) return "Dites si l'entreprise est privée et compte 10 salariés ou plus.";
+    }
+    return "";
+  }
+  if (nom === 'logement'){
+    const l = document.getElementById('loyer'); if (l) R.loyer = l.value;
+    return R.logement ? "" : "Choisissez une réponse.";
+  }
+  if (nom === 'apport'){
+    R.apport = document.getElementById('apport').value;
+    if (String(R.apport).trim() === "") return "Indiquez un montant, même 0.";
+    return "";
+  }
+  if (nom === 'credits'){
+    if (R.credits == null) return "Choisissez une réponse.";
+    const c = document.getElementById('creditsMontant'); if (c) R.creditsMontant = c.value;
+    if (R.credits === 1 && num(R.creditsMontant) <= 0) return "Indiquez le total de vos mensualités.";
+    return "";
+  }
+  if (nom === 'secteur'){
+    if (!R.zone) return "Choisissez un secteur.";
+    if (R.zone === 'paris' && R.projet === 'rp' && R.parisLoc == null) return "Dites si vous vivez à Paris depuis au moins un an.";
+    return "";
+  }
+  return "";
+}
+
+function rendu(){
+  if (etape === 0) cont.innerHTML = htmlAccueil();
+  else if (etape === 'res') cont.innerHTML = htmlResultat();
+  else cont.innerHTML = htmlEtape(ETAPES[etape-1], etape);
+  brancher();
+  window.scrollTo(0, 0);
+}
+
+function brancher(){
+  cont.querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => {
+    const g = b.getAttribute('data-g'), v = b.getAttribute('data-v');
+    if (g === 'projet') R.projet = v;
+    else if (g === 'nb') R.nb = +v;
+    else if (g === 'foyer') R.foyer = +v;
+    else if (g === 'logement') R.logement = v;
+    else if (g === 'credits') R.credits = +v;
+    else if (g === 'zone'){ R.zone = v; R.zoneAuto = false; if (v !== 'paris') R.parisLoc = null; }
+    else if (g === 'parisLoc') R.parisLoc = +v;
+    else if (g.indexOf('prive') === 0){ R.emp[+g.slice(5)].prive = +v; }
+    // Garder ce qui est déjà tapé avant de redessiner
+    if (etape === 'res') return;
+    const nom = ETAPES[etape-1];
+    if (nom === 'revenus'){ for (let i = 0; i < (R.nb||1); i++){ const e=R.emp[i]; e.statut=document.getElementById('st'+i).value; e.rev=document.getElementById('rev'+i).value; e.age=document.getElementById('age'+i).value; } }
+    // Un choix simple sans autre question sur l'écran : on passe directement à la suite
+    const auto = (nom === 'projet') || (nom === 'logement' && (v === 'heberge' || v === 'proprio')) || (nom === 'credits' && v === '0') || (nom === 'secteur' && !(v === 'paris' && R.projet === 'rp') && g === 'zone') || (g === 'parisLoc');
+    if (auto && !lireEtValider(nom)){ suivant(); return; }
+    rendu();
+    if (nom === 'credits' && v === '1'){ const c = document.getElementById('creditsMontant'); if (c) c.focus(); }
+  }));
+  cont.querySelectorAll('select[id^=st]').forEach(s => s.addEventListener('change', () => {
+    const i = +s.id.slice(2); R.emp[i].statut = s.value;
+    const sal = ['cdi','cdi_essai','cdd','alternant'].indexOf(s.value) !== -1;
+    document.getElementById('prive'+i).style.display = sal ? '' : 'none';
+    if (!sal) R.emp[i].prive = null;
+  }));
+  cont.querySelectorAll('.raccourcis button').forEach(b => b.addEventListener('click', () => {
+    const el = document.getElementById(b.getAttribute('data-pour')); if (el){ el.value = milliers(Number(b.getAttribute('data-val'))); el.focus(); }
+  }));
+  // Montants lisibles pendant la frappe : 20000 → 20 000
+  cont.querySelectorAll('.unit input').forEach(i => i.addEventListener('input', () => {
+    const brut = i.value.replace(/[^\d]/g, ''); i.value = brut ? milliers(Number(brut)) : '';
+  }));
+  const s = document.getElementById('suivant'); if (s) s.addEventListener('click', suivant);
+  const p = document.getElementById('precedent'); if (p) p.addEventListener('click', () => { etape = etape - 1; rendu(); });
+  const m = document.getElementById('modifier'); if (m) m.addEventListener('click', () => { etape = 1; rendu(); });
+  const re = document.getElementById('reessayer'); if (re) re.addEventListener('click', () => { ENREGISTRE = null; rendu(); enregistrer(); });
+  const dt = document.getElementById('detail-toggle'); if (dt) dt.addEventListener('click', () => {
+    const d = document.getElementById('detail'); const o = d.hidden; d.hidden = !o; dt.setAttribute('aria-expanded', String(o));
+  });
+  cont.querySelectorAll('input').forEach(i => i.addEventListener('keydown', ev => { if (ev.key === 'Enter'){ ev.preventDefault(); suivant(); } }));
+}
+
+function suivant(){
+  if (etape === 0){ etape = 1; rendu(); return; }
+  const nom = ETAPES[etape-1];
+  const err = lireEtValider(nom);
+  if (err){ const e = document.getElementById('err'); if (e){ e.textContent = err; e.classList.add('on'); } return; }
+  if (etape < TOTAL){ etape++; rendu(); return; }
+  etape = 'res'; ENREGISTRE = null; rendu(); enregistrer();
+}
+
+/* Enregistrement sur la fiche : même format qu'une simulation du simulateur,
+   origine « client ». Le serveur (edge function rdv, action « budget »)
+   retrouve la fiche par le jeton : la page ne connaît jamais l'identifiant. */
+function enregistrer(){
+  const r = calculer(), cl = r.cl;
+  const corps = {
+    action: 'budget',
+    profil: { projet: cl.projet, revenus: Math.round(cl.revenus), apport: Math.round(cl.apport), duree: cl.duree },
+    budgetMax: r.budget != null ? Math.round(r.budget) : null,
+    montage: r.montage || null,
+    loyerActuel: (R.logement === 'loc' || R.logement === 'hlm') && num(R.loyer) > 0 ? Math.round(num(R.loyer)) : null,
+    etat: etatSimulateur(cl),
+    reponses: {
+      projet: cl.projet, emprunteurs: R.nb || 1, foyer: cl.foyer, logement: R.logement,
+      loyer: num(R.loyer) || null, apport: cl.apport, credits: cl.credits, zone: cl.zone,
+      situations: R.emp.slice(0, R.nb || 1).map(e => ({ statut: e.statut, revenus: num(e.rev), age: num(e.age), prive: e.prive })),
+      parisLoc: R.parisLoc, taux: P.t[cl.duree], tauxDate: TAUX_DATE
+    }
+  };
+  if (params.get("demo") === "1"){ setTimeout(() => { ENREGISTRE = true; if (etape === 'res') rendu(); }, 400); return; }
+  fetch(FN, { method:"POST", headers:{ "content-type":"application/json" }, body: JSON.stringify(corps) })
+    .then(x => x.json().catch(() => ({})).then(j => { ENREGISTRE = (j && j.error === 'deja_fait') ? 'deja' : !!(x.ok && j && j.ok); }))
+    .catch(() => { ENREGISTRE = false; })
+    .then(() => { if (etape === 'res') rendu(); });
+}
+
+function chargerTaux(){
+  return fetch(SUPA + "/functions/v1/taux-marche", { headers:{ apikey:ANON, Authorization:"Bearer " + ANON } })
+    .then(r => r.ok ? r.json() : null)
+    .then(d => { if (d && d.t15 != null && d.t20 != null && d.t25 != null){ P.t = {15:d.t15/100, 20:d.t20/100, 25:d.t25/100}; TAUX_DATE = d.date_site || null; } })
+    .catch(() => {});
+}
+
+function prerremplir(){
+  const b = D.bien || {};
+  const m = String(b.ville || "").match(/^(.*?)\s*\((\d{5})\)/);
+  const z = m ? zoneDepuisCommune(m[1], m[2]) : (b.ville ? zoneDepuisCommune(villeCourte(b.ville), "") : null);
+  if (z){ R.zone = z; R.zoneAuto = true; }
+}
+
+function erreur(titre, texte){ cont.innerHTML = "<div class='etat-vide'><h2>" + esc(titre) + "</h2><p>" + esc(texte) + "</p></div>"; }
+
+(function demarrer(){
+  if (params.get("demo") === "1"){
+    D = { prenom:"Camille", vendeur:"Nour", bien:{ typologie:"Appartement 3 pièces", ville:"Bagneux (92220)", prix:289000 } };
+    prerremplir(); chargerTaux().then(rendu); return;
+  }
+  if (!token){ erreur("Lien incomplet", "Ce lien ne contient pas votre code personnel. Utilisez le lien reçu par mail."); return; }
+  Promise.all([
+    fetch(FN + "?data=1", { cache:"no-store" }).then(r => r.json()),
+    chargerTaux()
+  ]).then(([d]) => {
+    if (!d || d.ok === false){ erreur("Ce lien n'est plus valable", "Demandez un nouveau lien à votre conseiller."); return; }
+    D = d;
+    // Un budget existe déjà sur la fiche (le sien ou celui du vendeur) : on ne le refait pas (11/11/2026)
+    if (d.budgetFait === true){ erreur("Votre budget est déjà prêt", (d.vendeur || "Votre conseiller") + " l'a sous les yeux : vous le reverrez ensemble pendant votre rendez-vous."); return; }
+    prerremplir(); rendu();
+  }).catch(() => erreur("Page indisponible", "Réessayez dans quelques instants."));
+})();
+</script>
+</body></html>
