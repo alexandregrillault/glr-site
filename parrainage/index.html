@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parrainage : 1 000 € pour vous, 500 € pour votre proche | GLR Immobilier</title>
+<meta name="description" content="Recommandez GLR Immobilier à un proche qui veut acheter dans le neuf : 1 000 € en carte cadeau pour vous et 500 € pour lui, à la signature chez le notaire.">
+<link rel="canonical" href="https://www.glrimmobilier.com/parrainage/">
+<link rel="icon" type="image/png" sizes="192x192" href="/icone-glr.png">
+<link rel="apple-touch-icon" href="/icone-glr.png">
+<meta name="theme-color" content="#EAE6DD">
+<meta property="og:title" content="Parrainage GLR Immobilier : 1 000 € pour vous, 500 € pour votre proche">
+<meta property="og:description" content="Un proche veut acheter dans le neuf ? Recommandez-le : carte cadeau de 1 000 € pour vous, 500 € pour lui, à la signature chez le notaire.">
+<meta property="og:url" content="https://www.glrimmobilier.com/parrainage/">
+<meta property="og:image" content="https://www.glrimmobilier.com/logo-glr.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Archivo:wght@400;500;600&display=swap">
+<style>
+:root{color-scheme:light;--paper:#EAE6DD;--surface:#FFFFFF;--wash:#EFE5D2;--ink:#161A1E;--ink-2:#333A41;--muted:#616B75;--line:#D2CCBF;--bronze:#8A6A2F;--glr:#005875;--glr-wash:#DCE7EC;--err:#A33A2B;
+  --display:"Bodoni Moda","Didot","Times New Roman",serif;--body:"Archivo","Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink-2);font-family:var(--body);font-size:16px;line-height:1.55}
+a{color:var(--glr)}
+header{padding:16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1040px;margin:0 auto}
+header img{display:block;height:46px;width:auto}
+header .tel{font-size:.9rem;color:var(--ink-2);text-decoration:none;white-space:nowrap}
+main{max-width:1040px;margin:0 auto;padding:28px 16px 56px}
+.eyebrow{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze);margin:0 0 .6rem;font-weight:600}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(2rem,6.4vw,3.1rem);line-height:1.08;color:var(--ink);margin:0 0 .8rem}
+h1 em{font-style:italic;color:var(--bronze)}
+h2{font-family:var(--display);font-weight:500;font-size:1.55rem;line-height:1.2;color:var(--ink);margin:0 0 .8rem}
+.lede{font-size:1.06rem;max-width:58ch;margin:0 0 1.6rem}
+.grille{display:grid;grid-template-columns:1fr;gap:28px}
+@media(min-width:880px){.grille{grid-template-columns:1.05fr 1fr;align-items:start}}
+.montants{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 1.6rem}
+.montant{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px}
+.montant b{display:block;font-family:var(--display);font-weight:500;font-size:clamp(1.7rem,6vw,2.3rem);color:var(--glr);line-height:1.1}
+.montant span{font-size:.9rem;color:var(--muted)}
+ol.etapes{list-style:none;counter-reset:e;padding:0;margin:0 0 1.6rem}
+ol.etapes li{counter-increment:e;position:relative;padding:0 0 14px 44px}
+ol.etapes li::before{content:counter(e);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;border:1px solid var(--bronze);color:var(--bronze);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:.9rem}
+ol.etapes b{color:var(--ink)}
+.carte{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px 20px 20px}
+.onglets{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0 0 18px;background:var(--paper);padding:4px;border-radius:8px}
+.onglets button{font:inherit;font-weight:600;font-size:.92rem;border:0;border-radius:6px;padding:10px 6px;background:transparent;color:var(--muted);cursor:pointer}
+.onglets button[aria-selected=true]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+fieldset{border:0;padding:0;margin:0 0 6px}
+legend{font-weight:600;color:var(--ink);font-size:1rem;margin:0 0 .7rem;padding:0}
+.deux{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{display:block;font-weight:600;color:var(--ink);font-size:.9rem;margin:0 0 .3rem}
+label small{font-weight:400;color:var(--muted)}
+.champ{margin-bottom:.9rem}
+input[type=text],input[type=tel],input[type=email],textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:6px;padding:11px 12px}
+textarea{min-height:70px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--glr);outline-offset:1px;border-color:var(--glr)}
+.choix{display:flex;flex-wrap:wrap;gap:8px}
+.choix label{margin:0;font-weight:500;border:1px solid var(--line);border-radius:22px;padding:8px 14px;cursor:pointer;background:#fff;color:var(--ink-2)}
+.choix input{position:absolute;opacity:0;pointer-events:none}
+.choix label:has(input:checked){background:var(--glr);border-color:var(--glr);color:#fff}
+.sep{border:0;border-top:1px solid var(--line);margin:16px 0 18px}
+.accord{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:.88rem;color:var(--ink-2);margin:.3rem 0 .8rem}
+.accord input{margin-top:3px;width:18px;height:18px;flex:none}
+.btn{display:block;width:100%;font:inherit;font-weight:600;font-size:1.03rem;color:#fff;background:var(--glr);border:0;border-radius:6px;padding:14px;cursor:pointer;text-align:center;text-decoration:none}
+.btn:disabled{opacity:.6;cursor:wait}
+.btn.ghost{background:#fff;color:var(--glr);border:1px solid var(--glr)}
+.erreur{color:var(--err);font-size:.92rem;margin:.6rem 0 0;min-height:1.2em}
+.piege{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.merci h2{margin-bottom:.4rem}
+.lien{display:flex;gap:8px;margin:.8rem 0}
+.lien input{flex:1;min-width:0;font-size:15px;background:var(--glr-wash);border-color:var(--glr-wash)}
+.lien button{flex:none;width:auto;padding:0 16px;font-size:.95rem}
+.partage{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:.4rem 0 1rem}
+.partage a{font-size:.92rem;padding:11px 6px}
+.bandeau-filleul{background:var(--wash);border:1px solid #E2D3B5;border-radius:8px;padding:14px 16px;margin:0 0 1.4rem}
+.bandeau-filleul b{color:var(--ink)}
+.conditions{margin-top:36px;border-top:1px solid var(--line);padding-top:22px;font-size:.9rem;color:var(--ink-2)}
+.conditions h2{font-size:1.25rem}
+.conditions ul{padding-left:1.1rem;margin:0}
+.conditions li{margin:0 0 .45rem}
+footer{border-top:1px solid var(--line);padding:20px 16px;text-align:center;font-size:.82rem;color:var(--muted)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header>
+  <a href="/" aria-label="GLR Immobilier — accueil"><img src="/logo-glr.png" alt="GLR Immobilier" width="72" height="58"></a>
+  <a class="tel" href="tel:+33614550273">06 14 55 02 73</a>
+</header>
+<main>
+  <div class="grille">
+    <div>
+      <p class="eyebrow">Parrainage GLR Immobilier</p>
+      <h1 id="titre">Un proche veut acheter dans le neuf ?<br><em>Recommandez-le.</em></h1>
+      <p class="lede" id="lede">Vous connaissez quelqu'un qui cherche un appartement ou une maison neuve ? Présentez-le à GLR Immobilier. Si votre proche achète avec nous, vous recevez une carte cadeau de 1 000 € et votre proche une carte cadeau de 500 €. Pas besoin d'être client : tout le monde peut parrainer.</p>
+      <div class="bandeau-filleul" id="bandeauFilleul" hidden></div>
+
+      <div class="montants">
+        <div class="montant"><b>1 000 €</b><span>en carte cadeau pour le parrain</span></div>
+        <div class="montant"><b>500 €</b><span>en carte cadeau pour le filleul</span></div>
+      </div>
+
+      <ol class="etapes" id="etapes">
+        <li><b>Vous recommandez un proche</b> avec le formulaire, ou vous lui envoyez votre lien personnel.</li>
+        <li><b>Un conseiller GLR l'accompagne</b> : tous les promoteurs comparés, les conditions négociées, au même prix qu'en direct.</li>
+        <li><b>Votre proche signe chez le notaire</b> : vous recevez chacun votre carte cadeau.</li>
+      </ol>
+    </div>
+
+    <div class="carte">
+      <!-- Parrain : recommander ou recevoir son lien -->
+      <div id="zoneParrain">
+        <div class="onglets" role="tablist">
+          <button type="button" role="tab" id="tabReco" aria-selected="true" aria-controls="fReco">Recommander un proche</button>
+          <button type="button" role="tab" id="tabLien" aria-selected="false" aria-controls="fLien">Recevoir mon lien</button>
+        </div>
+
+        <form id="fReco" novalidate>
+          <fieldset>
+            <legend>Votre proche</legend>
+            <div class="deux">
+              <div class="champ"><label for="rfPrenom">Prénom</label><input type="text" id="rfPrenom" maxlength="60" autocomplete="off"></div>
+              <div class="champ"><label for="rfNom">Nom <small>(facultatif)</small></label><input type="text" id="rfNom" maxlength="80" autocomplete="off"></div>
+            </div>
+            <div class="champ"><label for="rfTel">Son téléphone</label><input type="tel" id="rfTel" maxlength="40" inputmode="tel" autocomplete="off"></div>
+            <div class="champ"><label for="rfEmail">Son e-mail <small>(facultatif)</small></label><input type="email" id="rfEmail" maxlength="160" autocomplete="off"></div>
+            <div class="champ"><label for="rfZone">Où cherche votre proche ? <small>(facultatif)</small></label><input type="text" id="rfZone" maxlength="160" placeholder="Ex. Montreuil, Val-de-Marne…" autocomplete="off"></div>
+            <div class="champ">
+              <label>Son projet <small>(facultatif)</small></label>
+              <div class="choix">
+                <label><input type="radio" name="rfProjet" value="Habiter"><span>Y habiter</span></label>
+                <label><input type="radio" name="rfProjet" value="Investir"><span>Investir</span></label>
+              </div>
+            </div>
+          </fieldset>
+          <hr class="sep">
+          <fieldset>
+            <legend>Vous, le parrain</legend>
+            <div class="deux">
+              <div class="champ"><label for="rpPrenom">Prénom</label><input type="text" id="rpPrenom" maxlength="60" autocomplete="given-name"></div>
+              <div class="champ"><label for="rpNom">Nom</label><input type="text" id="rpNom" maxlength="80" autocomplete="family-name"></div>
+            </div>
+            <div class="champ"><label for="rpTel">Téléphone</label><input type="tel" id="rpTel" maxlength="40" inputmode="tel" autocomplete="tel"></div>
+            <div class="champ"><label for="rpEmail">E-mail</label><input type="email" id="rpEmail" maxlength="160" autocomplete="email"></div>
+          </fieldset>
+          <div class="piege" aria-hidden="true"><label for="rSociete">Société</label><input type="text" id="rSociete" tabindex="-1" autocomplete="off"></div>
+          <label class="accord"><input type="checkbox" id="rAccordFilleul"><span>Mon proche est d'accord pour être contacté par GLR Immobilier.</span></label>
+          <label class="accord"><input type="checkbox" id="rAccord"><span>J'accepte les <a href="#conditions">conditions du parrainage</a> et que GLR Immobilier me contacte au sujet de mon parrainage. <a href="/mentions-legales/" target="_blank" rel="noopener">Données personnelles</a></span></label>
+          <button class="btn" type="submit" id="rGo">Recommander mon proche</button>
+          <p class="erreur" id="rErr" role="alert"></p>
+        </form>
+
+        <form id="fLien" novalidate hidden>
+          <p style="margin:0 0 1rem">Recevez votre lien personnel et partagez-le autour de vous, par WhatsApp, SMS ou e-mail. Chaque personne qui nous contacte avec ce lien est enregistrée comme votre filleul.</p>
+          <div class="deux">
+            <div class="champ"><label for="lpPrenom">Prénom</label><input type="text" id="lpPrenom" maxlength="60" autocomplete="given-name"></div>
+            <div class="champ"><label for="lpNom">Nom</label><input type="text" id="lpNom" maxlength="80" autocomplete="family-name"></div>
+          </div>
+          <div class="champ"><label for="lpTel">Téléphone</label><input type="tel" id="lpTel" maxlength="40" inputmode="tel" autocomplete="tel"></div>
+          <div class="champ"><label for="lpEmail">E-mail</label><input type="email" id="lpEmail" maxlength="160" autocomplete="email"></div>
+          <div class="piege" aria-hidden="true"><label for="lSociete">Société</label><input type="text" id="lSociete" tabindex="-1" autocomplete="off"></div>
+          <label class="accord"><input type="checkbox" id="lAccord"><span>J'accepte les <a href="#conditions">conditions du parrainage</a> et que GLR Immobilier me contacte au sujet de mon parrainage. <a href="/mentions-legales/" target="_blank" rel="noopener">Données personnelles</a></span></label>
+          <button class="btn" type="submit" id="lGo">Recevoir mon lien</button>
+          <p class="erreur" id="lErr" role="alert"></p>
+        </form>
+
+        <div class="merci" id="merciParrain" role="status" hidden>
+          <h2 id="mpTitre">Merci !</h2>
+          <p id="mpTexte"></p>
+          <p style="margin:1rem 0 0"><b>Votre lien personnel</b>, à envoyer à d'autres proches :</p>
+          <div class="lien"><input type="text" id="mpLien" readonly aria-label="Votre lien de parrainage"><button class="btn" type="button" id="mpCopier">Copier</button></div>
+          <div class="partage">
+            <a class="btn ghost" id="mpWhatsapp" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn ghost" id="mpSms">SMS</a>
+            <a class="btn ghost" id="mpMail">E-mail</a>
+          </div>
+          <button class="btn ghost" type="button" id="mpAutre">Recommander une autre personne</button>
+        </div>
+      </div>
+
+      <!-- Filleul arrivé par un lien -->
+      <div id="zoneFilleul" hidden>
+        <form id="fFilleul" novalidate>
+          <h2 style="font-size:1.3rem">Parlons de votre projet</h2>
+          <div class="deux">
+            <div class="champ"><label for="fPrenom">Prénom</label><input type="text" id="fPrenom" maxlength="60" autocomplete="given-name"></div>
+            <div class="champ"><label for="fNom">Nom</label><input type="text" id="fNom" maxlength="80" autocomplete="family-name"></div>
+          </div>
+          <div class="champ"><label for="fTel">Téléphone</label><input type="tel" id="fTel" maxlength="40" inputmode="tel" autocomplete="tel"></div>
+          <div class="champ"><label for="fEmail">E-mail</label><input type="email" id="fEmail" maxlength="160" autocomplete="email"></div>
+          <div class="champ"><label for="fZone">Où cherchez-vous ? <small>(facultatif)</small></label><input type="text" id="fZone" maxlength="160" placeholder="Ex. Montreuil, Val-de-Marne…"></div>
+          <div class="champ">
+            <label>Votre projet <small>(facultatif)</small></label>
+            <div class="choix">
+              <label><input type="radio" name="fProjet" value="Habiter"><span>Y habiter</span></label>
+              <label><input type="radio" name="fProjet" value="Investir"><span>Investir</span></label>
+            </div>
+          </div>
+          <div class="champ"><label for="fMessage">Un mot sur votre recherche <small>(facultatif)</small></label><textarea id="fMessage" maxlength="1500"></textarea></div>
+          <div class="piege" aria-hidden="true"><label for="fSociete">Société</label><input type="text" id="fSociete" tabindex="-1" autocomplete="off"></div>
+          <label class="accord"><input type="checkbox" id="fAccord"><span>J'accepte les <a href="#conditions">conditions du parrainage</a> et que GLR Immobilier me contacte par téléphone, SMS ou e-mail au sujet de mon projet. <a href="/mentions-legales/" target="_blank" rel="noopener">Données personnelles</a></span></label>
+          <button class="btn" type="submit" id="fGo">Être rappelé par un conseiller</button>
+          <p class="erreur" id="fErr" role="alert"></p>
+        </form>
+        <div class="merci" id="merciFilleul" role="status" hidden>
+          <h2>C'est noté<span id="mfPrenom"></span>.</h2>
+          <p>Un conseiller GLR Immobilier vous appelle sous 48 heures ouvrées. Votre parrainage est enregistré : votre carte cadeau de 500 € vous sera envoyée après la signature chez le notaire.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="conditions" id="conditions">
+    <h2>Conditions du parrainage</h2>
+    <ul>
+      <li>Le parrain reçoit une carte cadeau de 1 000 € et le filleul une carte cadeau de 500 €, quand le filleul a signé chez le notaire l'acte d'achat d'un logement neuf acheté par l'intermédiaire de GLR Immobilier.</li>
+      <li>Tout le monde peut parrainer, client de GLR Immobilier ou non. Le parrain et le filleul sont deux personnes majeures différentes.</li>
+      <li>Le filleul ne doit pas être déjà en contact avec GLR Immobilier au moment où il est recommandé.</li>
+      <li>Une récompense par filleul, même s'il achète plusieurs logements. Pas de limite au nombre de filleuls.</li>
+      <li>Les cartes cadeaux sont envoyées dans le mois qui suit la signature chez le notaire. Elles ne sont ni échangeables ni remboursables en argent.</li>
+      <li>GLR Immobilier peut modifier ou arrêter l'offre à tout moment ; les parrainages déjà enregistrés restent acquis.</li>
+    </ul>
+  </section>
+</main>
+<footer>GLR Immobilier · SARL, RCS Paris 933 789 612 · Carte professionnelle Transaction CPI 7501 2025 000 000 211 · <a href="/mentions-legales/">Mentions légales et données personnelles</a></footer>
+<script>
+(function () {
+  var ENDPOINT = "https://hydqfbxdtpmbuooexekp.supabase.co/functions/v1/parrainage";
+  var RE_EMAIL = /^[^@\s]+@[^@\s.]+(\.[^@\s.]+)+$/;
+  var $ = function (id) { return document.getElementById(id); };
+  var v = function (id) { return ($(id).value || "").trim(); };
+  var radio = function (n) { var e = document.querySelector('input[name="' + n + '"]:checked'); return e ? e.value : ""; };
+  var telOk = function (t) { return t.replace(/\D/g, "").length >= 9; };
+  var q = new URLSearchParams(location.search);
+  var code = (q.get("p") || "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6);
+
+  function envoyer(corps) {
+    return fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(corps) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok || !j.ok) throw new Error(j.error || "erreur"); return j; }); });
+  }
+  function messageErreur(e) {
+    var m = String(e && e.message);
+    if (m === "trop_de_demandes") return "Trop d'envois d'un coup : réessayez dans quelques minutes.";
+    if (m === "meme_personne") return "Le parrain et le filleul doivent être deux personnes différentes.";
+    if (m === "code_inconnu") return "Ce lien de parrainage n'est plus valable. Contactez-nous au 06 14 55 02 73.";
+    return "L'envoi n'a pas marché. Réessayez, ou écrivez-nous à agl@glrimmobilier.com.";
+  }
+
+  /* ---------- Onglets parrain ---------- */
+  function onglet(lien) {
+    $("tabReco").setAttribute("aria-selected", String(!lien));
+    $("tabLien").setAttribute("aria-selected", String(lien));
+    $("fReco").hidden = lien; $("fLien").hidden = !lien;
+  }
+  $("tabReco").addEventListener("click", function () { onglet(false); });
+  $("tabLien").addEventListener("click", function () { onglet(true); });
+
+  function parrainLu(pre) {
+    return { prenom: v(pre + "Prenom"), nom: v(pre + "Nom"), telephone: v(pre + "Tel"), email: v(pre + "Email") };
+  }
+  function controleParrain(p) {
+    if (!p.prenom || !p.nom) return "Indiquez vos prénom et nom.";
+    if (!telOk(p.telephone)) return "Indiquez votre numéro de téléphone.";
+    if (!RE_EMAIL.test(p.email)) return p.email ? "Votre adresse e-mail ne semble pas valide." : "Indiquez votre e-mail.";
+    return "";
+  }
+
+  var texteFilleul = function (lien) {
+    return "Je te recommande GLR Immobilier pour acheter dans le neuf : ils comparent tous les promoteurs et négocient pour toi, au même prix qu'en direct. Avec mon lien, tu reçois 500 € en carte cadeau à la signature : " + lien;
+  };
+  function montrerLien(prenom, lien, recommande, filleulPrenom) {
+    $("mpTitre").textContent = "Merci " + prenom + " !";
+    $("mpTexte").textContent = recommande
+      ? "Nous avons bien reçu la recommandation de " + filleulPrenom + ". Un conseiller GLR prend contact sous 48 heures ouvrées. Si votre proche achète, vous recevez votre carte cadeau de 1 000 € après sa signature chez le notaire."
+      : "Votre lien est prêt. Chaque proche qui nous contacte avec ce lien devient votre filleul : s'il achète, vous recevez 1 000 € en carte cadeau, et votre filleul 500 €.";
+    $("mpLien").value = lien;
+    var t = encodeURIComponent(texteFilleul(lien));
+    $("mpWhatsapp").href = "https://wa.me/?text=" + t;
+    $("mpSms").href = "sms:?&body=" + t;
+    $("mpMail").href = "mailto:?subject=" + encodeURIComponent("Je te recommande GLR Immobilier") + "&body=" + t;
+    $("fReco").hidden = true; $("fLien").hidden = true;
+    document.querySelector(".onglets").hidden = true;
+    $("merciParrain").hidden = false;
+    $("merciParrain").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  $("mpCopier").addEventListener("click", function () {
+    var i = $("mpLien"); i.select();
+    var fini = function () { $("mpCopier").textContent = "Copié"; setTimeout(function () { $("mpCopier").textContent = "Copier"; }, 2000); };
+    if (navigator.clipboard) navigator.clipboard.writeText(i.value).then(fini, function () { document.execCommand("copy"); fini(); });
+    else { document.execCommand("copy"); fini(); }
+  });
+  $("mpAutre").addEventListener("click", function () {
+    ["rfPrenom", "rfNom", "rfTel", "rfEmail", "rfZone"].forEach(function (id) { $(id).value = ""; });
+    document.querySelectorAll('input[name="rfProjet"]').forEach(function (e) { e.checked = false; });
+    $("rAccordFilleul").checked = false;
+    $("merciParrain").hidden = true;
+    document.querySelector(".onglets").hidden = false;
+    onglet(false);
+    $("rfPrenom").focus();
+  });
+
+  $("fReco").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var err = $("rErr"), go = $("rGo"); err.textContent = "";
+    var f = { prenom: v("rfPrenom"), nom: v("rfNom"), telephone: v("rfTel"), email: v("rfEmail"), zone: v("rfZone"), projet: radio("rfProjet") };
+    var p = parrainLu("rp");
+    if (!f.prenom) { err.textContent = "Indiquez le prénom de votre proche."; return; }
+    if (!telOk(f.telephone)) { err.textContent = "Indiquez le numéro de téléphone de votre proche."; return; }
+    if (f.email && !RE_EMAIL.test(f.email)) { err.textContent = "L'e-mail de votre proche ne semble pas valide."; return; }
+    var m = controleParrain(p); if (m) { err.textContent = m; return; }
+    if (!$("rAccordFilleul").checked) { err.textContent = "Cochez la case qui confirme que votre proche est d'accord pour être contacté."; return; }
+    if (!$("rAccord").checked) { err.textContent = "Cochez la case des conditions du parrainage."; return; }
+    go.disabled = true; go.textContent = "Envoi…";
+    envoyer({ action: "recommander", parrain: p, filleul: f, accord: true, accord_filleul: true, societe: v("rSociete") })
+      .then(function (j) { montrerLien(p.prenom, j.lien, true, f.prenom); })
+      .catch(function (e) { err.textContent = messageErreur(e); })
+      .then(function () { go.disabled = false; go.textContent = "Recommander mon proche"; });
+  });
+
+  $("fLien").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var err = $("lErr"), go = $("lGo"); err.textContent = "";
+    var p = parrainLu("lp");
+    var m = controleParrain(p); if (m) { err.textContent = m; return; }
+    if (!$("lAccord").checked) { err.textContent = "Cochez la case des conditions du parrainage."; return; }
+    go.disabled = true; go.textContent = "Envoi…";
+    envoyer({ action: "inscrire", parrain: p, accord: true, societe: v("lSociete") })
+      .then(function (j) { montrerLien(p.prenom, j.lien, false); })
+      .catch(function (e) { err.textContent = messageErreur(e); })
+      .then(function () { go.disabled = false; go.textContent = "Recevoir mon lien"; });
+  });
+
+  /* ---------- Filleul arrivé par un lien ---------- */
+  function modeFilleul(prenomParrain) {
+    $("titre").innerHTML = "";
+    $("titre").appendChild(document.createTextNode(prenomParrain + " vous recommande"));
+    $("titre").appendChild(document.createElement("br"));
+    var em = document.createElement("em"); em.textContent = "GLR Immobilier."; $("titre").appendChild(em);
+    $("lede").textContent = "Nous commercialisons le logement neuf en Île-de-France et en Haute-Savoie : tous les promoteurs comparés sur les mêmes critères, les conditions négociées pour vous, au même prix qu'en direct.";
+    var b = $("bandeauFilleul");
+    b.innerHTML = "";
+    var s = document.createElement("b"); s.textContent = "500 € en carte cadeau pour vous";
+    b.appendChild(s);
+    b.appendChild(document.createTextNode(" si vous achetez votre logement avec nous, à la signature chez le notaire. " + prenomParrain + " reçoit aussi une carte cadeau de 1 000 €."));
+    b.hidden = false;
+    $("etapes").hidden = true;
+    $("zoneParrain").hidden = true;
+    $("zoneFilleul").hidden = false;
+    document.title = prenomParrain + " vous recommande GLR Immobilier";
+  }
+  if (code.length === 6) {
+    fetch(ENDPOINT + "?code=" + code).then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) { if (j && j.ok && j.prenom) modeFilleul(j.prenom); })
+      .catch(function () {});
+  }
+
+  $("fFilleul").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var err = $("fErr"), go = $("fGo"); err.textContent = "";
+    var f = { prenom: v("fPrenom"), nom: v("fNom"), telephone: v("fTel"), email: v("fEmail"), zone: v("fZone"), projet: radio("fProjet"), message: v("fMessage") };
+    if (!f.prenom || !f.nom) { err.textContent = "Indiquez vos prénom et nom."; return; }
+    if (!telOk(f.telephone)) { err.textContent = "Indiquez votre numéro de téléphone."; return; }
+    if (!RE_EMAIL.test(f.email)) { err.textContent = f.email ? "Votre adresse e-mail ne semble pas valide." : "Indiquez votre e-mail."; return; }
+    if (!$("fAccord").checked) { err.textContent = "Cochez la case pour qu'un conseiller puisse vous rappeler."; return; }
+    go.disabled = true; go.textContent = "Envoi…";
+    envoyer({ action: "filleul", code: code, filleul: f, accord: true, societe: v("fSociete") })
+      .then(function () {
+        $("mfPrenom").textContent = ", " + f.prenom;
+        $("fFilleul").hidden = true; $("merciFilleul").hidden = false;
+        $("merciFilleul").scrollIntoView({ behavior: "smooth", block: "start" });
+      })
+      .catch(function (e) { err.textContent = messageErreur(e); go.disabled = false; go.textContent = "Être rappelé par un conseiller"; });
+  });
+})();
+</script>
+</body>
+</html>
