@@ -143,7 +143,7 @@ function demarrer(L) {
   // Depuis la liste seulement, et après un court arrêt sur la ligne : si le logement est sur la façade opposée,
   // la caméra fait le tour une fois, en douceur. Jamais pendant qu'on manipule la vue à la souris.
   let tour = null, attenteTour = null, enMain = false;
-  renderer.domElement.addEventListener('pointerdown', () => { enMain = true; tour = null; clearTimeout(attenteTour); if (!arrivee) controls.enabled = true; });
+  renderer.domElement.addEventListener('pointerdown', () => { enMain = true; tour = null; vu = true; if (geste) geste.remove(); clearTimeout(attenteTour); if (!arrivee) controls.enabled = true; });
   window.addEventListener('pointerup', () => { enMain = false; });
   const faireFace = m => {
     clearTimeout(attenteTour);
@@ -154,7 +154,7 @@ function demarrer(L) {
       const dx = camera.position.x - controls.target.x, r = Math.hypot(dx, cz), a0 = Math.atan2(cz, dx);
       let a1 = Math.atan2((devant ? 1 : -1) * Math.abs(Math.sin(1.15)) , Math.cos(1.15) * (dx >= 0 ? 1 : -1));
       let da = a1 - a0; while (da > Math.PI) da -= 2 * Math.PI; while (da < -Math.PI) da += 2 * Math.PI;
-      tour = { t0: performance.now(), a0, da, r, y: camera.position.y }; controls.enabled = false;
+      tour = { t0: performance.now(), dur: 1100, a0, da, r0: r, r1: r, y0: camera.position.y, y1: camera.position.y }; controls.enabled = false;
     }, 280);
   };
   document.querySelectorAll('table.lots tr[id^="l-"]').forEach(tr => {
@@ -163,6 +163,36 @@ function demarrer(L) {
     tr.addEventListener('mouseenter', entrer); tr.addEventListener('click', entrer); tr.addEventListener('focusin', entrer);
     tr.addEventListener('mouseleave', () => { clearTimeout(attenteTour); if (sortant === m) sortant = null; tr.classList.remove('vise'); });
   });
+  // ——— Changer d'angle : le geste est montré une fois, et quatre boutons mènent aux vues utiles ———
+  let vu = false;
+  const geste = document.getElementById('geste');
+  const allerA = (az, r1, y1, dur, extra = {}) => {
+    controls.target.set(0, haut * 0.5, 0);
+    const dx = camera.position.x - controls.target.x, dz = camera.position.z - controls.target.z, a0 = Math.atan2(dz, dx);
+    let da = az == null ? 0 : az - a0; if (az != null && !extra.tourComplet) { while (da > Math.PI) da -= 2 * Math.PI; while (da < -Math.PI) da += 2 * Math.PI; }
+    if (extra.tourComplet) da = 2 * Math.PI;
+    tour = { t0: performance.now(), dur, a0, da, r0: Math.hypot(dx, dz), r1: r1 == null ? Math.hypot(dx, dz) : r1, y0: camera.position.y, y1: y1 == null ? camera.position.y : y1, ...extra };
+    controls.enabled = false;
+  };
+  const RUE = [Math.atan2(1.02, 0.38), Math.hypot(d * 0.38, d * 1.02), haut * 0.16 + 1.7];
+  const VUES = {
+    rue: () => allerA(RUE[0], RUE[1], RUE[2], 1300),
+    arriere: () => allerA(RUE[0] + Math.PI, RUE[1], RUE[2], 1500),
+    dessus: () => allerA(null, 1.5, haut + d * 1.5, 1300),
+    tour: () => allerA(0, null, null, 9000, { tourComplet: true, lineaire: true }),
+  };
+  document.querySelectorAll('.vues button').forEach(b => b.addEventListener('click', () => { vu = true; if (geste) geste.remove(); if (!arrivee) VUES[b.dataset.vue](); }));
+  // À l'arrivée : l'immeuble pivote un peu puis revient, et la pastille « Glissez pour tourner » s'affiche jusqu'au premier geste
+  function montrerGeste() {
+    if (vu) return;
+    if (geste) geste.classList.add('visible');
+    const dx = camera.position.x - controls.target.x, dz = camera.position.z - controls.target.z, a = Math.atan2(dz, dx);
+    allerA(a - 0.5, null, null, 1200, { suite: () => { if (!vu) allerA(a, null, null, 1300); } });
+  }
+  if (!arrivee) setTimeout(() => { if (!arrivee) montrerGeste(); }, 900);
+  renderer.domElement.style.cursor = 'grab';
+  renderer.domElement.addEventListener('pointerdown', () => { renderer.domElement.style.cursor = 'grabbing'; });
+  window.addEventListener('pointerup', () => { renderer.domElement.style.cursor = 'grab'; });
   let images = 0;
   const boucle = () => {
     const t = performance.now();
@@ -175,12 +205,12 @@ function demarrer(L) {
       const hk = Math.pow(k, 0.85), zk = Math.pow(k, 1.6);
       camera.position.set(haut0.x + (bas.x - haut0.x) * zk, haut0.y + (bas.y - haut0.y) * hk, haut0.z + (bas.z - haut0.z) * zk);
       camera.up.set(0, 1, 0); camera.lookAt(controls.target);
-      if (x >= 1) { arrivee = null; controls.enabled = true; }
+      if (x >= 1) { arrivee = null; controls.enabled = true; montrerGeste(); }
     }
     if (tour) {
-      const x = Math.min(1, (t - tour.t0) / 1100), a = tour.a0 + tour.da * adoucir(x);
-      camera.position.set(controls.target.x + tour.r * Math.cos(a), tour.y, controls.target.z + tour.r * Math.sin(a)); camera.lookAt(controls.target);
-      if (x >= 1) { tour = null; controls.enabled = true; }
+      const x = Math.min(1, (t - tour.t0) / tour.dur), k = tour.lineaire ? x : adoucir(x), a = tour.a0 + tour.da * k, r = tour.r0 + (tour.r1 - tour.r0) * k, y = tour.y0 + (tour.y1 - tour.y0) * k;
+      camera.position.set(controls.target.x + r * Math.cos(a), y, controls.target.z + r * Math.sin(a)); camera.lookAt(controls.target);
+      if (x >= 1) { const suite = tour.suite; tour = null; controls.enabled = true; if (suite) suite(); }
     }
     for (const m of imm.lots) {
       const cible = m === sortant ? 1 : 0; if (m.userData.sorti === cible) continue;

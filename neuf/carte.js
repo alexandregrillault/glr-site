@@ -224,7 +224,11 @@ async function demarrer() {
   const marqueurs = [];
   for (const v of villes) for (const p of v.p) {
     const el = document.createElement('button');
-    el.type = 'button'; el.className = 'repere' + (p.k ? ' picking' : ''); el.title = p.n; el.setAttribute('aria-label', p.n);
+    el.type = 'button'; el.className = 'repere' + (p.k ? ' picking' : '');
+    // Au survol : nom du programme et date de livraison (ou « grille sur demande » pour un picking)
+    { const info = document.createElement('span'); info.className = 'info-prog'; const b = document.createElement('b'); b.textContent = p.n; info.appendChild(b);
+      info.appendChild(document.createTextNode(p.k ? 'Grille sur demande' : (p.l ? 'Livraison ' + p.l : 'Livraison à préciser'))); el.appendChild(info);
+      el.setAttribute('aria-label', p.n + (p.l ? ', livraison ' + p.l : '')); }
     el.addEventListener('click', ev => {
       ev.stopPropagation();
       if (p.k) { location.href = '/neuf/' + p.u; return; }
