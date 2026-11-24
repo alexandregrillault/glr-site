@@ -80,7 +80,7 @@ async function demarrer() {
   function sol(epure) {
     solActif = epure;
     for (const l of map.getStyle().layers) {
-      if (l.id === 'glr-bati' || (l.source !== 'plan_ign' && l.type !== 'background')) continue;
+      if (l.id === 'glr-bati' || l.id.startsWith('mq-') || (l.source !== 'plan_ign' && l.type !== 'background')) continue;
       const sl = l['source-layer'] || '', id = l.id.toLowerCase();
       const poser = (prop, val) => {
         const k = l.id + '|' + prop;
@@ -232,12 +232,28 @@ async function demarrer() {
   let couche = null, enCours = null, villeEnCours = null;
 
   let stopBati = null, stopTour = null, etiquette = null;
+  // ——— Routes « maquette » pour la vue d'un programme : trottoirs clairs, chaussée d'asphalte à sa vraie largeur,
+  // ligne axiale en pointillés sur les voies principales, allées piétonnes en beige. Largeurs en mètres selon la classe IGN.
+  const LARG = ['match', ['get', 'symbo'], 'AUTOROU_LIBRE', 16, 'AUTOROU_PEAGE', 16, 'PRINCIPALE_1', 14, 'PRINCIPALE_2', 12, 'PRINCIPALE_3', 11, 'REGIONALE_1', 11, 'REGIONALE_2', 10, 'REGIONALE_3', 9, 'LOCALE_1', 8.5, 'LOCALE_2', 7.5, 'LOCALE_3', 7, 'NON_CLASSEE', 6, 4.5];
+  const enPx = (m, plus = 0) => ['interpolate', ['exponential', 2], ['zoom'], 15, ['+', ['*', m, 0.637], plus], 20, ['+', ['*', m, 20.38], plus * 8]];
+  const GRANDE = ['in', ['get', 'symbo'], ['literal', ['AUTOROU_LIBRE', 'AUTOROU_PEAGE', 'PRINCIPALE_1', 'PRINCIPALE_2', 'PRINCIPALE_3', 'REGIONALE_1', 'REGIONALE_2', 'REGIONALE_3', 'LOCALE_1']]];
+  const avantNoms = (map.getStyle().layers.find(l => l.type === 'symbol') || {}).id;
+  const rond = { 'line-cap': 'round', 'line-join': 'round', visibility: 'none' };
+  map.addLayer({ id: 'mq-allee', type: 'line', source: 'plan_ign', 'source-layer': 'routier_chemin', minzoom: 15.5, layout: rond, paint: { 'line-color': '#E3D9C4', 'line-width': enPx(2.6) } }, avantNoms);
+  map.addLayer({ id: 'mq-trottoir', type: 'line', source: 'plan_ign', 'source-layer': 'routier_route', minzoom: 15.5, layout: rond, paint: { 'line-color': '#F6F2E9', 'line-width': enPx(['+', ['*', LARG, 0.8], 3.4]) } }, avantNoms);
+  map.addLayer({ id: 'mq-bordure', type: 'line', source: 'plan_ign', 'source-layer': 'routier_route', minzoom: 15.5, layout: rond, paint: { 'line-color': '#B9B4AB', 'line-width': enPx(['*', LARG, 0.8], 0.9) } }, avantNoms);
+  map.addLayer({ id: 'mq-chaussee', type: 'line', source: 'plan_ign', 'source-layer': 'routier_route', minzoom: 15.5, layout: rond, paint: { 'line-color': '#C9C5BE', 'line-width': enPx(['*', LARG, 0.8]) } }, avantNoms);
+  map.addLayer({ id: 'mq-axe', type: 'line', source: 'plan_ign', 'source-layer': 'routier_route', minzoom: 16.2, filter: GRANDE, layout: { 'line-cap': 'butt', visibility: 'none' }, paint: { 'line-color': '#FFFFFF', 'line-width': enPx(0.22), 'line-dasharray': [9, 9] } }, avantNoms);
+  const MQ = ['mq-allee', 'mq-trottoir', 'mq-bordure', 'mq-chaussee', 'mq-axe'];
+  const ruesIgn = map.getStyle().layers.filter(l => l.source === 'plan_ign' && l.type === 'line' && /^routier/.test(l['source-layer'] || '') && !MQ.includes(l.id)).map(l => l.id);
+  const routesMaquette = oui => { MQ.forEach(id => map.setLayoutProperty(id, 'visibility', oui ? 'visible' : 'none')); ruesIgn.forEach(id => map.setLayoutProperty(id, 'visibility', oui ? 'none' : 'visible')); };
   const bati = (de, a, ms, delai) => { if (stopBati) stopBati(); stopBati = animer(ms, x => { const f = Math.max(0.001, de + (a - de) * x); map.setPaintProperty('glr-bati', 'fill-extrusion-height', hauteurBati(f)); if (map.getLayer('bati-ville')) hautVille(f); }, delai); };
   const arreterTour = () => { if (stopTour) { stopTour(); stopTour = null; } };
   ['mousedown', 'touchstart', 'wheel'].forEach(t => conteneur.addEventListener(t, arreterTour, { passive: true }));
   function quitter() {
     arreterTour(); effacerProximite(); if (stopBati) { stopBati(); stopBati = null; }
     if (etiquette) { etiquette.remove(); etiquette = null; }
+    if (couche) routesMaquette(false);
     map.setPaintProperty('glr-bati', 'fill-extrusion-color', '#E7E0D3');
     if (couche) { map.removeLayer(couche.id); couche = null; map.setMaxBounds(null); map.setMinZoom(null); map.setMaxZoom(null); }
     enCours = null; if (panneau) panneau.hidden = true;
@@ -258,6 +274,7 @@ async function demarrer() {
       etiquette = new ml.Marker({ element: el, anchor: 'bottom', offset: [0, -Math.round(hautM / 0.277 * 0.83 + 40)] }).setLngLat([p.o, p.a]).addTo(map); }
     couche = coucheImmeuble(map, p);
     map.addLayer(couche);
+    setTimeout(() => { if (enCours === p) routesMaquette(true); }, 1500);
     { const ici = couche; let essais = 0, parcs = null;
       fetch('/neuf/donnees/parcs/' + v.i + '.json').then(x => x.ok ? x.json() : null).then(g => { parcs = g; }).catch(() => {});
       const poser = () => {
