@@ -8,6 +8,8 @@ const path = require('path');
 const ICI = __dirname;
 const SITE = 'https://www.glrimmobilier.com';
 // Où mène le bouton « Recevoir les plans et les prix » tant que l'espace client n'existe pas.
+// Interrupteurs en attendant l'arbitrage d'Alex : false = le chiffre n'apparaît nulle part sur les pages.
+const AFFICHER = { prixAPartirDe: true, prixM2: true };
 const CONTACT = { tel: '+33614550273', telAffiche: '06 14 55 02 73', mail: 'agl@glrimmobilier.com' };
 
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -131,14 +133,15 @@ function carteProgramme(p) {
   if (p.gare) lignes.push(['Transport', p.gare + (p.gare_minutes_a_pied ? ' · ' + p.gare_minutes_a_pied + ' min à pied' : '')]);
   const typos = (p.typologies || []).map(t => `<span class="puce">${esc(t)}</span>`).join('');
   const disp = (p.dispositifs || []).filter(x => !/LLI|LMNP/i.test(x)).map(t => `<span class="puce laiton">${esc(t)}</span>`).join('');
-  const picking = p.picking ? '<span class="puce laiton">Picking</span>' : '';
+  // Programme sans mandat (« Oui, c'est ça », Alex, 24/11/2026) ; libellé à lui montrer avant mise en ligne.
+  const picking = p.picking ? '<span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span>' : '';
   const nom = p.page_programme ? `<a href="${esc(p.page_programme)}">${esc(p.nom)}</a>` : esc(p.nom);
   return `<article class="prog" data-typos="${esc((p.typologies || []).join(' '))}">
   <h3>${nom}</h3>
   <p class="qui">${esc(p.promoteur)}</p>
   ${lignes.length ? '<dl>' + lignes.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('') + '</dl>' : ''}
   ${typos || disp || picking ? `<div class="puces">${typos}${disp}${picking}</div>` : ''}
-  <div class="bas"><span class="prix">${p.prix_a_partir_de != null ? '<small>à partir de</small>' + euros(p.prix_a_partir_de) : '<small>prix</small>sur demande'}</span><span class="dispo">${pluriel(p.nb_lots_libres, 'logement disponible', 'logements disponibles')}</span></div>
+  <div class="bas"><span class="prix">${AFFICHER.prixAPartirDe && p.prix_a_partir_de != null ? '<small>à partir de</small>' + euros(p.prix_a_partir_de) : '<small>prix</small>sur demande'}</span><span class="dispo">${pluriel(p.nb_lots_libres, 'logement disponible', 'logements disponibles')}</span></div>
 </article>`;
 }
 
@@ -147,7 +150,7 @@ function pageVille(d) {
   const url = `${SITE}/neuf/${d.slug}/`;
   const titre = `Immobilier neuf à ${d.ville} (${d.cp}) : ${c.nb_programmes} programmes | GLR Immobilier`;
   const description = `${c.nb_programmes} programmes neufs et ${nb(c.nb_lots_libres)} logements disponibles à ${d.ville}` +
-    (c.prix_m2_moyen ? `, ${euros(c.prix_m2_moyen)}/m² en moyenne` : '') + `. Plans et prix de tous les promoteurs, mis à jour à chaque pige par GLR Immobilier.`;
+    (AFFICHER.prixM2 && c.prix_m2_moyen ? `, ${euros(c.prix_m2_moyen)}/m² en moyenne` : '') + `. Plans et prix de tous les promoteurs, mis à jour à chaque pige par GLR Immobilier.`;
   const typosFiltre = ['T1', 'T2', 'T3', 'T4', 'T5+'].filter(t => d.programmes.some(p => (p.typologies || []).includes(t)));
   const progs = [...d.programmes].sort((a, b) => (a.livraison_cle || '').localeCompare(b.livraison_cle || '') || b.nb_lots_libres - a.nb_lots_libres);
   const ld = {
@@ -166,8 +169,8 @@ function pageVille(d) {
   <div class="chiffres">
     <div class="chiffre"><b>${nb(c.nb_programmes)}</b><span>programmes en vente</span></div>
     <div class="chiffre"><b>${nb(c.nb_lots_libres)}</b><span>logements disponibles</span></div>
-    <div class="chiffre"><b>${c.prix_m2_moyen ? euros(c.prix_m2_moyen) : '—'}</b><span>prix moyen au m²</span></div>
-    <div class="chiffre"><b>${c.prix_entree ? euros(c.prix_entree) : '—'}</b><span>premier prix</span></div>
+    ${AFFICHER.prixM2 ? `<div class="chiffre"><b>${c.prix_m2_moyen ? euros(c.prix_m2_moyen) : '—'}</b><span>prix moyen au m²</span></div>` : `<div class="chiffre"><b>${nb(c.nb_promoteurs)}</b><span>promoteurs</span></div>`}
+    ${AFFICHER.prixAPartirDe ? `<div class="chiffre"><b>${c.prix_entree ? euros(c.prix_entree) : '—'}</b><span>premier prix</span></div>` : `<div class="chiffre"><b>${nb(Object.keys(c.livraisons || {}).length)}</b><span>années de livraison</span></div>`}
   </div>
 
   <div class="deux">
@@ -221,7 +224,7 @@ function pageIndex(villes) {
   <hr class="filet">
   <p class="chapo">Nous suivons tous les programmes neufs de ces villes et vous envoyons les plans et les prix de ceux qui vous correspondent.</p>
   <div class="villes">
-${villes.map(d => `    <a href="/neuf/${d.slug}/"><b>${esc(d.ville)}</b><span>${pluriel(d.chiffres.nb_programmes, 'programme', 'programmes')} · ${nb(d.chiffres.nb_lots_libres)} logements disponibles${d.chiffres.prix_m2_moyen ? ' · ' + euros(d.chiffres.prix_m2_moyen) + '/m²' : ''}</span></a>`).join('\n')}
+${villes.map(d => `    <a href="/neuf/${d.slug}/"><b>${esc(d.ville)}</b><span>${pluriel(d.chiffres.nb_programmes, 'programme', 'programmes')} · ${nb(d.chiffres.nb_lots_libres)} logements disponibles${AFFICHER.prixM2 && d.chiffres.prix_m2_moyen ? ' · ' + euros(d.chiffres.prix_m2_moyen) + '/m²' : ''}</span></a>`).join('\n')}
   </div>
 </main>
 ${pied}
