@@ -57,6 +57,7 @@ async function demarrer() {
     bounds: bornes([[1.88, 48.62], [2.82, 49.08]]), fitBoundsOptions: { padding: 20 }, pitch: 0, // vue d'ensemble de l'Île-de-France, du dessus
     cooperativeGestures: false, dragRotate: true,
   });
+  conteneur.__carte = map; // accès pour les contrôles automatiques
   map.addControl(new ml.NavigationControl({ showCompass: true, visualizePitch: true }), 'top-right');
   map.addControl(new ml.AttributionControl({ compact: true, customAttribution: 'Fond de carte : IGN · contours geo.api.gouv.fr · lieux © OpenStreetMap' }));
   { const at = conteneur.querySelector('.maplibregl-ctrl-attrib'); if (at) { at.classList.remove('maplibregl-compact-show'); at.removeAttribute('open'); } }
@@ -100,27 +101,64 @@ async function demarrer() {
   const vide = { type: 'FeatureCollection', features: [] };
   map.addSource('voile', { type: 'geojson', data: vide });
   map.addLayer({ id: 'voile', type: 'fill', source: 'voile', paint: { 'fill-color': '#F4F0E8', 'fill-opacity': 0 } });
-  map.addSource('socle', { type: 'geojson', data: vide });
-  map.addLayer({ id: 'socle', type: 'fill-extrusion', source: 'socle', paint: { 'fill-extrusion-color': '#005875', 'fill-extrusion-height': 0, 'fill-extrusion-opacity': 0.55 } });
+  // Ombre portée sous la ville (elle paraît soulevée) et immeubles de la seule commune choisie
+  map.addSource('ville-contour', { type: 'geojson', data: vide });
+  map.addLayer({ id: 'ville-ombre', type: 'line', source: 'ville-contour', paint: { 'line-color': '#161A1E', 'line-width': 30, 'line-blur': 26, 'line-opacity': 0, 'line-translate': [0, 14], 'line-translate-anchor': 'viewport' } }, 'voile');
+  map.addSource('bati-ville', { type: 'geojson', data: vide });
+  map.addLayer({ id: 'bati-ville', type: 'fill-extrusion', source: 'bati-ville', paint: { 'fill-extrusion-color': '#F2EDE3', 'fill-extrusion-height': 0, 'fill-extrusion-opacity': 0.95, 'fill-extrusion-vertical-gradient': true } });
   const anneaux = g => (g.type === 'Polygon' ? [g.coordinates] : g.coordinates).map(pl => pl[0]);
+  const dedans = (pt, a) => { let d = false; for (let i = 0, j = a.length - 1; i < a.length; j = i++) { const [xi, yi] = a[i], [xj, yj] = a[j]; if ((yi > pt[1]) !== (yj > pt[1]) && pt[0] < (xj - xi) * (pt[1] - yi) / (yj - yi) + xi) d = !d; } return d; };
+  let villeFocus = null, facteurVille = 1;
+  const hautVille = f => { facteurVille = f; map.setPaintProperty('bati-ville', 'fill-extrusion-height', hauteurBati(Math.max(0.001, f))); };
+  // Ne garde que les immeubles dont un point est dans la commune (les tuiles IGN n'ont pas d'identifiant : on recopie leur dessin)
+  function remplirBati() {
+    if (!villeFocus) return 0;
+    const trous = anneaux(villeFocus.c.geometry), out = [];
+    for (const f of map.querySourceFeatures('plan_ign', { sourceLayer: 'bati_surf' })) {
+      const g = f.geometry, pt = g.type === 'Polygon' ? g.coordinates[0][0] : g.type === 'MultiPolygon' ? g.coordinates[0][0][0] : null;
+      if (pt && trous.some(a => dedans(pt, a))) out.push({ type: 'Feature', properties: { hauteur: f.properties.hauteur || 10 }, geometry: g });
+    }
+    map.getSource('bati-ville').setData({ type: 'FeatureCollection', features: out });
+    return out.length;
+  }
+  let minuterie = null;
+  map.on('idle', () => { if (villeFocus) { clearTimeout(minuterie); minuterie = setTimeout(remplirBati, 150); } });
   function focusVille(v) {
-    if (!v || !v.c) { map.getSource('voile').setData(vide); map.getSource('socle').setData(vide); return; }
+    villeFocus = v && v.c ? v : null;
+    if (!villeFocus) {
+      map.getSource('voile').setData(vide); map.getSource('ville-contour').setData(vide); map.getSource('bati-ville').setData(vide);
+      map.setLayoutProperty('glr-bati', 'visibility', 'visible'); map.setPaintProperty('voile', 'fill-opacity', 0); map.setPaintProperty('ville-ombre', 'line-opacity', 0);
+      return;
+    }
     const trous = anneaux(v.c.geometry);
     map.getSource('voile').setData({ type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [[[-10, 40], [15, 40], [15, 55], [-10, 55], [-10, 40]], ...trous.map(a => a.slice().reverse())] } });
-    // socle : une bande de ~25 m le long de la limite, extrudée
-    const bandes = [];
-    for (const a of trous) for (let i = 0; i < a.length - 1; i++) {
-      const [x1, y1] = a[i], [x2, y2] = a[i + 1];
-      const dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy) || 1, k = 0.00022 / L;
-      const nx = -dy * k, ny = dx * k;
-      bandes.push({ type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [[[x1, y1], [x2, y2], [x2 + nx, y2 + ny], [x1 + nx, y1 + ny], [x1, y1]]] } });
-    }
-    map.getSource('socle').setData({ type: 'FeatureCollection', features: bandes });
-    animer(1300, x => { map.setPaintProperty('voile', 'fill-opacity', 0.78 * x); map.setPaintProperty('socle', 'fill-extrusion-height', 45 * x); }, 300);
+    map.getSource('ville-contour').setData(v.c);
+    map.setLayoutProperty('glr-bati', 'visibility', 'none');
+    map.getSource('bati-ville').setData(vide); hautVille(0.001);
+    // 1) tout s'efface autour de la ville ; 2) à l'arrivée de la caméra, elle se soulève (ombre) et ses immeubles sortent de terre
+    animer(1500, x => map.setPaintProperty('voile', 'fill-opacity', 0.97 * x), 200);
+    // Temps 1 : la caméra arrive, la ville est seule et se soulève (ombre). Temps 2 : on s'approche, ses immeubles sortent de terre.
+    map.once('moveend', () => {
+      if (villeFocus !== v) return;
+      animer(900, x => { map.setPaintProperty('ville-ombre', 'line-opacity', 0.32 * x); map.setPaintProperty('ville-ombre', 'line-translate', [0, 4 + 14 * x]); });
+      let essais = 0;
+      const lever = () => {
+        if (villeFocus !== v || enCours) return;
+        if (!remplirBati() && essais++ < 40) return setTimeout(lever, 300);
+        animer(1700, hautVille);
+        [600, 1400, 2500, 4000].forEach(t => setTimeout(() => { if (villeFocus === v) remplirBati(); }, t));
+      };
+      setTimeout(() => {
+        if (villeFocus !== v || enCours) return;
+        map.easeTo({ zoom: Math.max(14.1, map.getZoom() + 1.1), pitch: 56, bearing: -18, duration: 2200, essential: true });
+        map.once('moveend', lever);
+      }, 1100);
+    });
   }
   const choisirCommune = s => {
     map.setPaintProperty('commune-fond', 'fill-opacity', ['case', ['==', ['get', 's'], s || ''], 0.09, 0.02]);
-    map.setPaintProperty('commune-ombre', 'line-opacity', ['case', ['==', ['get', 's'], s || ''], 0.55, 0.18]);
+    map.setPaintProperty('commune-ombre', 'line-opacity', s ? 0 : 0.18);
+    map.setPaintProperty('commune-trait', 'line-width', s ? 1.2 : 3.2);
   };
 
   // Repères des programmes
@@ -139,7 +177,7 @@ async function demarrer() {
   let couche = null, enCours = null, villeEnCours = null;
 
   let stopBati = null, stopTour = null;
-  const bati = (de, a, ms, delai) => { if (stopBati) stopBati(); stopBati = animer(ms, x => map.setPaintProperty('glr-bati', 'fill-extrusion-height', hauteurBati(Math.max(0.001, de + (a - de) * x))), delai); };
+  const bati = (de, a, ms, delai) => { if (stopBati) stopBati(); stopBati = animer(ms, x => { const f = Math.max(0.001, de + (a - de) * x); map.setPaintProperty('glr-bati', 'fill-extrusion-height', hauteurBati(f)); if (map.getLayer('bati-ville')) hautVille(f); }, delai); };
   const arreterTour = () => { if (stopTour) { stopTour(); stopTour = null; } };
   ['mousedown', 'touchstart', 'wheel'].forEach(t => conteneur.addEventListener(t, arreterTour, { passive: true }));
   function quitter() {
@@ -245,7 +283,7 @@ async function demarrer() {
     const cam = map.cameraForBounds(bornes(pts), { padding: 30 });
     map.getSource('communes-dep').setData({ type: 'FeatureCollection', features: [] }); depEnCours = null;
     // Vue précise directement : immeubles en place, la ville sort de la carte, le reste s'estompe
-    map.flyTo({ center: cam.center, zoom: Math.max(13.9, cam.zoom + 0.45), pitch: 55, bearing: -18, duration: 2400, essential: true, curve: 1.5 });
+    map.flyTo({ center: cam.center, zoom: cam.zoom + 0.1, pitch: 40, bearing: -10, duration: 2000, essential: true, curve: 1.5 });
     map.setPaintProperty('glr-bati', 'fill-extrusion-height', hauteurBati(1));
     focusVille(v);
     // Les programmes naissent de leur point exact : une onde au sol, puis le repère
@@ -253,7 +291,7 @@ async function demarrer() {
       const el = x.m.getElement();
       if (x.v.s !== s) return;
       el.style.display = 'none';
-      setTimeout(() => { if (villeEnCours === s && !enCours) { el.style.display = ''; el.classList.remove('nait'); void el.offsetWidth; el.classList.add('nait'); } }, 2500);
+      setTimeout(() => { if (villeEnCours === s && !enCours) { el.style.display = ''; el.classList.remove('nait'); void el.offsetWidth; el.classList.add('nait'); } }, 2300);
     });
   }
   // On montre toujours d'abord l'Île-de-France vue du dessus, puis on plonge vers la ville demandée
@@ -327,7 +365,7 @@ async function demarrer() {
   map.on('mouseleave', 'dep-fond', () => { map.getCanvas().style.cursor = ''; });
   const voulu = new URLSearchParams(location.search).get('p');
   const prog = voulu && villes.map(v => [v, v.p.find(x => x.s === voulu && x.L)]).find(x => x[1]);
-  if (prog) apresIntro(() => { montrerVille(prog[0].s); setTimeout(() => focus(prog[0], prog[1]), 4200); });
+  if (prog) apresIntro(() => { montrerVille(prog[0].s); setTimeout(() => focus(prog[0], prog[1]), 2600); });
   else if (D.ville) apresIntro(() => montrerVille(D.ville));
   placerSoleil();
 }
