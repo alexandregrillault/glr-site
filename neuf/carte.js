@@ -58,10 +58,12 @@ async function demarrer() {
     cooperativeGestures: false, dragRotate: true,
   });
   map.addControl(new ml.NavigationControl({ showCompass: true, visualizePitch: true }), 'top-right');
-  map.addControl(new ml.AttributionControl({ compact: true, customAttribution: 'Fond de carte : IGN · contours geo.api.gouv.fr' }));
+  map.addControl(new ml.AttributionControl({ compact: true, customAttribution: 'Fond de carte : IGN · contours geo.api.gouv.fr · lieux © OpenStreetMap' }));
+  { const at = conteneur.querySelector('.maplibregl-ctrl-attrib'); if (at) { at.classList.remove('maplibregl-compact-show'); at.removeAttribute('open'); } }
   map.scrollZoom.disable();
   conteneur.addEventListener('wheel', () => {}, { passive: true });
-  await new Promise(r => map.on('load', r));
+  // Dès que le style est prêt (sans attendre toutes les tuiles du fond) : les départements s'affichent tout de suite
+  await new Promise(r => (map.isStyleLoaded() ? r() : map.once('style.load', r)));
 
   // Départements d'Île-de-France, comme l'ouverture des vidéos Quoi de neuf : chacun sa teinte, liseré blanc ombré de sa couleur
   const TEINTES = { '75': '#AFC0DE', '92': '#E3C3D6', '93': '#F2D3A4', '94': '#D3C2E6', '95': '#C9DCE4', '78': '#D3E2C1', '91': '#E9DDB4', '77': '#E7D3C3' };
@@ -93,6 +95,29 @@ async function demarrer() {
   map.addLayer({ id: 'commune-fond', type: 'fill', source: 'communes', paint: { 'fill-color': '#005875', 'fill-opacity': ['case', ['==', ['get', 's'], ''], 0.08, 0.025] } });
   map.addLayer({ id: 'commune-ombre', type: 'line', source: 'communes', paint: { 'line-color': '#005875', 'line-width': 9, 'line-blur': 7, 'line-opacity': 0.35, 'line-offset': 4 } });
   map.addLayer({ id: 'commune-trait', type: 'line', source: 'communes', paint: { 'line-color': '#FFFFFF', 'line-width': 3.2 } });
+  // Focus sur la ville choisie : tout le reste s'estompe sous un voile crème, et la commune « sort » de la carte
+  // par un socle en relief le long de sa limite (comme la commune qui sort de terre dans les vidéos).
+  const vide = { type: 'FeatureCollection', features: [] };
+  map.addSource('voile', { type: 'geojson', data: vide });
+  map.addLayer({ id: 'voile', type: 'fill', source: 'voile', paint: { 'fill-color': '#F4F0E8', 'fill-opacity': 0 } });
+  map.addSource('socle', { type: 'geojson', data: vide });
+  map.addLayer({ id: 'socle', type: 'fill-extrusion', source: 'socle', paint: { 'fill-extrusion-color': '#005875', 'fill-extrusion-height': 0, 'fill-extrusion-opacity': 0.55 } });
+  const anneaux = g => (g.type === 'Polygon' ? [g.coordinates] : g.coordinates).map(pl => pl[0]);
+  function focusVille(v) {
+    if (!v || !v.c) { map.getSource('voile').setData(vide); map.getSource('socle').setData(vide); return; }
+    const trous = anneaux(v.c.geometry);
+    map.getSource('voile').setData({ type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [[[-10, 40], [15, 40], [15, 55], [-10, 55], [-10, 40]], ...trous.map(a => a.slice().reverse())] } });
+    // socle : une bande de ~25 m le long de la limite, extrudée
+    const bandes = [];
+    for (const a of trous) for (let i = 0; i < a.length - 1; i++) {
+      const [x1, y1] = a[i], [x2, y2] = a[i + 1];
+      const dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy) || 1, k = 0.00022 / L;
+      const nx = -dy * k, ny = dx * k;
+      bandes.push({ type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [[[x1, y1], [x2, y2], [x2 + nx, y2 + ny], [x1 + nx, y1 + ny], [x1, y1]]] } });
+    }
+    map.getSource('socle').setData({ type: 'FeatureCollection', features: bandes });
+    animer(1300, x => { map.setPaintProperty('voile', 'fill-opacity', 0.78 * x); map.setPaintProperty('socle', 'fill-extrusion-height', 45 * x); }, 300);
+  }
   const choisirCommune = s => {
     map.setPaintProperty('commune-fond', 'fill-opacity', ['case', ['==', ['get', 's'], s || ''], 0.09, 0.02]);
     map.setPaintProperty('commune-ombre', 'line-opacity', ['case', ['==', ['get', 's'], s || ''], 0.55, 0.18]);
@@ -118,7 +143,7 @@ async function demarrer() {
   const arreterTour = () => { if (stopTour) { stopTour(); stopTour = null; } };
   ['mousedown', 'touchstart', 'wheel'].forEach(t => conteneur.addEventListener(t, arreterTour, { passive: true }));
   function quitter() {
-    arreterTour();
+    arreterTour(); effacerProximite(); if (stopBati) { stopBati(); stopBati = null; }
     if (couche) { map.removeLayer(couche.id); couche = null; }
     enCours = null; if (panneau) panneau.hidden = true;
     marqueurs.forEach(x => { x.m.getElement().style.display = x.v.s === villeEnCours ? '' : 'none'; });
@@ -129,12 +154,12 @@ async function demarrer() {
     villeEnCours = v.s; quitter(); enCours = p;
     marqueurs.forEach(x => { x.m.getElement().style.display = x.p === p ? 'none' : ''; });
     choisirCommune(v.s);
-    map.flyTo({ center: [p.o, p.a], zoom: 17.1, pitch: 52, bearing: -28, offset: [0, -30], duration: 2600, essential: true, curve: 1.5 });
+    map.flyTo({ center: [p.o, p.a], zoom: 16.4, pitch: 50, bearing: -28, offset: [0, -20], duration: 2600, essential: true, curve: 1.5 });
     bati(1, 0.35, 1600, 600);
     couche = coucheImmeuble(map, p);
     map.addLayer(couche);
-    // L'immeuble se construit étage par étage à l'arrivée, puis la caméra tourne lentement autour
-    couche.batir(1800, 2000);
+    // Autour du programme : métro, gares, écoles et grands commerces des environs
+    proximite(p, v);
     const ici = couche;
     setTimeout(() => {
       if (couche !== ici) return;
@@ -157,6 +182,43 @@ async function demarrer() {
     try { history.replaceState(null, '', '?p=' + p.s); } catch (_) {}
   }
 
+  // ——— Lieux utiles autour d'un programme (OpenStreetMap, via Overpass) ———
+  const ICONES = {
+    transport: '<svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 11h12M9 21l-2 0 2-4M15 21h2l-2-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="14" r="1" fill="currentColor"/><circle cx="15" cy="14" r="1" fill="currentColor"/></svg>',
+    ecole: '<svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M6 11v5c3 2 9 2 12 0v-5" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
+    commerce: '<svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 8a3 3 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
+  };
+  const LIBELLES = { transport: 'Transports', ecole: 'Écoles', commerce: 'Commerces' };
+  let lieux = [], demandeLieux = 0;
+  function effacerProximite() { lieux.forEach(m => m.remove()); lieux = []; const l = document.getElementById('proches'); if (l) l.innerHTML = ''; demandeLieux++; }
+  const propre = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  async function proximite(p, v) {
+    // Lieux relevés une fois par ville (OpenStreetMap) et rangés dans neuf/donnees/lieux/<insee>.json : réponse immédiate
+    const ici = ++demandeLieux, R = 600;
+    let els = [];
+    try { els = (await (await fetch('/neuf/donnees/lieux/' + v.i + '.json')).json()).lieux || []; } catch (e) { return; }
+    if (ici !== demandeLieux) return;
+    const dist = (a, o) => Math.round(Math.hypot((o - p.o) * 73200, (a - p.a) * 111200) / 10) * 10;
+    const vus = new Set(), trouves = [];
+    for (const e of els) {
+      const d = dist(e.a, e.o); if (d > R) continue;
+      const cle = e.g + e.n; if (vus.has(cle)) continue; vus.add(cle);
+      trouves.push({ genre: e.g, nom: e.n, a: e.a, o: e.o, d });
+    }
+    trouves.sort((x, y) => x.d - y.d);
+    const garder = ['transport', 'ecole', 'commerce'].flatMap(g => trouves.filter(x => x.genre === g).slice(0, g === 'transport' ? 4 : 5));
+    garder.forEach((x, i) => {
+      const el = document.createElement('div'); el.className = 'lieu ' + x.genre; el.innerHTML = ICONES[x.genre]; el.title = x.nom;
+      el.style.animationDelay = (300 + i * 110) + 'ms';
+      lieux.push(new ml.Marker({ element: el }).setLngLat([x.o, x.a]).addTo(map));
+    });
+    const liste = document.getElementById('proches');
+    if (liste) liste.innerHTML = ['transport', 'ecole', 'commerce'].map(g => {
+      const xs = garder.filter(x => x.genre === g); if (!xs.length) return '';
+      return '<li><span class="lieu-mini ' + g + '">' + ICONES[g] + '</span><b>' + LIBELLES[g] + '</b> ' + xs.map(x => propre(x.nom) + ' <small>' + (x.d < 1000 ? x.d + ' m' : (x.d / 1000).toFixed(1).replace('.', ',') + ' km') + '</small>').join(' · ') + '</li>';
+    }).join('') || '<li>Aucun lieu trouvé dans les environs immédiats.</li>';
+  }
+
   function placerSoleil() {
     const h = heure ? Number(heure.value) : 14;
     const t = new Date(); t.setHours(Math.floor(h), Math.round((h % 1) * 60), 0, 0);
@@ -177,21 +239,21 @@ async function demarrer() {
     const v = villes.find(x => x.s === s); if (!v) return;
     if (!villeEnCours) departements(false);
     if (boutonIdf) boutonIdf.hidden = false;
-    { const v0 = villes.find(x => x.s === s); if (v0 && fil) fil.innerHTML = '<b>' + v0.v + '</b> — touchez un programme'; }
+    { const v0 = villes.find(x => x.s === s); if (v0 && fil) fil.textContent = v0.v + ' — touchez un programme'; }
     villeEnCours = s; quitter(); choisirCommune(s);
     const pts = v.c ? v.c.geometry.coordinates.flat(v.c.geometry.type === 'MultiPolygon' ? 2 : 1) : v.p.map(p => [p.o, p.a]);
     const cam = map.cameraForBounds(bornes(pts), { padding: 30 });
-    map.flyTo({ center: cam.center, zoom: Math.max(14.1, cam.zoom + 0.7), pitch: 58, bearing: -18, duration: 2600, essential: true, curve: 1.6 });
-    // La ville sort de terre pendant l'arrivée de la caméra, puis les programmes apparaissent un à un
-    map.setPaintProperty('glr-bati', 'fill-extrusion-height', hauteurBati(0.001));
-    bati(0.001, 1, 1900, 1100);
-    animer(1400, x => map.setPaintProperty('commune-trait', 'line-width', 3.2 + 4 * Math.sin(Math.PI * x)), 900);
-    let n = 0;
+    map.getSource('communes-dep').setData({ type: 'FeatureCollection', features: [] }); depEnCours = null;
+    // Vue précise directement : immeubles en place, la ville sort de la carte, le reste s'estompe
+    map.flyTo({ center: cam.center, zoom: Math.max(13.9, cam.zoom + 0.45), pitch: 55, bearing: -18, duration: 2400, essential: true, curve: 1.5 });
+    map.setPaintProperty('glr-bati', 'fill-extrusion-height', hauteurBati(1));
+    focusVille(v);
+    // Les programmes naissent de leur point exact : une onde au sol, puis le repère
     marqueurs.forEach(x => {
       const el = x.m.getElement();
       if (x.v.s !== s) return;
       el.style.display = 'none';
-      setTimeout(() => { if (villeEnCours === s && !enCours) { el.style.display = ''; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); } }, 2700 + 90 * n++);
+      setTimeout(() => { if (villeEnCours === s && !enCours) { el.style.display = ''; el.classList.remove('nait'); void el.offsetWidth; el.classList.add('nait'); } }, 2500);
     });
   }
   // On montre toujours d'abord l'Île-de-France vue du dessus, puis on plonge vers la ville demandée
@@ -205,7 +267,8 @@ async function demarrer() {
   // Étape 1 : un département touché → on zoome dessus et ses communes apparaissent ; une commune touchée → sa ville
   const NOMS_DEP = { '75': 'Paris', '92': 'Hauts-de-Seine', '93': 'Seine-Saint-Denis', '94': 'Val-de-Marne', '95': 'Val-d’Oise', '78': 'Yvelines', '91': 'Essonne', '77': 'Seine-et-Marne' };
   const fil = document.getElementById('fil-carte'), boutonIdf = document.getElementById('carte-idf');
-  const ecrireFil = (dep, nom) => { if (!fil) return; fil.innerHTML = dep ? '<b>' + dep + ' · ' + NOMS_DEP[dep] + '</b>' + (nom ? ' › ' + nom : ' — touchez une commune') : 'Touchez un département.'; };
+  const net = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const ecrireFil = (dep, nom) => { if (!fil) return; fil.innerHTML = dep ? '<b>' + dep + ' · ' + NOMS_DEP[dep] + '</b>' + (nom ? ' › ' + net(nom) : ' — touchez une commune') : 'Touchez un département.'; };
   let depEnCours = null;
   map.addSource('communes-dep', { type: 'geojson', data: { type: 'FeatureCollection', features: [] }, promoteId: 'code' });
   map.addLayer({ id: 'cdep-fond', type: 'fill', source: 'communes-dep', paint: {
@@ -233,7 +296,7 @@ async function demarrer() {
     marqueurs.forEach(x => { x.m.getElement().style.display = 'none'; });
     map.setPaintProperty('dep-fond', 'fill-opacity', 0.55); map.setPaintProperty('dep-ombre', 'line-opacity', 0.75); map.setPaintProperty('dep-trait', 'line-opacity', 1);
     (window.__numeros || []).forEach(m => { m.getElement().style.display = ''; });
-    choisirCommune(null);
+    choisirCommune(null); focusVille(null); map.setPaintProperty('glr-bati', 'fill-extrusion-height', hauteurBati(1));
     map.fitBounds(bornes([[1.88, 48.62], [2.82, 49.08]]), { padding: 20, pitch: 0, bearing: 0, duration: 1600 });
     if (boutonIdf) boutonIdf.hidden = true; ecrireFil(null);
     try { history.replaceState(null, '', location.pathname); } catch (_) {}
