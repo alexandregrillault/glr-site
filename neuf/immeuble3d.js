@@ -28,7 +28,7 @@ function demarrer(L) {
   const d = Math.max(largeur * 1.1, haut) * 1.55 + 12;
   const RAYON = d * 1.3; // la caméra ne s'éloigne jamais plus : le décor commence au-delà
   scene.add(decorRue(imm, RAYON));
-  scene.fog = new THREE.Fog(0xF4F0E8, d * 2.6, d * 5.5);
+  scene.fog = new THREE.Fog(0xF4F0E8, d * 3.4, d * 7);
   const camera = new THREE.PerspectiveCamera(32, 1, 0.5, 800);
   // Vue du bas : on regarde la façade depuis la rue, légèrement de côté, comme un passant
   camera.position.set(d * 0.38, haut * 0.16 + 1.7, d * 1.02);
@@ -42,12 +42,13 @@ function demarrer(L) {
   // Arrivée : la caméra finit le zoom commencé sur la carte, du dessus jusqu'à la vue du bas
   const bas = camera.position.clone();
   let arrivee = null;
-  try { if (sessionStorage.getItem('glr-arrivee')) { sessionStorage.removeItem('glr-arrivee'); arrivee = performance.now(); } } catch (_) {}
-  if (arrivee) { camera.position.set(0.01, haut + d * 2.4, 0.02); controls.enabled = false; }
+  try { if (sessionStorage.getItem('glr-arrivee')) { sessionStorage.removeItem('glr-arrivee'); arrivee = -1; } } catch (_) {} // -1 : le chrono démarre à la première image vraiment affichée
+  // Départ : exactement la vue de la carte en fin de zoom (du dessus, nord en haut, même échelle : ~0,16 m par pixel)
+  if (arrivee) { camera.position.set(0, haut * 0.5 + 0.158 * Math.max(320, zone.clientWidth * 0.6) / 0.573, 0.02); controls.enabled = false; }
   const adoucir = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   const haut0 = camera.position.clone();
 
-  const sol = new THREE.Mesh(new THREE.CircleGeometry(400, 64), new THREE.MeshStandardMaterial({ color: 0xF1ECE2, roughness: 1 }));
+  const sol = new THREE.Mesh(new THREE.CircleGeometry(400, 64), new THREE.MeshStandardMaterial({ color: 0xEDE3CE, roughness: 1 })); // même teinte que le sol de la carte
   sol.rotation.x = -Math.PI / 2; sol.receiveShadow = true; scene.add(sol);
   const pelouse = new THREE.Mesh(new THREE.PlaneGeometry(largeur + 10, profondeur + 10), new THREE.MeshStandardMaterial({ color: 0xC9D2B4, roughness: 1 }));
   pelouse.rotation.x = -Math.PI / 2; pelouse.position.y = 0.02; pelouse.receiveShadow = true; scene.add(pelouse);
@@ -162,13 +163,18 @@ function demarrer(L) {
     tr.addEventListener('mouseenter', entrer); tr.addEventListener('click', entrer); tr.addEventListener('focusin', entrer);
     tr.addEventListener('mouseleave', () => { clearTimeout(attenteTour); if (sortant === m) sortant = null; tr.classList.remove('vise'); });
   });
+  let images = 0;
   const boucle = () => {
     const t = performance.now();
     if (arrivee) {
       // descente en arc : du dessus de l'immeuble jusqu'à la rue, sans à-coup
-      const x = Math.min(1, Math.max(0, (t - arrivee - 100) / 2400)), k = adoucir(x);
-      camera.position.set(haut0.x + (bas.x - haut0.x) * k, haut0.y + (bas.y - haut0.y) * (k * k * (3 - 2 * k)), haut0.z + (bas.z - haut0.z) * Math.sin(k * Math.PI / 2));
-      camera.lookAt(controls.target);
+      if (arrivee < 0) { if (++images > 3) arrivee = t; }          // on laisse passer les premières images (chargement, ombres)
+      const x = arrivee < 0 ? 0 : Math.min(1, Math.max(0, (t - arrivee - 350) / 3200));
+      const k = x * x * x * (x * (x * 6 - 15) + 10);                // départ et arrivée très doux, vitesse continue
+      // la caméra descend d'abord presque à la verticale, puis glisse vers la rue : une seule courbe, sans palier
+      const hk = Math.pow(k, 0.85), zk = Math.pow(k, 1.6);
+      camera.position.set(haut0.x + (bas.x - haut0.x) * zk, haut0.y + (bas.y - haut0.y) * hk, haut0.z + (bas.z - haut0.z) * zk);
+      camera.up.set(0, 1, 0); camera.lookAt(controls.target);
       if (x >= 1) { arrivee = null; controls.enabled = true; }
     }
     if (tour) {

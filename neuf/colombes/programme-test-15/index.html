@@ -17,6 +17,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Archivo:wght@400;500;600&display=swap">
 <style>
+/* Fondu enchaîné entre deux pages du site (de la carte à l'immeuble) : pas d'écran vide */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.7s;animation-timing-function:ease-in-out}
+/* le cadre de la carte se transforme en cadre de l'immeuble (même élément d'une page à l'autre) */
+#carte,#imm3d{view-transition-name:scene}
+::view-transition-group(scene){animation-duration:.8s;animation-timing-function:cubic-bezier(.4,0,.2,1)}
+::view-transition-old(scene),::view-transition-new(scene){animation-duration:.8s;height:100%;object-fit:cover}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+
 :root{color-scheme:light;--bleu:#005875;--laiton:#B0894C;--laiton-texte:#8A6A2F;--fond:#F4F0E8;--carte:#FBF8F1;--texte:#161A1E;--discret:#616B75;--trait:#D8D2C5;--teinte:#DCE7EC;
   --display:"Bodoni Moda","Didot","Times New Roman",serif;--body:"Archivo","Helvetica Neue",Arial,sans-serif}
 *{box-sizing:border-box}

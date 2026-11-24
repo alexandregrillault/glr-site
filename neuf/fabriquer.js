@@ -46,6 +46,15 @@ function verifier(d, fichier) {
 }
 
 const CSS = `
+/* Fondu enchaîné entre deux pages du site (de la carte à l'immeuble) : pas d'écran vide */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.7s;animation-timing-function:ease-in-out}
+/* le cadre de la carte se transforme en cadre de l'immeuble (même élément d'une page à l'autre) */
+#carte,#imm3d{view-transition-name:scene}
+::view-transition-group(scene){animation-duration:.8s;animation-timing-function:cubic-bezier(.4,0,.2,1)}
+::view-transition-old(scene),::view-transition-new(scene){animation-duration:.8s;height:100%;object-fit:cover}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+
 :root{color-scheme:light;--bleu:#005875;--laiton:#B0894C;--laiton-texte:#8A6A2F;--fond:#F4F0E8;--carte:#FBF8F1;--texte:#161A1E;--discret:#616B75;--trait:#D8D2C5;--teinte:#DCE7EC;
   --display:"Bodoni Moda","Didot","Times New Roman",serif;--body:"Archivo","Helvetica Neue",Arial,sans-serif}
 *{box-sizing:border-box}
@@ -359,7 +368,8 @@ function contour(d) {
   return { type: 'Feature', properties: {}, geometry: { type: g.type, coordinates: arr(g.coordinates) } };
 }
 
-const LIBS = `<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+const LIBS = `<link rel="modulepreload" href="https://unpkg.com/three@0.160.0/build/three.module.js"><link rel="modulepreload" href="https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js"><link rel="modulepreload" href="/neuf/maquette.js"><link rel="modulepreload" href="/neuf/immeuble3d.js">
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>`;
 const ARRONDI = x => Math.round(x * 1000) / 1000;
 const logementsPublics = p => (p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? 0 : l.etage, x: l.exterieur || '' }));
