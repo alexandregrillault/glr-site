@@ -43,7 +43,7 @@ function epure(style) {
   }
   // Immeubles en relief, en tons clairs (comme les immeubles qui sortent du sol dans les vidéos)
   out.push({
-    id: 'glr-bati', type: 'fill-extrusion', source: 'plan_ign', 'source-layer': 'bati_surf', minzoom: 12,
+    id: 'glr-bati', type: 'fill-extrusion', source: 'plan_ign', 'source-layer': 'bati_surf', minzoom: 12, layout: { visibility: 'none' }, // immeubles retirés de la carte (Alex, 24/11/2026)
     paint: {
       'fill-extrusion-color': '#F2EDE3',
       'fill-extrusion-height': HAUTEUR_BATI,
@@ -111,7 +111,16 @@ async function demarrer() {
         else if (sl.startsWith('ferre')) poser('line-color', SOL.rail);
         else if (sl.startsWith('hydro')) poser('line-color', SOL.eau);
         else poser('line-opacity', 0);
-      } else if (l.type === 'symbol') { poser('text-color', SOL.texte); poser('text-halo-color', SOL.fond); }
+      } else if (l.type === 'symbol') {
+        // Noms : trois familles nettes. Villes voisines en capitales grises espacées ; quartiers en petites capitales laiton ;
+        // rues en gris fin sur liseré blanc. Tailles fixes, sobres, pour que rien ne crie.
+        const poserL = (prop, val) => { const k = l.id + '|L|' + prop; if (!origine.has(k)) origine.set(k, map.getLayoutProperty(l.id, prop)); map.setLayoutProperty(l.id, prop, epure ? val : origine.get(k)); };
+        const rue = sl === 'toponyme_routier_odonyme_lin', ville = !rue && (/importance/.test(id) || (/commune/.test(id) && !/non commune/.test(id)));
+        poser('text-halo-blur', 0.5);
+        if (rue) { poser('text-color', '#7C8791'); poser('text-halo-color', '#FFFFFF'); poser('text-halo-width', 1.6); poserL('text-size', ['interpolate', ['linear'], ['zoom'], 15, 10, 18, 12.5]); poserL('text-letter-spacing', 0.04); poserL('text-font', ['Source Sans Pro Regular']); }
+        else if (ville) { poser('text-color', '#616B75'); poser('text-halo-color', SOL.fond); poser('text-halo-width', 1.8); poserL('text-size', ['interpolate', ['linear'], ['zoom'], 12, 11.5, 16, 14]); poserL('text-transform', 'uppercase'); poserL('text-letter-spacing', 0.16); poserL('text-font', ['Source Sans Pro Regular']); }
+        else { poser('text-color', '#8A6A2F'); poser('text-halo-color', SOL.fond); poser('text-halo-width', 1.6); poserL('text-size', ['interpolate', ['linear'], ['zoom'], 12, 10, 16, 12]); poserL('text-transform', 'uppercase'); poserL('text-letter-spacing', 0.2); poserL('text-font', ['Source Sans Pro Regular']); }
+      }
     }
     map.setPaintProperty('glr-bati', 'fill-extrusion-color', epure ? '#E7E0D3' : '#F2EDE3');
   }
@@ -205,10 +214,11 @@ async function demarrer() {
     const trous = anneaux(v.c.geometry), vus = new Set();
     L.filter(e => trous.some(a => dedans([e.o, e.a], a))).forEach((e, i) => {
       const cle = e.g + e.n; if (vus.has(cle)) return; vus.add(cle);
-      const el = document.createElement('div'); el.className = 'lieu petit ' + e.g; el.innerHTML = ICONES[e.g] + (e.g === 'transport' ? '<span class="nom"></span>' : ''); el.title = e.n;
-      if (e.g === 'transport') el.querySelector('.nom').textContent = e.n;
+      const el = document.createElement('div'); el.className = 'lieu petit ' + e.g; el.innerHTML = ICONES[e.g] + (e.g === 'transport' ? '<span class="nom"></span>' : ''); if (e.g === 'transport') el.querySelector('.nom').textContent = e.n;
+      else { const info = document.createElement('span'); info.className = 'info-prog'; const b = document.createElement('b'); b.textContent = e.n; info.appendChild(b); info.appendChild(document.createTextNode(e.g === 'ecole' ? 'École' : 'Commerce')); el.appendChild(info); el.tabIndex = 0; }
       el.style.animationDelay = ((vite ? 100 : 2300) + (i % 40) * 25) + 'ms';
       lieuxVille.push(new ml.Marker({ element: el }).setLngLat([e.o, e.a]).addTo(map));
+      el.setAttribute('aria-label', e.n); // après l'ajout : la carte pose sinon son propre libellé
     });
     montrerEcoles();
   }

@@ -222,6 +222,10 @@ tr.vise td{background:var(--teinte)}
 .info-prog b{display:block;font-family:var(--display);font-weight:500;font-size:.95rem}
 .info-prog::after{content:"";position:absolute;left:50%;top:100%;margin-left:-5px;border:5px solid transparent;border-top-color:#005875}
 button.repere:hover .info-prog,button.repere:focus-visible .info-prog{opacity:1}
+.lieu:hover .info-prog,.lieu:focus .info-prog{opacity:1}
+.lieu:hover,.lieu:focus{z-index:6;outline:none}
+.lieu.ecole .info-prog{background:#8A6A2F}.lieu.ecole .info-prog::after{border-top-color:#8A6A2F}
+.lieu.commerce .info-prog{background:#4A545E}.lieu.commerce .info-prog::after{border-top-color:#4A545E}
 button.repere:hover{z-index:6}
 .scene3d{position:relative;border:1px solid var(--trait);border-radius:10px;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,#FFFFFF 0%,#F4F0E8 70%);min-height:240px;touch-action:pan-y}
 .scene3d canvas{display:block;width:100%;touch-action:none}
