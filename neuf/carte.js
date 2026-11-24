@@ -90,10 +90,19 @@ async function demarrer() {
       else if (l.type === 'fill') {
         poser('fill-pattern', undefined);
         poser('fill-outline-color', 'rgba(0,0,0,0)');
-        poser('fill-color', sl.startsWith('hydro') ? SOL.eau : sl.startsWith('ocs_vegetation') ? SOL.vert : SOL.fond);
+        // parcs, squares, terrains de sport et bois en vert franc : c'est eux, avec la Seine, qui colorent la ville
+        poser('fill-color', sl.startsWith('hydro') ? SOL.eau : (sl.startsWith('ocs_vegetation') || id.includes('vert') || id.includes('sport')) ? SOL.vert : SOL.fond);
       } else if (l.type === 'line') {
         poser('line-pattern', undefined);
-        if (sl.startsWith('routier')) poser('line-color', AXES.some(a => id.includes(a)) ? SOL.axe : SOL.rue);
+        if (sl.startsWith('routier')) {
+          const axe = AXES.some(a => id.includes(a));
+          poser('line-color', axe ? SOL.axe : SOL.rue);
+          if (axe) { // grands axes : même couleur, trait deux fois plus fin
+            const k = l.id + '|line-width'; if (!origine.has(k)) origine.set(k, map.getPaintProperty(l.id, 'line-width'));
+            const w = origine.get(k), fin = v => Math.max(0.6, v * 0.45);
+            map.setPaintProperty(l.id, 'line-width', !epure ? w : typeof w === 'number' ? fin(w) : (w && w.stops) ? { ...w, stops: w.stops.map(([z, v]) => [z, typeof v === 'number' ? fin(v) : v]) } : w);
+          }
+        }
         else if (sl.startsWith('ferre')) poser('line-color', SOL.rail);
         else if (sl.startsWith('hydro')) poser('line-color', SOL.eau);
         else poser('line-opacity', 0);
@@ -140,6 +149,10 @@ async function demarrer() {
   // Ombre portée sous la ville (elle paraît soulevée) et immeubles de la seule commune choisie
   map.addSource('ville-contour', { type: 'geojson', data: vide });
   map.addLayer({ id: 'ville-ombre', type: 'line', source: 'ville-contour', paint: { 'line-color': '#161A1E', 'line-width': 12, 'line-blur': 10, 'line-opacity': 0, 'line-translate': [0, 6], 'line-translate-anchor': 'viewport' } }, 'voile');
+  // Parcs, bois et terrains de sport (relevé OpenStreetMap par ville) : dessinés sous les rues, visibles dès la vue de la ville
+  map.addSource('parcs', { type: 'geojson', data: vide });
+  { const premiereRue = (map.getStyle().layers.find(l => l.type === 'line' && (l['source-layer'] || '').startsWith('routier')) || {}).id;
+    map.addLayer({ id: 'parcs', type: 'fill', source: 'parcs', paint: { 'fill-color': ['match', ['get', 'g'], 'sport', '#C9DFAE', '#A9CE8C'], 'fill-opacity': 0.95 } }, premiereRue); }
   // Limite de la ville choisie : trait bleu du logo sur liseré blanc, bien net
   map.addLayer({ id: 'ville-halo', type: 'line', source: 'ville-contour', layout: { 'line-join': 'round' }, paint: { 'line-color': '#FFFFFF', 'line-width': 7, 'line-opacity': 0 } });
   map.addLayer({ id: 'ville-trait', type: 'line', source: 'ville-contour', layout: { 'line-join': 'round' }, paint: { 'line-color': '#005875', 'line-width': 3, 'line-opacity': 0 } });
@@ -164,6 +177,7 @@ async function demarrer() {
   function focusVille(v) {
     villeFocus = v && v.c ? v : null;
     lieuxVille.forEach(m => m.remove()); lieuxVille = [];
+    map.getSource('parcs').setData(vide);
     if (!villeFocus) {
       map.getSource('voile').setData(vide); map.getSource('ville-contour').setData(vide);
       map.setPaintProperty('voile', 'fill-opacity', 0); map.setPaintProperty('ville-ombre', 'line-opacity', 0); map.setPaintProperty('ville-halo', 'line-opacity', 0); map.setPaintProperty('ville-trait', 'line-opacity', 0);
@@ -175,6 +189,7 @@ async function demarrer() {
     // Les villes voisines restent visibles, estompées ; la ville choisie ressort (voile léger autour + ombre portée)
     animer(1400, x => { map.setPaintProperty('voile', 'fill-opacity', 0.72 * x); map.setPaintProperty('ville-halo', 'line-opacity', x); map.setPaintProperty('ville-trait', 'line-opacity', x); map.setPaintProperty('ville-ombre', 'line-opacity', 0.3 * x); map.setPaintProperty('ville-ombre', 'line-translate', [0, 2 + 4 * x]); }, 300);
     lieuxDeVille(v);
+    fetch('/neuf/donnees/parcs/' + v.i + '.json').then(x => x.ok ? x.json() : null).then(g => { if (g && villeFocus === v) map.getSource('parcs').setData(g); }).catch(() => {});
   }
   // Transports, commerces et écoles de la ville (relevé OpenStreetMap rangé dans neuf/donnees/lieux/) :
   // transports et commerces dès la vue de la ville, écoles en s'approchant (elles sont très nombreuses)
