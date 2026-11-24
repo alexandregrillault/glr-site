@@ -91,6 +91,7 @@ button.repere.picking.nait::after{color:var(--laiton)}
 .lieu{width:30px;height:30px;border-radius:50%;background:#fff;border:2px solid var(--trait);display:grid;place-items:center;box-shadow:0 2px 6px rgba(22,26,30,.2);animation:nait .5s cubic-bezier(.3,1.5,.5,1) both}
 .lieu svg{width:17px;height:17px}
 .lieu.petit{width:22px;height:22px;border-width:1.5px;box-shadow:0 1px 3px rgba(22,26,30,.18)}.lieu.petit svg{width:12px;height:12px}
+.lieu .nom{position:absolute;left:100%;top:50%;translate:5px -50%;white-space:nowrap;font-family:var(--body);font-size:.72rem;font-weight:600;color:#005875;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 5px #fff;pointer-events:none}
 .lieu.transport{color:#005875;border-color:#005875}.lieu.ecole{color:#8A6A2F;border-color:#B0894C}.lieu.commerce{color:#616B75;border-color:#9AA3AC}
 .proches{list-style:none;margin:2px 0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:.86rem;color:var(--texte)}
 .proches li{line-height:1.45}.proches small{color:var(--discret)}
@@ -216,7 +217,7 @@ footer a{color:var(--discret)}
       <label class="heure"><span>Soleil à</span><input type="range" id="carte-heure" min="6" max="22" step="0.25" value="14"><output id="carte-heure-val"></output></label>
       <div class="actions"><a class="voir" href="#">Voir les logements et les prix</a><button type="button" id="carte-retour">Retour à la ville</button></div>
     </div>
-  <p class="legende"><span><i style="background:var(--bleu)"></i>Programme en vente</span><span><i style="background:var(--laiton)"></i>Picking, grille sur demande</span><span>Pastilles blanches : transports, commerces, écoles</span><span>Touchez un programme pour voir l’immeuble dans son quartier.</span></p>
+  <p class="legende"><span><i style="background:var(--bleu)"></i>Programme en vente</span><span><i style="background:var(--laiton)"></i>Picking, grille sur demande</span><span>Pastilles blanches : gares et tramways ; commerces et écoles en zoomant</span><span>Touchez un programme pour voir l’immeuble dans son quartier.</span></p>
   <div class="filtres" role="group" aria-label="Filtrer par taille"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T1">T1</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
   <div class="liste">
 <article class="prog" data-typos="T2 T3">

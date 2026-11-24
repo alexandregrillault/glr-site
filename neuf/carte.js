@@ -27,10 +27,12 @@ function epure(style) {
   const out = [];
   for (const l of style.layers) {
     const sl = l['source-layer'] || '', i = l.id.toLowerCase();
+    // Pour se repérer : noms des communes et quartiers dès la vue d'une ville, noms des rues en s'approchant. Aucun autre texte.
+    if (l.type === 'symbol' && (sl === 'toponyme_localite_ponc' || sl === 'toponyme_routier_odonyme_lin')) { out.push({ ...l, minzoom: Math.max(l.minzoom || 0, 12.2) }); continue; }
     if (l.type === 'symbol' || l.type === 'circle') continue;
     if (/^(toponyme|limite|oro|bati_surf|bati_ponc|bati_lin|routier_chemin|routier_surf|routier_liaison|parcellaire)/.test(sl)) continue;
     // Petites rues : seulement de près (quartier d'un programme), comme fond d'environnement
-    if (sl.startsWith('routier_route') && !AXES.some(a => i.includes(a))) { out.push({ ...l, minzoom: Math.max(l.minzoom || 0, 15) }); continue; }
+    if (sl.startsWith('routier_route') && !AXES.some(a => i.includes(a))) { out.push({ ...l, minzoom: Math.max(l.minzoom || 0, 12.2) }); continue; }
     // Vue d'ensemble : seulement les départements, ni routes ni voies ferrées (elles arrivent en zoomant)
     if (sl.startsWith('routier') || sl.startsWith('ferre')) { out.push({ ...l, minzoom: Math.max(l.minzoom || 0, 10.5) }); continue; }
     out.push(l);
@@ -103,7 +105,7 @@ async function demarrer() {
   map.addLayer({ id: 'voile', type: 'fill', source: 'voile', paint: { 'fill-color': '#F4F0E8', 'fill-opacity': 0 } });
   // Ombre portée sous la ville (elle paraît soulevée) et immeubles de la seule commune choisie
   map.addSource('ville-contour', { type: 'geojson', data: vide });
-  map.addLayer({ id: 'ville-ombre', type: 'line', source: 'ville-contour', paint: { 'line-color': '#161A1E', 'line-width': 30, 'line-blur': 26, 'line-opacity': 0, 'line-translate': [0, 14], 'line-translate-anchor': 'viewport' } }, 'voile');
+  map.addLayer({ id: 'ville-ombre', type: 'line', source: 'ville-contour', paint: { 'line-color': '#161A1E', 'line-width': 12, 'line-blur': 10, 'line-opacity': 0, 'line-translate': [0, 6], 'line-translate-anchor': 'viewport' } }, 'voile');
   map.addSource('bati-ville', { type: 'geojson', data: vide });
   map.addLayer({ id: 'bati-ville', type: 'fill-extrusion', source: 'bati-ville', paint: { 'fill-extrusion-color': '#F2EDE3', 'fill-extrusion-height': 0, 'fill-extrusion-opacity': 0.95, 'fill-extrusion-vertical-gradient': true } });
   const anneaux = g => (g.type === 'Polygon' ? [g.coordinates] : g.coordinates).map(pl => pl[0]);
@@ -134,7 +136,7 @@ async function demarrer() {
     map.getSource('voile').setData({ type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [[[-10, 40], [15, 40], [15, 55], [-10, 55], [-10, 40]], ...trous.map(a => a.slice().reverse())] } });
     map.getSource('ville-contour').setData(v.c);
     // Les villes voisines restent visibles, estompées ; la ville choisie ressort (voile léger autour + ombre portée)
-    animer(1400, x => { map.setPaintProperty('voile', 'fill-opacity', 0.6 * x); map.setPaintProperty('ville-ombre', 'line-opacity', 0.3 * x); map.setPaintProperty('ville-ombre', 'line-translate', [0, 3 + 9 * x]); }, 300);
+    animer(1400, x => { map.setPaintProperty('voile', 'fill-opacity', 0.6 * x); map.setPaintProperty('ville-ombre', 'line-opacity', 0.3 * x); map.setPaintProperty('ville-ombre', 'line-translate', [0, 2 + 4 * x]); }, 300);
     lieuxDeVille(v);
   }
   // Transports, commerces et écoles de la ville (relevé OpenStreetMap rangé dans neuf/donnees/lieux/) :
@@ -146,18 +148,19 @@ async function demarrer() {
     const trous = anneaux(v.c.geometry), vus = new Set();
     L.filter(e => trous.some(a => dedans([e.o, e.a], a))).forEach((e, i) => {
       const cle = e.g + e.n; if (vus.has(cle)) return; vus.add(cle);
-      const el = document.createElement('div'); el.className = 'lieu petit ' + e.g; el.innerHTML = ICONES[e.g]; el.title = e.n;
+      const el = document.createElement('div'); el.className = 'lieu petit ' + e.g; el.innerHTML = ICONES[e.g] + (e.g === 'transport' ? '<span class="nom"></span>' : ''); el.title = e.n;
+      if (e.g === 'transport') el.querySelector('.nom').textContent = e.n;
       el.style.animationDelay = (2300 + (i % 40) * 25) + 'ms';
       lieuxVille.push(new ml.Marker({ element: el }).setLngLat([e.o, e.a]).addTo(map));
     });
     montrerEcoles();
   }
-  const montrerEcoles = () => { const pres = map.getZoom() >= 14.3; lieuxVille.forEach(m => { const el = m.getElement(); el.style.display = enCours ? 'none' : (el.classList.contains('ecole') && !pres ? 'none' : ''); }); };
+  const montrerEcoles = () => { const z = map.getZoom(); lieuxVille.forEach(m => { const el = m.getElement(), seuil = el.classList.contains('transport') ? 0 : el.classList.contains('commerce') ? 13.8 : 14.6; el.style.display = enCours || z < seuil ? 'none' : ''; }); };
   map.on('zoom', montrerEcoles);
   const choisirCommune = s => {
-    map.setPaintProperty('commune-fond', 'fill-opacity', ['case', ['==', ['get', 's'], s || ''], 0.09, 0.02]);
+    map.setPaintProperty('commune-fond', 'fill-opacity', ['case', ['==', ['get', 's'], s || ''], 0, 0.02]);
     map.setPaintProperty('commune-ombre', 'line-opacity', s ? 0 : 0.18);
-    map.setPaintProperty('commune-trait', 'line-width', s ? 1.2 : 3.2);
+    map.setPaintProperty('commune-trait', 'line-width', s ? 2.4 : 3.2);
   };
 
   // Repères des programmes
