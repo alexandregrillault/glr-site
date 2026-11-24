@@ -1,0 +1,385 @@
+{
+  "version": 1,
+  "test": true,
+  "slug": "l-hay-les-roses",
+  "ville": "L’Haÿ-les-Roses",
+  "cp": "94240",
+  "dept": "94",
+  "dept_nom": "Val-de-Marne",
+  "maj": "2026-11-24",
+  "chiffres": {
+    "nb_programmes": 15,
+    "nb_lots_libres": 524,
+    "nb_promoteurs": 9,
+    "prix_m2_moyen": 6120,
+    "prix_entree": 229000,
+    "livraisons": {
+      "2026": 5,
+      "2027": 5,
+      "2028": 5
+    },
+    "typologies": {
+      "T1": 31,
+      "T2": 173,
+      "T3": 199,
+      "T4": 100,
+      "T5+": 21
+    }
+  },
+  "guide": {
+    "intro": "Texte d’essai : quelques phrases sur L’Haÿ-les-Roses, ses quartiers et ce qui change avec les nouveaux programmes. Le vrai texte sera rédigé ville par ville.",
+    "transports": [
+      "Métro 14 — L’Haÿ-les-Roses (ouverture 2024)",
+      "Bus 172, 184, 192"
+    ],
+    "zone_ptz": "A",
+    "tva_reduite": false
+  },
+  "programmes": [
+    {
+      "slug": "programme-test-1",
+      "nom": "Les Allées Verdi (test)",
+      "promoteur": "Promoteur A",
+      "quartier": null,
+      "livraison": "2e trimestre 2027",
+      "livraison_cle": "2027-2",
+      "typologies": [
+        "T1",
+        "T2"
+      ],
+      "nb_lots_libres": 21,
+      "prix_a_partir_de": 229000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": "L’Haÿ-les-Roses (ouverture 2024)",
+      "gare_minutes_a_pied": 4,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-2",
+      "nom": "Résidence Horizon (test)",
+      "promoteur": "Promoteur B",
+      "quartier": "Quartier 2",
+      "livraison": "1er trimestre 2028",
+      "livraison_cle": "2028-1",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "nb_lots_libres": 45,
+      "prix_a_partir_de": 242000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-3",
+      "nom": "Le Clos des Tilleuls (test)",
+      "promoteur": "Promoteur C",
+      "quartier": "Quartier 3",
+      "livraison": "4e trimestre 2026",
+      "livraison_cle": "2026-4",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "nb_lots_libres": 35,
+      "prix_a_partir_de": 255000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": "L’Haÿ-les-Roses (ouverture 2024)",
+      "gare_minutes_a_pied": 6,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-4",
+      "nom": "Cœur de Ville (test)",
+      "promoteur": "Promoteur D",
+      "quartier": null,
+      "livraison": "3e trimestre 2027",
+      "livraison_cle": "2027-3",
+      "typologies": [
+        "T2",
+        "T3"
+      ],
+      "nb_lots_libres": 24,
+      "prix_a_partir_de": null,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-5",
+      "nom": "L’Écrin (test)",
+      "promoteur": "Promoteur E",
+      "quartier": "Quartier 1",
+      "livraison": "2e trimestre 2028",
+      "livraison_cle": "2028-2",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "nb_lots_libres": 49,
+      "prix_a_partir_de": 281000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": "L’Haÿ-les-Roses (ouverture 2024)",
+      "gare_minutes_a_pied": 8,
+      "picking": true,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-6",
+      "nom": "Les Terrasses du Fort (test)",
+      "promoteur": "Promoteur F",
+      "quartier": "Quartier 2",
+      "livraison": "1er trimestre 2026",
+      "livraison_cle": "2026-1",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "nb_lots_libres": 38,
+      "prix_a_partir_de": 294000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-7",
+      "nom": "Square Lafayette (test)",
+      "promoteur": "Promoteur G",
+      "quartier": null,
+      "livraison": "4e trimestre 2027",
+      "livraison_cle": "2027-4",
+      "typologies": [
+        "T1",
+        "T2"
+      ],
+      "nb_lots_libres": 28,
+      "prix_a_partir_de": 307000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": "L’Haÿ-les-Roses (ouverture 2024)",
+      "gare_minutes_a_pied": 10,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-8",
+      "nom": "Le Domaine des Peupliers (test)",
+      "promoteur": "Promoteur H",
+      "quartier": "Quartier 4",
+      "livraison": "3e trimestre 2028",
+      "livraison_cle": "2028-3",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "nb_lots_libres": 17,
+      "prix_a_partir_de": null,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-9",
+      "nom": "Néo (test)",
+      "promoteur": "Promoteur I",
+      "quartier": "Quartier 1",
+      "livraison": "2e trimestre 2026",
+      "livraison_cle": "2026-2",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "nb_lots_libres": 42,
+      "prix_a_partir_de": 243000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": "L’Haÿ-les-Roses (ouverture 2024)",
+      "gare_minutes_a_pied": 12,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-10",
+      "nom": "Les Hauts de Seine (test)",
+      "promoteur": "Promoteur A",
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "livraison_cle": "2027-1",
+      "typologies": [
+        "T2",
+        "T3"
+      ],
+      "nb_lots_libres": 31,
+      "prix_a_partir_de": 256000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": true,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-11",
+      "nom": "Le Belvédère (test)",
+      "promoteur": "Promoteur B",
+      "quartier": "Quartier 3",
+      "livraison": "4e trimestre 2028",
+      "livraison_cle": "2028-4",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "nb_lots_libres": 21,
+      "prix_a_partir_de": 269000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": "L’Haÿ-les-Roses (ouverture 2024)",
+      "gare_minutes_a_pied": 5,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-12",
+      "nom": "Esprit Parc (test)",
+      "promoteur": "Promoteur C",
+      "quartier": "Quartier 4",
+      "livraison": "3e trimestre 2026",
+      "livraison_cle": "2026-3",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "nb_lots_libres": 45,
+      "prix_a_partir_de": null,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-13",
+      "nom": "L’Atelier (test)",
+      "promoteur": "Promoteur D",
+      "quartier": null,
+      "livraison": "2e trimestre 2027",
+      "livraison_cle": "2027-2",
+      "typologies": [
+        "T1",
+        "T2"
+      ],
+      "nb_lots_libres": 35,
+      "prix_a_partir_de": 295000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": "L’Haÿ-les-Roses (ouverture 2024)",
+      "gare_minutes_a_pied": 7,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-14",
+      "nom": "Les Rives (test)",
+      "promoteur": "Promoteur E",
+      "quartier": "Quartier 2",
+      "livraison": "1er trimestre 2028",
+      "livraison_cle": "2028-1",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "nb_lots_libres": 24,
+      "prix_a_partir_de": 308000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-15",
+      "nom": "Côté Jardin (test)",
+      "promoteur": "Promoteur F",
+      "quartier": "Quartier 3",
+      "livraison": "4e trimestre 2026",
+      "livraison_cle": "2026-4",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "nb_lots_libres": 69,
+      "prix_a_partir_de": 231000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": "L’Haÿ-les-Roses (ouverture 2024)",
+      "gare_minutes_a_pied": 9,
+      "picking": true,
+      "image": null,
+      "page_programme": null
+    }
+  ]
+}

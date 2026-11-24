@@ -1,0 +1,321 @@
+{
+  "version": 1,
+  "test": true,
+  "slug": "drancy",
+  "ville": "Drancy",
+  "cp": "93700",
+  "dept": "93",
+  "dept_nom": "Seine-Saint-Denis",
+  "maj": "2026-11-24",
+  "chiffres": {
+    "nb_programmes": 12,
+    "nb_lots_libres": 331,
+    "nb_promoteurs": 8,
+    "prix_m2_moyen": 4920,
+    "prix_entree": 179000,
+    "livraisons": {
+      "2026": 4,
+      "2027": 4,
+      "2028": 4
+    },
+    "typologies": {
+      "T1": 20,
+      "T2": 109,
+      "T3": 126,
+      "T4": 63,
+      "T5+": 13
+    }
+  },
+  "guide": {
+    "intro": "Texte d’essai : quelques phrases sur Drancy, ses quartiers et ce qui change avec les nouveaux programmes. Le vrai texte sera rédigé ville par ville.",
+    "transports": [
+      "RER B — Le Bourget, Drancy",
+      "Tramway T1",
+      "Ligne 15 Est et 16 — Le Bourget RER (à venir)"
+    ],
+    "zone_ptz": "A",
+    "tva_reduite": true
+  },
+  "programmes": [
+    {
+      "slug": "programme-test-1",
+      "nom": "Les Hauts de Seine (test)",
+      "promoteur": "Promoteur A",
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "livraison_cle": "2027-1",
+      "typologies": [
+        "T1",
+        "T2"
+      ],
+      "nb_lots_libres": 25,
+      "prix_a_partir_de": 179000,
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "gare": "Le Bourget, Drancy",
+      "gare_minutes_a_pied": 4,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-2",
+      "nom": "Le Belvédère (test)",
+      "promoteur": "Promoteur B",
+      "quartier": "Quartier 2",
+      "livraison": "4e trimestre 2028",
+      "livraison_cle": "2028-4",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "nb_lots_libres": 17,
+      "prix_a_partir_de": 192000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-3",
+      "nom": "Esprit Parc (test)",
+      "promoteur": "Promoteur C",
+      "quartier": "Quartier 3",
+      "livraison": "3e trimestre 2026",
+      "livraison_cle": "2026-3",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "nb_lots_libres": 36,
+      "prix_a_partir_de": 205000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": "Le Bourget RER (à venir)",
+      "gare_minutes_a_pied": 6,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-4",
+      "nom": "L’Atelier (test)",
+      "promoteur": "Promoteur D",
+      "quartier": null,
+      "livraison": "2e trimestre 2027",
+      "livraison_cle": "2027-2",
+      "typologies": [
+        "T2",
+        "T3"
+      ],
+      "nb_lots_libres": 28,
+      "prix_a_partir_de": null,
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-5",
+      "nom": "Les Rives (test)",
+      "promoteur": "Promoteur E",
+      "quartier": "Quartier 1",
+      "livraison": "1er trimestre 2028",
+      "livraison_cle": "2028-1",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "nb_lots_libres": 19,
+      "prix_a_partir_de": 231000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": 8,
+      "picking": true,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-6",
+      "nom": "Côté Jardin (test)",
+      "promoteur": "Promoteur F",
+      "quartier": "Quartier 2",
+      "livraison": "4e trimestre 2026",
+      "livraison_cle": "2026-4",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "nb_lots_libres": 39,
+      "prix_a_partir_de": 244000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-7",
+      "nom": "Le Carré Saint-Jean (test)",
+      "promoteur": "Promoteur G",
+      "quartier": null,
+      "livraison": "3e trimestre 2027",
+      "livraison_cle": "2027-3",
+      "typologies": [
+        "T1",
+        "T2"
+      ],
+      "nb_lots_libres": 30,
+      "prix_a_partir_de": 257000,
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "gare": "Le Bourget, Drancy",
+      "gare_minutes_a_pied": 10,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-8",
+      "nom": "Villa Émeraude (test)",
+      "promoteur": "Promoteur H",
+      "quartier": "Quartier 4",
+      "livraison": "2e trimestre 2028",
+      "livraison_cle": "2028-2",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "nb_lots_libres": 22,
+      "prix_a_partir_de": null,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-9",
+      "nom": "Le Patio (test)",
+      "promoteur": "Promoteur A",
+      "quartier": "Quartier 1",
+      "livraison": "1er trimestre 2026",
+      "livraison_cle": "2026-1",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "nb_lots_libres": 14,
+      "prix_a_partir_de": 193000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": "Le Bourget RER (à venir)",
+      "gare_minutes_a_pied": 12,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-10",
+      "nom": "Origine (test)",
+      "promoteur": "Promoteur B",
+      "quartier": null,
+      "livraison": "4e trimestre 2027",
+      "livraison_cle": "2027-4",
+      "typologies": [
+        "T2",
+        "T3"
+      ],
+      "nb_lots_libres": 33,
+      "prix_a_partir_de": 206000,
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": true,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-11",
+      "nom": "Les Marronniers (test)",
+      "promoteur": "Promoteur C",
+      "quartier": "Quartier 3",
+      "livraison": "3e trimestre 2028",
+      "livraison_cle": "2028-3",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "nb_lots_libres": 25,
+      "prix_a_partir_de": 219000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": 5,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-12",
+      "nom": "Les Jardins du Canal (test)",
+      "promoteur": "Promoteur D",
+      "quartier": "Quartier 4",
+      "livraison": "2e trimestre 2026",
+      "livraison_cle": "2026-2",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "nb_lots_libres": 43,
+      "prix_a_partir_de": null,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    }
+  ]
+}

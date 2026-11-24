@@ -1,0 +1,577 @@
+{
+  "version": 1,
+  "test": true,
+  "slug": "aubervilliers",
+  "ville": "Aubervilliers",
+  "cp": "93300",
+  "dept": "93",
+  "dept_nom": "Seine-Saint-Denis",
+  "maj": "2026-11-24",
+  "chiffres": {
+    "nb_programmes": 23,
+    "nb_lots_libres": 639,
+    "nb_promoteurs": 18,
+    "prix_m2_moyen": 5450,
+    "prix_entree": 189000,
+    "livraisons": {
+      "2026": 8,
+      "2027": 8,
+      "2028": 7
+    },
+    "typologies": {
+      "T1": 38,
+      "T2": 211,
+      "T3": 243,
+      "T4": 121,
+      "T5+": 26
+    }
+  },
+  "guide": {
+    "intro": "Texte d’essai : quelques phrases sur Aubervilliers, ses quartiers et ce qui change avec les nouveaux programmes. Le vrai texte sera rédigé ville par ville.",
+    "transports": [
+      "Métro 12 — Aimé Césaire, Mairie d’Aubervilliers",
+      "Métro 7 — Fort d’Aubervilliers",
+      "RER B — La Plaine–Stade de France"
+    ],
+    "zone_ptz": "A",
+    "tva_reduite": true
+  },
+  "programmes": [
+    {
+      "slug": "programme-test-1",
+      "nom": "Les Jardins du Canal (test)",
+      "promoteur": "Promoteur A",
+      "quartier": null,
+      "livraison": "1er trimestre 2026",
+      "livraison_cle": "2026-1",
+      "typologies": [
+        "T1",
+        "T2"
+      ],
+      "nb_lots_libres": 14,
+      "prix_a_partir_de": 189000,
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "gare": "Aimé Césaire, Mairie d’Aubervilliers",
+      "gare_minutes_a_pied": 4,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-2",
+      "nom": "Villa Lumière (test)",
+      "promoteur": "Promoteur B",
+      "quartier": "Quartier 2",
+      "livraison": "4e trimestre 2027",
+      "livraison_cle": "2027-4",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "nb_lots_libres": 33,
+      "prix_a_partir_de": 202000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-3",
+      "nom": "Le Parc des Arts (test)",
+      "promoteur": "Promoteur C",
+      "quartier": "Quartier 3",
+      "livraison": "3e trimestre 2028",
+      "livraison_cle": "2028-3",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "nb_lots_libres": 25,
+      "prix_a_partir_de": 215000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": "La Plaine–Stade de France",
+      "gare_minutes_a_pied": 6,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-4",
+      "nom": "Les Allées Verdi (test)",
+      "promoteur": "Promoteur D",
+      "quartier": null,
+      "livraison": "2e trimestre 2026",
+      "livraison_cle": "2026-2",
+      "typologies": [
+        "T2",
+        "T3"
+      ],
+      "nb_lots_libres": 17,
+      "prix_a_partir_de": null,
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-5",
+      "nom": "Résidence Horizon (test)",
+      "promoteur": "Promoteur E",
+      "quartier": "Quartier 1",
+      "livraison": "1er trimestre 2027",
+      "livraison_cle": "2027-1",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "nb_lots_libres": 36,
+      "prix_a_partir_de": 241000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": "Fort d’Aubervilliers",
+      "gare_minutes_a_pied": 8,
+      "picking": true,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-6",
+      "nom": "Le Clos des Tilleuls (test)",
+      "promoteur": "Promoteur F",
+      "quartier": "Quartier 2",
+      "livraison": "4e trimestre 2028",
+      "livraison_cle": "2028-4",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "nb_lots_libres": 28,
+      "prix_a_partir_de": 254000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-7",
+      "nom": "Cœur de Ville (test)",
+      "promoteur": "Promoteur G",
+      "quartier": null,
+      "livraison": "3e trimestre 2026",
+      "livraison_cle": "2026-3",
+      "typologies": [
+        "T1",
+        "T2"
+      ],
+      "nb_lots_libres": 19,
+      "prix_a_partir_de": 267000,
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "gare": "Aimé Césaire, Mairie d’Aubervilliers",
+      "gare_minutes_a_pied": 10,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-8",
+      "nom": "L’Écrin (test)",
+      "promoteur": "Promoteur H",
+      "quartier": "Quartier 4",
+      "livraison": "2e trimestre 2027",
+      "livraison_cle": "2027-2",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "nb_lots_libres": 39,
+      "prix_a_partir_de": null,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-9",
+      "nom": "Les Terrasses du Fort (test)",
+      "promoteur": "Promoteur I",
+      "quartier": "Quartier 1",
+      "livraison": "1er trimestre 2028",
+      "livraison_cle": "2028-1",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "nb_lots_libres": 31,
+      "prix_a_partir_de": 203000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": "La Plaine–Stade de France",
+      "gare_minutes_a_pied": 12,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-10",
+      "nom": "Square Lafayette (test)",
+      "promoteur": "Promoteur J",
+      "quartier": null,
+      "livraison": "4e trimestre 2026",
+      "livraison_cle": "2026-4",
+      "typologies": [
+        "T2",
+        "T3"
+      ],
+      "nb_lots_libres": 22,
+      "prix_a_partir_de": 216000,
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": true,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-11",
+      "nom": "Le Domaine des Peupliers (test)",
+      "promoteur": "Promoteur K",
+      "quartier": "Quartier 3",
+      "livraison": "3e trimestre 2027",
+      "livraison_cle": "2027-3",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "nb_lots_libres": 14,
+      "prix_a_partir_de": 229000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": "Fort d’Aubervilliers",
+      "gare_minutes_a_pied": 5,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-12",
+      "nom": "Néo (test)",
+      "promoteur": "Promoteur L",
+      "quartier": "Quartier 4",
+      "livraison": "2e trimestre 2028",
+      "livraison_cle": "2028-2",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "nb_lots_libres": 33,
+      "prix_a_partir_de": null,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-13",
+      "nom": "Les Hauts de Seine (test)",
+      "promoteur": "Promoteur M",
+      "quartier": null,
+      "livraison": "1er trimestre 2026",
+      "livraison_cle": "2026-1",
+      "typologies": [
+        "T1",
+        "T2"
+      ],
+      "nb_lots_libres": 25,
+      "prix_a_partir_de": 255000,
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "gare": "Aimé Césaire, Mairie d’Aubervilliers",
+      "gare_minutes_a_pied": 7,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-14",
+      "nom": "Le Belvédère (test)",
+      "promoteur": "Promoteur N",
+      "quartier": "Quartier 2",
+      "livraison": "4e trimestre 2027",
+      "livraison_cle": "2027-4",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "nb_lots_libres": 17,
+      "prix_a_partir_de": 268000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-15",
+      "nom": "Esprit Parc (test)",
+      "promoteur": "Promoteur O",
+      "quartier": "Quartier 3",
+      "livraison": "3e trimestre 2028",
+      "livraison_cle": "2028-3",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "nb_lots_libres": 36,
+      "prix_a_partir_de": 191000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": "La Plaine–Stade de France",
+      "gare_minutes_a_pied": 9,
+      "picking": true,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-16",
+      "nom": "L’Atelier (test)",
+      "promoteur": "Promoteur P",
+      "quartier": null,
+      "livraison": "2e trimestre 2026",
+      "livraison_cle": "2026-2",
+      "typologies": [
+        "T2",
+        "T3"
+      ],
+      "nb_lots_libres": 28,
+      "prix_a_partir_de": null,
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-17",
+      "nom": "Les Rives (test)",
+      "promoteur": "Promoteur Q",
+      "quartier": "Quartier 1",
+      "livraison": "1er trimestre 2027",
+      "livraison_cle": "2027-1",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "nb_lots_libres": 19,
+      "prix_a_partir_de": 217000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": "Fort d’Aubervilliers",
+      "gare_minutes_a_pied": 11,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-18",
+      "nom": "Côté Jardin (test)",
+      "promoteur": "Promoteur R",
+      "quartier": "Quartier 2",
+      "livraison": "4e trimestre 2028",
+      "livraison_cle": "2028-4",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "nb_lots_libres": 39,
+      "prix_a_partir_de": 230000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-19",
+      "nom": "Le Carré Saint-Jean (test)",
+      "promoteur": "Promoteur A",
+      "quartier": null,
+      "livraison": "3e trimestre 2026",
+      "livraison_cle": "2026-3",
+      "typologies": [
+        "T1",
+        "T2"
+      ],
+      "nb_lots_libres": 31,
+      "prix_a_partir_de": 243000,
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "gare": "Aimé Césaire, Mairie d’Aubervilliers",
+      "gare_minutes_a_pied": 4,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-20",
+      "nom": "Villa Émeraude (test)",
+      "promoteur": "Promoteur B",
+      "quartier": "Quartier 4",
+      "livraison": "2e trimestre 2027",
+      "livraison_cle": "2027-2",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "nb_lots_libres": 22,
+      "prix_a_partir_de": null,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": true,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-21",
+      "nom": "Le Patio (test)",
+      "promoteur": "Promoteur C",
+      "quartier": "Quartier 1",
+      "livraison": "1er trimestre 2028",
+      "livraison_cle": "2028-1",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "nb_lots_libres": 14,
+      "prix_a_partir_de": 269000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": "La Plaine–Stade de France",
+      "gare_minutes_a_pied": 6,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-22",
+      "nom": "Origine (test)",
+      "promoteur": "Promoteur D",
+      "quartier": null,
+      "livraison": "4e trimestre 2026",
+      "livraison_cle": "2026-4",
+      "typologies": [
+        "T2",
+        "T3"
+      ],
+      "nb_lots_libres": 33,
+      "prix_a_partir_de": 192000,
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "gare": null,
+      "gare_minutes_a_pied": null,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    },
+    {
+      "slug": "programme-test-23",
+      "nom": "Les Marronniers (test)",
+      "promoteur": "Promoteur E",
+      "quartier": "Quartier 3",
+      "livraison": "3e trimestre 2027",
+      "livraison_cle": "2027-3",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "nb_lots_libres": 64,
+      "prix_a_partir_de": 205000,
+      "dispositifs": [
+        "PTZ"
+      ],
+      "gare": "Fort d’Aubervilliers",
+      "gare_minutes_a_pied": 8,
+      "picking": false,
+      "image": null,
+      "page_programme": null
+    }
+  ]
+}
