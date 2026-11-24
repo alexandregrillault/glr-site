@@ -164,7 +164,7 @@ export function heureTexte(h) {
 
 // Décor autour de l'immeuble pour la vue du bas : une rue devant (chaussée, trottoirs, ligne axiale), quelques immeubles
 // voisins de familles différentes sur les côtés et à l'arrière, sapins et feuillus. Décor générique : ce n'est pas le vrai quartier.
-export function decorRue(imm) {
+export function decorRue(imm, rayon = 60) {
   const g = new THREE.Group(), L = imm.largeur, P = imm.profondeur;
   const plat = (w, d, coul, x, y, z) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, d), new THREE.MeshStandardMaterial({ color: coul, roughness: 1 })); m.rotation.x = -Math.PI / 2; m.position.set(x, y, z); m.receiveShadow = true; g.add(m); return m; };
   const zRue = P / 2 + 11;
@@ -173,24 +173,24 @@ export function decorRue(imm) {
   const tirets = new THREE.InstancedMesh(new THREE.PlaneGeometry(3, 0.18), new THREE.MeshBasicMaterial({ color: 0xFFFFFF }), 32), M = new THREE.Matrix4();
   for (let i = 0; i < 32; i++) { M.makeRotationX(-Math.PI / 2).setPosition(-124 + i * 8, 0.07, zRue); tirets.setMatrixAt(i, M); }
   g.add(tirets);
-  // Voisins : [x, z, largeur, profondeur, étages, famille]
+  // Voisins : posés en couronne, au-delà du rayon où la caméra peut circuler (sinon elle traverserait les murs).
+  // [angle en degrés (90 = devant, côté rue), largeur, profondeur, étages, famille]
   const FAM = [0xFFFFFF, 0xEADFCB, 0xD9B79C, 0xE3E3DF], TOIT = [0xDDD6C8, 0xCFC6B4, 0xB9A48F, 0xD6D6D1];
   const tex = facade().clone(); tex.needsUpdate = true; tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
-  const voisins = [
-    [-(L / 2 + 22), 2, 18, 12, 4, 1], [-(L / 2 + 50), -2, 22, 13, 6, 2], [L / 2 + 24, 1, 20, 12, 5, 3], [L / 2 + 54, -3, 22, 14, 3, 1],
-    [-(L / 2 + 14), -(P / 2 + 30), 26, 12, 5, 0], [L / 2 + 12, -(P / 2 + 34), 30, 13, 7, 2], [0, -(P / 2 + 62), 40, 12, 4, 3],
-  ];
-  for (const [x, z, w, d, n, f] of voisins) {
+  const voisins = [[40, 30, 14, 5, 1], [75, 34, 14, 4, 3], [110, 30, 14, 6, 0], [145, 32, 14, 4, 2], [195, 34, 15, 6, 1], [232, 38, 15, 5, 3], [270, 44, 15, 7, 2], [308, 38, 15, 4, 0], [345, 34, 15, 5, 2]];
+  for (const [deg, w, d, n, f] of voisins) {
+    const a = deg * Math.PI / 180, r = rayon + 20 + d / 2;
     const t = tex.clone(); t.needsUpdate = true; t.repeat.set(Math.round(w / 4.2), n);
     const tc = tex.clone(); tc.needsUpdate = true; tc.repeat.set(Math.round(d / 4.2), n);
     const fa = new THREE.MeshStandardMaterial({ map: t, color: FAM[f], roughness: 0.82 }), co = new THREE.MeshStandardMaterial({ map: tc, color: FAM[f], roughness: 0.82 }), to = new THREE.MeshStandardMaterial({ color: TOIT[f], roughness: 0.95 });
     const m = new THREE.Mesh(new THREE.BoxGeometry(w, n * 3, d), [co, co, to, to, fa, fa]);
-    m.position.set(x, n * 1.5, z); m.castShadow = m.receiveShadow = true; g.add(m);
+    m.position.set(r * Math.cos(a), n * 1.5, r * Math.sin(a)); m.rotation.y = Math.PI / 2 - a; m.castShadow = m.receiveShadow = true; g.add(m);
   }
-  // Arbres : sapins et feuillus alternés, sur les côtés et à l'arrière (jamais devant les fenêtres)
+  // Arbres : sapins et feuillus alternés ; quelques-uns au pied de l'immeuble (côtés et arrière, jamais devant les fenêtres),
+  // les autres entre les voisins, hors du passage de la caméra
   const bois = new THREE.MeshStandardMaterial({ color: 0x8A6A4F, roughness: 1 }), vert = new THREE.MeshStandardMaterial({ color: 0x8DB56E, roughness: 0.9, flatShading: true }), sapin = new THREE.MeshStandardMaterial({ color: 0x4F7F5A, roughness: 0.95, flatShading: true });
-  const places = [[-(L / 2 + 9), -2], [L / 2 + 10, -3], [-(L / 2 + 36), P / 2 + 4], [L / 2 + 40, P / 2 + 4], [-(L / 2 + 62), P / 2 + 4], [L / 2 + 68, P / 2 + 4],
-    [-(L / 2 + 8), -(P / 2 + 10)], [L / 2 + 30, -(P / 2 + 14)], [-(L / 2 + 34), -(P / 2 + 16)], [6, -(P / 2 + 16)], [-12, -(P / 2 + 44)], [L / 2 + 40, -(P / 2 + 50)]];
+  const places = [[-(L / 2 + 8), -1], [L / 2 + 9, 1]]; // seulement sur les pignons : aucune façade n'est masquée
+  [22, 57, 92, 128, 170, 213, 251, 289, 327].forEach(deg => { const a = deg * Math.PI / 180, r = rayon + 16; places.push([r * Math.cos(a), r * Math.sin(a)]); });
   places.forEach(([x, z], i) => {
     const k = 0.9 + ((i * 37) % 10) / 20;
     if (i % 2) { const t = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.24, 1.6, 6), bois); t.position.set(x, 0.8 * k, z); const c = new THREE.Mesh(new THREE.ConeGeometry(1.9 * k, 6.5 * k, 8), sapin); c.position.set(x, 4.6 * k, z); c.castShadow = true; g.add(t, c); }

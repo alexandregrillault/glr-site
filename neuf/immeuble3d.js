@@ -24,24 +24,26 @@ function demarrer(L) {
   const imm = construire(L, { arbres: false });
   const scene = new THREE.Scene();
   scene.add(imm.racine);
-  scene.add(decorRue(imm));
   const haut = imm.hauteur, largeur = imm.largeur, profondeur = imm.profondeur;
   const d = Math.max(largeur * 1.1, haut) * 1.55 + 12;
-  scene.fog = new THREE.Fog(0xF4F0E8, d * 1.6, d * 3.2);
+  const RAYON = d * 1.3; // la caméra ne s'éloigne jamais plus : le décor commence au-delà
+  scene.add(decorRue(imm, RAYON));
+  scene.fog = new THREE.Fog(0xF4F0E8, d * 2.6, d * 5.5);
   const camera = new THREE.PerspectiveCamera(32, 1, 0.5, 800);
   // Vue du bas : on regarde la façade depuis la rue, légèrement de côté, comme un passant
   camera.position.set(d * 0.38, haut * 0.16 + 1.7, d * 1.02);
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.target.set(0, haut * 0.5, 0);
   // Souris : glisser = tourner et changer l'angle, molette = zoom, clic droit (ou deux doigts) = se déplacer dans la rue
-  Object.assign(controls, { enableDamping: true, enablePan: true, screenSpacePanning: false, enableZoom: true, zoomSpeed: 0.9, minDistance: d * 0.18, maxDistance: d * 2.6, maxPolarAngle: Math.PI * 0.5 - 0.02, autoRotate: false });
-  controls.addEventListener('change', () => { const t = controls.target; t.x = Math.max(-70, Math.min(70, t.x)); t.z = Math.max(-70, Math.min(70, t.z)); t.y = Math.max(1, Math.min(haut, t.y)); });
+  Object.assign(controls, { enableDamping: true, enablePan: true, screenSpacePanning: false, enableZoom: true, zoomSpeed: 0.9, minDistance: d * 0.3, maxDistance: RAYON, maxPolarAngle: Math.PI * 0.5 - 0.02, autoRotate: false });
+  // on se promène autour de l'immeuble, mais la cible reste près de lui : la caméra ne peut pas atteindre le décor
+  const borner = () => { const t = controls.target, m = d * 0.22; t.x = Math.max(-m, Math.min(m, t.x)); t.z = Math.max(-m, Math.min(m, t.z)); t.y = Math.max(1, Math.min(haut, t.y)); };
   renderer.domElement.addEventListener('pointerdown', () => { controls.autoRotate = false; });
   // Arrivée : la caméra finit le zoom commencé sur la carte, du dessus jusqu'à la vue du bas
   const bas = camera.position.clone();
   let arrivee = null;
   try { if (sessionStorage.getItem('glr-arrivee')) { sessionStorage.removeItem('glr-arrivee'); arrivee = performance.now(); } } catch (_) {}
-  if (arrivee) { camera.position.set(d * 0.9, haut * 1.4 + d * 1.5, d * 1.5); controls.enabled = false; }
+  if (arrivee) { camera.position.set(0.01, haut + d * 2.4, 0.02); controls.enabled = false; }
   const adoucir = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   const haut0 = camera.position.clone();
 
@@ -136,21 +138,44 @@ function demarrer(L) {
   const sortir = m => {
     if (sortant === m) return; sortant = m;
     if (!m) return;
-    // si le logement est sur l'autre façade, la caméra passe de l'autre côté
-    const devant = m.userData.z0 > 0;
-    if (!arrivee && (camera.position.z > 0) !== devant) { tour = { t0: performance.now(), de: camera.position.clone() }; }
   };
-  let tour = null;
+  // Depuis la liste seulement, et après un court arrêt sur la ligne : si le logement est sur la façade opposée,
+  // la caméra fait le tour une fois, en douceur. Jamais pendant qu'on manipule la vue à la souris.
+  let tour = null, attenteTour = null, enMain = false;
+  renderer.domElement.addEventListener('pointerdown', () => { enMain = true; tour = null; clearTimeout(attenteTour); if (!arrivee) controls.enabled = true; });
+  window.addEventListener('pointerup', () => { enMain = false; });
+  const faireFace = m => {
+    clearTimeout(attenteTour);
+    attenteTour = setTimeout(() => {
+      if (arrivee || enMain || tour || sortant !== m) return;
+      const devant = m.userData.z0 > 0, cz = camera.position.z - controls.target.z;
+      if ((cz > 0) === devant && Math.abs(cz) > 4) return;       // déjà du bon côté
+      const dx = camera.position.x - controls.target.x, r = Math.hypot(dx, cz), a0 = Math.atan2(cz, dx);
+      let a1 = Math.atan2((devant ? 1 : -1) * Math.abs(Math.sin(1.15)) , Math.cos(1.15) * (dx >= 0 ? 1 : -1));
+      let da = a1 - a0; while (da > Math.PI) da -= 2 * Math.PI; while (da < -Math.PI) da += 2 * Math.PI;
+      tour = { t0: performance.now(), a0, da, r, y: camera.position.y }; controls.enabled = false;
+    }, 280);
+  };
   document.querySelectorAll('table.lots tr[id^="l-"]').forEach(tr => {
     const m = parId[tr.id.slice(2)]; if (!m) return;
-    const entrer = () => { sortir(m); fiche(m); document.querySelectorAll('tr.vise').forEach(z => z.classList.remove('vise')); tr.classList.add('vise'); };
+    const entrer = () => { sortir(m); fiche(m); faireFace(m); document.querySelectorAll('tr.vise').forEach(z => z.classList.remove('vise')); tr.classList.add('vise'); };
     tr.addEventListener('mouseenter', entrer); tr.addEventListener('click', entrer); tr.addEventListener('focusin', entrer);
-    tr.addEventListener('mouseleave', () => { if (sortant === m) sortant = null; tr.classList.remove('vise'); });
+    tr.addEventListener('mouseleave', () => { clearTimeout(attenteTour); if (sortant === m) sortant = null; tr.classList.remove('vise'); });
   });
   const boucle = () => {
     const t = performance.now();
-    if (arrivee) { const x = Math.min(1, (t - arrivee - 150) / 2200); if (x > 0) camera.position.lerpVectors(haut0, bas, adoucir(x)); if (x >= 1) { arrivee = null; controls.enabled = true; } camera.lookAt(controls.target); }
-    if (tour) { const x = Math.min(1, (t - tour.t0) / 900), a = Math.PI * adoucir(x), r = Math.hypot(tour.de.x, tour.de.z), a0 = Math.atan2(tour.de.z, tour.de.x); camera.position.set(r * Math.cos(a0 + a), tour.de.y, r * Math.sin(a0 + a)); if (x >= 1) tour = null; }
+    if (arrivee) {
+      // descente en arc : du dessus de l'immeuble jusqu'à la rue, sans à-coup
+      const x = Math.min(1, Math.max(0, (t - arrivee - 100) / 2400)), k = adoucir(x);
+      camera.position.set(haut0.x + (bas.x - haut0.x) * k, haut0.y + (bas.y - haut0.y) * (k * k * (3 - 2 * k)), haut0.z + (bas.z - haut0.z) * Math.sin(k * Math.PI / 2));
+      camera.lookAt(controls.target);
+      if (x >= 1) { arrivee = null; controls.enabled = true; }
+    }
+    if (tour) {
+      const x = Math.min(1, (t - tour.t0) / 1100), a = tour.a0 + tour.da * adoucir(x);
+      camera.position.set(controls.target.x + tour.r * Math.cos(a), tour.y, controls.target.z + tour.r * Math.sin(a)); camera.lookAt(controls.target);
+      if (x >= 1) { tour = null; controls.enabled = true; }
+    }
     for (const m of imm.lots) {
       const cible = m === sortant ? 1 : 0; if (m.userData.sorti === cible) continue;
       m.userData.sorti += Math.sign(cible - m.userData.sorti) * Math.min(Math.abs(cible - m.userData.sorti), 0.12);
@@ -159,7 +184,7 @@ function demarrer(L) {
       if (cible && m.userData.teinte !== 1) { const col = COULEURS[m.userData.l.t] || 0x5E97AB; m.userData.avant = m.material; m.material = m.userData.mats.map(mt => { const c = mt.clone(); c.color.setHex(col); return c; }); m.userData.teinte = 1; }
       if (!cible && m.userData.sorti === 0 && m.userData.teinte === 1) { m.material = m.userData.avant || m.userData.mats; m.userData.teinte = 0; }
     }
-    if (!arrivee) controls.update();
+    if (!arrivee && !tour) { borner(); controls.update(); }
     renderer.render(scene, camera); requestAnimationFrame(boucle);
   };
   boucle();

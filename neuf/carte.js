@@ -228,7 +228,8 @@ async function demarrer() {
       // Zoom progressif : la caméra descend vers le programme et s'incline, la carte s'efface, puis la page de l'immeuble
       // reprend le mouvement jusqu'à la vue du bas (voir immeuble3d.js, « arrivee »)
       marqueurs.forEach(x => { if (x.p !== p) x.m.getElement().style.opacity = '0.25'; });
-      map.flyTo({ center: [p.o, p.a], zoom: 17.4, pitch: 68, bearing: -24, duration: 1700, essential: true, curve: 1.3 });
+      // on reste vu du dessus, bien à plat : la page de l'immeuble repart exactement de là pour descendre vers la rue
+      map.flyTo({ center: [p.o, p.a], zoom: 18.3, pitch: 0, bearing: 0, duration: 1700, essential: true, curve: 1.2 });
       conteneur.style.transition = 'opacity .55s ease';
       setTimeout(() => { conteneur.style.opacity = '0'; }, 1250);
       try { sessionStorage.setItem('glr-arrivee', '1'); } catch (_) {}
