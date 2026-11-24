@@ -31,6 +31,8 @@ function epure(style) {
     if (/^(toponyme|limite|oro|bati_surf|bati_ponc|bati_lin|routier_chemin|routier_surf|routier_liaison|parcellaire)/.test(sl)) continue;
     // Petites rues : seulement de près (quartier d'un programme), comme fond d'environnement
     if (sl.startsWith('routier_route') && !AXES.some(a => i.includes(a))) { out.push({ ...l, minzoom: Math.max(l.minzoom || 0, 15) }); continue; }
+    // Vue d'ensemble : seulement les départements, ni routes ni voies ferrées (elles arrivent en zoomant)
+    if (sl.startsWith('routier') || sl.startsWith('ferre')) { out.push({ ...l, minzoom: Math.max(l.minzoom || 0, 10.5) }); continue; }
     out.push(l);
   }
   // Immeubles en relief, en tons clairs (comme les immeubles qui sortent du sol dans les vidéos)
@@ -174,6 +176,8 @@ async function demarrer() {
   function montrerVille(s) {
     const v = villes.find(x => x.s === s); if (!v) return;
     if (!villeEnCours) departements(false);
+    if (boutonIdf) boutonIdf.hidden = false;
+    { const v0 = villes.find(x => x.s === s); if (v0 && fil) fil.innerHTML = '<b>' + v0.v + '</b> — touchez un programme'; }
     villeEnCours = s; quitter(); choisirCommune(s);
     const pts = v.c ? v.c.geometry.coordinates.flat(v.c.geometry.type === 'MultiPolygon' ? 2 : 1) : v.p.map(p => [p.o, p.a]);
     const cam = map.cameraForBounds(bornes(pts), { padding: 30 });
@@ -198,13 +202,66 @@ async function demarrer() {
   const apresIntro = f => { const go = () => setTimeout(f, Math.max(0, INTRO - (Date.now() - vueA))); if (vueA) go(); else attente.push(go); };
   window.GLRCarte = { ville: s => apresIntro(() => montrerVille(s)) };
   // Un clic sur une commune la choisit aussi (page des villes)
-  map.on('click', 'commune-fond', ev => {
-    if (enCours) return;
-    const s = ev.features[0] && ev.features[0].properties.s;
-    if (s && s !== villeEnCours) { if (window.GLRChoixVille) window.GLRChoixVille(s); else montrerVille(s); }
+  // Étape 1 : un département touché → on zoome dessus et ses communes apparaissent ; une commune touchée → sa ville
+  const NOMS_DEP = { '75': 'Paris', '92': 'Hauts-de-Seine', '93': 'Seine-Saint-Denis', '94': 'Val-de-Marne', '95': 'Val-d’Oise', '78': 'Yvelines', '91': 'Essonne', '77': 'Seine-et-Marne' };
+  const fil = document.getElementById('fil-carte'), boutonIdf = document.getElementById('carte-idf');
+  const ecrireFil = (dep, nom) => { if (!fil) return; fil.innerHTML = dep ? '<b>' + dep + ' · ' + NOMS_DEP[dep] + '</b>' + (nom ? ' › ' + nom : ' — touchez une commune') : 'Touchez un département.'; };
+  let depEnCours = null;
+  map.addSource('communes-dep', { type: 'geojson', data: { type: 'FeatureCollection', features: [] }, promoteId: 'code' });
+  map.addLayer({ id: 'cdep-fond', type: 'fill', source: 'communes-dep', paint: {
+    'fill-color': ['case', ['get', 'page'], '#005875', '#FFFFFF'],
+    'fill-opacity': ['case', ['boolean', ['feature-state', 'survol'], false], 0.35, ['get', 'page'], 0.22, 0.05] } }, 'commune-fond');
+  map.addLayer({ id: 'cdep-trait', type: 'line', source: 'communes-dep', paint: { 'line-color': '#FFFFFF', 'line-width': 1.8, 'line-opacity': 1 } }, 'commune-fond');
+  async function choisirDep(d) {
+    if (enCours || villeEnCours) return;
+    map.getSource('communes-dep').setData({ type: 'FeatureCollection', features: [] });
+    depEnCours = d; ecrireFil(d);
+    if (boutonIdf) boutonIdf.hidden = false;
+    const f = (map.getSource('deps')._data.features || []).find(x => x.properties.d === d);
+    if (f) { const pts = f.geometry.coordinates.flat(f.geometry.type === 'MultiPolygon' ? 2 : 1); map.fitBounds(bornes(pts), { padding: 24, pitch: 25, bearing: 0, duration: 1600 }); }
+    map.setPaintProperty('dep-fond', 'fill-opacity', ['case', ['==', ['get', 'd'], d], 0.18, 0.5]);
+    try {
+      const g = await (await fetch('https://geo.api.gouv.fr/departements/' + d + '/communes?fields=nom,code&format=geojson&geometry=contour')).json();
+      const avecPage = new Set(villes.map(v => v.i));
+      g.features.forEach(x => { x.properties.page = avecPage.has(x.properties.code); });
+      if (depEnCours === d) map.getSource('communes-dep').setData(g);
+    } catch (e) { ecrireFil(d, 'communes indisponibles pour le moment'); }
+  }
+  function revenirIdf() {
+    depEnCours = null; villeEnCours = null; quitter();
+    map.getSource('communes-dep').setData({ type: 'FeatureCollection', features: [] });
+    marqueurs.forEach(x => { x.m.getElement().style.display = 'none'; });
+    map.setPaintProperty('dep-fond', 'fill-opacity', 0.55); map.setPaintProperty('dep-ombre', 'line-opacity', 0.75); map.setPaintProperty('dep-trait', 'line-opacity', 1);
+    (window.__numeros || []).forEach(m => { m.getElement().style.display = ''; });
+    choisirCommune(null);
+    map.fitBounds(bornes([[1.88, 48.62], [2.82, 49.08]]), { padding: 20, pitch: 0, bearing: 0, duration: 1600 });
+    if (boutonIdf) boutonIdf.hidden = true; ecrireFil(null);
+    try { history.replaceState(null, '', location.pathname); } catch (_) {}
+  }
+  if (boutonIdf) boutonIdf.addEventListener('click', revenirIdf);
+  map.on('click', 'dep-fond', ev => {
+    if (villeEnCours) return;
+    const d = ev.features[0].properties.d;
+    if (d !== depEnCours && !map.queryRenderedFeatures(ev.point, { layers: ['cdep-fond'] }).length) choisirDep(d);
   });
-  map.on('mouseenter', 'commune-fond', () => { map.getCanvas().style.cursor = 'pointer'; });
-  map.on('mouseleave', 'commune-fond', () => { map.getCanvas().style.cursor = ''; });
+  let survol = null;
+  map.on('mousemove', 'cdep-fond', ev => {
+    const x = ev.features[0]; if (!x) return;
+    if (survol != null) map.setFeatureState({ source: 'communes-dep', id: survol }, { survol: false });
+    survol = x.id; map.setFeatureState({ source: 'communes-dep', id: survol }, { survol: true });
+    map.getCanvas().style.cursor = 'pointer';
+    ecrireFil(depEnCours, x.properties.nom + (x.properties.page ? ' — programmes à voir' : ''));
+  });
+  map.on('mouseleave', 'cdep-fond', () => { if (survol != null) map.setFeatureState({ source: 'communes-dep', id: survol }, { survol: false }); survol = null; map.getCanvas().style.cursor = ''; if (depEnCours) ecrireFil(depEnCours); });
+  map.on('click', 'cdep-fond', ev => {
+    const x = ev.features[0]; if (!x || villeEnCours) return;
+    const v = villes.find(y => y.i === x.properties.code);
+    if (v) { map.getSource('communes-dep').setData({ type: 'FeatureCollection', features: [] }); if (window.GLRChoixVille) window.GLRChoixVille(v.s); else montrerVille(v.s); }
+    else if (window.GLRSansPage) window.GLRSansPage(x.properties.nom);
+    else ecrireFil(depEnCours, x.properties.nom + ' n’a pas encore sa page : appelez-nous, nous vous envoyons ses programmes.');
+  });
+  map.on('mouseenter', 'dep-fond', () => { if (!depEnCours) map.getCanvas().style.cursor = 'pointer'; });
+  map.on('mouseleave', 'dep-fond', () => { map.getCanvas().style.cursor = ''; });
   const voulu = new URLSearchParams(location.search).get('p');
   const prog = voulu && villes.map(v => [v, v.p.find(x => x.s === voulu && x.L)]).find(x => x[1]);
   if (prog) apresIntro(() => { montrerVille(prog[0].s); setTimeout(() => focus(prog[0], prog[1]), 4200); });

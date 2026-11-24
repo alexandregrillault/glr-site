@@ -105,6 +105,9 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .maplibregl-map{font-family:var(--body);border-radius:8px}
 .maplibregl-ctrl-attrib{font-size:10px;background:rgba(251,248,241,.85)!important}
 button.repere{padding:0;cursor:pointer;display:block}
+.fil-carte{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:.5rem 0 0;font-size:.92rem;color:var(--discret);min-height:2.2em}
+.fil-carte b{color:var(--bleu);font-weight:600}
+.fil-carte button{font:inherit;font-size:.85rem;background:transparent;border:1px solid var(--trait);border-radius:6px;padding:6px 10px;color:var(--texte);cursor:pointer;white-space:nowrap}
 .num-dep{font-family:var(--body);font-weight:600;font-size:1.05rem;color:#6E7884;text-shadow:0 0 4px #fff,0 0 8px #fff;pointer-events:none}
 button.repere.pop{animation:pop .55s cubic-bezier(.3,1.6,.5,1) both}
 @keyframes pop{from{scale:0;opacity:0}to{scale:1;opacity:1}}
@@ -330,7 +333,7 @@ const logementsPublics = p => (p.logements || []).map(l => ({ i: l.id == null ? 
 // Données de la carte d'une ville ; avecMaquette = on embarque les logements (sans prix) pour la maquette 3D
 function donneesVille(d, avecMaquette) {
   return {
-    v: d.ville, s: d.slug, cp: d.cp, c: contour(d),
+    v: d.ville, s: d.slug, cp: d.cp, i: d.insee || '', c: contour(d),
     r: `${pluriel(d.chiffres.nb_programmes, 'programme', 'programmes')} · ${nb(d.chiffres.nb_lots_libres)} logements disponibles`,
     p: d.programmes.filter(p => p.position && p.position.latitude != null).map(p => ({
       n: p.nom, s: p.slug, k: !!p.picking, a: ARRONDI(p.position.latitude), o: ARRONDI(p.position.longitude),
@@ -342,6 +345,7 @@ function donneesVille(d, avecMaquette) {
 const blocCarte = (grande, legendePicking) => `<div class="carte-zone">
     <div id="carte" class="carte${grande ? ' grande' : ''}" aria-label="Carte des programmes neufs"></div>
   </div>
+  <div class="fil-carte"><span id="fil-carte">Touchez un département.</span><button type="button" id="carte-idf" hidden>Toute l’Île-de-France</button></div>
     <div class="panneau" id="panneau" hidden>
       <b class="titre"></b><span class="sous"></span>
       <label class="heure"><span>Soleil à</span><input type="range" id="carte-heure" min="6" max="22" step="0.25" value="14"><output id="carte-heure-val"></output></label>
@@ -476,6 +480,7 @@ q.addEventListener('keydown',function(ev){
   else if(ev.key==='Enter'){ev.preventDefault();var t=sa(q.value);valider(liste[choix>-1?choix:0]||V.filter(function(v){return sa(v.v)===t})[0]);}
   else if(ev.key==='Escape'){ul.style.display='none';}});
 q.addEventListener('blur',function(){ul.style.display='none'});
+window.GLRSansPage=function(n){absente(n);res.scrollIntoView({behavior:'smooth',block:'nearest'})};
 window.GLRChoixVille=function(s){var v=V.filter(function(x){return x.s===s})[0];if(v){q.value=v.v;montrer(v);}};
 var d=new URLSearchParams(location.search).get('ville');if(d){var v=V.filter(function(x){return x.s===d})[0];if(v){q.value=v.v;montrer(v);}}
 })();
