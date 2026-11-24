@@ -132,6 +132,17 @@ table.lots td.plan{text-align:right;white-space:nowrap}
 table.lots td.plan a{font-weight:600;text-decoration:none}
 table.lots td.prix-lot{font-weight:600;white-space:nowrap}
 @media (max-width:480px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 5px}table.lots .long{display:none}table.lots th{font-size:.7rem;letter-spacing:.02em}}
+.immeuble .scene{position:relative;background:linear-gradient(#FBF8F1,#F4F0E8);border:1px solid var(--trait);border-radius:8px;padding:8px;margin:0 0 .4rem;overflow:hidden}
+.immeuble svg{display:block;width:100%;height:auto;max-height:520px}
+.immeuble .lot{cursor:pointer;transition:opacity .2s}
+.immeuble .lot.eteint{opacity:.18}
+.immeuble .lot.actif polygon{stroke:#B0894C;stroke-width:2.5}
+.bulle{position:absolute;min-width:150px;background:#fff;border:1px solid var(--trait);border-top:3px solid var(--laiton);border-radius:6px;padding:8px 10px;font-size:.88rem;line-height:1.4;box-shadow:0 6px 18px rgba(22,26,30,.15);pointer-events:none}
+.bulle b{color:var(--bleu)}
+.bulle a{pointer-events:auto;font-weight:600}
+tr.vise td{background:var(--teinte)}
+.legende-typo{display:flex;flex-wrap:wrap;gap:12px;font-size:.8rem;color:var(--discret);margin:0 0 .4rem}
+.legende-typo i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:5px;vertical-align:middle}
 .infos{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0 0 1rem}
 .infos dt{color:var(--discret)}
 .infos dd{margin:0}
@@ -307,7 +318,7 @@ function pageProgramme(d, p) {
   const etage = e => e == null ? '—' : e === 0 ? 'RDC' : e + (e === 1 ? 'er' : 'e');
   const tableau = t => `<section class="typo"><h3>${esc(t)} · ${pluriel(groupes[t].length, 'logement', 'logements')}</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  ${groupes[t].sort((a, b) => (a.surface || 0) - (b.surface || 0)).map(l => `<tr><td>${l.surface != null ? nb(l.surface) + '\u00a0m²' : '—'}</td><td>${etage(l.etage)}</td><td>${esc(l.exterieur || '—')}</td><td class="prix-lot" data-lot="${esc(l.id == null ? '' : l.id)}" data-s="${l.surface || ''}">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>`).join('\n  ')}
+  ${groupes[t].sort((a, b) => (a.surface || 0) - (b.surface || 0)).map(l => `<tr id="l-${esc(l.id == null ? '' : l.id)}"><td>${l.surface != null ? nb(l.surface) + '\u00a0m²' : '—'}</td><td>${etage(l.etage)}</td><td>${esc(l.exterieur || '—')}</td><td class="prix-lot" data-lot="${esc(l.id == null ? '' : l.id)}" data-s="${l.surface || ''}">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>`).join('\n  ')}
   </tbody></table></section>`;
   return `${tete({ titre, description, url, test: d.test })}
 <main>
@@ -317,7 +328,13 @@ function pageProgramme(d, p) {
   <p class="chapo">Programme neuf à ${esc(d.ville)} (${esc(d.cp)})${p.picking ? '. Nous pouvons vous obtenir la grille de ce programme sur demande.' : p.nb_lots_libres ? ` : ${pluriel(p.nb_lots_libres, 'logement disponible', 'logements disponibles')}, relevés le ${dateFr(d.maj)}.` : '.'}</p>
   ${infos.length ? '<dl class="infos">' + infos.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('') + '</dl>' : ''}
   ${p.picking ? '<div class="puces"><span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span></div>' : ''}
-  ${typos.length ? `<h2>Les logements disponibles</h2>\n  ${typos.map(tableau).join('\n  ')}` : `<h2>Les logements</h2><p>La grille de ce programme est envoyée sur demande.</p>`}
+  ${typos.length ? `<h2>L’immeuble</h2>
+  <div class="immeuble">
+    <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button>${typos.map(t => `<button type="button" aria-pressed="false" data-t="${esc(t)}">${esc(t)}</button>`).join('')}</div>
+    <div class="scene"><svg id="imm" role="img" aria-label="Maquette de l’immeuble, un carré par logement disponible"></svg><div class="bulle" id="bulle" hidden></div></div>
+    <p class="note">Maquette dessinée à partir des logements disponibles : chaque carré est un logement, à son étage. La place exacte sur l’étage et la forme réelle du bâtiment peuvent différer.</p>
+  </div>
+  <h2>Les logements disponibles</h2>\n  ${typos.map(tableau).join('\n  ')}` : `<h2>Les logements</h2><p>La grille de ce programme est envoyée sur demande.</p>`}
   <section class="appel" id="compte">
     <h2>Voir les plans de ces logements</h2>
     <p>Les plans et les prix sont réservés à votre espace client. Il se crée en une minute ; en attendant, appelez-nous et nous vous les envoyons.</p>
@@ -327,8 +344,53 @@ function pageProgramme(d, p) {
 </main>
 ${pied}
 ${typos.length ? `<script>
+(function(){
+var L=${JSON.stringify((p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? 0 : l.etage, x: l.exterieur || '' }))).replace(/</g, '\\u003c')};
+var COUL={'T1':'#DCE7EC','T2':'#A9C9D5','T3':'#5E97AB','T4':'#005875','T5+':'#003B4F'},ORD=['T1','T2','T3','T4','T5+'];
+var svg=document.getElementById('imm'),bulle=document.getElementById('bulle'),NS='http://www.w3.org/2000/svg';
+// Étages : du plus bas au plus haut ; sur chaque étage, les logements rangés par taille.
+var et={},F=0;L.forEach(function(l){(et[l.e]=et[l.e]||[]).push(l);if(l.e>F)F=l.e});F=F+1;
+var N=1;Object.keys(et).forEach(function(k){et[k].sort(function(a,b){return ORD.indexOf(a.t)-ORD.indexOf(b.t)||a.s-b.s});if(et[k].length>N)N=et[k].length});
+var w=36,h=26,D=Math.max(90,Math.round(N*w*.45)),c=0.866,sn=0.5;
+var P=function(x,y,z){return[(x-z)*c,(x+z)*sn-y]};
+var pts=[];for(var a=0;a<=1;a++)for(var b=0;b<=1;b++)for(var g=0;g<=1;g++)pts.push(P(a*N*w,b*(F*h+10),g*D));
+var minX=Math.min.apply(0,pts.map(function(q){return q[0]}))-14,maxX=Math.max.apply(0,pts.map(function(q){return q[0]}))+14,minY=Math.min.apply(0,pts.map(function(q){return q[1]}))-14,maxY=Math.max.apply(0,pts.map(function(q){return q[1]}))+24;
+svg.setAttribute('viewBox',minX+' '+minY+' '+(maxX-minX)+' '+(maxY-minY));
+var poly=function(par,q,f,st,cl){var e=document.createElementNS(NS,'polygon');e.setAttribute('points',q.map(function(v){return v.join(',')}).join(' '));e.setAttribute('fill',f);if(st){e.setAttribute('stroke',st);e.setAttribute('stroke-width','1')}if(cl)e.setAttribute('class',cl);par.appendChild(e);return e};
+// ombre au sol, côté, toit
+poly(svg,[P(-8,0,-8),P(N*w+14,0,-8),P(N*w+14,0,D+16),P(-8,0,D+16)],'rgba(22,26,30,.07)');
+poly(svg,[P(0,0,0),P(0,0,D),P(0,F*h,D),P(0,F*h,0)],'#E4DED2','#D8D2C5');
+poly(svg,[P(0,F*h+10,0),P(N*w,F*h+10,0),P(N*w,F*h+10,D),P(0,F*h+10,D)],'#EFEAE0','#D8D2C5');
+poly(svg,[P(0,0,D),P(N*w,0,D),P(N*w,F*h,D),P(0,F*h,D)],'#F7F3EB','#D8D2C5');
+poly(svg,[P(0,F*h,D),P(N*w,F*h,D),P(N*w,F*h+10,D),P(0,F*h+10,D)],'#B0894C');
+poly(svg,[P(0,F*h,0),P(0,F*h,D),P(0,F*h+10,D),P(0,F*h+10,0)],'#9A7843');
+// façade : une case par logement, étages sans logement disponible en gris
+for(var f=0;f<F;f++){var rang=et[f]||[];for(var k=0;k<N;k++){var l=rang[k],x0=k*w,y0=f*h,q=[P(x0+2,y0+2,D),P(x0+w-2,y0+2,D),P(x0+w-2,y0+h-2,D),P(x0+2,y0+h-2,D)];
+  if(!l){poly(svg,q,'#ECE7DD','#D8D2C5');continue}
+  var gp=document.createElementNS(NS,'g');gp.setAttribute('class','lot');gp.setAttribute('data-t',l.t);gp.setAttribute('tabindex','0');gp.setAttribute('role','button');
+  gp.setAttribute('aria-label',l.t+', '+l.s+' m², '+(l.e?l.e+'e étage':'rez-de-chaussée'));
+  poly(gp,q,COUL[l.t]||'#5E97AB','#FFFFFF');svg.appendChild(gp);(function(l,gp){
+    var montrer=function(){var r=svg.getBoundingClientRect(),b=gp.getBoundingClientRect(),pr=window.GLR_PRIX&&window.GLR_PRIX[l.i];
+      bulle.innerHTML='<b>'+l.t+'</b> · '+String(l.s).replace('.',',')+'\u00a0m²<br>'+(l.e?l.e+(l.e==1?'er':'e')+' étage':'Rez-de-chaussée')+(l.x?' · '+l.x:'')+'<br>'+(pr?'<b>'+Math.round(pr).toLocaleString('fr-FR')+'\u00a0€</b>':'Prix sur demande');
+      bulle.hidden=false;var sc=svg.parentNode.getBoundingClientRect(),X=b.left-sc.left+b.width/2,Y=b.top-sc.top;
+      bulle.style.left=Math.max(6,Math.min(sc.width-bulle.offsetWidth-6,X-bulle.offsetWidth/2))+'px';bulle.style.top=Math.max(6,Y-bulle.offsetHeight-8)+'px';
+      document.querySelectorAll('.lot.actif').forEach(function(z){z.classList.remove('actif')});gp.classList.add('actif');};
+    gp.addEventListener('mouseenter',montrer);gp.addEventListener('focus',montrer);
+    gp.addEventListener('mouseleave',function(){bulle.hidden=true;gp.classList.remove('actif')});
+    gp.addEventListener('click',function(){montrer();var tr=document.getElementById('l-'+l.i);if(tr){document.querySelectorAll('tr.vise').forEach(function(z){z.classList.remove('vise')});tr.classList.add('vise');tr.scrollIntoView({behavior:'smooth',block:'center'})}});
+  })(l,gp);}}
+// légende
+var lg=document.createElement('div');lg.className='legende-typo';lg.innerHTML=ORD.filter(function(t){return L.some(function(l){return l.t===t})}).map(function(t){return '<span><i style="background:'+COUL[t]+'"></i>'+t+'</span>'}).join('');svg.parentNode.parentNode.insertBefore(lg,svg.parentNode);
+// filtre par taille
+var bs=document.querySelectorAll('.immeuble .filtres button');bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t');
+  bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+  document.querySelectorAll('.lot').forEach(function(g){g.classList.toggle('eteint',!!t&&g.getAttribute('data-t')!==t)});
+  document.querySelectorAll('section.typo').forEach(function(s){s.style.display=!t||s.querySelector('h3').textContent.indexOf(t+' ')===0?'':'none'});});});
+})();
+</script>
+<script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+'\u00a0€'};
-var poser=function(m){cs.forEach(function(c){var v=m&&m[c.getAttribute('data-lot')];c.textContent=v?eu(v):'sur demande'})};
+var poser=function(m){window.GLR_PRIX=m||{};cs.forEach(function(c){var v=m&&m[c.getAttribute('data-lot')];c.textContent=v?eu(v):'sur demande'})};
 ${d.test ? `// Page d'essai : prix fictifs calculés ici, aucun prix dans le dépôt.
 var m={};cs.forEach(function(c){m[c.getAttribute('data-lot')]=Math.round(c.getAttribute('data-s')*5200/1000)*1000});poser(m);` :
 `fetch(${JSON.stringify(PRIX_URL)}+'?p='+encodeURIComponent(${JSON.stringify(String(p.pige_id || ''))}),{headers:{accept:'application/json'}})
