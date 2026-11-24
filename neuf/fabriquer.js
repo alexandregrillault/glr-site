@@ -9,7 +9,7 @@ const ICI = __dirname;
 const SITE = 'https://www.glrimmobilier.com';
 // Où mène le bouton « Recevoir les plans et les prix » tant que l'espace client n'existe pas.
 // Interrupteurs en attendant l'arbitrage d'Alex : false = le chiffre n'apparaît nulle part sur les pages.
-const AFFICHER = { prixAPartirDe: true, prixM2: true };
+const AFFICHER = { prixAPartirDe: false, prixM2: false };
 const CONTACT = { tel: '+33614550273', telAffiche: '06 14 55 02 73', mail: 'agl@glrimmobilier.com' };
 
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -23,9 +23,18 @@ function verifier(d, fichier) {
   if (manque.length) throw new Error(fichier + ' : champs manquants ' + manque.join(', '));
   if (d.version !== 1) throw new Error(fichier + ' : version ' + d.version + ' inconnue');
   if (!/^[a-z0-9-]+$/.test(d.slug)) throw new Error(fichier + ' : slug invalide');
-  const interdits = ['prix_lot', 'lots', 'commission', 'commission_pct', 'extranet', 'lat', 'lng'];
+  // Rien de confidentiel sur une page publique (dépôt public) : ni prix de lot, ni plan, ni commission (décision d'Alex du 24/11/2026 : listing sans prix, plans avec compte).
+  const interdits = ['prix', 'prix_lot', 'lots', 'plan', 'plans', 'plan_url', 'commission', 'commission_pct', 'extranet', 'lat', 'lng'];
   const vus = JSON.stringify(d).match(new RegExp('"(' + interdits.join('|') + ')"', 'g'));
   if (vus) throw new Error(fichier + ' : champs interdits sur une page publique ' + [...new Set(vus)].join(', '));
+  const permis = ['typo', 'pieces', 'surface', 'etage', 'exterieur'];
+  for (const p of d.programmes) {
+    if (!/^[a-z0-9-]+$/.test(p.slug || '')) throw new Error(fichier + ' : slug de programme invalide ' + p.slug);
+    for (const l of p.logements || []) {
+      const en_trop = Object.keys(l).filter(k => !permis.includes(k));
+      if (en_trop.length) throw new Error(fichier + ' : ' + p.slug + ' : champs de logement non permis ' + en_trop.join(', '));
+    }
+  }
 }
 
 const CSS = `
@@ -83,6 +92,25 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .appel a{display:inline-block;padding:12px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .appel a.plein{background:#fff;color:var(--bleu)}
 .appel a.creux{border:1px solid #fff;color:#fff}
+.carte{height:340px;border-radius:8px;border:1px solid var(--trait);margin:0 0 .6rem;z-index:0}
+.legende{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;color:var(--discret);margin:0 0 1rem}
+.legende i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:middle}
+.repere{width:18px;height:18px;border-radius:50%;background:var(--bleu);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.repere.picking{background:var(--laiton)}
+.leaflet-popup-content{font-family:var(--body);font-size:.9rem;line-height:1.45}
+.leaflet-popup-content b{font-family:var(--display);font-weight:500;font-size:1.05rem}
+.leaflet-popup-content a.voir{display:inline-block;margin-top:6px;font-weight:600}
+.typo{margin:0 0 1.4rem}
+.typo h3{font-family:var(--display);font-weight:500;font-size:1.2rem;margin:0 0 .5rem}
+table.lots{width:100%;border-collapse:collapse;background:var(--carte);border:1px solid var(--trait);border-radius:8px;overflow:hidden;font-size:.92rem}
+table.lots th{text-align:left;font-weight:600;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--laiton-texte);padding:9px 10px;border-bottom:1px solid var(--trait)}
+table.lots td{padding:9px 10px;border-bottom:1px solid var(--trait)}
+table.lots tr:last-child td{border-bottom:0}
+table.lots td.plan{text-align:right;white-space:nowrap}
+table.lots td.plan a{font-weight:600;text-decoration:none}
+.infos{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0 0 1rem}
+.infos dt{color:var(--discret)}
+.infos dd{margin:0}
 .note{font-size:.8rem;color:var(--discret);margin:1.2rem 0 0}
 footer{border-top:1px solid var(--trait);padding:22px 16px;text-align:center;font-size:.85rem;color:var(--discret)}
 footer a{color:var(--discret)}
@@ -94,7 +122,7 @@ footer a{color:var(--discret)}
 @media (min-width:1000px){.liste{grid-template-columns:1fr 1fr 1fr}}
 `;
 
-function tete({ titre, description, url, test }) {
+function tete({ titre, description, url, test, carte }) {
   return `<!doctype html>
 <html lang="fr">
 <head>
@@ -112,7 +140,7 @@ ${test ? '<meta name="robots" content="noindex, nofollow">\n' : ''}<meta propert
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Archivo:wght@400;500;600&display=swap">
-<style>${CSS}</style>
+${carte ? '<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">\n' : ''}<style>${CSS}</style>
 </head>
 <body>
 ${test ? '<div class="test">Page d’essai — données fictives, non publiée</div>\n' : ''}<header><a href="/" aria-label="GLR Immobilier — accueil"><img src="/logo-glr.png" alt="GLR Immobilier" width="85" height="68"></a><a class="tel" href="tel:${CONTACT.tel}">${CONTACT.telAffiche}</a></header>`;
@@ -135,7 +163,7 @@ function carteProgramme(p) {
   const disp = (p.dispositifs || []).filter(x => !/LLI|LMNP/i.test(x)).map(t => `<span class="puce laiton">${esc(t)}</span>`).join('');
   // Programme sans mandat (« Oui, c'est ça », Alex, 24/11/2026) ; libellé à lui montrer avant mise en ligne.
   const picking = p.picking ? '<span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span>' : '';
-  const nom = p.page_programme ? `<a href="${esc(p.page_programme)}">${esc(p.nom)}</a>` : esc(p.nom);
+  const nom = `<a href="${esc(p.slug)}/">${esc(p.nom)}</a>`;
   return `<article class="prog" data-typos="${esc((p.typologies || []).join(' '))}">
   <h3>${nom}</h3>
   <p class="qui">${esc(p.promoteur)}</p>
@@ -154,13 +182,17 @@ function pageVille(d) {
   const typosFiltre = ['T1', 'T2', 'T3', 'T4', 'T5+'].filter(t => d.programmes.some(p => (p.typologies || []).includes(t)));
   // Programmes « picking » (sans mandat, source picking ; les « nomandat » ne sont jamais fournis) : en fin de liste, grille sur demande.
   const progs = [...d.programmes].sort((a, b) => (a.picking ? 1 : 0) - (b.picking ? 1 : 0) || (a.livraison_cle || '').localeCompare(b.livraison_cle || '') || (b.nb_lots_libres || 0) - (a.nb_lots_libres || 0));
+  // Position arrondie au millième (une centaine de mètres) : on montre le secteur, pas l'adresse exacte.
+  const reperes = progs.filter(p => p.position && p.position.latitude != null).map(p => ({
+    n: p.nom, u: p.slug + '/', k: !!p.picking, l: p.picking ? 'Grille sur demande' : (p.nb_lots_libres ? pluriel(p.nb_lots_libres, 'logement disponible', 'logements disponibles') : ''),
+    v: p.livraison || '', a: Math.round(p.position.latitude * 1000) / 1000, o: Math.round(p.position.longitude * 1000) / 1000 }));
   const ld = {
     '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE + '/' },
       { '@type': 'ListItem', position: 2, name: 'Immobilier neuf', item: SITE + '/neuf/' },
       { '@type': 'ListItem', position: 3, name: d.ville, item: url }]
   };
-  return `${tete({ titre, description, url, test: d.test })}
+  return `${tete({ titre, description, url, test: d.test, carte: true })}
 <main>
   <p class="fil"><a href="/">Accueil</a> › <a href="/neuf/">Immobilier neuf</a> › ${esc(d.ville)}</p>
   <h1>Immobilier neuf à ${esc(d.ville)}</h1>
@@ -188,6 +220,8 @@ function pageVille(d) {
   </div>` : ''}
 
   <h2>Les programmes neufs à ${esc(d.ville)}</h2>
+  ${reperes.length ? `<div id="carte" class="carte" role="img" aria-label="Carte des programmes neufs à ${esc(d.ville)}"></div>
+  <p class="legende"><span><i style="background:var(--bleu)"></i>Programme en vente</span>${reperes.some(x => x.k) ? '<span><i style="background:var(--laiton)"></i>Picking, grille sur demande</span>' : ''}</p>` : ''}
   ${typosFiltre.length > 1 ? `<div class="filtres" role="group" aria-label="Filtrer par taille"><button type="button" aria-pressed="true" data-t="">Tous</button>${typosFiltre.map(t => `<button type="button" aria-pressed="false" data-t="${t}">${t}</button>`).join('')}</div>` : ''}
   <div class="liste">
 ${progs.map(carteProgramme).join('\n')}
@@ -203,6 +237,15 @@ ${progs.map(carteProgramme).join('\n')}
 </main>
 ${pied}
 <script type="application/ld+json">${JSON.stringify(ld)}</script>
+${reperes.length ? `<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+(function(){if(!window.L)return;var R=${JSON.stringify(reperes).replace(/</g, '\\u003c')};
+var m=L.map('carte',{scrollWheelZoom:false});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; contributeurs OpenStreetMap'}).addTo(m);
+var e=function(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})},b=[];
+R.forEach(function(r){var i=L.divIcon({className:'',html:'<div class="repere'+(r.k?' picking':'')+'"></div>',iconSize:[18,18],iconAnchor:[9,9]});
+L.marker([r.a,r.o],{icon:i,title:r.n}).addTo(m).bindPopup('<b>'+e(r.n)+'</b>'+(r.v?'<br>Livraison '+e(r.v):'')+(r.l?'<br>'+e(r.l):'')+'<br><a class="voir" href="'+e(r.u)+'">Voir le programme</a>');b.push([r.a,r.o]);});
+m.fitBounds(b,{padding:[30,30],maxZoom:15});})();
+</script>` : ''}
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;
@@ -210,6 +253,45 @@ bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
 cs.forEach(function(c){var ok=!t||(' '+c.getAttribute('data-typos')+' ').indexOf(' '+t+' ')>-1;c.style.display=ok?'':'none';if(ok)n++});
 v.style.display=n?'none':'block';});});})();
 </script>
+</body>
+</html>
+`;
+}
+
+function pageProgramme(d, p) {
+  const url = `${SITE}/neuf/${d.slug}/${p.slug}/`;
+  const titre = `${p.nom} à ${d.ville} — programme neuf | GLR Immobilier`;
+  const description = `${p.nom}, programme neuf à ${d.ville} (${d.cp})` + (p.promoteur ? ` par ${p.promoteur}` : '') + (p.livraison ? `, livraison ${p.livraison}` : '') +
+    (p.nb_lots_libres ? `. ${pluriel(p.nb_lots_libres, 'logement disponible', 'logements disponibles')}` : '') + `. Plans envoyés par GLR Immobilier.`;
+  const infos = [['Promoteur', p.promoteur], ['Livraison', p.livraison], ['Quartier', p.quartier],
+    ['Transport', p.gare ? p.gare + (p.gare_minutes_a_pied ? ' · ' + p.gare_minutes_a_pied + '\u00a0min à pied' : '') : null],
+    ['Dispositifs', (p.dispositifs || []).filter(x => !/LLI|LMNP/i.test(x)).join(', ') || null]].filter(x => x[1]);
+  const ordre = ['T1', 'T2', 'T3', 'T4', 'T5+'];
+  const groupes = {};
+  for (const l of p.logements || []) (groupes[l.typo] = groupes[l.typo] || []).push(l);
+  const typos = Object.keys(groupes).sort((a, b) => ordre.indexOf(a) - ordre.indexOf(b));
+  const etage = e => e == null ? '—' : e === 0 ? 'RDC' : e + (e === 1 ? 'er' : 'e');
+  const tableau = t => `<section class="typo"><h3>${esc(t)} · ${pluriel(groupes[t].length, 'logement', 'logements')}</h3>
+  <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th></th></tr></thead><tbody>
+  ${groupes[t].sort((a, b) => (a.surface || 0) - (b.surface || 0)).map(l => `<tr><td>${l.surface != null ? nb(l.surface) + '\u00a0m²' : '—'}</td><td>${etage(l.etage)}</td><td>${esc(l.exterieur || '—')}</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>`).join('\n  ')}
+  </tbody></table></section>`;
+  return `${tete({ titre, description, url, test: d.test })}
+<main>
+  <p class="fil"><a href="/">Accueil</a> › <a href="/neuf/">Immobilier neuf</a> › <a href="../">${esc(d.ville)}</a> › ${esc(p.nom)}</p>
+  <h1>${esc(p.nom)}</h1>
+  <hr class="filet">
+  <p class="chapo">Programme neuf à ${esc(d.ville)} (${esc(d.cp)})${p.picking ? '. Nous pouvons vous obtenir la grille de ce programme sur demande.' : p.nb_lots_libres ? ` : ${pluriel(p.nb_lots_libres, 'logement disponible', 'logements disponibles')}, relevés le ${dateFr(d.maj)}.` : '.'}</p>
+  ${infos.length ? '<dl class="infos">' + infos.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('') + '</dl>' : ''}
+  ${p.picking ? '<div class="puces"><span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span></div>' : ''}
+  ${typos.length ? `<h2>Les logements disponibles</h2>\n  ${typos.map(tableau).join('\n  ')}` : `<h2>Les logements</h2><p>La grille de ce programme est envoyée sur demande.</p>`}
+  <section class="appel" id="compte">
+    <h2>Voir les plans de ces logements</h2>
+    <p>Les plans et les prix sont réservés à votre espace client. Il se crée en une minute ; en attendant, appelez-nous et nous vous les envoyons.</p>
+    <div class="boutons"><a class="plein" href="tel:${CONTACT.tel}">Appeler le ${CONTACT.telAffiche}</a><a class="creux" href="mailto:${CONTACT.mail}?subject=${encodeURIComponent('Plans de ' + p.nom + ' à ' + d.ville)}">Écrire un e-mail</a></div>
+  </section>
+  <p class="note">Disponibilités relevées le ${dateFr(d.maj)} ; elles changent chaque semaine et sont confirmées par votre conseiller.</p>
+</main>
+${pied}
 </body>
 </html>
 `;
@@ -243,6 +325,10 @@ const villes = fs.readdirSync(dossier).filter(f => f.endsWith('.json')).sort().m
 for (const d of villes) {
   fs.mkdirSync(path.join(ICI, d.slug), { recursive: true });
   fs.writeFileSync(path.join(ICI, d.slug, 'index.html'), pageVille(d));
+  for (const p of d.programmes) {
+    fs.mkdirSync(path.join(ICI, d.slug, p.slug), { recursive: true });
+    fs.writeFileSync(path.join(ICI, d.slug, p.slug, 'index.html'), pageProgramme(d, p));
+  }
 }
 villes.sort((a, b) => a.ville.localeCompare(b.ville, 'fr'));
 fs.writeFileSync(path.join(ICI, 'index.html'), pageIndex(villes));

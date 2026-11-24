@@ -71,6 +71,25 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .appel a{display:inline-block;padding:12px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .appel a.plein{background:#fff;color:var(--bleu)}
 .appel a.creux{border:1px solid #fff;color:#fff}
+.carte{height:340px;border-radius:8px;border:1px solid var(--trait);margin:0 0 .6rem;z-index:0}
+.legende{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;color:var(--discret);margin:0 0 1rem}
+.legende i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:middle}
+.repere{width:18px;height:18px;border-radius:50%;background:var(--bleu);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.repere.picking{background:var(--laiton)}
+.leaflet-popup-content{font-family:var(--body);font-size:.9rem;line-height:1.45}
+.leaflet-popup-content b{font-family:var(--display);font-weight:500;font-size:1.05rem}
+.leaflet-popup-content a.voir{display:inline-block;margin-top:6px;font-weight:600}
+.typo{margin:0 0 1.4rem}
+.typo h3{font-family:var(--display);font-weight:500;font-size:1.2rem;margin:0 0 .5rem}
+table.lots{width:100%;border-collapse:collapse;background:var(--carte);border:1px solid var(--trait);border-radius:8px;overflow:hidden;font-size:.92rem}
+table.lots th{text-align:left;font-weight:600;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--laiton-texte);padding:9px 10px;border-bottom:1px solid var(--trait)}
+table.lots td{padding:9px 10px;border-bottom:1px solid var(--trait)}
+table.lots tr:last-child td{border-bottom:0}
+table.lots td.plan{text-align:right;white-space:nowrap}
+table.lots td.plan a{font-weight:600;text-decoration:none}
+.infos{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0 0 1rem}
+.infos dt{color:var(--discret)}
+.infos dd{margin:0}
 .note{font-size:.8rem;color:var(--discret);margin:1.2rem 0 0}
 footer{border-top:1px solid var(--trait);padding:22px 16px;text-align:center;font-size:.85rem;color:var(--discret)}
 footer a{color:var(--discret)}
@@ -91,11 +110,11 @@ footer a{color:var(--discret)}
   <hr class="filet">
   <p class="chapo">Nous suivons tous les programmes neufs de ces villes et vous envoyons les plans et les prix de ceux qui vous correspondent.</p>
   <div class="villes">
-    <a href="/neuf/aubervilliers/"><b>Aubervilliers</b><span>23 programmes · 639 logements disponibles · 5 450 €/m²</span></a>
-    <a href="/neuf/colombes/"><b>Colombes</b><span>15 programmes · 373 logements disponibles · 6 340 €/m²</span></a>
-    <a href="/neuf/drancy/"><b>Drancy</b><span>12 programmes · 331 logements disponibles · 4 920 €/m²</span></a>
-    <a href="/neuf/l-hay-les-roses/"><b>L’Haÿ-les-Roses</b><span>15 programmes · 524 logements disponibles · 6 120 €/m²</span></a>
-    <a href="/neuf/villiers-sur-marne/"><b>Villiers-sur-Marne</b><span>13 programmes · 456 logements disponibles · 4 780 €/m²</span></a>
+    <a href="/neuf/aubervilliers/"><b>Aubervilliers</b><span>23 programmes · 639 logements disponibles</span></a>
+    <a href="/neuf/colombes/"><b>Colombes</b><span>15 programmes · 373 logements disponibles</span></a>
+    <a href="/neuf/drancy/"><b>Drancy</b><span>12 programmes · 331 logements disponibles</span></a>
+    <a href="/neuf/l-hay-les-roses/"><b>L’Haÿ-les-Roses</b><span>15 programmes · 524 logements disponibles</span></a>
+    <a href="/neuf/villiers-sur-marne/"><b>Villiers-sur-Marne</b><span>13 programmes · 456 logements disponibles</span></a>
   </div>
 </main>
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>

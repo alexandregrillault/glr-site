@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Immobilier neuf à Drancy (93700) : 12 programmes | GLR Immobilier</title>
-<meta name="description" content="12 programmes neufs et 331 logements disponibles à Drancy, 4 920 €/m² en moyenne. Plans et prix de tous les promoteurs, mis à jour à chaque pige par GLR Immobilier.">
+<meta name="description" content="12 programmes neufs et 331 logements disponibles à Drancy. Plans et prix de tous les promoteurs, mis à jour à chaque pige par GLR Immobilier.">
 <link rel="canonical" href="https://www.glrimmobilier.com/neuf/drancy/">
 <meta name="robots" content="noindex, nofollow">
 <meta property="og:title" content="Immobilier neuf à Drancy (93700) : 12 programmes | GLR Immobilier">
-<meta property="og:description" content="12 programmes neufs et 331 logements disponibles à Drancy, 4 920 €/m² en moyenne. Plans et prix de tous les promoteurs, mis à jour à chaque pige par GLR Immobilier.">
+<meta property="og:description" content="12 programmes neufs et 331 logements disponibles à Drancy. Plans et prix de tous les promoteurs, mis à jour à chaque pige par GLR Immobilier.">
 <meta property="og:url" content="https://www.glrimmobilier.com/neuf/drancy/">
 <meta property="og:image" content="https://www.glrimmobilier.com/logo-glr.png">
 <link rel="icon" type="image/png" href="/logo-glr.png">
@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Archivo:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <style>
 :root{color-scheme:light;--bleu:#005875;--laiton:#B0894C;--laiton-texte:#8A6A2F;--fond:#F4F0E8;--carte:#FBF8F1;--texte:#161A1E;--discret:#616B75;--trait:#D8D2C5;--teinte:#DCE7EC;
   --display:"Bodoni Moda","Didot","Times New Roman",serif;--body:"Archivo","Helvetica Neue",Arial,sans-serif}
@@ -71,6 +72,25 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .appel a{display:inline-block;padding:12px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .appel a.plein{background:#fff;color:var(--bleu)}
 .appel a.creux{border:1px solid #fff;color:#fff}
+.carte{height:340px;border-radius:8px;border:1px solid var(--trait);margin:0 0 .6rem;z-index:0}
+.legende{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;color:var(--discret);margin:0 0 1rem}
+.legende i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:middle}
+.repere{width:18px;height:18px;border-radius:50%;background:var(--bleu);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.repere.picking{background:var(--laiton)}
+.leaflet-popup-content{font-family:var(--body);font-size:.9rem;line-height:1.45}
+.leaflet-popup-content b{font-family:var(--display);font-weight:500;font-size:1.05rem}
+.leaflet-popup-content a.voir{display:inline-block;margin-top:6px;font-weight:600}
+.typo{margin:0 0 1.4rem}
+.typo h3{font-family:var(--display);font-weight:500;font-size:1.2rem;margin:0 0 .5rem}
+table.lots{width:100%;border-collapse:collapse;background:var(--carte);border:1px solid var(--trait);border-radius:8px;overflow:hidden;font-size:.92rem}
+table.lots th{text-align:left;font-weight:600;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--laiton-texte);padding:9px 10px;border-bottom:1px solid var(--trait)}
+table.lots td{padding:9px 10px;border-bottom:1px solid var(--trait)}
+table.lots tr:last-child td{border-bottom:0}
+table.lots td.plan{text-align:right;white-space:nowrap}
+table.lots td.plan a{font-weight:600;text-decoration:none}
+.infos{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0 0 1rem}
+.infos dt{color:var(--discret)}
+.infos dd{margin:0}
 .note{font-size:.8rem;color:var(--discret);margin:1.2rem 0 0}
 footer{border-top:1px solid var(--trait);padding:22px 16px;text-align:center;font-size:.85rem;color:var(--discret)}
 footer a{color:var(--discret)}
@@ -94,8 +114,8 @@ footer a{color:var(--discret)}
   <div class="chiffres">
     <div class="chiffre"><b>12</b><span>programmes en vente</span></div>
     <div class="chiffre"><b>331</b><span>logements disponibles</span></div>
-    <div class="chiffre"><b>4 920 €</b><span>prix moyen au m²</span></div>
-    <div class="chiffre"><b>179 000 €</b><span>premier prix</span></div>
+    <div class="chiffre"><b>8</b><span>promoteurs</span></div>
+    <div class="chiffre"><b>3</b><span>années de livraison</span></div>
   </div>
 
   <div class="deux">
@@ -112,87 +132,89 @@ footer a{color:var(--discret)}
   </div>
 
   <h2>Les programmes neufs à Drancy</h2>
+  <div id="carte" class="carte" role="img" aria-label="Carte des programmes neufs à Drancy"></div>
+  <p class="legende"><span><i style="background:var(--bleu)"></i>Programme en vente</span><span><i style="background:var(--laiton)"></i>Picking, grille sur demande</span></p>
   <div class="filtres" role="group" aria-label="Filtrer par taille"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T1">T1</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
   <div class="liste">
 <article class="prog" data-typos="T1 T2 T3 T4">
-  <h3>Le Patio (test)</h3>
+  <h3><a href="programme-test-9/">Le Patio (test)</a></h3>
   <p class="qui">Promoteur A</p>
   <dl><dt>Livraison</dt><dd>1er trimestre 2026</dd><dt>Quartier</dt><dd>Quartier 1</dd><dt>Transport</dt><dd>Le Bourget RER (à venir) · 12 min à pied</dd></dl>
   <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce laiton">PTZ</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>193 000 €</span><span class="dispo">14 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">14 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T2 T3 T4 T5+">
-  <h3>Les Jardins du Canal (test)</h3>
+  <h3><a href="programme-test-12/">Les Jardins du Canal (test)</a></h3>
   <p class="qui">Promoteur D</p>
   <dl><dt>Livraison</dt><dd>2e trimestre 2026</dd><dt>Quartier</dt><dd>Quartier 4</dd></dl>
   <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce">T5+</span><span class="puce laiton">PTZ</span></div>
   <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">43 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T1 T2 T3 T4">
-  <h3>Esprit Parc (test)</h3>
+  <h3><a href="programme-test-3/">Esprit Parc (test)</a></h3>
   <p class="qui">Promoteur C</p>
   <dl><dt>Livraison</dt><dd>3e trimestre 2026</dd><dt>Quartier</dt><dd>Quartier 3</dd><dt>Transport</dt><dd>Le Bourget RER (à venir) · 6 min à pied</dd></dl>
   <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce laiton">PTZ</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>205 000 €</span><span class="dispo">36 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">36 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T2 T3 T4 T5+">
-  <h3>Côté Jardin (test)</h3>
+  <h3><a href="programme-test-6/">Côté Jardin (test)</a></h3>
   <p class="qui">Promoteur F</p>
   <dl><dt>Livraison</dt><dd>4e trimestre 2026</dd><dt>Quartier</dt><dd>Quartier 2</dd></dl>
   <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce">T5+</span><span class="puce laiton">PTZ</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>244 000 €</span><span class="dispo">39 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">39 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T1 T2">
-  <h3>Les Hauts de Seine (test)</h3>
+  <h3><a href="programme-test-1/">Les Hauts de Seine (test)</a></h3>
   <p class="qui">Promoteur A</p>
   <dl><dt>Livraison</dt><dd>1er trimestre 2027</dd><dt>Transport</dt><dd>Le Bourget, Drancy · 4 min à pied</dd></dl>
   <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce laiton">PTZ</span><span class="puce laiton">TVA 5,5 %</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>179 000 €</span><span class="dispo">25 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">25 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T2 T3">
-  <h3>L’Atelier (test)</h3>
+  <h3><a href="programme-test-4/">L’Atelier (test)</a></h3>
   <p class="qui">Promoteur D</p>
   <dl><dt>Livraison</dt><dd>2e trimestre 2027</dd></dl>
   <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce laiton">PTZ</span><span class="puce laiton">TVA 5,5 %</span></div>
   <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">28 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T1 T2">
-  <h3>Le Carré Saint-Jean (test)</h3>
+  <h3><a href="programme-test-7/">Le Carré Saint-Jean (test)</a></h3>
   <p class="qui">Promoteur G</p>
   <dl><dt>Livraison</dt><dd>3e trimestre 2027</dd><dt>Transport</dt><dd>Le Bourget, Drancy · 10 min à pied</dd></dl>
   <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce laiton">PTZ</span><span class="puce laiton">TVA 5,5 %</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>257 000 €</span><span class="dispo">30 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">30 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T2 T3 T4">
-  <h3>Villa Émeraude (test)</h3>
+  <h3><a href="programme-test-8/">Villa Émeraude (test)</a></h3>
   <p class="qui">Promoteur H</p>
   <dl><dt>Livraison</dt><dd>2e trimestre 2028</dd><dt>Quartier</dt><dd>Quartier 4</dd></dl>
   <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce laiton">PTZ</span></div>
   <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">22 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T1 T2 T3">
-  <h3>Les Marronniers (test)</h3>
+  <h3><a href="programme-test-11/">Les Marronniers (test)</a></h3>
   <p class="qui">Promoteur C</p>
   <dl><dt>Livraison</dt><dd>3e trimestre 2028</dd><dt>Quartier</dt><dd>Quartier 3</dd></dl>
   <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce">T3</span><span class="puce laiton">PTZ</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>219 000 €</span><span class="dispo">25 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">25 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T2 T3 T4">
-  <h3>Le Belvédère (test)</h3>
+  <h3><a href="programme-test-2/">Le Belvédère (test)</a></h3>
   <p class="qui">Promoteur B</p>
   <dl><dt>Livraison</dt><dd>4e trimestre 2028</dd><dt>Quartier</dt><dd>Quartier 2</dd></dl>
   <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce laiton">PTZ</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>192 000 €</span><span class="dispo">17 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">17 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="">
-  <h3>Les Rives (test)</h3>
+  <h3><a href="programme-test-5/">Les Rives (test)</a></h3>
   <p class="qui">Promoteur E</p>
   <dl><dt>Quartier</dt><dd>Quartier 1</dd></dl>
   <div class="puces"><span class="puce laiton">PTZ</span><span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span></div>
   <div class="bas"><span class="prix"><small>grille</small>sur demande</span></div>
 </article>
 <article class="prog" data-typos="">
-  <h3>Origine (test)</h3>
+  <h3><a href="programme-test-10/">Origine (test)</a></h3>
   <p class="qui">Promoteur B</p>
   
   <div class="puces"><span class="puce laiton">PTZ</span><span class="puce laiton">TVA 5,5 %</span><span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span></div>
@@ -210,6 +232,15 @@ footer a{color:var(--discret)}
 </main>
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.glrimmobilier.com/"},{"@type":"ListItem","position":2,"name":"Immobilier neuf","item":"https://www.glrimmobilier.com/neuf/"},{"@type":"ListItem","position":3,"name":"Drancy","item":"https://www.glrimmobilier.com/neuf/drancy/"}]}</script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+(function(){if(!window.L)return;var R=[{"n":"Le Patio (test)","u":"programme-test-9/","k":false,"l":"14 logements disponibles","v":"1er trimestre 2026","a":48.917,"o":2.441},{"n":"Les Jardins du Canal (test)","u":"programme-test-12/","k":false,"l":"43 logements disponibles","v":"2e trimestre 2026","a":48.914,"o":2.448},{"n":"Esprit Parc (test)","u":"programme-test-3/","k":false,"l":"36 logements disponibles","v":"3e trimestre 2026","a":48.916,"o":2.462},{"n":"Côté Jardin (test)","u":"programme-test-6/","k":false,"l":"39 logements disponibles","v":"4e trimestre 2026","a":48.921,"o":2.447},{"n":"Les Hauts de Seine (test)","u":"programme-test-1/","k":false,"l":"25 logements disponibles","v":"1er trimestre 2027","a":48.915,"o":2.434},{"n":"L’Atelier (test)","u":"programme-test-4/","k":false,"l":"28 logements disponibles","v":"2e trimestre 2027","a":48.924,"o":2.46},{"n":"Le Carré Saint-Jean (test)","u":"programme-test-7/","k":false,"l":"30 logements disponibles","v":"3e trimestre 2027","a":48.912,"o":2.442},{"n":"Villa Émeraude (test)","u":"programme-test-8/","k":false,"l":"22 logements disponibles","v":"2e trimestre 2028","a":48.922,"o":2.431},{"n":"Les Marronniers (test)","u":"programme-test-11/","k":false,"l":"25 logements disponibles","v":"3e trimestre 2028","a":48.924,"o":2.435},{"n":"Le Belvédère (test)","u":"programme-test-2/","k":false,"l":"17 logements disponibles","v":"4e trimestre 2028","a":48.926,"o":2.461},{"n":"Les Rives (test)","u":"programme-test-5/","k":true,"l":"Grille sur demande","v":"","a":48.917,"o":2.462},{"n":"Origine (test)","u":"programme-test-10/","k":true,"l":"Grille sur demande","v":"","a":48.913,"o":2.455}];
+var m=L.map('carte',{scrollWheelZoom:false});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; contributeurs OpenStreetMap'}).addTo(m);
+var e=function(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})},b=[];
+R.forEach(function(r){var i=L.divIcon({className:'',html:'<div class="repere'+(r.k?' picking':'')+'"></div>',iconSize:[18,18],iconAnchor:[9,9]});
+L.marker([r.a,r.o],{icon:i,title:r.n}).addTo(m).bindPopup('<b>'+e(r.n)+'</b>'+(r.v?'<br>Livraison '+e(r.v):'')+(r.l?'<br>'+e(r.l):'')+'<br><a class="voir" href="'+e(r.u)+'">Voir le programme</a>');b.push([r.a,r.o]);});
+m.fitBounds(b,{padding:[30,30],maxZoom:15});})();
+</script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

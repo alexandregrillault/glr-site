@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Immobilier neuf à Aubervilliers (93300) : 23 programmes | GLR Immobilier</title>
-<meta name="description" content="23 programmes neufs et 639 logements disponibles à Aubervilliers, 5 450 €/m² en moyenne. Plans et prix de tous les promoteurs, mis à jour à chaque pige par GLR Immobilier.">
+<meta name="description" content="23 programmes neufs et 639 logements disponibles à Aubervilliers. Plans et prix de tous les promoteurs, mis à jour à chaque pige par GLR Immobilier.">
 <link rel="canonical" href="https://www.glrimmobilier.com/neuf/aubervilliers/">
 <meta name="robots" content="noindex, nofollow">
 <meta property="og:title" content="Immobilier neuf à Aubervilliers (93300) : 23 programmes | GLR Immobilier">
-<meta property="og:description" content="23 programmes neufs et 639 logements disponibles à Aubervilliers, 5 450 €/m² en moyenne. Plans et prix de tous les promoteurs, mis à jour à chaque pige par GLR Immobilier.">
+<meta property="og:description" content="23 programmes neufs et 639 logements disponibles à Aubervilliers. Plans et prix de tous les promoteurs, mis à jour à chaque pige par GLR Immobilier.">
 <meta property="og:url" content="https://www.glrimmobilier.com/neuf/aubervilliers/">
 <meta property="og:image" content="https://www.glrimmobilier.com/logo-glr.png">
 <link rel="icon" type="image/png" href="/logo-glr.png">
@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Archivo:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <style>
 :root{color-scheme:light;--bleu:#005875;--laiton:#B0894C;--laiton-texte:#8A6A2F;--fond:#F4F0E8;--carte:#FBF8F1;--texte:#161A1E;--discret:#616B75;--trait:#D8D2C5;--teinte:#DCE7EC;
   --display:"Bodoni Moda","Didot","Times New Roman",serif;--body:"Archivo","Helvetica Neue",Arial,sans-serif}
@@ -71,6 +72,25 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .appel a{display:inline-block;padding:12px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .appel a.plein{background:#fff;color:var(--bleu)}
 .appel a.creux{border:1px solid #fff;color:#fff}
+.carte{height:340px;border-radius:8px;border:1px solid var(--trait);margin:0 0 .6rem;z-index:0}
+.legende{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;color:var(--discret);margin:0 0 1rem}
+.legende i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:middle}
+.repere{width:18px;height:18px;border-radius:50%;background:var(--bleu);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.repere.picking{background:var(--laiton)}
+.leaflet-popup-content{font-family:var(--body);font-size:.9rem;line-height:1.45}
+.leaflet-popup-content b{font-family:var(--display);font-weight:500;font-size:1.05rem}
+.leaflet-popup-content a.voir{display:inline-block;margin-top:6px;font-weight:600}
+.typo{margin:0 0 1.4rem}
+.typo h3{font-family:var(--display);font-weight:500;font-size:1.2rem;margin:0 0 .5rem}
+table.lots{width:100%;border-collapse:collapse;background:var(--carte);border:1px solid var(--trait);border-radius:8px;overflow:hidden;font-size:.92rem}
+table.lots th{text-align:left;font-weight:600;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--laiton-texte);padding:9px 10px;border-bottom:1px solid var(--trait)}
+table.lots td{padding:9px 10px;border-bottom:1px solid var(--trait)}
+table.lots tr:last-child td{border-bottom:0}
+table.lots td.plan{text-align:right;white-space:nowrap}
+table.lots td.plan a{font-weight:600;text-decoration:none}
+.infos{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0 0 1rem}
+.infos dt{color:var(--discret)}
+.infos dd{margin:0}
 .note{font-size:.8rem;color:var(--discret);margin:1.2rem 0 0}
 footer{border-top:1px solid var(--trait);padding:22px 16px;text-align:center;font-size:.85rem;color:var(--discret)}
 footer a{color:var(--discret)}
@@ -94,8 +114,8 @@ footer a{color:var(--discret)}
   <div class="chiffres">
     <div class="chiffre"><b>23</b><span>programmes en vente</span></div>
     <div class="chiffre"><b>639</b><span>logements disponibles</span></div>
-    <div class="chiffre"><b>5 450 €</b><span>prix moyen au m²</span></div>
-    <div class="chiffre"><b>189 000 €</b><span>premier prix</span></div>
+    <div class="chiffre"><b>18</b><span>promoteurs</span></div>
+    <div class="chiffre"><b>3</b><span>années de livraison</span></div>
   </div>
 
   <div class="deux">
@@ -112,164 +132,166 @@ footer a{color:var(--discret)}
   </div>
 
   <h2>Les programmes neufs à Aubervilliers</h2>
+  <div id="carte" class="carte" role="img" aria-label="Carte des programmes neufs à Aubervilliers"></div>
+  <p class="legende"><span><i style="background:var(--bleu)"></i>Programme en vente</span><span><i style="background:var(--laiton)"></i>Picking, grille sur demande</span></p>
   <div class="filtres" role="group" aria-label="Filtrer par taille"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T1">T1</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
   <div class="liste">
 <article class="prog" data-typos="T1 T2">
-  <h3>Les Hauts de Seine (test)</h3>
+  <h3><a href="programme-test-13/">Les Hauts de Seine (test)</a></h3>
   <p class="qui">Promoteur M</p>
   <dl><dt>Livraison</dt><dd>1er trimestre 2026</dd><dt>Transport</dt><dd>Aimé Césaire, Mairie d’Aubervilliers · 7 min à pied</dd></dl>
   <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce laiton">PTZ</span><span class="puce laiton">TVA 5,5 %</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>255 000 €</span><span class="dispo">25 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">25 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T1 T2">
-  <h3>Les Jardins du Canal (test)</h3>
+  <h3><a href="programme-test-1/">Les Jardins du Canal (test)</a></h3>
   <p class="qui">Promoteur A</p>
   <dl><dt>Livraison</dt><dd>1er trimestre 2026</dd><dt>Transport</dt><dd>Aimé Césaire, Mairie d’Aubervilliers · 4 min à pied</dd></dl>
   <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce laiton">PTZ</span><span class="puce laiton">TVA 5,5 %</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>189 000 €</span><span class="dispo">14 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">14 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T2 T3">
-  <h3>L’Atelier (test)</h3>
+  <h3><a href="programme-test-16/">L’Atelier (test)</a></h3>
   <p class="qui">Promoteur P</p>
   <dl><dt>Livraison</dt><dd>2e trimestre 2026</dd></dl>
   <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce laiton">PTZ</span><span class="puce laiton">TVA 5,5 %</span></div>
   <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">28 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T2 T3">
-  <h3>Les Allées Verdi (test)</h3>
+  <h3><a href="programme-test-4/">Les Allées Verdi (test)</a></h3>
   <p class="qui">Promoteur D</p>
   <dl><dt>Livraison</dt><dd>2e trimestre 2026</dd></dl>
   <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce laiton">PTZ</span><span class="puce laiton">TVA 5,5 %</span></div>
   <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">17 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T1 T2">
-  <h3>Le Carré Saint-Jean (test)</h3>
+  <h3><a href="programme-test-19/">Le Carré Saint-Jean (test)</a></h3>
   <p class="qui">Promoteur A</p>
   <dl><dt>Livraison</dt><dd>3e trimestre 2026</dd><dt>Transport</dt><dd>Aimé Césaire, Mairie d’Aubervilliers · 4 min à pied</dd></dl>
   <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce laiton">PTZ</span><span class="puce laiton">TVA 5,5 %</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>243 000 €</span><span class="dispo">31 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">31 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T1 T2">
-  <h3>Cœur de Ville (test)</h3>
+  <h3><a href="programme-test-7/">Cœur de Ville (test)</a></h3>
   <p class="qui">Promoteur G</p>
   <dl><dt>Livraison</dt><dd>3e trimestre 2026</dd><dt>Transport</dt><dd>Aimé Césaire, Mairie d’Aubervilliers · 10 min à pied</dd></dl>
   <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce laiton">PTZ</span><span class="puce laiton">TVA 5,5 %</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>267 000 €</span><span class="dispo">19 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">19 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T2 T3">
-  <h3>Origine (test)</h3>
+  <h3><a href="programme-test-22/">Origine (test)</a></h3>
   <p class="qui">Promoteur D</p>
   <dl><dt>Livraison</dt><dd>4e trimestre 2026</dd></dl>
   <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce laiton">PTZ</span><span class="puce laiton">TVA 5,5 %</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>192 000 €</span><span class="dispo">33 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">33 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T1 T2 T3">
-  <h3>Les Rives (test)</h3>
+  <h3><a href="programme-test-17/">Les Rives (test)</a></h3>
   <p class="qui">Promoteur Q</p>
   <dl><dt>Livraison</dt><dd>1er trimestre 2027</dd><dt>Quartier</dt><dd>Quartier 1</dd><dt>Transport</dt><dd>Fort d’Aubervilliers · 11 min à pied</dd></dl>
   <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce">T3</span><span class="puce laiton">PTZ</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>217 000 €</span><span class="dispo">19 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">19 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T2 T3 T4">
-  <h3>L’Écrin (test)</h3>
+  <h3><a href="programme-test-8/">L’Écrin (test)</a></h3>
   <p class="qui">Promoteur H</p>
   <dl><dt>Livraison</dt><dd>2e trimestre 2027</dd><dt>Quartier</dt><dd>Quartier 4</dd></dl>
   <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce laiton">PTZ</span></div>
   <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">39 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T1 T2 T3">
-  <h3>Les Marronniers (test)</h3>
+  <h3><a href="programme-test-23/">Les Marronniers (test)</a></h3>
   <p class="qui">Promoteur E</p>
   <dl><dt>Livraison</dt><dd>3e trimestre 2027</dd><dt>Quartier</dt><dd>Quartier 3</dd><dt>Transport</dt><dd>Fort d’Aubervilliers · 8 min à pied</dd></dl>
   <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce">T3</span><span class="puce laiton">PTZ</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>205 000 €</span><span class="dispo">64 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">64 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T1 T2 T3">
-  <h3>Le Domaine des Peupliers (test)</h3>
+  <h3><a href="programme-test-11/">Le Domaine des Peupliers (test)</a></h3>
   <p class="qui">Promoteur K</p>
   <dl><dt>Livraison</dt><dd>3e trimestre 2027</dd><dt>Quartier</dt><dd>Quartier 3</dd><dt>Transport</dt><dd>Fort d’Aubervilliers · 5 min à pied</dd></dl>
   <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce">T3</span><span class="puce laiton">PTZ</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>229 000 €</span><span class="dispo">14 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">14 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T2 T3 T4">
-  <h3>Villa Lumière (test)</h3>
+  <h3><a href="programme-test-2/">Villa Lumière (test)</a></h3>
   <p class="qui">Promoteur B</p>
   <dl><dt>Livraison</dt><dd>4e trimestre 2027</dd><dt>Quartier</dt><dd>Quartier 2</dd></dl>
   <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce laiton">PTZ</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>202 000 €</span><span class="dispo">33 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">33 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T2 T3 T4">
-  <h3>Le Belvédère (test)</h3>
+  <h3><a href="programme-test-14/">Le Belvédère (test)</a></h3>
   <p class="qui">Promoteur N</p>
   <dl><dt>Livraison</dt><dd>4e trimestre 2027</dd><dt>Quartier</dt><dd>Quartier 2</dd></dl>
   <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce laiton">PTZ</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>268 000 €</span><span class="dispo">17 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">17 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T1 T2 T3 T4">
-  <h3>Les Terrasses du Fort (test)</h3>
+  <h3><a href="programme-test-9/">Les Terrasses du Fort (test)</a></h3>
   <p class="qui">Promoteur I</p>
   <dl><dt>Livraison</dt><dd>1er trimestre 2028</dd><dt>Quartier</dt><dd>Quartier 1</dd><dt>Transport</dt><dd>La Plaine–Stade de France · 12 min à pied</dd></dl>
   <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce laiton">PTZ</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>203 000 €</span><span class="dispo">31 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">31 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T1 T2 T3 T4">
-  <h3>Le Patio (test)</h3>
+  <h3><a href="programme-test-21/">Le Patio (test)</a></h3>
   <p class="qui">Promoteur C</p>
   <dl><dt>Livraison</dt><dd>1er trimestre 2028</dd><dt>Quartier</dt><dd>Quartier 1</dd><dt>Transport</dt><dd>La Plaine–Stade de France · 6 min à pied</dd></dl>
   <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce laiton">PTZ</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>269 000 €</span><span class="dispo">14 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">14 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T2 T3 T4 T5+">
-  <h3>Néo (test)</h3>
+  <h3><a href="programme-test-12/">Néo (test)</a></h3>
   <p class="qui">Promoteur L</p>
   <dl><dt>Livraison</dt><dd>2e trimestre 2028</dd><dt>Quartier</dt><dd>Quartier 4</dd></dl>
   <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce">T5+</span><span class="puce laiton">PTZ</span></div>
   <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">33 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T1 T2 T3 T4">
-  <h3>Le Parc des Arts (test)</h3>
+  <h3><a href="programme-test-3/">Le Parc des Arts (test)</a></h3>
   <p class="qui">Promoteur C</p>
   <dl><dt>Livraison</dt><dd>3e trimestre 2028</dd><dt>Quartier</dt><dd>Quartier 3</dd><dt>Transport</dt><dd>La Plaine–Stade de France · 6 min à pied</dd></dl>
   <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce laiton">PTZ</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>215 000 €</span><span class="dispo">25 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">25 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T2 T3 T4 T5+">
-  <h3>Côté Jardin (test)</h3>
+  <h3><a href="programme-test-18/">Côté Jardin (test)</a></h3>
   <p class="qui">Promoteur R</p>
   <dl><dt>Livraison</dt><dd>4e trimestre 2028</dd><dt>Quartier</dt><dd>Quartier 2</dd></dl>
   <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce">T5+</span><span class="puce laiton">PTZ</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>230 000 €</span><span class="dispo">39 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">39 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="T2 T3 T4 T5+">
-  <h3>Le Clos des Tilleuls (test)</h3>
+  <h3><a href="programme-test-6/">Le Clos des Tilleuls (test)</a></h3>
   <p class="qui">Promoteur F</p>
   <dl><dt>Livraison</dt><dd>4e trimestre 2028</dd><dt>Quartier</dt><dd>Quartier 2</dd></dl>
   <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce">T5+</span><span class="puce laiton">PTZ</span></div>
-  <div class="bas"><span class="prix"><small>à partir de</small>254 000 €</span><span class="dispo">28 logements disponibles</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">28 logements disponibles</span></div>
 </article>
 <article class="prog" data-typos="">
-  <h3>Résidence Horizon (test)</h3>
+  <h3><a href="programme-test-5/">Résidence Horizon (test)</a></h3>
   <p class="qui">Promoteur E</p>
   <dl><dt>Quartier</dt><dd>Quartier 1</dd><dt>Transport</dt><dd>Fort d’Aubervilliers · 8 min à pied</dd></dl>
   <div class="puces"><span class="puce laiton">PTZ</span><span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span></div>
   <div class="bas"><span class="prix"><small>grille</small>sur demande</span></div>
 </article>
 <article class="prog" data-typos="">
-  <h3>Square Lafayette (test)</h3>
+  <h3><a href="programme-test-10/">Square Lafayette (test)</a></h3>
   <p class="qui">Promoteur J</p>
   
   <div class="puces"><span class="puce laiton">PTZ</span><span class="puce laiton">TVA 5,5 %</span><span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span></div>
   <div class="bas"><span class="prix"><small>grille</small>sur demande</span></div>
 </article>
 <article class="prog" data-typos="">
-  <h3>Esprit Parc (test)</h3>
+  <h3><a href="programme-test-15/">Esprit Parc (test)</a></h3>
   <p class="qui">Promoteur O</p>
   <dl><dt>Quartier</dt><dd>Quartier 3</dd><dt>Transport</dt><dd>La Plaine–Stade de France · 9 min à pied</dd></dl>
   <div class="puces"><span class="puce laiton">PTZ</span><span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span></div>
   <div class="bas"><span class="prix"><small>grille</small>sur demande</span></div>
 </article>
 <article class="prog" data-typos="">
-  <h3>Villa Émeraude (test)</h3>
+  <h3><a href="programme-test-20/">Villa Émeraude (test)</a></h3>
   <p class="qui">Promoteur B</p>
   <dl><dt>Quartier</dt><dd>Quartier 4</dd></dl>
   <div class="puces"><span class="puce laiton">PTZ</span><span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span></div>
@@ -287,6 +309,15 @@ footer a{color:var(--discret)}
 </main>
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.glrimmobilier.com/"},{"@type":"ListItem","position":2,"name":"Immobilier neuf","item":"https://www.glrimmobilier.com/neuf/"},{"@type":"ListItem","position":3,"name":"Aubervilliers","item":"https://www.glrimmobilier.com/neuf/aubervilliers/"}]}</script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+(function(){if(!window.L)return;var R=[{"n":"Les Hauts de Seine (test)","u":"programme-test-13/","k":false,"l":"25 logements disponibles","v":"1er trimestre 2026","a":48.92,"o":2.396},{"n":"Les Jardins du Canal (test)","u":"programme-test-1/","k":false,"l":"14 logements disponibles","v":"1er trimestre 2026","a":48.917,"o":2.385},{"n":"L’Atelier (test)","u":"programme-test-16/","k":false,"l":"28 logements disponibles","v":"2e trimestre 2026","a":48.92,"o":2.377},{"n":"Les Allées Verdi (test)","u":"programme-test-4/","k":false,"l":"17 logements disponibles","v":"2e trimestre 2026","a":48.907,"o":2.381},{"n":"Le Carré Saint-Jean (test)","u":"programme-test-19/","k":false,"l":"31 logements disponibles","v":"3e trimestre 2026","a":48.911,"o":2.374},{"n":"Cœur de Ville (test)","u":"programme-test-7/","k":false,"l":"19 logements disponibles","v":"3e trimestre 2026","a":48.905,"o":2.375},{"n":"Origine (test)","u":"programme-test-22/","k":false,"l":"33 logements disponibles","v":"4e trimestre 2026","a":48.911,"o":2.366},{"n":"Les Rives (test)","u":"programme-test-17/","k":false,"l":"19 logements disponibles","v":"1er trimestre 2027","a":48.902,"o":2.381},{"n":"L’Écrin (test)","u":"programme-test-8/","k":false,"l":"39 logements disponibles","v":"2e trimestre 2027","a":48.906,"o":2.378},{"n":"Les Marronniers (test)","u":"programme-test-23/","k":false,"l":"64 logements disponibles","v":"3e trimestre 2027","a":48.917,"o":2.398},{"n":"Le Domaine des Peupliers (test)","u":"programme-test-11/","k":false,"l":"14 logements disponibles","v":"3e trimestre 2027","a":48.92,"o":2.374},{"n":"Villa Lumière (test)","u":"programme-test-2/","k":false,"l":"33 logements disponibles","v":"4e trimestre 2027","a":48.924,"o":2.378},{"n":"Le Belvédère (test)","u":"programme-test-14/","k":false,"l":"17 logements disponibles","v":"4e trimestre 2027","a":48.913,"o":2.391},{"n":"Les Terrasses du Fort (test)","u":"programme-test-9/","k":false,"l":"31 logements disponibles","v":"1er trimestre 2028","a":48.903,"o":2.397},{"n":"Le Patio (test)","u":"programme-test-21/","k":false,"l":"14 logements disponibles","v":"1er trimestre 2028","a":48.923,"o":2.394},{"n":"Néo (test)","u":"programme-test-12/","k":false,"l":"33 logements disponibles","v":"2e trimestre 2028","a":48.919,"o":2.373},{"n":"Le Parc des Arts (test)","u":"programme-test-3/","k":false,"l":"25 logements disponibles","v":"3e trimestre 2028","a":48.902,"o":2.384},{"n":"Côté Jardin (test)","u":"programme-test-18/","k":false,"l":"39 logements disponibles","v":"4e trimestre 2028","a":48.915,"o":2.387},{"n":"Le Clos des Tilleuls (test)","u":"programme-test-6/","k":false,"l":"28 logements disponibles","v":"4e trimestre 2028","a":48.914,"o":2.368},{"n":"Résidence Horizon (test)","u":"programme-test-5/","k":true,"l":"Grille sur demande","v":"","a":48.903,"o":2.377},{"n":"Square Lafayette (test)","u":"programme-test-10/","k":true,"l":"Grille sur demande","v":"","a":48.917,"o":2.369},{"n":"Esprit Parc (test)","u":"programme-test-15/","k":true,"l":"Grille sur demande","v":"","a":48.908,"o":2.395},{"n":"Villa Émeraude (test)","u":"programme-test-20/","k":true,"l":"Grille sur demande","v":"","a":48.903,"o":2.39}];
+var m=L.map('carte',{scrollWheelZoom:false});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; contributeurs OpenStreetMap'}).addTo(m);
+var e=function(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})},b=[];
+R.forEach(function(r){var i=L.divIcon({className:'',html:'<div class="repere'+(r.k?' picking':'')+'"></div>',iconSize:[18,18],iconAnchor:[9,9]});
+L.marker([r.a,r.o],{icon:i,title:r.n}).addTo(m).bindPopup('<b>'+e(r.n)+'</b>'+(r.v?'<br>Livraison '+e(r.v):'')+(r.l?'<br>'+e(r.l):'')+'<br><a class="voir" href="'+e(r.u)+'">Voir le programme</a>');b.push([r.a,r.o]);});
+m.fitBounds(b,{padding:[30,30],maxZoom:15});})();
+</script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;
