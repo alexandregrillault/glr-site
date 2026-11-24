@@ -23,11 +23,11 @@ function epure(style) {
   }
   // Immeubles en relief, en tons clairs (comme les immeubles qui sortent du sol dans les vidéos)
   out.push({
-    id: 'glr-bati', type: 'fill-extrusion', source: 'plan_ign', 'source-layer': 'bati_surf', minzoom: 14,
+    id: 'glr-bati', type: 'fill-extrusion', source: 'plan_ign', 'source-layer': 'bati_surf', minzoom: 12,
     paint: {
       'fill-extrusion-color': '#F2EDE3',
       'fill-extrusion-height': ['coalesce', ['get', 'hauteur'], ['get', 'HAUTEUR'], 10],
-      'fill-extrusion-opacity': ['interpolate', ['linear'], ['zoom'], 14, 0, 15, 0.92],
+      'fill-extrusion-opacity': ['interpolate', ['linear'], ['zoom'], 12.3, 0, 13.3, 0.92],
       'fill-extrusion-vertical-gradient': true,
     },
   });
@@ -40,7 +40,7 @@ async function demarrer() {
   const tous = villes.flatMap(v => v.p.map(p => [p.o, p.a]));
   const map = new ml.Map({
     container: conteneur, style, attributionControl: false, maxPitch: 70,
-    bounds: bornes(tous.length ? tous : [[2.2, 48.8], [2.5, 48.95]]), fitBoundsOptions: { padding: 40 },
+    bounds: D.ville ? bornes(tous) : bornes([[1.95, 48.66], [2.72, 49.03]]), fitBoundsOptions: { padding: 20 }, pitch: 0, // vue d'ensemble de l'Île-de-France, du dessus
     cooperativeGestures: false, dragRotate: true,
   });
   map.addControl(new ml.NavigationControl({ showCompass: true, visualizePitch: true }), 'top-right');
@@ -65,24 +65,25 @@ async function demarrer() {
   for (const v of villes) for (const p of v.p) {
     const el = document.createElement('button');
     el.type = 'button'; el.className = 'repere' + (p.k ? ' picking' : ''); el.title = p.n; el.setAttribute('aria-label', p.n);
-    el.addEventListener('click', ev => { ev.stopPropagation(); if (p.L) focus(v, p); else location.href = '/neuf/' + p.u + (p.u.includes('/') ? '' : ''); });
+    el.addEventListener('click', ev => { ev.stopPropagation(); if (p.L) focus(v, p); else location.href = '/neuf/' + p.u; });
+    el.style.display = 'none'; // les repères n'apparaissent qu'une fois la ville choisie
     marqueurs.push({ m: new ml.Marker({ element: el }).setLngLat([p.o, p.a]).addTo(map), p, v });
   }
 
   // Panneau d'un programme
   const panneau = document.getElementById('panneau');
   const heure = document.getElementById('carte-heure'), sortieH = document.getElementById('carte-heure-val');
-  let couche = null, enCours = null;
+  let couche = null, enCours = null, villeEnCours = null;
 
   function quitter() {
     if (couche) { map.removeLayer(couche.id); couche = null; }
     enCours = null; if (panneau) panneau.hidden = true;
-    marqueurs.forEach(x => { x.m.getElement().style.display = ''; });
+    marqueurs.forEach(x => { x.m.getElement().style.display = x.v.s === villeEnCours ? '' : 'none'; });
     map.setFilter('glr-bati', null);
   }
 
   function focus(v, p) {
-    quitter(); enCours = p;
+    villeEnCours = v.s; quitter(); enCours = p;
     marqueurs.forEach(x => { x.m.getElement().style.display = x.p === p ? 'none' : ''; });
     choisirCommune(v.s);
     map.flyTo({ center: [p.o, p.a], zoom: 18.1, pitch: 60, bearing: -28, offset: [0, -40], duration: 2200, essential: true });
@@ -116,18 +117,27 @@ async function demarrer() {
   }
   if (heure) heure.addEventListener('input', placerSoleil);
   const retour = document.getElementById('carte-retour');
-  if (retour) retour.addEventListener('click', () => { quitter(); map.fitBounds(bornes(tous), { padding: 40, pitch: 0, bearing: 0, duration: 1400 }); try { history.replaceState(null, '', location.pathname); } catch (_) {} });
+  if (retour) retour.addEventListener('click', () => { if (villeEnCours) montrerVille(villeEnCours); else quitter(); try { history.replaceState(null, '', location.pathname + (D.ville ? '' : '?ville=' + villeEnCours)); } catch (_) {} });
 
   // Accès depuis la recherche (page des villes) et depuis l'adresse ?p=
-  window.GLRCarte = {
-    ville(s) {
-      const v = villes.find(x => x.s === s); if (!v) return;
-      quitter(); choisirCommune(s);
-      const pts = v.c ? v.c.geometry.coordinates.flat(2).reduce((a, x, i, arr) => (i % 2 ? a : a.concat([[x, arr[i + 1]]])), []) : v.p.map(p => [p.o, p.a]);
-      map.fitBounds(bornes(pts), { padding: 30, pitch: 35, bearing: -12, duration: 1600 });
-    },
-  };
-  if (D.ville) choisirCommune(D.ville);
+  // Étape 2 : une ville choisie → la caméra s'incline, la commune et ses immeubles en relief, ses programmes
+  function montrerVille(s) {
+    const v = villes.find(x => x.s === s); if (!v) return;
+    villeEnCours = s; quitter(); choisirCommune(s);
+    const pts = v.c ? v.c.geometry.coordinates.flat(v.c.geometry.type === 'MultiPolygon' ? 2 : 1) : v.p.map(p => [p.o, p.a]);
+    const cam = map.cameraForBounds(bornes(pts), { padding: 30 });
+    map.flyTo({ center: cam.center, zoom: Math.max(14.1, cam.zoom + 0.7), pitch: 58, bearing: -18, duration: 2400, essential: true });
+  }
+  window.GLRCarte = { ville: montrerVille };
+  // Un clic sur une commune la choisit aussi (page des villes)
+  map.on('click', 'commune-fond', ev => {
+    if (enCours) return;
+    const s = ev.features[0] && ev.features[0].properties.s;
+    if (s && s !== villeEnCours) { if (window.GLRChoixVille) window.GLRChoixVille(s); else montrerVille(s); }
+  });
+  map.on('mouseenter', 'commune-fond', () => { map.getCanvas().style.cursor = 'pointer'; });
+  map.on('mouseleave', 'commune-fond', () => { map.getCanvas().style.cursor = ''; });
+  if (D.ville) montrerVille(D.ville);
   const voulu = new URLSearchParams(location.search).get('p');
   if (voulu) for (const v of villes) { const p = v.p.find(x => x.s === voulu && x.L); if (p) { focus(v, p); break; } }
   placerSoleil();

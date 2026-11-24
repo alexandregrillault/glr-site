@@ -101,7 +101,7 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .maplibregl-map{font-family:var(--body);border-radius:8px}
 .maplibregl-ctrl-attrib{font-size:10px;background:rgba(251,248,241,.85)!important}
 button.repere{padding:0;cursor:pointer;display:block}
-.panneau{position:absolute;left:10px;right:10px;bottom:10px;background:rgba(251,248,241,.96);border:1px solid var(--trait);border-top:3px solid var(--laiton);border-radius:8px;padding:12px 14px;box-shadow:0 8px 22px rgba(22,26,30,.14);display:flex;flex-direction:column;gap:6px;max-width:420px}
+.panneau{position:static;margin:.6rem 0 0;background:var(--carte);border:1px solid var(--trait);border-top:3px solid var(--laiton);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
 .panneau[hidden]{display:none}
 .panneau .titre{font-family:var(--display);font-weight:500;font-size:1.25rem;color:var(--bleu)}
 .panneau .sous{font-size:.88rem;color:var(--discret)}
@@ -148,6 +148,8 @@ table.lots td.prix-lot{font-weight:600;white-space:nowrap}
 .immeuble .lot{cursor:pointer;transition:opacity .2s}
 .immeuble .lot.eteint{opacity:.18}
 .immeuble .lot.actif polygon{stroke:#B0894C;stroke-width:2.5}
+.fiche-lot{background:var(--carte);border:1px solid var(--trait);border-left:3px solid var(--laiton);border-radius:8px;padding:10px 14px;margin:.6rem 0 0;font-size:.92rem;color:var(--discret);min-height:3.2em}
+.fiche-lot b{color:var(--bleu)}
 .bulle{position:absolute;min-width:150px;background:#fff;border:1px solid var(--trait);border-top:3px solid var(--laiton);border-radius:6px;padding:8px 10px;font-size:.88rem;line-height:1.4;box-shadow:0 6px 18px rgba(22,26,30,.15);pointer-events:none}
 .bulle b{color:var(--bleu)}
 .bulle a{pointer-events:auto;font-weight:600}
@@ -329,13 +331,13 @@ function donneesVille(d, avecMaquette) {
 }
 const blocCarte = (grande, legendePicking) => `<div class="carte-zone">
     <div id="carte" class="carte${grande ? ' grande' : ''}" aria-label="Carte des programmes neufs"></div>
+  </div>
     <div class="panneau" id="panneau" hidden>
       <b class="titre"></b><span class="sous"></span>
       <label class="heure"><span>Soleil à</span><input type="range" id="carte-heure" min="6" max="22" step="0.25" value="14"><output id="carte-heure-val"></output></label>
-      <div class="actions"><a class="voir" href="#">Voir les logements et les prix</a><button type="button" id="carte-retour">Retour à la carte</button></div>
+      <div class="actions"><a class="voir" href="#">Voir les logements et les prix</a><button type="button" id="carte-retour">Retour à la ville</button></div>
     </div>
-  </div>
-  <p class="legende"><span><i style="background:var(--bleu)"></i>Programme en vente</span>${legendePicking ? '<span><i style="background:var(--laiton)"></i>Picking, grille sur demande</span>' : ''}<span>Touchez un programme pour voir l’immeuble dans son quartier.</span></p>`;
+  <p class="legende"><span><i style="background:var(--bleu)"></i>Programme en vente</span>${legendePicking ? '<span><i style="background:var(--laiton)"></i>Picking, grille sur demande</span>' : ''}<span>${grande ? 'Choisissez une ville, puis touchez un programme pour voir l’immeuble dans son quartier.' : 'Touchez un programme pour voir l’immeuble dans son quartier.'}</span></p>`;
 
 function pageProgramme(d, p) {
   const url = `${SITE}/neuf/${d.slug}/${p.slug}/`;
@@ -367,7 +369,8 @@ function pageProgramme(d, p) {
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button>${typos.map(t => `<button type="button" aria-pressed="false" data-t="${esc(t)}">${esc(t)}</button>`).join('')}</div>
     <div class="coupe"><label for="coupe">Voir jusqu’à</label><input type="range" id="coupe" min="1" max="1" value="1" step="1"><output id="coupe-val"></output></div>
  <div class="coupe"><label for="heure">Soleil à</label><input type="range" id="heure" min="6" max="22" step="0.25" value="14"><output id="heure-val"></output></div>
-    <div class="scene3d" id="imm3d" data-lat="${p.position ? ARRONDI(p.position.latitude) : ''}" data-lng="${p.position ? ARRONDI(p.position.longitude) : ''}" aria-label="Maquette 3D de l’immeuble : faites-la tourner, touchez un logement"><div class="bulle" id="bulle" hidden></div></div>
+    <div class="scene3d" id="imm3d" data-lat="${p.position ? ARRONDI(p.position.latitude) : ''}" data-lng="${p.position ? ARRONDI(p.position.longitude) : ''}" aria-label="Maquette 3D de l’immeuble : faites-la tourner, touchez un logement"></div>
+    <div class="fiche-lot" id="bulle" aria-live="polite">Touchez ou survolez un logement de la maquette pour voir sa fiche.</div>
     <p class="aide">Faites tourner l’immeuble au doigt ou à la souris. Descendez le curseur pour enlever des étages et voir les logements par le dessus.</p>
     <p class="note">Maquette dessinée automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.${p.image ? '' : ''}</p>
     ${p.image ? `<figure class="perspective"><img src="${esc(p.image)}" alt="Perspective de ${esc(p.nom)}" loading="lazy"><figcaption>Perspective du promoteur, non contractuelle.</figcaption></figure>` : ''}
@@ -407,7 +410,7 @@ function pageIndex(villes) {
   const test = villes.some(d => d.test);
   const url = SITE + '/neuf/';
   const sansAccent = t => t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-  const DV = villes.map(d => donneesVille(d, false));
+  const DV = villes.map(d => donneesVille(d, true));
   const V = villes.map(d => ({ v: d.ville, s: d.slug, cp: d.cp, k: sansAccent(d.ville + ' ' + d.cp),
     r: `${pluriel(d.chiffres.nb_programmes, 'programme', 'programmes')} · ${nb(d.chiffres.nb_lots_libres)} logements disponibles` }));
   return `${tete({ titre: 'Immobilier neuf en Île-de-France : tous les programmes par ville | GLR Immobilier', description: 'Cherchez une ville et voyez tous ses programmes neufs sur la carte : logements disponibles, typologies, prix. Plans envoyés par GLR Immobilier.', url, test, carte: true })}
@@ -441,7 +444,7 @@ var q=document.getElementById('q'),ul=document.getElementById('props'),res=docum
 function montrer(v){
   res.className='resume';res.style.display='block';
   res.innerHTML='<b>'+e(v.v)+'</b> <span>('+e(v.cp)+')</span><p>'+e(v.r)+'</p><a class="bouton" href="'+e(v.s)+'/">Voir les programmes de '+e(v.v)+'</a>';
-  var essai=0,go=function(){if(window.GLRCarte)window.GLRCarte.ville(v.s);else if(essai++<40)setTimeout(go,250)};go();
+  var essai=0,go=function(){if(window.GLRCarte)window.GLRCarte.ville(v.s,true);else if(essai++<40)setTimeout(go,250)};go();
   try{history.replaceState(null,'','?ville='+v.s)}catch(_){}
 }
 function absente(t){res.className='resume absente';res.style.display='block';
@@ -459,6 +462,7 @@ q.addEventListener('keydown',function(ev){
   else if(ev.key==='Enter'){ev.preventDefault();var t=sa(q.value);valider(liste[choix>-1?choix:0]||V.filter(function(v){return sa(v.v)===t})[0]);}
   else if(ev.key==='Escape'){ul.style.display='none';}});
 q.addEventListener('blur',function(){ul.style.display='none'});
+window.GLRChoixVille=function(s){var v=V.filter(function(x){return x.s===s})[0];if(v){q.value=v.v;montrer(v);}};
 var d=new URLSearchParams(location.search).get('ville');if(d){var v=V.filter(function(x){return x.s===d})[0];if(v){q.value=v.v;montrer(v);}}
 })();
 </script>
@@ -468,7 +472,9 @@ var d=new URLSearchParams(location.search).get('ville');if(d){var v=V.filter(fun
 }
 
 const dossier = path.join(ICI, 'donnees');
-const villes = fs.readdirSync(dossier).filter(f => f.endsWith('.json')).sort().map(f => {
+// Villes publiées : on commence par Colombes seule (demande d'Alex du 24/11/2026). Les autres fichiers restent prêts.
+const VILLES_ACTIVES = ['colombes'];
+const villes = fs.readdirSync(dossier).filter(f => f.endsWith('.json') && VILLES_ACTIVES.includes(f.replace(/\.json$/, ''))).sort().map(f => {
   const d = JSON.parse(fs.readFileSync(path.join(dossier, f), 'utf8'));
   verifier(d, f);
   return d;

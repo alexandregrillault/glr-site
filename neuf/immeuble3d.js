@@ -82,16 +82,12 @@ function demarrer(L) {
   const fiche = (m, ev) => {
     if (vise && vise !== m) vise.scale.set(1, 1, 1);
     vise = m;
-    if (!m) { bulle.hidden = true; return; }
+    if (!m) return; // la fiche reste affichée sous la maquette
     m.scale.set(1.03, 1.03, 1.03);
     const l = m.userData.l, pr = window.GLR_PRIX && window.GLR_PRIX[l.i];
-    bulle.innerHTML = '<b>' + l.t + '</b> · ' + String(l.s).replace('.', ',') + ' m²<br>' +
-      (l.e ? l.e + (l.e === 1 ? 'er' : 'e') + ' étage' : 'Rez-de-chaussée') + (l.x ? ' · ' + l.x : '') + '<br>' +
-      (pr ? '<b>' + Math.round(pr).toLocaleString('fr-FR') + ' €</b>' : 'Prix sur demande');
-    bulle.hidden = false;
-    const r = zone.getBoundingClientRect();
-    bulle.style.left = Math.max(6, Math.min(r.width - bulle.offsetWidth - 6, ev.clientX - r.left - bulle.offsetWidth / 2)) + 'px';
-    bulle.style.top = Math.max(6, ev.clientY - r.top - bulle.offsetHeight - 16) + 'px';
+    bulle.innerHTML = '<b>' + l.t + '</b> · ' + String(l.s).replace('.', ',') + '\u00a0m² · ' +
+      (l.e ? l.e + (l.e === 1 ? 'er' : 'e') + ' étage' : 'Rez-de-chaussée') + (l.x ? ' · ' + l.x : '') + ' · ' +
+      (pr ? '<b>' + Math.round(pr).toLocaleString('fr-FR') + '\u00a0€</b>' : 'Prix sur demande');
   };
   const toucher = ev => {
     const r = renderer.domElement.getBoundingClientRect();

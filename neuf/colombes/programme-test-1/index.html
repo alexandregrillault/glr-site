@@ -76,7 +76,7 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .maplibregl-map{font-family:var(--body);border-radius:8px}
 .maplibregl-ctrl-attrib{font-size:10px;background:rgba(251,248,241,.85)!important}
 button.repere{padding:0;cursor:pointer;display:block}
-.panneau{position:absolute;left:10px;right:10px;bottom:10px;background:rgba(251,248,241,.96);border:1px solid var(--trait);border-top:3px solid var(--laiton);border-radius:8px;padding:12px 14px;box-shadow:0 8px 22px rgba(22,26,30,.14);display:flex;flex-direction:column;gap:6px;max-width:420px}
+.panneau{position:static;margin:.6rem 0 0;background:var(--carte);border:1px solid var(--trait);border-top:3px solid var(--laiton);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
 .panneau[hidden]{display:none}
 .panneau .titre{font-family:var(--display);font-weight:500;font-size:1.25rem;color:var(--bleu)}
 .panneau .sous{font-size:.88rem;color:var(--discret)}
@@ -123,6 +123,8 @@ table.lots td.prix-lot{font-weight:600;white-space:nowrap}
 .immeuble .lot{cursor:pointer;transition:opacity .2s}
 .immeuble .lot.eteint{opacity:.18}
 .immeuble .lot.actif polygon{stroke:#B0894C;stroke-width:2.5}
+.fiche-lot{background:var(--carte);border:1px solid var(--trait);border-left:3px solid var(--laiton);border-radius:8px;padding:10px 14px;margin:.6rem 0 0;font-size:.92rem;color:var(--discret);min-height:3.2em}
+.fiche-lot b{color:var(--bleu)}
 .bulle{position:absolute;min-width:150px;background:#fff;border:1px solid var(--trait);border-top:3px solid var(--laiton);border-radius:6px;padding:8px 10px;font-size:.88rem;line-height:1.4;box-shadow:0 6px 18px rgba(22,26,30,.15);pointer-events:none}
 .bulle b{color:var(--bleu)}
 .bulle a{pointer-events:auto;font-weight:600}
@@ -165,7 +167,8 @@ footer a{color:var(--discret)}
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T1">T1</button><button type="button" aria-pressed="false" data-t="T2">T2</button></div>
     <div class="coupe"><label for="coupe">Voir jusqu’à</label><input type="range" id="coupe" min="1" max="1" value="1" step="1"><output id="coupe-val"></output></div>
  <div class="coupe"><label for="heure">Soleil à</label><input type="range" id="heure" min="6" max="22" step="0.25" value="14"><output id="heure-val"></output></div>
-    <div class="scene3d" id="imm3d" data-lat="48.919" data-lng="2.261" aria-label="Maquette 3D de l’immeuble : faites-la tourner, touchez un logement"><div class="bulle" id="bulle" hidden></div></div>
+    <div class="scene3d" id="imm3d" data-lat="48.919" data-lng="2.261" aria-label="Maquette 3D de l’immeuble : faites-la tourner, touchez un logement"></div>
+    <div class="fiche-lot" id="bulle" aria-live="polite">Touchez ou survolez un logement de la maquette pour voir sa fiche.</div>
     <p class="aide">Faites tourner l’immeuble au doigt ou à la souris. Descendez le curseur pour enlever des étages et voir les logements par le dessus.</p>
     <p class="note">Maquette dessinée automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
     

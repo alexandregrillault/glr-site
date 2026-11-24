@@ -77,7 +77,7 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .maplibregl-map{font-family:var(--body);border-radius:8px}
 .maplibregl-ctrl-attrib{font-size:10px;background:rgba(251,248,241,.85)!important}
 button.repere{padding:0;cursor:pointer;display:block}
-.panneau{position:absolute;left:10px;right:10px;bottom:10px;background:rgba(251,248,241,.96);border:1px solid var(--trait);border-top:3px solid var(--laiton);border-radius:8px;padding:12px 14px;box-shadow:0 8px 22px rgba(22,26,30,.14);display:flex;flex-direction:column;gap:6px;max-width:420px}
+.panneau{position:static;margin:.6rem 0 0;background:var(--carte);border:1px solid var(--trait);border-top:3px solid var(--laiton);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
 .panneau[hidden]{display:none}
 .panneau .titre{font-family:var(--display);font-weight:500;font-size:1.25rem;color:var(--bleu)}
 .panneau .sous{font-size:.88rem;color:var(--discret)}
@@ -124,6 +124,8 @@ table.lots td.prix-lot{font-weight:600;white-space:nowrap}
 .immeuble .lot{cursor:pointer;transition:opacity .2s}
 .immeuble .lot.eteint{opacity:.18}
 .immeuble .lot.actif polygon{stroke:#B0894C;stroke-width:2.5}
+.fiche-lot{background:var(--carte);border:1px solid var(--trait);border-left:3px solid var(--laiton);border-radius:8px;padding:10px 14px;margin:.6rem 0 0;font-size:.92rem;color:var(--discret);min-height:3.2em}
+.fiche-lot b{color:var(--bleu)}
 .bulle{position:absolute;min-width:150px;background:#fff;border:1px solid var(--trait);border-top:3px solid var(--laiton);border-radius:6px;padding:8px 10px;font-size:.88rem;line-height:1.4;box-shadow:0 6px 18px rgba(22,26,30,.15);pointer-events:none}
 .bulle b{color:var(--bleu)}
 .bulle a{pointer-events:auto;font-weight:600}
@@ -183,12 +185,12 @@ footer a{color:var(--discret)}
   <h2>Les programmes neufs à Colombes</h2>
   <div class="carte-zone">
     <div id="carte" class="carte" aria-label="Carte des programmes neufs"></div>
+  </div>
     <div class="panneau" id="panneau" hidden>
       <b class="titre"></b><span class="sous"></span>
       <label class="heure"><span>Soleil à</span><input type="range" id="carte-heure" min="6" max="22" step="0.25" value="14"><output id="carte-heure-val"></output></label>
-      <div class="actions"><a class="voir" href="#">Voir les logements et les prix</a><button type="button" id="carte-retour">Retour à la carte</button></div>
+      <div class="actions"><a class="voir" href="#">Voir les logements et les prix</a><button type="button" id="carte-retour">Retour à la ville</button></div>
     </div>
-  </div>
   <p class="legende"><span><i style="background:var(--bleu)"></i>Programme en vente</span><span><i style="background:var(--laiton)"></i>Picking, grille sur demande</span><span>Touchez un programme pour voir l’immeuble dans son quartier.</span></p>
   <div class="filtres" role="group" aria-label="Filtrer par taille"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T1">T1</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
   <div class="liste">
