@@ -7,7 +7,7 @@ export const COULEURS = { T1: 0xDCE7EC, T2: 0xA9C9D5, T3: 0x5E97AB, T4: 0x005875
 const ORD = ['T1', 'T2', 'T3', 'T4', 'T5+'];
 
 let texFacade = null;
-function facade() {
+export function facade() {
   if (texFacade) return texFacade;
   const c = document.createElement('canvas'); c.width = 256; c.height = 192;
   const g = c.getContext('2d');

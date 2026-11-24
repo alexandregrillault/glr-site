@@ -3,7 +3,8 @@
 // sa maquette 3D dans son quartier ; le soleil suit l'heure choisie.
 // Données : <script type="application/json" id="carte-data"> ; maplibregl chargé avant ce module.
 import * as THREE from 'three';
-import { construire, soleil, versSoleil, lumiere, heureTexte } from './maquette.js';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { construire, facade, soleil, versSoleil, lumiere, heureTexte } from './maquette.js';
 
 const ml = window.maplibregl;
 const conteneur = document.getElementById('carte');
@@ -238,7 +239,7 @@ async function demarrer() {
     arreterTour(); effacerProximite(); if (stopBati) { stopBati(); stopBati = null; }
     if (etiquette) { etiquette.remove(); etiquette = null; }
     map.setPaintProperty('glr-bati', 'fill-extrusion-color', '#E7E0D3');
-    if (couche) { map.removeLayer(couche.id); couche = null; }
+    if (couche) { map.removeLayer(couche.id); couche = null; map.setMaxBounds(null); map.setMinZoom(null); map.setMaxZoom(null); }
     enCours = null; if (panneau) panneau.hidden = true;
     marqueurs.forEach(x => { x.m.getElement().style.display = x.v.s === villeEnCours ? '' : 'none'; });
     map.setFilter('glr-bati', null);
@@ -257,6 +258,21 @@ async function demarrer() {
       etiquette = new ml.Marker({ element: el, anchor: 'bottom', offset: [0, -Math.round(hautM / 0.277 * 0.83 + 40)] }).setLngLat([p.o, p.a]).addTo(map); }
     couche = coucheImmeuble(map, p);
     map.addLayer(couche);
+    { const ici = couche; let essais = 0, parcs = null;
+      fetch('/neuf/donnees/parcs/' + v.i + '.json').then(x => x.ok ? x.json() : null).then(g => { parcs = g; }).catch(() => {});
+      const poser = () => {
+        if (couche !== ici) return;
+        const f = map.querySourceFeatures('plan_ign', { sourceLayer: 'bati_surf' });
+        if ((!f.length || !map.areTilesLoaded()) && essais++ < 25) return setTimeout(poser, 350);
+        ici.decor(f, parcs);
+      };
+      map.once('moveend', () => {
+        if (couche !== ici) return;
+        // Vue bridée autour du programme : on tourne et on zoome un peu, on ne part pas se promener (fluidité)
+        const dx = 260 / (111320 * Math.cos(p.a * Math.PI / 180)), dy = 260 / 111200;
+        map.setMaxBounds([[p.o - dx, p.a - dy], [p.o + dx, p.a + dy]]); map.setMinZoom(16.7); map.setMaxZoom(18.6);
+        poser();
+      }); }
     // Autour du programme : métro, gares, écoles et grands commerces des environs
     proximite(p, v);
     const ici = couche;
@@ -477,6 +493,57 @@ function coucheImmeuble(map, p) {
       renderer.resetState();
       renderer.render(scene, camera);
       map.triggerRepaint();
+    },
+    // Décor du quartier, en vraie maquette : immeubles voisins avec fenêtres (sauf les plus proches, laissés à plat
+    // pour dégager le programme) et arbres dans les parcs. Rayon limité : la vue du programme est bridée.
+    decor(batiments, parcs) {
+      if (this._decor) { scene.remove(this._decor); this._decor = null; }
+      const gr = new THREE.Group(), kx = 111320 * Math.cos(p.a * Math.PI / 180), ky = 111200;
+      const xy = c => [(c[0] - p.o) * kx, (c[1] - p.a) * ky];
+      const PROCHE = 55, LOIN = 330, geos = [], vus = new Set();
+      for (const f of batiments) {
+        const polys = f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.type === 'MultiPolygon' ? f.geometry.coordinates : [];
+        for (const pl of polys) {
+          const a = pl[0].map(xy); if (a.length < 4) continue;
+          const cx = a.reduce((t, q) => t + q[0], 0) / a.length, cy = a.reduce((t, q) => t + q[1], 0) / a.length, d = Math.hypot(cx, cy);
+          const dmin = Math.min(...a.map(q => Math.hypot(q[0], q[1])));
+          if (dmin < PROCHE || d > LOIN) continue;
+          const cle = Math.round(cx) + '|' + Math.round(cy) + '|' + a.length; if (vus.has(cle)) continue; vus.add(cle);
+          const sh = new THREE.Shape(a.map(q => new THREE.Vector2(q[0], q[1])));
+          const h = Math.max(3, Math.round((f.properties.hauteur || 9) / 3) * 3);
+          const g = new THREE.ExtrudeGeometry(sh, { depth: h, bevelEnabled: false });
+          g.rotateX(-Math.PI / 2); geos.push(g);
+        }
+      }
+      if (geos.length) {
+        const tex = facade().clone(); tex.needsUpdate = true; tex.wrapS = tex.wrapT = THREE.RepeatWrapping; tex.repeat.set(1 / 4.2, 1 / 3);
+        const m = new THREE.Mesh(mergeGeometries(geos, true), [new THREE.MeshStandardMaterial({ color: 0xE9E2D4, roughness: 0.95 }), new THREE.MeshStandardMaterial({ map: tex, roughness: 0.8 })]);
+        // mergeGeometries garde un groupe par immeuble : on les ramène à deux matériaux (toit, façades)
+        const src = geos.map(g => g.groups); let dec = 0; m.geometry.clearGroups();
+        geos.forEach((g, i) => { src[i].forEach(q => m.geometry.addGroup(dec + q.start, q.count, q.materialIndex)); dec += (g.index ? g.index.count : g.attributes.position.count); });
+        m.receiveShadow = true; gr.add(m);
+      }
+      // Arbres : semés dans les parcs (pas sur les terrains de sport), dans le rayon
+      const pts = [], dans = (pt, a) => { let d = false; for (let i = 0, j = a.length - 1; i < a.length; j = i++) { const [xi, yi] = a[i], [xj, yj] = a[j]; if ((yi > pt[1]) !== (yj > pt[1]) && pt[0] < (xj - xi) * (pt[1] - yi) / (yj - yi) + xi) d = !d; } return d; };
+      for (const f of (parcs && parcs.features) || []) {
+        if (f.properties.g === 'sport') continue;
+        const a = f.geometry.coordinates[0].map(xy), xs = a.map(q => q[0]), ys = a.map(q => q[1]);
+        const x0 = Math.max(-LOIN, Math.min(...xs)), x1 = Math.min(LOIN, Math.max(...xs)), y0 = Math.max(-LOIN, Math.min(...ys)), y1 = Math.min(LOIN, Math.max(...ys));
+        for (let x = x0; x < x1; x += 11) for (let y = y0; y < y1; y += 11) {
+          const g = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453, j = g - Math.floor(g);
+          const q = [x + (j - 0.5) * 7, y + ((j * 7) % 1 - 0.5) * 7];
+          if (pts.length < 700 && Math.hypot(q[0], q[1]) > 18 && dans(q, a)) pts.push([q[0], q[1], 0.8 + j * 0.6]);
+        }
+      }
+      if (pts.length) {
+        const troncs = new THREE.InstancedMesh(new THREE.CylinderGeometry(0.22, 0.3, 2.6, 6), new THREE.MeshStandardMaterial({ color: 0x8A6A4F, roughness: 1 }), pts.length);
+        const feuilles = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(2.3, 1), new THREE.MeshStandardMaterial({ color: 0x8DB56E, roughness: 0.9, flatShading: true }), pts.length);
+        const M = new THREE.Matrix4();
+        pts.forEach(([x, y, k], i) => { M.makeScale(k, k, k).setPosition(x, 1.3 * k, -y); troncs.setMatrixAt(i, M); M.makeScale(k, k * 1.1, k).setPosition(x, 4.2 * k, -y); feuilles.setMatrixAt(i, M); });
+        gr.add(troncs); gr.add(feuilles);
+      }
+      scene.add(gr); this._decor = gr; map.triggerRepaint();
+      return [geos.length, pts.length];
     },
     batir(ms, delai) {
       imm.couper(1);
