@@ -242,15 +242,11 @@ async function demarrer() {
     el.addEventListener('click', ev => {
       ev.stopPropagation();
       if (p.k) { location.href = '/neuf/' + p.u; return; }
-      // Zoom progressif : la caméra descend vers le programme et s'incline, la carte s'efface, puis la page de l'immeuble
-      // reprend le mouvement jusqu'à la vue du bas (voir immeuble3d.js, « arrivee »)
+      // Un court zoom sur le programme, puis sa page (fondu entre les deux pages)
       marqueurs.forEach(x => { if (x.p !== p) x.m.getElement().style.opacity = '0.25'; });
-      // on reste vu du dessus, bien à plat : la page de l'immeuble repart exactement de là pour descendre vers la rue
-      map.flyTo({ center: [p.o, p.a], zoom: 18.3, pitch: 0, bearing: 0, duration: 1900, essential: true, curve: 1.1, easing: t => 1 - Math.pow(1 - t, 3) });
-      // la carte reste affichée jusqu'au bout : c'est le fondu entre les deux pages (view transition) qui fait le raccord
       { const l = document.createElement('link'); l.rel = 'prefetch'; l.href = '/neuf/' + p.u; document.head.appendChild(l); }
-      try { sessionStorage.setItem('glr-arrivee', '1'); } catch (_) {}
-      setTimeout(() => { location.href = '/neuf/' + p.u + '#immeuble'; }, 1750);
+      map.flyTo({ center: [p.o, p.a], zoom: Math.max(map.getZoom(), 15.5), duration: 800, essential: true });
+      setTimeout(() => { location.href = '/neuf/' + p.u; }, 750);
     });
     el.style.display = 'none'; // les repères n'apparaissent qu'une fois la ville choisie
     marqueurs.push({ m: new ml.Marker({ element: el }).setLngLat([p.o, p.a]).addTo(map), p, v });
@@ -499,7 +495,7 @@ async function demarrer() {
   map.on('mouseleave', 'dep-fond', () => { map.getCanvas().style.cursor = ''; });
   const voulu = new URLSearchParams(location.search).get('p');
   const prog = voulu && villes.map(v => [v, v.p.find(x => x.s === voulu && !x.k)]).find(x => x[1]);
-  if (prog) { location.replace('/neuf/' + prog[1].u + '#immeuble'); return; }
+  if (prog) { location.replace('/neuf/' + prog[1].u); return; }
   else if (D.ville) versVille(D.ville);
   placerSoleil();
 }

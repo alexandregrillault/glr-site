@@ -129,7 +129,7 @@ function demarrer(L) {
   });
 
   const taille = () => {
-    const etroit = window.innerWidth < 960, w = zone.clientWidth, h = etroit ? Math.round(Math.min(window.innerHeight * 0.42, Math.max(240, w * 0.72))) : Math.round(Math.min(window.innerHeight - 260, Math.max(380, w * 0.72)));
+    const w = zone.clientWidth || 600, h = Math.round(Math.min(480, Math.max(260, w * 0.68)));
     renderer.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix();
   };
   window.addEventListener('resize', taille); taille();

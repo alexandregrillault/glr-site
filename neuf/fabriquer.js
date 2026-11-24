@@ -196,23 +196,49 @@ table.lots td.prix-lot small{font-weight:400;font-size:.72rem;color:var(--discre
 tr.vise td{background:var(--teinte)}
 .legende-typo{display:flex;flex-wrap:wrap;gap:12px;font-size:.8rem;color:var(--discret);margin:0 0 .4rem}
 .legende-typo i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:5px;vertical-align:middle}
-.tete-immeuble{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:7px 12px;background:var(--carte)}
-.titre-listes{font-family:var(--display);font-weight:500;font-size:1.2rem;margin:0 0 .6rem}
+.page-prog{max-width:1240px}
+.hero{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:0 0 1.2rem}
+.hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
+.hero .chapo{margin:0 0 .9rem}
+.hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
+.retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
+.reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
+.repere-cle{background:var(--carte);border:1px solid var(--trait);border-radius:8px;padding:13px 14px}
+.repere-cle b{display:block;font-family:var(--display);font-weight:500;font-size:1.45rem;color:var(--bleu);line-height:1.15}
+.repere-cle span{font-size:.84rem;color:var(--discret)}
+.titre-listes{font-family:var(--display);font-weight:500;font-size:1.35rem;margin:0 0 .7rem}
 .immeuble .listes .typo h3{font-size:1.02rem}
-.immeuble .vue{display:contents}
-.immeuble .scene3d{position:sticky;top:0;z-index:3}
-.immeuble .listes{margin-top:1rem}
+.immeuble .listes{margin-top:1.4rem}
+.immeuble .vue{background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:12px}
+.onglets{display:flex;gap:4px;border-bottom:1px solid var(--trait);margin:0 0 12px}
+.onglets button{font:inherit;font-weight:600;font-size:.95rem;padding:9px 14px;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--discret);cursor:pointer;margin-bottom:-1px}
+.onglets button[aria-selected=true]{color:var(--bleu);border-bottom-color:var(--laiton)}
+.plan-cadre{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:stretch}
+.etages{display:flex;flex-direction:column;gap:4px}
+.etages button{font:inherit;font-size:.82rem;font-weight:600;min-width:58px;padding:6px 8px;border:1px solid var(--trait);border-radius:6px;background:#fff;color:var(--texte);cursor:pointer;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.etages button small{font-weight:600;color:var(--bleu);background:var(--teinte);border-radius:9px;padding:0 6px;font-size:.74rem}
+.etages button.vide{color:var(--discret)}.etages button.vide small{background:transparent;color:var(--discret)}
+.etages button[aria-pressed=true]{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.etages button[aria-pressed=true] small{background:rgba(255,255,255,.22);color:#fff}
+.plan-dessin{min-width:0}
+.etage-titre{margin:0 0 6px;font-size:.88rem;color:var(--discret)}
+#plan{display:block;width:100%;height:auto;border-radius:8px;border:1px solid var(--trait)}
+#plan text{font-family:var(--body);pointer-events:none}
+#plan .case{cursor:pointer;outline:none}
+#plan .case rect:first-child{transition:opacity .2s}
+#plan .case.eteinte{opacity:.22}
+#plan .case.choisie rect:first-child{stroke:#B0894C;stroke-width:.55}
+.plan-promoteur{margin:0 0 12px}.plan-promoteur img{width:100%;border-radius:8px;border:1px solid var(--trait)}.plan-promoteur figcaption{font-size:.8rem;color:var(--discret);margin-top:4px}
+.immeuble .vue .note{margin:.6rem 0 0}
+@media (min-width:700px){.reperes{grid-template-columns:repeat(4,1fr)}}
 @media (min-width:960px){
-  .immeuble{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:0 22px;align-items:start}
-  .immeuble .vue{display:block;position:sticky;top:10px}
-  .immeuble .scene3d{position:relative}
+  .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
+  .immeuble .vue{position:sticky;top:10px}
   .immeuble .listes{margin-top:0}
-  .immeuble .sous-immeuble{grid-column:1 / -1}
-  main:has(.immeuble){max-width:1240px}
 }
-.vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 0}
-.vues button{font:inherit;font-size:.88rem;padding:8px 12px;border-radius:6px;border:1px solid var(--trait);background:var(--carte);color:var(--bleu);font-weight:600;cursor:pointer}
+.vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
+.vues button{font:inherit;font-size:.88rem;padding:8px 12px;border-radius:6px;border:1px solid var(--trait);background:#fff;color:var(--bleu);font-weight:600;cursor:pointer}
 .vues button:hover{background:var(--teinte)}
 .geste{position:absolute;left:50%;bottom:14px;translate:-50% 0;background:rgba(0,88,117,.92);color:#fff;font-size:.88rem;font-weight:600;padding:8px 14px 8px 40px;border-radius:20px;pointer-events:none;opacity:0;transition:opacity .4s;z-index:2;white-space:nowrap}
 .geste.visible{opacity:1}
@@ -222,11 +248,11 @@ tr.vise td{background:var(--teinte)}
 .info-prog b{display:block;font-family:var(--display);font-weight:500;font-size:.95rem}
 .info-prog::after{content:"";position:absolute;left:50%;top:100%;margin-left:-5px;border:5px solid transparent;border-top-color:#005875}
 button.repere:hover .info-prog,button.repere:focus-visible .info-prog{opacity:1}
+button.repere:hover{z-index:6}
 .lieu:hover .info-prog,.lieu:focus .info-prog{opacity:1}
 .lieu:hover,.lieu:focus{z-index:6;outline:none}
 .lieu.ecole .info-prog{background:#8A6A2F}.lieu.ecole .info-prog::after{border-top-color:#8A6A2F}
 .lieu.commerce .info-prog{background:#4A545E}.lieu.commerce .info-prog::after{border-top-color:#4A545E}
-button.repere:hover{z-index:6}
 .scene3d{position:relative;border:1px solid var(--trait);border-radius:10px;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,#FFFFFF 0%,#F4F0E8 70%);min-height:240px;touch-action:pan-y}
 .scene3d canvas{display:block;width:100%;touch-action:none}
 .coupe{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:.9rem;color:var(--discret)}
@@ -419,42 +445,61 @@ function pageProgramme(d, p) {
   const groupes = {};
   for (const l of p.logements || []) (groupes[l.typo] = groupes[l.typo] || []).push(l);
   const typos = Object.keys(groupes).sort((a, b) => ordre.indexOf(a) - ordre.indexOf(b));
+  const ss = (p.logements || []).map(l => l.surface).filter(x => x != null);
+  const surfaces = ss.length ? (Math.round(Math.min(...ss)) === Math.round(Math.max(...ss)) ? Math.round(ss[0]) + '\u00a0m²' : Math.round(Math.min(...ss)) + ' à ' + Math.round(Math.max(...ss)) + '\u00a0m²') : '';
   const etage = e => e == null ? '—' : e === 0 ? 'RDC' : e + (e === 1 ? 'er' : 'e');
   const tableau = t => `<section class="typo"><h3>${esc(t)} · ${pluriel(groupes[t].length, 'logement', 'logements')}</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
   ${groupes[t].sort((a, b) => (a.surface || 0) - (b.surface || 0)).map(l => `<tr id="l-${esc(l.id == null ? '' : l.id)}"><td>${l.surface != null ? nb(l.surface) + '\u00a0m²' : '—'}</td><td>${etage(l.etage)}</td><td>${esc(l.exterieur || '—')}</td><td class="prix-lot" data-lot="${esc(l.id == null ? '' : l.id)}" data-s="${l.surface || ''}">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>`).join('\n  ')}
   </tbody></table></section>`;
   return `${tete({ titre, description, url, test: d.test })}
-<main>
+<main class="page-prog">
   <p class="fil"><a href="/">Accueil</a> › <a href="/neuf/">Immobilier neuf</a> › <a href="../">${esc(d.ville)}</a> › ${esc(p.nom)}</p>
-  <h1>${esc(p.nom)}</h1>
-  <hr class="filet">
-  <p class="chapo">Programme neuf à ${esc(d.ville)} (${esc(d.cp)})${p.picking ? '. Nous pouvons vous obtenir la grille de ce programme sur demande.' : p.nb_lots_libres ? ` : ${pluriel(p.nb_lots_libres, 'logement disponible', 'logements disponibles')}, relevés le ${dateFr(d.maj)}.` : '.'}</p>
-  ${infos.length ? '<dl class="infos">' + infos.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('') + '</dl>' : ''}
-  ${p.picking ? '<div class="puces"><span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span></div>' : ''}
-  ${typos.length ? `<div class="tete-immeuble"><h2 id="immeuble">L’immeuble</h2><a class="retour-carte" href="/neuf/?ville=${esc(d.slug)}&amp;vue=ville#carte">Retour à la carte de ${esc(d.ville)}</a></div>
-  <div class="immeuble">
+  <header class="hero">
+    <div>
+      <p class="sur">Programme neuf · ${esc(d.ville)} (${esc(d.cp)})</p>
+      <h1>${esc(p.nom)}</h1>
+      <hr class="filet">
+      <p class="chapo">${p.picking ? 'Nous pouvons vous obtenir la grille de ce programme sur demande.' : `${p.promoteur ? 'Un programme ' + esc(p.promoteur) : 'Un programme neuf'}${p.quartier ? ', quartier ' + esc(p.quartier) : ''}${p.livraison ? ', livré au ' + esc(p.livraison) : ''}.`}</p>
+      <div class="puces">${(p.typologies || []).map(t => `<span class="puce">${esc(t)}</span>`).join('')}${(p.dispositifs || []).filter(x => !/LLI|LMNP/i.test(x)).map(t => `<span class="puce laiton">${esc(t)}</span>`).join('')}${p.picking ? '<span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span>' : ''}</div>
+    </div>
+    <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=${esc(d.slug)}&amp;vue=ville#carte">Retour à la carte de ${esc(d.ville)}</a></div>
+  </header>
+  <div class="reperes">
+    ${p.nb_lots_libres ? `<div class="repere-cle"><b>${nb(p.nb_lots_libres)}</b><span>${p.nb_lots_libres > 1 ? 'logements disponibles' : 'logement disponible'}</span></div>` : ''}
+    ${p.livraison ? `<div class="repere-cle"><b>${esc(p.livraison.replace(/ trimestre /, ' trim. '))}</b><span>livraison prévue</span></div>` : ''}
+    ${surfaces ? `<div class="repere-cle"><b>${surfaces}</b><span>surfaces disponibles</span></div>` : ''}
+    ${p.gare ? `<div class="repere-cle"><b>${p.gare_minutes_a_pied ? p.gare_minutes_a_pied + ' min' : 'À côté'}</b><span>à pied de ${esc(p.gare)}</span></div>` : ''}
+  </div>
+  ${typos.length ? `<section class="immeuble" id="immeuble">
    <div class="vue">
-    <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button>${typos.map(t => `<button type="button" aria-pressed="false" data-t="${esc(t)}">${esc(t)}</button>`).join('')}</div>
-    <div class="coupe"><label for="coupe">Voir jusqu’à</label><input type="range" id="coupe" min="1" max="1" value="1" step="1"><output id="coupe-val"></output></div>
- <div class="coupe"><label for="heure">Soleil à</label><input type="range" id="heure" min="6" max="22" step="0.25" value="14"><output id="heure-val"></output></div>
-    <div class="scene3d" id="imm3d" data-lat="${p.position ? ARRONDI(p.position.latitude) : ''}" data-lng="${p.position ? ARRONDI(p.position.longitude) : ''}" aria-label="Maquette 3D de l’immeuble : faites-la tourner, touchez un logement"><div class="geste" id="geste"><span class="main"></span>Glissez pour tourner</div></div>
-    <div class="vues" role="group" aria-label="Changer de vue"><button type="button" data-vue="rue">Façade rue</button><button type="button" data-vue="arriere">Façade arrière</button><button type="button" data-vue="dessus">Vue du dessus</button><button type="button" data-vue="tour">Faire le tour</button></div>
-    <div class="fiche-lot" id="bulle" aria-live="polite">Touchez ou survolez un logement de la maquette pour voir sa fiche.</div>
+    <div class="onglets" role="tablist"><button type="button" role="tab" aria-selected="true" data-onglet="plan">Plan de masse</button><button type="button" role="tab" aria-selected="false" data-onglet="3d">Maquette 3D</button></div>
+    <div id="vue-plan">
+      ${p.plan_masse ? `<figure class="plan-promoteur"><img src="${esc(p.plan_masse)}" alt="Plan de masse de ${esc(p.nom)}" loading="lazy"><figcaption>Plan de masse du promoteur, non contractuel.</figcaption></figure>` : ''}
+      <div class="plan-cadre">
+        <div class="etages" id="etages" role="group" aria-label="Choisir un étage"></div>
+        <div class="plan-dessin"><p class="etage-titre" id="etage-titre"></p><svg id="plan" role="img" aria-label="Plan de masse : l’immeuble sur son terrain, avec les logements disponibles de l’étage choisi"></svg></div>
+      </div>
+    </div>
+    <div id="vue-3d" hidden>
+      <div class="scene3d" id="imm3d" data-lat="${p.position ? ARRONDI(p.position.latitude) : ''}" data-lng="${p.position ? ARRONDI(p.position.longitude) : ''}" aria-label="Maquette 3D de l’immeuble : faites-la tourner, touchez un logement"><div class="geste" id="geste"><span class="main"></span>Glissez pour tourner</div></div>
+      <div class="vues" role="group" aria-label="Changer de vue"><button type="button" data-vue="rue">Façade rue</button><button type="button" data-vue="arriere">Façade arrière</button><button type="button" data-vue="dessus">Vue du dessus</button><button type="button" data-vue="tour">Faire le tour</button></div>
+      <div class="coupe"><label for="coupe">Voir jusqu’à</label><input type="range" id="coupe" min="1" max="1" value="1" step="1"><output id="coupe-val"></output></div>
+      <div class="coupe"><label for="heure">Soleil à</label><input type="range" id="heure" min="6" max="22" step="0.25" value="14"><output id="heure-val"></output></div>
+    </div>
+    <div class="fiche-lot" id="bulle" aria-live="polite">Touchez un logement sur le plan, ou passez sur une ligne de la liste.</div>
+    <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
    <div class="listes">
-    <h3 class="titre-listes">Les logements disponibles</h3>
+    <h2 class="titre-listes">Les logements disponibles</h2>
+    <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button>${typos.map(t => `<button type="button" aria-pressed="false" data-t="${esc(t)}">${esc(t)}</button>`).join('')}</div>
     ${typos.map(tableau).join('\n    ')}
    </div>
-   <div class="sous-immeuble">
-    <p class="aide">Touchez une fenêtre, ou passez sur une ligne de la liste : le logement ressort de l’immeuble. Glissez pour tourner autour, molette ou pincement pour zoomer, clic droit ou deux doigts pour vous déplacer.</p>
-    <p class="note">Maquette dessinée automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.${p.image ? '' : ''}</p>
-    ${p.image ? `<figure class="perspective"><img src="${esc(p.image)}" alt="Perspective de ${esc(p.nom)}" loading="lazy"><figcaption>Perspective du promoteur, non contractuelle.</figcaption></figure>` : ''}
-   </div>
-  </div>` : `<h2>Les logements</h2><p>La grille de ce programme est envoyée sur demande.</p>`}
+  </section>
+  ${p.image ? `<figure class="perspective"><img src="${esc(p.image)}" alt="Perspective de ${esc(p.nom)}" loading="lazy"><figcaption>Perspective du promoteur, non contractuelle.</figcaption></figure>` : ''}` : `<h2>Les logements</h2><p>La grille de ce programme est envoyée sur demande.</p>`}
   <section class="appel" id="compte">
     <h2>Voir les plans de ces logements</h2>
-    <p>Les plans et les prix sont réservés à votre espace client. Il se crée en une minute ; en attendant, appelez-nous et nous vous les envoyons.</p>
+    <p>Les plans de chaque logement sont réservés à votre espace client. Il se crée en une minute ; en attendant, appelez-nous et nous vous les envoyons.</p>
     <div class="boutons"><a class="plein" href="tel:${CONTACT.tel}">Appeler le ${CONTACT.telAffiche}</a><a class="creux" href="mailto:${CONTACT.mail}?subject=${encodeURIComponent('Plans de ' + p.nom + ' à ' + d.ville)}">Écrire un e-mail</a></div>
   </section>
   <p class="note" id="mention-tva" hidden>* TVA 5,5 % : prix réservé aux acheteurs éligibles, sous conditions de ressources.</p>
@@ -463,12 +508,7 @@ function pageProgramme(d, p) {
 ${pied}
 ${typos.length ? `<script type="application/json" id="logements-data">${JSON.stringify((p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? 0 : l.etage, x: l.exterieur || '' }))).replace(/</g, '\\u003c')}</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script type="module" src="/neuf/immeuble3d.js"></script>
-<script>
-(function(){var bs=document.querySelectorAll('.immeuble .filtres button');bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t');
-  bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
-  document.querySelectorAll('section.typo').forEach(function(s){s.style.display=!t||s.querySelector('h3').textContent.indexOf(t+' ')===0?'':'none'});});});})();
-</script>
+<script src="/neuf/programme.js" defer></script>
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+'\u00a0€'};
 var poser=function(j){j=j||{};var a=j.prix||{},b=j.prix_tva_reduite||{};window.GLR_PRIX=a;window.GLR_PRIX_R=b;var deux=false;

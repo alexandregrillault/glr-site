@@ -167,23 +167,49 @@ table.lots td.prix-lot small{font-weight:400;font-size:.72rem;color:var(--discre
 tr.vise td{background:var(--teinte)}
 .legende-typo{display:flex;flex-wrap:wrap;gap:12px;font-size:.8rem;color:var(--discret);margin:0 0 .4rem}
 .legende-typo i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:5px;vertical-align:middle}
-.tete-immeuble{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:7px 12px;background:var(--carte)}
-.titre-listes{font-family:var(--display);font-weight:500;font-size:1.2rem;margin:0 0 .6rem}
+.page-prog{max-width:1240px}
+.hero{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:0 0 1.2rem}
+.hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
+.hero .chapo{margin:0 0 .9rem}
+.hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
+.retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
+.reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
+.repere-cle{background:var(--carte);border:1px solid var(--trait);border-radius:8px;padding:13px 14px}
+.repere-cle b{display:block;font-family:var(--display);font-weight:500;font-size:1.45rem;color:var(--bleu);line-height:1.15}
+.repere-cle span{font-size:.84rem;color:var(--discret)}
+.titre-listes{font-family:var(--display);font-weight:500;font-size:1.35rem;margin:0 0 .7rem}
 .immeuble .listes .typo h3{font-size:1.02rem}
-.immeuble .vue{display:contents}
-.immeuble .scene3d{position:sticky;top:0;z-index:3}
-.immeuble .listes{margin-top:1rem}
+.immeuble .listes{margin-top:1.4rem}
+.immeuble .vue{background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:12px}
+.onglets{display:flex;gap:4px;border-bottom:1px solid var(--trait);margin:0 0 12px}
+.onglets button{font:inherit;font-weight:600;font-size:.95rem;padding:9px 14px;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--discret);cursor:pointer;margin-bottom:-1px}
+.onglets button[aria-selected=true]{color:var(--bleu);border-bottom-color:var(--laiton)}
+.plan-cadre{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:stretch}
+.etages{display:flex;flex-direction:column;gap:4px}
+.etages button{font:inherit;font-size:.82rem;font-weight:600;min-width:58px;padding:6px 8px;border:1px solid var(--trait);border-radius:6px;background:#fff;color:var(--texte);cursor:pointer;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.etages button small{font-weight:600;color:var(--bleu);background:var(--teinte);border-radius:9px;padding:0 6px;font-size:.74rem}
+.etages button.vide{color:var(--discret)}.etages button.vide small{background:transparent;color:var(--discret)}
+.etages button[aria-pressed=true]{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.etages button[aria-pressed=true] small{background:rgba(255,255,255,.22);color:#fff}
+.plan-dessin{min-width:0}
+.etage-titre{margin:0 0 6px;font-size:.88rem;color:var(--discret)}
+#plan{display:block;width:100%;height:auto;border-radius:8px;border:1px solid var(--trait)}
+#plan text{font-family:var(--body);pointer-events:none}
+#plan .case{cursor:pointer;outline:none}
+#plan .case rect:first-child{transition:opacity .2s}
+#plan .case.eteinte{opacity:.22}
+#plan .case.choisie rect:first-child{stroke:#B0894C;stroke-width:.55}
+.plan-promoteur{margin:0 0 12px}.plan-promoteur img{width:100%;border-radius:8px;border:1px solid var(--trait)}.plan-promoteur figcaption{font-size:.8rem;color:var(--discret);margin-top:4px}
+.immeuble .vue .note{margin:.6rem 0 0}
+@media (min-width:700px){.reperes{grid-template-columns:repeat(4,1fr)}}
 @media (min-width:960px){
-  .immeuble{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:0 22px;align-items:start}
-  .immeuble .vue{display:block;position:sticky;top:10px}
-  .immeuble .scene3d{position:relative}
+  .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
+  .immeuble .vue{position:sticky;top:10px}
   .immeuble .listes{margin-top:0}
-  .immeuble .sous-immeuble{grid-column:1 / -1}
-  main:has(.immeuble){max-width:1240px}
 }
-.vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 0}
-.vues button{font:inherit;font-size:.88rem;padding:8px 12px;border-radius:6px;border:1px solid var(--trait);background:var(--carte);color:var(--bleu);font-weight:600;cursor:pointer}
+.vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
+.vues button{font:inherit;font-size:.88rem;padding:8px 12px;border-radius:6px;border:1px solid var(--trait);background:#fff;color:var(--bleu);font-weight:600;cursor:pointer}
 .vues button:hover{background:var(--teinte)}
 .geste{position:absolute;left:50%;bottom:14px;translate:-50% 0;background:rgba(0,88,117,.92);color:#fff;font-size:.88rem;font-weight:600;padding:8px 14px 8px 40px;border-radius:20px;pointer-events:none;opacity:0;transition:opacity .4s;z-index:2;white-space:nowrap}
 .geste.visible{opacity:1}
@@ -193,11 +219,11 @@ tr.vise td{background:var(--teinte)}
 .info-prog b{display:block;font-family:var(--display);font-weight:500;font-size:.95rem}
 .info-prog::after{content:"";position:absolute;left:50%;top:100%;margin-left:-5px;border:5px solid transparent;border-top-color:#005875}
 button.repere:hover .info-prog,button.repere:focus-visible .info-prog{opacity:1}
+button.repere:hover{z-index:6}
 .lieu:hover .info-prog,.lieu:focus .info-prog{opacity:1}
 .lieu:hover,.lieu:focus{z-index:6;outline:none}
 .lieu.ecole .info-prog{background:#8A6A2F}.lieu.ecole .info-prog::after{border-top-color:#8A6A2F}
 .lieu.commerce .info-prog{background:#4A545E}.lieu.commerce .info-prog::after{border-top-color:#4A545E}
-button.repere:hover{z-index:6}
 .scene3d{position:relative;border:1px solid var(--trait);border-radius:10px;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,#FFFFFF 0%,#F4F0E8 70%);min-height:240px;touch-action:pan-y}
 .scene3d canvas{display:block;width:100%;touch-action:none}
 .coupe{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:.9rem;color:var(--discret)}
@@ -222,17 +248,28 @@ footer a{color:var(--discret)}
 <body>
 <div class="test">Page d’essai — données fictives, non publiée</div>
 <header><a href="/" aria-label="GLR Immobilier — accueil"><img src="/logo-glr.png" alt="GLR Immobilier" width="85" height="68"></a><a class="tel" href="tel:+33614550273">06 14 55 02 73</a></header>
-<main>
+<main class="page-prog">
   <p class="fil"><a href="/">Accueil</a> › <a href="/neuf/">Immobilier neuf</a> › <a href="../">Colombes</a> › Les Jardins du Canal (test)</p>
-  <h1>Les Jardins du Canal (test)</h1>
-  <hr class="filet">
-  <p class="chapo">Programme neuf à Colombes (92700). Nous pouvons vous obtenir la grille de ce programme sur demande.</p>
-  <dl class="infos"><dt>Promoteur</dt><dd>Promoteur D</dd><dt>Quartier</dt><dd>Quartier 3</dd><dt>Transport</dt><dd>Colombes, Le Stade · 9 min à pied</dd><dt>Dispositifs</dt><dd>PTZ</dd></dl>
-  <div class="puces"><span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span></div>
+  <header class="hero">
+    <div>
+      <p class="sur">Programme neuf · Colombes (92700)</p>
+      <h1>Les Jardins du Canal (test)</h1>
+      <hr class="filet">
+      <p class="chapo">Nous pouvons vous obtenir la grille de ce programme sur demande.</p>
+      <div class="puces"><span class="puce laiton">PTZ</span><span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span></div>
+    </div>
+    <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=colombes&amp;vue=ville#carte">Retour à la carte de Colombes</a></div>
+  </header>
+  <div class="reperes">
+    
+    
+    
+    <div class="repere-cle"><b>9 min</b><span>à pied de Colombes, Le Stade</span></div>
+  </div>
   <h2>Les logements</h2><p>La grille de ce programme est envoyée sur demande.</p>
   <section class="appel" id="compte">
     <h2>Voir les plans de ces logements</h2>
-    <p>Les plans et les prix sont réservés à votre espace client. Il se crée en une minute ; en attendant, appelez-nous et nous vous les envoyons.</p>
+    <p>Les plans de chaque logement sont réservés à votre espace client. Il se crée en une minute ; en attendant, appelez-nous et nous vous les envoyons.</p>
     <div class="boutons"><a class="plein" href="tel:+33614550273">Appeler le 06 14 55 02 73</a><a class="creux" href="mailto:agl@glrimmobilier.com?subject=Plans%20de%20Les%20Jardins%20du%20Canal%20(test)%20%C3%A0%20Colombes">Écrire un e-mail</a></div>
   </section>
   <p class="note" id="mention-tva" hidden>* TVA 5,5 % : prix réservé aux acheteurs éligibles, sous conditions de ressources.</p>
