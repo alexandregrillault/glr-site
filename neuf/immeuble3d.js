@@ -205,6 +205,9 @@ function demarrer(L) {
   renderer.domElement.style.cursor = 'grab';
   renderer.domElement.addEventListener('pointerdown', () => { renderer.domElement.style.cursor = 'grabbing'; });
   window.addEventListener('pointerup', () => { renderer.domElement.style.cursor = 'grab'; });
+  // Boussole : le nord de la maquette est vers le fond (z négatif) ; un appui ramène la vue face au nord
+  const boussole = document.getElementById('boussole-immeuble'), aiguille = boussole && boussole.querySelector('.aiguille');
+  if (boussole) boussole.addEventListener('click', () => { if (!arrivee) allerA(Math.PI / 2, null, null, 900, { cibleY: controls.target.y }); });
   let images = 0;
   const boucle = () => {
     const t = performance.now();
@@ -236,6 +239,7 @@ function demarrer(L) {
       if (!cible && m.userData.sorti === 0 && m.userData.teinte === 1) { m.material = m.userData.avant || m.userData.mats; m.userData.teinte = 0; }
     }
     imm.tick();
+    if (aiguille) { const cap = Math.atan2(controls.target.x - camera.position.x, -(controls.target.z - camera.position.z)) * 180 / Math.PI; aiguille.style.transform = 'rotate(' + (-cap) + 'deg)'; }
     if (!arrivee && !tour) { borner(); controls.update(); }
     renderer.render(scene, camera); requestAnimationFrame(boucle);
   };

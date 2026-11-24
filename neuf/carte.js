@@ -65,7 +65,11 @@ async function demarrer() {
   });
   conteneur.__carte = map; // accès pour les contrôles automatiques
   window.addEventListener('pageshow', () => { conteneur.style.opacity = '1'; marqueurs.forEach(x => { x.m.getElement().style.opacity = ''; }); });
-  map.addControl(new ml.NavigationControl({ showCompass: true, visualizePitch: true }), 'top-right');
+  map.addControl(new ml.NavigationControl({ showCompass: false }), 'top-right');
+  // Boussole du site : l'aiguille suit l'orientation de la carte ; un appui remet le nord en haut
+  { const bo = document.getElementById('boussole-carte'), ai = bo && bo.querySelector('.aiguille');
+    if (ai) { const tourner = () => { ai.style.transform = 'rotate(' + (-map.getBearing()) + 'deg)'; }; map.on('rotate', tourner); tourner();
+      bo.addEventListener('click', () => map.easeTo({ bearing: 0, pitch: 0, duration: 600 })); } }
   map.addControl(new ml.AttributionControl({ compact: true, customAttribution: 'Fond de carte : IGN · contours geo.api.gouv.fr · lieux © OpenStreetMap' }));
   { const at = conteneur.querySelector('.maplibregl-ctrl-attrib'); if (at) { at.classList.remove('maplibregl-compact-show'); at.removeAttribute('open'); } }
   map.scrollZoom.disable();
