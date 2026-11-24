@@ -52,7 +52,7 @@ async function demarrer() {
   const tous = villes.flatMap(v => v.p.map(p => [p.o, p.a]));
   const map = new ml.Map({
     container: conteneur, style, attributionControl: false, maxPitch: 70,
-    bounds: D.ville ? bornes(tous) : bornes([[1.88, 48.62], [2.82, 49.08]]), fitBoundsOptions: { padding: 20 }, pitch: 0, // vue d'ensemble de l'Île-de-France, du dessus
+    bounds: bornes([[1.88, 48.62], [2.82, 49.08]]), fitBoundsOptions: { padding: 20 }, pitch: 0, // vue d'ensemble de l'Île-de-France, du dessus
     cooperativeGestures: false, dragRotate: true,
   });
   map.addControl(new ml.NavigationControl({ showCompass: true, visualizePitch: true }), 'top-right');
@@ -68,11 +68,11 @@ async function demarrer() {
   try {
     const deps = await (await fetch('/neuf/donnees/departements-idf.json')).json();
     map.addSource('deps', { type: 'geojson', data: deps });
-    map.addLayer({ id: 'dep-fond', type: 'fill', source: 'deps', paint: { 'fill-color': teinte(TEINTES), 'fill-opacity': D.ville ? 0.12 : 0.55 } });
-    map.addLayer({ id: 'dep-ombre', type: 'line', source: 'deps', paint: { 'line-color': teinte(BORDS), 'line-width': 10, 'line-blur': 8, 'line-opacity': D.ville ? 0.2 : 0.75, 'line-offset': 5 } });
-    map.addLayer({ id: 'dep-trait', type: 'line', source: 'deps', paint: { 'line-color': '#FFFFFF', 'line-width': 3, 'line-opacity': D.ville ? 0.5 : 1 } });
+    map.addLayer({ id: 'dep-fond', type: 'fill', source: 'deps', paint: { 'fill-color': teinte(TEINTES), 'fill-opacity': 0.55 } });
+    map.addLayer({ id: 'dep-ombre', type: 'line', source: 'deps', paint: { 'line-color': teinte(BORDS), 'line-width': 10, 'line-blur': 8, 'line-opacity': 0.75, 'line-offset': 5 } });
+    map.addLayer({ id: 'dep-trait', type: 'line', source: 'deps', paint: { 'line-color': '#FFFFFF', 'line-width': 3, 'line-opacity': 1 } });
     const CENTRES = { '75': [2.35, 48.857], '92': [2.215, 48.83], '93': [2.49, 48.925], '94': [2.47, 48.775], '95': [2.15, 49.07], '78': [1.92, 48.80], '91': [2.25, 48.56], '77': [2.95, 48.62] };
-    window.__numeros = Object.entries(CENTRES).map(([d, c]) => { const el = document.createElement('span'); el.className = 'num-dep'; el.textContent = d; if (D.ville) el.style.display = 'none'; return new ml.Marker({ element: el }).setLngLat(c).addTo(map); });
+    window.__numeros = Object.entries(CENTRES).map(([d, c]) => { const el = document.createElement('span'); el.className = 'num-dep'; el.textContent = d; return new ml.Marker({ element: el }).setLngLat(c).addTo(map); });
   } catch (e) { /* sans départements, la carte reste utilisable */ }
   const departements = visibles => {
     if (!map.getLayer('dep-fond')) return;
@@ -173,7 +173,7 @@ async function demarrer() {
   // Étape 2 : une ville choisie → la caméra s'incline, la commune et ses immeubles en relief, ses programmes
   function montrerVille(s) {
     const v = villes.find(x => x.s === s); if (!v) return;
-    if (!villeEnCours && !D.ville) departements(false);
+    if (!villeEnCours) departements(false);
     villeEnCours = s; quitter(); choisirCommune(s);
     const pts = v.c ? v.c.geometry.coordinates.flat(v.c.geometry.type === 'MultiPolygon' ? 2 : 1) : v.p.map(p => [p.o, p.a]);
     const cam = map.cameraForBounds(bornes(pts), { padding: 30 });
@@ -190,7 +190,13 @@ async function demarrer() {
       setTimeout(() => { if (villeEnCours === s && !enCours) { el.style.display = ''; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); } }, 2700 + 90 * n++);
     });
   }
-  window.GLRCarte = { ville: montrerVille };
+  // On montre toujours d'abord l'Île-de-France vue du dessus, puis on plonge vers la ville demandée
+  // L'intro ne démarre que lorsque la carte est vraiment à l'écran (sinon le client ne verrait pas l'Île-de-France)
+  const INTRO = 1800;
+  let vueA = null; const attente = [];
+  new IntersectionObserver((es, ob) => { if (es.some(e => e.isIntersecting)) { vueA = Date.now(); ob.disconnect(); attente.splice(0).forEach(f => f()); } }, { threshold: 0.6 }).observe(conteneur);
+  const apresIntro = f => { const go = () => setTimeout(f, Math.max(0, INTRO - (Date.now() - vueA))); if (vueA) go(); else attente.push(go); };
+  window.GLRCarte = { ville: s => apresIntro(() => montrerVille(s)) };
   // Un clic sur une commune la choisit aussi (page des villes)
   map.on('click', 'commune-fond', ev => {
     if (enCours) return;
@@ -199,9 +205,10 @@ async function demarrer() {
   });
   map.on('mouseenter', 'commune-fond', () => { map.getCanvas().style.cursor = 'pointer'; });
   map.on('mouseleave', 'commune-fond', () => { map.getCanvas().style.cursor = ''; });
-  if (D.ville) montrerVille(D.ville);
   const voulu = new URLSearchParams(location.search).get('p');
-  if (voulu) for (const v of villes) { const p = v.p.find(x => x.s === voulu && x.L); if (p) { focus(v, p); break; } }
+  const prog = voulu && villes.map(v => [v, v.p.find(x => x.s === voulu && x.L)]).find(x => x[1]);
+  if (prog) apresIntro(() => { montrerVille(prog[0].s); setTimeout(() => focus(prog[0], prog[1]), 4200); });
+  else if (D.ville) apresIntro(() => montrerVille(D.ville));
   placerSoleil();
 }
 
