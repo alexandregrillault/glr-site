@@ -222,7 +222,7 @@ async function demarrer() {
     });
     montrerEcoles();
   }
-  const montrerEcoles = () => { const z = map.getZoom(); lieuxVille.forEach(m => { const el = m.getElement(), seuil = el.classList.contains('transport') ? 0 : el.classList.contains('commerce') ? 13.8 : 14.6; el.style.display = enCours || z < seuil ? 'none' : ''; }); };
+  const montrerEcoles = () => { const z = map.getZoom(); lieuxVille.forEach(m => { const el = m.getElement(), seuil = el.classList.contains('transport') ? 0 : el.classList.contains('commerce') ? 13.1 : 13.9; el.style.display = enCours || z < seuil ? 'none' : ''; }); };
   map.on('zoom', montrerEcoles);
   const choisirCommune = s => {
     map.setPaintProperty('commune-fond', 'fill-opacity', ['case', ['==', ['get', 's'], s || ''], 0, 0.02]);
