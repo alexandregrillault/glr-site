@@ -117,9 +117,12 @@ export function construire(L, { arbres = true } = {}) {
 
   // Coupe à un étage et filtre de taille
   let coupe = F, filtre = '';
+  const etat = { anime: false };
+  [...etages, toit].forEach(g => { g.userData.y0 = g.position.y; g.userData.v = 0; g.userData.cible = 0; });
   const appliquer = () => {
-    etages.forEach((g, i) => { g.visible = i < coupe; });
-    toit.visible = coupe >= F;
+    // Les étages au-dessus de la coupe s'en vont : immédiatement, ou en s'envolant si la page anime (voir tick)
+    etages.forEach((g, i) => { g.userData.cible = i < coupe ? 0 : 1; if (!etat.anime) { g.userData.v = g.userData.cible; g.visible = i < coupe; } });
+    toit.userData.cible = coupe >= F ? 0 : 1; if (!etat.anime) { toit.userData.v = toit.userData.cible; toit.visible = coupe >= F; }
     for (const m of lots) {
       const { l, plateau, dessusTexte, mats } = m.userData;
       const allume = !filtre || l.t === filtre;
@@ -133,6 +136,20 @@ export function construire(L, { arbres = true } = {}) {
   };
   return {
     racine, lots, F, largeur, profondeur, hauteur: F * H + 1.1,
+    animer(oui) { etat.anime = !!oui; },
+    // À appeler à chaque image : les étages retirés montent en s'écartant (les plus hauts d'abord) puis disparaissent, et reviennent de même
+    tick() {
+      let bouge = false;
+      [...etages, toit].forEach((g, i) => {
+        const u = g.userData; if (u.v === u.cible) return;
+        bouge = true;
+        u.v += Math.sign(u.cible - u.v) * Math.min(Math.abs(u.cible - u.v), 0.03);
+        const k = u.v * u.v * (3 - 2 * u.v);
+        g.position.y = u.y0 + k * (16 + i * 2.2);
+        g.visible = u.v < 0.995;
+      });
+      return bouge;
+    },
     couper(k) { coupe = Math.max(1, Math.min(F, k)); appliquer(); },
     filtrer(t) { filtre = t || ''; appliquer(); },
   };

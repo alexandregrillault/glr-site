@@ -22,6 +22,7 @@ function demarrer(L) {
   zone.prepend(renderer.domElement);
 
   const imm = construire(L, { arbres: false });
+  imm.animer(true);
   const scene = new THREE.Scene();
   scene.add(imm.racine);
   const haut = imm.hauteur, largeur = imm.largeur, profondeur = imm.profondeur;
@@ -182,7 +183,8 @@ function demarrer(L) {
     const e = ev.detail.e; vu = true; if (geste) geste.remove(); etageVu = e; imm.lots.forEach(m => m.scale.set(1, 1, 1));
     if (e == null) { imm.couper(imm.F); if (ev.detail.camera && !arrivee) allerA(ENSEMBLE[0], ENSEMBLE[1], ENSEMBLE[2], 1100); return; }
     imm.couper(e + 1);
-    if (ev.detail.camera && !arrivee) allerA(Math.atan2(1, 0.12), d * 0.34, e * 3 + 3 + d * 0.86, 1100, { cibleY: e * 3 + 1.5 });
+    // on reste de trois-quarts : la caméra se cale simplement sur l'étage découvert, un peu plus près
+    if (ev.detail.camera && !arrivee) allerA(ENSEMBLE[0], d * 0.78, e * 3 + 3 + d * 0.62, 1100, { cibleY: e * 3 + 1 });
   });
   const VUES = {
     ensemble: () => allerA(ENSEMBLE[0], ENSEMBLE[1], ENSEMBLE[2], 1200),
@@ -233,6 +235,7 @@ function demarrer(L) {
       if (cible && m.userData.teinte !== 1) { const col = COULEURS[m.userData.l.t] || 0x5E97AB; m.userData.avant = m.material; m.material = m.userData.mats.map(mt => { const c = mt.clone(); c.color.setHex(col); return c; }); m.userData.teinte = 1; }
       if (!cible && m.userData.sorti === 0 && m.userData.teinte === 1) { m.material = m.userData.avant || m.userData.mats; m.userData.teinte = 0; }
     }
+    imm.tick();
     if (!arrivee && !tour) { borner(); controls.update(); }
     renderer.render(scene, camera); requestAnimationFrame(boucle);
   };
