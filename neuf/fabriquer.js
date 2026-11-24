@@ -187,7 +187,22 @@ table.lots td.prix-lot small{font-weight:400;font-size:.72rem;color:var(--discre
 tr.vise td{background:var(--teinte)}
 .legende-typo{display:flex;flex-wrap:wrap;gap:12px;font-size:.8rem;color:var(--discret);margin:0 0 .4rem}
 .legende-typo i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:5px;vertical-align:middle}
-.scene3d{position:relative;border:1px solid var(--trait);border-radius:10px;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,#FFFFFF 0%,#F4F0E8 70%);min-height:340px;touch-action:pan-y}
+.tete-immeuble{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:7px 12px;background:var(--carte)}
+.titre-listes{font-family:var(--display);font-weight:500;font-size:1.2rem;margin:0 0 .6rem}
+.immeuble .listes .typo h3{font-size:1.02rem}
+.immeuble .vue{display:contents}
+.immeuble .scene3d{position:sticky;top:0;z-index:3}
+.immeuble .listes{margin-top:1rem}
+@media (min-width:960px){
+  .immeuble{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:0 22px;align-items:start}
+  .immeuble .vue{display:block;position:sticky;top:10px}
+  .immeuble .scene3d{position:relative}
+  .immeuble .listes{margin-top:0}
+  .immeuble .sous-immeuble{grid-column:1 / -1}
+  main:has(.immeuble){max-width:1240px}
+}
+.scene3d{position:relative;border:1px solid var(--trait);border-radius:10px;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,#FFFFFF 0%,#F4F0E8 70%);min-height:240px;touch-action:pan-y}
 .scene3d canvas{display:block;width:100%;touch-action:none}
 .coupe{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:.9rem;color:var(--discret)}
 .coupe input{flex:1;accent-color:#005875}
@@ -391,18 +406,25 @@ function pageProgramme(d, p) {
   <p class="chapo">Programme neuf à ${esc(d.ville)} (${esc(d.cp)})${p.picking ? '. Nous pouvons vous obtenir la grille de ce programme sur demande.' : p.nb_lots_libres ? ` : ${pluriel(p.nb_lots_libres, 'logement disponible', 'logements disponibles')}, relevés le ${dateFr(d.maj)}.` : '.'}</p>
   ${infos.length ? '<dl class="infos">' + infos.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('') + '</dl>' : ''}
   ${p.picking ? '<div class="puces"><span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span></div>' : ''}
-  ${typos.length ? `<h2 id="immeuble">L’immeuble</h2>
+  ${typos.length ? `<div class="tete-immeuble"><h2 id="immeuble">L’immeuble</h2><a class="retour-carte" href="/neuf/?ville=${esc(d.slug)}">Retour à la carte de ${esc(d.ville)}</a></div>
   <div class="immeuble">
+   <div class="vue">
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button>${typos.map(t => `<button type="button" aria-pressed="false" data-t="${esc(t)}">${esc(t)}</button>`).join('')}</div>
     <div class="coupe"><label for="coupe">Voir jusqu’à</label><input type="range" id="coupe" min="1" max="1" value="1" step="1"><output id="coupe-val"></output></div>
  <div class="coupe"><label for="heure">Soleil à</label><input type="range" id="heure" min="6" max="22" step="0.25" value="14"><output id="heure-val"></output></div>
     <div class="scene3d" id="imm3d" data-lat="${p.position ? ARRONDI(p.position.latitude) : ''}" data-lng="${p.position ? ARRONDI(p.position.longitude) : ''}" aria-label="Maquette 3D de l’immeuble : faites-la tourner, touchez un logement"></div>
     <div class="fiche-lot" id="bulle" aria-live="polite">Touchez ou survolez un logement de la maquette pour voir sa fiche.</div>
-    <p class="aide">Touchez une fenêtre pour voir quel logement se trouve derrière : sa taille, sa surface, son étage et son prix. Faites tourner l’immeuble au doigt ou à la souris.</p>
+   </div>
+   <div class="listes">
+    <h3 class="titre-listes">Les logements disponibles</h3>
+    ${typos.map(tableau).join('\n    ')}
+   </div>
+   <div class="sous-immeuble">
+    <p class="aide">Touchez une fenêtre, ou passez sur une ligne de la liste : le logement ressort de l’immeuble. Glissez pour tourner autour, molette ou pincement pour zoomer, clic droit ou deux doigts pour vous déplacer.</p>
     <p class="note">Maquette dessinée automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.${p.image ? '' : ''}</p>
     ${p.image ? `<figure class="perspective"><img src="${esc(p.image)}" alt="Perspective de ${esc(p.nom)}" loading="lazy"><figcaption>Perspective du promoteur, non contractuelle.</figcaption></figure>` : ''}
-  </div>
-  <h2>Les logements disponibles</h2>\n  ${typos.map(tableau).join('\n  ')}` : `<h2>Les logements</h2><p>La grille de ce programme est envoyée sur demande.</p>`}
+   </div>
+  </div>` : `<h2>Les logements</h2><p>La grille de ce programme est envoyée sur demande.</p>`}
   <section class="appel" id="compte">
     <h2>Voir les plans de ces logements</h2>
     <p>Les plans et les prix sont réservés à votre espace client. Il se crée en une minute ; en attendant, appelez-nous et nous vous les envoyons.</p>

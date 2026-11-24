@@ -61,6 +61,7 @@ async function demarrer() {
     cooperativeGestures: false, dragRotate: true,
   });
   conteneur.__carte = map; // accès pour les contrôles automatiques
+  window.addEventListener('pageshow', () => { conteneur.style.opacity = '1'; marqueurs.forEach(x => { x.m.getElement().style.opacity = ''; }); });
   map.addControl(new ml.NavigationControl({ showCompass: true, visualizePitch: true }), 'top-right');
   map.addControl(new ml.AttributionControl({ compact: true, customAttribution: 'Fond de carte : IGN · contours geo.api.gouv.fr · lieux © OpenStreetMap' }));
   { const at = conteneur.querySelector('.maplibregl-ctrl-attrib'); if (at) { at.classList.remove('maplibregl-compact-show'); at.removeAttribute('open'); } }
@@ -221,7 +222,18 @@ async function demarrer() {
   for (const v of villes) for (const p of v.p) {
     const el = document.createElement('button');
     el.type = 'button'; el.className = 'repere' + (p.k ? ' picking' : ''); el.title = p.n; el.setAttribute('aria-label', p.n);
-    el.addEventListener('click', ev => { ev.stopPropagation(); location.href = '/neuf/' + p.u + (p.k ? '' : '#immeuble'); });
+    el.addEventListener('click', ev => {
+      ev.stopPropagation();
+      if (p.k) { location.href = '/neuf/' + p.u; return; }
+      // Zoom progressif : la caméra descend vers le programme et s'incline, la carte s'efface, puis la page de l'immeuble
+      // reprend le mouvement jusqu'à la vue du bas (voir immeuble3d.js, « arrivee »)
+      marqueurs.forEach(x => { if (x.p !== p) x.m.getElement().style.opacity = '0.25'; });
+      map.flyTo({ center: [p.o, p.a], zoom: 17.4, pitch: 68, bearing: -24, duration: 1700, essential: true, curve: 1.3 });
+      conteneur.style.transition = 'opacity .55s ease';
+      setTimeout(() => { conteneur.style.opacity = '0'; }, 1250);
+      try { sessionStorage.setItem('glr-arrivee', '1'); } catch (_) {}
+      setTimeout(() => { location.href = '/neuf/' + p.u + '#immeuble'; }, 1800);
+    });
     el.style.display = 'none'; // les repères n'apparaissent qu'une fois la ville choisie
     marqueurs.push({ m: new ml.Marker({ element: el }).setLngLat([p.o, p.a]).addTo(map), p, v });
   }

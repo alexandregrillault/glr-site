@@ -159,7 +159,22 @@ table.lots td.prix-lot small{font-weight:400;font-size:.72rem;color:var(--discre
 tr.vise td{background:var(--teinte)}
 .legende-typo{display:flex;flex-wrap:wrap;gap:12px;font-size:.8rem;color:var(--discret);margin:0 0 .4rem}
 .legende-typo i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:5px;vertical-align:middle}
-.scene3d{position:relative;border:1px solid var(--trait);border-radius:10px;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,#FFFFFF 0%,#F4F0E8 70%);min-height:340px;touch-action:pan-y}
+.tete-immeuble{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:7px 12px;background:var(--carte)}
+.titre-listes{font-family:var(--display);font-weight:500;font-size:1.2rem;margin:0 0 .6rem}
+.immeuble .listes .typo h3{font-size:1.02rem}
+.immeuble .vue{display:contents}
+.immeuble .scene3d{position:sticky;top:0;z-index:3}
+.immeuble .listes{margin-top:1rem}
+@media (min-width:960px){
+  .immeuble{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:0 22px;align-items:start}
+  .immeuble .vue{display:block;position:sticky;top:10px}
+  .immeuble .scene3d{position:relative}
+  .immeuble .listes{margin-top:0}
+  .immeuble .sous-immeuble{grid-column:1 / -1}
+  main:has(.immeuble){max-width:1240px}
+}
+.scene3d{position:relative;border:1px solid var(--trait);border-radius:10px;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,#FFFFFF 0%,#F4F0E8 70%);min-height:240px;touch-action:pan-y}
 .scene3d canvas{display:block;width:100%;touch-action:none}
 .coupe{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:.9rem;color:var(--discret)}
 .coupe input{flex:1;accent-color:#005875}

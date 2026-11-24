@@ -2,7 +2,7 @@
 // Données : <script type="application/json" id="logements-data">. Prix : window.GLR_PRIX (servi par la base).
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { construire, COULEURS, soleil, versSoleil, lumiere, heureTexte } from './maquette.js';
+import { construire, decorRue, COULEURS, soleil, versSoleil, lumiere, heureTexte } from './maquette.js';
 
 const zone = document.getElementById('imm3d');
 const donnees = document.getElementById('logements-data');
@@ -21,9 +21,10 @@ function demarrer(L) {
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   zone.prepend(renderer.domElement);
 
-  const imm = construire(L);
+  const imm = construire(L, { arbres: false });
   const scene = new THREE.Scene();
   scene.add(imm.racine);
+  scene.add(decorRue(imm));
   const haut = imm.hauteur, largeur = imm.largeur, profondeur = imm.profondeur;
   const d = Math.max(largeur * 1.1, haut) * 1.55 + 12;
   scene.fog = new THREE.Fog(0xF4F0E8, d * 1.6, d * 3.2);
@@ -32,8 +33,17 @@ function demarrer(L) {
   camera.position.set(d * 0.38, haut * 0.16 + 1.7, d * 1.02);
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.target.set(0, haut * 0.5, 0);
-  Object.assign(controls, { enableDamping: true, enablePan: false, minDistance: d * 0.35, maxDistance: d * 1.6, maxPolarAngle: Math.PI * 0.52, autoRotate: false });
+  // Souris : glisser = tourner et changer l'angle, molette = zoom, clic droit (ou deux doigts) = se déplacer dans la rue
+  Object.assign(controls, { enableDamping: true, enablePan: true, screenSpacePanning: false, enableZoom: true, zoomSpeed: 0.9, minDistance: d * 0.18, maxDistance: d * 2.6, maxPolarAngle: Math.PI * 0.5 - 0.02, autoRotate: false });
+  controls.addEventListener('change', () => { const t = controls.target; t.x = Math.max(-70, Math.min(70, t.x)); t.z = Math.max(-70, Math.min(70, t.z)); t.y = Math.max(1, Math.min(haut, t.y)); });
   renderer.domElement.addEventListener('pointerdown', () => { controls.autoRotate = false; });
+  // Arrivée : la caméra finit le zoom commencé sur la carte, du dessus jusqu'à la vue du bas
+  const bas = camera.position.clone();
+  let arrivee = null;
+  try { if (sessionStorage.getItem('glr-arrivee')) { sessionStorage.removeItem('glr-arrivee'); arrivee = performance.now(); } } catch (_) {}
+  if (arrivee) { camera.position.set(d * 0.9, haut * 1.4 + d * 1.5, d * 1.5); controls.enabled = false; }
+  const adoucir = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const haut0 = camera.position.clone();
 
   const sol = new THREE.Mesh(new THREE.CircleGeometry(400, 64), new THREE.MeshStandardMaterial({ color: 0xF1ECE2, roughness: 1 }));
   sol.rotation.x = -Math.PI / 2; sol.receiveShadow = true; scene.add(sol);
@@ -98,8 +108,8 @@ function demarrer(L) {
     const h = ray.intersectObjects(vis, false)[0];
     return h ? h.object : null;
   };
-  renderer.domElement.addEventListener('pointermove', ev => { if (ev.pointerType === 'mouse') fiche(toucher(ev), ev); });
-  renderer.domElement.addEventListener('pointerleave', () => fiche(null));
+  renderer.domElement.addEventListener('pointermove', ev => { if (ev.pointerType === 'mouse') { const m = toucher(ev); fiche(m, ev); sortir(m); } });
+  renderer.domElement.addEventListener('pointerleave', () => { fiche(null); sortant = null; });
   let depart = null, choisi = null;
   renderer.domElement.addEventListener('pointerdown', ev => { depart = [ev.clientX, ev.clientY]; });
   renderer.domElement.addEventListener('pointerup', ev => {
@@ -116,10 +126,41 @@ function demarrer(L) {
   });
 
   const taille = () => {
-    const w = zone.clientWidth, h = Math.round(Math.min(520, Math.max(340, w * 0.72)));
+    const etroit = window.innerWidth < 960, w = zone.clientWidth, h = etroit ? Math.round(Math.min(window.innerHeight * 0.42, Math.max(240, w * 0.72))) : Math.round(Math.min(window.innerHeight - 260, Math.max(380, w * 0.72)));
     renderer.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix();
   };
   window.addEventListener('resize', taille); taille();
-  const boucle = () => { controls.update(); renderer.render(scene, camera); requestAnimationFrame(boucle); };
+  // Logement qui ressort de l'immeuble : survol d'une ligne de la liste ou d'une fenêtre
+  const parId = {}; imm.lots.forEach(m => { parId[m.userData.l.i] = m; m.userData.z0 = m.position.z; m.userData.sorti = 0; });
+  let sortant = null;
+  const sortir = m => {
+    if (sortant === m) return; sortant = m;
+    if (!m) return;
+    // si le logement est sur l'autre façade, la caméra passe de l'autre côté
+    const devant = m.userData.z0 > 0;
+    if (!arrivee && (camera.position.z > 0) !== devant) { tour = { t0: performance.now(), de: camera.position.clone() }; }
+  };
+  let tour = null;
+  document.querySelectorAll('table.lots tr[id^="l-"]').forEach(tr => {
+    const m = parId[tr.id.slice(2)]; if (!m) return;
+    const entrer = () => { sortir(m); fiche(m); document.querySelectorAll('tr.vise').forEach(z => z.classList.remove('vise')); tr.classList.add('vise'); };
+    tr.addEventListener('mouseenter', entrer); tr.addEventListener('click', entrer); tr.addEventListener('focusin', entrer);
+    tr.addEventListener('mouseleave', () => { if (sortant === m) sortant = null; tr.classList.remove('vise'); });
+  });
+  const boucle = () => {
+    const t = performance.now();
+    if (arrivee) { const x = Math.min(1, (t - arrivee - 150) / 2200); if (x > 0) camera.position.lerpVectors(haut0, bas, adoucir(x)); if (x >= 1) { arrivee = null; controls.enabled = true; } camera.lookAt(controls.target); }
+    if (tour) { const x = Math.min(1, (t - tour.t0) / 900), a = Math.PI * adoucir(x), r = Math.hypot(tour.de.x, tour.de.z), a0 = Math.atan2(tour.de.z, tour.de.x); camera.position.set(r * Math.cos(a0 + a), tour.de.y, r * Math.sin(a0 + a)); if (x >= 1) tour = null; }
+    for (const m of imm.lots) {
+      const cible = m === sortant ? 1 : 0; if (m.userData.sorti === cible) continue;
+      m.userData.sorti += Math.sign(cible - m.userData.sorti) * Math.min(Math.abs(cible - m.userData.sorti), 0.12);
+      const k = adoucir(m.userData.sorti);
+      m.position.z = m.userData.z0 + Math.sign(m.userData.z0) * 1.6 * k;
+      if (cible && m.userData.teinte !== 1) { const col = COULEURS[m.userData.l.t] || 0x5E97AB; m.userData.avant = m.material; m.material = m.userData.mats.map(mt => { const c = mt.clone(); c.color.setHex(col); return c; }); m.userData.teinte = 1; }
+      if (!cible && m.userData.sorti === 0 && m.userData.teinte === 1) { m.material = m.userData.avant || m.userData.mats; m.userData.teinte = 0; }
+    }
+    if (!arrivee) controls.update();
+    renderer.render(scene, camera); requestAnimationFrame(boucle);
+  };
   boucle();
 }
