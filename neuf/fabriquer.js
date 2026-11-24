@@ -97,6 +97,24 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .appel a.plein{background:#fff;color:var(--bleu)}
 .appel a.creux{border:1px solid #fff;color:#fff}
 .carte{height:340px;border-radius:8px;border:1px solid var(--trait);margin:0 0 .6rem;z-index:0}
+.leaflet-tile-pane{filter:grayscale(1) sepia(.18) brightness(1.06) contrast(.82)}
+.leaflet-container{background:#EEEAE1;font-family:var(--body)}
+.leaflet-control-attribution{font-size:10px!important;background:rgba(251,248,241,.8)!important}
+.leaflet-bar a{color:var(--bleu)!important}
+.recherche{position:relative;margin:0 0 14px}
+.recherche label{display:block;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 6px}
+.recherche input{width:100%;font:inherit;font-size:1.05rem;padding:13px 14px;border:1px solid var(--trait);border-radius:8px;background:#fff;color:var(--texte)}
+.recherche input:focus{outline:2px solid var(--bleu);outline-offset:1px;border-color:var(--bleu)}
+.propositions{position:absolute;left:0;right:0;top:100%;margin:4px 0 0;padding:4px;list-style:none;background:#fff;border:1px solid var(--trait);border-radius:8px;box-shadow:0 6px 18px rgba(22,26,30,.12);z-index:1000;display:none}
+.propositions li{padding:10px 12px;border-radius:6px;cursor:pointer}
+.propositions li small{color:var(--discret);margin-left:6px}
+.propositions li[aria-selected=true],.propositions li:hover{background:var(--teinte)}
+.carte.grande{height:430px}
+.resume{display:none;background:var(--carte);border:1px solid var(--trait);border-left:3px solid var(--laiton);border-radius:8px;padding:14px 16px;margin:0 0 1rem}
+.resume b{font-family:var(--display);font-weight:500;font-size:1.35rem;color:var(--bleu)}
+.resume p{margin:.3rem 0 .7rem;color:var(--discret)}
+.resume a.bouton{display:inline-block;background:var(--bleu);color:#fff;padding:10px 16px;border-radius:6px;font-weight:600;text-decoration:none}
+.resume.absente{border-left-color:var(--trait)}
 .legende{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;color:var(--discret);margin:0 0 1rem}
 .legende i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:middle}
 .repere{width:18px;height:18px;border-radius:50%;background:var(--bleu);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)}
@@ -246,7 +264,7 @@ ${pied}
 ${reperes.length ? `<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script>
 (function(){if(!window.L)return;var R=${JSON.stringify(reperes).replace(/</g, '\\u003c')};
-var m=L.map('carte',{scrollWheelZoom:false});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; contributeurs OpenStreetMap'}).addTo(m);
+var m=L.map('carte',{scrollWheelZoom:false});var C=${JSON.stringify(contour(d)).replace(/</g, '\\u003c')};if(C)L.geoJSON(C,{style:{color:'#005875',weight:2,fillColor:'#005875',fillOpacity:.04},interactive:false}).addTo(m);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; contributeurs OpenStreetMap'}).addTo(m);
 var e=function(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})},b=[];
 R.forEach(function(r){var i=L.divIcon({className:'',html:'<div class="repere'+(r.k?' picking':'')+'"></div>',iconSize:[18,18],iconAnchor:[9,9]});
 L.marker([r.a,r.o],{icon:i,title:r.n}).addTo(m).bindPopup('<b>'+e(r.n)+'</b>'+(r.v?'<br>Livraison '+e(r.v):'')+(r.l?'<br>'+e(r.l):'')+'<br><a class="voir" href="'+e(r.u)+'">Voir le programme</a>');b.push([r.a,r.o]);});
@@ -262,6 +280,16 @@ v.style.display=n?'none':'block';});});})();
 </body>
 </html>
 `;
+}
+
+function contour(d) {
+  if (!d.insee) return null;
+  const f = path.join(ICI, 'donnees', 'contours', d.insee + '.json');
+  if (!fs.existsSync(f)) return null;
+  // Contour officiel de la commune (geo.api.gouv.fr, Licence Ouverte), coordonnées arrondies pour alléger la page.
+  const g = JSON.parse(fs.readFileSync(f, 'utf8')).geometry;
+  const arr = c => typeof c[0] === 'number' ? [Math.round(c[0] * 1e4) / 1e4, Math.round(c[1] * 1e4) / 1e4] : c.map(arr);
+  return { type: 'Feature', properties: {}, geometry: { type: g.type, coordinates: arr(g.coordinates) } };
 }
 
 function pageProgramme(d, p) {
@@ -315,17 +343,79 @@ var m={};cs.forEach(function(c){m[c.getAttribute('data-lot')]=Math.round(c.getAt
 function pageIndex(villes) {
   const test = villes.some(d => d.test);
   const url = SITE + '/neuf/';
-  return `${tete({ titre: 'Immobilier neuf en Île-de-France, ville par ville | GLR Immobilier', description: 'Tous les programmes neufs, ville par ville : nombre de logements disponibles, prix moyen au m², livraisons. Plans et prix envoyés gratuitement par GLR Immobilier.', url, test })}
+  const sansAccent = t => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const V = villes.map(d => ({
+    v: d.ville, s: d.slug, cp: d.cp, k: sansAccent(d.ville + ' ' + d.cp),
+    r: `${pluriel(d.chiffres.nb_programmes, 'programme', 'programmes')} · ${nb(d.chiffres.nb_lots_libres)} logements disponibles`,
+    c: contour(d),
+    p: d.programmes.filter(p => p.position && p.position.latitude != null).map(p => ({ n: p.nom, u: d.slug + '/' + p.slug + '/', k: !!p.picking,
+      a: Math.round(p.position.latitude * 1000) / 1000, o: Math.round(p.position.longitude * 1000) / 1000 }))
+  }));
+  return `${tete({ titre: 'Immobilier neuf en Île-de-France : tous les programmes par ville | GLR Immobilier', description: 'Cherchez une ville et voyez tous ses programmes neufs sur la carte : logements disponibles, typologies, prix. Plans envoyés par GLR Immobilier.', url, test, carte: true })}
 <main>
   <p class="fil"><a href="/">Accueil</a> › Immobilier neuf</p>
-  <h1>Immobilier neuf, ville par ville</h1>
+  <h1>Tous les programmes neufs, ville par ville</h1>
   <hr class="filet">
-  <p class="chapo">Nous suivons tous les programmes neufs de ces villes et vous envoyons les plans et les prix de ceux qui vous correspondent.</p>
+  <p class="chapo">Tapez une ville : nous vous montrons tous ses programmes neufs, tous promoteurs confondus.</p>
+  <div class="recherche">
+    <label for="q">Quelle ville ?</label>
+    <input id="q" type="search" autocomplete="off" placeholder="Ex. Aubervilliers ou 93300" role="combobox" aria-expanded="false" aria-controls="props" aria-autocomplete="list">
+    <ul id="props" class="propositions" role="listbox"></ul>
+  </div>
+  <div class="resume" id="resume" aria-live="polite"></div>
+  <div id="carte" class="carte grande" role="img" aria-label="Carte des programmes neufs suivis par GLR Immobilier"></div>
+  <p class="legende"><span><i style="background:var(--bleu)"></i>Programme en vente</span><span><i style="background:var(--laiton)"></i>Picking, grille sur demande</span></p>
+  <h2>Les villes suivies</h2>
   <div class="villes">
 ${villes.map(d => `    <a href="/neuf/${d.slug}/"><b>${esc(d.ville)}</b><span>${pluriel(d.chiffres.nb_programmes, 'programme', 'programmes')} · ${nb(d.chiffres.nb_lots_libres)} logements disponibles${AFFICHER.prixM2 && d.chiffres.prix_m2_moyen ? ' · ' + euros(d.chiffres.prix_m2_moyen) + '/m²' : ''}</span></a>`).join('\n')}
   </div>
 </main>
 ${pied}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+(function(){
+var V=${JSON.stringify(V).replace(/</g, '\\u003c')};
+var e=function(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+var sa=function(t){return t.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim()};
+var q=document.getElementById('q'),ul=document.getElementById('props'),res=document.getElementById('resume'),m=null,couches={},tous=[],choix=-1,liste=[];
+if(window.L){
+  m=L.map('carte',{scrollWheelZoom:false,zoomControl:true});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap · contours geo.api.gouv.fr'}).addTo(m);
+  V.forEach(function(v){
+    var g=L.layerGroup().addTo(m),c=null;
+    if(v.c){c=L.geoJSON(v.c,{style:{color:'#005875',weight:1,opacity:.5,fillColor:'#005875',fillOpacity:.03}}).addTo(g);c.on('click',function(){montrer(v)});}
+    v.p.forEach(function(p){var i=L.divIcon({className:'',html:'<div class="repere'+(p.k?' picking':'')+'"></div>',iconSize:[18,18],iconAnchor:[9,9]});
+      L.marker([p.a,p.o],{icon:i,title:p.n}).addTo(g).bindPopup('<b>'+e(p.n)+'</b><br>'+e(v.v)+'<br><a class="voir" href="'+e(p.u)+'">Voir le programme</a>');tous.push([p.a,p.o]);});
+    couches[v.s]={g:g,c:c};
+  });
+  if(tous.length)m.fitBounds(tous,{padding:[20,20]});
+}
+function montrer(v){
+  res.className='resume';res.style.display='block';
+  res.innerHTML='<b>'+e(v.v)+'</b> <span>('+e(v.cp)+')</span><p>'+e(v.r)+'</p><a class="bouton" href="'+e(v.s)+'/">Voir les programmes de '+e(v.v)+'</a>';
+  if(!m)return;
+  V.forEach(function(x){var c=couches[x.s].c;if(c)c.setStyle(x===v?{weight:3,opacity:1,fillOpacity:.10}:{weight:1,opacity:.35,fillOpacity:.02});});
+  var c=couches[v.s].c;if(c)m.flyToBounds(c.getBounds(),{padding:[24,24],duration:.8});else if(v.p.length)m.flyToBounds(v.p.map(function(p){return[p.a,p.o]}),{padding:[30,30]});
+  try{history.replaceState(null,'','?ville='+v.s)}catch(_){}
+}
+function absente(t){res.className='resume absente';res.style.display='block';
+  res.innerHTML='<b>'+e(t)+'</b><p>Cette ville n’a pas encore sa page. Nous suivons aussi ses programmes neufs : appelez-nous ou écrivez-nous, nous vous envoyons ce qui existe.</p><a class="bouton" href="tel:${CONTACT.tel}">Appeler le ${CONTACT.telAffiche}</a>';}
+function proposer(){var t=sa(q.value);choix=-1;liste=t?V.filter(function(v){return v.k.indexOf(t)>-1}):[];
+  ul.innerHTML=liste.map(function(v,i){return '<li role="option" id="o'+i+'" aria-selected="false">'+e(v.v)+'<small>'+e(v.cp)+'</small></li>'}).join('');
+  ul.style.display=liste.length?'block':'none';q.setAttribute('aria-expanded',liste.length?'true':'false');
+  [].forEach.call(ul.children,function(li,i){li.addEventListener('mousedown',function(ev){ev.preventDefault();valider(liste[i])})});}
+function valider(v){ul.style.display='none';q.setAttribute('aria-expanded','false');if(v){q.value=v.v;montrer(v);}else if(q.value.trim())absente(q.value.trim());}
+function marquer(){[].forEach.call(ul.children,function(li,i){li.setAttribute('aria-selected',i===choix?'true':'false')});}
+q.addEventListener('input',proposer);
+q.addEventListener('keydown',function(ev){
+  if(ev.key==='ArrowDown'&&liste.length){choix=(choix+1)%liste.length;marquer();ev.preventDefault();}
+  else if(ev.key==='ArrowUp'&&liste.length){choix=(choix-1+liste.length)%liste.length;marquer();ev.preventDefault();}
+  else if(ev.key==='Enter'){ev.preventDefault();var t=sa(q.value);valider(liste[choix>-1?choix:0]||V.filter(function(v){return sa(v.v)===t})[0]);}
+  else if(ev.key==='Escape'){ul.style.display='none';}});
+q.addEventListener('blur',function(){ul.style.display='none'});
+var d=new URLSearchParams(location.search).get('ville');if(d){var v=V.filter(function(x){return x.s===d})[0];if(v){q.value=v.v;montrer(v);}}
+})();
+</script>
 </body>
 </html>
 `;
