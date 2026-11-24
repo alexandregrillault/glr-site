@@ -10,7 +10,9 @@
 
   // Même rangement que la maquette 3D : par étage, deux rangées (rue en bas du plan, jardin en haut), triées par taille
   var parEtage = {}, F = 0, N = 2;
-  L.forEach(function (l) { (parEtage[l.e] = parEtage[l.e] || []).push(l); if (l.e > F) F = l.e; });
+  // Étage inconnu (la base ne le donne pas toujours) : ces logements restent dans la liste, jamais dans le plan ni dans la maquette
+  var sansEtage = L.filter(function (l) { return l.e == null; });
+  L.forEach(function (l) { if (l.e == null) return; (parEtage[l.e] = parEtage[l.e] || []).push(l); if (l.e > F) F = l.e; });
   F = Math.max(F + 1, 3);
   Object.keys(parEtage).forEach(function (k) {
     parEtage[k].sort(function (a, b) { return ORD.indexOf(a.t) - ORD.indexOf(b.t) || a.s - b.s; });
@@ -48,7 +50,7 @@
 
   // ——— Les logements de l'étage choisi ———
   var cases = {}, etageCourant = null, filtre = '', choisi = null;
-  var nomEtage = function (e) { return e === 0 ? 'Rez-de-chaussée' : e + (e === 1 ? 'er' : 'e') + ' étage'; };
+  var nomEtage = function (e) { return e == null ? 'Étage non précisé' : e === 0 ? 'Rez-de-chaussée' : e + (e === 1 ? 'er' : 'e') + ' étage'; };
   var texteFiche = function (l) {
     var p = window.GLR_PRIX && window.GLR_PRIX[l.i], r = window.GLR_PRIX_R && window.GLR_PRIX_R[l.i];
     var eu = function (n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; };
@@ -57,7 +59,7 @@
   };
   function choisir(l, depuisListe) {
     choisi = l;
-    if (l && l.e !== etageCourant) montrerEtage(l.e);
+    if (l && l.e != null && l.e !== etageCourant) montrerEtage(l.e);
     Object.keys(cases).forEach(function (k) { cases[k].classList.toggle('choisie', !!l && k === l.i); });
     document.querySelectorAll('tr.vise').forEach(function (z) { z.classList.remove('vise'); });
     if (!l) return;
@@ -78,7 +80,7 @@
       var enc = CLAIR[l.t] ? '#005875' : '#FFFFFF';
       el('text', { x: x + W / 2, y: y + P / 2 - 0.2, 'font-size': 1.55, 'font-weight': 600, fill: enc, 'text-anchor': 'middle' }, g, l.t);
       el('text', { x: x + W / 2, y: y + P / 2 + 1.5, 'font-size': 1.05, fill: enc, 'text-anchor': 'middle', opacity: 0.9 }, g, String(Math.round(l.s)) + ' m²');
-      if (/balcon|terrasse|loggia|jardin/i.test(l.x)) el('rect', { x: x + 0.7, y: r === 0 ? y + P - 0.15 : y - 0.55, width: W - 1.4, height: 0.7, rx: 0.2, fill: /jardin/i.test(l.x) ? '#B4C49A' : '#D8D2C5', stroke: '#B0894C', 'stroke-width': 0.1 }, g);
+      if (/balcon|terrasse|loggia|jardin|ext[eé]rieur/i.test(l.x)) el('rect', { x: x + 0.7, y: r === 0 ? y + P - 0.15 : y - 0.55, width: W - 1.4, height: 0.7, rx: 0.2, fill: /jardin/i.test(l.x) ? '#B4C49A' : '#D8D2C5', stroke: '#B0894C', 'stroke-width': 0.1 }, g);
       cases[l.i] = g;
       (function (l, g) {
         g.addEventListener('mouseenter', function () { choisir(l); });
@@ -101,7 +103,7 @@
     bTout.addEventListener('click', function () {
       choisi = null; window.dispatchEvent(new CustomEvent('glr-etage', { detail: { e: null, camera: true } }));
       document.querySelectorAll('.etages button').forEach(function (b) { b.setAttribute('aria-pressed', b === bTout ? 'true' : 'false'); });
-      var t = document.getElementById('etage-titre'); if (t) t.textContent = 'Tout l’immeuble · ' + L.length + ' logements disponibles';
+      var t = document.getElementById('etage-titre'); if (t) t.textContent = 'Tout l’immeuble · ' + (L.length - sansEtage.length) + ' logements placés' + (sansEtage.length ? ' · ' + sansEtage.length + ' à l’étage non précisé (dans la liste)' : '');
     });
     zoneEt.appendChild(bTout);
   }

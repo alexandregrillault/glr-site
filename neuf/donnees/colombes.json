@@ -208,7 +208,7 @@
     {
       "slug": "programme-test-2",
       "nom": "Le Domaine des Peupliers (test)",
-      "promoteur": "Promoteur B",
+      "promoteur": "",
       "quartier": "Quartier 2",
       "livraison": "3e trimestre 2027",
       "livraison_cle": "2027-3",
@@ -234,14 +234,14 @@
         {
           "typo": "T2",
           "surface": 44.6,
-          "etage": 6,
+          "etage": null,
           "exterieur": null,
           "id": "t2-1"
         },
         {
           "typo": "T3",
           "surface": 62.0,
-          "etage": 5,
+          "etage": null,
           "exterieur": "Jardin",
           "id": "t2-2"
         },
@@ -249,7 +249,7 @@
           "typo": "T4",
           "surface": 81.0,
           "etage": 5,
-          "exterieur": null,
+          "exterieur": "Extérieur",
           "id": "t2-3"
         },
         {
@@ -342,7 +342,8 @@
       "image": null,
       "position": {
         "latitude": 48.914,
-        "longitude": 2.269
+        "longitude": 2.269,
+        "approx": true
       },
       "logements": [
         {

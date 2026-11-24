@@ -238,10 +238,12 @@ async function demarrer() {
   const marqueurs = [];
   for (const v of villes) for (const p of v.p) {
     const el = document.createElement('button');
-    el.type = 'button'; el.className = 'repere' + (p.k ? ' picking' : '');
+    el.type = 'button'; el.className = 'repere' + (p.k ? ' picking' : '') + (p.z ? ' approx' : '');
     // Au survol : nom du programme et date de livraison (ou « grille sur demande » pour un picking)
     { const info = document.createElement('span'); info.className = 'info-prog'; const b = document.createElement('b'); b.textContent = p.n; info.appendChild(b);
-      info.appendChild(document.createTextNode(p.k ? 'Grille sur demande' : (p.l ? 'Livraison ' + p.l : 'Livraison à préciser'))); el.appendChild(info);
+      info.appendChild(document.createTextNode(p.k ? 'Grille sur demande' : (p.l ? 'Livraison ' + p.l : 'Livraison à préciser')));
+      if (p.z) { const ap = document.createElement('i'); ap.textContent = 'Emplacement approximatif'; ap.style.cssText = 'display:block;font-style:normal;opacity:.8;font-size:.72rem'; info.appendChild(ap); }
+      el.appendChild(info);
       el.setAttribute('aria-label', p.n + (p.l ? ', livraison ' + p.l : '')); }
     el.addEventListener('click', ev => {
       ev.stopPropagation();

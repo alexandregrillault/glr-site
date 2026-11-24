@@ -42,6 +42,8 @@ function etiquetteLot(l) {
 export function construire(L, { arbres = true } = {}) {
   const parEtage = {};
   let F = 0;
+  // Les logements dont l'étage n'est pas connu n'ont pas leur place dans la maquette (ils restent dans la liste)
+  L = L.filter(l => l.e != null);
   for (const l of L) { (parEtage[l.e] = parEtage[l.e] || []).push(l); F = Math.max(F, l.e); }
   F = Math.max(F + 1, 3);
   let N = 2;
@@ -86,7 +88,7 @@ export function construire(L, { arbres = true } = {}) {
       m.userData = { l, plateau, dessusTexte, mats: mats.slice() };
       lots.push(m);
       const sens = r === 0 ? 1 : -1;
-      if (/balcon|terrasse|loggia/i.test(l.x) && f > 0) {
+      if (/balcon|terrasse|loggia|ext[eé]rieur/i.test(l.x) && f > 0) {
         const prof = /terrasse/i.test(l.x) ? 2.2 : 1.4;
         const b = new THREE.Mesh(new THREE.BoxGeometry(W - 0.5, 0.18, prof), matDalle);
         b.position.set(x, 0.4, z + sens * (P / 2 + prof / 2)); b.castShadow = true; gr.add(b);

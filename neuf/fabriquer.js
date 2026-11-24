@@ -114,6 +114,8 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .maplibregl-map{font-family:var(--body);border-radius:8px}
 .maplibregl-ctrl-attrib{font-size:10px;background:rgba(251,248,241,.85)!important}
 button.repere{padding:0;cursor:pointer;display:block}
+button.repere.approx{background:#fff;border:3px dashed var(--bleu);box-sizing:border-box}
+button.repere.approx.picking{border-color:var(--laiton)}
 .fil-carte{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:.5rem 0 0;font-size:.92rem;color:var(--discret);min-height:2.2em}
 .boutons-carte{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
 .fil-carte b{color:var(--bleu);font-weight:600}
@@ -323,7 +325,7 @@ function carteProgramme(p) {
   const nom = `<a href="${esc(p.slug)}/">${esc(p.nom)}</a>`;
   return `<article class="prog" data-typos="${esc((p.typologies || []).join(' '))}">
   <h3>${nom}</h3>
-  <p class="qui">${esc(p.promoteur)}</p>
+  ${p.promoteur ? `<p class="qui">${esc(p.promoteur)}</p>` : ''}
   ${lignes.length ? '<dl>' + lignes.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('') + '</dl>' : ''}
   ${typos || disp || picking ? `<div class="puces">${typos}${disp}${picking}</div>` : ''}
   ${p.picking ? '<div class="bas"><span class="prix"><small>grille</small>sur demande</span></div>' : `<div class="bas"><span class="prix">${AFFICHER.prixAPartirDe && p.prix_a_partir_de != null ? '<small>à partir de</small>' + euros(p.prix_a_partir_de) : '<small>prix</small>sur demande'}</span><span class="dispo">${pluriel(p.nb_lots_libres, 'logement disponible', 'logements disponibles')}</span></div>`}
@@ -421,7 +423,7 @@ const LIBS = `<link rel="modulepreload" href="https://unpkg.com/three@0.160.0/bu
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>`;
 const ARRONDI = x => Math.round(x * 1000) / 1000;
-const logementsPublics = p => (p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? 0 : l.etage, x: l.exterieur || '' }));
+const logementsPublics = p => (p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? null : l.etage, x: l.exterieur || '' }));
 // Données de la carte d'une ville ; avecMaquette = on embarque les logements (sans prix) pour la maquette 3D
 function donneesVille(d, avecMaquette) {
   return {
@@ -429,7 +431,7 @@ function donneesVille(d, avecMaquette) {
     r: `${pluriel(d.chiffres.nb_programmes, 'programme', 'programmes')} · ${nb(d.chiffres.nb_lots_libres)} logements disponibles`,
     p: d.programmes.filter(p => p.position && p.position.latitude != null).map(p => ({
       n: p.nom, s: p.slug, k: !!p.picking, a: ARRONDI(p.position.latitude), o: ARRONDI(p.position.longitude),
-      u: `${d.slug}/${p.slug}/`,
+      z: !!(p.position && p.position.approx), u: `${d.slug}/${p.slug}/`,
       l: p.livraison || '', d: p.picking ? 'Grille sur demande' : (p.nb_lots_libres ? pluriel(p.nb_lots_libres, 'logement disponible', 'logements disponibles') : ''),
       }))
   };
@@ -455,7 +457,7 @@ function pageProgramme(d, p) {
   const typos = Object.keys(groupes).sort((a, b) => ordre.indexOf(a) - ordre.indexOf(b));
   const ss = (p.logements || []).map(l => l.surface).filter(x => x != null);
   const surfaces = ss.length ? (Math.round(Math.min(...ss)) === Math.round(Math.max(...ss)) ? Math.round(ss[0]) + '\u00a0m²' : Math.round(Math.min(...ss)) + ' à ' + Math.round(Math.max(...ss)) + '\u00a0m²') : '';
-  const etage = e => e == null ? '—' : e === 0 ? 'RDC' : e + (e === 1 ? 'er' : 'e');
+  const etage = e => e == null ? 'non précisé' : e === 0 ? 'RDC' : e + (e === 1 ? 'er' : 'e');
   const tableau = t => `<section class="typo"><h3>${esc(t)} · ${pluriel(groupes[t].length, 'logement', 'logements')}</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
   ${groupes[t].sort((a, b) => (a.surface || 0) - (b.surface || 0)).map(l => `<tr id="l-${esc(l.id == null ? '' : l.id)}"><td>${l.surface != null ? nb(l.surface) + '\u00a0m²' : '—'}</td><td>${etage(l.etage)}</td><td>${esc(l.exterieur || '—')}</td><td class="prix-lot" data-lot="${esc(l.id == null ? '' : l.id)}" data-s="${l.surface || ''}">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>`).join('\n  ')}
@@ -511,7 +513,7 @@ function pageProgramme(d, p) {
   <p class="note">Disponibilités et prix relevés le ${dateFr(d.maj)} ; ils changent chaque semaine et sont confirmés par votre conseiller.</p>
 </main>
 ${pied}
-${typos.length ? `<script type="application/json" id="logements-data">${JSON.stringify((p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? 0 : l.etage, x: l.exterieur || '' }))).replace(/</g, '\\u003c')}</script>
+${typos.length ? `<script type="application/json" id="logements-data">${JSON.stringify((p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? null : l.etage, x: l.exterieur || '' }))).replace(/</g, '\\u003c')}</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script src="/neuf/programme.js" defer></script>
 <script>
