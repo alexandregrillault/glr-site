@@ -68,6 +68,41 @@ async function demarrer() {
   // Dès que le style est prêt (sans attendre toutes les tuiles du fond) : les départements s'affichent tout de suite
   await new Promise(r => (map.isStyleLoaded() ? r() : map.once('style.load', r)));
 
+  // ——— Sol « épuré » (essai demandé par Alex le 24/11/2026) : fond clair uni, rues blanches, grands axes laiton pâle,
+  // eau et parcs aux couleurs de la charte. Appliqué quand une ville est choisie ; le Plan IGN d'origine est gardé pour comparer.
+  const SOL = { fond: '#EEE8DC', eau: '#CFE0E6', vert: '#DDE5CF', rue: '#FFFFFF', axe: '#E8D6B4', rail: '#AEB6BD', texte: '#616B75' };
+  const origine = new Map();
+  // en sol épuré, la teinte rose/orange du département ne colore plus la ville
+  const teinteDep = () => { if (map.getLayer('dep-fond')) map.setPaintProperty('dep-fond', 'fill-opacity', solActif ? 0 : 0.12); };
+  let solEpure = new URLSearchParams(location.search).get('sol') !== 'ign', solActif = false;
+  function sol(epure) {
+    solActif = epure;
+    for (const l of map.getStyle().layers) {
+      if (l.id === 'glr-bati' || (l.source !== 'plan_ign' && l.type !== 'background')) continue;
+      const sl = l['source-layer'] || '', id = l.id.toLowerCase();
+      const poser = (prop, val) => {
+        const k = l.id + '|' + prop;
+        if (!origine.has(k)) origine.set(k, map.getPaintProperty(l.id, prop));
+        map.setPaintProperty(l.id, prop, epure ? val : origine.get(k));
+      };
+      if (l.type === 'background') poser('background-color', SOL.fond);
+      else if (l.type === 'fill') {
+        poser('fill-pattern', undefined);
+        poser('fill-outline-color', 'rgba(0,0,0,0)');
+        poser('fill-color', sl.startsWith('hydro') ? SOL.eau : sl.startsWith('ocs_vegetation') ? SOL.vert : SOL.fond);
+      } else if (l.type === 'line') {
+        poser('line-pattern', undefined);
+        if (sl.startsWith('routier')) poser('line-color', AXES.some(a => id.includes(a)) ? SOL.axe : SOL.rue);
+        else if (sl.startsWith('ferre')) poser('line-color', SOL.rail);
+        else if (sl.startsWith('hydro')) poser('line-color', SOL.eau);
+        else poser('line-opacity', 0);
+      } else if (l.type === 'symbol') { poser('text-color', SOL.texte); poser('text-halo-color', SOL.fond); }
+    }
+    map.setPaintProperty('glr-bati', 'fill-extrusion-color', epure ? '#E7E0D3' : '#F2EDE3');
+    const b = document.getElementById('carte-sol'); if (b) b.textContent = solEpure ? 'Voir le sol « Plan IGN »' : 'Voir le sol épuré';
+  }
+  { const b = document.getElementById('carte-sol'); if (b) b.addEventListener('click', () => { solEpure = !solEpure; sol(solEpure && !!villeEnCours); if (villeEnCours) teinteDep(); if (!villeEnCours) b.textContent = solEpure ? 'Voir le sol « Plan IGN »' : 'Voir le sol épuré'; }); }
+
   // Départements d'Île-de-France, comme l'ouverture des vidéos Quoi de neuf : chacun sa teinte, liseré blanc ombré de sa couleur
   const TEINTES = { '75': '#AFC0DE', '92': '#E3C3D6', '93': '#F2D3A4', '94': '#D3C2E6', '95': '#C9DCE4', '78': '#D3E2C1', '91': '#E9DDB4', '77': '#E7D3C3' };
   const BORDS = { '75': '#7F95C4', '92': '#C98FB2', '93': '#E0A85E', '94': '#A98BCB', '95': '#93B6C6', '78': '#9DBB82', '91': '#CDB565', '77': '#C9A88F' };
@@ -136,7 +171,7 @@ async function demarrer() {
     map.getSource('voile').setData({ type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [[[-10, 40], [15, 40], [15, 55], [-10, 55], [-10, 40]], ...trous.map(a => a.slice().reverse())] } });
     map.getSource('ville-contour').setData(v.c);
     // Les villes voisines restent visibles, estompées ; la ville choisie ressort (voile léger autour + ombre portée)
-    animer(1400, x => { map.setPaintProperty('voile', 'fill-opacity', 0.6 * x); map.setPaintProperty('ville-ombre', 'line-opacity', 0.3 * x); map.setPaintProperty('ville-ombre', 'line-translate', [0, 2 + 4 * x]); }, 300);
+    animer(1400, x => { map.setPaintProperty('voile', 'fill-opacity', 0.5 * x); map.setPaintProperty('ville-ombre', 'line-opacity', 0.3 * x); map.setPaintProperty('ville-ombre', 'line-translate', [0, 2 + 4 * x]); }, 300);
     lieuxDeVille(v);
   }
   // Transports, commerces et écoles de la ville (relevé OpenStreetMap rangé dans neuf/donnees/lieux/) :
@@ -281,6 +316,8 @@ async function demarrer() {
     if (boutonIdf) boutonIdf.hidden = false;
     { const v0 = villes.find(x => x.s === s); if (v0 && fil) fil.textContent = v0.v + ' — touchez un programme'; }
     villeEnCours = s; quitter(); choisirCommune(s);
+    if (solEpure !== solActif) sol(solEpure);
+    setTimeout(() => { if (villeEnCours === s) teinteDep(); }, 1350);
     const pts = v.c ? v.c.geometry.coordinates.flat(v.c.geometry.type === 'MultiPolygon' ? 2 : 1) : v.p.map(p => [p.o, p.a]);
     const cam = map.cameraForBounds(bornes(pts), { padding: 30 });
     map.getSource('communes-dep').setData({ type: 'FeatureCollection', features: [] }); depEnCours = null;
@@ -333,6 +370,7 @@ async function demarrer() {
   }
   function revenirIdf() {
     depEnCours = null; villeEnCours = null; quitter();
+    if (solActif) sol(false);
     map.getSource('communes-dep').setData({ type: 'FeatureCollection', features: [] });
     marqueurs.forEach(x => { x.m.getElement().style.display = 'none'; });
     map.setPaintProperty('dep-fond', 'fill-opacity', 0.55); map.setPaintProperty('dep-ombre', 'line-opacity', 0.75); map.setPaintProperty('dep-trait', 'line-opacity', 1);

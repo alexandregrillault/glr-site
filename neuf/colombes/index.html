@@ -78,6 +78,7 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .maplibregl-ctrl-attrib{font-size:10px;background:rgba(251,248,241,.85)!important}
 button.repere{padding:0;cursor:pointer;display:block}
 .fil-carte{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:.5rem 0 0;font-size:.92rem;color:var(--discret);min-height:2.2em}
+.boutons-carte{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
 .fil-carte b{color:var(--bleu);font-weight:600}
 .fil-carte button{font:inherit;font-size:.85rem;background:transparent;border:1px solid var(--trait);border-radius:6px;padding:6px 10px;color:var(--texte);cursor:pointer;white-space:nowrap}
 .num-dep{font-family:var(--body);font-weight:600;font-size:1.05rem;color:#6E7884;text-shadow:0 0 4px #fff,0 0 8px #fff;pointer-events:none}
@@ -210,7 +211,7 @@ footer a{color:var(--discret)}
   <div class="carte-zone">
     <div id="carte" class="carte" aria-label="Carte des programmes neufs"></div>
   </div>
-  <div class="fil-carte"><span id="fil-carte">Touchez un département.</span><button type="button" id="carte-idf" hidden>Toute l’Île-de-France</button></div>
+  <div class="fil-carte"><span id="fil-carte">Touchez un département.</span><span class="boutons-carte"><button type="button" id="carte-sol">Voir le sol « Plan IGN »</button><button type="button" id="carte-idf" hidden>Toute l’Île-de-France</button></span></div>
     <div class="panneau" id="panneau" hidden>
       <b class="titre"></b><span class="sous"></span>
       <ul class="proches" id="proches"></ul>
