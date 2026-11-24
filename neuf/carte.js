@@ -4,7 +4,7 @@
 // Données : <script type="application/json" id="carte-data"> ; maplibregl chargé avant ce module.
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { construire, facade, soleil, versSoleil, lumiere, heureTexte } from './maquette.js';
+import { construire, soleil, versSoleil, lumiere, heureTexte } from './maquette.js';
 
 const ml = window.maplibregl;
 const conteneur = document.getElementById('carte');
@@ -509,18 +509,33 @@ function coucheImmeuble(map, p) {
           const dmin = Math.min(...a.map(q => Math.hypot(q[0], q[1])));
           if (dmin < PROCHE || d > LOIN) continue;
           const cle = Math.round(cx) + '|' + Math.round(cy) + '|' + a.length; if (vus.has(cle)) continue; vus.add(cle);
+          // Ni lamelles ni cabanons : on écarte les formes trop fines (morceaux découpés par les tuiles) ou trop petites
+          let aire = 0, perim = 0;
+          for (let i = 0; i < a.length - 1; i++) { aire += a[i][0] * a[i + 1][1] - a[i + 1][0] * a[i][1]; perim += Math.hypot(a[i + 1][0] - a[i][0], a[i + 1][1] - a[i][1]); }
+          aire = Math.abs(aire) / 2;
+          if (aire < 60 || 2 * aire / perim < 3.2) continue;
           const sh = new THREE.Shape(a.map(q => new THREE.Vector2(q[0], q[1])));
           const h = Math.max(3, Math.round((f.properties.hauteur || 9) / 3) * 3);
           const g = new THREE.ExtrudeGeometry(sh, { depth: h, bevelEnabled: false });
-          g.rotateX(-Math.PI / 2); geos.push(g);
+          g.rotateX(-Math.PI / 2); g.userData.v = Math.abs(Math.round(cx * 7 + cy * 13)) % 4; geos.push(g);
         }
       }
       if (geos.length) {
-        const tex = facade().clone(); tex.needsUpdate = true; tex.wrapS = tex.wrapT = THREE.RepeatWrapping; tex.repeat.set(1 / 4.2, 1 / 3);
-        const m = new THREE.Mesh(mergeGeometries(geos, true), [new THREE.MeshStandardMaterial({ color: 0xE9E2D4, roughness: 0.95 }), new THREE.MeshStandardMaterial({ map: tex, roughness: 0.8 })]);
-        // mergeGeometries garde un groupe par immeuble : on les ramène à deux matériaux (toit, façades)
+        // Quatre familles d'immeubles (enduit clair, pierre, brique, béton) : façades et toits différents, tirés selon la position
+        const FAM = [['#F3EEE4', '#5D7884', 0xE4DDCF, 2], ['#E9DFCB', '#56707B', 0xCFC6B4, 3], ['#D9B79C', '#4E6670', 0xB9A48F, 2], ['#E6E6E2', '#6A8590', 0xD9D9D4, 4]];
+        const mats = [];
+        FAM.forEach(([mur, vitre, toit, nb]) => {
+          const c = document.createElement('canvas'); c.width = 256; c.height = 192; const x = c.getContext('2d');
+          x.fillStyle = mur; x.fillRect(0, 0, 256, 192);
+          const l = 256 / nb;
+          for (let i = 0; i < nb; i++) { x.fillStyle = 'rgba(0,0,0,.10)'; x.fillRect(i * l + l * .16, 44, l * .68, 118); x.fillStyle = vitre; x.fillRect(i * l + l * .2, 48, l * .6, 110); x.fillStyle = 'rgba(255,255,255,.22)'; x.fillRect(i * l + l * .24, 52, l * .1, 102); }
+          x.fillStyle = 'rgba(0,0,0,.08)'; x.fillRect(0, 186, 256, 6);
+          const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace; tex.wrapS = tex.wrapT = THREE.RepeatWrapping; tex.repeat.set(1 / (nb * 2.1), 1 / 3);
+          mats.push(new THREE.MeshStandardMaterial({ color: toit, roughness: 0.95 }), new THREE.MeshStandardMaterial({ map: tex, roughness: 0.82 }));
+        });
+        const m = new THREE.Mesh(mergeGeometries(geos, true), mats);
         const src = geos.map(g => g.groups); let dec = 0; m.geometry.clearGroups();
-        geos.forEach((g, i) => { src[i].forEach(q => m.geometry.addGroup(dec + q.start, q.count, q.materialIndex)); dec += (g.index ? g.index.count : g.attributes.position.count); });
+        geos.forEach((g, i) => { src[i].forEach(q => m.geometry.addGroup(dec + q.start, q.count, g.userData.v * 2 + q.materialIndex)); dec += (g.index ? g.index.count : g.attributes.position.count); });
         m.receiveShadow = true; gr.add(m);
       }
       // Arbres : semés dans les parcs (pas sur les terrains de sport), dans le rayon
@@ -529,18 +544,24 @@ function coucheImmeuble(map, p) {
         if (f.properties.g === 'sport') continue;
         const a = f.geometry.coordinates[0].map(xy), xs = a.map(q => q[0]), ys = a.map(q => q[1]);
         const x0 = Math.max(-LOIN, Math.min(...xs)), x1 = Math.min(LOIN, Math.max(...xs)), y0 = Math.max(-LOIN, Math.min(...ys)), y1 = Math.min(LOIN, Math.max(...ys));
-        for (let x = x0; x < x1; x += 11) for (let y = y0; y < y1; y += 11) {
+        for (let x = x0; x < x1; x += 15) for (let y = y0; y < y1; y += 15) {
           const g = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453, j = g - Math.floor(g);
           const q = [x + (j - 0.5) * 7, y + ((j * 7) % 1 - 0.5) * 7];
-          if (pts.length < 700 && Math.hypot(q[0], q[1]) > 18 && dans(q, a)) pts.push([q[0], q[1], 0.8 + j * 0.6]);
+          if (pts.length < 350 && Math.hypot(q[0], q[1]) > 18 && dans(q, a)) pts.push([q[0], q[1], 0.8 + j * 0.6]);
         }
       }
       if (pts.length) {
-        const troncs = new THREE.InstancedMesh(new THREE.CylinderGeometry(0.22, 0.3, 2.6, 6), new THREE.MeshStandardMaterial({ color: 0x8A6A4F, roughness: 1 }), pts.length);
-        const feuilles = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(2.3, 1), new THREE.MeshStandardMaterial({ color: 0x8DB56E, roughness: 0.9, flatShading: true }), pts.length);
-        const M = new THREE.Matrix4();
-        pts.forEach(([x, y, k], i) => { M.makeScale(k, k, k).setPosition(x, 1.3 * k, -y); troncs.setMatrixAt(i, M); M.makeScale(k, k * 1.1, k).setPosition(x, 4.2 * k, -y); feuilles.setMatrixAt(i, M); });
-        gr.add(troncs); gr.add(feuilles);
+        // Un arbre sur deux environ est un sapin (cône sombre), l'autre un feuillu (boule vert tendre)
+        const sapins = pts.filter((q, i) => (i * 7 + Math.round(q[0])) % 5 < 2), feuillus = pts.filter(q => !sapins.includes(q));
+        const M = new THREE.Matrix4(), bois = new THREE.MeshStandardMaterial({ color: 0x8A6A4F, roughness: 1 });
+        const semer = (liste, geoTronc, geoHaut, matHaut, yT, yH) => {
+          if (!liste.length) return;
+          const t = new THREE.InstancedMesh(geoTronc, bois, liste.length), f = new THREE.InstancedMesh(geoHaut, matHaut, liste.length);
+          liste.forEach(([x, y, k], i) => { M.makeScale(k, k, k).setPosition(x, yT * k, -y); t.setMatrixAt(i, M); M.makeScale(k, k, k).setPosition(x, yH * k, -y); f.setMatrixAt(i, M); });
+          gr.add(t); gr.add(f);
+        };
+        semer(feuillus, new THREE.CylinderGeometry(0.22, 0.3, 2.6, 6), new THREE.IcosahedronGeometry(2.3, 1), new THREE.MeshStandardMaterial({ color: 0x8DB56E, roughness: 0.9, flatShading: true }), 1.3, 4.3);
+        semer(sapins, new THREE.CylinderGeometry(0.18, 0.24, 1.6, 6), new THREE.ConeGeometry(1.9, 6.5, 8), new THREE.MeshStandardMaterial({ color: 0x4F7F5A, roughness: 0.95, flatShading: true }), 0.8, 4.6);
       }
       scene.add(gr); this._decor = gr; map.triggerRepaint();
       return [geos.length, pts.length];
