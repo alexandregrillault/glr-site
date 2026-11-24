@@ -34,6 +34,10 @@ function verifier(d, fichier) {
   const permis = ['id', 'typo', 'pieces', 'surface', 'etage', 'exterieur'];
   for (const p of d.programmes) {
     if (!/^[a-z0-9-]+$/.test(p.slug || '')) throw new Error(fichier + ' : slug de programme invalide ' + p.slug);
+    // Clés publiques seulement (substr(md5('glr-neuf:' || id), 1, 12)) : jamais l'identifiant interne de la pige
+    const cle = x => /^[0-9a-f]{12}$/.test(String(x));
+    if (!d.test && p.pige_id != null && !cle(p.pige_id)) throw new Error(fichier + ' : ' + p.slug + ' : pige_id doit être la clé publique de 12 caractères');
+    if (!d.test && (p.logements || []).some(l => l.id != null && !cle(l.id))) throw new Error(fichier + ' : ' + p.slug + ' : id de logement doit être la clé publique de 12 caractères');
     for (const l of p.logements || []) {
       const en_trop = Object.keys(l).filter(k => !permis.includes(k));
       if (en_trop.length) throw new Error(fichier + ' : ' + p.slug + ' : champs de logement non permis ' + en_trop.join(', '));
@@ -142,6 +146,8 @@ table.lots tr:last-child td{border-bottom:0}
 table.lots td.plan{text-align:right;white-space:nowrap}
 table.lots td.plan a{font-weight:600;text-decoration:none}
 table.lots td.prix-lot{font-weight:600;white-space:nowrap}
+table.lots td.prix-lot .tva{font-weight:600;color:var(--bleu)}
+table.lots td.prix-lot small{font-weight:400;font-size:.72rem;color:var(--discret)}
 @media (max-width:480px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 5px}table.lots .long{display:none}table.lots th{font-size:.7rem;letter-spacing:.02em}}
 .immeuble .scene{position:relative;background:linear-gradient(#FBF8F1,#F4F0E8);border:1px solid var(--trait);border-radius:8px;padding:8px;margin:0 0 .4rem;overflow:hidden}
 .immeuble svg{display:block;width:100%;height:auto;max-height:520px}
@@ -381,6 +387,7 @@ function pageProgramme(d, p) {
     <p>Les plans et les prix sont réservés à votre espace client. Il se crée en une minute ; en attendant, appelez-nous et nous vous les envoyons.</p>
     <div class="boutons"><a class="plein" href="tel:${CONTACT.tel}">Appeler le ${CONTACT.telAffiche}</a><a class="creux" href="mailto:${CONTACT.mail}?subject=${encodeURIComponent('Plans de ' + p.nom + ' à ' + d.ville)}">Écrire un e-mail</a></div>
   </section>
+  <p class="note" id="mention-tva" hidden>* TVA 5,5 % : prix réservé aux acheteurs éligibles, sous conditions de ressources.</p>
   <p class="note">Disponibilités et prix relevés le ${dateFr(d.maj)} ; ils changent chaque semaine et sont confirmés par votre conseiller.</p>
 </main>
 ${pied}
@@ -394,11 +401,14 @@ ${typos.length ? `<script type="application/json" id="logements-data">${JSON.str
 </script>
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+'\u00a0€'};
-var poser=function(m){window.GLR_PRIX=m||{};cs.forEach(function(c){var v=m&&m[c.getAttribute('data-lot')];c.textContent=v?eu(v):'sur demande'})};
+var poser=function(j){j=j||{};var a=j.prix||{},b=j.prix_tva_reduite||{};window.GLR_PRIX=a;window.GLR_PRIX_R=b;var deux=false;
+cs.forEach(function(c){var k=c.getAttribute('data-lot'),v=a[k],w=b[k];if(w)deux=true;
+c.innerHTML=v||w?(v?eu(v):'')+(w?(v?'<br>':'')+'<span class="tva">'+eu(w)+' <small>TVA\u00a05,5\u00a0%*</small></span>':''):'sur demande'});
+var n=document.getElementById('mention-tva');if(n)n.hidden=!deux;};
 ${d.test ? `// Page d'essai : prix fictifs calculés ici, aucun prix dans le dépôt.
-var m={};cs.forEach(function(c){m[c.getAttribute('data-lot')]=Math.round(c.getAttribute('data-s')*5200/1000)*1000});poser(m);` :
+var a={},b={},red=${(p.dispositifs || []).some(x => /5,5/.test(x)) ? 'true' : 'false'};cs.forEach(function(c,n){var k=c.getAttribute('data-lot'),v=Math.round(c.getAttribute('data-s')*5200/1000)*1000;if(!red||n%4)a[k]=v;if(red&&n%3!==1)b[k]=Math.round(v*0.88/1000)*1000});poser({prix:a,prix_tva_reduite:b});` :
 `fetch(${JSON.stringify(PRIX_URL)}+'?p='+encodeURIComponent(${JSON.stringify(String(p.pige_id || ''))}),{headers:{accept:'application/json'}})
-.then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){poser(j&&j.prix)}).catch(function(){poser(null)});`}
+.then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){poser(j)}).catch(function(){poser(null)});`}
 })();
 </script>` : ''}
 </body>

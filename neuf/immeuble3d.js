@@ -84,10 +84,10 @@ function demarrer(L) {
     vise = m;
     if (!m) return; // la fiche reste affichée sous la maquette
     m.scale.set(1.03, 1.03, 1.03);
-    const l = m.userData.l, pr = window.GLR_PRIX && window.GLR_PRIX[l.i];
+    const l = m.userData.l, pr = window.GLR_PRIX && window.GLR_PRIX[l.i], pr2 = window.GLR_PRIX_R && window.GLR_PRIX_R[l.i];
     bulle.innerHTML = '<b>' + l.t + '</b> · ' + String(l.s).replace('.', ',') + '\u00a0m² · ' +
       (l.e ? l.e + (l.e === 1 ? 'er' : 'e') + ' étage' : 'Rez-de-chaussée') + (l.x ? ' · ' + l.x : '') + ' · ' +
-      (pr ? '<b>' + Math.round(pr).toLocaleString('fr-FR') + '\u00a0€</b>' : 'Prix sur demande');
+      (pr || pr2 ? [pr ? '<b>' + Math.round(pr).toLocaleString('fr-FR') + '\u00a0€</b>' : '', pr2 ? '<b>' + Math.round(pr2).toLocaleString('fr-FR') + '\u00a0€</b> en TVA\u00a05,5\u00a0%*' : ''].filter(Boolean).join(' · ') : 'Prix sur demande');
   };
   const toucher = ev => {
     const r = renderer.domElement.getBoundingClientRect();

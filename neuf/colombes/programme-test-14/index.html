@@ -117,6 +117,8 @@ table.lots tr:last-child td{border-bottom:0}
 table.lots td.plan{text-align:right;white-space:nowrap}
 table.lots td.plan a{font-weight:600;text-decoration:none}
 table.lots td.prix-lot{font-weight:600;white-space:nowrap}
+table.lots td.prix-lot .tva{font-weight:600;color:var(--bleu)}
+table.lots td.prix-lot small{font-weight:400;font-size:.72rem;color:var(--discret)}
 @media (max-width:480px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 5px}table.lots .long{display:none}table.lots th{font-size:.7rem;letter-spacing:.02em}}
 .immeuble .scene{position:relative;background:linear-gradient(#FBF8F1,#F4F0E8);border:1px solid var(--trait);border-radius:8px;padding:8px;margin:0 0 .4rem;overflow:hidden}
 .immeuble svg{display:block;width:100%;height:auto;max-height:520px}
@@ -210,6 +212,7 @@ footer a{color:var(--discret)}
     <p>Les plans et les prix sont réservés à votre espace client. Il se crée en une minute ; en attendant, appelez-nous et nous vous les envoyons.</p>
     <div class="boutons"><a class="plein" href="tel:+33614550273">Appeler le 06 14 55 02 73</a><a class="creux" href="mailto:agl@glrimmobilier.com?subject=Plans%20de%20Les%20Marronniers%20(test)%20%C3%A0%20Colombes">Écrire un e-mail</a></div>
   </section>
+  <p class="note" id="mention-tva" hidden>* TVA 5,5 % : prix réservé aux acheteurs éligibles, sous conditions de ressources.</p>
   <p class="note">Disponibilités et prix relevés le 24 novembre 2026 ; ils changent chaque semaine et sont confirmés par votre conseiller.</p>
 </main>
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
@@ -223,9 +226,12 @@ footer a{color:var(--discret)}
 </script>
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};
-var poser=function(m){window.GLR_PRIX=m||{};cs.forEach(function(c){var v=m&&m[c.getAttribute('data-lot')];c.textContent=v?eu(v):'sur demande'})};
+var poser=function(j){j=j||{};var a=j.prix||{},b=j.prix_tva_reduite||{};window.GLR_PRIX=a;window.GLR_PRIX_R=b;var deux=false;
+cs.forEach(function(c){var k=c.getAttribute('data-lot'),v=a[k],w=b[k];if(w)deux=true;
+c.innerHTML=v||w?(v?eu(v):'')+(w?(v?'<br>':'')+'<span class="tva">'+eu(w)+' <small>TVA 5,5 %*</small></span>':''):'sur demande'});
+var n=document.getElementById('mention-tva');if(n)n.hidden=!deux;};
 // Page d'essai : prix fictifs calculés ici, aucun prix dans le dépôt.
-var m={};cs.forEach(function(c){m[c.getAttribute('data-lot')]=Math.round(c.getAttribute('data-s')*5200/1000)*1000});poser(m);
+var a={},b={},red=false;cs.forEach(function(c,n){var k=c.getAttribute('data-lot'),v=Math.round(c.getAttribute('data-s')*5200/1000)*1000;if(!red||n%4)a[k]=v;if(red&&n%3!==1)b[k]=Math.round(v*0.88/1000)*1000});poser({prix:a,prix_tva_reduite:b});
 })();
 </script>
 </body>
