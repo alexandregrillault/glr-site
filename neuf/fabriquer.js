@@ -96,11 +96,21 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .appel a{display:inline-block;padding:12px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .appel a.plein{background:#fff;color:var(--bleu)}
 .appel a.creux{border:1px solid #fff;color:#fff}
-.carte{height:340px;border-radius:8px;border:1px solid var(--trait);margin:0 0 .6rem;z-index:0}
-.leaflet-tile-pane{filter:grayscale(1) sepia(.18) brightness(1.06) contrast(.82)}
-.leaflet-container{background:#EEEAE1;font-family:var(--body)}
-.leaflet-control-attribution{font-size:10px!important;background:rgba(251,248,241,.8)!important}
-.leaflet-bar a{color:var(--bleu)!important}
+.carte{height:420px;border-radius:8px;border:1px solid var(--trait);margin:0 0 .6rem;z-index:0}
+.carte-zone{position:relative}
+.maplibregl-map{font-family:var(--body);border-radius:8px}
+.maplibregl-ctrl-attrib{font-size:10px;background:rgba(251,248,241,.85)!important}
+button.repere{padding:0;cursor:pointer;display:block}
+.panneau{position:absolute;left:10px;right:10px;bottom:10px;background:rgba(251,248,241,.96);border:1px solid var(--trait);border-top:3px solid var(--laiton);border-radius:8px;padding:12px 14px;box-shadow:0 8px 22px rgba(22,26,30,.14);display:flex;flex-direction:column;gap:6px;max-width:420px}
+.panneau[hidden]{display:none}
+.panneau .titre{font-family:var(--display);font-weight:500;font-size:1.25rem;color:var(--bleu)}
+.panneau .sous{font-size:.88rem;color:var(--discret)}
+.panneau .heure{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--discret)}
+.panneau .heure input{flex:1;accent-color:#B0894C}
+.panneau .heure output{min-width:70px;text-align:right;color:var(--laiton-texte);font-weight:600}
+.panneau .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+.panneau a.voir{background:var(--bleu);color:#fff;padding:9px 14px;border-radius:6px;font-weight:600;text-decoration:none;font-size:.92rem}
+.panneau button{font:inherit;font-size:.9rem;background:transparent;border:1px solid var(--trait);border-radius:6px;padding:8px 12px;color:var(--texte);cursor:pointer}
 .recherche{position:relative;margin:0 0 14px}
 .recherche label{display:block;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 6px}
 .recherche input{width:100%;font:inherit;font-size:1.05rem;padding:13px 14px;border:1px solid var(--trait);border-radius:8px;background:#fff;color:var(--texte)}
@@ -109,7 +119,8 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .propositions li{padding:10px 12px;border-radius:6px;cursor:pointer}
 .propositions li small{color:var(--discret);margin-left:6px}
 .propositions li[aria-selected=true],.propositions li:hover{background:var(--teinte)}
-.carte.grande{height:430px}
+.carte.grande{height:520px}
+@media (max-width:600px){.carte{height:460px}.carte.grande{height:480px}}
 .resume{display:none;background:var(--carte);border:1px solid var(--trait);border-left:3px solid var(--laiton);border-radius:8px;padding:14px 16px;margin:0 0 1rem}
 .resume b{font-family:var(--display);font-weight:500;font-size:1.35rem;color:var(--bleu)}
 .resume p{margin:.3rem 0 .7rem;color:var(--discret)}
@@ -182,7 +193,7 @@ ${test ? '<meta name="robots" content="noindex, nofollow">\n' : ''}<meta propert
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Archivo:wght@400;500;600&display=swap">
-${carte ? '<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">\n' : ''}<style>${CSS}</style>
+${carte ? '<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">\n' : ''}<style>${CSS}</style>
 </head>
 <body>
 ${test ? '<div class="test">Page d’essai — données fictives, non publiée</div>\n' : ''}<header><a href="/" aria-label="GLR Immobilier — accueil"><img src="/logo-glr.png" alt="GLR Immobilier" width="85" height="68"></a><a class="tel" href="tel:${CONTACT.tel}">${CONTACT.telAffiche}</a></header>`;
@@ -224,10 +235,7 @@ function pageVille(d) {
   const typosFiltre = ['T1', 'T2', 'T3', 'T4', 'T5+'].filter(t => d.programmes.some(p => (p.typologies || []).includes(t)));
   // Programmes « picking » (sans mandat, source picking ; les « nomandat » ne sont jamais fournis) : en fin de liste, grille sur demande.
   const progs = [...d.programmes].sort((a, b) => (a.picking ? 1 : 0) - (b.picking ? 1 : 0) || (a.livraison_cle || '').localeCompare(b.livraison_cle || '') || (b.nb_lots_libres || 0) - (a.nb_lots_libres || 0));
-  // Position arrondie au millième (une centaine de mètres) : on montre le secteur, pas l'adresse exacte.
-  const reperes = progs.filter(p => p.position && p.position.latitude != null).map(p => ({
-    n: p.nom, u: p.slug + '/', k: !!p.picking, l: p.picking ? 'Grille sur demande' : (p.nb_lots_libres ? pluriel(p.nb_lots_libres, 'logement disponible', 'logements disponibles') : ''),
-    v: p.livraison || '', a: Math.round(p.position.latitude * 1000) / 1000, o: Math.round(p.position.longitude * 1000) / 1000 }));
+  const dv = donneesVille(d, true);
   const ld = {
     '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE + '/' },
@@ -262,8 +270,7 @@ function pageVille(d) {
   </div>` : ''}
 
   <h2>Les programmes neufs à ${esc(d.ville)}</h2>
-  ${reperes.length ? `<div id="carte" class="carte" role="img" aria-label="Carte des programmes neufs à ${esc(d.ville)}"></div>
-  <p class="legende"><span><i style="background:var(--bleu)"></i>Programme en vente</span>${reperes.some(x => x.k) ? '<span><i style="background:var(--laiton)"></i>Picking, grille sur demande</span>' : ''}</p>` : ''}
+  ${dv.p.length ? blocCarte(false, dv.p.some(x => x.k)) : ''}
   ${typosFiltre.length > 1 ? `<div class="filtres" role="group" aria-label="Filtrer par taille"><button type="button" aria-pressed="true" data-t="">Tous</button>${typosFiltre.map(t => `<button type="button" aria-pressed="false" data-t="${t}">${t}</button>`).join('')}</div>` : ''}
   <div class="liste">
 ${progs.map(carteProgramme).join('\n')}
@@ -279,15 +286,9 @@ ${progs.map(carteProgramme).join('\n')}
 </main>
 ${pied}
 <script type="application/ld+json">${JSON.stringify(ld)}</script>
-${reperes.length ? `<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-<script>
-(function(){if(!window.L)return;var R=${JSON.stringify(reperes).replace(/</g, '\\u003c')};
-var m=L.map('carte',{scrollWheelZoom:false});var C=${JSON.stringify(contour(d)).replace(/</g, '\\u003c')};if(C)L.geoJSON(C,{style:{color:'#005875',weight:2,fillColor:'#005875',fillOpacity:.04},interactive:false}).addTo(m);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; contributeurs OpenStreetMap'}).addTo(m);
-var e=function(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})},b=[];
-R.forEach(function(r){var i=L.divIcon({className:'',html:'<div class="repere'+(r.k?' picking':'')+'"></div>',iconSize:[18,18],iconAnchor:[9,9]});
-L.marker([r.a,r.o],{icon:i,title:r.n}).addTo(m).bindPopup('<b>'+e(r.n)+'</b>'+(r.v?'<br>Livraison '+e(r.v):'')+(r.l?'<br>'+e(r.l):'')+'<br><a class="voir" href="'+e(r.u)+'">Voir le programme</a>');b.push([r.a,r.o]);});
-m.fitBounds(b,{padding:[30,30],maxZoom:15});})();
-</script>` : ''}
+${dv.p.length ? `${LIBS}
+<script type="application/json" id="carte-data">${JSON.stringify({ ville: d.slug, villes: [dv] }).replace(/</g, '\\u003c')}</script>
+<script type="module" src="/neuf/carte.js"></script>` : ''}
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;
@@ -309,6 +310,32 @@ function contour(d) {
   const arr = c => typeof c[0] === 'number' ? [Math.round(c[0] * 1e4) / 1e4, Math.round(c[1] * 1e4) / 1e4] : c.map(arr);
   return { type: 'Feature', properties: {}, geometry: { type: g.type, coordinates: arr(g.coordinates) } };
 }
+
+const LIBS = `<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>`;
+const ARRONDI = x => Math.round(x * 1000) / 1000;
+const logementsPublics = p => (p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? 0 : l.etage, x: l.exterieur || '' }));
+// Données de la carte d'une ville ; avecMaquette = on embarque les logements (sans prix) pour la maquette 3D
+function donneesVille(d, avecMaquette) {
+  return {
+    v: d.ville, s: d.slug, cp: d.cp, c: contour(d),
+    r: `${pluriel(d.chiffres.nb_programmes, 'programme', 'programmes')} · ${nb(d.chiffres.nb_lots_libres)} logements disponibles`,
+    p: d.programmes.filter(p => p.position && p.position.latitude != null).map(p => ({
+      n: p.nom, s: p.slug, k: !!p.picking, a: ARRONDI(p.position.latitude), o: ARRONDI(p.position.longitude),
+      u: avecMaquette ? `${d.slug}/${p.slug}/` : `${d.slug}/?p=${p.slug}`,
+      l: p.livraison || '', d: p.picking ? 'Grille sur demande' : (p.nb_lots_libres ? pluriel(p.nb_lots_libres, 'logement disponible', 'logements disponibles') : ''),
+      ...(avecMaquette && !p.picking && (p.logements || []).length ? { L: logementsPublics(p) } : {}) }))
+  };
+}
+const blocCarte = (grande, legendePicking) => `<div class="carte-zone">
+    <div id="carte" class="carte${grande ? ' grande' : ''}" aria-label="Carte des programmes neufs"></div>
+    <div class="panneau" id="panneau" hidden>
+      <b class="titre"></b><span class="sous"></span>
+      <label class="heure"><span>Soleil à</span><input type="range" id="carte-heure" min="6" max="22" step="0.25" value="14"><output id="carte-heure-val"></output></label>
+      <div class="actions"><a class="voir" href="#">Voir les logements et les prix</a><button type="button" id="carte-retour">Retour à la carte</button></div>
+    </div>
+  </div>
+  <p class="legende"><span><i style="background:var(--bleu)"></i>Programme en vente</span>${legendePicking ? '<span><i style="background:var(--laiton)"></i>Picking, grille sur demande</span>' : ''}<span>Touchez un programme pour voir l’immeuble dans son quartier.</span></p>`;
 
 function pageProgramme(d, p) {
   const url = `${SITE}/neuf/${d.slug}/${p.slug}/`;
@@ -339,7 +366,8 @@ function pageProgramme(d, p) {
   <div class="immeuble">
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button>${typos.map(t => `<button type="button" aria-pressed="false" data-t="${esc(t)}">${esc(t)}</button>`).join('')}</div>
     <div class="coupe"><label for="coupe">Voir jusqu’à</label><input type="range" id="coupe" min="1" max="1" value="1" step="1"><output id="coupe-val"></output></div>
-    <div class="scene3d" id="imm3d" aria-label="Maquette 3D de l’immeuble : faites-la tourner, touchez un logement"><div class="bulle" id="bulle" hidden></div></div>
+ <div class="coupe"><label for="heure">Soleil à</label><input type="range" id="heure" min="6" max="22" step="0.25" value="14"><output id="heure-val"></output></div>
+    <div class="scene3d" id="imm3d" data-lat="${p.position ? ARRONDI(p.position.latitude) : ''}" data-lng="${p.position ? ARRONDI(p.position.longitude) : ''}" aria-label="Maquette 3D de l’immeuble : faites-la tourner, touchez un logement"><div class="bulle" id="bulle" hidden></div></div>
     <p class="aide">Faites tourner l’immeuble au doigt ou à la souris. Descendez le curseur pour enlever des étages et voir les logements par le dessus.</p>
     <p class="note">Maquette dessinée automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.${p.image ? '' : ''}</p>
     ${p.image ? `<figure class="perspective"><img src="${esc(p.image)}" alt="Perspective de ${esc(p.nom)}" loading="lazy"><figcaption>Perspective du promoteur, non contractuelle.</figcaption></figure>` : ''}
@@ -378,14 +406,10 @@ var m={};cs.forEach(function(c){m[c.getAttribute('data-lot')]=Math.round(c.getAt
 function pageIndex(villes) {
   const test = villes.some(d => d.test);
   const url = SITE + '/neuf/';
-  const sansAccent = t => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
-  const V = villes.map(d => ({
-    v: d.ville, s: d.slug, cp: d.cp, k: sansAccent(d.ville + ' ' + d.cp),
-    r: `${pluriel(d.chiffres.nb_programmes, 'programme', 'programmes')} · ${nb(d.chiffres.nb_lots_libres)} logements disponibles`,
-    c: contour(d),
-    p: d.programmes.filter(p => p.position && p.position.latitude != null).map(p => ({ n: p.nom, u: d.slug + '/' + p.slug + '/', k: !!p.picking,
-      a: Math.round(p.position.latitude * 1000) / 1000, o: Math.round(p.position.longitude * 1000) / 1000 }))
-  }));
+  const sansAccent = t => t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  const DV = villes.map(d => donneesVille(d, false));
+  const V = villes.map(d => ({ v: d.ville, s: d.slug, cp: d.cp, k: sansAccent(d.ville + ' ' + d.cp),
+    r: `${pluriel(d.chiffres.nb_programmes, 'programme', 'programmes')} · ${nb(d.chiffres.nb_lots_libres)} logements disponibles` }));
   return `${tete({ titre: 'Immobilier neuf en Île-de-France : tous les programmes par ville | GLR Immobilier', description: 'Cherchez une ville et voyez tous ses programmes neufs sur la carte : logements disponibles, typologies, prix. Plans envoyés par GLR Immobilier.', url, test, carte: true })}
 <main>
   <p class="fil"><a href="/">Accueil</a> › Immobilier neuf</p>
@@ -398,43 +422,30 @@ function pageIndex(villes) {
     <ul id="props" class="propositions" role="listbox"></ul>
   </div>
   <div class="resume" id="resume" aria-live="polite"></div>
-  <div id="carte" class="carte grande" role="img" aria-label="Carte des programmes neufs suivis par GLR Immobilier"></div>
-  <p class="legende"><span><i style="background:var(--bleu)"></i>Programme en vente</span><span><i style="background:var(--laiton)"></i>Picking, grille sur demande</span></p>
+  ${blocCarte(true, true)}
   <h2>Les villes suivies</h2>
   <div class="villes">
 ${villes.map(d => `    <a href="/neuf/${d.slug}/"><b>${esc(d.ville)}</b><span>${pluriel(d.chiffres.nb_programmes, 'programme', 'programmes')} · ${nb(d.chiffres.nb_lots_libres)} logements disponibles${AFFICHER.prixM2 && d.chiffres.prix_m2_moyen ? ' · ' + euros(d.chiffres.prix_m2_moyen) + '/m²' : ''}</span></a>`).join('\n')}
   </div>
 </main>
 ${pied}
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+${LIBS}
+<script type="application/json" id="carte-data">${JSON.stringify({ villes: DV }).replace(/</g, '\\u003c')}</script>
+<script type="module" src="/neuf/carte.js"></script>
 <script>
 (function(){
 var V=${JSON.stringify(V).replace(/</g, '\\u003c')};
 var e=function(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
-var sa=function(t){return t.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim()};
-var q=document.getElementById('q'),ul=document.getElementById('props'),res=document.getElementById('resume'),m=null,couches={},tous=[],choix=-1,liste=[];
-if(window.L){
-  m=L.map('carte',{scrollWheelZoom:false,zoomControl:true});
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap · contours geo.api.gouv.fr'}).addTo(m);
-  V.forEach(function(v){
-    var g=L.layerGroup().addTo(m),c=null;
-    if(v.c){c=L.geoJSON(v.c,{style:{color:'#005875',weight:1,opacity:.5,fillColor:'#005875',fillOpacity:.03}}).addTo(g);c.on('click',function(){montrer(v)});}
-    v.p.forEach(function(p){var i=L.divIcon({className:'',html:'<div class="repere'+(p.k?' picking':'')+'"></div>',iconSize:[18,18],iconAnchor:[9,9]});
-      L.marker([p.a,p.o],{icon:i,title:p.n}).addTo(g).bindPopup('<b>'+e(p.n)+'</b><br>'+e(v.v)+'<br><a class="voir" href="'+e(p.u)+'">Voir le programme</a>');tous.push([p.a,p.o]);});
-    couches[v.s]={g:g,c:c};
-  });
-  if(tous.length)m.fitBounds(tous,{padding:[20,20]});
-}
+var sa=function(t){return t.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim()};
+var q=document.getElementById('q'),ul=document.getElementById('props'),res=document.getElementById('resume'),choix=-1,liste=[];
 function montrer(v){
   res.className='resume';res.style.display='block';
   res.innerHTML='<b>'+e(v.v)+'</b> <span>('+e(v.cp)+')</span><p>'+e(v.r)+'</p><a class="bouton" href="'+e(v.s)+'/">Voir les programmes de '+e(v.v)+'</a>';
-  if(!m)return;
-  V.forEach(function(x){var c=couches[x.s].c;if(c)c.setStyle(x===v?{weight:3,opacity:1,fillOpacity:.10}:{weight:1,opacity:.35,fillOpacity:.02});});
-  var c=couches[v.s].c;if(c)m.flyToBounds(c.getBounds(),{padding:[24,24],duration:.8});else if(v.p.length)m.flyToBounds(v.p.map(function(p){return[p.a,p.o]}),{padding:[30,30]});
+  var essai=0,go=function(){if(window.GLRCarte)window.GLRCarte.ville(v.s);else if(essai++<40)setTimeout(go,250)};go();
   try{history.replaceState(null,'','?ville='+v.s)}catch(_){}
 }
 function absente(t){res.className='resume absente';res.style.display='block';
-  res.innerHTML='<b>'+e(t)+'</b><p>Cette ville n’a pas encore sa page. Nous suivons aussi ses programmes neufs : appelez-nous ou écrivez-nous, nous vous envoyons ce qui existe.</p><a class="bouton" href="tel:${CONTACT.tel}">Appeler le ${CONTACT.telAffiche}</a>';}
+  res.innerHTML='<b>'+e(t)+'</b><p>Cette ville n\u2019a pas encore sa page. Nous suivons aussi ses programmes neufs : appelez-nous ou écrivez-nous, nous vous envoyons ce qui existe.</p><a class="bouton" href="tel:${CONTACT.tel}">Appeler le ${CONTACT.telAffiche}</a>';}
 function proposer(){var t=sa(q.value);choix=-1;liste=t?V.filter(function(v){return v.k.indexOf(t)>-1}):[];
   ul.innerHTML=liste.map(function(v,i){return '<li role="option" id="o'+i+'" aria-selected="false">'+e(v.v)+'<small>'+e(v.cp)+'</small></li>'}).join('');
   ul.style.display=liste.length?'block':'none';q.setAttribute('aria-expanded',liste.length?'true':'false');
