@@ -361,7 +361,7 @@ function donneesVille(d, avecMaquette) {
 const blocCarte = (grande, legendePicking) => `<div class="carte-zone">
     <div id="carte" class="carte${grande ? ' grande' : ''}" aria-label="Carte des programmes neufs"></div>
   </div>
-  <div class="fil-carte"><span id="fil-carte">Touchez un département.</span><span class="boutons-carte"><button type="button" id="carte-sol">Voir le sol « Plan IGN »</button><button type="button" id="carte-idf" hidden>Toute l’Île-de-France</button></span></div>
+  <div class="fil-carte"><span id="fil-carte">Touchez un département.</span><span class="boutons-carte"><button type="button" id="carte-idf" hidden>Toute l’Île-de-France</button></span></div>
     <div class="panneau" id="panneau" hidden>
       <b class="titre"></b><span class="sous"></span>
       <ul class="proches" id="proches"></ul>
