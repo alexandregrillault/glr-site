@@ -11,6 +11,9 @@ const D = JSON.parse((document.getElementById('carte-data') || {}).textContent |
 
 const STYLE_IGN = 'https://data.geopf.fr/annexes/ressources/vectorTiles/styles/PLAN.IGN/standard.json';
 const AXES = ['autoroute', 'route principale', 'route regionale'];
+const HAUTEUR_BATI = ['coalesce', ['get', 'hauteur'], ['get', 'HAUTEUR'], 10];
+// Autour d'un programme choisi, les immeubles voisins sont abaissés pour que la maquette ressorte sans être cachée
+const hauteurBati = facteur => facteur === 1 ? HAUTEUR_BATI : ['*', HAUTEUR_BATI, facteur];
 
 function epure(style) {
   const out = [];
@@ -18,7 +21,8 @@ function epure(style) {
     const sl = l['source-layer'] || '', i = l.id.toLowerCase();
     if (l.type === 'symbol' || l.type === 'circle') continue;
     if (/^(toponyme|limite|oro|bati_surf|bati_ponc|bati_lin|routier_chemin|routier_surf|routier_liaison|parcellaire)/.test(sl)) continue;
-    if (sl.startsWith('routier_route') && !AXES.some(a => i.includes(a))) continue;
+    // Petites rues : seulement de près (quartier d'un programme), comme fond d'environnement
+    if (sl.startsWith('routier_route') && !AXES.some(a => i.includes(a))) { out.push({ ...l, minzoom: Math.max(l.minzoom || 0, 15) }); continue; }
     out.push(l);
   }
   // Immeubles en relief, en tons clairs (comme les immeubles qui sortent du sol dans les vidéos)
@@ -26,7 +30,7 @@ function epure(style) {
     id: 'glr-bati', type: 'fill-extrusion', source: 'plan_ign', 'source-layer': 'bati_surf', minzoom: 12,
     paint: {
       'fill-extrusion-color': '#F2EDE3',
-      'fill-extrusion-height': ['coalesce', ['get', 'hauteur'], ['get', 'HAUTEUR'], 10],
+      'fill-extrusion-height': HAUTEUR_BATI,
       'fill-extrusion-opacity': ['interpolate', ['linear'], ['zoom'], 12.3, 0, 13.3, 0.92],
       'fill-extrusion-vertical-gradient': true,
     },
@@ -80,13 +84,15 @@ async function demarrer() {
     enCours = null; if (panneau) panneau.hidden = true;
     marqueurs.forEach(x => { x.m.getElement().style.display = x.v.s === villeEnCours ? '' : 'none'; });
     map.setFilter('glr-bati', null);
+    map.setPaintProperty('glr-bati', 'fill-extrusion-height', hauteurBati(1));
   }
 
   function focus(v, p) {
     villeEnCours = v.s; quitter(); enCours = p;
     marqueurs.forEach(x => { x.m.getElement().style.display = x.p === p ? 'none' : ''; });
     choisirCommune(v.s);
-    map.flyTo({ center: [p.o, p.a], zoom: 18.1, pitch: 60, bearing: -28, offset: [0, -40], duration: 2200, essential: true });
+    map.flyTo({ center: [p.o, p.a], zoom: 17.1, pitch: 52, bearing: -28, offset: [0, -30], duration: 2200, essential: true });
+    map.setPaintProperty('glr-bati', 'fill-extrusion-height', hauteurBati(0.35));
     couche = coucheImmeuble(map, p);
     map.addLayer(couche);
     if (panneau) {
