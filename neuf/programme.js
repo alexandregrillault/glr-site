@@ -65,8 +65,9 @@
     if (fiche) fiche.innerHTML = texteFiche(l);
     if (!depuisListe && tr && window.innerWidth >= 960) tr.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   }
-  function montrerEtage(e) {
+  function montrerEtage(e, camera) {
     etageCourant = e; cases = {};
+    window.dispatchEvent(new CustomEvent('glr-etage', { detail: { e: e, camera: !!camera } }));
     while (gCases.firstChild) gCases.removeChild(gCases.firstChild);
     var rang = parEtage[e] || [];
     for (var r = 0; r < 2; r++) for (var k = 0; k < N; k++) {
@@ -94,16 +95,27 @@
 
   // Sélecteur d'étages (du haut vers le bas, comme l'immeuble)
   var zoneEt = document.getElementById('etages');
+  var bTout = null;
+  if (zoneEt) {
+    bTout = document.createElement('button'); bTout.type = 'button'; bTout.className = 'tout'; bTout.textContent = 'Tout';
+    bTout.addEventListener('click', function () {
+      choisi = null; window.dispatchEvent(new CustomEvent('glr-etage', { detail: { e: null, camera: true } }));
+      document.querySelectorAll('.etages button').forEach(function (b) { b.setAttribute('aria-pressed', b === bTout ? 'true' : 'false'); });
+      var t = document.getElementById('etage-titre'); if (t) t.textContent = 'Tout l’immeuble · ' + L.length + ' logements disponibles';
+    });
+    zoneEt.appendChild(bTout);
+  }
   if (zoneEt) for (var e = F - 1; e >= 0; e--) {
     var b = document.createElement('button'); b.type = 'button'; b.dataset.e = e;
     var n = (parEtage[e] || []).length;
     b.innerHTML = (e === 0 ? 'RDC' : e + (e === 1 ? 'er' : 'e')) + '<small>' + n + '</small>';
     if (!n) b.classList.add('vide');
-    b.addEventListener('click', (function (e) { return function () { choisi = null; montrerEtage(e); }; })(e));
+    b.addEventListener('click', (function (e) { return function () { choisi = null; montrerEtage(e, true); }; })(e));
     zoneEt.appendChild(b);
   }
   var depart = 0, max = -1; for (var k in parEtage) if (parEtage[k].length > max) { max = parEtage[k].length; depart = Number(k); }
   montrerEtage(depart);
+  if (bTout && !document.body.classList.contains('sans-3d')) bTout.click(); // on ouvre sur l'immeuble entier
 
   // Filtres de taille : plan, liste (et maquette, qui écoute les mêmes boutons)
   var bs = document.querySelectorAll('.immeuble .filtres button');
@@ -122,14 +134,9 @@
     tr.addEventListener('click', function () { choisir(l, true); });
   });
 
-  // Onglets : plan de masse / maquette 3D. La 3D n'est chargée que si on l'ouvre.
-  var charge = false;
-  document.querySelectorAll('.onglets button').forEach(function (b) { b.addEventListener('click', function () {
-    var o = b.dataset.onglet;
-    document.querySelectorAll('.onglets button').forEach(function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
-    document.getElementById('vue-plan').hidden = o !== 'plan';
-    document.getElementById('vue-3d').hidden = o !== '3d';
-    if (o === '3d' && !charge) { charge = true; import('/neuf/immeuble3d.js').catch(function () { document.getElementById('imm3d').innerHTML = '<p class="note" style="padding:16px">La maquette 3D ne s’affiche pas sur cet appareil.</p>'; }); }
-    if (o === '3d') window.dispatchEvent(new Event('resize'));
-  }); });
+  // Une seule vue : la maquette 3D posée sur son plan de masse. Les boutons d'étage la découvrent étage par étage.
+  // Si la 3D ne peut pas s'afficher (appareil ancien), le plan dessiné ci-dessus prend sa place.
+  var secours = function () { svg.hidden = false; var z = document.getElementById('imm3d'); if (z) z.hidden = true; var v = document.querySelector('.vues'); if (v) v.hidden = true; document.body.classList.add('sans-3d'); };
+  window.addEventListener('glr-3d-ko', secours);
+  import('/neuf/immeuble3d.js').catch(secours);
 })();

@@ -190,11 +190,13 @@ tr.vise td{background:var(--teinte)}
 .etages button{font:inherit;font-size:.82rem;font-weight:600;min-width:58px;padding:6px 8px;border:1px solid var(--trait);border-radius:6px;background:#fff;color:var(--texte);cursor:pointer;display:flex;justify-content:space-between;gap:8px;align-items:center}
 .etages button small{font-weight:600;color:var(--bleu);background:var(--teinte);border-radius:9px;padding:0 6px;font-size:.74rem}
 .etages button.vide{color:var(--discret)}.etages button.vide small{background:transparent;color:var(--discret)}
+.etages button.tout{justify-content:center;margin-bottom:4px;border-color:var(--laiton);color:var(--laiton-texte)}
 .etages button[aria-pressed=true]{background:var(--bleu);border-color:var(--bleu);color:#fff}
 .etages button[aria-pressed=true] small{background:rgba(255,255,255,.22);color:#fff}
 .plan-dessin{min-width:0}
 .etage-titre{margin:0 0 6px;font-size:.88rem;color:var(--discret)}
 #plan{display:block;width:100%;height:auto;border-radius:8px;border:1px solid var(--trait)}
+#plan[hidden],#imm3d[hidden],.vues[hidden]{display:none}
 #plan text{font-family:var(--body);pointer-events:none}
 #plan .case{cursor:pointer;outline:none}
 #plan .case rect:first-child{transition:opacity .2s}
@@ -268,21 +270,18 @@ footer a{color:var(--discret)}
   </div>
   <section class="immeuble" id="immeuble">
    <div class="vue">
-    <div class="onglets" role="tablist"><button type="button" role="tab" aria-selected="true" data-onglet="plan">Plan de masse</button><button type="button" role="tab" aria-selected="false" data-onglet="3d">Maquette 3D</button></div>
-    <div id="vue-plan">
-      
-      <div class="plan-cadre">
-        <div class="etages" id="etages" role="group" aria-label="Choisir un étage"></div>
-        <div class="plan-dessin"><p class="etage-titre" id="etage-titre"></p><svg id="plan" role="img" aria-label="Plan de masse : l’immeuble sur son terrain, avec les logements disponibles de l’étage choisi"></svg></div>
+    
+    <div class="plan-cadre">
+      <div class="etages" id="etages" role="group" aria-label="Choisir un étage"></div>
+      <div class="plan-dessin">
+        <p class="etage-titre" id="etage-titre"></p>
+        <div class="scene3d" id="imm3d" data-lat="48.919" data-lng="2.261" aria-label="L’immeuble sur son terrain : faites-le tourner, choisissez un étage, touchez un logement"><div class="geste" id="geste"><span class="main"></span>Glissez pour tourner</div></div>
+        <svg id="plan" hidden role="img" aria-label="Plan de masse : l’immeuble sur son terrain, avec les logements disponibles de l’étage choisi"></svg>
       </div>
     </div>
-    <div id="vue-3d" hidden>
-      <div class="scene3d" id="imm3d" data-lat="48.919" data-lng="2.261" aria-label="Maquette 3D de l’immeuble : faites-la tourner, touchez un logement"><div class="geste" id="geste"><span class="main"></span>Glissez pour tourner</div></div>
-      <div class="vues" role="group" aria-label="Changer de vue"><button type="button" data-vue="rue">Façade rue</button><button type="button" data-vue="arriere">Façade arrière</button><button type="button" data-vue="dessus">Vue du dessus</button><button type="button" data-vue="tour">Faire le tour</button></div>
-      <div class="coupe"><label for="coupe">Voir jusqu’à</label><input type="range" id="coupe" min="1" max="1" value="1" step="1"><output id="coupe-val"></output></div>
-      <div class="coupe"><label for="heure">Soleil à</label><input type="range" id="heure" min="6" max="22" step="0.25" value="14"><output id="heure-val"></output></div>
-    </div>
-    <div class="fiche-lot" id="bulle" aria-live="polite">Touchez un logement sur le plan, ou passez sur une ligne de la liste.</div>
+    <div class="vues" role="group" aria-label="Changer de vue"><button type="button" data-vue="ensemble">Vue d’ensemble</button><button type="button" data-vue="rue">Depuis la rue</button><button type="button" data-vue="arriere">Côté jardin</button><button type="button" data-vue="dessus">Du dessus</button><button type="button" data-vue="tour">Faire le tour</button></div>
+    <div class="coupe"><label for="heure">Soleil à</label><input type="range" id="heure" min="6" max="22" step="0.25" value="14"><output id="heure-val"></output></div>
+    <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
    <div class="listes">

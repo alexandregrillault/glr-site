@@ -26,6 +26,18 @@ export function facade() {
   return texFacade;
 }
 
+// Étiquette posée sur le dessus d'un logement : couleur de sa typologie, « T3 » et la surface (comme sur un plan)
+function etiquetteLot(l) {
+  const c = document.createElement('canvas'); c.width = 168; c.height = 208;
+  const g = c.getContext('2d'), col = '#' + (COULEURS[l.t] || 0x5E97AB).toString(16).padStart(6, '0'), clair = l.t === 'T1' || l.t === 'T2';
+  g.fillStyle = col; g.fillRect(0, 0, 168, 208);
+  g.strokeStyle = 'rgba(255,255,255,.9)'; g.lineWidth = 6; g.strokeRect(3, 3, 162, 202);
+  g.fillStyle = clair ? '#005875' : '#FFFFFF'; g.textAlign = 'center';
+  g.font = '600 62px Archivo, Arial, sans-serif'; g.fillText(l.t, 84, 108);
+  g.font = '400 34px Archivo, Arial, sans-serif'; g.fillText(Math.round(l.s) + ' m²', 84, 154);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t;
+}
+
 // L : [{ i: id, t: 'T3', s: 64.2, e: 2, x: 'Balcon' }]
 export function construire(L, { arbres = true } = {}) {
   const parEtage = {};
@@ -65,12 +77,13 @@ export function construire(L, { arbres = true } = {}) {
       if (k === N - 1) mats[0] = matFacade;
       if (!l) for (let i = 0; i < 6; i++) if (mats[i] === matMur) mats[i] = matVendu;
       const plateau = l ? new THREE.MeshStandardMaterial({ color: COULEURS[l.t] || 0x5E97AB, roughness: 0.7 }) : null;
+      const dessusTexte = l ? new THREE.MeshStandardMaterial({ map: etiquetteLot(l), roughness: 0.7 }) : null;
       const m = new THREE.Mesh(new THREE.BoxGeometry(W - 0.06, H - 0.3, P - 0.06), mats.slice());
       m.position.set(x, 0.3 + (H - 0.3) / 2, z);
       m.castShadow = m.receiveShadow = true;
       gr.add(m);
       if (!l) continue;
-      m.userData = { l, plateau, mats: mats.slice() };
+      m.userData = { l, plateau, dessusTexte, mats: mats.slice() };
       lots.push(m);
       const sens = r === 0 ? 1 : -1;
       if (/balcon|terrasse|loggia/i.test(l.x) && f > 0) {
@@ -108,11 +121,11 @@ export function construire(L, { arbres = true } = {}) {
     etages.forEach((g, i) => { g.visible = i < coupe; });
     toit.visible = coupe >= F;
     for (const m of lots) {
-      const { l, plateau, mats } = m.userData;
+      const { l, plateau, dessusTexte, mats } = m.userData;
       const allume = !filtre || l.t === filtre;
       const dessus = l.e === coupe - 1 && coupe < F;
       m.material = mats.map((mt, i) => {
-        let r = i === 2 ? (dessus ? plateau : mt) : (filtre && allume ? plateau : mt);
+        let r = i === 2 ? (dessus ? dessusTexte : (filtre && allume ? plateau : mt)) : (filtre && allume ? plateau : mt);
         if (filtre && !allume) { r = r.clone(); r.transparent = true; r.opacity = 0.22; }
         return r;
       });

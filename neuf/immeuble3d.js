@@ -13,7 +13,7 @@ function demarrer(L) {
   const lat = Number(zone.dataset.lat) || 48.86, lng = Number(zone.dataset.lng) || 2.35;
   let renderer;
   try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); }
-  catch (e) { zone.innerHTML = '<p class="note">La maquette 3D ne s’affiche pas sur cet appareil.</p>'; return; }
+  catch (e) { window.dispatchEvent(new Event('glr-3d-ko')); return; }
   renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -31,7 +31,8 @@ function demarrer(L) {
   scene.fog = new THREE.Fog(0xF4F0E8, d * 3.4, d * 7);
   const camera = new THREE.PerspectiveCamera(32, 1, 0.5, 800);
   // Vue du bas : on regarde la façade depuis la rue, légèrement de côté, comme un passant
-  camera.position.set(d * 0.38, haut * 0.16 + 1.7, d * 1.02);
+  // Vue d'ensemble : l'immeuble sur son terrain, de trois-quarts et d'un peu haut, comme un plan de masse en relief
+  camera.position.set(d * 0.42, haut * 0.8 + d * 0.38, d * 0.95);
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.target.set(0, haut * 0.5, 0);
   // Souris : glisser = tourner et changer l'angle, molette = zoom, clic droit (ou deux doigts) = se déplacer dans la rue
@@ -164,18 +165,27 @@ function demarrer(L) {
     tr.addEventListener('mouseleave', () => { clearTimeout(attenteTour); if (sortant === m) sortant = null; tr.classList.remove('vise'); });
   });
   // ——— Changer d'angle : le geste est montré une fois, et quatre boutons mènent aux vues utiles ———
-  let vu = false;
+  let vu = false, etageVu = null;
   const geste = document.getElementById('geste');
   const allerA = (az, r1, y1, dur, extra = {}) => {
-    controls.target.set(0, haut * 0.5, 0);
+    controls.target.x = 0; controls.target.z = 0;
     const dx = camera.position.x - controls.target.x, dz = camera.position.z - controls.target.z, a0 = Math.atan2(dz, dx);
     let da = az == null ? 0 : az - a0; if (az != null && !extra.tourComplet) { while (da > Math.PI) da -= 2 * Math.PI; while (da < -Math.PI) da += 2 * Math.PI; }
     if (extra.tourComplet) da = 2 * Math.PI;
-    tour = { t0: performance.now(), dur, a0, da, r0: Math.hypot(dx, dz), r1: r1 == null ? Math.hypot(dx, dz) : r1, y0: camera.position.y, y1: y1 == null ? camera.position.y : y1, ...extra };
+    tour = { t0: performance.now(), dur, a0, da, r0: Math.hypot(dx, dz), r1: r1 == null ? Math.hypot(dx, dz) : r1, y0: camera.position.y, y1: y1 == null ? camera.position.y : y1, ty0: controls.target.y, ty1: extra.cibleY == null ? haut * 0.5 : extra.cibleY, ...extra };
     controls.enabled = false;
   };
   const RUE = [Math.atan2(1.02, 0.38), Math.hypot(d * 0.38, d * 1.02), haut * 0.16 + 1.7];
+  // Étages (liste à gauche du cadre) : l'immeuble est découvert jusqu'à l'étage choisi, vu de haut, logements étiquetés
+  const ENSEMBLE = [Math.atan2(0.95, 0.42), Math.hypot(d * 0.42, d * 0.95), haut * 0.8 + d * 0.38];
+  window.addEventListener('glr-etage', ev => {
+    const e = ev.detail.e; vu = true; if (geste) geste.remove(); etageVu = e; imm.lots.forEach(m => m.scale.set(1, 1, 1));
+    if (e == null) { imm.couper(imm.F); if (ev.detail.camera && !arrivee) allerA(ENSEMBLE[0], ENSEMBLE[1], ENSEMBLE[2], 1100); return; }
+    imm.couper(e + 1);
+    if (ev.detail.camera && !arrivee) allerA(Math.atan2(1, 0.12), d * 0.34, e * 3 + 3 + d * 0.86, 1100, { cibleY: e * 3 + 1.5 });
+  });
   const VUES = {
+    ensemble: () => allerA(ENSEMBLE[0], ENSEMBLE[1], ENSEMBLE[2], 1200),
     rue: () => allerA(RUE[0], RUE[1], RUE[2], 1300),
     arriere: () => allerA(RUE[0] + Math.PI, RUE[1], RUE[2], 1500),
     dessus: () => allerA(null, 1.5, haut + d * 1.5, 1300),
@@ -209,11 +219,14 @@ function demarrer(L) {
     }
     if (tour) {
       const x = Math.min(1, (t - tour.t0) / tour.dur), k = tour.lineaire ? x : adoucir(x), a = tour.a0 + tour.da * k, r = tour.r0 + (tour.r1 - tour.r0) * k, y = tour.y0 + (tour.y1 - tour.y0) * k;
+      if (tour.ty1 != null) controls.target.y = tour.ty0 + (tour.ty1 - tour.ty0) * k;
       camera.position.set(controls.target.x + r * Math.cos(a), y, controls.target.z + r * Math.sin(a)); camera.lookAt(controls.target);
       if (x >= 1) { const suite = tour.suite; tour = null; controls.enabled = true; if (suite) suite(); }
     }
     for (const m of imm.lots) {
-      const cible = m === sortant ? 1 : 0; if (m.userData.sorti === cible) continue;
+      // étage découvert : le logement visé grossit un peu sur place (son étiquette reste lisible) ; immeuble entier : il ressort de la façade
+      if (etageVu != null) { const k = m === sortant ? 1.09 : 1; if (m.scale.x !== k) m.scale.set(k, 1, k); }
+      const cible = m === sortant && etageVu == null ? 1 : 0; if (m.userData.sorti === cible) continue;
       m.userData.sorti += Math.sign(cible - m.userData.sorti) * Math.min(Math.abs(cible - m.userData.sorti), 0.12);
       const k = adoucir(m.userData.sorti);
       m.position.z = m.userData.z0 + Math.sign(m.userData.z0) * 1.6 * k;

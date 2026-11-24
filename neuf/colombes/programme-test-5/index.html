@@ -190,11 +190,13 @@ tr.vise td{background:var(--teinte)}
 .etages button{font:inherit;font-size:.82rem;font-weight:600;min-width:58px;padding:6px 8px;border:1px solid var(--trait);border-radius:6px;background:#fff;color:var(--texte);cursor:pointer;display:flex;justify-content:space-between;gap:8px;align-items:center}
 .etages button small{font-weight:600;color:var(--bleu);background:var(--teinte);border-radius:9px;padding:0 6px;font-size:.74rem}
 .etages button.vide{color:var(--discret)}.etages button.vide small{background:transparent;color:var(--discret)}
+.etages button.tout{justify-content:center;margin-bottom:4px;border-color:var(--laiton);color:var(--laiton-texte)}
 .etages button[aria-pressed=true]{background:var(--bleu);border-color:var(--bleu);color:#fff}
 .etages button[aria-pressed=true] small{background:rgba(255,255,255,.22);color:#fff}
 .plan-dessin{min-width:0}
 .etage-titre{margin:0 0 6px;font-size:.88rem;color:var(--discret)}
 #plan{display:block;width:100%;height:auto;border-radius:8px;border:1px solid var(--trait)}
+#plan[hidden],#imm3d[hidden],.vues[hidden]{display:none}
 #plan text{font-family:var(--body);pointer-events:none}
 #plan .case{cursor:pointer;outline:none}
 #plan .case rect:first-child{transition:opacity .2s}
