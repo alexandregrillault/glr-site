@@ -96,7 +96,7 @@ export function construire(L, { arbres = true } = {}) {
   if (arbres) {
     const tronc = new THREE.MeshStandardMaterial({ color: 0x8A6A4F, roughness: 1 });
     const feuille = new THREE.MeshStandardMaterial({ color: 0x9DAF86, roughness: 0.9 });
-    for (const [x, z] of [[-largeur / 2 - 4, profondeur / 2 + 3], [largeur / 2 + 4, profondeur / 2 + 2], [-largeur / 2 - 3, -profondeur / 2 - 3], [largeur / 2 + 3.5, -profondeur / 2 - 2.5], [0, profondeur / 2 + 6.5]]) {
+    for (const [x, z] of [[-largeur / 2 - 6, profondeur / 2 - 1], [largeur / 2 + 6, profondeur / 2 - 2], [-largeur / 2 - 3, -profondeur / 2 - 3], [largeur / 2 + 3.5, -profondeur / 2 - 2.5]]) {
       const t = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.25, 2.2, 8), tronc); t.position.set(x, 1.1, z); t.castShadow = true; racine.add(t);
       const f = new THREE.Mesh(new THREE.SphereGeometry(1.6, 16, 12), feuille); f.position.set(x, 3.2, z); f.castShadow = true; racine.add(f);
     }

@@ -61,7 +61,7 @@ main{max-width:1040px;margin:0 auto;padding:28px 16px 56px}
 h1{font-family:var(--display);font-weight:400;font-size:clamp(1.9rem,6vw,2.8rem);line-height:1.12;margin:0 0 .5rem}
 .chapo{color:var(--discret);margin:0 0 1.4rem;max-width:720px}
 .filet{width:56px;height:2px;background:var(--laiton);margin:0 0 1.2rem;border:0}
-h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 .9rem}
+h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 .9rem;scroll-margin-top:12px}
 .chiffres{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1rem}
 .chiffre{background:var(--carte);border:1px solid var(--trait);border-radius:8px;padding:14px}
 .chiffre b{display:block;font-family:var(--display);font-weight:500;font-size:1.7rem;color:var(--bleu);line-height:1.1}
@@ -355,22 +355,16 @@ function donneesVille(d, avecMaquette) {
     r: `${pluriel(d.chiffres.nb_programmes, 'programme', 'programmes')} · ${nb(d.chiffres.nb_lots_libres)} logements disponibles`,
     p: d.programmes.filter(p => p.position && p.position.latitude != null).map(p => ({
       n: p.nom, s: p.slug, k: !!p.picking, a: ARRONDI(p.position.latitude), o: ARRONDI(p.position.longitude),
-      u: avecMaquette ? `${d.slug}/${p.slug}/` : `${d.slug}/?p=${p.slug}`,
+      u: `${d.slug}/${p.slug}/`,
       l: p.livraison || '', d: p.picking ? 'Grille sur demande' : (p.nb_lots_libres ? pluriel(p.nb_lots_libres, 'logement disponible', 'logements disponibles') : ''),
-      ...(avecMaquette && !p.picking && (p.logements || []).length ? { L: logementsPublics(p) } : {}) }))
+      }))
   };
 }
 const blocCarte = (grande, legendePicking) => `<div class="carte-zone">
     <div id="carte" class="carte${grande ? ' grande' : ''}" aria-label="Carte des programmes neufs"></div>
   </div>
   <div class="fil-carte"><span id="fil-carte">Touchez un département.</span><span class="boutons-carte"><button type="button" id="carte-idf" hidden>Toute l’Île-de-France</button></span></div>
-    <div class="panneau" id="panneau" hidden>
-      <b class="titre"></b><span class="sous"></span>
-      <ul class="proches" id="proches"></ul>
-      <label class="heure"><span>Soleil à</span><input type="range" id="carte-heure" min="6" max="22" step="0.25" value="14"><output id="carte-heure-val"></output></label>
-      <div class="actions"><a class="voir" href="#">Voir les logements et les prix</a><button type="button" id="carte-retour">Retour à la ville</button></div>
-    </div>
-  <p class="legende"><span><i style="background:var(--bleu)"></i>Programme en vente</span>${legendePicking ? '<span><i style="background:var(--laiton)"></i>Picking, grille sur demande</span>' : ''}<span>Pastilles blanches : gares et tramways ; commerces et écoles en zoomant</span><span>${grande ? 'Choisissez une ville, puis touchez un programme pour voir l’immeuble dans son quartier.' : 'Touchez un programme pour voir l’immeuble dans son quartier.'}</span></p>`;
+  <p class="legende"><span><i style="background:var(--bleu)"></i>Programme en vente</span>${legendePicking ? '<span><i style="background:var(--laiton)"></i>Picking, grille sur demande</span>' : ''}<span>Pastilles blanches : gares et tramways ; commerces et écoles en zoomant</span><span>${grande ? 'Choisissez une ville, puis touchez un programme pour voir son immeuble.' : 'Touchez un programme pour voir son immeuble.'}</span></p>`;
 
 function pageProgramme(d, p) {
   const url = `${SITE}/neuf/${d.slug}/${p.slug}/`;
@@ -397,14 +391,14 @@ function pageProgramme(d, p) {
   <p class="chapo">Programme neuf à ${esc(d.ville)} (${esc(d.cp)})${p.picking ? '. Nous pouvons vous obtenir la grille de ce programme sur demande.' : p.nb_lots_libres ? ` : ${pluriel(p.nb_lots_libres, 'logement disponible', 'logements disponibles')}, relevés le ${dateFr(d.maj)}.` : '.'}</p>
   ${infos.length ? '<dl class="infos">' + infos.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('') + '</dl>' : ''}
   ${p.picking ? '<div class="puces"><span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span></div>' : ''}
-  ${typos.length ? `<h2>L’immeuble</h2>
+  ${typos.length ? `<h2 id="immeuble">L’immeuble</h2>
   <div class="immeuble">
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button>${typos.map(t => `<button type="button" aria-pressed="false" data-t="${esc(t)}">${esc(t)}</button>`).join('')}</div>
     <div class="coupe"><label for="coupe">Voir jusqu’à</label><input type="range" id="coupe" min="1" max="1" value="1" step="1"><output id="coupe-val"></output></div>
  <div class="coupe"><label for="heure">Soleil à</label><input type="range" id="heure" min="6" max="22" step="0.25" value="14"><output id="heure-val"></output></div>
     <div class="scene3d" id="imm3d" data-lat="${p.position ? ARRONDI(p.position.latitude) : ''}" data-lng="${p.position ? ARRONDI(p.position.longitude) : ''}" aria-label="Maquette 3D de l’immeuble : faites-la tourner, touchez un logement"></div>
     <div class="fiche-lot" id="bulle" aria-live="polite">Touchez ou survolez un logement de la maquette pour voir sa fiche.</div>
-    <p class="aide">Faites tourner l’immeuble au doigt ou à la souris. Descendez le curseur pour enlever des étages et voir les logements par le dessus.</p>
+    <p class="aide">Touchez une fenêtre pour voir quel logement se trouve derrière : sa taille, sa surface, son étage et son prix. Faites tourner l’immeuble au doigt ou à la souris.</p>
     <p class="note">Maquette dessinée automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.${p.image ? '' : ''}</p>
     ${p.image ? `<figure class="perspective"><img src="${esc(p.image)}" alt="Perspective de ${esc(p.nom)}" loading="lazy"><figcaption>Perspective du promoteur, non contractuelle.</figcaption></figure>` : ''}
   </div>

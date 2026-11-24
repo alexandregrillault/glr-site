@@ -2,7 +2,7 @@
 // Données : <script type="application/json" id="logements-data">. Prix : window.GLR_PRIX (servi par la base).
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { construire, soleil, versSoleil, lumiere, heureTexte } from './maquette.js';
+import { construire, COULEURS, soleil, versSoleil, lumiere, heureTexte } from './maquette.js';
 
 const zone = document.getElementById('imm3d');
 const donnees = document.getElementById('logements-data');
@@ -28,10 +28,11 @@ function demarrer(L) {
   const d = Math.max(largeur * 1.1, haut) * 1.55 + 12;
   scene.fog = new THREE.Fog(0xF4F0E8, d * 1.6, d * 3.2);
   const camera = new THREE.PerspectiveCamera(32, 1, 0.5, 800);
-  camera.position.set(d * 0.62, haut * 0.55 + d * 0.42, d * 0.78);
+  // Vue du bas : on regarde la façade depuis la rue, légèrement de côté, comme un passant
+  camera.position.set(d * 0.38, haut * 0.16 + 1.7, d * 1.02);
   const controls = new OrbitControls(camera, renderer.domElement);
-  controls.target.set(0, haut * 0.42, 0);
-  Object.assign(controls, { enableDamping: true, enablePan: false, minDistance: d * 0.35, maxDistance: d * 1.6, maxPolarAngle: Math.PI * 0.47, autoRotate: true, autoRotateSpeed: 0.6 });
+  controls.target.set(0, haut * 0.5, 0);
+  Object.assign(controls, { enableDamping: true, enablePan: false, minDistance: d * 0.35, maxDistance: d * 1.6, maxPolarAngle: Math.PI * 0.52, autoRotate: false });
   renderer.domElement.addEventListener('pointerdown', () => { controls.autoRotate = false; });
 
   const sol = new THREE.Mesh(new THREE.CircleGeometry(400, 64), new THREE.MeshStandardMaterial({ color: 0xF1ECE2, roughness: 1 }));
@@ -70,10 +71,7 @@ function demarrer(L) {
       imm.couper(k);
     };
     coupe.addEventListener('input', () => { controls.autoRotate = false; maj(); });
-    // À l'ouverture, l'immeuble se construit étage par étage
-    let k = 1; imm.couper(1);
-    const monter = setInterval(() => { k++; imm.couper(k); if (k >= imm.F) { clearInterval(monter); maj(); } }, Math.max(90, 1500 / imm.F));
-    coupe.addEventListener('input', () => clearInterval(monter), { once: true });
+    maj();
   }
   let filtre = '';
   document.querySelectorAll('.immeuble .filtres button').forEach(b => b.addEventListener('click', () => {
@@ -102,11 +100,15 @@ function demarrer(L) {
   };
   renderer.domElement.addEventListener('pointermove', ev => { if (ev.pointerType === 'mouse') fiche(toucher(ev), ev); });
   renderer.domElement.addEventListener('pointerleave', () => fiche(null));
-  let depart = null;
+  let depart = null, choisi = null;
   renderer.domElement.addEventListener('pointerdown', ev => { depart = [ev.clientX, ev.clientY]; });
   renderer.domElement.addEventListener('pointerup', ev => {
     if (!depart || Math.hypot(ev.clientX - depart[0], ev.clientY - depart[1]) > 6) return;
     const m = toucher(ev); fiche(m, ev);
+    // La fenêtre touchée prend la couleur de sa taille (T2, T3…) et le reste : on voit quelle typologie est où
+    if (choisi && choisi !== m) { choisi.material = choisi.userData.mats; }
+    if (m) { const col = COULEURS[m.userData.l.t] || 0x5E97AB; m.material = m.userData.mats.map(mt => { const c = mt.clone(); c.color.setHex(col); if (c.emissive) { c.emissive.setHex(col); c.emissiveIntensity = 0.25; } return c; }); }
+    choisi = m || choisi;
     if (m) {
       document.querySelectorAll('tr.vise').forEach(z => z.classList.remove('vise'));
       const tr = document.getElementById('l-' + m.userData.l.i); if (tr) tr.classList.add('vise');

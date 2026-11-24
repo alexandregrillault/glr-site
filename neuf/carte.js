@@ -2,9 +2,9 @@
 // immeubles en relief, contour des communes en liseré blanc ombré. Un clic sur un programme zoome dessus et pose
 // sa maquette 3D dans son quartier ; le soleil suit l'heure choisie.
 // Données : <script type="application/json" id="carte-data"> ; maplibregl chargé avant ce module.
-import * as THREE from 'three';
-import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { construire, soleil, versSoleil, lumiere, heureTexte } from './maquette.js';
+// La vue « quartier » en 3D (immeuble posé sur la carte, voisins, routes maquette) a été retirée du parcours le 24/11/2026
+// (Alex : « trop compliqué ») : un repère ouvre directement la page du programme, sur l'immeuble vu du bas.
+// Son code plus bas (focus, coucheImmeuble, proximite…) est en sommeil et n'est plus appelé ; la bibliothèque 3D n'est donc plus chargée ici.
 
 const ml = window.maplibregl;
 const conteneur = document.getElementById('carte');
@@ -221,7 +221,7 @@ async function demarrer() {
   for (const v of villes) for (const p of v.p) {
     const el = document.createElement('button');
     el.type = 'button'; el.className = 'repere' + (p.k ? ' picking' : ''); el.title = p.n; el.setAttribute('aria-label', p.n);
-    el.addEventListener('click', ev => { ev.stopPropagation(); if (p.L) focus(v, p); else location.href = '/neuf/' + p.u; });
+    el.addEventListener('click', ev => { ev.stopPropagation(); location.href = '/neuf/' + p.u + (p.k ? '' : '#immeuble'); });
     el.style.display = 'none'; // les repères n'apparaissent qu'une fois la ville choisie
     marqueurs.push({ m: new ml.Marker({ element: el }).setLngLat([p.o, p.a]).addTo(map), p, v });
   }
@@ -352,6 +352,7 @@ async function demarrer() {
   }
 
   function placerSoleil() {
+    if (!enCours) return; // vue quartier en sommeil
     const h = heure ? Number(heure.value) : 14;
     const t = new Date(); t.setHours(Math.floor(h), Math.round((h % 1) * 60), 0, 0);
     const c = enCours ? [enCours.a, enCours.o] : [48.86, 2.35];
@@ -462,8 +463,8 @@ async function demarrer() {
   map.on('mouseenter', 'dep-fond', () => { if (!depEnCours) map.getCanvas().style.cursor = 'pointer'; });
   map.on('mouseleave', 'dep-fond', () => { map.getCanvas().style.cursor = ''; });
   const voulu = new URLSearchParams(location.search).get('p');
-  const prog = voulu && villes.map(v => [v, v.p.find(x => x.s === voulu && x.L)]).find(x => x[1]);
-  if (prog) apresIntro(() => { montrerVille(prog[0].s); setTimeout(() => focus(prog[0], prog[1]), 2600); });
+  const prog = voulu && villes.map(v => [v, v.p.find(x => x.s === voulu && !x.k)]).find(x => x[1]);
+  if (prog) { location.replace('/neuf/' + prog[1].u + '#immeuble'); return; }
   else if (D.ville) apresIntro(() => montrerVille(D.ville));
   placerSoleil();
 }
