@@ -108,7 +108,7 @@ async function demarrer() {
   map.addLayer({ id: 'bati-ville', type: 'fill-extrusion', source: 'bati-ville', paint: { 'fill-extrusion-color': '#F2EDE3', 'fill-extrusion-height': 0, 'fill-extrusion-opacity': 0.95, 'fill-extrusion-vertical-gradient': true } });
   const anneaux = g => (g.type === 'Polygon' ? [g.coordinates] : g.coordinates).map(pl => pl[0]);
   const dedans = (pt, a) => { let d = false; for (let i = 0, j = a.length - 1; i < a.length; j = i++) { const [xi, yi] = a[i], [xj, yj] = a[j]; if ((yi > pt[1]) !== (yj > pt[1]) && pt[0] < (xj - xi) * (pt[1] - yi) / (yj - yi) + xi) d = !d; } return d; };
-  let villeFocus = null, facteurVille = 1;
+  let villeFocus = null, facteurVille = 1, lieuxVille = [];
   const hautVille = f => { facteurVille = f; map.setPaintProperty('bati-ville', 'fill-extrusion-height', hauteurBati(Math.max(0.001, f))); };
   // Ne garde que les immeubles dont un point est dans la commune (les tuiles IGN n'ont pas d'identifiant : on recopie leur dessin)
   function remplirBati() {
@@ -122,39 +122,38 @@ async function demarrer() {
     return out.length;
   }
   let minuterie = null;
-  map.on('idle', () => { if (villeFocus) { clearTimeout(minuterie); minuterie = setTimeout(remplirBati, 150); } });
   function focusVille(v) {
     villeFocus = v && v.c ? v : null;
+    lieuxVille.forEach(m => m.remove()); lieuxVille = [];
     if (!villeFocus) {
-      map.getSource('voile').setData(vide); map.getSource('ville-contour').setData(vide); map.getSource('bati-ville').setData(vide);
-      map.setLayoutProperty('glr-bati', 'visibility', 'visible'); map.setPaintProperty('voile', 'fill-opacity', 0); map.setPaintProperty('ville-ombre', 'line-opacity', 0);
+      map.getSource('voile').setData(vide); map.getSource('ville-contour').setData(vide);
+      map.setPaintProperty('voile', 'fill-opacity', 0); map.setPaintProperty('ville-ombre', 'line-opacity', 0);
       return;
     }
     const trous = anneaux(v.c.geometry);
     map.getSource('voile').setData({ type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [[[-10, 40], [15, 40], [15, 55], [-10, 55], [-10, 40]], ...trous.map(a => a.slice().reverse())] } });
     map.getSource('ville-contour').setData(v.c);
-    map.setLayoutProperty('glr-bati', 'visibility', 'none');
-    map.getSource('bati-ville').setData(vide); hautVille(0.001);
-    // 1) tout s'efface autour de la ville ; 2) à l'arrivée de la caméra, elle se soulève (ombre) et ses immeubles sortent de terre
-    animer(1500, x => map.setPaintProperty('voile', 'fill-opacity', 0.97 * x), 200);
-    // Temps 1 : la caméra arrive, la ville est seule et se soulève (ombre). Temps 2 : on s'approche, ses immeubles sortent de terre.
-    map.once('moveend', () => {
-      if (villeFocus !== v) return;
-      animer(900, x => { map.setPaintProperty('ville-ombre', 'line-opacity', 0.32 * x); map.setPaintProperty('ville-ombre', 'line-translate', [0, 4 + 14 * x]); });
-      let essais = 0;
-      const lever = () => {
-        if (villeFocus !== v || enCours) return;
-        if (!remplirBati() && essais++ < 40) return setTimeout(lever, 300);
-        animer(1700, hautVille);
-        [600, 1400, 2500, 4000].forEach(t => setTimeout(() => { if (villeFocus === v) remplirBati(); }, t));
-      };
-      setTimeout(() => {
-        if (villeFocus !== v || enCours) return;
-        map.easeTo({ zoom: Math.max(14.1, map.getZoom() + 1.1), pitch: 56, bearing: -18, duration: 2200, essential: true });
-        map.once('moveend', lever);
-      }, 1100);
-    });
+    // Les villes voisines restent visibles, estompées ; la ville choisie ressort (voile léger autour + ombre portée)
+    animer(1400, x => { map.setPaintProperty('voile', 'fill-opacity', 0.6 * x); map.setPaintProperty('ville-ombre', 'line-opacity', 0.3 * x); map.setPaintProperty('ville-ombre', 'line-translate', [0, 3 + 9 * x]); }, 300);
+    lieuxDeVille(v);
   }
+  // Transports, commerces et écoles de la ville (relevé OpenStreetMap rangé dans neuf/donnees/lieux/) :
+  // transports et commerces dès la vue de la ville, écoles en s'approchant (elles sont très nombreuses)
+  async function lieuxDeVille(v) {
+    let L = [];
+    try { L = (await (await fetch('/neuf/donnees/lieux/' + v.i + '.json')).json()).lieux || []; } catch (e) { return; }
+    if (villeFocus !== v) return;
+    const trous = anneaux(v.c.geometry), vus = new Set();
+    L.filter(e => trous.some(a => dedans([e.o, e.a], a))).forEach((e, i) => {
+      const cle = e.g + e.n; if (vus.has(cle)) return; vus.add(cle);
+      const el = document.createElement('div'); el.className = 'lieu petit ' + e.g; el.innerHTML = ICONES[e.g]; el.title = e.n;
+      el.style.animationDelay = (2300 + (i % 40) * 25) + 'ms';
+      lieuxVille.push(new ml.Marker({ element: el }).setLngLat([e.o, e.a]).addTo(map));
+    });
+    montrerEcoles();
+  }
+  const montrerEcoles = () => { const pres = map.getZoom() >= 14.3; lieuxVille.forEach(m => { const el = m.getElement(); el.style.display = enCours ? 'none' : (el.classList.contains('ecole') && !pres ? 'none' : ''); }); };
+  map.on('zoom', montrerEcoles);
   const choisirCommune = s => {
     map.setPaintProperty('commune-fond', 'fill-opacity', ['case', ['==', ['get', 's'], s || ''], 0.09, 0.02]);
     map.setPaintProperty('commune-ombre', 'line-opacity', s ? 0 : 0.18);
@@ -189,7 +188,7 @@ async function demarrer() {
   }
 
   function focus(v, p) {
-    villeEnCours = v.s; quitter(); enCours = p;
+    villeEnCours = v.s; quitter(); enCours = p; montrerEcoles();
     marqueurs.forEach(x => { x.m.getElement().style.display = x.p === p ? 'none' : ''; });
     choisirCommune(v.s);
     map.flyTo({ center: [p.o, p.a], zoom: 16.4, pitch: 50, bearing: -28, offset: [0, -20], duration: 2600, essential: true, curve: 1.5 });
@@ -283,7 +282,8 @@ async function demarrer() {
     const cam = map.cameraForBounds(bornes(pts), { padding: 30 });
     map.getSource('communes-dep').setData({ type: 'FeatureCollection', features: [] }); depEnCours = null;
     // Vue précise directement : immeubles en place, la ville sort de la carte, le reste s'estompe
-    map.flyTo({ center: cam.center, zoom: cam.zoom + 0.1, pitch: 40, bearing: -10, duration: 2000, essential: true, curve: 1.5 });
+    // La vue change : du trois-quarts du département à une vue d'au-dessus, bien à plat, sur la ville entière
+    map.flyTo({ center: cam.center, zoom: cam.zoom, pitch: 0, bearing: 0, duration: 2200, essential: true, curve: 1.4 });
     map.setPaintProperty('glr-bati', 'fill-extrusion-height', hauteurBati(1));
     focusVille(v);
     // Les programmes naissent de leur point exact : une onde au sol, puis le repère
