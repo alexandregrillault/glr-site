@@ -70,7 +70,10 @@ function demarrer(L) {
       imm.couper(k);
     };
     coupe.addEventListener('input', () => { controls.autoRotate = false; maj(); });
-    maj();
+    // À l'ouverture, l'immeuble se construit étage par étage
+    let k = 1; imm.couper(1);
+    const monter = setInterval(() => { k++; imm.couper(k); if (k >= imm.F) { clearInterval(monter); maj(); } }, Math.max(90, 1500 / imm.F));
+    coupe.addEventListener('input', () => clearInterval(monter), { once: true });
   }
   let filtre = '';
   document.querySelectorAll('.immeuble .filtres button').forEach(b => b.addEventListener('click', () => {

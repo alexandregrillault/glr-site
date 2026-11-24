@@ -77,6 +77,9 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .maplibregl-map{font-family:var(--body);border-radius:8px}
 .maplibregl-ctrl-attrib{font-size:10px;background:rgba(251,248,241,.85)!important}
 button.repere{padding:0;cursor:pointer;display:block}
+button.repere.pop{animation:pop .55s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes pop{from{scale:0;opacity:0}to{scale:1;opacity:1}}
+button.repere:hover{scale:1.25;transition:scale .15s}
 .panneau{position:static;margin:.6rem 0 0;background:var(--carte);border:1px solid var(--trait);border-top:3px solid var(--laiton);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
 .panneau[hidden]{display:none}
 .panneau .titre{font-family:var(--display);font-weight:500;font-size:1.25rem;color:var(--bleu)}
@@ -118,6 +121,8 @@ table.lots tr:last-child td{border-bottom:0}
 table.lots td.plan{text-align:right;white-space:nowrap}
 table.lots td.plan a{font-weight:600;text-decoration:none}
 table.lots td.prix-lot{font-weight:600;white-space:nowrap}
+table.lots td.prix-lot .tva{font-weight:600;color:var(--bleu)}
+table.lots td.prix-lot small{font-weight:400;font-size:.72rem;color:var(--discret)}
 @media (max-width:480px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 5px}table.lots .long{display:none}table.lots th{font-size:.7rem;letter-spacing:.02em}}
 .immeuble .scene{position:relative;background:linear-gradient(#FBF8F1,#F4F0E8);border:1px solid var(--trait);border-radius:8px;padding:8px;margin:0 0 .4rem;overflow:hidden}
 .immeuble svg{display:block;width:100%;height:auto;max-height:520px}

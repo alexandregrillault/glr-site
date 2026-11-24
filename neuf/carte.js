@@ -14,6 +14,14 @@ const AXES = ['autoroute', 'route principale', 'route regionale'];
 const HAUTEUR_BATI = ['coalesce', ['get', 'hauteur'], ['get', 'HAUTEUR'], 10];
 // Autour d'un programme choisi, les immeubles voisins sont abaissés pour que la maquette ressorte sans être cachée
 const hauteurBati = facteur => facteur === 1 ? HAUTEUR_BATI : ['*', HAUTEUR_BATI, facteur];
+const adoucir = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+// Anime une valeur de a à b ; renvoie une fonction pour l'arrêter
+function animer(ms, f, delai = 0) {
+  let fini = false, t0 = null;
+  const pas = t => { if (fini) return; if (t0 == null) t0 = t; const x = Math.min(1, Math.max(0, (t - t0 - delai) / ms)); f(adoucir(x)); if (x < 1) requestAnimationFrame(pas); };
+  requestAnimationFrame(pas);
+  return () => { fini = true; };
+}
 
 function epure(style) {
   const out = [];
@@ -79,22 +87,34 @@ async function demarrer() {
   const heure = document.getElementById('carte-heure'), sortieH = document.getElementById('carte-heure-val');
   let couche = null, enCours = null, villeEnCours = null;
 
+  let stopBati = null, stopTour = null;
+  const bati = (de, a, ms, delai) => { if (stopBati) stopBati(); stopBati = animer(ms, x => map.setPaintProperty('glr-bati', 'fill-extrusion-height', hauteurBati(Math.max(0.001, de + (a - de) * x))), delai); };
+  const arreterTour = () => { if (stopTour) { stopTour(); stopTour = null; } };
+  ['mousedown', 'touchstart', 'wheel'].forEach(t => conteneur.addEventListener(t, arreterTour, { passive: true }));
   function quitter() {
+    arreterTour();
     if (couche) { map.removeLayer(couche.id); couche = null; }
     enCours = null; if (panneau) panneau.hidden = true;
     marqueurs.forEach(x => { x.m.getElement().style.display = x.v.s === villeEnCours ? '' : 'none'; });
     map.setFilter('glr-bati', null);
-    map.setPaintProperty('glr-bati', 'fill-extrusion-height', hauteurBati(1));
   }
 
   function focus(v, p) {
     villeEnCours = v.s; quitter(); enCours = p;
     marqueurs.forEach(x => { x.m.getElement().style.display = x.p === p ? 'none' : ''; });
     choisirCommune(v.s);
-    map.flyTo({ center: [p.o, p.a], zoom: 17.1, pitch: 52, bearing: -28, offset: [0, -30], duration: 2200, essential: true });
-    map.setPaintProperty('glr-bati', 'fill-extrusion-height', hauteurBati(0.35));
+    map.flyTo({ center: [p.o, p.a], zoom: 17.1, pitch: 52, bearing: -28, offset: [0, -30], duration: 2600, essential: true, curve: 1.5 });
+    bati(1, 0.35, 1600, 600);
     couche = coucheImmeuble(map, p);
     map.addLayer(couche);
+    // L'immeuble se construit étage par étage à l'arrivée, puis la caméra tourne lentement autour
+    couche.batir(1800, 2000);
+    const ici = couche;
+    setTimeout(() => {
+      if (couche !== ici) return;
+      const b0 = map.getBearing();
+      stopTour = animer(24000, x => map.setBearing(b0 + 70 * x));
+    }, 4000);
     if (panneau) {
       panneau.querySelector('.titre').textContent = p.n;
       panneau.querySelector('.sous').textContent = [p.l ? 'Livraison ' + p.l : '', p.d || ''].filter(Boolean).join(' · ');
@@ -132,7 +152,18 @@ async function demarrer() {
     villeEnCours = s; quitter(); choisirCommune(s);
     const pts = v.c ? v.c.geometry.coordinates.flat(v.c.geometry.type === 'MultiPolygon' ? 2 : 1) : v.p.map(p => [p.o, p.a]);
     const cam = map.cameraForBounds(bornes(pts), { padding: 30 });
-    map.flyTo({ center: cam.center, zoom: Math.max(14.1, cam.zoom + 0.7), pitch: 58, bearing: -18, duration: 2400, essential: true });
+    map.flyTo({ center: cam.center, zoom: Math.max(14.1, cam.zoom + 0.7), pitch: 58, bearing: -18, duration: 2600, essential: true, curve: 1.6 });
+    // La ville sort de terre pendant l'arrivée de la caméra, puis les programmes apparaissent un à un
+    map.setPaintProperty('glr-bati', 'fill-extrusion-height', hauteurBati(0.001));
+    bati(0.001, 1, 1900, 1100);
+    animer(1400, x => map.setPaintProperty('commune-trait', 'line-width', 3.2 + 4 * Math.sin(Math.PI * x)), 900);
+    let n = 0;
+    marqueurs.forEach(x => {
+      const el = x.m.getElement();
+      if (x.v.s !== s) return;
+      el.style.display = 'none';
+      setTimeout(() => { if (villeEnCours === s && !enCours) { el.style.display = ''; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); } }, 2700 + 90 * n++);
+    });
   }
   window.GLRCarte = { ville: montrerVille };
   // Un clic sur une commune la choisit aussi (page des villes)
@@ -191,6 +222,10 @@ function coucheImmeuble(map, p) {
       renderer.resetState();
       renderer.render(scene, camera);
       map.triggerRepaint();
+    },
+    batir(ms, delai) {
+      imm.couper(1);
+      animer(ms, x => { imm.couper(1 + Math.round(x * (imm.F - 1))); map.triggerRepaint(); }, delai);
     },
     soleil(s) {
       const v = versSoleil(s), lu = lumiere(s);
