@@ -12,7 +12,8 @@ const D = JSON.parse((document.getElementById('carte-data') || {}).textContent |
 
 const STYLE_IGN = 'https://data.geopf.fr/annexes/ressources/vectorTiles/styles/PLAN.IGN/standard.json';
 const AXES = ['autoroute', 'route principale', 'route regionale'];
-const HAUTEUR_BATI = ['coalesce', ['get', 'hauteur'], ['get', 'HAUTEUR'], 10];
+// Plus d'immeubles en relief sur la carte (Alex, 24/11/2026 : « ça ne donne pas bien ») : seulement leur empreinte, à plat
+const HAUTEUR_BATI = 0.05;
 // Autour d'un programme choisi, les immeubles voisins sont abaissés pour que la maquette ressorte sans être cachée
 const hauteurBati = facteur => facteur === 1 ? HAUTEUR_BATI : ['*', HAUTEUR_BATI, facteur];
 const adoucir = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -47,7 +48,7 @@ function epure(style) {
       'fill-extrusion-color': '#F2EDE3',
       'fill-extrusion-height': HAUTEUR_BATI,
       'fill-extrusion-opacity': ['interpolate', ['linear'], ['zoom'], 12.3, 0, 13.3, 0.92],
-      'fill-extrusion-vertical-gradient': true,
+      'fill-extrusion-vertical-gradient': false,
     },
   });
   return { ...style, layers: out };
