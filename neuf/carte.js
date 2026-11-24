@@ -231,16 +231,12 @@ async function demarrer() {
   let couche = null, enCours = null, villeEnCours = null;
 
   let stopBati = null, stopTour = null, etiquette = null;
-  map.addSource('socle-prog', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
-  map.addLayer({ id: 'socle-prog', type: 'fill', source: 'socle-prog', paint: { 'fill-color': '#FFFFFF', 'fill-opacity': 0.92 } });
-  map.addLayer({ id: 'socle-prog-trait', type: 'line', source: 'socle-prog', paint: { 'line-color': '#B0894C', 'line-width': 2.5 } });
   const bati = (de, a, ms, delai) => { if (stopBati) stopBati(); stopBati = animer(ms, x => { const f = Math.max(0.001, de + (a - de) * x); map.setPaintProperty('glr-bati', 'fill-extrusion-height', hauteurBati(f)); if (map.getLayer('bati-ville')) hautVille(f); }, delai); };
   const arreterTour = () => { if (stopTour) { stopTour(); stopTour = null; } };
   ['mousedown', 'touchstart', 'wheel'].forEach(t => conteneur.addEventListener(t, arreterTour, { passive: true }));
   function quitter() {
     arreterTour(); effacerProximite(); if (stopBati) { stopBati(); stopBati = null; }
     if (etiquette) { etiquette.remove(); etiquette = null; }
-    map.getSource('socle-prog').setData({ type: 'FeatureCollection', features: [] });
     map.setPaintProperty('glr-bati', 'fill-extrusion-color', '#E7E0D3');
     if (couche) { map.removeLayer(couche.id); couche = null; }
     enCours = null; if (panneau) panneau.hidden = true;
@@ -253,16 +249,12 @@ async function demarrer() {
     marqueurs.forEach(x => { x.m.getElement().style.display = x.p === p ? 'none' : ''; });
     choisirCommune(v.s);
     map.flyTo({ center: [p.o, p.a], zoom: 17.5, pitch: 56, bearing: -28, offset: [0, 20], duration: 2600, essential: true, curve: 1.5 });
-    // Le programme en vedette : les voisins deviennent un décor bas, clair et translucide ; un socle clair cerclé de laiton
-    // sous l'immeuble, et son nom au-dessus
-    bati(1, 0.12, 1600, 600);
+    // Le programme en vedette : tout le quartier est aplati, seul l'immeuble du programme reste en relief, son nom au-dessus
+    bati(1, 0.001, 1600, 600); // sol aplati : les voisins ne sont plus que leur empreinte au sol
     map.setPaintProperty('glr-bati', 'fill-extrusion-color', '#F3EEE4');
-    { const R = 32, n = 48, kx = 111320 * Math.cos(p.a * Math.PI / 180), an = [];
-      for (let i = 0; i <= n; i++) an.push([p.o + R * Math.cos(2 * Math.PI * i / n) / kx, p.a + R * Math.sin(2 * Math.PI * i / n) / 111200]);
-      map.getSource('socle-prog').setData({ type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [an] } }); }
     { const el = document.createElement('div'); el.className = 'etiquette-prog'; el.textContent = p.n;
       const hautM = (Math.max(3, 1 + Math.max(...p.L.map(l => l.e))) * 3 + 1);
-      etiquette = new ml.Marker({ element: el, anchor: 'bottom', offset: [0, -Math.round(hautM / 0.277 * 0.83 + 12)] }).setLngLat([p.o, p.a]).addTo(map); }
+      etiquette = new ml.Marker({ element: el, anchor: 'bottom', offset: [0, -Math.round(hautM / 0.277 * 0.83 + 40)] }).setLngLat([p.o, p.a]).addTo(map); }
     couche = coucheImmeuble(map, p);
     map.addLayer(couche);
     // Autour du programme : métro, gares, écoles et grands commerces des environs
