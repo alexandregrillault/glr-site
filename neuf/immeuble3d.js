@@ -182,7 +182,7 @@ function demarrer(L) {
   window.addEventListener('glr-etage', ev => {
     const e = ev.detail.e; vu = true; if (geste) geste.remove(); etageVu = e; imm.lots.forEach(m => m.scale.set(1, 1, 1));
     if (e == null) { imm.couper(imm.F); if (ev.detail.camera && !arrivee) allerA(ENSEMBLE[0], ENSEMBLE[1], ENSEMBLE[2], 1100); return; }
-    imm.couper(e + 1);
+    imm.couper(e + 1, true);
     // on reste de trois-quarts : la caméra se cale simplement sur l'étage découvert, un peu plus près
     if (ev.detail.camera && !arrivee) allerA(ENSEMBLE[0], d * 0.78, e * 3 + 3 + d * 0.62, 1100, { cibleY: e * 3 + 1 });
   });

@@ -116,17 +116,18 @@ export function construire(L, { arbres = true } = {}) {
   }
 
   // Coupe à un étage et filtre de taille
-  let coupe = F, filtre = '';
+  let coupe = F, filtre = '', decouvert = false;
   const etat = { anime: false };
   [...etages, toit].forEach(g => { g.userData.y0 = g.position.y; g.userData.v = 0; g.userData.cible = 0; });
   const appliquer = () => {
     // Les étages au-dessus de la coupe s'en vont : immédiatement, ou en s'envolant si la page anime (voir tick)
     etages.forEach((g, i) => { g.userData.cible = i < coupe ? 0 : 1; if (!etat.anime) { g.userData.v = g.userData.cible; g.visible = i < coupe; } });
-    toit.userData.cible = coupe >= F ? 0 : 1; if (!etat.anime) { toit.userData.v = toit.userData.cible; toit.visible = coupe >= F; }
+    const avecToit = coupe >= F && !decouvert; // un étage choisi (même le dernier) se voit toujours à découvert, sans le toit
+    toit.userData.cible = avecToit ? 0 : 1; if (!etat.anime) { toit.userData.v = toit.userData.cible; toit.visible = avecToit; }
     for (const m of lots) {
       const { l, plateau, dessusTexte, mats } = m.userData;
       const allume = !filtre || l.t === filtre;
-      const dessus = l.e === coupe - 1 && coupe < F;
+      const dessus = l.e === coupe - 1 && (coupe < F || decouvert);
       m.material = mats.map((mt, i) => {
         let r = i === 2 ? (dessus ? dessusTexte : (filtre && allume ? plateau : mt)) : (filtre && allume ? plateau : mt);
         if (filtre && !allume) { r = r.clone(); r.transparent = true; r.opacity = 0.22; }
@@ -150,7 +151,7 @@ export function construire(L, { arbres = true } = {}) {
       });
       return bouge;
     },
-    couper(k) { coupe = Math.max(1, Math.min(F, k)); appliquer(); },
+    couper(k, aDecouvert) { coupe = Math.max(1, Math.min(F, k)); decouvert = !!aDecouvert; appliquer(); },
     filtrer(t) { filtre = t || ''; appliquer(); },
   };
 }
