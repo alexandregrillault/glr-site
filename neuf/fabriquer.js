@@ -10,6 +10,10 @@ const SITE = 'https://www.glrimmobilier.com';
 // Où mène le bouton « Recevoir les plans et les prix » tant que l'espace client n'existe pas.
 // Interrupteurs en attendant l'arbitrage d'Alex : false = le chiffre n'apparaît nulle part sur les pages.
 const AFFICHER = { prixAPartirDe: false, prixM2: false };
+// Prix des logements (décision d'Alex du 24/11/2026 : prix visibles sans compte, plans avec compte).
+// Les prix ne sont JAMAIS écrits dans les pages ni dans le dépôt : la page les demande à l'ouverture
+// à l'edge function ci-dessous (limite contre l'aspiration en masse). Fonction à créer par la session CRM.
+const PRIX_URL = 'https://hydqfbxdtpmbuooexekp.supabase.co/functions/v1/neuf-prix';
 const CONTACT = { tel: '+33614550273', telAffiche: '06 14 55 02 73', mail: 'agl@glrimmobilier.com' };
 
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -27,7 +31,7 @@ function verifier(d, fichier) {
   const interdits = ['prix', 'prix_lot', 'lots', 'plan', 'plans', 'plan_url', 'commission', 'commission_pct', 'extranet', 'lat', 'lng'];
   const vus = JSON.stringify(d).match(new RegExp('"(' + interdits.join('|') + ')"', 'g'));
   if (vus) throw new Error(fichier + ' : champs interdits sur une page publique ' + [...new Set(vus)].join(', '));
-  const permis = ['typo', 'pieces', 'surface', 'etage', 'exterieur'];
+  const permis = ['id', 'typo', 'pieces', 'surface', 'etage', 'exterieur'];
   for (const p of d.programmes) {
     if (!/^[a-z0-9-]+$/.test(p.slug || '')) throw new Error(fichier + ' : slug de programme invalide ' + p.slug);
     for (const l of p.logements || []) {
@@ -108,6 +112,8 @@ table.lots td{padding:9px 10px;border-bottom:1px solid var(--trait)}
 table.lots tr:last-child td{border-bottom:0}
 table.lots td.plan{text-align:right;white-space:nowrap}
 table.lots td.plan a{font-weight:600;text-decoration:none}
+table.lots td.prix-lot{font-weight:600;white-space:nowrap}
+@media (max-width:480px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 5px}table.lots .long{display:none}table.lots th{font-size:.7rem;letter-spacing:.02em}}
 .infos{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0 0 1rem}
 .infos dt{color:var(--discret)}
 .infos dd{margin:0}
@@ -272,8 +278,8 @@ function pageProgramme(d, p) {
   const typos = Object.keys(groupes).sort((a, b) => ordre.indexOf(a) - ordre.indexOf(b));
   const etage = e => e == null ? '—' : e === 0 ? 'RDC' : e + (e === 1 ? 'er' : 'e');
   const tableau = t => `<section class="typo"><h3>${esc(t)} · ${pluriel(groupes[t].length, 'logement', 'logements')}</h3>
-  <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th></th></tr></thead><tbody>
-  ${groupes[t].sort((a, b) => (a.surface || 0) - (b.surface || 0)).map(l => `<tr><td>${l.surface != null ? nb(l.surface) + '\u00a0m²' : '—'}</td><td>${etage(l.etage)}</td><td>${esc(l.exterieur || '—')}</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>`).join('\n  ')}
+  <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
+  ${groupes[t].sort((a, b) => (a.surface || 0) - (b.surface || 0)).map(l => `<tr><td>${l.surface != null ? nb(l.surface) + '\u00a0m²' : '—'}</td><td>${etage(l.etage)}</td><td>${esc(l.exterieur || '—')}</td><td class="prix-lot" data-lot="${esc(l.id == null ? '' : l.id)}" data-s="${l.surface || ''}">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>`).join('\n  ')}
   </tbody></table></section>`;
   return `${tete({ titre, description, url, test: d.test })}
 <main>
@@ -289,9 +295,18 @@ function pageProgramme(d, p) {
     <p>Les plans et les prix sont réservés à votre espace client. Il se crée en une minute ; en attendant, appelez-nous et nous vous les envoyons.</p>
     <div class="boutons"><a class="plein" href="tel:${CONTACT.tel}">Appeler le ${CONTACT.telAffiche}</a><a class="creux" href="mailto:${CONTACT.mail}?subject=${encodeURIComponent('Plans de ' + p.nom + ' à ' + d.ville)}">Écrire un e-mail</a></div>
   </section>
-  <p class="note">Disponibilités relevées le ${dateFr(d.maj)} ; elles changent chaque semaine et sont confirmées par votre conseiller.</p>
+  <p class="note">Disponibilités et prix relevés le ${dateFr(d.maj)} ; ils changent chaque semaine et sont confirmés par votre conseiller.</p>
 </main>
 ${pied}
+${typos.length ? `<script>
+(function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+'\u00a0€'};
+var poser=function(m){cs.forEach(function(c){var v=m&&m[c.getAttribute('data-lot')];c.textContent=v?eu(v):'sur demande'})};
+${d.test ? `// Page d'essai : prix fictifs calculés ici, aucun prix dans le dépôt.
+var m={};cs.forEach(function(c){m[c.getAttribute('data-lot')]=Math.round(c.getAttribute('data-s')*5200/1000)*1000});poser(m);` :
+`fetch(${JSON.stringify(PRIX_URL)}+'?p='+encodeURIComponent(${JSON.stringify(String(p.pige_id || ''))}),{headers:{accept:'application/json'}})
+.then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){poser(j&&j.prix)}).catch(function(){poser(null)});`}
+})();
+</script>` : ''}
 </body>
 </html>
 `;

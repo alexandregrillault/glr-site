@@ -87,6 +87,8 @@ table.lots td{padding:9px 10px;border-bottom:1px solid var(--trait)}
 table.lots tr:last-child td{border-bottom:0}
 table.lots td.plan{text-align:right;white-space:nowrap}
 table.lots td.plan a{font-weight:600;text-decoration:none}
+table.lots td.prix-lot{font-weight:600;white-space:nowrap}
+@media (max-width:480px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 5px}table.lots .long{display:none}table.lots th{font-size:.7rem;letter-spacing:.02em}}
 .infos{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0 0 1rem}
 .infos dt{color:var(--discret)}
 .infos dd{margin:0}
@@ -113,85 +115,92 @@ footer a{color:var(--discret)}
   
   <h2>Les logements disponibles</h2>
   <section class="typo"><h3>T1 · 22 logements</h3>
-  <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th></th></tr></thead><tbody>
-  <tr><td>24 m²</td><td>5e</td><td>—</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>24,1 m²</td><td>2e</td><td>—</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>24,3 m²</td><td>4e</td><td>—</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>25,4 m²</td><td>3e</td><td>—</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>25,6 m²</td><td>2e</td><td>Jardin</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>26,4 m²</td><td>6e</td><td>Balcon</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>26,8 m²</td><td>5e</td><td>Terrasse</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>27 m²</td><td>5e</td><td>Jardin</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>27,3 m²</td><td>6e</td><td>Terrasse</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>27,4 m²</td><td>5e</td><td>Balcon</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>27,5 m²</td><td>3e</td><td>Terrasse</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>27,5 m²</td><td>4e</td><td>Terrasse</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>27,6 m²</td><td>2e</td><td>Loggia</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>28,2 m²</td><td>2e</td><td>Terrasse</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>28,2 m²</td><td>1er</td><td>—</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>29,1 m²</td><td>5e</td><td>Terrasse</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>29,7 m²</td><td>RDC</td><td>Terrasse</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>29,7 m²</td><td>4e</td><td>Terrasse</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>30,2 m²</td><td>4e</td><td>Balcon</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>30,6 m²</td><td>3e</td><td>Loggia</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>30,8 m²</td><td>3e</td><td>Balcon</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>31,4 m²</td><td>5e</td><td>Loggia</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
+  <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
+  <tr><td>24 m²</td><td>5e</td><td>—</td><td class="prix-lot" data-lot="t23-4" data-s="24">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>24,1 m²</td><td>2e</td><td>—</td><td class="prix-lot" data-lot="t23-49" data-s="24.1">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>24,3 m²</td><td>4e</td><td>—</td><td class="prix-lot" data-lot="t23-19" data-s="24.3">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>25,4 m²</td><td>3e</td><td>—</td><td class="prix-lot" data-lot="t23-61" data-s="25.4">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>25,6 m²</td><td>2e</td><td>Jardin</td><td class="prix-lot" data-lot="t23-25" data-s="25.6">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>26,4 m²</td><td>6e</td><td>Balcon</td><td class="prix-lot" data-lot="t23-31" data-s="26.4">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>26,8 m²</td><td>5e</td><td>Terrasse</td><td class="prix-lot" data-lot="t23-37" data-s="26.8">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>27 m²</td><td>5e</td><td>Jardin</td><td class="prix-lot" data-lot="t23-46" data-s="27">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>27,3 m²</td><td>6e</td><td>Terrasse</td><td class="prix-lot" data-lot="t23-13" data-s="27.3">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>27,4 m²</td><td>5e</td><td>Balcon</td><td class="prix-lot" data-lot="t23-22" data-s="27.4">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>27,5 m²</td><td>3e</td><td>Terrasse</td><td class="prix-lot" data-lot="t23-10" data-s="27.5">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>27,5 m²</td><td>4e</td><td>Terrasse</td><td class="prix-lot" data-lot="t23-55" data-s="27.5">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>27,6 m²</td><td>2e</td><td>Loggia</td><td class="prix-lot" data-lot="t23-58" data-s="27.6">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>28,2 m²</td><td>2e</td><td>Terrasse</td><td class="prix-lot" data-lot="t23-1" data-s="28.2">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>28,2 m²</td><td>1er</td><td>—</td><td class="prix-lot" data-lot="t23-28" data-s="28.2">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>29,1 m²</td><td>5e</td><td>Terrasse</td><td class="prix-lot" data-lot="t23-34" data-s="29.1">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>29,7 m²</td><td>RDC</td><td>Terrasse</td><td class="prix-lot" data-lot="t23-16" data-s="29.7">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>29,7 m²</td><td>4e</td><td>Terrasse</td><td class="prix-lot" data-lot="t23-64" data-s="29.7">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>30,2 m²</td><td>4e</td><td>Balcon</td><td class="prix-lot" data-lot="t23-40" data-s="30.2">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>30,6 m²</td><td>3e</td><td>Loggia</td><td class="prix-lot" data-lot="t23-43" data-s="30.6">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>30,8 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="t23-52" data-s="30.8">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>31,4 m²</td><td>5e</td><td>Loggia</td><td class="prix-lot" data-lot="t23-7" data-s="31.4">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
   </tbody></table></section>
   <section class="typo"><h3>T2 · 21 logements</h3>
-  <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th></th></tr></thead><tbody>
-  <tr><td>39,3 m²</td><td>3e</td><td>—</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>39,7 m²</td><td>1er</td><td>Loggia</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>40,3 m²</td><td>6e</td><td>—</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>41 m²</td><td>5e</td><td>Jardin</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>41,4 m²</td><td>6e</td><td>Balcon</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>42,2 m²</td><td>6e</td><td>—</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>42,3 m²</td><td>RDC</td><td>Balcon</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>42,4 m²</td><td>6e</td><td>Loggia</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>42,9 m²</td><td>4e</td><td>Jardin</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>43,1 m²</td><td>6e</td><td>Jardin</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>43,2 m²</td><td>4e</td><td>Loggia</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>43,3 m²</td><td>5e</td><td>Loggia</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>43,7 m²</td><td>2e</td><td>Loggia</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>43,9 m²</td><td>6e</td><td>Jardin</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>44,4 m²</td><td>1er</td><td>Balcon</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>45 m²</td><td>4e</td><td>Balcon</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>45,1 m²</td><td>2e</td><td>Balcon</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>46,4 m²</td><td>2e</td><td>Balcon</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>47 m²</td><td>RDC</td><td>—</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>47,5 m²</td><td>6e</td><td>—</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>47,6 m²</td><td>6e</td><td>Loggia</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
+  <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
+  <tr><td>39,3 m²</td><td>3e</td><td>—</td><td class="prix-lot" data-lot="t23-20" data-s="39.3">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>39,7 m²</td><td>1er</td><td>Loggia</td><td class="prix-lot" data-lot="t23-8" data-s="39.7">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>40,3 m²</td><td>6e</td><td>—</td><td class="prix-lot" data-lot="t23-56" data-s="40.3">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>41 m²</td><td>5e</td><td>Jardin</td><td class="prix-lot" data-lot="t23-38" data-s="41">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>41,4 m²</td><td>6e</td><td>Balcon</td><td class="prix-lot" data-lot="t23-62" data-s="41.4">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>42,2 m²</td><td>6e</td><td>—</td><td class="prix-lot" data-lot="t23-5" data-s="42.2">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>42,3 m²</td><td>RDC</td><td>Balcon</td><td class="prix-lot" data-lot="t23-23" data-s="42.3">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>42,4 m²</td><td>6e</td><td>Loggia</td><td class="prix-lot" data-lot="t23-44" data-s="42.4">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>42,9 m²</td><td>4e</td><td>Jardin</td><td class="prix-lot" data-lot="t23-17" data-s="42.9">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>43,1 m²</td><td>6e</td><td>Jardin</td><td class="prix-lot" data-lot="t23-59" data-s="43.1">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>43,2 m²</td><td>4e</td><td>Loggia</td><td class="prix-lot" data-lot="t23-32" data-s="43.2">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>43,3 m²</td><td>5e</td><td>Loggia</td><td class="prix-lot" data-lot="t23-2" data-s="43.3">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>43,7 m²</td><td>2e</td><td>Loggia</td><td class="prix-lot" data-lot="t23-29" data-s="43.7">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>43,9 m²</td><td>6e</td><td>Jardin</td><td class="prix-lot" data-lot="t23-35" data-s="43.9">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>44,4 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="t23-53" data-s="44.4">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>45 m²</td><td>4e</td><td>Balcon</td><td class="prix-lot" data-lot="t23-11" data-s="45">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>45,1 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="t23-14" data-s="45.1">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>46,4 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="t23-41" data-s="46.4">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>47 m²</td><td>RDC</td><td>—</td><td class="prix-lot" data-lot="t23-26" data-s="47">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>47,5 m²</td><td>6e</td><td>—</td><td class="prix-lot" data-lot="t23-50" data-s="47.5">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>47,6 m²</td><td>6e</td><td>Loggia</td><td class="prix-lot" data-lot="t23-47" data-s="47.6">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
   </tbody></table></section>
   <section class="typo"><h3>T3 · 21 logements</h3>
-  <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th></th></tr></thead><tbody>
-  <tr><td>58,1 m²</td><td>4e</td><td>Loggia</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>58,3 m²</td><td>3e</td><td>Balcon</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>60,3 m²</td><td>4e</td><td>Balcon</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>61 m²</td><td>3e</td><td>Jardin</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>61,4 m²</td><td>5e</td><td>—</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>62,1 m²</td><td>3e</td><td>Loggia</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>62,5 m²</td><td>6e</td><td>Terrasse</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>62,7 m²</td><td>2e</td><td>Balcon</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>63,1 m²</td><td>5e</td><td>Loggia</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>63,1 m²</td><td>3e</td><td>Jardin</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>63,5 m²</td><td>2e</td><td>—</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>63,7 m²</td><td>2e</td><td>Loggia</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>63,8 m²</td><td>1er</td><td>Terrasse</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>64 m²</td><td>1er</td><td>Jardin</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>64,3 m²</td><td>6e</td><td>Balcon</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>65 m²</td><td>RDC</td><td>Terrasse</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>65,1 m²</td><td>RDC</td><td>Balcon</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>66 m²</td><td>5e</td><td>Jardin</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>68,1 m²</td><td>4e</td><td>Jardin</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>68,9 m²</td><td>3e</td><td>Balcon</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
-  <tr><td>69 m²</td><td>1er</td><td>Loggia</td><td class="plan"><a href="#compte">Voir le plan</a></td></tr>
+  <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
+  <tr><td>58,1 m²</td><td>4e</td><td>Loggia</td><td class="prix-lot" data-lot="t23-24" data-s="58.1">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>58,3 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="t23-21" data-s="58.3">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>60,3 m²</td><td>4e</td><td>Balcon</td><td class="prix-lot" data-lot="t23-6" data-s="60.3">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>61 m²</td><td>3e</td><td>Jardin</td><td class="prix-lot" data-lot="t23-12" data-s="61">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>61,4 m²</td><td>5e</td><td>—</td><td class="prix-lot" data-lot="t23-9" data-s="61.4">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>62,1 m²</td><td>3e</td><td>Loggia</td><td class="prix-lot" data-lot="t23-54" data-s="62.1">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>62,5 m²</td><td>6e</td><td>Terrasse</td><td class="prix-lot" data-lot="t23-36" data-s="62.5">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>62,7 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="t23-63" data-s="62.7">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>63,1 m²</td><td>5e</td><td>Loggia</td><td class="prix-lot" data-lot="t23-15" data-s="63.1">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>63,1 m²</td><td>3e</td><td>Jardin</td><td class="prix-lot" data-lot="t23-18" data-s="63.1">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>63,5 m²</td><td>2e</td><td>—</td><td class="prix-lot" data-lot="t23-33" data-s="63.5">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>63,7 m²</td><td>2e</td><td>Loggia</td><td class="prix-lot" data-lot="t23-39" data-s="63.7">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>63,8 m²</td><td>1er</td><td>Terrasse</td><td class="prix-lot" data-lot="t23-45" data-s="63.8">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>64 m²</td><td>1er</td><td>Jardin</td><td class="prix-lot" data-lot="t23-57" data-s="64">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>64,3 m²</td><td>6e</td><td>Balcon</td><td class="prix-lot" data-lot="t23-51" data-s="64.3">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>65 m²</td><td>RDC</td><td>Terrasse</td><td class="prix-lot" data-lot="t23-48" data-s="65">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>65,1 m²</td><td>RDC</td><td>Balcon</td><td class="prix-lot" data-lot="t23-27" data-s="65.1">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>66 m²</td><td>5e</td><td>Jardin</td><td class="prix-lot" data-lot="t23-3" data-s="66">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>68,1 m²</td><td>4e</td><td>Jardin</td><td class="prix-lot" data-lot="t23-60" data-s="68.1">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>68,9 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="t23-30" data-s="68.9">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr><td>69 m²</td><td>1er</td><td>Loggia</td><td class="prix-lot" data-lot="t23-42" data-s="69">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
   </tbody></table></section>
   <section class="appel" id="compte">
     <h2>Voir les plans de ces logements</h2>
     <p>Les plans et les prix sont réservés à votre espace client. Il se crée en une minute ; en attendant, appelez-nous et nous vous les envoyons.</p>
     <div class="boutons"><a class="plein" href="tel:+33614550273">Appeler le 06 14 55 02 73</a><a class="creux" href="mailto:agl@glrimmobilier.com?subject=Plans%20de%20Les%20Marronniers%20(test)%20%C3%A0%20Aubervilliers">Écrire un e-mail</a></div>
   </section>
-  <p class="note">Disponibilités relevées le 24 novembre 2026 ; elles changent chaque semaine et sont confirmées par votre conseiller.</p>
+  <p class="note">Disponibilités et prix relevés le 24 novembre 2026 ; ils changent chaque semaine et sont confirmés par votre conseiller.</p>
 </main>
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
+<script>
+(function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};
+var poser=function(m){cs.forEach(function(c){var v=m&&m[c.getAttribute('data-lot')];c.textContent=v?eu(v):'sur demande'})};
+// Page d'essai : prix fictifs calculés ici, aucun prix dans le dépôt.
+var m={};cs.forEach(function(c){m[c.getAttribute('data-lot')]=Math.round(c.getAttribute('data-s')*5200/1000)*1000});poser(m);
+})();
+</script>
 </body>
 </html>
