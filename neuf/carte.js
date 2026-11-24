@@ -17,7 +17,9 @@ const HAUTEUR_BATI = ['coalesce', ['get', 'hauteur'], ['get', 'HAUTEUR'], 10];
 const hauteurBati = facteur => facteur === 1 ? HAUTEUR_BATI : ['*', HAUTEUR_BATI, facteur];
 const adoucir = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 // Anime une valeur de a à b ; renvoie une fonction pour l'arrêter
+let INSTANT = false; // vrai le temps d'un retour direct sur une ville : tout se pose sans animation
 function animer(ms, f, delai = 0) {
+  if (INSTANT) { ms = 1; delai = 0; }
   let fini = false, t0 = null;
   const pas = t => { if (fini) return; if (t0 == null) t0 = t; const x = Math.min(1, Math.max(0, (t - t0 - delai) / ms)); f(adoucir(x)); if (x < 1) requestAnimationFrame(pas); };
   requestAnimationFrame(pas);
@@ -190,12 +192,12 @@ async function demarrer() {
     map.getSource('ville-contour').setData(v.c);
     // Les villes voisines restent visibles, estompées ; la ville choisie ressort (voile léger autour + ombre portée)
     animer(1400, x => { map.setPaintProperty('voile', 'fill-opacity', 0.72 * x); map.setPaintProperty('ville-halo', 'line-opacity', x); map.setPaintProperty('ville-trait', 'line-opacity', x); map.setPaintProperty('ville-ombre', 'line-opacity', 0.3 * x); map.setPaintProperty('ville-ombre', 'line-translate', [0, 2 + 4 * x]); }, 300);
-    lieuxDeVille(v);
+    lieuxDeVille(v, INSTANT);
     fetch('/neuf/donnees/parcs/' + v.i + '.json').then(x => x.ok ? x.json() : null).then(g => { if (g && villeFocus === v) map.getSource('parcs').setData(g); }).catch(() => {});
   }
   // Transports, commerces et écoles de la ville (relevé OpenStreetMap rangé dans neuf/donnees/lieux/) :
   // transports et commerces dès la vue de la ville, écoles en s'approchant (elles sont très nombreuses)
-  async function lieuxDeVille(v) {
+  async function lieuxDeVille(v, vite) {
     let L = [];
     try { L = (await (await fetch('/neuf/donnees/lieux/' + v.i + '.json')).json()).lieux || []; } catch (e) { return; }
     if (villeFocus !== v) return;
@@ -204,7 +206,7 @@ async function demarrer() {
       const cle = e.g + e.n; if (vus.has(cle)) return; vus.add(cle);
       const el = document.createElement('div'); el.className = 'lieu petit ' + e.g; el.innerHTML = ICONES[e.g] + (e.g === 'transport' ? '<span class="nom"></span>' : ''); el.title = e.n;
       if (e.g === 'transport') el.querySelector('.nom').textContent = e.n;
-      el.style.animationDelay = (2300 + (i % 40) * 25) + 'ms';
+      el.style.animationDelay = ((vite ? 100 : 2300) + (i % 40) * 25) + 'ms';
       lieuxVille.push(new ml.Marker({ element: el }).setLngLat([e.o, e.a]).addTo(map));
     });
     montrerEcoles();
@@ -394,7 +396,9 @@ async function demarrer() {
     map.getSource('communes-dep').setData({ type: 'FeatureCollection', features: [] }); depEnCours = null;
     // Vue précise directement : immeubles en place, la ville sort de la carte, le reste s'estompe
     // La vue change : du trois-quarts du département à une vue d'au-dessus, bien à plat, sur la ville entière
-    map.flyTo({ center: cam.center, zoom: cam.zoom, pitch: 0, bearing: 0, duration: 2200, essential: true, curve: 1.4 });
+    if (INSTANT) map.jumpTo({ center: cam.center, zoom: cam.zoom, pitch: 0, bearing: 0 });
+    else map.flyTo({ center: cam.center, zoom: cam.zoom, pitch: 0, bearing: 0, duration: 2200, essential: true, curve: 1.4 });
+    map.scrollZoom.enable(); // sur une ville : molette pour zoomer, glisser pour se promener
     map.setPaintProperty('glr-bati', 'fill-extrusion-height', hauteurBati(1));
     focusVille(v);
     // Les programmes naissent de leur point exact : une onde au sol, puis le repère
@@ -402,7 +406,7 @@ async function demarrer() {
       const el = x.m.getElement();
       if (x.v.s !== s) return;
       el.style.display = 'none';
-      setTimeout(() => { if (villeEnCours === s && !enCours) { el.style.display = ''; el.classList.remove('nait'); void el.offsetWidth; el.classList.add('nait'); } }, 2300);
+      setTimeout(() => { if (villeEnCours === s && !enCours) { el.style.display = ''; el.classList.remove('nait'); void el.offsetWidth; el.classList.add('nait'); } }, INSTANT ? 0 : 2300);
     });
   }
   // On montre toujours d'abord l'Île-de-France vue du dessus, puis on plonge vers la ville demandée
@@ -411,7 +415,10 @@ async function demarrer() {
   let vueA = null; const attente = [];
   new IntersectionObserver((es, ob) => { if (es.some(e => e.isIntersecting)) { vueA = Date.now(); ob.disconnect(); attente.splice(0).forEach(f => f()); } }, { threshold: 0.6 }).observe(conteneur);
   const apresIntro = f => { const go = () => setTimeout(f, Math.max(0, INTRO - (Date.now() - vueA))); if (vueA) go(); else attente.push(go); };
-  window.GLRCarte = { ville: s => apresIntro(() => montrerVille(s)) };
+  // Retour depuis un immeuble (lien …&vue=ville) : on retrouve directement la ville, sans repasser par l'Île-de-France
+  let direct = !!window.GLRDirect || new URLSearchParams(location.search).get('vue') === 'ville';
+  const versVille = s => { if (direct) { direct = false; INSTANT = true; try { montrerVille(s); } finally { INSTANT = false; } } else apresIntro(() => montrerVille(s)); };
+  window.GLRCarte = { ville: versVille };
   // Un clic sur une commune la choisit aussi (page des villes)
   // Étape 1 : un département touché → on zoome dessus et ses communes apparaissent ; une commune touchée → sa ville
   const NOMS_DEP = { '75': 'Paris', '92': 'Hauts-de-Seine', '93': 'Seine-Saint-Denis', '94': 'Val-de-Marne', '95': 'Val-d’Oise', '78': 'Yvelines', '91': 'Essonne', '77': 'Seine-et-Marne' };
@@ -440,7 +447,7 @@ async function demarrer() {
     } catch (e) { ecrireFil(d, 'communes indisponibles pour le moment'); }
   }
   function revenirIdf() {
-    depEnCours = null; villeEnCours = null; quitter();
+    depEnCours = null; villeEnCours = null; quitter(); map.scrollZoom.disable();
     if (solActif) sol(false);
     map.getSource('communes-dep').setData({ type: 'FeatureCollection', features: [] });
     marqueurs.forEach(x => { x.m.getElement().style.display = 'none'; });
@@ -478,7 +485,7 @@ async function demarrer() {
   const voulu = new URLSearchParams(location.search).get('p');
   const prog = voulu && villes.map(v => [v, v.p.find(x => x.s === voulu && !x.k)]).find(x => x[1]);
   if (prog) { location.replace('/neuf/' + prog[1].u + '#immeuble'); return; }
-  else if (D.ville) apresIntro(() => montrerVille(D.ville));
+  else if (D.ville) versVille(D.ville);
   placerSoleil();
 }
 

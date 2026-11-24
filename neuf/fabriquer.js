@@ -416,7 +416,7 @@ function pageProgramme(d, p) {
   <p class="chapo">Programme neuf à ${esc(d.ville)} (${esc(d.cp)})${p.picking ? '. Nous pouvons vous obtenir la grille de ce programme sur demande.' : p.nb_lots_libres ? ` : ${pluriel(p.nb_lots_libres, 'logement disponible', 'logements disponibles')}, relevés le ${dateFr(d.maj)}.` : '.'}</p>
   ${infos.length ? '<dl class="infos">' + infos.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('') + '</dl>' : ''}
   ${p.picking ? '<div class="puces"><span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span></div>' : ''}
-  ${typos.length ? `<div class="tete-immeuble"><h2 id="immeuble">L’immeuble</h2><a class="retour-carte" href="/neuf/?ville=${esc(d.slug)}">Retour à la carte de ${esc(d.ville)}</a></div>
+  ${typos.length ? `<div class="tete-immeuble"><h2 id="immeuble">L’immeuble</h2><a class="retour-carte" href="/neuf/?ville=${esc(d.slug)}&amp;vue=ville#carte">Retour à la carte de ${esc(d.ville)}</a></div>
   <div class="immeuble">
    <div class="vue">
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button>${typos.map(t => `<button type="button" aria-pressed="false" data-t="${esc(t)}">${esc(t)}</button>`).join('')}</div>
@@ -527,7 +527,8 @@ q.addEventListener('keydown',function(ev){
 q.addEventListener('blur',function(){ul.style.display='none'});
 window.GLRSansPage=function(n){absente(n);res.scrollIntoView({behavior:'smooth',block:'nearest'})};
 window.GLRChoixVille=function(s){var v=V.filter(function(x){return x.s===s})[0];if(v){q.value=v.v;montrer(v);}};
-var d=new URLSearchParams(location.search).get('ville');if(d){var v=V.filter(function(x){return x.s===d})[0];if(v){q.value=v.v;montrer(v);}}
+window.GLRDirect=new URLSearchParams(location.search).get('vue')==='ville';
+var d=new URLSearchParams(location.search).get('ville');if(d){var v=V.filter(function(x){return x.s===d})[0];if(v){q.value=v.v;montrer(v);if(window.GLRDirect)setTimeout(function(){document.getElementById('carte').scrollIntoView({block:'center'})},60);}}
 })();
 </script>
 </body>

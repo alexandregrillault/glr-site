@@ -263,7 +263,8 @@ q.addEventListener('keydown',function(ev){
 q.addEventListener('blur',function(){ul.style.display='none'});
 window.GLRSansPage=function(n){absente(n);res.scrollIntoView({behavior:'smooth',block:'nearest'})};
 window.GLRChoixVille=function(s){var v=V.filter(function(x){return x.s===s})[0];if(v){q.value=v.v;montrer(v);}};
-var d=new URLSearchParams(location.search).get('ville');if(d){var v=V.filter(function(x){return x.s===d})[0];if(v){q.value=v.v;montrer(v);}}
+window.GLRDirect=new URLSearchParams(location.search).get('vue')==='ville';
+var d=new URLSearchParams(location.search).get('ville');if(d){var v=V.filter(function(x){return x.s===d})[0];if(v){q.value=v.v;montrer(v);if(window.GLRDirect)setTimeout(function(){document.getElementById('carte').scrollIntoView({block:'center'})},60);}}
 })();
 </script>
 </body>
