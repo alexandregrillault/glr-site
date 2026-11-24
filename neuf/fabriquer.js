@@ -141,7 +141,7 @@ function carteProgramme(p) {
   <p class="qui">${esc(p.promoteur)}</p>
   ${lignes.length ? '<dl>' + lignes.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('') + '</dl>' : ''}
   ${typos || disp || picking ? `<div class="puces">${typos}${disp}${picking}</div>` : ''}
-  <div class="bas"><span class="prix">${AFFICHER.prixAPartirDe && p.prix_a_partir_de != null ? '<small>à partir de</small>' + euros(p.prix_a_partir_de) : '<small>prix</small>sur demande'}</span><span class="dispo">${pluriel(p.nb_lots_libres, 'logement disponible', 'logements disponibles')}</span></div>
+  ${p.picking ? '<div class="bas"><span class="prix"><small>grille</small>sur demande</span></div>' : `<div class="bas"><span class="prix">${AFFICHER.prixAPartirDe && p.prix_a_partir_de != null ? '<small>à partir de</small>' + euros(p.prix_a_partir_de) : '<small>prix</small>sur demande'}</span><span class="dispo">${pluriel(p.nb_lots_libres, 'logement disponible', 'logements disponibles')}</span></div>`}
 </article>`;
 }
 
@@ -152,7 +152,8 @@ function pageVille(d) {
   const description = `${c.nb_programmes} programmes neufs et ${nb(c.nb_lots_libres)} logements disponibles à ${d.ville}` +
     (AFFICHER.prixM2 && c.prix_m2_moyen ? `, ${euros(c.prix_m2_moyen)}/m² en moyenne` : '') + `. Plans et prix de tous les promoteurs, mis à jour à chaque pige par GLR Immobilier.`;
   const typosFiltre = ['T1', 'T2', 'T3', 'T4', 'T5+'].filter(t => d.programmes.some(p => (p.typologies || []).includes(t)));
-  const progs = [...d.programmes].sort((a, b) => (a.livraison_cle || '').localeCompare(b.livraison_cle || '') || b.nb_lots_libres - a.nb_lots_libres);
+  // Programmes « picking » (sans mandat, source picking ; les « nomandat » ne sont jamais fournis) : en fin de liste, grille sur demande.
+  const progs = [...d.programmes].sort((a, b) => (a.picking ? 1 : 0) - (b.picking ? 1 : 0) || (a.livraison_cle || '').localeCompare(b.livraison_cle || '') || (b.nb_lots_libres || 0) - (a.nb_lots_libres || 0));
   const ld = {
     '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE + '/' },
