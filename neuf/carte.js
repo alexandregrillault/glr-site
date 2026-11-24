@@ -52,7 +52,7 @@ async function demarrer() {
   const tous = villes.flatMap(v => v.p.map(p => [p.o, p.a]));
   const map = new ml.Map({
     container: conteneur, style, attributionControl: false, maxPitch: 70,
-    bounds: D.ville ? bornes(tous) : bornes([[1.95, 48.66], [2.72, 49.03]]), fitBoundsOptions: { padding: 20 }, pitch: 0, // vue d'ensemble de l'Île-de-France, du dessus
+    bounds: D.ville ? bornes(tous) : bornes([[1.88, 48.62], [2.82, 49.08]]), fitBoundsOptions: { padding: 20 }, pitch: 0, // vue d'ensemble de l'Île-de-France, du dessus
     cooperativeGestures: false, dragRotate: true,
   });
   map.addControl(new ml.NavigationControl({ showCompass: true, visualizePitch: true }), 'top-right');
@@ -60,6 +60,30 @@ async function demarrer() {
   map.scrollZoom.disable();
   conteneur.addEventListener('wheel', () => {}, { passive: true });
   await new Promise(r => map.on('load', r));
+
+  // Départements d'Île-de-France, comme l'ouverture des vidéos Quoi de neuf : chacun sa teinte, liseré blanc ombré de sa couleur
+  const TEINTES = { '75': '#AFC0DE', '92': '#E3C3D6', '93': '#F2D3A4', '94': '#D3C2E6', '95': '#C9DCE4', '78': '#D3E2C1', '91': '#E9DDB4', '77': '#E7D3C3' };
+  const BORDS = { '75': '#7F95C4', '92': '#C98FB2', '93': '#E0A85E', '94': '#A98BCB', '95': '#93B6C6', '78': '#9DBB82', '91': '#CDB565', '77': '#C9A88F' };
+  const teinte = obj => ['match', ['get', 'd'], ...Object.entries(obj).flat(), '#DDDDDD'];
+  try {
+    const deps = await (await fetch('/neuf/donnees/departements-idf.json')).json();
+    map.addSource('deps', { type: 'geojson', data: deps });
+    map.addLayer({ id: 'dep-fond', type: 'fill', source: 'deps', paint: { 'fill-color': teinte(TEINTES), 'fill-opacity': D.ville ? 0.12 : 0.55 } });
+    map.addLayer({ id: 'dep-ombre', type: 'line', source: 'deps', paint: { 'line-color': teinte(BORDS), 'line-width': 10, 'line-blur': 8, 'line-opacity': D.ville ? 0.2 : 0.75, 'line-offset': 5 } });
+    map.addLayer({ id: 'dep-trait', type: 'line', source: 'deps', paint: { 'line-color': '#FFFFFF', 'line-width': 3, 'line-opacity': D.ville ? 0.5 : 1 } });
+    const CENTRES = { '75': [2.35, 48.857], '92': [2.215, 48.83], '93': [2.49, 48.925], '94': [2.47, 48.775], '95': [2.15, 49.07], '78': [1.92, 48.80], '91': [2.25, 48.56], '77': [2.95, 48.62] };
+    window.__numeros = Object.entries(CENTRES).map(([d, c]) => { const el = document.createElement('span'); el.className = 'num-dep'; el.textContent = d; if (D.ville) el.style.display = 'none'; return new ml.Marker({ element: el }).setLngLat(c).addTo(map); });
+  } catch (e) { /* sans départements, la carte reste utilisable */ }
+  const departements = visibles => {
+    if (!map.getLayer('dep-fond')) return;
+    animer(1200, x => {
+      const k = visibles ? x : 1 - x;
+      map.setPaintProperty('dep-fond', 'fill-opacity', 0.12 + 0.43 * k);
+      map.setPaintProperty('dep-ombre', 'line-opacity', 0.2 + 0.55 * k);
+      map.setPaintProperty('dep-trait', 'line-opacity', 0.5 + 0.5 * k);
+    });
+    (window.__numeros || []).forEach(m => { m.getElement().style.display = visibles ? '' : 'none'; });
+  };
 
   // Contours des communes : liseré blanc, ombré de bleu à l'intérieur
   const contours = { type: 'FeatureCollection', features: villes.filter(v => v.c).map(v => ({ ...v.c, properties: { s: v.s } })) };
@@ -149,6 +173,7 @@ async function demarrer() {
   // Étape 2 : une ville choisie → la caméra s'incline, la commune et ses immeubles en relief, ses programmes
   function montrerVille(s) {
     const v = villes.find(x => x.s === s); if (!v) return;
+    if (!villeEnCours && !D.ville) departements(false);
     villeEnCours = s; quitter(); choisirCommune(s);
     const pts = v.c ? v.c.geometry.coordinates.flat(v.c.geometry.type === 'MultiPolygon' ? 2 : 1) : v.p.map(p => [p.o, p.a]);
     const cam = map.cameraForBounds(bornes(pts), { padding: 30 });
