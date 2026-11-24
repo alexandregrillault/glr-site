@@ -143,6 +143,13 @@ table.lots td.prix-lot{font-weight:600;white-space:nowrap}
 tr.vise td{background:var(--teinte)}
 .legende-typo{display:flex;flex-wrap:wrap;gap:12px;font-size:.8rem;color:var(--discret);margin:0 0 .4rem}
 .legende-typo i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:5px;vertical-align:middle}
+.scene3d{position:relative;border:1px solid var(--trait);border-radius:10px;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,#FFFFFF 0%,#F4F0E8 70%);min-height:340px;touch-action:pan-y}
+.scene3d canvas{display:block;width:100%;touch-action:none}
+.coupe{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:.9rem;color:var(--discret)}
+.coupe input{flex:1;accent-color:#005875}
+.coupe output{min-width:110px;text-align:right;color:var(--bleu);font-weight:600}
+.aide{font-size:.85rem;color:var(--discret);margin:.5rem 0 0}
+.perspective{margin:1rem 0 0}.perspective img{width:100%;border-radius:8px;border:1px solid var(--trait)}.perspective figcaption{font-size:.8rem;color:var(--discret);margin-top:4px}
 .infos{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0 0 1rem}
 .infos dt{color:var(--discret)}
 .infos dd{margin:0}
@@ -331,8 +338,11 @@ function pageProgramme(d, p) {
   ${typos.length ? `<h2>L’immeuble</h2>
   <div class="immeuble">
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button>${typos.map(t => `<button type="button" aria-pressed="false" data-t="${esc(t)}">${esc(t)}</button>`).join('')}</div>
-    <div class="scene"><svg id="imm" role="img" aria-label="Maquette de l’immeuble, un carré par logement disponible"></svg><div class="bulle" id="bulle" hidden></div></div>
-    <p class="note">Maquette dessinée à partir des logements disponibles : chaque carré est un logement, à son étage. La place exacte sur l’étage et la forme réelle du bâtiment peuvent différer.</p>
+    <div class="coupe"><label for="coupe">Voir jusqu’à</label><input type="range" id="coupe" min="1" max="1" value="1" step="1"><output id="coupe-val"></output></div>
+    <div class="scene3d" id="imm3d" aria-label="Maquette 3D de l’immeuble : faites-la tourner, touchez un logement"><div class="bulle" id="bulle" hidden></div></div>
+    <p class="aide">Faites tourner l’immeuble au doigt ou à la souris. Descendez le curseur pour enlever des étages et voir les logements par le dessus.</p>
+    <p class="note">Maquette dessinée automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.${p.image ? '' : ''}</p>
+    ${p.image ? `<figure class="perspective"><img src="${esc(p.image)}" alt="Perspective de ${esc(p.nom)}" loading="lazy"><figcaption>Perspective du promoteur, non contractuelle.</figcaption></figure>` : ''}
   </div>
   <h2>Les logements disponibles</h2>\n  ${typos.map(tableau).join('\n  ')}` : `<h2>Les logements</h2><p>La grille de ce programme est envoyée sur demande.</p>`}
   <section class="appel" id="compte">
@@ -343,50 +353,13 @@ function pageProgramme(d, p) {
   <p class="note">Disponibilités et prix relevés le ${dateFr(d.maj)} ; ils changent chaque semaine et sont confirmés par votre conseiller.</p>
 </main>
 ${pied}
-${typos.length ? `<script>
-(function(){
-var L=${JSON.stringify((p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? 0 : l.etage, x: l.exterieur || '' }))).replace(/</g, '\\u003c')};
-var COUL={'T1':'#DCE7EC','T2':'#A9C9D5','T3':'#5E97AB','T4':'#005875','T5+':'#003B4F'},ORD=['T1','T2','T3','T4','T5+'];
-var svg=document.getElementById('imm'),bulle=document.getElementById('bulle'),NS='http://www.w3.org/2000/svg';
-// Étages : du plus bas au plus haut ; sur chaque étage, les logements rangés par taille.
-var et={},F=0;L.forEach(function(l){(et[l.e]=et[l.e]||[]).push(l);if(l.e>F)F=l.e});F=F+1;
-var N=1;Object.keys(et).forEach(function(k){et[k].sort(function(a,b){return ORD.indexOf(a.t)-ORD.indexOf(b.t)||a.s-b.s});if(et[k].length>N)N=et[k].length});
-var w=36,h=26,D=Math.max(90,Math.round(N*w*.45)),c=0.866,sn=0.5;
-var P=function(x,y,z){return[(x-z)*c,(x+z)*sn-y]};
-var pts=[];for(var a=0;a<=1;a++)for(var b=0;b<=1;b++)for(var g=0;g<=1;g++)pts.push(P(a*N*w,b*(F*h+10),g*D));
-var minX=Math.min.apply(0,pts.map(function(q){return q[0]}))-14,maxX=Math.max.apply(0,pts.map(function(q){return q[0]}))+14,minY=Math.min.apply(0,pts.map(function(q){return q[1]}))-14,maxY=Math.max.apply(0,pts.map(function(q){return q[1]}))+24;
-svg.setAttribute('viewBox',minX+' '+minY+' '+(maxX-minX)+' '+(maxY-minY));
-var poly=function(par,q,f,st,cl){var e=document.createElementNS(NS,'polygon');e.setAttribute('points',q.map(function(v){return v.join(',')}).join(' '));e.setAttribute('fill',f);if(st){e.setAttribute('stroke',st);e.setAttribute('stroke-width','1')}if(cl)e.setAttribute('class',cl);par.appendChild(e);return e};
-// ombre au sol, côté, toit
-poly(svg,[P(-8,0,-8),P(N*w+14,0,-8),P(N*w+14,0,D+16),P(-8,0,D+16)],'rgba(22,26,30,.07)');
-poly(svg,[P(0,0,0),P(0,0,D),P(0,F*h,D),P(0,F*h,0)],'#E4DED2','#D8D2C5');
-poly(svg,[P(0,F*h+10,0),P(N*w,F*h+10,0),P(N*w,F*h+10,D),P(0,F*h+10,D)],'#EFEAE0','#D8D2C5');
-poly(svg,[P(0,0,D),P(N*w,0,D),P(N*w,F*h,D),P(0,F*h,D)],'#F7F3EB','#D8D2C5');
-poly(svg,[P(0,F*h,D),P(N*w,F*h,D),P(N*w,F*h+10,D),P(0,F*h+10,D)],'#B0894C');
-poly(svg,[P(0,F*h,0),P(0,F*h,D),P(0,F*h+10,D),P(0,F*h+10,0)],'#9A7843');
-// façade : une case par logement, étages sans logement disponible en gris
-for(var f=0;f<F;f++){var rang=et[f]||[];for(var k=0;k<N;k++){var l=rang[k],x0=k*w,y0=f*h,q=[P(x0+2,y0+2,D),P(x0+w-2,y0+2,D),P(x0+w-2,y0+h-2,D),P(x0+2,y0+h-2,D)];
-  if(!l){poly(svg,q,'#ECE7DD','#D8D2C5');continue}
-  var gp=document.createElementNS(NS,'g');gp.setAttribute('class','lot');gp.setAttribute('data-t',l.t);gp.setAttribute('tabindex','0');gp.setAttribute('role','button');
-  gp.setAttribute('aria-label',l.t+', '+l.s+' m², '+(l.e?l.e+'e étage':'rez-de-chaussée'));
-  poly(gp,q,COUL[l.t]||'#5E97AB','#FFFFFF');svg.appendChild(gp);(function(l,gp){
-    var montrer=function(){var r=svg.getBoundingClientRect(),b=gp.getBoundingClientRect(),pr=window.GLR_PRIX&&window.GLR_PRIX[l.i];
-      bulle.innerHTML='<b>'+l.t+'</b> · '+String(l.s).replace('.',',')+'\u00a0m²<br>'+(l.e?l.e+(l.e==1?'er':'e')+' étage':'Rez-de-chaussée')+(l.x?' · '+l.x:'')+'<br>'+(pr?'<b>'+Math.round(pr).toLocaleString('fr-FR')+'\u00a0€</b>':'Prix sur demande');
-      bulle.hidden=false;var sc=svg.parentNode.getBoundingClientRect(),X=b.left-sc.left+b.width/2,Y=b.top-sc.top;
-      bulle.style.left=Math.max(6,Math.min(sc.width-bulle.offsetWidth-6,X-bulle.offsetWidth/2))+'px';bulle.style.top=Math.max(6,Y-bulle.offsetHeight-8)+'px';
-      document.querySelectorAll('.lot.actif').forEach(function(z){z.classList.remove('actif')});gp.classList.add('actif');};
-    gp.addEventListener('mouseenter',montrer);gp.addEventListener('focus',montrer);
-    gp.addEventListener('mouseleave',function(){bulle.hidden=true;gp.classList.remove('actif')});
-    gp.addEventListener('click',function(){montrer();var tr=document.getElementById('l-'+l.i);if(tr){document.querySelectorAll('tr.vise').forEach(function(z){z.classList.remove('vise')});tr.classList.add('vise');tr.scrollIntoView({behavior:'smooth',block:'center'})}});
-  })(l,gp);}}
-// légende
-var lg=document.createElement('div');lg.className='legende-typo';lg.innerHTML=ORD.filter(function(t){return L.some(function(l){return l.t===t})}).map(function(t){return '<span><i style="background:'+COUL[t]+'"></i>'+t+'</span>'}).join('');svg.parentNode.parentNode.insertBefore(lg,svg.parentNode);
-// filtre par taille
-var bs=document.querySelectorAll('.immeuble .filtres button');bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t');
+${typos.length ? `<script type="application/json" id="logements-data">${JSON.stringify((p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? 0 : l.etage, x: l.exterieur || '' }))).replace(/</g, '\\u003c')}</script>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
+<script type="module" src="/neuf/immeuble3d.js"></script>
+<script>
+(function(){var bs=document.querySelectorAll('.immeuble .filtres button');bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t');
   bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
-  document.querySelectorAll('.lot').forEach(function(g){g.classList.toggle('eteint',!!t&&g.getAttribute('data-t')!==t)});
-  document.querySelectorAll('section.typo').forEach(function(s){s.style.display=!t||s.querySelector('h3').textContent.indexOf(t+' ')===0?'':'none'});});});
-})();
+  document.querySelectorAll('section.typo').forEach(function(s){s.style.display=!t||s.querySelector('h3').textContent.indexOf(t+' ')===0?'':'none'});});});})();
 </script>
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+'\u00a0€'};

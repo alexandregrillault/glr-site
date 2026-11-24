@@ -118,6 +118,13 @@ table.lots td.prix-lot{font-weight:600;white-space:nowrap}
 tr.vise td{background:var(--teinte)}
 .legende-typo{display:flex;flex-wrap:wrap;gap:12px;font-size:.8rem;color:var(--discret);margin:0 0 .4rem}
 .legende-typo i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:5px;vertical-align:middle}
+.scene3d{position:relative;border:1px solid var(--trait);border-radius:10px;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,#FFFFFF 0%,#F4F0E8 70%);min-height:340px;touch-action:pan-y}
+.scene3d canvas{display:block;width:100%;touch-action:none}
+.coupe{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:.9rem;color:var(--discret)}
+.coupe input{flex:1;accent-color:#005875}
+.coupe output{min-width:110px;text-align:right;color:var(--bleu);font-weight:600}
+.aide{font-size:.85rem;color:var(--discret);margin:.5rem 0 0}
+.perspective{margin:1rem 0 0}.perspective img{width:100%;border-radius:8px;border:1px solid var(--trait)}.perspective figcaption{font-size:.8rem;color:var(--discret);margin-top:4px}
 .infos{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0 0 1rem}
 .infos dt{color:var(--discret)}
 .infos dd{margin:0}
