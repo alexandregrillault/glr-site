@@ -81,6 +81,8 @@ button.repere{padding:0;cursor:pointer;display:block}
 .boutons-carte{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
 .fil-carte b{color:var(--bleu);font-weight:600}
 .fil-carte button{font:inherit;font-size:.85rem;background:transparent;border:1px solid var(--trait);border-radius:6px;padding:6px 10px;color:var(--texte);cursor:pointer;white-space:nowrap}
+.etiquette-prog{background:#005875;color:#fff;font-family:var(--display);font-size:1rem;font-weight:500;padding:5px 12px;border-radius:6px;white-space:nowrap;box-shadow:0 3px 10px rgba(22,26,30,.25);animation:nait .5s cubic-bezier(.3,1.5,.5,1) 1.8s both;pointer-events:none}
+.etiquette-prog::after{content:"";position:absolute;left:50%;top:100%;margin-left:-6px;border:6px solid transparent;border-top-color:#005875}
 .num-dep{font-family:var(--body);font-weight:600;font-size:1.05rem;color:#6E7884;text-shadow:0 0 4px #fff,0 0 8px #fff;pointer-events:none}
 button.repere.pop{animation:pop .55s cubic-bezier(.3,1.6,.5,1) both}
 button.repere{overflow:visible} /* surtout pas de position ici : la carte place elle-même chaque repère */
