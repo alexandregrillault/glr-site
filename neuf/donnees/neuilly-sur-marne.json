@@ -1,0 +1,135 @@
+{
+  "cp": "93330",
+  "maj": "2026-11-25",
+  "dept": "93",
+  "slug": "neuilly-sur-marne",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "93050",
+  "ville": "Neuilly-sur-Marne",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 1,
+      "T3": 0,
+      "T4": 0,
+      "T5+": 2
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 3
+  },
+  "dept_nom": "Seine-Saint-Denis",
+  "programmes": [
+    {
+      "nom": "Ikigaï",
+      "gare": "Le Chénay Gagny (RER E)",
+      "slug": "ikigai",
+      "image": null,
+      "picking": false,
+      "pige_id": "998d52d91569",
+      "position": {
+        "approx": false,
+        "latitude": 48.872,
+        "longitude": 2.55
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "logements": [
+        {
+          "id": "695b3720079e",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 42.6,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "00963367608f",
+          "typo": "T5+",
+          "etage": 2,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 97.6,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "5eb0ed5ccc87",
+          "typo": "T5+",
+          "etage": 2,
+          "pieces": 5,
+          "statut": "option",
+          "surface": 100.4,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T5+"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-1",
+      "nb_lots_libres": 3,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 9
+    },
+    {
+      "nom": "Le Grand Cerf",
+      "gare": "Le Chénay Gagny (RER E)",
+      "slug": "le-grand-cerf",
+      "image": null,
+      "picking": true,
+      "pige_id": "f26ed1b990c8",
+      "position": {
+        "approx": true,
+        "latitude": 48.865,
+        "longitude": 2.542
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 21
+    },
+    {
+      "nom": "Pierre et Sens",
+      "gare": "Le Chénay Gagny (RER E)",
+      "slug": "pierre-et-sens",
+      "image": null,
+      "picking": true,
+      "pige_id": "fb4e651def28",
+      "position": {
+        "approx": true,
+        "latitude": 48.865,
+        "longitude": 2.542
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 21
+    }
+  ]
+}

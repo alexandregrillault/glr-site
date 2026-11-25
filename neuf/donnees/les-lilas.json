@@ -1,0 +1,80 @@
+{
+  "cp": "93260",
+  "maj": "2026-11-25",
+  "dept": "93",
+  "slug": "les-lilas",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "93045",
+  "ville": "Les Lilas",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 0,
+      "T3": 0,
+      "T4": 1,
+      "T5+": 1
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 2
+  },
+  "dept_nom": "Seine-Saint-Denis",
+  "programmes": [
+    {
+      "nom": "Cosy Paris",
+      "gare": "Mairie des Lilas (M11)",
+      "slug": "cosy-paris",
+      "image": null,
+      "picking": false,
+      "pige_id": "da7755401902",
+      "position": {
+        "approx": false,
+        "latitude": 48.878,
+        "longitude": 2.415
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "logements": [
+        {
+          "id": "937d520b7d04",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 80.55,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "9b0b9cbf4c03",
+          "typo": "T5+",
+          "etage": null,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 93.04,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-1",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 4
+    }
+  ]
+}

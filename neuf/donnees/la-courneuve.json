@@ -1,0 +1,743 @@
+{
+  "cp": "93120",
+  "maj": "2026-11-25",
+  "dept": "93",
+  "slug": "la-courneuve",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": true
+  },
+  "insee": "93027",
+  "ville": "La Courneuve",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2026": 1,
+      "2028": 1
+    },
+    "typologies": {
+      "T1": 11,
+      "T2": 7,
+      "T3": 25,
+      "T4": 24,
+      "T5+": 2
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 2,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 69
+  },
+  "dept_nom": "Seine-Saint-Denis",
+  "programmes": [
+    {
+      "nom": "L'edgar",
+      "gare": "Hôtel de Ville de la Courneuve (T1)",
+      "slug": "l-edgar",
+      "image": null,
+      "picking": false,
+      "pige_id": "7e000613d72a",
+      "position": {
+        "approx": false,
+        "latitude": 48.931,
+        "longitude": 2.397
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2026",
+      "logements": [
+        {
+          "id": "1f42a2d6b703",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 65.44,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "9f0900c318c1",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 65.44,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "40448384c559",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 59.06,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "f10ba80c4e2b",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 69.95,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "b1870009d53f",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 76.21,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "f6b5e8adc081",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 100.28,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "72f8952dc905",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 101.47,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "5eb6cdc1fe60",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 101.8,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "e88080f67ea2",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 102.99,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "e662ee1394bb",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 106.09,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "01421809f880",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 117.43,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "ef65b168c8bd",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 124.72,
+          "exterieur": "Balcon"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2026-4",
+      "nb_lots_libres": 12,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 7
+    },
+    {
+      "nom": "Cour Nova",
+      "gare": "La Courneuve - 8 Mai 1945 (M7)",
+      "slug": "cour-nova",
+      "image": null,
+      "picking": false,
+      "pige_id": "3b657281c5b6",
+      "position": {
+        "approx": false,
+        "latitude": 48.92,
+        "longitude": 2.407
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2028",
+      "logements": [
+        {
+          "id": "5c2d99fa4c12",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "option",
+          "surface": 28.12,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "7ec27fcf7c60",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "option",
+          "surface": 28.12,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "750745cde158",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "option",
+          "surface": 30.47,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "3959bf550888",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "option",
+          "surface": 30.8,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "a9b055c13860",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 34.44,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "ab89082bf3d1",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "option",
+          "surface": 34.44,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "76944e1285d4",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 34.59,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "5be7f163fc99",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 35.85,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "02081d2d9709",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 35.895,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "c6874bd2454f",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 37.14,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "26cea6647dd7",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 37.16,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "7e14e47ed770",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 42.3,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "d7259bdfaa82",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45.37,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "eaf9b8c4626c",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 53.07,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "5db54016c670",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 53.21,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "77dc0a8993fc",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 53.21,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "90c94f643ab8",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.18,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "edc1b43f443d",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.59,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "5e175922b791",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.56,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "dd3412435703",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.56,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "73d6bb25562b",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.34,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "701e8abf61d3",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.47,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "b42be15f50c6",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.47,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "30031ebb3d51",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.77,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "9d581b4a1171",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.28,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "3defb0be0e5e",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.9,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "864e99335d96",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.91,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "f0ac840e5da1",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.91,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "c2f124bc419b",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 67.1,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "b51634e922c5",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 67.19,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "f22b53895c3c",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 68.47,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "27a4b1029e09",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.39,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "6c58e5eb6ea4",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.39,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "ac5e3f94b241",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.43,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "71b9f09ff51f",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 70.02,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "a55e9ad02c0d",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 70.31,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "a762f1dfce8e",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 70.31,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "cdbeca135f8a",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 71.3,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "aff00bcda26e",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 79.6,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "380569247926",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.76,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "2a664cf98869",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.92,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "0b7a7f1f48c2",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.96,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "41ab22fe3499",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 82.56,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "98f1fe503367",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 82.59,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "4a925f036107",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 85.08,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "6e8ece2b6201",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 85.08,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "062e9bdd10e7",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 85.2,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "bd38c67356f2",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 85.23,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "8a9d661da532",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 85.6,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "041d2aee42ce",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 86.36,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "18aabc214ec9",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 88.2,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "fbcfb220afff",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 88.79,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "73f390d03e15",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 89.93,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "7638fdb61d9f",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 89.93,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "52524f1d2f9a",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 90.13,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "994375442a6e",
+          "typo": "T5+",
+          "etage": 1,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 104.8,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "caf826f8cc1d",
+          "typo": "T5+",
+          "etage": 2,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 104.8,
+          "exterieur": "Balcon"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2028-2",
+      "nb_lots_libres": 57,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 4
+    },
+    {
+      "nom": "NODE",
+      "gare": "Hôtel de Ville de la Courneuve (T1)",
+      "slug": "node",
+      "image": null,
+      "picking": true,
+      "pige_id": "be2730bf4679",
+      "position": {
+        "approx": true,
+        "latitude": 48.934,
+        "longitude": 2.399
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 11
+    }
+  ]
+}

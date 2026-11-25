@@ -1,0 +1,119 @@
+{
+  "cp": "93390",
+  "maj": "2026-11-25",
+  "dept": "93",
+  "slug": "clichy-sous-bois",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "93014",
+  "ville": "Clichy-sous-Bois",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {},
+    "typologies": {
+      "T1": 0,
+      "T2": 0,
+      "T3": 1,
+      "T4": 3,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 4
+  },
+  "dept_nom": "Seine-Saint-Denis",
+  "programmes": [
+    {
+      "nom": "Centr'halle",
+      "gare": "Clichy - Montfermeil (T4)",
+      "slug": "centr-halle",
+      "image": null,
+      "picking": false,
+      "pige_id": "dc38dc9b7fcf",
+      "position": {
+        "approx": false,
+        "latitude": 48.906,
+        "longitude": 2.556
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "f4d3787e14b5",
+          "typo": "T3",
+          "etage": 5,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 70,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "e41a6649079e",
+          "typo": "T4",
+          "etage": 5,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 83,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "3900ef33bef6",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 85,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "1aa1e8888f69",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 90,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2025-4",
+      "nb_lots_libres": 4,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 3
+    },
+    {
+      "nom": "Syneo",
+      "gare": "Clichy-sous-Bois - Mairie (T4)",
+      "slug": "syneo",
+      "image": null,
+      "picking": true,
+      "pige_id": "948c53313aa5",
+      "position": {
+        "approx": true,
+        "latitude": 48.908,
+        "longitude": 2.543
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 3
+    }
+  ]
+}
