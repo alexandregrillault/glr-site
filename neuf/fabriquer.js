@@ -186,7 +186,6 @@ table.lots td{padding:9px 10px;border-bottom:1px solid var(--trait)}
 table.lots tr:last-child td{border-bottom:0}
 table.lots td.plan{text-align:right;white-space:nowrap}
 table.lots td.plan a{font-weight:600;text-decoration:none}
-table.lots .opt,#bulle .opt{display:inline-block;margin-left:4px;font-size:.68rem;font-weight:600;color:var(--laiton-texte);border:1px solid var(--laiton);border-radius:999px;padding:0 7px;line-height:1.5;white-space:nowrap}
 table.lots td.prix-lot{font-weight:600;white-space:nowrap}
 table.lots td.prix-lot .tva{font-weight:600;color:var(--bleu)}
 table.lots td.prix-lot small{font-weight:400;font-size:.72rem;color:var(--discret)}
@@ -430,7 +429,7 @@ const LIBS = `<link rel="modulepreload" href="https://unpkg.com/three@0.160.0/bu
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>`;
 const ARRONDI = x => Math.round(x * 1000) / 1000;
-const logementsPublics = p => (p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? null : l.etage, x: l.exterieur || '', o: l.statut === 'option' ? 1 : 0 }));
+const logementsPublics = p => (p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? null : l.etage, x: l.exterieur || '' }));
 // Données de la carte d'une ville ; avecMaquette = on embarque les logements (sans prix) pour la maquette 3D
 function donneesVille(d, avecMaquette) {
   return {
@@ -467,7 +466,7 @@ function pageProgramme(d, p) {
   const etage = e => e == null ? 'non précisé' : e === 0 ? 'RDC' : e + (e === 1 ? 'er' : 'e');
   const tableau = t => `<section class="typo"><h3>${esc(t)} · ${pluriel(groupes[t].length, 'logement', 'logements')}</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  ${groupes[t].sort((a, b) => (a.surface || 0) - (b.surface || 0)).map(l => `<tr id="l-${esc(l.id == null ? '' : l.id)}"><td>${l.surface != null ? nb(l.surface) + '\u00a0m²' : '—'}${l.statut === 'option' ? ' <span class="opt">Optionné</span>' : ''}</td><td>${etage(l.etage)}</td><td>${esc(l.exterieur || '—')}</td><td class="prix-lot" data-lot="${esc(l.id == null ? '' : l.id)}" data-s="${l.surface || ''}">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>`).join('\n  ')}
+  ${groupes[t].sort((a, b) => (a.surface || 0) - (b.surface || 0)).map(l => `<tr id="l-${esc(l.id == null ? '' : l.id)}"><td>${l.surface != null ? nb(l.surface) + '\u00a0m²' : '—'}</td><td>${etage(l.etage)}</td><td>${esc(l.exterieur || '—')}</td><td class="prix-lot" data-lot="${esc(l.id == null ? '' : l.id)}" data-s="${l.surface || ''}">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>`).join('\n  ')}
   </tbody></table></section>`;
   return `${tete({ titre, description, url, test: d.test })}
 <main class="page-prog">
@@ -483,7 +482,7 @@ function pageProgramme(d, p) {
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=${esc(d.slug)}&amp;vue=ville#carte">Retour à la carte de ${esc(d.ville)}</a></div>
   </header>
   <div class="reperes">
-    ${p.nb_lots_libres ? `<div class="repere-cle"><b>${nb(p.nb_lots_libres)}</b><span>${p.nb_lots_libres > 1 ? 'logements disponibles' : 'logement disponible'}${p.nb_optionnes ? ` · dont ${p.nb_optionnes} optionné${p.nb_optionnes > 1 ? 's' : ''}` : ''}</span></div>` : ''}
+    ${p.nb_lots_libres ? `<div class="repere-cle"><b>${nb(p.nb_lots_libres)}</b><span>${p.nb_lots_libres > 1 ? 'logements disponibles' : 'logement disponible'}</span></div>` : ''}
     ${p.livraison ? `<div class="repere-cle"><b>${esc(p.livraison.replace(/ trimestre /, ' trim. '))}</b><span>${dejaLivre(p) ? 'programme déjà livré' : 'livraison prévue'}</span></div>` : ''}
     ${surfaces ? `<div class="repere-cle"><b>${surfaces}</b><span>surfaces disponibles</span></div>` : ''}
     ${p.gare ? `<div class="repere-cle"><b>${p.gare_minutes_a_pied ? p.gare_minutes_a_pied + ' min' : 'À côté'}</b><span>à pied ${esc(deGare(p.gare))}</span></div>` : ''}
@@ -520,7 +519,7 @@ function pageProgramme(d, p) {
   <p class="note">Disponibilités et prix relevés le ${dateFr(d.maj)} ; ils changent chaque semaine et sont confirmés par votre conseiller.</p>
 </main>
 ${pied}
-${typos.length ? `<script type="application/json" id="logements-data">${JSON.stringify((p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? null : l.etage, x: l.exterieur || '', o: l.statut === 'option' ? 1 : 0 }))).replace(/</g, '\\u003c')}</script>
+${typos.length ? `<script type="application/json" id="logements-data">${JSON.stringify((p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? null : l.etage, x: l.exterieur || '' }))).replace(/</g, '\\u003c')}</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script src="/neuf/programme.js" defer></script>
 <script>
@@ -621,7 +620,6 @@ const villes = fs.readdirSync(dossier).filter(f => f.endsWith('.json') && VILLES
   for (const p of d.programmes) {
     if (p.picking || !(p.logements || []).length) continue;
     p.nb_lots_libres = p.logements.length;
-    p.nb_optionnes = p.logements.filter(l => l.statut === 'option').length;
   }
   d.chiffres.nb_lots_libres = d.programmes.reduce((n, p) => n + (p.picking ? 0 : (p.logements || []).length || 0), 0) || d.chiffres.nb_lots_libres;
   return d;
