@@ -107,6 +107,8 @@ function lire(f) { try { return fs.readFileSync(f, 'utf8'); } catch (e) { return
     const avant = lire(f);
     controlerChute(d, v.ville || v.slug, avant ? JSON.parse(avant) : null);
     controlerRelevés(d, v.ville || v.slug);
+    // Le fichier de données est public (servi tel quel) : le nom d'un commercialisateur n'y figure pas non plus (décision d'Alex du 25/11/2026).
+    for (const p of d.programmes || []) if (/^(iselection|accueil immobilier|valority|wemo)\b|agr[ée]gateur/i.test(String(p.promoteur || '').trim())) p.promoteur = '';
     aEcrire.push({ f, nouveau: JSON.stringify(d, null, 2) + '\n', avant, slug: v.slug });
   }
   const listeF = path.join(DONNEES, 'villes-publiees.json');
