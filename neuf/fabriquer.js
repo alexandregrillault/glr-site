@@ -364,12 +364,12 @@ function pageVille(d) {
   <p class="fil"><a href="/">Accueil</a> › <a href="/neuf/">Immobilier neuf</a> › ${esc(d.ville)}</p>
   <h1>Immobilier neuf à ${esc(d.ville)}</h1>
   <hr class="filet">
-  <p class="chapo">${pluriel(c.nb_programmes, 'programme', 'programmes')} de ${pluriel(c.nb_promoteurs, 'promoteur', 'promoteurs')} et ${nb(c.nb_lots_libres)} logements disponibles à ${esc(d.ville)} (${esc(d.cp)}). Nous suivons tous les programmes neufs de la ville et vous envoyons les plans et les prix de ceux qui vous correspondent. Mis à jour le ${dateFr(d.maj)}.</p>
+  <p class="chapo">${pluriel(c.nb_programmes, 'programme', 'programmes')}${c.nb_promoteurs ? ' de ' + pluriel(c.nb_promoteurs, 'promoteur', 'promoteurs') : ''} et ${nb(c.nb_lots_libres)} logements disponibles à ${esc(d.ville)} (${esc(d.cp)}). Nous suivons tous les programmes neufs de la ville et vous envoyons les plans et les prix de ceux qui vous correspondent. Mis à jour le ${dateFr(d.maj)}.</p>
 
   <div class="chiffres">
     <div class="chiffre"><b>${nb(c.nb_programmes)}</b><span>programmes en vente</span></div>
     <div class="chiffre"><b>${nb(c.nb_lots_libres)}</b><span>logements disponibles</span></div>
-    ${AFFICHER.prixM2 ? `<div class="chiffre"><b>${c.prix_m2_moyen ? euros(c.prix_m2_moyen) : '—'}</b><span>prix moyen au m²</span></div>` : `<div class="chiffre"><b>${nb(c.nb_promoteurs)}</b><span>promoteurs</span></div>`}
+    ${AFFICHER.prixM2 ? `<div class="chiffre"><b>${c.prix_m2_moyen ? euros(c.prix_m2_moyen) : '—'}</b><span>prix moyen au m²</span></div>` : (c.nb_promoteurs ? `<div class="chiffre"><b>${nb(c.nb_promoteurs)}</b><span>promoteurs</span></div>` : `<div class="chiffre"><b>${nb(Object.keys(c.typologies || {}).length)}</b><span>types de logements</span></div>`)}
     ${AFFICHER.prixAPartirDe ? `<div class="chiffre"><b>${c.prix_entree ? euros(c.prix_entree) : '—'}</b><span>premier prix</span></div>` : `<div class="chiffre"><b>${nb(Object.keys(c.livraisons || {}).length)}</b><span>années de livraison</span></div>`}
   </div>
 
@@ -626,7 +626,6 @@ const villes = fs.readdirSync(dossier).filter(f => f.endsWith('.json') && VILLES
   // Jamais de nom de promoteur ni de commercialisateur sur les pages (décision d'Alex du 25/11/2026). On garde seulement le nombre de
   // vrais promoteurs (commercialisateurs exclus), compté avant d'effacer les noms, ou celui déjà écrit dans le fichier.
   { const vrais = new Set(d.programmes.map(p => String(p.promoteur || '').trim()).filter(n => n && !COMMERCIALISATEURS.test(n)));
-    if (vrais.size) d.chiffres.nb_promoteurs = vrais.size;
     for (const p of d.programmes) p.promoteur = ''; }
   for (const p of d.programmes) {
     if (p.picking || !(p.logements || []).length) continue;
@@ -634,6 +633,11 @@ const villes = fs.readdirSync(dossier).filter(f => f.endsWith('.json') && VILLES
   }
   d.chiffres.nb_lots_libres = d.programmes.reduce((n, p) => n + (p.picking ? 0 : (p.logements || []).length || 0), 0) || d.chiffres.nb_lots_libres;
   return d;
+}).filter(d => {
+  // Une ville sans aucun logement à montrer (seulement du picking, ou rien) n'est pas présentable : pas de page (25/11/2026).
+  const n = d.programmes.reduce((t, p) => t + (p.picking ? 0 : (p.logements || []).length), 0);
+  if (!n) console.log('Ville non fabriquée (aucun logement à montrer) : ' + d.slug);
+  return n > 0;
 });
 for (const d of villes) {
   fs.mkdirSync(path.join(ICI, d.slug), { recursive: true });

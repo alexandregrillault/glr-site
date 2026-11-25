@@ -110,8 +110,8 @@ function lire(f) { try { return fs.readFileSync(f, 'utf8'); } catch (e) { return
     // Le fichier de données est public (servi tel quel) : aucun nom de promoteur ni de commercialisateur n'y figure (décision d'Alex du 25/11/2026).
     // On garde le nombre de vrais promoteurs, compté avant d'effacer.
     { const COMM = /^(iselection|accueil immobilier|valority|wemo)\b|agr[ée]gateur/i;
-      const vrais = new Set((d.programmes || []).map(p => String(p.promoteur || '').trim()).filter(n => n && !COMM.test(n)));
-      if (vrais.size && d.chiffres) d.chiffres.nb_promoteurs = vrais.size;
+      const vrais = new Set((d.programmes || []).filter(p => !p.picking).map(p => String(p.promoteur || '').trim()).filter(n => n && !COMM.test(n)));
+      if (d.chiffres) d.chiffres.nb_promoteurs = vrais.size; // seulement les programmes en vente (pas le picking), commercialisateurs exclus
       for (const p of d.programmes || []) p.promoteur = ''; }
     aEcrire.push({ f, nouveau: JSON.stringify(d, null, 2) + '\n', avant, slug: v.slug });
   }
