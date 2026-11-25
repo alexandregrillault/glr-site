@@ -54,7 +54,7 @@
   var texteFiche = function (l) {
     var p = window.GLR_PRIX && window.GLR_PRIX[l.i], r = window.GLR_PRIX_R && window.GLR_PRIX_R[l.i];
     var eu = function (n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; };
-    return '<b>' + l.t + '</b> · ' + String(l.s).replace('.', ',') + ' m² · ' + nomEtage(l.e) + (l.x ? ' · ' + l.x : '') + ' · ' +
+    return '<b>' + l.t + '</b>' + (l.o ? ' <span class="opt">Optionné</span>' : '') + ' · ' + String(l.s).replace('.', ',') + ' m² · ' + nomEtage(l.e) + (l.x ? ' · ' + l.x : '') + ' · ' +
       (p || r ? [p ? '<b>' + eu(p) + '</b>' : '', r ? '<b>' + eu(r) + '</b> en TVA 5,5 %*' : ''].filter(Boolean).join(' · ') : 'Prix sur demande');
   };
   function choisir(l, depuisListe) {
@@ -90,7 +90,7 @@
     }
     appliquerFiltre();
     document.querySelectorAll('.etages button').forEach(function (b) { b.setAttribute('aria-pressed', Number(b.dataset.e) === e ? 'true' : 'false'); });
-    var t = document.getElementById('etage-titre'); if (t) t.textContent = nomEtage(e) + ' · ' + (rang.length ? rang.length + (rang.length > 1 ? ' logements disponibles' : ' logement disponible') : 'aucun logement disponible');
+    var t = document.getElementById('etage-titre'); if (t) t.textContent = nomEtage(e) + ' · ' + (rang.length ? rang.length + (rang.length > 1 ? ' logements disponibles' : ' logement disponible') + (function () { var o = rang.filter(function (x) { return x.o; }).length; return o ? ', dont ' + o + (o > 1 ? ' optionnés' : ' optionné') : ''; })() : 'aucun logement disponible');
     if (choisi && cases[choisi.i]) cases[choisi.i].classList.add('choisie');
   }
   function appliquerFiltre() { Object.keys(cases).forEach(function (k) { var l = L.filter(function (x) { return x.i === k; })[0]; cases[k].classList.toggle('eteinte', !!filtre && l.t !== filtre); }); }

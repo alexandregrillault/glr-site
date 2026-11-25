@@ -30,7 +30,7 @@ async function rest(chemin, opts = {}) {
 
 // ---- Garde-fou : champ interdit ----------------------------------------------------------------------------------
 const CLE_PUBLIQUE = /^[0-9a-f]{12}$/;
-const LOGEMENT_PERMIS = ['id', 'typo', 'pieces', 'surface', 'etage', 'exterieur'];
+const LOGEMENT_PERMIS = ['id', 'typo', 'pieces', 'surface', 'etage', 'exterieur', 'statut'];
 const PRIX_TOLERES_VIDES = ['prix_a_partir_de', 'prix_entree', 'prix_m2_moyen']; // rendus vides par la base ; un chiffre dedans arrête tout
 const NOM_INTERDIT = /(^|_)(prix|prix_lot|lots?|plans?|plan_url|commission\w*|extranet|intranet|lat|lng|image|images|photo|photos)$|^immolead|^pige_interne|^id_pige$/i;
 
