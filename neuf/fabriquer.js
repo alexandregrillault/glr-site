@@ -483,7 +483,7 @@ function pageProgramme(d, p) {
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=${esc(d.slug)}&amp;vue=ville#carte">Retour à la carte de ${esc(d.ville)}</a></div>
   </header>
   <div class="reperes">
-    ${p.nb_lots_libres ? `<div class="repere-cle"><b>${nb(p.nb_lots_libres)}</b><span>${p.nb_lots_libres > 1 ? 'logements disponibles' : 'logement disponible'}</span></div>` : ''}
+    ${p.nb_lots_libres ? `<div class="repere-cle"><b>${nb(p.nb_lots_libres)}</b><span>${p.nb_lots_libres > 1 ? 'logements disponibles' : 'logement disponible'}${p.nb_optionnes ? ` · dont ${p.nb_optionnes} optionné${p.nb_optionnes > 1 ? 's' : ''}` : ''}</span></div>` : ''}
     ${p.livraison ? `<div class="repere-cle"><b>${esc(p.livraison.replace(/ trimestre /, ' trim. '))}</b><span>${dejaLivre(p) ? 'programme déjà livré' : 'livraison prévue'}</span></div>` : ''}
     ${surfaces ? `<div class="repere-cle"><b>${surfaces}</b><span>surfaces disponibles</span></div>` : ''}
     ${p.gare ? `<div class="repere-cle"><b>${p.gare_minutes_a_pied ? p.gare_minutes_a_pied + ' min' : 'À côté'}</b><span>à pied ${esc(deGare(p.gare))}</span></div>` : ''}
@@ -616,6 +616,14 @@ const VILLES_ACTIVES = fs.existsSync(LISTE_PUBLIEES) ? JSON.parse(fs.readFileSyn
 const villes = fs.readdirSync(dossier).filter(f => f.endsWith('.json') && VILLES_ACTIVES.includes(f.replace(/\.json$/, ''))).sort().map(f => {
   const d = JSON.parse(fs.readFileSync(path.join(dossier, f), 'utf8'));
   verifier(d, f);
+  // « Logements disponibles » = libres + optionnés (décision d'Alex du 25/11/2026). La base compte les libres seuls dans nb_lots_libres :
+  // on recalcule ici, programme par programme, à partir de la liste des logements, pour que le chiffre et la liste disent la même chose.
+  for (const p of d.programmes) {
+    if (p.picking || !(p.logements || []).length) continue;
+    p.nb_lots_libres = p.logements.length;
+    p.nb_optionnes = p.logements.filter(l => l.statut === 'option').length;
+  }
+  d.chiffres.nb_lots_libres = d.programmes.reduce((n, p) => n + (p.picking ? 0 : (p.logements || []).length || 0), 0) || d.chiffres.nb_lots_libres;
   return d;
 });
 for (const d of villes) {

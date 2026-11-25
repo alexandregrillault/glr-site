@@ -1,6 +1,6 @@
 {
   "cp": "92700",
-  "maj": "2026-11-20",
+  "maj": "2026-11-25",
   "dept": "92",
   "slug": "colombes",
   "guide": {
@@ -19,17 +19,17 @@
       "2029": 2
     },
     "typologies": {
-      "T1": 156,
+      "T1": 159,
       "T2": 59,
-      "T3": 79,
-      "T4": 40,
+      "T3": 78,
+      "T4": 41,
       "T5+": 5
     },
     "prix_entree": null,
-    "nb_programmes": 15,
+    "nb_programmes": 16,
     "nb_promoteurs": 11,
     "prix_m2_moyen": null,
-    "nb_lots_libres": 339
+    "nb_lots_libres": 342
   },
   "dept_nom": "Hauts-de-Seine",
   "programmes": [
@@ -53,6 +53,7 @@
           "typo": "T1",
           "etage": 0,
           "pieces": 1,
+          "statut": "libre",
           "surface": 38,
           "exterieur": "Extérieur"
         },
@@ -61,6 +62,7 @@
           "typo": "T2",
           "etage": 5,
           "pieces": 2,
+          "statut": "libre",
           "surface": 44,
           "exterieur": "Extérieur"
         },
@@ -69,7 +71,17 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
+          "statut": "libre",
           "surface": 45,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "adc84cbaa45e",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 47,
           "exterieur": "Extérieur"
         },
         {
@@ -77,6 +89,7 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
+          "statut": "libre",
           "surface": 50,
           "exterieur": "Extérieur"
         },
@@ -85,6 +98,7 @@
           "typo": "T2",
           "etage": 1,
           "pieces": 2,
+          "statut": "libre",
           "surface": 50,
           "exterieur": "Extérieur"
         },
@@ -93,6 +107,7 @@
           "typo": "T2",
           "etage": 0,
           "pieces": 2,
+          "statut": "libre",
           "surface": 57,
           "exterieur": "Extérieur"
         },
@@ -101,6 +116,7 @@
           "typo": "T3",
           "etage": 3,
           "pieces": 3,
+          "statut": "libre",
           "surface": 64,
           "exterieur": "Extérieur"
         },
@@ -109,6 +125,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
+          "statut": "libre",
           "surface": 66,
           "exterieur": "Extérieur"
         },
@@ -117,6 +134,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
+          "statut": "libre",
           "surface": 66,
           "exterieur": "Extérieur"
         },
@@ -125,6 +143,7 @@
           "typo": "T3",
           "etage": 3,
           "pieces": 3,
+          "statut": "libre",
           "surface": 69,
           "exterieur": "Extérieur"
         },
@@ -133,6 +152,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
+          "statut": "libre",
           "surface": 71,
           "exterieur": "Extérieur"
         },
@@ -141,6 +161,7 @@
           "typo": "T3",
           "etage": 4,
           "pieces": 3,
+          "statut": "libre",
           "surface": 71,
           "exterieur": "Extérieur"
         },
@@ -149,6 +170,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
+          "statut": "libre",
           "surface": 71,
           "exterieur": "Extérieur"
         },
@@ -157,6 +179,7 @@
           "typo": "T3",
           "etage": 3,
           "pieces": 3,
+          "statut": "libre",
           "surface": 71,
           "exterieur": "Extérieur"
         },
@@ -165,6 +188,7 @@
           "typo": "T4",
           "etage": 3,
           "pieces": 4,
+          "statut": "libre",
           "surface": 82,
           "exterieur": "Extérieur"
         },
@@ -173,6 +197,7 @@
           "typo": "T4",
           "etage": 5,
           "pieces": 4,
+          "statut": "libre",
           "surface": 85,
           "exterieur": "Extérieur"
         },
@@ -181,6 +206,7 @@
           "typo": "T4",
           "etage": 2,
           "pieces": 4,
+          "statut": "libre",
           "surface": 86,
           "exterieur": "Extérieur"
         },
@@ -189,6 +215,7 @@
           "typo": "T4",
           "etage": 5,
           "pieces": 4,
+          "statut": "libre",
           "surface": 88,
           "exterieur": "Extérieur"
         }
@@ -204,9 +231,42 @@
         "TVA 5,5 %"
       ],
       "livraison_cle": "2021-4",
-      "nb_lots_libres": 18,
+      "nb_lots_libres": 19,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 6
+    },
+    {
+      "nom": "Cote Seine - Colombus Bat B",
+      "gare": "Le Stade (ligne J)",
+      "slug": "cote-seine-colombus-bat-b",
+      "image": null,
+      "picking": false,
+      "pige_id": "fb00c3243520",
+      "position": {
+        "approx": false,
+        "latitude": 48.936,
+        "longitude": 2.257
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "913924a47d86",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 40.5,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "Pichet",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": "2024-4",
+      "nb_lots_libres": 0,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 7
     },
     {
       "nom": "Les Terrasses Bel Air",
@@ -228,6 +288,7 @@
           "typo": "T1",
           "etage": null,
           "pieces": 1,
+          "statut": "libre",
           "surface": 29.77,
           "exterieur": "Extérieur"
         },
@@ -236,6 +297,7 @@
           "typo": "T4",
           "etage": null,
           "pieces": 4,
+          "statut": "libre",
           "surface": 95.22,
           "exterieur": "Extérieur"
         }
@@ -271,6 +333,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.59,
           "exterieur": null
         },
@@ -279,6 +342,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.63,
           "exterieur": null
         },
@@ -287,6 +351,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.65,
           "exterieur": null
         },
@@ -295,6 +360,7 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.7,
           "exterieur": null
         },
@@ -303,6 +369,7 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.72,
           "exterieur": null
         },
@@ -311,6 +378,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.72,
           "exterieur": null
         },
@@ -319,6 +387,7 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.73,
           "exterieur": null
         },
@@ -327,6 +396,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.73,
           "exterieur": null
         },
@@ -335,6 +405,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.79,
           "exterieur": null
         },
@@ -343,6 +414,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.85,
           "exterieur": null
         },
@@ -351,6 +423,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.85,
           "exterieur": null
         },
@@ -359,6 +432,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.85,
           "exterieur": null
         },
@@ -367,6 +441,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.85,
           "exterieur": null
         },
@@ -375,6 +450,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.85,
           "exterieur": null
         },
@@ -383,6 +459,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.85,
           "exterieur": null
         },
@@ -391,6 +468,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.85,
           "exterieur": null
         },
@@ -399,6 +477,7 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.85,
           "exterieur": null
         },
@@ -407,6 +486,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.87,
           "exterieur": null
         },
@@ -415,6 +495,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.13,
           "exterieur": null
         },
@@ -423,6 +504,7 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.16,
           "exterieur": null
         },
@@ -431,6 +513,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.34,
           "exterieur": null
         },
@@ -439,6 +522,7 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.69,
           "exterieur": null
         },
@@ -447,6 +531,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.69,
           "exterieur": null
         },
@@ -455,6 +540,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 20.6,
           "exterieur": null
         },
@@ -463,6 +549,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 21.19,
           "exterieur": null
         }
@@ -497,6 +584,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.79,
           "exterieur": null
         },
@@ -505,6 +593,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 22.55,
           "exterieur": null
         },
@@ -513,6 +602,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 22.55,
           "exterieur": null
         },
@@ -521,6 +611,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 23.86,
           "exterieur": null
         },
@@ -529,6 +620,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 25.72,
           "exterieur": null
         }
@@ -559,10 +651,20 @@
       "livraison": "3e trimestre 2027",
       "logements": [
         {
+          "id": "0eebdbc06743",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "option",
+          "surface": 17,
+          "exterieur": null
+        },
+        {
           "id": "13e3f57b6da2",
           "typo": "T1",
           "etage": 0,
           "pieces": 1,
+          "statut": "libre",
           "surface": 17,
           "exterieur": null
         },
@@ -571,6 +673,7 @@
           "typo": "T1",
           "etage": 0,
           "pieces": 1,
+          "statut": "libre",
           "surface": 17,
           "exterieur": null
         },
@@ -579,6 +682,7 @@
           "typo": "T1",
           "etage": 0,
           "pieces": 1,
+          "statut": "libre",
           "surface": 17,
           "exterieur": null
         },
@@ -587,6 +691,7 @@
           "typo": "T1",
           "etage": 0,
           "pieces": 1,
+          "statut": "libre",
           "surface": 17,
           "exterieur": null
         },
@@ -595,6 +700,7 @@
           "typo": "T1",
           "etage": 0,
           "pieces": 1,
+          "statut": "libre",
           "surface": 17,
           "exterieur": null
         },
@@ -603,6 +709,7 @@
           "typo": "T1",
           "etage": 0,
           "pieces": 1,
+          "statut": "libre",
           "surface": 17.01,
           "exterieur": null
         },
@@ -611,6 +718,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 17.01,
           "exterieur": null
         },
@@ -619,6 +727,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 17.08,
           "exterieur": null
         },
@@ -627,6 +736,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 17.55,
           "exterieur": null
         },
@@ -635,6 +745,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.26,
           "exterieur": null
         },
@@ -643,6 +754,7 @@
           "typo": "T1",
           "etage": 0,
           "pieces": 1,
+          "statut": "libre",
           "surface": 20.75,
           "exterieur": null
         },
@@ -651,6 +763,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 20.92,
           "exterieur": null
         },
@@ -659,6 +772,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 21.47,
           "exterieur": null
         },
@@ -667,6 +781,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 21.63,
           "exterieur": null
         },
@@ -675,6 +790,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 22.39,
           "exterieur": null
         }
@@ -709,6 +825,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 15.49,
           "exterieur": null
         },
@@ -717,6 +834,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 17.23,
           "exterieur": null
         },
@@ -725,6 +843,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 17.41,
           "exterieur": null
         },
@@ -733,6 +852,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 17.88,
           "exterieur": null
         },
@@ -741,6 +861,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 17.88,
           "exterieur": null
         },
@@ -749,6 +870,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 17.91,
           "exterieur": null
         },
@@ -757,6 +879,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 17.93,
           "exterieur": null
         },
@@ -765,6 +888,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 17.93,
           "exterieur": null
         },
@@ -773,6 +897,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.31,
           "exterieur": null
         },
@@ -781,6 +906,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.51,
           "exterieur": null
         },
@@ -789,6 +915,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.51,
           "exterieur": null
         },
@@ -797,6 +924,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.54,
           "exterieur": null
         },
@@ -805,6 +933,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.54,
           "exterieur": null
         },
@@ -813,6 +942,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.54,
           "exterieur": null
         },
@@ -821,6 +951,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.56,
           "exterieur": null
         },
@@ -829,6 +960,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.56,
           "exterieur": null
         },
@@ -837,6 +969,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.63,
           "exterieur": null
         },
@@ -845,6 +978,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.71,
           "exterieur": null
         },
@@ -853,6 +987,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.71,
           "exterieur": null
         },
@@ -861,6 +996,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.85,
           "exterieur": null
         },
@@ -869,6 +1005,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.88,
           "exterieur": null
         },
@@ -877,6 +1014,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 18.88,
           "exterieur": null
         },
@@ -885,6 +1023,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19,
           "exterieur": null
         },
@@ -893,6 +1032,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.03,
           "exterieur": null
         },
@@ -901,6 +1041,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.03,
           "exterieur": null
         },
@@ -909,6 +1050,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.03,
           "exterieur": null
         },
@@ -917,6 +1059,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.03,
           "exterieur": null
         },
@@ -925,6 +1068,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.03,
           "exterieur": null
         },
@@ -933,6 +1077,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.26,
           "exterieur": null
         },
@@ -941,6 +1086,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.26,
           "exterieur": null
         },
@@ -949,6 +1095,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "option",
           "surface": 19.28,
           "exterieur": null
         },
@@ -957,6 +1104,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.33,
           "exterieur": null
         },
@@ -965,6 +1113,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.47,
           "exterieur": null
         },
@@ -973,6 +1122,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.6,
           "exterieur": null
         },
@@ -981,6 +1131,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.62,
           "exterieur": null
         },
@@ -989,6 +1140,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.62,
           "exterieur": null
         },
@@ -997,6 +1149,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 29.98,
           "exterieur": null
         }
@@ -1007,7 +1160,7 @@
       ],
       "dispositifs": [],
       "livraison_cle": "2027-4",
-      "nb_lots_libres": 37,
+      "nb_lots_libres": 36,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 2
     },
@@ -1027,10 +1180,20 @@
       "livraison": "1er trimestre 2028",
       "logements": [
         {
+          "id": "dc24b00988e1",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 40.91,
+          "exterieur": "Balcon"
+        },
+        {
           "id": "7576481866d2",
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
+          "statut": "libre",
           "surface": 41.48,
           "exterieur": "Balcon"
         },
@@ -1039,6 +1202,7 @@
           "typo": "T2",
           "etage": 1,
           "pieces": 2,
+          "statut": "option",
           "surface": 43.51,
           "exterieur": "Balcon"
         },
@@ -1047,6 +1211,7 @@
           "typo": "T2",
           "etage": 1,
           "pieces": 2,
+          "statut": "libre",
           "surface": 44.4,
           "exterieur": "Jardin"
         },
@@ -1055,6 +1220,7 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
+          "statut": "libre",
           "surface": 44.61,
           "exterieur": "Terrasse"
         },
@@ -1063,6 +1229,7 @@
           "typo": "T2",
           "etage": 7,
           "pieces": 2,
+          "statut": "libre",
           "surface": 45.83,
           "exterieur": "Balcon"
         },
@@ -1071,6 +1238,7 @@
           "typo": "T2",
           "etage": 4,
           "pieces": 2,
+          "statut": "libre",
           "surface": 46,
           "exterieur": "Terrasse"
         },
@@ -1079,6 +1247,7 @@
           "typo": "T3",
           "etage": 3,
           "pieces": 3,
+          "statut": "libre",
           "surface": 56.35,
           "exterieur": "Terrasse"
         },
@@ -1087,6 +1256,7 @@
           "typo": "T3",
           "etage": 3,
           "pieces": 3,
+          "statut": "libre",
           "surface": 56.5,
           "exterieur": "Balcon"
         },
@@ -1095,6 +1265,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
+          "statut": "libre",
           "surface": 56.5,
           "exterieur": "Balcon"
         },
@@ -1103,6 +1274,7 @@
           "typo": "T3",
           "etage": 4,
           "pieces": 3,
+          "statut": "libre",
           "surface": 56.97,
           "exterieur": "Balcon"
         },
@@ -1111,6 +1283,7 @@
           "typo": "T3",
           "etage": 3,
           "pieces": 3,
+          "statut": "libre",
           "surface": 56.97,
           "exterieur": "Balcon"
         },
@@ -1119,6 +1292,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
+          "statut": "libre",
           "surface": 57.01,
           "exterieur": "Terrasse"
         },
@@ -1127,6 +1301,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
+          "statut": "libre",
           "surface": 58.22,
           "exterieur": "Balcon"
         },
@@ -1135,6 +1310,7 @@
           "typo": "T3",
           "etage": 3,
           "pieces": 3,
+          "statut": "libre",
           "surface": 58.36,
           "exterieur": "Balcon"
         },
@@ -1143,6 +1319,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
+          "statut": "libre",
           "surface": 58.37,
           "exterieur": "Balcon"
         },
@@ -1151,6 +1328,7 @@
           "typo": "T3",
           "etage": 5,
           "pieces": 3,
+          "statut": "libre",
           "surface": 59.05,
           "exterieur": "Balcon"
         },
@@ -1159,6 +1337,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
+          "statut": "libre",
           "surface": 59.15,
           "exterieur": "Balcon"
         },
@@ -1167,6 +1346,7 @@
           "typo": "T3",
           "etage": 6,
           "pieces": 3,
+          "statut": "libre",
           "surface": 59.32,
           "exterieur": "Terrasse"
         },
@@ -1175,6 +1355,7 @@
           "typo": "T3",
           "etage": 6,
           "pieces": 3,
+          "statut": "libre",
           "surface": 59.61,
           "exterieur": "Balcon"
         },
@@ -1183,7 +1364,17 @@
           "typo": "T3",
           "etage": 7,
           "pieces": 3,
+          "statut": "libre",
           "surface": 59.61,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "31a177c22952",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 59.69,
           "exterieur": "Balcon"
         },
         {
@@ -1191,6 +1382,16 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
+          "statut": "option",
+          "surface": 60.05,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "d75efceecc18",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "option",
           "surface": 60.05,
           "exterieur": "Balcon"
         },
@@ -1199,6 +1400,7 @@
           "typo": "T3",
           "etage": 6,
           "pieces": 3,
+          "statut": "libre",
           "surface": 62.03,
           "exterieur": "Terrasse"
         },
@@ -1207,6 +1409,7 @@
           "typo": "T3",
           "etage": 7,
           "pieces": 3,
+          "statut": "libre",
           "surface": 62.11,
           "exterieur": "Balcon"
         },
@@ -1215,6 +1418,7 @@
           "typo": "T3",
           "etage": 7,
           "pieces": 3,
+          "statut": "libre",
           "surface": 64.65,
           "exterieur": "Balcon"
         },
@@ -1223,6 +1427,7 @@
           "typo": "T4",
           "etage": 4,
           "pieces": 4,
+          "statut": "libre",
           "surface": 73.78,
           "exterieur": "Balcon"
         },
@@ -1231,6 +1436,7 @@
           "typo": "T4",
           "etage": 3,
           "pieces": 4,
+          "statut": "libre",
           "surface": 74.16,
           "exterieur": "Terrasse"
         },
@@ -1239,6 +1445,7 @@
           "typo": "T4",
           "etage": 5,
           "pieces": 4,
+          "statut": "libre",
           "surface": 74.19,
           "exterieur": "Balcon"
         },
@@ -1247,6 +1454,7 @@
           "typo": "T4",
           "etage": 2,
           "pieces": 4,
+          "statut": "libre",
           "surface": 76.55,
           "exterieur": "Balcon"
         },
@@ -1255,6 +1463,7 @@
           "typo": "T4",
           "etage": 1,
           "pieces": 4,
+          "statut": "libre",
           "surface": 76.89,
           "exterieur": "Balcon"
         },
@@ -1263,6 +1472,7 @@
           "typo": "T4",
           "etage": 5,
           "pieces": 4,
+          "statut": "libre",
           "surface": 77.43,
           "exterieur": "Balcon"
         },
@@ -1271,6 +1481,7 @@
           "typo": "T4",
           "etage": 1,
           "pieces": 4,
+          "statut": "libre",
           "surface": 78.38,
           "exterieur": "Terrasse"
         },
@@ -1279,6 +1490,7 @@
           "typo": "T4",
           "etage": 1,
           "pieces": 4,
+          "statut": "libre",
           "surface": 78.75,
           "exterieur": "Balcon"
         },
@@ -1287,6 +1499,7 @@
           "typo": "T4",
           "etage": 6,
           "pieces": 4,
+          "statut": "libre",
           "surface": 80.57,
           "exterieur": "Terrasse"
         },
@@ -1295,6 +1508,7 @@
           "typo": "T4",
           "etage": 6,
           "pieces": 4,
+          "statut": "libre",
           "surface": 82.6,
           "exterieur": "Terrasse"
         },
@@ -1303,6 +1517,7 @@
           "typo": "T4",
           "etage": 6,
           "pieces": 4,
+          "statut": "libre",
           "surface": 83.31,
           "exterieur": "Balcon"
         },
@@ -1311,6 +1526,7 @@
           "typo": "T4",
           "etage": 7,
           "pieces": 4,
+          "statut": "libre",
           "surface": 83.31,
           "exterieur": "Balcon"
         },
@@ -1319,6 +1535,7 @@
           "typo": "T4",
           "etage": 4,
           "pieces": 4,
+          "statut": "libre",
           "surface": 83.97,
           "exterieur": "Terrasse"
         },
@@ -1327,6 +1544,7 @@
           "typo": "T5+",
           "etage": 3,
           "pieces": 5,
+          "statut": "libre",
           "surface": 91.34,
           "exterieur": "Terrasse"
         },
@@ -1335,6 +1553,7 @@
           "typo": "T5+",
           "etage": 5,
           "pieces": 5,
+          "statut": "libre",
           "surface": 96.77,
           "exterieur": "Terrasse"
         }
@@ -1350,7 +1569,7 @@
         "TVA 5,5 %"
       ],
       "livraison_cle": "2028-1",
-      "nb_lots_libres": 39,
+      "nb_lots_libres": 38,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 5
     },
@@ -1374,7 +1593,17 @@
           "typo": "T2",
           "etage": 0,
           "pieces": 2,
+          "statut": "libre",
           "surface": 40.49,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "ff53e13519e1",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.56,
           "exterieur": "Extérieur"
         },
         {
@@ -1382,6 +1611,7 @@
           "typo": "T2",
           "etage": 1,
           "pieces": 2,
+          "statut": "libre",
           "surface": 44.56,
           "exterieur": "Extérieur"
         },
@@ -1390,6 +1620,7 @@
           "typo": "T2",
           "etage": 1,
           "pieces": 2,
+          "statut": "libre",
           "surface": 44.74,
           "exterieur": "Extérieur"
         },
@@ -1398,6 +1629,7 @@
           "typo": "T2",
           "etage": 2,
           "pieces": 2,
+          "statut": "libre",
           "surface": 46.08,
           "exterieur": "Extérieur"
         },
@@ -1406,6 +1638,7 @@
           "typo": "T3",
           "etage": 4,
           "pieces": 3,
+          "statut": "libre",
           "surface": 60.92,
           "exterieur": "Extérieur"
         },
@@ -1414,6 +1647,7 @@
           "typo": "T3",
           "etage": 3,
           "pieces": 3,
+          "statut": "libre",
           "surface": 60.92,
           "exterieur": "Extérieur"
         },
@@ -1422,15 +1656,8 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
+          "statut": "option",
           "surface": 63.23,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "0efe240ea63a",
-          "typo": "T4",
-          "etage": 3,
-          "pieces": 4,
-          "surface": 74.94,
           "exterieur": "Extérieur"
         },
         {
@@ -1438,6 +1665,7 @@
           "typo": "T4",
           "etage": 4,
           "pieces": 4,
+          "statut": "libre",
           "surface": 74.94,
           "exterieur": "Extérieur"
         },
@@ -1446,6 +1674,7 @@
           "typo": "T4",
           "etage": 3,
           "pieces": 4,
+          "statut": "libre",
           "surface": 78.59,
           "exterieur": "Extérieur"
         },
@@ -1454,6 +1683,7 @@
           "typo": "T4",
           "etage": 4,
           "pieces": 4,
+          "statut": "libre",
           "surface": 78.59,
           "exterieur": "Extérieur"
         },
@@ -1462,6 +1692,7 @@
           "typo": "T4",
           "etage": 1,
           "pieces": 4,
+          "statut": "libre",
           "surface": 78.83,
           "exterieur": "Extérieur"
         },
@@ -1470,6 +1701,7 @@
           "typo": "T4",
           "etage": 2,
           "pieces": 4,
+          "statut": "libre",
           "surface": 78.83,
           "exterieur": "Extérieur"
         },
@@ -1478,6 +1710,7 @@
           "typo": "T4",
           "etage": 0,
           "pieces": 4,
+          "statut": "option",
           "surface": 79.61,
           "exterieur": "Extérieur"
         }
@@ -1490,7 +1723,7 @@
       ],
       "dispositifs": [],
       "livraison_cle": "2028-1",
-      "nb_lots_libres": 14,
+      "nb_lots_libres": 12,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 14
     },
@@ -1514,6 +1747,7 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 14.5,
           "exterieur": null
         },
@@ -1522,6 +1756,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 14.5,
           "exterieur": null
         },
@@ -1530,6 +1765,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 14.5,
           "exterieur": null
         },
@@ -1538,6 +1774,7 @@
           "typo": "T1",
           "etage": 6,
           "pieces": 1,
+          "statut": "libre",
           "surface": 14.5,
           "exterieur": null
         },
@@ -1546,6 +1783,7 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 14.5,
           "exterieur": null
         },
@@ -1554,6 +1792,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 14.5,
           "exterieur": null
         },
@@ -1562,6 +1801,7 @@
           "typo": "T1",
           "etage": 7,
           "pieces": 1,
+          "statut": "libre",
           "surface": 14.5,
           "exterieur": null
         },
@@ -1570,6 +1810,7 @@
           "typo": "T1",
           "etage": 7,
           "pieces": 1,
+          "statut": "libre",
           "surface": 14.5,
           "exterieur": null
         },
@@ -1578,6 +1819,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 14.5,
           "exterieur": null
         },
@@ -1586,6 +1828,7 @@
           "typo": "T1",
           "etage": 6,
           "pieces": 1,
+          "statut": "libre",
           "surface": 14.5,
           "exterieur": null
         },
@@ -1594,6 +1837,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 14.5,
           "exterieur": null
         },
@@ -1602,6 +1846,7 @@
           "typo": "T1",
           "etage": 7,
           "pieces": 1,
+          "statut": "libre",
           "surface": 16,
           "exterieur": null
         },
@@ -1610,6 +1855,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 16,
           "exterieur": null
         },
@@ -1618,6 +1864,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 16,
           "exterieur": null
         },
@@ -1626,6 +1873,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 16,
           "exterieur": null
         },
@@ -1634,6 +1882,7 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 16,
           "exterieur": null
         },
@@ -1642,6 +1891,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 16,
           "exterieur": null
         },
@@ -1650,6 +1900,7 @@
           "typo": "T1",
           "etage": 6,
           "pieces": 1,
+          "statut": "libre",
           "surface": 16,
           "exterieur": null
         },
@@ -1658,6 +1909,7 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 16,
           "exterieur": null
         },
@@ -1666,6 +1918,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 16,
           "exterieur": null
         },
@@ -1674,6 +1927,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 16,
           "exterieur": null
         },
@@ -1682,6 +1936,7 @@
           "typo": "T1",
           "etage": 7,
           "pieces": 1,
+          "statut": "libre",
           "surface": 16,
           "exterieur": null
         },
@@ -1690,6 +1945,7 @@
           "typo": "T1",
           "etage": 6,
           "pieces": 1,
+          "statut": "libre",
           "surface": 16,
           "exterieur": null
         },
@@ -1698,6 +1954,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.5,
           "exterieur": null
         },
@@ -1706,6 +1963,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.5,
           "exterieur": null
         },
@@ -1714,6 +1972,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.5,
           "exterieur": null
         },
@@ -1722,6 +1981,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.5,
           "exterieur": null
         },
@@ -1730,6 +1990,7 @@
           "typo": "T1",
           "etage": 7,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.5,
           "exterieur": null
         },
@@ -1738,6 +1999,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "option",
           "surface": 19.5,
           "exterieur": null
         },
@@ -1746,6 +2008,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.5,
           "exterieur": null
         },
@@ -1754,6 +2017,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.5,
           "exterieur": null
         },
@@ -1762,6 +2026,7 @@
           "typo": "T1",
           "etage": 6,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.5,
           "exterieur": null
         },
@@ -1770,6 +2035,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 19.5,
           "exterieur": null
         },
@@ -1778,6 +2044,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "option",
           "surface": 19.5,
           "exterieur": null
         },
@@ -1786,6 +2053,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 25,
           "exterieur": null
         },
@@ -1794,6 +2062,7 @@
           "typo": "T1",
           "etage": 6,
           "pieces": 1,
+          "statut": "libre",
           "surface": 25,
           "exterieur": null
         },
@@ -1802,6 +2071,7 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 25,
           "exterieur": null
         },
@@ -1810,6 +2080,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 25,
           "exterieur": null
         },
@@ -1818,6 +2089,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 25,
           "exterieur": null
         },
@@ -1826,6 +2098,7 @@
           "typo": "T1",
           "etage": 7,
           "pieces": 1,
+          "statut": "libre",
           "surface": 25,
           "exterieur": null
         },
@@ -1834,6 +2107,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 26,
           "exterieur": null
         }
@@ -1844,7 +2118,7 @@
       ],
       "dispositifs": [],
       "livraison_cle": "2028-2",
-      "nb_lots_libres": 41,
+      "nb_lots_libres": 39,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 6
     },
@@ -1868,6 +2142,7 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 22.5,
           "exterieur": null
         },
@@ -1876,6 +2151,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 22.5,
           "exterieur": null
         },
@@ -1884,6 +2160,7 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 23.5,
           "exterieur": null
         },
@@ -1892,6 +2169,7 @@
           "typo": "T1",
           "etage": 6,
           "pieces": 1,
+          "statut": "libre",
           "surface": 23.5,
           "exterieur": null
         },
@@ -1900,6 +2178,7 @@
           "typo": "T1",
           "etage": 6,
           "pieces": 1,
+          "statut": "libre",
           "surface": 23.5,
           "exterieur": null
         },
@@ -1908,6 +2187,7 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 23.5,
           "exterieur": null
         },
@@ -1916,6 +2196,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "option",
           "surface": 23.5,
           "exterieur": null
         },
@@ -1924,6 +2205,7 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 23.5,
           "exterieur": null
         },
@@ -1932,6 +2214,16 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
+          "surface": 23.5,
+          "exterieur": null
+        },
+        {
+          "id": "643496165287",
+          "typo": "T1",
+          "etage": 6,
+          "pieces": 1,
+          "statut": "libre",
           "surface": 23.5,
           "exterieur": null
         },
@@ -1940,6 +2232,16 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
+          "surface": 23.5,
+          "exterieur": null
+        },
+        {
+          "id": "7fcb8840b601",
+          "typo": "T1",
+          "etage": 5,
+          "pieces": 1,
+          "statut": "libre",
           "surface": 23.5,
           "exterieur": null
         },
@@ -1948,6 +2250,7 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 23.5,
           "exterieur": null
         },
@@ -1956,6 +2259,7 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 23.5,
           "exterieur": null
         },
@@ -1964,6 +2268,7 @@
           "typo": "T1",
           "etage": 6,
           "pieces": 1,
+          "statut": "libre",
           "surface": 23.5,
           "exterieur": null
         },
@@ -1972,6 +2277,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 23.5,
           "exterieur": null
         },
@@ -1980,6 +2286,7 @@
           "typo": "T1",
           "etage": 6,
           "pieces": 1,
+          "statut": "libre",
           "surface": 23.5,
           "exterieur": null
         },
@@ -1988,6 +2295,25 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
+          "surface": 23.5,
+          "exterieur": null
+        },
+        {
+          "id": "c9937abdbe10",
+          "typo": "T1",
+          "etage": 6,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 23.5,
+          "exterieur": null
+        },
+        {
+          "id": "cbf2c0a06c60",
+          "typo": "T1",
+          "etage": 4,
+          "pieces": 1,
+          "statut": "option",
           "surface": 23.5,
           "exterieur": null
         },
@@ -1996,6 +2322,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 23.5,
           "exterieur": null
         },
@@ -2004,6 +2331,16 @@
           "typo": "T1",
           "etage": 6,
           "pieces": 1,
+          "statut": "libre",
+          "surface": 23.5,
+          "exterieur": null
+        },
+        {
+          "id": "d2ef47fe6648",
+          "typo": "T1",
+          "etage": 6,
+          "pieces": 1,
+          "statut": "option",
           "surface": 23.5,
           "exterieur": null
         },
@@ -2012,6 +2349,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 23.5,
           "exterieur": null
         },
@@ -2020,6 +2358,7 @@
           "typo": "T1",
           "etage": 6,
           "pieces": 1,
+          "statut": "libre",
           "surface": 23.5,
           "exterieur": null
         },
@@ -2028,6 +2367,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 23.5,
           "exterieur": null
         },
@@ -2036,7 +2376,35 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 23.5,
+          "exterieur": null
+        },
+        {
+          "id": "000f8a0f41a2",
+          "typo": "T1",
+          "etage": 4,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 25,
+          "exterieur": null
+        },
+        {
+          "id": "b05940eceb53",
+          "typo": "T1",
+          "etage": 6,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 25,
+          "exterieur": null
+        },
+        {
+          "id": "bea1f68a663a",
+          "typo": "T1",
+          "etage": 5,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 25,
           "exterieur": null
         }
       ],
@@ -2046,7 +2414,7 @@
       ],
       "dispositifs": [],
       "livraison_cle": "2028-2",
-      "nb_lots_libres": 22,
+      "nb_lots_libres": 27,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 6
     },
@@ -2070,6 +2438,7 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
+          "statut": "option",
           "surface": 41.13,
           "exterieur": "Extérieur"
         },
@@ -2078,6 +2447,7 @@
           "typo": "T2",
           "etage": 4,
           "pieces": 2,
+          "statut": "libre",
           "surface": 41.13,
           "exterieur": "Extérieur"
         },
@@ -2086,6 +2456,7 @@
           "typo": "T2",
           "etage": 1,
           "pieces": 2,
+          "statut": "option",
           "surface": 41.13,
           "exterieur": "Extérieur"
         },
@@ -2094,6 +2465,25 @@
           "typo": "T2",
           "etage": 4,
           "pieces": 2,
+          "statut": "libre",
+          "surface": 41.29,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "3e0d35d8bd0b",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 41.29,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "507a01750ce1",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "option",
           "surface": 41.29,
           "exterieur": "Extérieur"
         },
@@ -2102,6 +2492,7 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
+          "statut": "libre",
           "surface": 42.61,
           "exterieur": "Extérieur"
         },
@@ -2110,6 +2501,7 @@
           "typo": "T2",
           "etage": 4,
           "pieces": 2,
+          "statut": "libre",
           "surface": 42.61,
           "exterieur": "Extérieur"
         },
@@ -2118,6 +2510,7 @@
           "typo": "T2",
           "etage": 2,
           "pieces": 2,
+          "statut": "libre",
           "surface": 42.61,
           "exterieur": "Extérieur"
         },
@@ -2126,6 +2519,7 @@
           "typo": "T2",
           "etage": 2,
           "pieces": 2,
+          "statut": "libre",
           "surface": 43.03,
           "exterieur": "Extérieur"
         },
@@ -2134,6 +2528,7 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
+          "statut": "option",
           "surface": 43.03,
           "exterieur": "Extérieur"
         },
@@ -2142,6 +2537,7 @@
           "typo": "T2",
           "etage": 4,
           "pieces": 2,
+          "statut": "libre",
           "surface": 43.77,
           "exterieur": "Extérieur"
         },
@@ -2150,6 +2546,7 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
+          "statut": "libre",
           "surface": 43.77,
           "exterieur": "Extérieur"
         },
@@ -2158,6 +2555,7 @@
           "typo": "T2",
           "etage": 5,
           "pieces": 2,
+          "statut": "libre",
           "surface": 43.97,
           "exterieur": "Extérieur"
         },
@@ -2166,6 +2564,7 @@
           "typo": "T2",
           "etage": 1,
           "pieces": 2,
+          "statut": "libre",
           "surface": 43.97,
           "exterieur": "Extérieur"
         },
@@ -2174,6 +2573,7 @@
           "typo": "T2",
           "etage": 4,
           "pieces": 2,
+          "statut": "libre",
           "surface": 43.97,
           "exterieur": "Extérieur"
         },
@@ -2182,6 +2582,7 @@
           "typo": "T2",
           "etage": 6,
           "pieces": 2,
+          "statut": "libre",
           "surface": 43.97,
           "exterieur": "Extérieur"
         },
@@ -2190,6 +2591,7 @@
           "typo": "T2",
           "etage": 2,
           "pieces": 2,
+          "statut": "libre",
           "surface": 43.97,
           "exterieur": "Extérieur"
         },
@@ -2198,6 +2600,7 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
+          "statut": "libre",
           "surface": 43.97,
           "exterieur": "Extérieur"
         },
@@ -2206,6 +2609,7 @@
           "typo": "T2",
           "etage": 7,
           "pieces": 2,
+          "statut": "libre",
           "surface": 43.97,
           "exterieur": "Extérieur"
         },
@@ -2214,6 +2618,7 @@
           "typo": "T2",
           "etage": 4,
           "pieces": 2,
+          "statut": "libre",
           "surface": 44,
           "exterieur": "Extérieur"
         },
@@ -2222,6 +2627,7 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
+          "statut": "option",
           "surface": 44,
           "exterieur": "Extérieur"
         },
@@ -2230,6 +2636,7 @@
           "typo": "T2",
           "etage": 4,
           "pieces": 2,
+          "statut": "libre",
           "surface": 44.36,
           "exterieur": "Extérieur"
         },
@@ -2238,7 +2645,17 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
+          "statut": "libre",
           "surface": 44.36,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "6dc18e5d9053",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.38,
           "exterieur": "Extérieur"
         },
         {
@@ -2246,6 +2663,16 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
+          "statut": "libre",
+          "surface": 44.38,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "b4b5c7eecd62",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "option",
           "surface": 44.38,
           "exterieur": "Extérieur"
         },
@@ -2254,6 +2681,7 @@
           "typo": "T2",
           "etage": 1,
           "pieces": 2,
+          "statut": "libre",
           "surface": 44.38,
           "exterieur": "Extérieur"
         },
@@ -2262,6 +2690,7 @@
           "typo": "T2",
           "etage": 4,
           "pieces": 2,
+          "statut": "libre",
           "surface": 45.36,
           "exterieur": "Extérieur"
         },
@@ -2270,6 +2699,7 @@
           "typo": "T2",
           "etage": 4,
           "pieces": 2,
+          "statut": "libre",
           "surface": 45.7,
           "exterieur": "Extérieur"
         },
@@ -2278,6 +2708,7 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
+          "statut": "libre",
           "surface": 45.7,
           "exterieur": "Extérieur"
         },
@@ -2286,6 +2717,7 @@
           "typo": "T3",
           "etage": 7,
           "pieces": 3,
+          "statut": "libre",
           "surface": 63.88,
           "exterieur": "Extérieur"
         },
@@ -2294,6 +2726,16 @@
           "typo": "T3",
           "etage": 6,
           "pieces": 3,
+          "statut": "libre",
+          "surface": 63.88,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "5e9b8bab95ce",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
           "surface": 63.88,
           "exterieur": "Extérieur"
         },
@@ -2302,6 +2744,7 @@
           "typo": "T3",
           "etage": 5,
           "pieces": 3,
+          "statut": "libre",
           "surface": 63.88,
           "exterieur": "Extérieur"
         },
@@ -2310,6 +2753,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
+          "statut": "libre",
           "surface": 71,
           "exterieur": "Extérieur"
         },
@@ -2318,6 +2762,7 @@
           "typo": "T4",
           "etage": 6,
           "pieces": 4,
+          "statut": "libre",
           "surface": 81.25,
           "exterieur": "Extérieur"
         },
@@ -2326,6 +2771,7 @@
           "typo": "T4",
           "etage": 5,
           "pieces": 4,
+          "statut": "libre",
           "surface": 81.25,
           "exterieur": "Extérieur"
         },
@@ -2334,6 +2780,7 @@
           "typo": "T4",
           "etage": 7,
           "pieces": 4,
+          "statut": "libre",
           "surface": 81.25,
           "exterieur": "Extérieur"
         },
@@ -2342,6 +2789,7 @@
           "typo": "T4",
           "etage": 8,
           "pieces": 4,
+          "statut": "libre",
           "surface": 82.41,
           "exterieur": "Extérieur"
         }
@@ -2357,7 +2805,7 @@
         "TVA 5,5 %"
       ],
       "livraison_cle": "2028-4",
-      "nb_lots_libres": 35,
+      "nb_lots_libres": 33,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 5
     },
@@ -2381,6 +2829,7 @@
           "typo": "T1",
           "etage": 7,
           "pieces": 1,
+          "statut": "libre",
           "surface": 26.64,
           "exterieur": "Extérieur"
         },
@@ -2389,6 +2838,7 @@
           "typo": "T2",
           "etage": 1,
           "pieces": 2,
+          "statut": "libre",
           "surface": 39.18,
           "exterieur": null
         },
@@ -2397,6 +2847,7 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
+          "statut": "libre",
           "surface": 40.67,
           "exterieur": "Extérieur"
         },
@@ -2405,6 +2856,7 @@
           "typo": "T2",
           "etage": 2,
           "pieces": 2,
+          "statut": "libre",
           "surface": 42.67,
           "exterieur": null
         },
@@ -2413,6 +2865,7 @@
           "typo": "T2",
           "etage": 7,
           "pieces": 2,
+          "statut": "libre",
           "surface": 43.85,
           "exterieur": null
         },
@@ -2421,6 +2874,16 @@
           "typo": "T2",
           "etage": 4,
           "pieces": 2,
+          "statut": "libre",
+          "surface": 44.17,
+          "exterieur": null
+        },
+        {
+          "id": "b7ebc505ce32",
+          "typo": "T2",
+          "etage": 5,
+          "pieces": 2,
+          "statut": "libre",
           "surface": 44.17,
           "exterieur": null
         },
@@ -2429,6 +2892,7 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
+          "statut": "libre",
           "surface": 47.18,
           "exterieur": "Extérieur"
         },
@@ -2437,6 +2901,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
+          "statut": "libre",
           "surface": 59.63,
           "exterieur": "Extérieur"
         },
@@ -2445,6 +2910,7 @@
           "typo": "T3",
           "etage": 0,
           "pieces": 3,
+          "statut": "libre",
           "surface": 60.97,
           "exterieur": "Extérieur"
         },
@@ -2453,6 +2919,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
+          "statut": "libre",
           "surface": 64.08,
           "exterieur": "Extérieur"
         },
@@ -2461,6 +2928,7 @@
           "typo": "T3",
           "etage": 3,
           "pieces": 3,
+          "statut": "libre",
           "surface": 65.86,
           "exterieur": null
         },
@@ -2469,6 +2937,7 @@
           "typo": "T3",
           "etage": 4,
           "pieces": 3,
+          "statut": "libre",
           "surface": 67.27,
           "exterieur": "Extérieur"
         },
@@ -2477,6 +2946,7 @@
           "typo": "T3",
           "etage": 5,
           "pieces": 3,
+          "statut": "libre",
           "surface": 67.27,
           "exterieur": "Extérieur"
         },
@@ -2485,6 +2955,7 @@
           "typo": "T4",
           "etage": 6,
           "pieces": 4,
+          "statut": "libre",
           "surface": 73.99,
           "exterieur": "Extérieur"
         }
@@ -2500,7 +2971,7 @@
         "TVA 5,5 %"
       ],
       "livraison_cle": "2028-4",
-      "nb_lots_libres": 14,
+      "nb_lots_libres": 15,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 6
     },
@@ -2520,10 +2991,29 @@
       "livraison": "2028",
       "logements": [
         {
+          "id": "76b17769be2d",
+          "typo": "T1",
+          "etage": 5,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 25.15,
+          "exterieur": null
+        },
+        {
+          "id": "3ac8b2da8311",
+          "typo": "T1",
+          "etage": 3,
+          "pieces": 1,
+          "statut": "option",
+          "surface": 25.16,
+          "exterieur": null
+        },
+        {
           "id": "b4014bdc446f",
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "option",
           "surface": 25.16,
           "exterieur": null
         },
@@ -2532,6 +3022,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 25.16,
           "exterieur": null
         },
@@ -2540,6 +3031,7 @@
           "typo": "T1",
           "etage": 4,
           "pieces": 1,
+          "statut": "libre",
           "surface": 27.47,
           "exterieur": null
         },
@@ -2548,6 +3040,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
+          "statut": "libre",
           "surface": 27.48,
           "exterieur": null
         },
@@ -2556,6 +3049,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
+          "statut": "libre",
           "surface": 27.48,
           "exterieur": null
         },
@@ -2564,6 +3058,7 @@
           "typo": "T1",
           "etage": 2,
           "pieces": 1,
+          "statut": "libre",
           "surface": 27.48,
           "exterieur": null
         },
@@ -2572,14 +3067,25 @@
           "typo": "T1",
           "etage": 5,
           "pieces": 1,
+          "statut": "libre",
           "surface": 27.49,
           "exterieur": null
+        },
+        {
+          "id": "8166d258bbc8",
+          "typo": "T1",
+          "etage": 7,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 28.98,
+          "exterieur": "Balcon"
         },
         {
           "id": "aca801b3e34a",
           "typo": "T1",
           "etage": 6,
           "pieces": 1,
+          "statut": "libre",
           "surface": 28.98,
           "exterieur": "Terrasse"
         },
@@ -2588,6 +3094,7 @@
           "typo": "T2",
           "etage": 5,
           "pieces": 2,
+          "statut": "libre",
           "surface": 41.67,
           "exterieur": "Balcon"
         },
@@ -2596,7 +3103,17 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
+          "statut": "libre",
           "surface": 41.67,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "3d9d2d890037",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.68,
           "exterieur": "Balcon"
         },
         {
@@ -2604,14 +3121,34 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
+          "statut": "libre",
           "surface": 59.95,
           "exterieur": "Terrasse"
+        },
+        {
+          "id": "1944c8c18b57",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61.48,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "9dc949a65f28",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 61.49,
+          "exterieur": "Balcon"
         },
         {
           "id": "6c6f4f7cf59b",
           "typo": "T3",
           "etage": 5,
           "pieces": 3,
+          "statut": "libre",
           "surface": 61.51,
           "exterieur": "Balcon"
         },
@@ -2620,6 +3157,7 @@
           "typo": "T3",
           "etage": 5,
           "pieces": 3,
+          "statut": "libre",
           "surface": 64.35,
           "exterieur": "Balcon"
         },
@@ -2628,6 +3166,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
+          "statut": "libre",
           "surface": 68.34,
           "exterieur": "Terrasse"
         },
@@ -2636,7 +3175,26 @@
           "typo": "T4",
           "etage": 5,
           "pieces": 4,
+          "statut": "libre",
           "surface": 78.51,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "75f6a69c79db",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 78.52,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "0b8120bc1b28",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 78.53,
           "exterieur": "Balcon"
         },
         {
@@ -2644,6 +3202,7 @@
           "typo": "T4",
           "etage": 6,
           "pieces": 4,
+          "statut": "libre",
           "surface": 83.71,
           "exterieur": "Terrasse"
         },
@@ -2652,6 +3211,7 @@
           "typo": "T5+",
           "etage": 6,
           "pieces": 5,
+          "statut": "libre",
           "surface": 96.37,
           "exterieur": "Terrasse"
         },
@@ -2660,6 +3220,7 @@
           "typo": "T5+",
           "etage": 7,
           "pieces": 5,
+          "statut": "libre",
           "surface": 96.37,
           "exterieur": "Balcon"
         }
@@ -2676,7 +3237,7 @@
         "TVA 5,5 %"
       ],
       "livraison_cle": "2028-5",
-      "nb_lots_libres": 18,
+      "nb_lots_libres": 23,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 6
     },
@@ -2700,6 +3261,7 @@
           "typo": "T2",
           "etage": 2,
           "pieces": 2,
+          "statut": "libre",
           "surface": 40.07,
           "exterieur": null
         },
@@ -2708,6 +3270,7 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
+          "statut": "libre",
           "surface": 40.07,
           "exterieur": null
         },
@@ -2716,6 +3279,7 @@
           "typo": "T3",
           "etage": 4,
           "pieces": 3,
+          "statut": "libre",
           "surface": 58.71,
           "exterieur": null
         },
@@ -2724,14 +3288,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
-          "surface": 58.83,
-          "exterieur": null
-        },
-        {
-          "id": "841e160e9d18",
-          "typo": "T3",
-          "etage": 3,
-          "pieces": 3,
+          "statut": "libre",
           "surface": 58.83,
           "exterieur": null
         },
@@ -2740,6 +3297,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
+          "statut": "libre",
           "surface": 60.85,
           "exterieur": "Extérieur"
         },
@@ -2748,6 +3306,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
+          "statut": "libre",
           "surface": 60.85,
           "exterieur": "Extérieur"
         },
@@ -2756,6 +3315,7 @@
           "typo": "T3",
           "etage": 3,
           "pieces": 3,
+          "statut": "libre",
           "surface": 60.85,
           "exterieur": "Extérieur"
         },
@@ -2764,6 +3324,7 @@
           "typo": "T3",
           "etage": 4,
           "pieces": 3,
+          "statut": "libre",
           "surface": 60.85,
           "exterieur": "Extérieur"
         },
@@ -2772,6 +3333,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
+          "statut": "libre",
           "surface": 60.95,
           "exterieur": "Extérieur"
         },
@@ -2780,6 +3342,7 @@
           "typo": "T3",
           "etage": 4,
           "pieces": 3,
+          "statut": "libre",
           "surface": 60.95,
           "exterieur": "Extérieur"
         },
@@ -2788,6 +3351,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
+          "statut": "libre",
           "surface": 60.95,
           "exterieur": "Extérieur"
         },
@@ -2796,6 +3360,7 @@
           "typo": "T3",
           "etage": 3,
           "pieces": 3,
+          "statut": "libre",
           "surface": 60.95,
           "exterieur": "Extérieur"
         },
@@ -2804,6 +3369,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
+          "statut": "libre",
           "surface": 62.63,
           "exterieur": "Extérieur"
         },
@@ -2812,6 +3378,7 @@
           "typo": "T3",
           "etage": 4,
           "pieces": 3,
+          "statut": "libre",
           "surface": 67.57,
           "exterieur": null
         },
@@ -2820,6 +3387,7 @@
           "typo": "T4",
           "etage": 5,
           "pieces": 4,
+          "statut": "libre",
           "surface": 73.19,
           "exterieur": "Extérieur"
         },
@@ -2828,6 +3396,7 @@
           "typo": "T4",
           "etage": 4,
           "pieces": 4,
+          "statut": "libre",
           "surface": 79.61,
           "exterieur": "Extérieur"
         },
@@ -2836,6 +3405,7 @@
           "typo": "T4",
           "etage": 1,
           "pieces": 4,
+          "statut": "libre",
           "surface": 79.66,
           "exterieur": "Extérieur"
         },
@@ -2844,6 +3414,7 @@
           "typo": "T4",
           "etage": 2,
           "pieces": 4,
+          "statut": "libre",
           "surface": 79.66,
           "exterieur": "Extérieur"
         },
@@ -2852,6 +3423,7 @@
           "typo": "T4",
           "etage": 3,
           "pieces": 4,
+          "statut": "libre",
           "surface": 79.66,
           "exterieur": "Extérieur"
         },
@@ -2860,6 +3432,7 @@
           "typo": "T5+",
           "etage": 5,
           "pieces": 5,
+          "statut": "libre",
           "surface": 88.45,
           "exterieur": "Extérieur"
         }
@@ -2875,7 +3448,7 @@
         "TVA 5,5 %"
       ],
       "livraison_cle": "2029-1",
-      "nb_lots_libres": 21,
+      "nb_lots_libres": 20,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 2
     },
@@ -2899,6 +3472,7 @@
           "typo": "T2",
           "etage": 4,
           "pieces": 2,
+          "statut": "libre",
           "surface": 41.63,
           "exterieur": "Balcon"
         },
@@ -2907,6 +3481,7 @@
           "typo": "T2",
           "etage": 4,
           "pieces": 2,
+          "statut": "libre",
           "surface": 41.64,
           "exterieur": "Balcon"
         },
@@ -2915,6 +3490,7 @@
           "typo": "T2",
           "etage": 5,
           "pieces": 2,
+          "statut": "libre",
           "surface": 42.54,
           "exterieur": "Balcon"
         },
@@ -2923,6 +3499,7 @@
           "typo": "T2",
           "etage": 6,
           "pieces": 2,
+          "statut": "libre",
           "surface": 42.54,
           "exterieur": "Balcon"
         },
@@ -2931,6 +3508,7 @@
           "typo": "T2",
           "etage": 4,
           "pieces": 2,
+          "statut": "libre",
           "surface": 43.44,
           "exterieur": "Balcon"
         },
@@ -2939,6 +3517,7 @@
           "typo": "T2",
           "etage": 6,
           "pieces": 2,
+          "statut": "libre",
           "surface": 45.82,
           "exterieur": "Balcon"
         },
@@ -2947,6 +3526,7 @@
           "typo": "T2",
           "etage": 5,
           "pieces": 2,
+          "statut": "libre",
           "surface": 45.82,
           "exterieur": "Terrasse"
         },
@@ -2955,6 +3535,7 @@
           "typo": "T3",
           "etage": 4,
           "pieces": 3,
+          "statut": "libre",
           "surface": 59.17,
           "exterieur": "Balcon"
         },
@@ -2963,6 +3544,7 @@
           "typo": "T3",
           "etage": 3,
           "pieces": 3,
+          "statut": "libre",
           "surface": 59.34,
           "exterieur": "Balcon"
         },
@@ -2971,6 +3553,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
+          "statut": "libre",
           "surface": 59.34,
           "exterieur": "Balcon"
         },
@@ -2979,6 +3562,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
+          "statut": "libre",
           "surface": 59.34,
           "exterieur": "Terrasse"
         },
@@ -2987,6 +3571,7 @@
           "typo": "T3",
           "etage": 4,
           "pieces": 3,
+          "statut": "libre",
           "surface": 60.49,
           "exterieur": "Balcon"
         },
@@ -2995,6 +3580,7 @@
           "typo": "T3",
           "etage": 6,
           "pieces": 3,
+          "statut": "libre",
           "surface": 60.58,
           "exterieur": "Balcon"
         },
@@ -3003,6 +3589,7 @@
           "typo": "T3",
           "etage": 5,
           "pieces": 3,
+          "statut": "libre",
           "surface": 60.59,
           "exterieur": "Terrasse"
         },
@@ -3011,6 +3598,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
+          "statut": "libre",
           "surface": 60.79,
           "exterieur": "Balcon"
         },
@@ -3019,6 +3607,7 @@
           "typo": "T3",
           "etage": 3,
           "pieces": 3,
+          "statut": "libre",
           "surface": 60.79,
           "exterieur": "Balcon"
         },
@@ -3027,6 +3616,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
+          "statut": "libre",
           "surface": 60.79,
           "exterieur": "Terrasse"
         },
@@ -3035,6 +3625,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
+          "statut": "option",
           "surface": 62.11,
           "exterieur": "Balcon"
         },
@@ -3043,6 +3634,7 @@
           "typo": "T3",
           "etage": 3,
           "pieces": 3,
+          "statut": "libre",
           "surface": 62.11,
           "exterieur": "Balcon"
         },
@@ -3051,6 +3643,7 @@
           "typo": "T3",
           "etage": 4,
           "pieces": 3,
+          "statut": "libre",
           "surface": 62.11,
           "exterieur": "Balcon"
         },
@@ -3059,6 +3652,7 @@
           "typo": "T3",
           "etage": 6,
           "pieces": 3,
+          "statut": "libre",
           "surface": 62.18,
           "exterieur": "Balcon"
         },
@@ -3067,6 +3661,7 @@
           "typo": "T3",
           "etage": 5,
           "pieces": 3,
+          "statut": "libre",
           "surface": 62.19,
           "exterieur": "Terrasse"
         },
@@ -3075,6 +3670,7 @@
           "typo": "T3",
           "etage": 4,
           "pieces": 3,
+          "statut": "libre",
           "surface": 62.2,
           "exterieur": "Balcon"
         },
@@ -3083,6 +3679,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
+          "statut": "libre",
           "surface": 62.32,
           "exterieur": "Terrasse"
         },
@@ -3091,6 +3688,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
+          "statut": "libre",
           "surface": 62.32,
           "exterieur": "Balcon"
         },
@@ -3099,6 +3697,7 @@
           "typo": "T3",
           "etage": 3,
           "pieces": 3,
+          "statut": "libre",
           "surface": 62.32,
           "exterieur": "Balcon"
         },
@@ -3107,6 +3706,7 @@
           "typo": "T3",
           "etage": 4,
           "pieces": 3,
+          "statut": "libre",
           "surface": 62.4,
           "exterieur": "Balcon"
         },
@@ -3115,6 +3715,7 @@
           "typo": "T3",
           "etage": 3,
           "pieces": 3,
+          "statut": "libre",
           "surface": 62.41,
           "exterieur": "Balcon"
         },
@@ -3123,6 +3724,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
+          "statut": "libre",
           "surface": 62.41,
           "exterieur": "Balcon"
         },
@@ -3131,6 +3733,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
+          "statut": "libre",
           "surface": 62.41,
           "exterieur": "Terrasse"
         },
@@ -3139,6 +3742,7 @@
           "typo": "T4",
           "etage": 5,
           "pieces": 4,
+          "statut": "libre",
           "surface": 66.25,
           "exterieur": "Terrasse"
         },
@@ -3147,14 +3751,25 @@
           "typo": "T4",
           "etage": 6,
           "pieces": 4,
+          "statut": "libre",
           "surface": 66.25,
           "exterieur": "Balcon"
+        },
+        {
+          "id": "909714bec44f",
+          "typo": "T4",
+          "etage": 5,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 77.83,
+          "exterieur": "Terrasse"
         },
         {
           "id": "ba64366cb398",
           "typo": "T4",
           "etage": 6,
           "pieces": 4,
+          "statut": "libre",
           "surface": 77.83,
           "exterieur": "Balcon"
         }
