@@ -47,12 +47,13 @@ Règles de contenu, non négociables :
 - `fabriquer.js` **refuse** tout fichier contenant un prix de lot, un plan, une commission, un numéro de lot ou un identifiant interne de la pige (seules les clés publiques de 12 caractères passent). Ne jamais contourner ce refus.
 - Programmes sans mandat : seuls ceux de source **picking** sont montrés, avec la mention « Picking » et « grille sur demande » ; les autres sans mandat jamais. Jamais LLI ni LMNP.
 - Seulement les lots libres de type appartement ou maison.
+- Les noms de commercialisateurs de la base (iSelection, Accueil Immobilier…) s'affichent tels quels à la place du promoteur : ce sont de vrais lots (confirmé par Alex le 25/11/2026). Les prix s'affichent toujours ; seuls les plans demandent un compte.
 - Charte GLR unique ; rien n'est posé par-dessus une vue (fiches et réglages dessous) ; boutons en toutes lettres.
-- Une ville n'est publiée (retirée du `noindex`, liée depuis le site, ajoutée au sitemap) que sur un « pousse » d'Alex, avec de vraies données. Liste des villes fabriquées : `VILLES_ACTIVES` dans `fabriquer.js` (Colombes seule au 24/11/2026).
+- Une ville n'est publiée (retirée du `noindex`, liée depuis le site, ajoutée au sitemap) que sur un « pousse » d'Alex, avec de vraies données. Liste des villes fabriquées : `donnees/villes-publiees.json`, écrit par `publier.js` d'après les villes « publiee » de la base (Colombes seule au 25/11/2026).
 
 Par ville, trois relevés à fournir en plus du JSON (le robot) : contour de la commune (`donnees/contours/<insee>.json`, geo.api.gouv.fr), lieux (`donnees/lieux/<insee>.json`) et espaces verts (`donnees/parcs/<insee>.json`), tous deux tirés d'OpenStreetMap. Le format complet est dans la note partagée « Pages ville - format des données ».
 
-À savoir avant de généraliser (état au 24/11/2026) : les données de Colombes sont **fictives** (pages marquées « essai ») ; la maquette et le décor autour de l'immeuble sont génériques (forme réelle, orientation et vrais voisins inconnus) ; la fluidité sur un vrai téléphone n'a pas été mesurée ; `carte.js` garde en sommeil le code de l'ancienne vue quartier, à supprimer si Alex confirme.
+À savoir avant de généraliser (état au 25/11/2026) : Colombes est en **vraies données** depuis le 25/11/2026 (21 programmes, lues dans la base par `neuf/publier.js` avec la clé publique ; la liste des villes fabriquées est `donnees/villes-publiees.json`, à défaut Colombes seule) ; la maquette et le décor autour de l'immeuble sont génériques (forme réelle, orientation et vrais voisins inconnus) ; la fluidité sur un vrai téléphone n'a pas été mesurée ; `carte.js` garde en sommeil le code de l'ancienne vue quartier, à supprimer si Alex confirme.
 
 ## Vérifier avant de commiter
 
