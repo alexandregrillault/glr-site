@@ -623,10 +623,11 @@ const villes = fs.readdirSync(dossier).filter(f => f.endsWith('.json') && VILLES
   verifier(d, f);
   // « Logements disponibles » = libres + optionnés (décision d'Alex du 25/11/2026). La base compte les libres seuls dans nb_lots_libres :
   // on recalcule ici, programme par programme, à partir de la liste des logements, pour que le chiffre et la liste disent la même chose.
-  // Un commercialisateur n'est pas le promoteur : on n'affiche aucun nom (décision d'Alex du 25/11/2026, « masque le promoteur »).
-  // Critère : le nom est celui d'un commercialisateur connu (iSelection, Accueil Immobilier, Valority, Wemo) ou se dit « agrégateur ».
-  for (const p of d.programmes) if (COMMERCIALISATEURS.test(String(p.promoteur || '').trim())) p.promoteur = '';
-  d.chiffres.nb_promoteurs = new Set(d.programmes.map(p => p.promoteur).filter(Boolean)).size;
+  // Jamais de nom de promoteur ni de commercialisateur sur les pages (décision d'Alex du 25/11/2026). On garde seulement le nombre de
+  // vrais promoteurs (commercialisateurs exclus), compté avant d'effacer les noms, ou celui déjà écrit dans le fichier.
+  { const vrais = new Set(d.programmes.map(p => String(p.promoteur || '').trim()).filter(n => n && !COMMERCIALISATEURS.test(n)));
+    if (vrais.size) d.chiffres.nb_promoteurs = vrais.size;
+    for (const p of d.programmes) p.promoteur = ''; }
   for (const p of d.programmes) {
     if (p.picking || !(p.logements || []).length) continue;
     p.nb_lots_libres = p.logements.length;
