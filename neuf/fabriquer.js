@@ -612,6 +612,7 @@ var d=new URLSearchParams(location.search).get('ville');if(d){var v=V.filter(fun
 }
 
 const dossier = path.join(ICI, 'donnees');
+const COMMERCIALISATEURS = /^(iselection|accueil immobilier|valority|wemo)\b|agr[ée]gateur/i;
 // Villes publiées : on commence par Colombes seule (demande d'Alex du 24/11/2026). Les autres fichiers restent prêts.
 // Le générateur automatique (neuf/publier.js) écrit donnees/villes-publiees.json (liste des villes passées en « publiee » dans la base) ;
 // sans ce fichier, Colombes seule.
@@ -622,6 +623,10 @@ const villes = fs.readdirSync(dossier).filter(f => f.endsWith('.json') && VILLES
   verifier(d, f);
   // « Logements disponibles » = libres + optionnés (décision d'Alex du 25/11/2026). La base compte les libres seuls dans nb_lots_libres :
   // on recalcule ici, programme par programme, à partir de la liste des logements, pour que le chiffre et la liste disent la même chose.
+  // Un commercialisateur n'est pas le promoteur : on n'affiche aucun nom (décision d'Alex du 25/11/2026, « masque le promoteur »).
+  // Critère : le nom est celui d'un commercialisateur connu (iSelection, Accueil Immobilier, Valority, Wemo) ou se dit « agrégateur ».
+  for (const p of d.programmes) if (COMMERCIALISATEURS.test(String(p.promoteur || '').trim())) p.promoteur = '';
+  d.chiffres.nb_promoteurs = new Set(d.programmes.map(p => p.promoteur).filter(Boolean)).size;
   for (const p of d.programmes) {
     if (p.picking || !(p.logements || []).length) continue;
     p.nb_lots_libres = p.logements.length;
