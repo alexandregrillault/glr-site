@@ -1,7 +1,7 @@
 # Met à jour les pages ville /neuf/ depuis la base (option « automatique avec garde-fous », décision d'Alex du 25/11/2026).
 # Ne se lance QUE sur appel (workflow_dispatch) : aucun horaire. L'appel vient de la base après le « publie » de la pige,
 # ou à la main depuis l'onglet Actions. Ne touche qu'à neuf/donnees/<ville>.json, neuf/donnees/villes-publiees.json et aux pages neuf/.
-# Secret à créer dans le dépôt : SUPABASE_SERVICE_KEY (clé de service, jamais écrite dans un fichier).
+# Aucun secret : la lecture se fait avec la clé publique du site, qui ne voit que les villes publiées.
 name: Pages ville - mise à jour
 
 on:
@@ -24,11 +24,9 @@ jobs:
         with:
           node-version: 20
       # Lit la base, applique les garde-fous, fabrique les pages. En cas d'arrêt : rien n'est écrit, le travail passe en échec
-      # (GitHub envoie un mail) et une étape « Pages ville » est ajoutée à la todo d'Alex dans le CRM.
+      # et GitHub envoie un mail d'échec à Alex.
       - name: Générer
-        env:
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node neuf/publier.js --alerte
+        run: node neuf/publier.js
       # Dernier garde-fou : rien en dehors de neuf/ ne doit avoir changé.
       - name: Contrôler ce qui change
         run: |

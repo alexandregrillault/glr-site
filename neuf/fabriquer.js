@@ -19,6 +19,10 @@ const CONTACT = { tel: '+33614550273', telAffiche: '06 14 55 02 73', mail: 'agl@
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const nb = n => n == null ? '' : Number(n).toLocaleString('fr-FR').replace(/ /g, ' ');
 const euros = n => n == null ? '' : nb(Math.round(n)) + ' €';
+// « Livré » : programme dont la date de livraison est passée (la base écrit « Livré » à la place de la date).
+const dejaLivre = p => /^livr/i.test(String(p.livraison || ''));
+// « à pied de Le Stade » → « à pied du Stade », « des Agnettes », « de l'Hôtel de Ville », « de Quatre Routes »
+const deGare = g => String(g).replace(/^Le\s+/, 'du ').replace(/^Les\s+/, 'des ').replace(/^L['’]/, "de l'").replace(/^(?!du |des |de l')/, 'de ');
 const pluriel = (n, un, plus) => n + ' ' + (n > 1 ? plus : un);
 const dateFr = iso => { const [a, m, j] = iso.split('-').map(Number); return new Date(Date.UTC(a, m - 1, j)).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }); };
 
@@ -185,6 +189,7 @@ table.lots td.prix-lot{font-weight:600;white-space:nowrap}
 table.lots td.prix-lot .tva{font-weight:600;color:var(--bleu)}
 table.lots td.prix-lot small{font-weight:400;font-size:.72rem;color:var(--discret)}
 @media (max-width:480px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 5px}table.lots .long{display:none}table.lots th{font-size:.7rem;letter-spacing:.02em}}
+@media (min-width:960px) and (max-width:1200px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}table.lots .long{display:none}table.lots th{font-size:.7rem;letter-spacing:.02em}}
 .immeuble .scene{position:relative;background:linear-gradient(#FBF8F1,#F4F0E8);border:1px solid var(--trait);border-radius:8px;padding:8px;margin:0 0 .4rem;overflow:hidden}
 .immeuble svg{display:block;width:100%;height:auto;max-height:520px}
 .immeuble .lot{cursor:pointer;transition:opacity .2s}
@@ -470,16 +475,16 @@ function pageProgramme(d, p) {
       <p class="sur">Programme neuf · ${esc(d.ville)} (${esc(d.cp)})</p>
       <h1>${esc(p.nom)}</h1>
       <hr class="filet">
-      <p class="chapo">${p.picking ? 'Nous pouvons vous obtenir la grille de ce programme sur demande.' : `${p.promoteur ? 'Un programme ' + esc(p.promoteur) : 'Un programme neuf'}${p.quartier ? ', quartier ' + esc(p.quartier) : ''}${p.livraison ? ', livré au ' + esc(p.livraison) : ''}.`}</p>
+      <p class="chapo">${p.picking ? 'Nous pouvons vous obtenir la grille de ce programme sur demande.' : `${p.promoteur ? 'Un programme ' + esc(p.promoteur) : 'Un programme neuf'}${p.quartier ? ', quartier ' + esc(p.quartier) : ''}${p.livraison ? (dejaLivre(p) ? ', déjà livré' : ', livré au ' + esc(p.livraison)) : ''}.`}</p>
       <div class="puces">${(p.typologies || []).map(t => `<span class="puce">${esc(t)}</span>`).join('')}${(p.dispositifs || []).filter(x => !/LLI|LMNP/i.test(x)).map(t => `<span class="puce laiton">${esc(t)}</span>`).join('')}${p.picking ? '<span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span>' : ''}</div>
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=${esc(d.slug)}&amp;vue=ville#carte">Retour à la carte de ${esc(d.ville)}</a></div>
   </header>
   <div class="reperes">
     ${p.nb_lots_libres ? `<div class="repere-cle"><b>${nb(p.nb_lots_libres)}</b><span>${p.nb_lots_libres > 1 ? 'logements disponibles' : 'logement disponible'}</span></div>` : ''}
-    ${p.livraison ? `<div class="repere-cle"><b>${esc(p.livraison.replace(/ trimestre /, ' trim. '))}</b><span>livraison prévue</span></div>` : ''}
+    ${p.livraison ? `<div class="repere-cle"><b>${esc(p.livraison.replace(/ trimestre /, ' trim. '))}</b><span>${dejaLivre(p) ? 'programme déjà livré' : 'livraison prévue'}</span></div>` : ''}
     ${surfaces ? `<div class="repere-cle"><b>${surfaces}</b><span>surfaces disponibles</span></div>` : ''}
-    ${p.gare ? `<div class="repere-cle"><b>${p.gare_minutes_a_pied ? p.gare_minutes_a_pied + ' min' : 'À côté'}</b><span>à pied de ${esc(p.gare)}</span></div>` : ''}
+    ${p.gare ? `<div class="repere-cle"><b>${p.gare_minutes_a_pied ? p.gare_minutes_a_pied + ' min' : 'À côté'}</b><span>à pied ${esc(deGare(p.gare))}</span></div>` : ''}
   </div>
   ${typos.length ? `<section class="immeuble" id="immeuble">
    <div class="vue">
@@ -617,6 +622,14 @@ for (const d of villes) {
   for (const p of d.programmes) {
     fs.mkdirSync(path.join(ICI, d.slug, p.slug), { recursive: true });
     fs.writeFileSync(path.join(ICI, d.slug, p.slug, 'index.html'), pageProgramme(d, p));
+  }
+  // Une page de programme qui n'est plus dans les données (programme parti de l'offre, ancien essai) ne reste pas en ligne :
+  // on retire les dossiers fabriqués (un seul fichier index.html) qui ne sont plus dans la liste.
+  const gardes = new Set(d.programmes.map(p => p.slug));
+  for (const e of fs.readdirSync(path.join(ICI, d.slug), { withFileTypes: true })) {
+    if (!e.isDirectory() || gardes.has(e.name)) continue;
+    const dir = path.join(ICI, d.slug, e.name);
+    if (fs.readdirSync(dir).join() === 'index.html') fs.rmSync(dir, { recursive: true });
   }
 }
 villes.sort((a, b) => a.ville.localeCompare(b.ville, 'fr'));

@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 // Met à jour les pages ville /neuf/ depuis la base, avec garde-fous (option « automatique » choisie par Alex le 25/11/2026).
-//   node neuf/publier.js                     lit la base (SUPABASE_SERVICE_KEY obligatoire), écrit neuf/donnees/<slug>.json, lance fabriquer.js
-//   node neuf/publier.js --alerte            en cas d'arrêt, ajoute aussi une étape dans la todo d'Alex (CRM)
+//   node neuf/publier.js                     lit la base avec la clé publique du site (la même que dans les pages), écrit neuf/donnees/<slug>.json, lance fabriquer.js
 //   node neuf/publier.js --depuis <dossier>  essai sans base : lit <dossier>/villes.json et <dossier>/<slug>.json
 // Un garde-fou qui se déclenche arrête TOUT : rien n'est écrit, rien n'est publié, code de sortie 1.
-// Aucun secret dans ce fichier : la clé de service vient de l'environnement (secret GitHub).
+// Aucun secret : la clé publique ne lit que les villes à l'état « publiee » (fonctions neuf_villes_publiees et neuf_ville_publiee).
+// Un arrêt fait échouer la tâche GitHub : c'est le mail d'échec de GitHub qui prévient Alex.
 'use strict';
 const fs = require('fs');
 const path = require('path');
@@ -13,17 +13,15 @@ const { spawnSync } = require('child_process');
 const ICI = __dirname;
 const DONNEES = path.join(ICI, 'donnees');
 const BASE = process.env.SUPABASE_URL || 'https://hydqfbxdtpmbuooexekp.supabase.co';
-const CLE = process.env.SUPABASE_SERVICE_KEY || '';
+const CLE = process.env.SUPABASE_PUBLIC_KEY || 'sb_publishable_hD_52JIZ-4b9gHIV3lXpVw_gbrmi0VL'; // clé publique (publishable), faite pour être lue dans les pages
 const SEUIL_BAISSE = 0.30; // une ville qui perd plus de 30 % de ses logements d'un coup n'est pas publiée
 const args = process.argv.slice(2);
-const ALERTE = args.includes('--alerte');
 const DEPUIS = args.includes('--depuis') ? args[args.indexOf('--depuis') + 1] : null;
 
 class Arret extends Error {}
 const arret = m => { throw new Arret(m); };
 
 async function rest(chemin, opts = {}) {
-  if (!CLE) arret('SUPABASE_SERVICE_KEY absente');
   const r = await fetch(BASE + '/rest/v1/' + chemin, { ...opts, headers: { apikey: CLE, Authorization: 'Bearer ' + CLE, 'Content-Type': 'application/json', ...(opts.headers || {}) } });
   if (!r.ok) arret('la base répond ' + r.status + ' sur ' + chemin.split('?')[0]);
   const t = await r.text();
@@ -84,11 +82,11 @@ async function lireVilles() {
     const liste = JSON.parse(fs.readFileSync(path.join(DEPUIS, 'villes.json'), 'utf8'));
     return liste.map(v => ({ ...v, json: JSON.parse(fs.readFileSync(path.join(DEPUIS, v.slug + '.json'), 'utf8')) }));
   }
-  const liste = await rest('neuf_villes?etat=eq.publiee&select=ville,slug,insee&order=slug');
+  const liste = await rest('rpc/neuf_villes_publiees', { method: 'POST', body: '{}' });
   if (!liste.length) arret('aucune ville au statut « publiee » dans la base (anormal : Colombes au moins)');
   const out = [];
   for (const v of liste) {
-    const json = await rest('rpc/neuf_ville_public', { method: 'POST', body: JSON.stringify({ p_ville: v.slug }) });
+    const json = await rest('rpc/neuf_ville_publiee', { method: 'POST', body: JSON.stringify({ p_ville: v.slug }) });
     if (!json) arret(v.ville + ' : la base ne rend rien pour cette ville');
     out.push({ ...v, json });
   }
@@ -96,17 +94,6 @@ async function lireVilles() {
 }
 
 function lire(f) { try { return fs.readFileSync(f, 'utf8'); } catch (e) { return null; } }
-
-async function alerter(raison) {
-  if (!ALERTE || DEPUIS || !CLE) return;
-  try {
-    const sujet = 'Pages ville';
-    const etape = 'Mise à jour automatique arrêtée, rien n\'a été publié : ' + raison;
-    const deja = await rest('gerant_todo?sujet=eq.' + encodeURIComponent(sujet) + '&fait_le=is.null&etape=like.' + encodeURIComponent('Mise à jour automatique arrêtée*') + '&select=id');
-    if (deja && deja.length) return; // une alerte non traitée suffit, pas d'empilement
-    await rest('gerant_todo', { method: 'POST', body: JSON.stringify({ sujet, etape, ordre: 0, cree_par: 'Robot pages ville' }) });
-  } catch (e) { console.error('alerte todo impossible : ' + e.message); }
-}
 
 (async () => {
   const villes = await lireVilles();
@@ -137,6 +124,5 @@ async function alerter(raison) {
 })().catch(async e => {
   const raison = e instanceof Arret ? e.message : 'erreur inattendue : ' + e.message;
   console.error('ARRÊT : ' + raison);
-  await alerter(raison);
   process.exit(1);
 });
