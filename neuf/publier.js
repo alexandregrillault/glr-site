@@ -70,11 +70,14 @@ function controlerChute(d, ville, avant) {
   if (pa >= 3 && pn < pa * (1 - SEUIL_BAISSE)) arret(ville + ' : ' + pa + ' programmes avant, ' + pn + ' maintenant (plus de 30 % de baisse d\'un coup)');
 }
 
-function controlerRelevés(d, ville) {
+// Relevé de cartes manquant : la ville n'est pas prête côté site, on la laisse de côté (elle sera fabriquée quand son relevé existera)
+// sans bloquer les autres villes. Retourne le nom du relevé manquant, ou null.
+function releveManquant(d, ville) {
   if (!d.insee) arret(ville + ' : pas de code INSEE dans les données');
   for (const dossier of ['contours', 'lieux', 'parcs']) {
-    if (!fs.existsSync(path.join(DONNEES, dossier, d.insee + '.json'))) arret(ville + ' : relevé public manquant (' + dossier + '/' + d.insee + '.json)');
+    if (!fs.existsSync(path.join(DONNEES, dossier, d.insee + '.json'))) return dossier + '/' + d.insee + '.json';
   }
+  return null;
 }
 
 async function lireVilles() {
@@ -106,7 +109,7 @@ function lire(f) { try { return fs.readFileSync(f, 'utf8'); } catch (e) { return
     const f = path.join(DONNEES, v.slug + '.json');
     const avant = lire(f);
     controlerChute(d, v.ville || v.slug, avant ? JSON.parse(avant) : null);
-    controlerRelevés(d, v.ville || v.slug);
+    { const m = releveManquant(d, v.ville || v.slug); if (m) { console.log('Ville laissée de côté, relevé de cartes manquant : ' + (v.ville || v.slug) + ' (' + m + ')'); continue; } }
     // Le fichier de données est public (servi tel quel) : aucun nom de promoteur ni de commercialisateur n'y figure (décision d'Alex du 25/11/2026).
     // On garde le nombre de vrais promoteurs, compté avant d'effacer.
     { const COMM = /^(iselection|accueil immobilier|valority|wemo)\b|agr[ée]gateur/i;
