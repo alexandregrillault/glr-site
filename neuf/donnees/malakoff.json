@@ -1,0 +1,235 @@
+{
+  "cp": "92240",
+  "maj": "2026-11-25",
+  "dept": "92",
+  "slug": "malakoff",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "92046",
+  "ville": "Malakoff",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {},
+    "typologies": {
+      "T1": 1,
+      "T2": 5,
+      "T3": 8,
+      "T4": 0,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 14
+  },
+  "dept_nom": "Hauts-de-Seine",
+  "programmes": [
+    {
+      "nom": "Le 103",
+      "gare": "Malakoff - Étienne Dolet (M13)",
+      "slug": "le-103",
+      "image": null,
+      "picking": false,
+      "pige_id": "6ca9ff2687c1",
+      "position": {
+        "approx": false,
+        "latitude": 48.816,
+        "longitude": 2.294
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [
+        {
+          "id": "5a45006c9561",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 29.46,
+          "exterieur": null
+        },
+        {
+          "id": "b6bd25fd0d1d",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.54,
+          "exterieur": null
+        },
+        {
+          "id": "15ccb35498b8",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.72,
+          "exterieur": null
+        },
+        {
+          "id": "455f5236d4eb",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.99,
+          "exterieur": null
+        },
+        {
+          "id": "ae98ea56af26",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.99,
+          "exterieur": null
+        },
+        {
+          "id": "18f34dab486b",
+          "typo": "T2",
+          "etage": 5,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 50.58,
+          "exterieur": null
+        },
+        {
+          "id": "08746147896c",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 59.46,
+          "exterieur": null
+        },
+        {
+          "id": "602024b6f883",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 59.46,
+          "exterieur": null
+        },
+        {
+          "id": "50805b0dc92d",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.3,
+          "exterieur": null
+        },
+        {
+          "id": "e45cab42e729",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.3,
+          "exterieur": null
+        },
+        {
+          "id": "b1ffa2791541",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.25,
+          "exterieur": null
+        },
+        {
+          "id": "e040cba01bbe",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.61,
+          "exterieur": null
+        },
+        {
+          "id": "b4b2667355b2",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.92,
+          "exterieur": null
+        },
+        {
+          "id": "10a00dafe838",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.38,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": null,
+      "nb_lots_libres": 14,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 4
+    },
+    {
+      "nom": "Clos Aragon",
+      "gare": "Vanves - Malakoff (ligne N)",
+      "slug": "clos-aragon",
+      "image": null,
+      "picking": true,
+      "pige_id": "bf5e3315667e",
+      "position": {
+        "approx": true,
+        "latitude": 48.817,
+        "longitude": 2.294
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 3
+    },
+    {
+      "nom": "Villa Peri",
+      "gare": "Vanves - Malakoff (ligne N)",
+      "slug": "villa-peri",
+      "image": null,
+      "picking": true,
+      "pige_id": "ff5ff96618b0",
+      "position": {
+        "approx": true,
+        "latitude": 48.817,
+        "longitude": 2.294
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 3
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "cp": "92410",
+  "maj": "2026-11-25",
+  "dept": "92",
+  "slug": "ville-d-avray",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "92077",
+  "ville": "Ville-d'Avray",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 0,
+      "T3": 0,
+      "T4": 3,
+      "T5+": 3
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 6
+  },
+  "dept_nom": "Hauts-de-Seine",
+  "programmes": [
+    {
+      "nom": "L'Écrin des Étangs",
+      "gare": "Chaville Rive Droite (ligne U)",
+      "slug": "l-ecrin-des-etangs",
+      "image": null,
+      "picking": false,
+      "pige_id": "645b0acbd2a3",
+      "position": {
+        "approx": false,
+        "latitude": 48.821,
+        "longitude": 2.177
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "logements": [
+        {
+          "id": "db6371181b77",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 111.28,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "c46e4ca41015",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 121.06,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "b068f6a7795a",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 138.14,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "4b61405eee4b",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 137.14,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "ef1f69e5b506",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 137.14,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "56d1080d4849",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 137.2,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-1",
+      "nb_lots_libres": 6,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 16
+    }
+  ]
+}

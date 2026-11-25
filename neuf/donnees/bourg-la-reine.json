@@ -1,0 +1,201 @@
+{
+  "cp": "92340",
+  "maj": "2026-11-25",
+  "dept": "92",
+  "slug": "bourg-la-reine",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A bis",
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "92014",
+  "ville": "Bourg-la-Reine",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2028": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 2,
+      "T3": 4,
+      "T4": 4,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 10
+  },
+  "dept_nom": "Hauts-de-Seine",
+  "programmes": [
+    {
+      "nom": "L'avant-garde",
+      "gare": "Parc de Sceaux (RER B)",
+      "slug": "l-avant-garde",
+      "image": null,
+      "picking": false,
+      "pige_id": "47700a2792d9",
+      "position": {
+        "approx": false,
+        "latitude": 48.774,
+        "longitude": 2.314
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2028",
+      "logements": [
+        {
+          "id": "2d638512d162",
+          "typo": "T2",
+          "etage": 6,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 42.1,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "84e77855960f",
+          "typo": "T2",
+          "etage": 5,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 47.49,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "91f9ff1df798",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.45,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "8f174d8b12b1",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.5,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "97931ed73da5",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.5,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "32aa356386ab",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 71.14,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "708bfc5a940b",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 70.74,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "4f36ffdafb60",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 84.64,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "94e317baa860",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 84.83,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "c42143e8d879",
+          "typo": "T4",
+          "etage": 5,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 84.83,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2028-2",
+      "nb_lots_libres": 10,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 8
+    },
+    {
+      "nom": "À 10 min* du RER B",
+      "gare": "Bourg-la-Reine (RER B)",
+      "slug": "a-10-min-du-rer-b",
+      "image": null,
+      "picking": true,
+      "pige_id": "20d005015ad0",
+      "position": {
+        "approx": true,
+        "latitude": 48.78,
+        "longitude": 2.317
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 4
+    },
+    {
+      "nom": "Villa Condorcet",
+      "gare": "Bourg-la-Reine (RER B)",
+      "slug": "villa-condorcet",
+      "image": null,
+      "picking": true,
+      "pige_id": "6e76bcb581e4",
+      "position": {
+        "approx": true,
+        "latitude": 48.78,
+        "longitude": 2.317
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 4
+    }
+  ]
+}

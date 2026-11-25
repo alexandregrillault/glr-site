@@ -1,0 +1,206 @@
+{
+  "cp": "92150",
+  "maj": "2026-11-25",
+  "dept": "92",
+  "slug": "suresnes",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A bis",
+    "transports": [],
+    "tva_reduite": true
+  },
+  "insee": "92073",
+  "ville": "Suresnes",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 2,
+      "T3": 4,
+      "T4": 2,
+      "T5+": 2
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 2,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 10
+  },
+  "dept_nom": "Hauts-de-Seine",
+  "programmes": [
+    {
+      "nom": "Metamorphose",
+      "gare": "Belvédère (T2)",
+      "slug": "metamorphose",
+      "image": null,
+      "picking": false,
+      "pige_id": "3dc9a66ca77f",
+      "position": {
+        "approx": false,
+        "latitude": 48.873,
+        "longitude": 2.234
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "98d1c4b8efbc",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 44.9,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "e711230e9411",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 49.52,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "c0c7e2e4bea4",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.82,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "92df0e7aba11",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.59,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "2bfd39b656ef",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 67.91,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "63d47dcaeb98",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 71.75,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "971f0a44fab9",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 94.3,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "46743ea44923",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 102.87,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2026-3",
+      "nb_lots_libres": 8,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 9
+    },
+    {
+      "nom": "Horizon",
+      "gare": "Suresnes - Longchamp (T2)",
+      "slug": "horizon",
+      "image": null,
+      "picking": false,
+      "pige_id": "a7db1150a56a",
+      "position": {
+        "approx": false,
+        "latitude": 48.864,
+        "longitude": 2.217
+      },
+      "quartier": null,
+      "livraison": "3e trimestre 2027",
+      "logements": [
+        {
+          "id": "9da3510e6f68",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 133,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "a5620d71309a",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 144,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T5+"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2027-3",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 8
+    },
+    {
+      "nom": "Canopée",
+      "gare": "Suresnes Mont Valérien (ligne L)",
+      "slug": "canopee",
+      "image": null,
+      "picking": true,
+      "pige_id": "26565b9e65f4",
+      "position": {
+        "approx": true,
+        "latitude": 48.871,
+        "longitude": 2.218
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 3
+    }
+  ]
+}
