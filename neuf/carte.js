@@ -236,17 +236,26 @@ async function demarrer() {
 
   // Repères des programmes
   const marqueurs = [];
-  for (const v of villes) for (const p of v.p) {
+  // Programmes à la même adresse : un seul repère groupé (« 2 programmes »), au clic la liste des fiches (décision d'Alex du 25/11/2026)
+  const groupesProg = [];
+  for (const v of villes) { const parPlace = {}; for (const p of v.p) { const k = p.a.toFixed(4) + ',' + p.o.toFixed(4); (parPlace[k] = parPlace[k] || []).push(p); } for (const k in parPlace) groupesProg.push({ v, ps: parPlace[k] }); }
+  for (const { v, ps } of groupesProg) {
+    const p = ps[0];
     const el = document.createElement('button');
     el.type = 'button'; el.className = 'repere' + (p.k ? ' picking' : '') + (p.z ? ' approx' : '');
     // Au survol : nom du programme et date de livraison (ou « grille sur demande » pour un picking)
     { const info = document.createElement('span'); info.className = 'info-prog'; const b = document.createElement('b'); b.textContent = p.n; info.appendChild(b);
       info.appendChild(document.createTextNode(p.k ? 'Grille sur demande' : (p.l ? 'Livraison ' + p.l : 'Livraison à préciser')));
       if (p.z) { const ap = document.createElement('i'); ap.textContent = 'Emplacement approximatif'; ap.style.cssText = 'display:block;font-style:normal;opacity:.8;font-size:.72rem'; info.appendChild(ap); }
+      if (ps.length > 1) {
+        el.classList.add('groupe'); el.dataset.n = ps.length; info.textContent = ''; const t = document.createElement('b'); t.textContent = ps.length + ' programmes ici'; info.appendChild(t);
+        ps.forEach(q => { const li = document.createElement('span'); li.className = 'choix-prog'; li.textContent = q.n + ' · ' + (q.k ? 'grille sur demande' : q.d); li.addEventListener('click', ev => { ev.stopPropagation(); location.href = '/neuf/' + q.u; }); info.appendChild(li); });
+      }
       el.appendChild(info);
-      el.setAttribute('aria-label', p.n + (p.l ? ', livraison ' + p.l : '')); }
+      el.setAttribute('aria-label', ps.length > 1 ? ps.length + ' programmes : ' + ps.map(q => q.n).join(', ') : p.n + (p.l ? ', livraison ' + p.l : '')); }
     el.addEventListener('click', ev => {
       ev.stopPropagation();
+      if (ps.length > 1) { el.classList.toggle('ouvert'); return; }
       if (p.k) { location.href = '/neuf/' + p.u; return; }
       // Un court zoom sur le programme, puis sa page (fondu entre les deux pages)
       marqueurs.forEach(x => { if (x.p !== p) x.m.getElement().style.opacity = '0.25'; });
