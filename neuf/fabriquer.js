@@ -602,7 +602,10 @@ var d=new URLSearchParams(location.search).get('ville');if(d){var v=V.filter(fun
 
 const dossier = path.join(ICI, 'donnees');
 // Villes publiées : on commence par Colombes seule (demande d'Alex du 24/11/2026). Les autres fichiers restent prêts.
-const VILLES_ACTIVES = ['colombes'];
+// Le générateur automatique (neuf/publier.js) écrit donnees/villes-publiees.json (liste des villes passées en « publiee » dans la base) ;
+// sans ce fichier, Colombes seule.
+const LISTE_PUBLIEES = path.join(dossier, 'villes-publiees.json');
+const VILLES_ACTIVES = fs.existsSync(LISTE_PUBLIEES) ? JSON.parse(fs.readFileSync(LISTE_PUBLIEES, 'utf8')).villes : ['colombes'];
 const villes = fs.readdirSync(dossier).filter(f => f.endsWith('.json') && VILLES_ACTIVES.includes(f.replace(/\.json$/, ''))).sort().map(f => {
   const d = JSON.parse(fs.readFileSync(path.join(dossier, f), 'utf8'));
   verifier(d, f);

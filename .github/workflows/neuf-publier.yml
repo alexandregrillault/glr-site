@@ -1,0 +1,46 @@
+# Met à jour les pages ville /neuf/ depuis la base (option « automatique avec garde-fous », décision d'Alex du 25/11/2026).
+# Ne se lance QUE sur appel (workflow_dispatch) : aucun horaire. L'appel vient de la base après le « publie » de la pige,
+# ou à la main depuis l'onglet Actions. Ne touche qu'à neuf/donnees/<ville>.json, neuf/donnees/villes-publiees.json et aux pages neuf/.
+# Secret à créer dans le dépôt : SUPABASE_SERVICE_KEY (clé de service, jamais écrite dans un fichier).
+name: Pages ville - mise à jour
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: neuf-publier
+  cancel-in-progress: false
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      # Lit la base, applique les garde-fous, fabrique les pages. En cas d'arrêt : rien n'est écrit, le travail passe en échec
+      # (GitHub envoie un mail) et une étape « Pages ville » est ajoutée à la todo d'Alex dans le CRM.
+      - name: Générer
+        env:
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: node neuf/publier.js --alerte
+      # Dernier garde-fou : rien en dehors de neuf/ ne doit avoir changé.
+      - name: Contrôler ce qui change
+        run: |
+          git add -A neuf
+          if git status --porcelain | grep -v '^[AMD]  neuf/' | grep -q .; then
+            echo "Des fichiers hors de neuf/ ont changé, arrêt."; git status --short; exit 1
+          fi
+          if git diff --cached --quiet; then echo "Rien n'a changé."; fi
+      - name: Enregistrer
+        run: |
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name "robot pages ville"
+          git config user.email "noreply@github.com"
+          git commit -m "Pages ville : mise à jour automatique depuis la base"
+          git push origin HEAD:main
