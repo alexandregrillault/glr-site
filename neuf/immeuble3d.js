@@ -2,7 +2,7 @@
 // Données : <script type="application/json" id="logements-data">. Prix : window.GLR_PRIX (servi par la base).
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { construire, decorRue, COULEURS, soleil, versSoleil, lumiere, heureTexte } from './maquette.js';
+const { construire, decorRue, COULEURS, soleil, versSoleil, lumiere, heureTexte } = await import('./maquette.js' + new URL(import.meta.url).search); // même version que ce fichier
 
 const zone = document.getElementById('imm3d');
 const donnees = document.getElementById('logements-data');

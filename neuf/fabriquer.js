@@ -13,6 +13,8 @@ const AFFICHER = { prixAPartirDe: false, prixM2: false };
 // Prix des logements (décision d'Alex du 24/11/2026 : prix visibles sans compte, plans avec compte).
 // Les prix ne sont JAMAIS écrits dans les pages ni dans le dépôt : la page les demande à l'ouverture
 // à l'edge function ci-dessous (limite contre l'aspiration en masse). Fonction à créer par la session CRM.
+// Empreinte des scripts communs : l'adresse des scripts change dès qu'un script change, donc la page et ses scripts changent toujours ensemble (cache de 10 minutes de GitHub Pages)
+const VERSION_JS = require('crypto').createHash('sha1').update(['carte.js', 'immeuble3d.js', 'maquette.js', 'programme.js', 'visite3d.js'].map(n => fs.readFileSync(path.join(__dirname, n), 'utf8')).join('\n')).digest('hex').slice(0, 10);
 const PRIX_URL = 'https://hydqfbxdtpmbuooexekp.supabase.co/functions/v1/neuf-prix';
 const CONTACT = { tel: '+33614550273', telAffiche: '06 14 55 02 73', mail: 'agl@glrimmobilier.com' };
 
@@ -431,7 +433,7 @@ ${pied}
 <script type="application/ld+json">${JSON.stringify(ld)}</script>
 ${dv.p.length ? `${LIBS}
 <script type="application/json" id="carte-data">${JSON.stringify({ ville: d.slug, villes: [dv] }).replace(/</g, '\\u003c')}</script>
-<script type="module" src="/neuf/carte.js"></script>` : ''}
+<script type="module" src="/neuf/carte.js?v=${VERSION_JS}"></script>` : ''}
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;
@@ -587,8 +589,8 @@ ${p.visite_3d ? `<section class="appel" id="compte">
 ${pied}
 ${typos.length ? `${`<script type="application/json" id="logements-data">${JSON.stringify((p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? null : l.etage, x: l.exterieur || '' }))).replace(/</g, '\\u003c')}</script>`}
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-${p.visite_3d ? '' : '<script src="/neuf/programme.js" defer></script>'}
-${p.visite_3d ? '<script src="/neuf/visite3d.js" defer></script>' : ''}
+${p.visite_3d ? '' : '<script src="/neuf/programme.js?v=' + VERSION_JS + '" defer></script>'}
+${p.visite_3d ? '<script src="/neuf/visite3d.js?v=' + VERSION_JS + '" defer></script>' : ''}
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+'\u00a0€'};
 var poser=function(j){j=j||{};var a=j.prix||{},b=j.prix_tva_reduite||{};window.GLR_PRIX=a;window.GLR_PRIX_R=b;var deux=false;
@@ -634,7 +636,7 @@ ${villes.map(d => `    <a href="/neuf/${d.slug}/"><b>${esc(d.ville)}</b><span>${
 ${pied}
 ${LIBS}
 <script type="application/json" id="carte-data">${JSON.stringify({ villes: DV }).replace(/</g, '\\u003c')}</script>
-<script type="module" src="/neuf/carte.js"></script>
+<script type="module" src="/neuf/carte.js?v=${VERSION_JS}"></script>
 <script>
 (function(){
 var V=${JSON.stringify(V).replace(/</g, '\\u003c')};

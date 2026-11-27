@@ -1,6 +1,7 @@
 // Visite 3D d'un programme : accès par formulaire (une fois), puis le fichier est demandé à la fonction plans-3d
 // (lien temporaire de 5 minutes), téléchargé, et ouvert dans un cadre par un blob. Aucun plan n'est dans ce dépôt public.
 (function () {
+  var vq = ''; try { vq = new URL(document.currentScript.src).search; } catch (e) {} // ?v=empreinte, repris pour programme.js chargé en repli
   var FN = 'https://hydqfbxdtpmbuooexekp.supabase.co/functions/v1/plans-3d';
   var CLE = 'glr3d_jeton';
   var racine = document.getElementById('compte'), zone = document.getElementById('visite3d');
@@ -29,7 +30,7 @@
     if (!v) return;
     if (z) z.hidden = true; v.hidden = false;
     if (secoursFait) return; secoursFait = true;
-    var sc = document.createElement('script'); sc.src = '/neuf/programme.js'; document.body.appendChild(sc);
+    var sc = document.createElement('script'); sc.src = '/neuf/programme.js' + vq; document.body.appendChild(sc);
   }
   // L'immeuble s'ouvre SANS formulaire (et sans jeton s'il n'y en a pas) ; le formulaire n'est demandé que pour un logement.
   function ouvrir(lot, sansDefiler) {
@@ -89,9 +90,12 @@
   var f = document.getElementById('f3d'); if (!f) return;
   f.addEventListener('submit', function (ev) {
     ev.preventDefault();
+    try { envoyer(); } catch (e) { var er = document.getElementById('f3d-err'); if (er) er.textContent = 'L\u2019envoi n\u2019a pas marché. Réessayez, ou appelez-nous.'; }
+  });
+  function envoyer() {
     var err = document.getElementById('f3d-err'), go = f.querySelector('button[type=submit]');
-    function v(n) { return (f.elements[n].value || '').trim(); }
-    var d = { action: 'inscrire', prenom: v('prenom'), telephone: v('telephone'), email: v('email'), accord: f.elements.accord.checked, p: prog,
+    function v(n) { var e = f.elements[n]; return e && e.value ? String(e.value).trim() : ''; } // un champ absent ne fait jamais planter l'envoi
+    var d = { action: 'inscrire', prenom: v('prenom'), telephone: v('telephone'), email: v('email'), accord: !!(f.elements.accord && f.elements.accord.checked), p: prog,
       programme: f.getAttribute('data-prog') || '', ville: f.getAttribute('data-ville') || '', societe: '', hp_glr: '', delai_ms: Date.now() - debut };
     if (!d.prenom) { err.textContent = 'Indiquez votre prénom.'; return; }
     if (d.telephone.replace(/\D/g, '').length < 9) { err.textContent = 'Indiquez un numéro de téléphone valide.'; return; }
@@ -110,6 +114,6 @@
         go.disabled = false; go.textContent = 'Créer mon accès';
         err.textContent = e.message === '429' ? 'Trop d’envois d’un coup : réessayez dans quelques minutes.' : 'L’envoi n’a pas marché. Réessayez, ou appelez-nous.';
       });
-  });
+  }
   if (lireJeton()) { var ok = document.getElementById('f3d-ok'); if (ok) ok.hidden = false; f.hidden = true; }
 })();

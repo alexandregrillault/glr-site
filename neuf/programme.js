@@ -2,6 +2,7 @@
 // liste des logements. Les trois se répondent : un logement choisi dans l'un est mis en avant dans les autres.
 // Données : <script type="application/json" id="logements-data"> ; prix : window.GLR_PRIX (servis par la base).
 (function () {
+  var vq = ''; try { vq = new URL(document.currentScript.src).search; } catch (e) {} // ?v=empreinte : les scripts chargés ensuite portent la même version
   var src = document.getElementById('logements-data'), svg = document.getElementById('plan');
   if (!src || !svg) return;
   var L = JSON.parse(src.textContent), NS = 'http://www.w3.org/2000/svg';
@@ -140,5 +141,5 @@
   // Si la 3D ne peut pas s'afficher (appareil ancien), le plan dessiné ci-dessus prend sa place.
   var secours = function () { svg.hidden = false; var z = document.getElementById('imm3d'); if (z) z.hidden = true; var v = document.querySelector('.vues'); if (v) v.hidden = true; document.body.classList.add('sans-3d'); };
   window.addEventListener('glr-3d-ko', secours);
-  import('/neuf/immeuble3d.js').catch(secours);
+  import('/neuf/immeuble3d.js' + vq).catch(secours);
 })();
