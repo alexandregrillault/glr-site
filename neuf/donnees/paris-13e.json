@@ -1,0 +1,326 @@
+{
+  "cp": "75013",
+  "maj": "2026-11-27",
+  "dept": "75",
+  "slug": "paris-13e",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A bis",
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "75113",
+  "ville": "Paris 13e",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2028": 1
+    },
+    "typologies": {
+      "T1": 3,
+      "T2": 6,
+      "T3": 8,
+      "T4": 2,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 2,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 19
+  },
+  "dept_nom": "Paris",
+  "programmes": [
+    {
+      "nom": "Parc en ciel",
+      "gare": "Avenue de France (T3a)",
+      "slug": "parc-en-ciel",
+      "image": null,
+      "picking": false,
+      "pige_id": "3ddd02415786",
+      "position": {
+        "approx": false,
+        "latitude": 48.827,
+        "longitude": 2.383
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "fdbea8b477cb",
+          "typo": "T3",
+          "etage": 12,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 66.03,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "f12305363482",
+          "typo": "T3",
+          "etage": 11,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 71.7,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2026-3",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 3
+    },
+    {
+      "nom": "Passage Foubert",
+      "gare": "Tolbiac (M7)",
+      "slug": "passage-foubert",
+      "image": null,
+      "picking": false,
+      "pige_id": "929433c5480b",
+      "position": {
+        "approx": false,
+        "latitude": 48.826,
+        "longitude": 2.353
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2028",
+      "logements": [
+        {
+          "id": "c8ff5e611f65",
+          "p2d": true,
+          "typo": "T1",
+          "etage": 0,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.87,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "027d347c4d14",
+          "p2d": true,
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 30.08,
+          "exterieur": null
+        },
+        {
+          "id": "fd5a12a9cb06",
+          "p2d": true,
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 30.08,
+          "exterieur": null
+        },
+        {
+          "id": "6c01bd1d6ce1",
+          "p2d": true,
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 40.75,
+          "exterieur": null
+        },
+        {
+          "id": "d79e7398a38a",
+          "p2d": true,
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 40.76,
+          "exterieur": null
+        },
+        {
+          "id": "44d3503f50b6",
+          "p2d": true,
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.59,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "88486046bb53",
+          "p2d": true,
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.56,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "006cac61bd16",
+          "p2d": true,
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 47.9,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "18e8fb4c07a3",
+          "p2d": true,
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 47.93,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "fa18a0739538",
+          "p2d": true,
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 53.33,
+          "exterieur": null
+        },
+        {
+          "id": "246a6764339b",
+          "p2d": true,
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 53.97,
+          "exterieur": null
+        },
+        {
+          "id": "cc2fb27aaff2",
+          "p2d": true,
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 54.02,
+          "exterieur": null
+        },
+        {
+          "id": "ac17fecadd48",
+          "p2d": true,
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 57.62,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "f9fe91180ebf",
+          "p2d": true,
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 57.62,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "6ce62bba6564",
+          "p2d": true,
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.81,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "0c3c1f24ddc1",
+          "p2d": true,
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 73.61,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "15208dbca916",
+          "p2d": true,
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 92.48,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2028-1",
+      "nb_lots_libres": 17,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 5
+    },
+    {
+      "nom": "The Wood Life",
+      "gare": "Châtelet (M14)",
+      "slug": "the-wood-life",
+      "image": null,
+      "picking": true,
+      "pige_id": "100310a188fb",
+      "position": {
+        "approx": true,
+        "latitude": 48.859,
+        "longitude": 2.347
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 2
+    },
+    {
+      "nom": "Woodeum Paris Rive Gauche",
+      "gare": "Châtelet (M14)",
+      "slug": "woodeum-paris-rive-gauche",
+      "image": null,
+      "picking": true,
+      "pige_id": "5fd894eae852",
+      "position": {
+        "approx": true,
+        "latitude": 48.859,
+        "longitude": 2.347
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 2
+    }
+  ]
+}

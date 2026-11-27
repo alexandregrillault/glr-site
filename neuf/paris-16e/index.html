@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Immobilier neuf à Paris 16e (75016) : 3 programmes | GLR Immobilier</title>
+<meta name="description" content="3 programmes neufs et 20 logements disponibles à Paris 16e. Plans et prix de tous les promoteurs, mis à jour à chaque pige par GLR Immobilier.">
+<link rel="canonical" href="https://www.glrimmobilier.com/neuf/paris-16e/">
+<meta property="og:title" content="Immobilier neuf à Paris 16e (75016) : 3 programmes | GLR Immobilier">
+<meta property="og:description" content="3 programmes neufs et 20 logements disponibles à Paris 16e. Plans et prix de tous les promoteurs, mis à jour à chaque pige par GLR Immobilier.">
+<meta property="og:url" content="https://www.glrimmobilier.com/neuf/paris-16e/">
+<meta property="og:image" content="https://www.glrimmobilier.com/logo-glr.png">
+<link rel="icon" type="image/png" href="/logo-glr.png">
+<meta name="theme-color" content="#F4F0E8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Archivo:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<style>
+/* Fondu enchaîné entre deux pages du site (de la carte à l'immeuble) : pas d'écran vide */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.7s;animation-timing-function:ease-in-out}
+/* le cadre de la carte se transforme en cadre de l'immeuble (même élément d'une page à l'autre) */
+#carte,#imm3d{view-transition-name:scene}
+::view-transition-group(scene){animation-duration:.8s;animation-timing-function:cubic-bezier(.4,0,.2,1)}
+::view-transition-old(scene),::view-transition-new(scene){animation-duration:.8s;height:100%;object-fit:cover}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+
+:root{color-scheme:light;--bleu:#005875;--laiton:#B0894C;--laiton-texte:#8A6A2F;--fond:#F4F0E8;--carte:#FBF8F1;--texte:#161A1E;--discret:#616B75;--trait:#D8D2C5;--teinte:#DCE7EC;
+  --display:"Bodoni Moda","Didot","Times New Roman",serif;--body:"Archivo","Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fond);color:var(--texte);font-family:var(--body);font-size:16px;line-height:1.6}
+a{color:var(--bleu)}
+.test{background:#FFF3CD;color:#5C4400;text-align:center;font-size:.85rem;padding:6px 16px;border-bottom:1px solid #E8D48A}
+header{padding:18px 16px;border-bottom:1px solid var(--trait);display:flex;align-items:center;justify-content:space-between;gap:12px}
+header img{display:block;height:48px;width:auto}
+header .tel{font-size:.9rem;font-weight:600;text-decoration:none;white-space:nowrap}
+main{max-width:1040px;margin:0 auto;padding:28px 16px 56px}
+.fil{font-size:.82rem;color:var(--discret);margin:0 0 14px}
+.fil a{color:var(--discret)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(1.9rem,6vw,2.8rem);line-height:1.12;margin:0 0 .5rem}
+.chapo{color:var(--discret);margin:0 0 1.4rem;max-width:720px}
+.filet{width:56px;height:2px;background:var(--laiton);margin:0 0 1.2rem;border:0}
+h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 .9rem;scroll-margin-top:12px}
+.chiffres{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1rem}
+.chiffre{background:var(--carte);border:1px solid var(--trait);border-radius:8px;padding:14px}
+.chiffre b{display:block;font-family:var(--display);font-weight:500;font-size:1.7rem;color:var(--bleu);line-height:1.1}
+.chiffre span{font-size:.85rem;color:var(--discret)}
+.deux{display:grid;gap:12px}
+.bloc{background:var(--carte);border:1px solid var(--trait);border-radius:8px;padding:16px}
+.bloc h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--laiton-texte);margin:0 0 .7rem;font-weight:600}
+.barre{display:grid;grid-template-columns:44px 1fr 44px;align-items:center;gap:8px;font-size:.9rem;margin:6px 0}
+.barre i{display:block;height:10px;border-radius:5px;background:var(--teinte);overflow:hidden}
+.barre i s{display:block;height:100%;background:var(--bleu);text-decoration:none}
+.barre em{font-style:normal;text-align:right;color:var(--discret)}
+.guide p{margin:0 0 .8rem}
+.guide ul{margin:0 0 .8rem;padding-left:1.1rem}
+.filtres{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.filtres button{font:inherit;font-size:.9rem;padding:8px 14px;border-radius:20px;border:1px solid var(--trait);background:var(--carte);color:var(--texte);cursor:pointer}
+.filtres button[aria-pressed=true]{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.liste{display:grid;gap:12px}
+.prog{background:var(--carte);border:1px solid var(--trait);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.prog h3{font-family:var(--display);font-weight:500;font-size:1.25rem;margin:0;line-height:1.2}
+.prog .qui{font-size:.88rem;color:var(--discret);margin:0}
+.prog dl{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;margin:0;font-size:.92rem}
+.prog dt{color:var(--discret)}
+.prog dd{margin:0}
+.puces{display:flex;flex-wrap:wrap;gap:6px}
+.puce{font-size:.8rem;padding:3px 9px;border-radius:12px;background:var(--teinte);color:var(--bleu);font-weight:600}
+.puce.laiton{background:transparent;border:1px solid var(--laiton);color:var(--laiton-texte)}
+.prog .bas{margin-top:auto;display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding-top:8px;border-top:1px solid var(--trait)}
+.prog .prix{font-weight:600}
+.prog .prix small{display:block;font-weight:400;font-size:.78rem;color:var(--discret)}
+.prog .dispo{font-size:.88rem;color:var(--bleu);font-weight:600;white-space:nowrap}
+.vide{display:none;color:var(--discret);padding:12px 0}
+.appel{background:var(--bleu);color:#fff;border-radius:10px;padding:22px 18px;margin:2.4rem 0 0}
+.appel h2{color:#fff;margin:0 0 .5rem}
+.appel p{margin:0 0 1rem;color:var(--teinte)}
+.appel .boutons{display:flex;flex-wrap:wrap;gap:10px}
+.appel a{display:inline-block;padding:12px 18px;border-radius:6px;font-weight:600;text-decoration:none}
+.appel a.plein{background:#fff;color:var(--bleu)}
+.appel a.creux{border:1px solid #fff;color:#fff}
+.immeuble3d{position:relative;min-height:260px;background:var(--carte);border:1px solid var(--trait);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.immeuble3d iframe{display:block;width:100%;height:min(78vh,720px);border:0;background:var(--carte)}
+.immeuble3d iframe:not([src]){display:none}
+.immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
+.immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
+.immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
+[hidden]{display:none!important}
+.onglets3d{display:flex;gap:8px;padding:10px;width:100%;box-sizing:border-box}
+.onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
+.planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.pagesplan{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin:0 0 8px}
+.pagesplan button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 12px;font:inherit;font-weight:600;cursor:pointer}
+.pagesplan button:disabled{opacity:.4;cursor:default}
+.planbox img{display:block;width:100%;height:auto;margin:0 auto}
+.planbox img:not([src]){display:none}
+.planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:min(62vh,560px);min-height:380px}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0 4px}}
+.immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
+.lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+table.lots td.plan{white-space:normal;text-align:right}
+table.lots .prix-lot .tva small{display:block}
+section.typo{overflow-x:auto}
+@media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
+.visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
+.visite3d[hidden]{display:none}
+.visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.visite3d h2{margin:0;font-size:1.2rem}
+.visite3d .ferme3d{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.visite3d .etat3d{margin:0 0 10px;color:var(--discret)}
+.visite3d iframe{display:block;width:100%;height:min(78vh,720px);border:1px solid var(--trait);border-radius:8px;background:#fff}
+.form3d[hidden],.ok3d[hidden]{display:none}
+.ok3d button.plein{border:0;background:#fff;color:var(--bleu);border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer;margin-bottom:1rem}
+.form3d{display:grid;gap:10px;margin:0 0 1rem;max-width:460px}
+.form3d label{display:grid;gap:4px;color:#fff;font-weight:600}
+.form3d input:not([type=checkbox]){padding:11px 12px;border:0;border-radius:6px;font:inherit;color:#161A1E;background:#fff}
+.form3d .accord{display:flex;gap:10px;align-items:flex-start;font-weight:400;color:var(--teinte)}
+.form3d .accord input{margin-top:4px;flex:none}
+.form3d .erreur3d{margin:0;color:#fff;font-weight:600;min-height:1.2em}
+.form3d button.plein{justify-self:start;background:#fff;color:var(--bleu);border:0;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
+.carte{height:420px;border-radius:8px;border:1px solid var(--trait);margin:0 0 .6rem;z-index:0}
+.carte-zone{position:relative}
+.maplibregl-map{font-family:var(--body);border-radius:8px}
+.maplibregl-ctrl-attrib{font-size:10px;background:rgba(251,248,241,.85)!important}
+button.repere{padding:0;cursor:pointer;display:block}
+button.repere.approx{background:#fff;border:3px dashed var(--bleu);box-sizing:border-box}
+button.repere.approx.picking{border-color:var(--laiton)}
+.fil-carte{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:.5rem 0 0;font-size:.92rem;color:var(--discret);min-height:2.2em}
+.boutons-carte{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.fil-carte b{color:var(--bleu);font-weight:600}
+.fil-carte button{font:inherit;font-size:.85rem;background:transparent;border:1px solid var(--trait);border-radius:6px;padding:6px 10px;color:var(--texte);cursor:pointer;white-space:nowrap}
+.etiquette-prog{background:#005875;color:#fff;font-family:var(--display);font-size:1rem;font-weight:500;padding:5px 12px;border-radius:6px;white-space:nowrap;box-shadow:0 3px 10px rgba(22,26,30,.25);animation:nait .5s cubic-bezier(.3,1.5,.5,1) 1.8s both;pointer-events:none}
+.etiquette-prog::after{content:"";position:absolute;left:50%;top:100%;margin-left:-6px;border:6px solid transparent;border-top-color:#005875}
+.num-dep{font-family:var(--body);font-weight:600;font-size:1.05rem;color:#6E7884;text-shadow:0 0 4px #fff,0 0 8px #fff;pointer-events:none}
+button.repere.pop{animation:pop .55s cubic-bezier(.3,1.6,.5,1) both}
+button.repere{overflow:visible} /* surtout pas de position ici : la carte place elle-même chaque repère */
+button.repere.nait{animation:nait .7s cubic-bezier(.3,1.5,.5,1) .25s both}
+button.repere.nait::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;border:2px solid currentColor;color:var(--bleu);animation:onde 1.1s ease-out both;pointer-events:none}
+button.repere.picking.nait::after{color:var(--laiton)}
+@keyframes nait{from{scale:0;opacity:0}to{scale:1;opacity:1}}
+@keyframes onde{from{scale:.4;opacity:.9}to{scale:4.5;opacity:0}}
+.lieu{width:30px;height:30px;border-radius:50%;background:#fff;border:2px solid var(--trait);display:grid;place-items:center;box-shadow:0 2px 6px rgba(22,26,30,.2);animation:nait .5s cubic-bezier(.3,1.5,.5,1) both}
+.lieu svg{width:17px;height:17px}
+.lieu.petit{width:22px;height:22px;border-width:1.5px;box-shadow:0 1px 3px rgba(22,26,30,.18)}.lieu.petit svg{width:12px;height:12px}
+.lieu .nom{position:absolute;left:100%;top:50%;translate:5px -50%;white-space:nowrap;font-family:var(--body);font-size:.72rem;font-weight:600;color:#005875;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 5px #fff;pointer-events:none}
+.lieu.transport{color:#005875;border-color:#005875}.lieu.ecole{color:#8A6A2F;border-color:#B0894C}.lieu.commerce{color:#616B75;border-color:#9AA3AC}
+.proches{list-style:none;margin:2px 0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:.86rem;color:var(--texte)}
+.proches li{line-height:1.45}.proches small{color:var(--discret)}
+.lieu-mini{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;border:1.5px solid currentColor;margin-right:6px;vertical-align:-5px}
+.lieu-mini svg{width:12px;height:12px}.lieu-mini.transport{color:#005875}.lieu-mini.ecole{color:#8A6A2F}.lieu-mini.commerce{color:#616B75}
+@keyframes pop{from{scale:0;opacity:0}to{scale:1;opacity:1}}
+button.repere:hover{scale:1.25;transition:scale .15s}
+.panneau{position:static;margin:.6rem 0 0;background:var(--carte);border:1px solid var(--trait);border-top:3px solid var(--laiton);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.panneau[hidden]{display:none}
+.panneau .titre{font-family:var(--display);font-weight:500;font-size:1.25rem;color:var(--bleu)}
+.panneau .sous{font-size:.88rem;color:var(--discret)}
+.panneau .heure{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--discret)}
+.panneau .heure input{flex:1;accent-color:#B0894C}
+.panneau .heure output{min-width:70px;text-align:right;color:var(--laiton-texte);font-weight:600}
+.panneau .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+.panneau a.voir{background:var(--bleu);color:#fff;padding:9px 14px;border-radius:6px;font-weight:600;text-decoration:none;font-size:.92rem}
+.panneau button{font:inherit;font-size:.9rem;background:transparent;border:1px solid var(--trait);border-radius:6px;padding:8px 12px;color:var(--texte);cursor:pointer}
+.recherche{position:relative;margin:0 0 14px}
+.recherche label{display:block;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 6px}
+.recherche input{width:100%;font:inherit;font-size:1.05rem;padding:13px 14px;border:1px solid var(--trait);border-radius:8px;background:#fff;color:var(--texte)}
+.recherche input:focus{outline:2px solid var(--bleu);outline-offset:1px;border-color:var(--bleu)}
+.propositions{position:absolute;left:0;right:0;top:100%;margin:4px 0 0;padding:4px;list-style:none;background:#fff;border:1px solid var(--trait);border-radius:8px;box-shadow:0 6px 18px rgba(22,26,30,.12);z-index:1000;display:none}
+.propositions li{padding:10px 12px;border-radius:6px;cursor:pointer}
+.propositions li small{color:var(--discret);margin-left:6px}
+.propositions li[aria-selected=true],.propositions li:hover{background:var(--teinte)}
+.carte.grande{height:520px}
+@media (max-width:600px){.carte{height:460px}.carte.grande{height:480px}}
+.resume{display:none;background:var(--carte);border:1px solid var(--trait);border-left:3px solid var(--laiton);border-radius:8px;padding:14px 16px;margin:0 0 1rem}
+.resume b{font-family:var(--display);font-weight:500;font-size:1.35rem;color:var(--bleu)}
+.resume p{margin:.3rem 0 .7rem;color:var(--discret)}
+.resume a.bouton{display:inline-block;background:var(--bleu);color:#fff;padding:10px 16px;border-radius:6px;font-weight:600;text-decoration:none}
+.resume.absente{border-left-color:var(--trait)}
+.legende{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;color:var(--discret);margin:0 0 1rem}
+.legende i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:middle}
+.repere{width:18px;height:18px;border-radius:50%;background:var(--bleu);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.repere.picking{background:var(--laiton)}
+.leaflet-popup-content{font-family:var(--body);font-size:.9rem;line-height:1.45}
+.leaflet-popup-content b{font-family:var(--display);font-weight:500;font-size:1.05rem}
+.leaflet-popup-content a.voir{display:inline-block;margin-top:6px;font-weight:600}
+.typo{margin:0 0 1.4rem}
+.typo h3{font-family:var(--display);font-weight:500;font-size:1.2rem;margin:0 0 .5rem}
+table.lots{width:100%;border-collapse:collapse;background:var(--carte);border:1px solid var(--trait);border-radius:8px;overflow:hidden;font-size:.92rem}
+table.lots th{text-align:left;font-weight:600;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--laiton-texte);padding:9px 10px;border-bottom:1px solid var(--trait)}
+table.lots td{padding:9px 10px;border-bottom:1px solid var(--trait)}
+table.lots tr:last-child td{border-bottom:0}
+table.lots td.plan{text-align:right;white-space:nowrap}
+table.lots td.plan a{font-weight:600;text-decoration:none}
+table.lots td.prix-lot{font-weight:600;white-space:nowrap}
+table.lots td.prix-lot .tva{font-weight:600;color:var(--bleu)}
+table.lots td.prix-lot small{font-weight:400;font-size:.72rem;color:var(--discret)}
+@media (max-width:480px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 5px}table.lots .long{display:none}table.lots th{font-size:.7rem;letter-spacing:.02em}}
+@media (min-width:960px) and (max-width:1200px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}table.lots .long{display:none}table.lots th{font-size:.7rem;letter-spacing:.02em}}
+.immeuble .scene{position:relative;background:linear-gradient(#FBF8F1,#F4F0E8);border:1px solid var(--trait);border-radius:8px;padding:8px;margin:0 0 .4rem;overflow:hidden}
+.immeuble svg{display:block;width:100%;height:auto;max-height:520px}
+.immeuble .lot{cursor:pointer;transition:opacity .2s}
+.immeuble .lot.eteint{opacity:.18}
+.immeuble .lot.actif polygon{stroke:#B0894C;stroke-width:2.5}
+.fiche-lot{background:var(--carte);border:1px solid var(--trait);border-left:3px solid var(--laiton);border-radius:8px;padding:10px 14px;margin:.6rem 0 0;font-size:.92rem;color:var(--discret);min-height:3.2em}
+.fiche-lot b{color:var(--bleu)}
+.bulle{position:absolute;min-width:150px;background:#fff;border:1px solid var(--trait);border-top:3px solid var(--laiton);border-radius:6px;padding:8px 10px;font-size:.88rem;line-height:1.4;box-shadow:0 6px 18px rgba(22,26,30,.15);pointer-events:none}
+.bulle b{color:var(--bleu)}
+.bulle a{pointer-events:auto;font-weight:600}
+tr.vise td{background:var(--teinte)}
+.legende-typo{display:flex;flex-wrap:wrap;gap:12px;font-size:.8rem;color:var(--discret);margin:0 0 .4rem}
+.legende-typo i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:5px;vertical-align:middle}
+.page-prog{max-width:1240px}
+.hero{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:0 0 1.2rem}
+.hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
+.hero .chapo{margin:0 0 .9rem}
+.hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
+.retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
+.reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
+.repere-cle{background:var(--carte);border:1px solid var(--trait);border-radius:8px;padding:13px 14px}
+.repere-cle b{display:block;font-family:var(--display);font-weight:500;font-size:1.45rem;color:var(--bleu);line-height:1.15}
+.repere-cle span{font-size:.84rem;color:var(--discret)}
+.titre-listes{font-family:var(--display);font-weight:500;font-size:1.35rem;margin:0 0 .7rem}
+.immeuble .listes .typo h3{font-size:1.02rem}
+.immeuble .listes{margin-top:1.4rem}
+.immeuble .vue{background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:12px}
+.onglets{display:flex;gap:4px;border-bottom:1px solid var(--trait);margin:0 0 12px}
+.onglets button{font:inherit;font-weight:600;font-size:.95rem;padding:9px 14px;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--discret);cursor:pointer;margin-bottom:-1px}
+.onglets button[aria-selected=true]{color:var(--bleu);border-bottom-color:var(--laiton)}
+.plan-cadre{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:stretch}
+.etages{display:flex;flex-direction:column;gap:4px}
+.etages button{font:inherit;font-size:.82rem;font-weight:600;min-width:58px;padding:6px 8px;border:1px solid var(--trait);border-radius:6px;background:#fff;color:var(--texte);cursor:pointer;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.etages button small{font-weight:600;color:var(--bleu);background:var(--teinte);border-radius:9px;padding:0 6px;font-size:.74rem}
+.etages button.vide{color:var(--discret)}.etages button.vide small{background:transparent;color:var(--discret)}
+.etages button.tout{justify-content:center;margin-bottom:4px;border-color:var(--laiton);color:var(--laiton-texte)}
+.etages button[aria-pressed=true]{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.etages button[aria-pressed=true] small{background:rgba(255,255,255,.22);color:#fff}
+.plan-dessin{min-width:0}
+.etage-titre{margin:0 0 6px;font-size:.88rem;color:var(--discret)}
+#plan{display:block;width:100%;height:auto;border-radius:8px;border:1px solid var(--trait)}
+#plan[hidden],#imm3d[hidden],.vues[hidden]{display:none}
+#plan text{font-family:var(--body);pointer-events:none}
+#plan .case{cursor:pointer;outline:none}
+#plan .case rect:first-child{transition:opacity .2s}
+#plan .case.eteinte{opacity:.22}
+#plan .case.choisie rect:first-child{stroke:#B0894C;stroke-width:.55}
+.plan-promoteur{margin:0 0 12px}.plan-promoteur img{width:100%;border-radius:8px;border:1px solid var(--trait)}.plan-promoteur figcaption{font-size:.8rem;color:var(--discret);margin-top:4px}
+.immeuble .vue .note{margin:.6rem 0 0}
+@media (min-width:700px){.reperes{grid-template-columns:repeat(4,1fr)}}
+@media (min-width:960px){
+  .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
+  .immeuble .vue{position:sticky;top:10px}
+  .immeuble .listes{margin-top:0}
+}
+.vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
+.vues button{font:inherit;font-size:.88rem;padding:8px 12px;border-radius:6px;border:1px solid var(--trait);background:#fff;color:var(--bleu);font-weight:600;cursor:pointer}
+.vues button:hover{background:var(--teinte)}
+.geste{position:absolute;left:50%;bottom:14px;translate:-50% 0;background:rgba(0,88,117,.92);color:#fff;font-size:.88rem;font-weight:600;padding:8px 14px 8px 40px;border-radius:20px;pointer-events:none;opacity:0;transition:opacity .4s;z-index:2;white-space:nowrap}
+.geste.visible{opacity:1}
+.geste .main{position:absolute;left:12px;top:50%;width:16px;height:16px;margin-top:-8px;border-radius:50%;border:2px solid #fff;animation:glisse 1.6s ease-in-out infinite}
+@keyframes glisse{0%,100%{translate:-4px 0}50%{translate:6px 0}}
+.info-prog{position:absolute;left:50%;bottom:calc(100% + 8px);translate:-50% 0;background:#005875;color:#fff;font-family:var(--body);font-size:.8rem;line-height:1.35;padding:6px 10px;border-radius:6px;white-space:nowrap;text-align:left;box-shadow:0 3px 10px rgba(22,26,30,.25);opacity:0;pointer-events:none;transition:opacity .15s;z-index:5}
+.info-prog b{display:block;font-family:var(--display);font-weight:500;font-size:.95rem}
+button.repere.groupe{width:24px;height:24px;display:flex;align-items:center;justify-content:center}
+button.repere.groupe::before{content:attr(data-n);color:#fff;font:600 .62rem var(--body)}
+button.repere.groupe.ouvert{z-index:8}
+button.repere.groupe.ouvert .info-prog,button.repere.groupe:focus-visible .info-prog{opacity:1;pointer-events:auto}
+.choix-prog{display:block;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,.35);cursor:pointer;text-decoration:underline}
+.info-prog::after{content:"";position:absolute;left:50%;top:100%;margin-left:-5px;border:5px solid transparent;border-top-color:#005875}
+button.repere:hover .info-prog,button.repere:focus-visible .info-prog{opacity:1}
+button.repere:hover{z-index:6}
+.lieu:hover .info-prog,.lieu:focus .info-prog{opacity:1}
+.lieu:hover,.lieu:focus{z-index:6;outline:none}
+.lieu.ecole .info-prog{background:#8A6A2F}.lieu.ecole .info-prog::after{border-top-color:#8A6A2F}
+.lieu.commerce .info-prog{background:#4A545E}.lieu.commerce .info-prog::after{border-top-color:#4A545E}
+.boussole{position:absolute;left:12px;bottom:12px;width:64px;height:64px;padding:0;border:0;background:transparent;cursor:pointer;z-index:4;filter:drop-shadow(0 2px 5px rgba(22,26,30,.22))}
+.boussole svg{display:block;width:100%;height:100%}
+.boussole .aiguille{transition:transform .12s linear;transform-origin:0 0}
+.scene3d{position:relative;border:1px solid var(--trait);border-radius:10px;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,#FFFFFF 0%,#F4F0E8 70%);min-height:240px;touch-action:pan-y}
+.scene3d canvas{display:block;width:100%;touch-action:none}
+.coupe{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:.9rem;color:var(--discret)}
+.coupe input{flex:1;accent-color:#005875}
+.coupe output{min-width:110px;text-align:right;color:var(--bleu);font-weight:600}
+.aide{font-size:.85rem;color:var(--discret);margin:.5rem 0 0}
+.perspective{margin:1rem 0 0}.perspective img{width:100%;border-radius:8px;border:1px solid var(--trait)}.perspective figcaption{font-size:.8rem;color:var(--discret);margin-top:4px}
+.infos{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0 0 1rem}
+.infos dt{color:var(--discret)}
+.infos dd{margin:0}
+.note{font-size:.8rem;color:var(--discret);margin:1.2rem 0 0}
+footer{border-top:1px solid var(--trait);padding:22px 16px;text-align:center;font-size:.85rem;color:var(--discret)}
+footer a{color:var(--discret)}
+.villes{display:grid;gap:12px}
+.villes a{display:block;background:var(--carte);border:1px solid var(--trait);border-radius:8px;padding:16px;text-decoration:none;color:var(--texte)}
+.villes a b{font-family:var(--display);font-weight:500;font-size:1.3rem;color:var(--bleu)}
+.villes a span{display:block;color:var(--discret);font-size:.9rem}
+@media (min-width:700px){.chiffres{grid-template-columns:repeat(4,1fr)}.deux{grid-template-columns:1fr 1fr}.liste,.villes{grid-template-columns:1fr 1fr}}
+@media (min-width:1000px){.liste{grid-template-columns:1fr 1fr 1fr}}
+</style>
+</head>
+<body>
+<header><a href="/" aria-label="GLR Immobilier — accueil"><img src="/logo-glr.png" alt="GLR Immobilier" width="85" height="68"></a><a class="tel" href="tel:+33614550273">06 14 55 02 73</a></header>
+<main>
+  <p class="fil"><a href="/">Accueil</a> › <a href="/neuf/">Immobilier neuf</a> › Paris 16e</p>
+  <h1>Immobilier neuf à Paris 16e</h1>
+  <hr class="filet">
+  <p class="chapo">3 programmes de 2 promoteurs et 20 logements disponibles à Paris 16e (75016). Nous suivons tous les programmes neufs de la ville et vous envoyons les plans et les prix de ceux qui vous correspondent. Mis à jour le 27 novembre 2026.</p>
+
+  <div class="chiffres">
+    <div class="chiffre"><b>3</b><span>programmes en vente</span></div>
+    <div class="chiffre"><b>20</b><span>logements disponibles</span></div>
+    <div class="chiffre"><b>2</b><span>promoteurs</span></div>
+    <div class="chiffre"><b>1</b><span>années de livraison</span></div>
+  </div>
+
+  <div class="deux">
+    <div class="bloc"><h3>Logements disponibles par taille</h3><div class="barre"><span>T1</span><i><s style="width:60%"></s></i><em>3</em></div><div class="barre"><span>T2</span><i><s style="width:80%"></s></i><em>4</em></div><div class="barre"><span>T3</span><i><s style="width:100%"></s></i><em>5</em></div><div class="barre"><span>T4</span><i><s style="width:100%"></s></i><em>5</em></div><div class="barre"><span>T5+</span><i><s style="width:60%"></s></i><em>3</em></div></div>
+    <div class="bloc"><h3>Programmes par année de livraison</h3><div class="barre"><span>2028</span><i><s style="width:100%"></s></i><em>1</em></div></div>
+  </div>
+
+  
+
+  <h2>Les programmes neufs à Paris 16e</h2>
+  <div class="carte-zone">
+    <div id="carte" class="carte" aria-label="Carte des programmes neufs"></div>
+    <button type="button" class="boussole" id="boussole-carte" aria-label="Boussole : la pointe bleue marquée N indique le nord. Appuyer pour remettre le nord en haut." title="Remettre le nord en haut"><svg viewBox="-30 -30 60 60"><circle r="28" fill="#fff" stroke="#D8D2C5" stroke-width="1.4"/><g class="aiguille"><text x="0" y="-15.5" font-size="11" font-weight="700" text-anchor="middle" fill="#005875" font-family="Archivo,Arial,sans-serif">N</text><polygon points="0,-13 6.5,6 0,2 -6.5,6" fill="#005875"/><polygon points="0,2 6.5,6 0,20 -6.5,6" fill="#D8D2C5"/><line x1="-22" y1="0" x2="-18" y2="0" stroke="#9AA3AC" stroke-width="1.4"/><line x1="18" y1="0" x2="22" y2="0" stroke="#9AA3AC" stroke-width="1.4"/><line x1="0" y1="22" x2="0" y2="25" stroke="#9AA3AC" stroke-width="1.4"/></g><circle r="2" fill="#B0894C"/></svg></button>
+  </div>
+  <div class="fil-carte"><span id="fil-carte">Touchez un département.</span><span class="boutons-carte"><button type="button" id="carte-idf" hidden>Toute l’Île-de-France</button></span></div>
+  <p class="legende"><span><i style="background:var(--bleu)"></i>Programme en vente</span><span>Pastilles blanches : gares et tramways ; commerces et écoles en zoomant</span><span>Touchez un programme pour voir son immeuble.</span></p>
+  <div class="filtres" role="group" aria-label="Filtrer par taille"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T1">T1</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
+  <div class="liste">
+<article class="prog" data-typos="T1 T3">
+  <h3><a href="53-foch/">53 Foch</a></h3>
+  
+  <dl><dt>Transport</dt><dd>Châtelet (M14) · 2 min à pied</dd></dl>
+  <div class="puces"><span class="puce">T1</span><span class="puce">T3</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">3 logements disponibles</span></div>
+</article>
+<article class="prog" data-typos="T1 T2 T3 T4">
+  <h3><a href="le-6/">LE 6</a></h3>
+  
+  <dl><dt>Livraison</dt><dd>Livré</dd><dt>Transport</dt><dd>Jasmin (M9) · 4 min à pied</dd></dl>
+  <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">7 logements disponibles</span></div>
+</article>
+<article class="prog" data-typos="T2 T3 T4 T5+">
+  <h3><a href="n-19-passy/">N.19 Passy</a></h3>
+  
+  <dl><dt>Livraison</dt><dd>4e trimestre 2028</dd><dt>Transport</dt><dd>Passy (M6) · 3 min à pied</dd></dl>
+  <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce">T5+</span></div>
+  <div class="bas"><span class="prix"><small>prix</small>sur demande</span><span class="dispo">10 logements disponibles</span></div>
+</article>
+  </div>
+  <p class="vide">Aucun programme avec cette taille de logement en ce moment.</p>
+
+  <section class="appel" id="contact">
+    <h2>Recevoir les plans et les prix</h2>
+    <p>Dites-nous ce que vous cherchez à Paris 16e : nous vous envoyons la grille complète des logements qui vous correspondent, tous promoteurs confondus. Le service est gratuit pour vous.</p>
+    <div class="boutons"><a class="plein" href="tel:+33614550273">Appeler le 06 14 55 02 73</a><a class="creux" href="mailto:agl@glrimmobilier.com?subject=Plans%20et%20prix%20%C3%A0%20Paris%2016e">Écrire un e-mail</a></div>
+  </section>
+  <p class="note">Disponibilités relevées le 27 novembre 2026 ; elles changent chaque semaine et sont confirmées par votre conseiller.</p>
+</main>
+<footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.glrimmobilier.com/"},{"@type":"ListItem","position":2,"name":"Immobilier neuf","item":"https://www.glrimmobilier.com/neuf/"},{"@type":"ListItem","position":3,"name":"Paris 16e","item":"https://www.glrimmobilier.com/neuf/paris-16e/"}]}</script>
+<link rel="modulepreload" href="https://unpkg.com/three@0.160.0/build/three.module.js"><link rel="modulepreload" href="https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js"><link rel="modulepreload" href="/neuf/maquette.js"><link rel="modulepreload" href="/neuf/immeuble3d.js">
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
+<script type="application/json" id="carte-data">{"ville":"paris-16e","villes":[{"v":"Paris 16e","s":"paris-16e","cp":"75016","i":"75116","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.2457,48.8765],[2.2463,48.8762],[2.2465,48.8761],[2.2548,48.8741],[2.2554,48.8743],[2.2585,48.8804],[2.2589,48.8803],[2.2646,48.8796],[2.2775,48.878],[2.2795,48.8785],[2.2799,48.8786],[2.282,48.8779],[2.2845,48.8771],[2.2905,48.8752],[2.293,48.8744],[2.2942,48.874],[2.295,48.8738],[2.2955,48.8733],[2.2964,48.8723],[2.2972,48.8713],[2.2975,48.8709],[2.2989,48.8686],[2.2993,48.8675],[2.2998,48.8655],[2.2999,48.8653],[2.2998,48.865],[2.3003,48.865],[2.3016,48.8645],[2.3017,48.8635],[2.3014,48.8635],[2.3001,48.8634],[2.2992,48.8633],[2.2986,48.8631],[2.2976,48.8628],[2.2969,48.8626],[2.2955,48.8621],[2.2949,48.8619],[2.2944,48.8616],[2.2937,48.8612],[2.2922,48.8603],[2.2907,48.8591],[2.2905,48.8588],[2.2897,48.8582],[2.289,48.8575],[2.2885,48.857],[2.2884,48.8568],[2.2882,48.8561],[2.2881,48.856],[2.2878,48.8558],[2.2873,48.8554],[2.2828,48.8522],[2.2812,48.8511],[2.2806,48.8506],[2.2796,48.8499],[2.278,48.8489],[2.277,48.8481],[2.2761,48.8472],[2.2755,48.8467],[2.2745,48.8457],[2.274,48.8452],[2.2719,48.843],[2.2712,48.8423],[2.2683,48.8392],[2.2667,48.8376],[2.266,48.8368],[2.2651,48.836],[2.2636,48.8346],[2.2628,48.8339],[2.2615,48.8341],[2.2585,48.8344],[2.257,48.8346],[2.2565,48.8346],[2.2551,48.8348],[2.2548,48.8352],[2.2535,48.8367],[2.2524,48.838],[2.252,48.8385],[2.2519,48.8386],[2.2517,48.8388],[2.2513,48.8421],[2.2512,48.8429],[2.2517,48.844],[2.2519,48.8443],[2.2523,48.8452],[2.2525,48.8455],[2.2508,48.8455],[2.2505,48.8456],[2.2499,48.8457],[2.2459,48.8467],[2.2455,48.8469],[2.2432,48.8474],[2.2424,48.8477],[2.2418,48.8481],[2.2415,48.8484],[2.2405,48.8493],[2.2402,48.8496],[2.2398,48.8498],[2.2392,48.85],[2.239,48.8501],[2.2374,48.8504],[2.2357,48.8508],[2.2336,48.8513],[2.2332,48.8514],[2.2323,48.8516],[2.2315,48.8517],[2.23,48.8521],[2.2292,48.8522],[2.2266,48.8528],[2.2262,48.853],[2.2259,48.853],[2.2242,48.8535],[2.2243,48.8551],[2.2243,48.8557],[2.2244,48.8562],[2.2245,48.8565],[2.2253,48.8585],[2.2257,48.8594],[2.226,48.86],[2.227,48.862],[2.2272,48.8624],[2.2274,48.8628],[2.2277,48.8638],[2.2281,48.8649],[2.2284,48.8654],[2.2298,48.8671],[2.2302,48.8675],[2.2307,48.8681],[2.2314,48.8687],[2.2317,48.8691],[2.2322,48.8693],[2.2329,48.8696],[2.2337,48.8699],[2.2356,48.8705],[2.2367,48.8708],[2.2374,48.871],[2.2384,48.8713],[2.2396,48.8717],[2.2404,48.872],[2.2409,48.8723],[2.2412,48.8725],[2.2419,48.8729],[2.2427,48.8735],[2.2433,48.874],[2.2439,48.8747],[2.2452,48.8759],[2.2457,48.8765]]]}},"r":"3 programmes · 20 logements disponibles","p":[{"n":"LE 6","s":"le-6","k":false,"a":48.85,"o":2.27,"z":false,"u":"paris-16e/le-6/","l":"Livré","d":"7 logements disponibles"},{"n":"N.19 Passy","s":"n-19-passy","k":false,"a":48.858,"o":2.283,"z":false,"u":"paris-16e/n-19-passy/","l":"4e trimestre 2028","d":"10 logements disponibles"},{"n":"53 Foch","s":"53-foch","k":false,"a":48.859,"o":2.347,"z":true,"u":"paris-16e/53-foch/","l":"","d":"3 logements disponibles"}]}]}</script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script>
+(function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
+bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;
+bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+cs.forEach(function(c){var ok=!t||(' '+c.getAttribute('data-typos')+' ').indexOf(' '+t+' ')>-1;c.style.display=ok?'':'none';if(ok)n++});
+v.style.display=n?'none':'block';});});})();
+</script>
+</body>
+</html>

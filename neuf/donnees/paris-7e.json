@@ -1,0 +1,112 @@
+{
+  "cp": "75007",
+  "maj": "2026-11-27",
+  "dept": "75",
+  "slug": "paris-7e",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "75107",
+  "ville": "Paris 7e",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {},
+    "typologies": {
+      "T1": 2,
+      "T2": 0,
+      "T3": 1,
+      "T4": 0,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 3
+  },
+  "dept_nom": "Paris",
+  "programmes": [
+    {
+      "nom": "Carre Invalides",
+      "gare": "Saint-François Xavier (M13)",
+      "slug": "carre-invalides",
+      "image": null,
+      "picking": false,
+      "pige_id": "8a5829e38311",
+      "position": {
+        "approx": false,
+        "latitude": 48.851,
+        "longitude": 2.315
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "8e62afb3e0a5",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 58.15,
+          "exterieur": null
+        },
+        {
+          "id": "f2ef5e07ef16",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 58.2,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2024-1",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 1
+    },
+    {
+      "nom": "Jouvence universite",
+      "gare": "Pont de l'Alma (RER C)",
+      "slug": "jouvence-universite",
+      "image": null,
+      "picking": false,
+      "pige_id": "fe768684dd8d",
+      "position": {
+        "approx": false,
+        "latitude": 48.861,
+        "longitude": 2.301
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [
+        {
+          "id": "9525d090e480",
+          "typo": "T3",
+          "etage": 6,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 72,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3"
+      ],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 3
+    }
+  ]
+}

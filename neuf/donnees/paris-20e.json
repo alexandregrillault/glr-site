@@ -1,0 +1,442 @@
+{
+  "cp": "75020",
+  "maj": "2026-11-27",
+  "dept": "75",
+  "slug": "paris-20e",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A bis",
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "75120",
+  "ville": "Paris 20e",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1,
+      "2028": 1
+    },
+    "typologies": {
+      "T1": 2,
+      "T2": 3,
+      "T3": 12,
+      "T4": 4,
+      "T5+": 4
+    },
+    "prix_entree": null,
+    "nb_programmes": 4,
+    "nb_promoteurs": 3,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 25
+  },
+  "dept_nom": "Paris",
+  "programmes": [
+    {
+      "nom": "Premieres Loges - Pls",
+      "gare": "Jourdain (M11)",
+      "slug": "premieres-loges-pls",
+      "image": null,
+      "picking": false,
+      "pige_id": "568e52b4de18",
+      "position": {
+        "approx": false,
+        "latitude": 48.871,
+        "longitude": 2.393
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "75e3440b7ea2",
+          "typo": "T4",
+          "etage": 7,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 91.34,
+          "exterieur": "Balcon"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2024-1",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 7
+    },
+    {
+      "nom": "Sérénité (75020)",
+      "gare": "Pyrenées (M11)",
+      "slug": "serenite-75020",
+      "image": null,
+      "picking": false,
+      "pige_id": "b7bd19d12e00",
+      "position": {
+        "approx": false,
+        "latitude": 48.87,
+        "longitude": 2.39
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2027",
+      "logements": [
+        {
+          "id": "53e5d9af96c0",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.1,
+          "exterieur": null
+        },
+        {
+          "id": "89cfb929f52c",
+          "typo": "T5+",
+          "etage": 3,
+          "pieces": 5,
+          "statut": "option",
+          "surface": 127.33,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3",
+        "T5+"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2027-2",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 7
+    },
+    {
+      "nom": "Le 117 Bis",
+      "gare": "Marie De Miribel (T3b)",
+      "slug": "le-117-bis",
+      "image": null,
+      "picking": false,
+      "pige_id": "7cc17d6907b4",
+      "position": {
+        "approx": false,
+        "latitude": 48.857,
+        "longitude": 2.404
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2028",
+      "logements": [
+        {
+          "id": "f335f7a3e1e6",
+          "typo": "T1",
+          "etage": 10,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 29.89,
+          "exterieur": null
+        },
+        {
+          "id": "f4a5fd4b31f2",
+          "typo": "T1",
+          "etage": 11,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 29.89,
+          "exterieur": null
+        },
+        {
+          "id": "393387a1bda5",
+          "typo": "T2",
+          "etage": 9,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.8,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "69e2804d2be2",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 53.55,
+          "exterieur": "Loggia"
+        },
+        {
+          "id": "8191e343a540",
+          "typo": "T3",
+          "etage": 6,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61.96,
+          "exterieur": "Loggia"
+        },
+        {
+          "id": "b5db5898fc53",
+          "typo": "T3",
+          "etage": 7,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61.96,
+          "exterieur": "Loggia"
+        },
+        {
+          "id": "de3832dc1767",
+          "typo": "T3",
+          "etage": 8,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61.96,
+          "exterieur": "Loggia"
+        },
+        {
+          "id": "1ce6381d68fa",
+          "typo": "T3",
+          "etage": 9,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.21,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "a2e1e7714c46",
+          "typo": "T3",
+          "etage": 6,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.72,
+          "exterieur": "Loggia"
+        },
+        {
+          "id": "ce5fd165d954",
+          "typo": "T3",
+          "etage": 8,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.72,
+          "exterieur": "Loggia"
+        },
+        {
+          "id": "1d3fbaa31888",
+          "typo": "T3",
+          "etage": 5,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.74,
+          "exterieur": "Loggia"
+        },
+        {
+          "id": "c36ef1d69237",
+          "typo": "T3",
+          "etage": 5,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 67.88,
+          "exterieur": "Loggia"
+        },
+        {
+          "id": "158dfeac7f80",
+          "typo": "T3",
+          "etage": 10,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 70.8,
+          "exterieur": "Loggia"
+        },
+        {
+          "id": "92dfa62113ac",
+          "typo": "T3",
+          "etage": 11,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 70.8,
+          "exterieur": "Loggia"
+        },
+        {
+          "id": "b9d01aae8348",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.84,
+          "exterieur": "Loggia"
+        },
+        {
+          "id": "3f87ea4b007c",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 94.76,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "d4452d19f854",
+          "typo": "T4",
+          "etage": 12,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 98.88,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2028-4",
+      "nb_lots_libres": 17,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 6
+    },
+    {
+      "nom": "37 Chine",
+      "gare": "Pelleport (M3bis)",
+      "slug": "37-chine",
+      "image": null,
+      "picking": false,
+      "pige_id": "03b7531d02c7",
+      "position": {
+        "approx": false,
+        "latitude": 48.868,
+        "longitude": 2.397
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [
+        {
+          "id": "e851985fb4ea",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.47,
+          "exterieur": null
+        },
+        {
+          "id": "8df38abbd16d",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 91.62,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "59252fa55293",
+          "typo": "T5+",
+          "etage": 1,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 94.08,
+          "exterieur": null
+        },
+        {
+          "id": "a64b7c0d63d3",
+          "typo": "T5+",
+          "etage": 2,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 140.48,
+          "exterieur": null
+        },
+        {
+          "id": "ab80d5d44f04",
+          "typo": "T5+",
+          "etage": 2,
+          "pieces": 6,
+          "statut": "libre",
+          "surface": 141.58,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T5+"
+      ],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": 5,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 4
+    },
+    {
+      "nom": "Gambetta Garden",
+      "gare": "Châtelet (M14)",
+      "slug": "gambetta-garden",
+      "image": null,
+      "picking": true,
+      "pige_id": "ddd6dec8570f",
+      "position": {
+        "approx": true,
+        "latitude": 48.859,
+        "longitude": 2.347
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 2
+    },
+    {
+      "nom": "Privia - Paris 20eme",
+      "gare": "Châtelet (M14)",
+      "slug": "privia-paris-20eme",
+      "image": null,
+      "picking": true,
+      "pige_id": "1c9d7f67efb1",
+      "position": {
+        "approx": true,
+        "latitude": 48.859,
+        "longitude": 2.347
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 2
+    },
+    {
+      "nom": "7 Constant Berthaut",
+      "gare": "Châtelet (M14)",
+      "slug": "7-constant-berthaut",
+      "image": null,
+      "picking": true,
+      "pige_id": "92a5e5ae8d7f",
+      "position": {
+        "approx": true,
+        "latitude": 48.859,
+        "longitude": 2.347
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 2
+    }
+  ]
+}

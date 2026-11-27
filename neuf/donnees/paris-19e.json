@@ -1,0 +1,352 @@
+{
+  "cp": "75019",
+  "maj": "2026-11-27",
+  "dept": "75",
+  "slug": "paris-19e",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "75119",
+  "ville": "Paris 19e",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1
+    },
+    "typologies": {
+      "T1": 8,
+      "T2": 2,
+      "T3": 2,
+      "T4": 5,
+      "T5+": 1
+    },
+    "prix_entree": null,
+    "nb_programmes": 5,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 18
+  },
+  "dept_nom": "Paris",
+  "programmes": [
+    {
+      "nom": "100 La Villette - Paris",
+      "gare": "Colonel Fabien (M2)",
+      "slug": "100-la-villette-paris",
+      "image": null,
+      "picking": false,
+      "pige_id": "a6323b526cfd",
+      "position": {
+        "approx": true,
+        "latitude": 48.875,
+        "longitude": 2.368
+      },
+      "quartier": null,
+      "livraison": "2027",
+      "logements": [
+        {
+          "id": "353dd2de3cf8",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 22.23,
+          "exterieur": null
+        },
+        {
+          "id": "48391f676af6",
+          "typo": "T1",
+          "etage": 3,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 23.48,
+          "exterieur": null
+        },
+        {
+          "id": "33569aced6e5",
+          "typo": "T1",
+          "etage": 3,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 24.33,
+          "exterieur": null
+        },
+        {
+          "id": "b38be9cbcc91",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 25.2,
+          "exterieur": null
+        },
+        {
+          "id": "c500c1a9ef85",
+          "typo": "T1",
+          "etage": 3,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 31.54,
+          "exterieur": null
+        },
+        {
+          "id": "081911b7eb56",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 35.37,
+          "exterieur": null
+        },
+        {
+          "id": "fef29eaea2db",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 37.98,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-5",
+      "nb_lots_libres": 7,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 5
+    },
+    {
+      "nom": "L'intemporel",
+      "gare": "Jourdain (M11)",
+      "slug": "l-intemporel",
+      "image": null,
+      "picking": false,
+      "pige_id": "09e0b2d7e588",
+      "position": {
+        "approx": false,
+        "latitude": 48.876,
+        "longitude": 2.39
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [
+        {
+          "id": "bd620f1ebac5",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 54.3,
+          "exterieur": null
+        },
+        {
+          "id": "4852ba183afc",
+          "typo": "T3",
+          "etage": 6,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 54.5,
+          "exterieur": null
+        },
+        {
+          "id": "83ea43412469",
+          "typo": "T4",
+          "etage": 7,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 72.3,
+          "exterieur": null
+        },
+        {
+          "id": "1e71267a2f93",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 88.1,
+          "exterieur": null
+        },
+        {
+          "id": "68cc55fc6e9e",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 89.5,
+          "exterieur": null
+        },
+        {
+          "id": "b65914103db9",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 90.3,
+          "exterieur": null
+        },
+        {
+          "id": "4a6b54693416",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 90.5,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": 7,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 1
+    },
+    {
+      "nom": "Résidence Étudiante Studéa Paris Tessier",
+      "gare": "Rosa Parks (RER E)",
+      "slug": "residence-etudiante-studea-paris-tessier",
+      "image": null,
+      "picking": false,
+      "pige_id": "9cdc567cbb2c",
+      "position": {
+        "approx": false,
+        "latitude": 48.896,
+        "longitude": 2.373
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "ac3dc907d93f",
+          "typo": "T1",
+          "etage": 8,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 19.13,
+          "exterieur": null
+        },
+        {
+          "id": "a934c0c7b9cb",
+          "typo": "T1",
+          "etage": 4,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 23.25,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1"
+      ],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 2
+    },
+    {
+      "nom": "Fessart - Melingue - Residence Principale",
+      "gare": "Pyrenées (M11)",
+      "slug": "fessart-melingue-residence-principale",
+      "image": null,
+      "picking": false,
+      "pige_id": "d821dd3a9a68",
+      "position": {
+        "approx": false,
+        "latitude": 48.877,
+        "longitude": 2.386
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [
+        {
+          "id": "008753d05021",
+          "typo": "T5+",
+          "etage": 3,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 101.02,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T5+"
+      ],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 4
+    },
+    {
+      "nom": "Résidence Étudiante Studéa Buttes Chaumont 1",
+      "gare": "Ourcq (M5)",
+      "slug": "residence-etudiante-studea-buttes-chaumont-1",
+      "image": null,
+      "picking": false,
+      "pige_id": "cf07034c60a7",
+      "position": {
+        "approx": false,
+        "latitude": 48.885,
+        "longitude": 2.384
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "5aaa9a4c266b",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 23.83,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1"
+      ],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 4
+    },
+    {
+      "nom": "Villa Liberté",
+      "gare": "Châtelet (M14)",
+      "slug": "villa-liberte",
+      "image": null,
+      "picking": true,
+      "pige_id": "3f0153471a0b",
+      "position": {
+        "approx": true,
+        "latitude": 48.859,
+        "longitude": 2.347
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 2
+    }
+  ]
+}
