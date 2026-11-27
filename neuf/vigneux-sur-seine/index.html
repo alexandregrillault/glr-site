@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -359,7 +377,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"vigneux-sur-seine","villes":[{"v":"Vigneux-sur-Seine","s":"vigneux-sur-seine","cp":"91270","i":"91657","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.4397,48.7253],[2.4407,48.7242],[2.4419,48.7239],[2.4429,48.7242],[2.4436,48.7244],[2.4434,48.7228],[2.443,48.7224],[2.4428,48.7222],[2.4424,48.7217],[2.4424,48.7214],[2.4425,48.7212],[2.443,48.7206],[2.442,48.7204],[2.4413,48.72],[2.4411,48.7198],[2.4407,48.7191],[2.4403,48.7185],[2.4397,48.7178],[2.4394,48.7173],[2.4391,48.7169],[2.439,48.7167],[2.4384,48.7161],[2.438,48.7156],[2.4373,48.7149],[2.4364,48.7143],[2.4348,48.7133],[2.4347,48.7132],[2.4352,48.713],[2.4346,48.7123],[2.4345,48.7116],[2.435,48.7111],[2.4347,48.7102],[2.4345,48.7099],[2.4369,48.7089],[2.4376,48.7083],[2.4382,48.7077],[2.4384,48.7076],[2.439,48.7072],[2.4395,48.7069],[2.4393,48.7065],[2.4388,48.706],[2.4385,48.7058],[2.4385,48.7057],[2.4386,48.7054],[2.4382,48.7045],[2.4388,48.7039],[2.4391,48.7037],[2.4394,48.7034],[2.4397,48.7031],[2.44,48.703],[2.44,48.7029],[2.4403,48.7026],[2.4406,48.7022],[2.4407,48.7021],[2.4408,48.702],[2.4412,48.7015],[2.4415,48.701],[2.4417,48.7003],[2.442,48.6993],[2.4427,48.6985],[2.4431,48.698],[2.4432,48.6979],[2.4431,48.6978],[2.4434,48.6975],[2.4438,48.6967],[2.4443,48.6967],[2.4443,48.6965],[2.4445,48.6961],[2.4439,48.6959],[2.4435,48.6956],[2.4437,48.6951],[2.4441,48.6938],[2.4443,48.6935],[2.4441,48.6934],[2.4446,48.6929],[2.4449,48.6926],[2.445,48.6925],[2.4453,48.6923],[2.4459,48.6917],[2.4461,48.6912],[2.4462,48.6909],[2.4465,48.6906],[2.447,48.6901],[2.4477,48.6894],[2.448,48.6892],[2.4482,48.6892],[2.4487,48.689],[2.4492,48.689],[2.4499,48.6889],[2.4501,48.689],[2.4507,48.6891],[2.4509,48.6891],[2.4512,48.689],[2.4515,48.6889],[2.4518,48.6888],[2.452,48.6886],[2.452,48.6885],[2.4522,48.6878],[2.4523,48.6875],[2.4525,48.6868],[2.4525,48.6866],[2.4525,48.6862],[2.4526,48.6859],[2.453,48.6852],[2.4535,48.6843],[2.4539,48.6837],[2.4542,48.6834],[2.4544,48.683],[2.4544,48.6827],[2.4544,48.6825],[2.4476,48.6802],[2.4472,48.68],[2.445,48.679],[2.4446,48.6788],[2.4417,48.6817],[2.441,48.6823],[2.4394,48.6838],[2.4373,48.6859],[2.437,48.6862],[2.4369,48.6864],[2.4366,48.6868],[2.4353,48.6879],[2.4349,48.6883],[2.4346,48.6888],[2.4339,48.6894],[2.4311,48.6922],[2.4279,48.6944],[2.4267,48.6952],[2.4259,48.6958],[2.4257,48.6956],[2.4254,48.6954],[2.4246,48.6949],[2.4244,48.6948],[2.4243,48.6947],[2.4235,48.6943],[2.4234,48.6941],[2.4232,48.694],[2.4222,48.6934],[2.4219,48.6932],[2.4216,48.693],[2.4214,48.6929],[2.4214,48.6928],[2.4211,48.6929],[2.4201,48.6934],[2.4198,48.6935],[2.4188,48.6939],[2.4188,48.694],[2.4184,48.6938],[2.4183,48.6939],[2.4126,48.6973],[2.4108,48.698],[2.4102,48.6984],[2.4098,48.6981],[2.4084,48.6989],[2.403,48.7009],[2.4005,48.7018],[2.4008,48.7022],[2.4014,48.7031],[2.4018,48.7038],[2.4022,48.7048],[2.4025,48.7058],[2.404,48.7094],[2.4046,48.7106],[2.4054,48.7121],[2.4059,48.7128],[2.4062,48.7132],[2.4064,48.7134],[2.4073,48.714],[2.4087,48.7148],[2.4093,48.7151],[2.4107,48.7157],[2.4111,48.7159],[2.4127,48.7168],[2.4144,48.7177],[2.4167,48.719],[2.4199,48.7208],[2.4209,48.7212],[2.4222,48.7217],[2.4233,48.7221],[2.4244,48.7224],[2.4254,48.7227],[2.4263,48.7229],[2.4278,48.7232],[2.4285,48.7233],[2.435,48.7243],[2.436,48.7244],[2.4381,48.7249],[2.4392,48.7252],[2.4397,48.7253]]]}},"r":"1 programme · 17 logements disponibles","p":[{"n":"L'aparté","s":"l-aparte","k":false,"a":48.707,"o":2.419,"z":false,"u":"vigneux-sur-seine/l-aparte/","l":"Livré","d":"17 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

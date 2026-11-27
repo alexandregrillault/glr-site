@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -401,7 +419,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"creteil","villes":[{"v":"Créteil","s":"creteil","cp":"94000","i":"94028","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.4735,48.7617],[2.4733,48.762],[2.4727,48.7625],[2.4723,48.7629],[2.4721,48.7633],[2.4696,48.7627],[2.4686,48.7625],[2.4682,48.7624],[2.468,48.7631],[2.4677,48.7636],[2.4674,48.7642],[2.4669,48.765],[2.4662,48.7661],[2.4648,48.7664],[2.4634,48.7668],[2.4625,48.7664],[2.4613,48.7659],[2.4613,48.7659],[2.46,48.7657],[2.4596,48.7667],[2.4571,48.7664],[2.4565,48.7664],[2.456,48.7666],[2.4552,48.7669],[2.4548,48.7671],[2.4537,48.7675],[2.4525,48.7682],[2.4519,48.7685],[2.4514,48.7688],[2.4506,48.7692],[2.4501,48.7696],[2.4493,48.7701],[2.4481,48.7703],[2.4464,48.7707],[2.4417,48.7716],[2.4408,48.7718],[2.44,48.7717],[2.4401,48.7713],[2.4392,48.7712],[2.4353,48.7674],[2.4355,48.7672],[2.4345,48.7669],[2.4336,48.7668],[2.432,48.7668],[2.4316,48.767],[2.4314,48.7673],[2.432,48.7675],[2.431,48.7689],[2.4308,48.7692],[2.4307,48.7693],[2.4307,48.7698],[2.4308,48.77],[2.4305,48.7706],[2.4323,48.771],[2.4325,48.7723],[2.43,48.7715],[2.4275,48.7708],[2.4273,48.7723],[2.4276,48.7736],[2.4282,48.776],[2.4283,48.7761],[2.4283,48.7766],[2.4288,48.7802],[2.4291,48.7802],[2.43,48.7804],[2.43,48.7823],[2.4306,48.7824],[2.4309,48.7825],[2.4321,48.7833],[2.433,48.7837],[2.4339,48.7839],[2.4336,48.7849],[2.4328,48.7866],[2.436,48.787],[2.4357,48.7882],[2.4374,48.7887],[2.4391,48.7892],[2.4385,48.7902],[2.4381,48.7908],[2.4378,48.7911],[2.4374,48.7917],[2.4368,48.7923],[2.4389,48.7929],[2.4409,48.7935],[2.4407,48.7937],[2.4404,48.794],[2.4402,48.7944],[2.4398,48.7953],[2.4414,48.7957],[2.4424,48.7959],[2.4427,48.7963],[2.444,48.7981],[2.445,48.7993],[2.4454,48.7997],[2.4458,48.8008],[2.4473,48.8023],[2.447,48.8025],[2.4487,48.8038],[2.4489,48.8036],[2.4494,48.8033],[2.4499,48.803],[2.45,48.803],[2.4529,48.8049],[2.4528,48.805],[2.4545,48.806],[2.4552,48.8059],[2.456,48.8057],[2.4566,48.8055],[2.4569,48.8054],[2.4575,48.8051],[2.4578,48.8053],[2.4603,48.8063],[2.4607,48.8061],[2.4627,48.8068],[2.4635,48.8071],[2.464,48.8074],[2.4649,48.8067],[2.4669,48.8053],[2.4681,48.8046],[2.4685,48.8038],[2.4689,48.8021],[2.4697,48.8005],[2.47,48.7998],[2.4714,48.7955],[2.4718,48.7943],[2.4719,48.7934],[2.4718,48.7925],[2.4719,48.7917],[2.4721,48.7911],[2.4724,48.7905],[2.4734,48.7892],[2.4741,48.7883],[2.4744,48.788],[2.4746,48.7877],[2.4735,48.7874],[2.4729,48.7872],[2.4727,48.7872],[2.4731,48.7869],[2.4735,48.7866],[2.4739,48.7859],[2.474,48.7855],[2.4742,48.7851],[2.4742,48.7849],[2.4743,48.7847],[2.4745,48.7843],[2.4744,48.7839],[2.4745,48.7837],[2.4749,48.7835],[2.475,48.7831],[2.4755,48.7829],[2.4759,48.7827],[2.476,48.7825],[2.4763,48.7822],[2.4765,48.7817],[2.4766,48.7815],[2.4768,48.7811],[2.4769,48.781],[2.4762,48.7806],[2.4754,48.7814],[2.4747,48.7811],[2.4748,48.7811],[2.4737,48.7805],[2.4733,48.7804],[2.4734,48.7803],[2.4728,48.78],[2.4726,48.7799],[2.4732,48.7793],[2.4734,48.7791],[2.4735,48.779],[2.4738,48.7787],[2.4738,48.7787],[2.475,48.7776],[2.4736,48.777],[2.4728,48.7765],[2.4743,48.7749],[2.4746,48.7746],[2.4741,48.7743],[2.473,48.7737],[2.4724,48.7733],[2.4719,48.773],[2.4716,48.7729],[2.4723,48.7718],[2.4721,48.7718],[2.4723,48.7715],[2.472,48.7715],[2.4735,48.7701],[2.474,48.7703],[2.4748,48.7693],[2.4759,48.7679],[2.4771,48.7665],[2.4774,48.7661],[2.4756,48.7656],[2.4755,48.7655],[2.4749,48.7654],[2.4748,48.7653],[2.4751,48.7649],[2.4756,48.7643],[2.4758,48.7639],[2.4762,48.7636],[2.4766,48.7632],[2.4772,48.7628],[2.4754,48.7623],[2.4735,48.7617]]]}},"r":"5 programmes · 86 logements disponibles","p":[{"n":"Nexus-creteil","s":"nexus-creteil","k":false,"a":48.788,"o":2.437,"z":false,"u":"creteil/nexus-creteil/","l":"Livré","d":"5 logements disponibles"},{"n":"Good Morning Campus  (2)","s":"good-morning-campus-2","k":false,"a":48.78,"o":2.456,"z":false,"u":"creteil/good-morning-campus-2/","l":"Livré","d":"4 logements disponibles"},{"n":"Massolacum","s":"massolacum","k":false,"a":48.781,"o":2.469,"z":false,"u":"creteil/massolacum/","l":"1er trimestre 2028","d":"9 logements disponibles"},{"n":"Station Eiffel","s":"station-eiffel","k":false,"a":48.797,"o":2.449,"z":false,"u":"creteil/station-eiffel/","l":"3e trimestre 2028","d":"39 logements disponibles"},{"n":"Les Balcons De L'echat","s":"les-balcons-de-l-echat","k":false,"a":48.784,"o":2.449,"z":true,"u":"creteil/les-balcons-de-l-echat/","l":"3e trimestre 2029","d":"29 logements disponibles"},{"n":"Fontaine Du Mesly","s":"fontaine-du-mesly","k":true,"a":48.785,"o":2.452,"z":true,"u":"creteil/fontaine-du-mesly/","l":"","d":"Grille sur demande"},{"n":"Héritage","s":"heritage","k":true,"a":48.785,"o":2.452,"z":true,"u":"creteil/heritage/","l":"","d":"Grille sur demande"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

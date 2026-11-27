@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -373,7 +391,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"villennes-sur-seine","villes":[{"v":"Villennes-sur-Seine","s":"villennes-sur-seine","cp":"78670","i":"78672","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.0034,48.9416],[2.0041,48.94],[2.0046,48.939],[2.0054,48.9379],[2.0064,48.9367],[2.0073,48.9359],[2.0084,48.9347],[2.008,48.9344],[2.0077,48.934],[2.0075,48.9338],[2.0069,48.9333],[2.0073,48.9328],[2.007,48.9326],[2.0067,48.9321],[2.0072,48.9319],[2.0075,48.9318],[2.0079,48.9317],[2.0083,48.9315],[2.0085,48.9313],[2.0087,48.9311],[2.0091,48.9307],[2.0093,48.9306],[2.0098,48.9303],[2.0103,48.9301],[2.011,48.9299],[2.0121,48.9296],[2.0126,48.9295],[2.0137,48.9292],[2.0144,48.929],[2.0158,48.9287],[2.0165,48.9286],[2.0165,48.9278],[2.0166,48.9278],[2.0166,48.9277],[2.0169,48.9277],[2.0168,48.9271],[2.0169,48.9271],[2.0169,48.9268],[2.0167,48.9263],[2.0167,48.926],[2.0167,48.9258],[2.0168,48.9256],[2.0167,48.9252],[2.0167,48.9249],[2.0167,48.9248],[2.0168,48.9241],[2.0169,48.9235],[2.0171,48.9228],[2.0163,48.9227],[2.0162,48.9226],[2.0158,48.9224],[2.0153,48.9223],[2.015,48.9222],[2.0148,48.922],[2.0142,48.9218],[2.0136,48.9216],[2.0133,48.9215],[2.0129,48.9215],[2.0117,48.9212],[2.011,48.9207],[2.0104,48.9202],[2.01,48.9204],[2.0095,48.9205],[2.009,48.9208],[2.0087,48.9209],[2.0085,48.921],[2.0076,48.9218],[2.0067,48.9224],[2.0057,48.9231],[2.0051,48.9236],[2.0048,48.9239],[2.0045,48.9243],[2.0039,48.9249],[2.0037,48.9251],[2.003,48.9256],[2.0027,48.9258],[2.0024,48.926],[2.0021,48.9261],[2.0016,48.9263],[2.0011,48.9265],[2.0008,48.9267],[2.0005,48.927],[2.0003,48.9273],[2.0001,48.9278],[1.9998,48.9281],[1.9992,48.9283],[1.9985,48.9285],[1.9979,48.9285],[1.9968,48.9287],[1.9965,48.9287],[1.9948,48.9287],[1.9941,48.9287],[1.9927,48.9285],[1.9923,48.9285],[1.9919,48.9284],[1.9897,48.9284],[1.9873,48.9284],[1.9849,48.9286],[1.9846,48.9286],[1.9836,48.9286],[1.9828,48.9288],[1.9823,48.9288],[1.9823,48.9302],[1.9824,48.9306],[1.9826,48.9312],[1.9829,48.9318],[1.9831,48.9322],[1.9833,48.9327],[1.9834,48.9331],[1.9836,48.934],[1.9833,48.9342],[1.9832,48.9342],[1.9831,48.9344],[1.983,48.935],[1.983,48.9352],[1.9829,48.9354],[1.9826,48.9358],[1.9822,48.9363],[1.982,48.9365],[1.9814,48.9369],[1.9811,48.9371],[1.98,48.938],[1.9794,48.9385],[1.9792,48.9387],[1.9789,48.9392],[1.9788,48.9395],[1.9786,48.9397],[1.9784,48.94],[1.9783,48.9403],[1.9782,48.9407],[1.9779,48.9407],[1.978,48.9412],[1.9781,48.9418],[1.9782,48.9425],[1.9781,48.9435],[1.9781,48.9441],[1.9781,48.9445],[1.9782,48.9449],[1.9784,48.9455],[1.9784,48.9456],[1.9783,48.9459],[1.9784,48.9462],[1.9786,48.9465],[1.979,48.9471],[1.9791,48.9471],[1.9793,48.9471],[1.9794,48.9474],[1.9794,48.9478],[1.9796,48.9479],[1.9798,48.948],[1.98,48.9484],[1.9802,48.9487],[1.9802,48.9496],[1.9815,48.9495],[1.982,48.9493],[1.9822,48.9491],[1.9829,48.9483],[1.9839,48.9488],[1.9842,48.9491],[1.9852,48.9487],[1.9854,48.9488],[1.9859,48.9492],[1.9861,48.9494],[1.9865,48.9497],[1.9877,48.949],[1.9887,48.9485],[1.9884,48.9482],[1.9881,48.9477],[1.9885,48.9476],[1.9885,48.9472],[1.9889,48.9471],[1.9889,48.9471],[1.9898,48.947],[1.9898,48.9469],[1.9902,48.9468],[1.9903,48.9473],[1.9905,48.9476],[1.9914,48.9482],[1.9916,48.9483],[1.9922,48.9485],[1.9929,48.9486],[1.9929,48.948],[1.9942,48.948],[1.9943,48.948],[1.9943,48.9489],[1.9953,48.949],[1.9963,48.9491],[1.9972,48.9492],[1.9972,48.9494],[1.9981,48.9496],[1.9988,48.9496],[1.9988,48.9513],[2.001,48.9514],[2.0013,48.9514],[2.001,48.9542],[2.0022,48.9542],[2.0023,48.9527],[2.0024,48.951],[2.0025,48.9499],[2.0023,48.9485],[2.0022,48.9472],[2.0023,48.946],[2.0025,48.9446],[2.003,48.9428],[2.0032,48.9419],[2.0034,48.9416]]]}},"r":"3 programmes · 65 logements disponibles","p":[{"n":"Résidence des Coteaux","s":"residence-des-coteaux","k":false,"a":48.938,"o":1.993,"z":false,"u":"villennes-sur-seine/residence-des-coteaux/","l":"4e trimestre 2026","d":"2 logements disponibles"},{"n":"Seine De Vies","s":"seine-de-vies","k":false,"a":48.924,"o":2.005,"z":false,"u":"villennes-sur-seine/seine-de-vies/","l":"3e trimestre 2028","d":"29 logements disponibles"},{"n":"SEINE DE VIES (Tranche 2)","s":"seine-de-vies-tranche-2","k":false,"a":48.924,"o":2.005,"z":false,"u":"villennes-sur-seine/seine-de-vies-tranche-2/","l":"1er trimestre 2029","d":"34 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

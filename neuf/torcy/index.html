@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -374,7 +392,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"torcy","villes":[{"v":"Torcy","s":"torcy","cp":"77200","i":"77468","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.6658,48.8323],[2.6649,48.8323],[2.6616,48.8324],[2.6603,48.8324],[2.6588,48.8324],[2.6579,48.8324],[2.6579,48.8329],[2.6569,48.8341],[2.6567,48.8342],[2.6558,48.8353],[2.6557,48.8354],[2.6556,48.8356],[2.6555,48.8357],[2.6556,48.8359],[2.6552,48.8362],[2.6548,48.8364],[2.6547,48.8364],[2.6541,48.8368],[2.6538,48.8371],[2.6536,48.8372],[2.6533,48.8371],[2.6533,48.8373],[2.6532,48.8374],[2.653,48.8373],[2.6529,48.8372],[2.6527,48.8372],[2.6527,48.8373],[2.6523,48.8373],[2.6521,48.8377],[2.6516,48.8381],[2.6512,48.8382],[2.6501,48.8381],[2.65,48.8389],[2.6491,48.8388],[2.6486,48.8416],[2.6486,48.8419],[2.6485,48.842],[2.6481,48.8422],[2.6457,48.8426],[2.6454,48.8428],[2.6411,48.8431],[2.6399,48.8432],[2.6394,48.8434],[2.6382,48.8451],[2.638,48.8454],[2.6376,48.8457],[2.6365,48.847],[2.6341,48.848],[2.633,48.8485],[2.6328,48.8488],[2.6319,48.8501],[2.6321,48.8505],[2.6321,48.8507],[2.6315,48.8512],[2.6299,48.8518],[2.6296,48.8523],[2.6295,48.8527],[2.6294,48.8533],[2.6292,48.8538],[2.6291,48.854],[2.6291,48.8556],[2.6295,48.857],[2.6295,48.8574],[2.6308,48.8574],[2.6321,48.8574],[2.6337,48.8574],[2.6354,48.8574],[2.6359,48.8575],[2.6366,48.8576],[2.6373,48.8578],[2.6382,48.8582],[2.6388,48.8585],[2.639,48.8587],[2.6393,48.8589],[2.6396,48.8594],[2.6398,48.8596],[2.6403,48.86],[2.6405,48.8601],[2.6409,48.8603],[2.6417,48.8608],[2.6422,48.8612],[2.6428,48.8616],[2.6433,48.8619],[2.6437,48.862],[2.6444,48.8622],[2.6449,48.8624],[2.6454,48.8627],[2.6459,48.863],[2.6464,48.8634],[2.6468,48.8637],[2.647,48.864],[2.6477,48.8648],[2.6479,48.865],[2.6483,48.8655],[2.6485,48.8658],[2.6489,48.8661],[2.6494,48.8666],[2.6507,48.8677],[2.6513,48.8683],[2.6514,48.8685],[2.6516,48.8688],[2.6519,48.8691],[2.6523,48.8693],[2.6529,48.8699],[2.6534,48.8702],[2.6537,48.8704],[2.6543,48.8708],[2.6554,48.8713],[2.6563,48.8716],[2.6573,48.872],[2.6584,48.8724],[2.659,48.8727],[2.6595,48.8729],[2.6602,48.8733],[2.6606,48.8736],[2.661,48.874],[2.6611,48.8741],[2.6613,48.8743],[2.6617,48.8745],[2.6621,48.8742],[2.6622,48.874],[2.6634,48.8702],[2.6646,48.8661],[2.6648,48.8654],[2.6655,48.863],[2.6657,48.8625],[2.6661,48.8613],[2.6659,48.8614],[2.6655,48.8613],[2.6648,48.8613],[2.664,48.8611],[2.6634,48.8605],[2.663,48.8601],[2.6629,48.8599],[2.6633,48.8589],[2.6634,48.8586],[2.6635,48.8578],[2.6635,48.8576],[2.6634,48.8564],[2.6633,48.8563],[2.6623,48.856],[2.662,48.8559],[2.6618,48.8555],[2.6619,48.8542],[2.6619,48.8541],[2.6625,48.8539],[2.6632,48.8538],[2.6637,48.8537],[2.6634,48.8536],[2.663,48.8528],[2.6629,48.8526],[2.6627,48.8523],[2.6628,48.8522],[2.663,48.8521],[2.6631,48.8519],[2.6631,48.8518],[2.663,48.8509],[2.663,48.8508],[2.6627,48.8506],[2.6626,48.8504],[2.6626,48.8501],[2.6623,48.8501],[2.6626,48.8491],[2.6626,48.8487],[2.6623,48.8478],[2.6615,48.8471],[2.6604,48.8466],[2.6597,48.8465],[2.6606,48.8433],[2.6588,48.8431],[2.6586,48.843],[2.6585,48.8429],[2.6588,48.8417],[2.659,48.8418],[2.6591,48.8414],[2.659,48.8413],[2.6591,48.841],[2.6579,48.8409],[2.658,48.8405],[2.6581,48.8403],[2.658,48.8397],[2.658,48.8394],[2.6582,48.839],[2.6585,48.8384],[2.6591,48.8377],[2.6599,48.8367],[2.6601,48.8364],[2.6604,48.8357],[2.6606,48.8352],[2.6607,48.835],[2.661,48.8346],[2.6611,48.8343],[2.6615,48.8339],[2.6617,48.8336],[2.6623,48.8331],[2.6626,48.8328],[2.6627,48.8328],[2.6641,48.8334],[2.6646,48.8337],[2.6647,48.8337],[2.6658,48.8323]]]}},"r":"2 programmes · 25 logements disponibles","p":[{"n":"Reflet Marne","s":"reflet-marne","k":false,"a":48.853,"o":2.648,"z":true,"u":"torcy/reflet-marne/","l":"Livré","d":"2 logements disponibles"},{"n":"Marne & Sens","s":"marne-sens","k":false,"a":48.859,"o":2.649,"z":false,"u":"torcy/marne-sens/","l":"4e trimestre 2028","d":"23 logements disponibles"},{"n":"Les Jardins d'Aragon","s":"les-jardins-d-aragon","k":true,"a":48.853,"o":2.648,"z":true,"u":"torcy/les-jardins-d-aragon/","l":"","d":"Grille sur demande"},{"n":"Plaine Nature","s":"plaine-nature","k":true,"a":48.853,"o":2.648,"z":true,"u":"torcy/plaine-nature/","l":"","d":"Grille sur demande"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

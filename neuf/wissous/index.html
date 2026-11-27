@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -353,7 +371,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"wissous","villes":[{"v":"Wissous","s":"wissous","cp":"91320","i":"91689","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.3249,48.711],[2.3247,48.7114],[2.3246,48.7116],[2.3244,48.7123],[2.3243,48.7126],[2.3243,48.7131],[2.3242,48.7136],[2.3241,48.7141],[2.324,48.7145],[2.3239,48.715],[2.3238,48.7155],[2.3239,48.7157],[2.324,48.7167],[2.324,48.7174],[2.324,48.7177],[2.3239,48.7179],[2.3239,48.7184],[2.3236,48.7182],[2.3239,48.7208],[2.3239,48.7209],[2.322,48.7211],[2.3208,48.7211],[2.3208,48.721],[2.3186,48.7212],[2.3174,48.7212],[2.317,48.7213],[2.3137,48.7216],[2.3137,48.7217],[2.313,48.7218],[2.3123,48.7219],[2.3113,48.722],[2.3109,48.722],[2.3109,48.7219],[2.3092,48.722],[2.3088,48.7221],[2.3086,48.721],[2.3085,48.7207],[2.3082,48.7193],[2.3082,48.7191],[2.3047,48.7196],[2.3047,48.7194],[2.3015,48.7198],[2.3016,48.7201],[2.3017,48.7203],[2.3018,48.7205],[2.3019,48.7208],[2.3025,48.7223],[2.3028,48.7234],[2.3028,48.7236],[2.3029,48.7238],[2.3032,48.7248],[2.3035,48.7254],[2.3035,48.7254],[2.3037,48.726],[2.3039,48.7265],[2.304,48.7271],[2.304,48.7274],[2.3042,48.7286],[2.304,48.7292],[2.3038,48.7295],[2.3059,48.7294],[2.3069,48.7294],[2.3079,48.7294],[2.3085,48.7294],[2.3109,48.7299],[2.3113,48.7299],[2.3124,48.7301],[2.3133,48.7303],[2.3138,48.7303],[2.3142,48.7303],[2.3144,48.7304],[2.3146,48.731],[2.3148,48.7313],[2.3149,48.7319],[2.315,48.7323],[2.3152,48.7326],[2.3154,48.7333],[2.3153,48.7337],[2.3157,48.7337],[2.316,48.7338],[2.3165,48.7338],[2.3167,48.7345],[2.3169,48.7349],[2.3173,48.7356],[2.3178,48.7362],[2.3184,48.7367],[2.3187,48.737],[2.3182,48.7379],[2.3159,48.7372],[2.3146,48.7369],[2.313,48.7382],[2.3143,48.7388],[2.3142,48.7389],[2.3154,48.7396],[2.3156,48.7397],[2.3156,48.7399],[2.3156,48.7399],[2.3169,48.7408],[2.317,48.7409],[2.3143,48.7433],[2.3162,48.7443],[2.3164,48.7441],[2.3172,48.7447],[2.3176,48.7445],[2.3185,48.745],[2.3205,48.7468],[2.3193,48.7471],[2.3207,48.7488],[2.3227,48.7481],[2.3232,48.7488],[2.3235,48.749],[2.3237,48.7492],[2.324,48.7494],[2.3239,48.7496],[2.3248,48.7505],[2.3245,48.7508],[2.3243,48.7513],[2.3242,48.7515],[2.3238,48.752],[2.3236,48.7523],[2.3241,48.7521],[2.3253,48.7517],[2.3258,48.7516],[2.3262,48.7515],[2.3267,48.7512],[2.3273,48.7509],[2.328,48.7505],[2.3284,48.7502],[2.3286,48.7501],[2.3293,48.7495],[2.3299,48.7488],[2.3304,48.7483],[2.3305,48.7482],[2.3307,48.7481],[2.3313,48.7478],[2.3317,48.7476],[2.3323,48.7474],[2.3334,48.7469],[2.3338,48.7467],[2.3342,48.7463],[2.3344,48.7461],[2.3347,48.7458],[2.335,48.7455],[2.3353,48.7453],[2.336,48.7446],[2.3363,48.7444],[2.3364,48.7443],[2.3363,48.7441],[2.3364,48.7438],[2.337,48.7435],[2.3378,48.7431],[2.3371,48.7422],[2.3379,48.7417],[2.3388,48.7415],[2.3389,48.7416],[2.342,48.7403],[2.3423,48.7403],[2.3426,48.7403],[2.3435,48.7404],[2.3445,48.7407],[2.3448,48.741],[2.3455,48.7417],[2.3476,48.7412],[2.3478,48.7415],[2.3498,48.7406],[2.353,48.7391],[2.3539,48.7387],[2.3539,48.7384],[2.3541,48.7383],[2.3541,48.7382],[2.354,48.7381],[2.3538,48.7381],[2.3536,48.7381],[2.3532,48.738],[2.35,48.734],[2.3465,48.7347],[2.3439,48.7348],[2.3457,48.7327],[2.3457,48.7326],[2.346,48.7322],[2.3461,48.7318],[2.3468,48.7271],[2.3471,48.7271],[2.3477,48.7251],[2.3506,48.7247],[2.3495,48.7225],[2.3483,48.7208],[2.3476,48.7201],[2.3443,48.7169],[2.3439,48.7166],[2.3435,48.7164],[2.3429,48.7157],[2.3427,48.7156],[2.3416,48.7145],[2.3415,48.7144],[2.3413,48.7143],[2.3398,48.7127],[2.3393,48.7121],[2.3372,48.7095],[2.3371,48.7094],[2.3365,48.7096],[2.3359,48.7098],[2.335,48.71],[2.3326,48.7106],[2.3309,48.7107],[2.3305,48.7107],[2.3292,48.7108],[2.3286,48.7109],[2.3265,48.711],[2.3249,48.711]]]}},"r":"1 programme · 1 logements disponibles","p":[{"n":"Unisson","s":"unisson","k":false,"a":48.735,"o":2.324,"z":false,"u":"wissous/unisson/","l":"Livré","d":"1 logement disponible"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

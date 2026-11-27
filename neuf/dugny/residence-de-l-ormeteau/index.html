@@ -96,7 +96,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -104,6 +120,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -320,6 +338,7 @@ footer a{color:var(--discret)}
   </div>
   <section class="immeuble" id="immeuble">
    
+   
       <div class="vue">
     
     <div class="plan-cadre">
@@ -436,7 +455,7 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"51a877d8871a","t":"T2","s":37.35,"e":1,"x":"Extérieur"},{"i":"df29cc0dfad2","t":"T2","s":37.35,"e":2,"x":"Extérieur"},{"i":"a979a8e9b26b","t":"T2","s":40.08,"e":2,"x":"Extérieur"},{"i":"1b01527dd426","t":"T2","s":40.51,"e":2,"x":"Extérieur"},{"i":"f8fb15c5c27a","t":"T2","s":40.51,"e":1,"x":"Extérieur"},{"i":"74d0e5091819","t":"T2","s":40.96,"e":1,"x":"Extérieur"},{"i":"f4e7e09702d6","t":"T2","s":41.85,"e":3,"x":"Extérieur"},{"i":"74454a99f72f","t":"T2","s":42.41,"e":1,"x":"Extérieur"},{"i":"95eae52b70f8","t":"T2","s":42.41,"e":null,"x":"Extérieur"},{"i":"eb831b6c2f80","t":"T2","s":42.55,"e":1,"x":"Extérieur"},{"i":"1492bf6408b2","t":"T2","s":42.56,"e":1,"x":"Extérieur"},{"i":"f87c1e90de42","t":"T2","s":42.67,"e":1,"x":"Extérieur"},{"i":"af80550d62c7","t":"T2","s":42.73,"e":4,"x":"Extérieur"},{"i":"d7f27d921621","t":"T2","s":42.9,"e":3,"x":"Extérieur"},{"i":"b7ae4cec5d9e","t":"T2","s":43.13,"e":2,"x":"Extérieur"},{"i":"2d4aaa25d782","t":"T2","s":43.32,"e":0,"x":"Extérieur"},{"i":"0b52801ff010","t":"T2","s":44.1,"e":3,"x":"Extérieur"},{"i":"18c60d7769b6","t":"T2","s":44.1,"e":null,"x":"Extérieur"},{"i":"52f13c657447","t":"T2","s":44.1,"e":2,"x":"Extérieur"},{"i":"7f584517afdf","t":"T2","s":44.16,"e":null,"x":"Extérieur"},{"i":"e275f839bd39","t":"T2","s":44.7,"e":1,"x":"Extérieur"},{"i":"c4a7d3e44b18","t":"T2","s":44.71,"e":2,"x":"Extérieur"},{"i":"788b43e90236","t":"T2","s":44.77,"e":3,"x":"Extérieur"},{"i":"97ace5489933","t":"T2","s":44.88,"e":1,"x":"Extérieur"},{"i":"dc39488287f0","t":"T2","s":44.89,"e":2,"x":"Extérieur"},{"i":"0e20f6459119","t":"T2","s":45.24,"e":1,"x":"Extérieur"},{"i":"c9309672194e","t":"T2","s":45.24,"e":0,"x":"Extérieur"},{"i":"47ea72c3379d","t":"T2","s":46.76,"e":0,"x":"Extérieur"},{"i":"3eaeb34a6997","t":"T2","s":46.91,"e":null,"x":"Extérieur"},{"i":"6b254846d99e","t":"T2","s":46.94,"e":1,"x":"Extérieur"},{"i":"55afc759d1cb","t":"T2","s":47.66,"e":3,"x":"Extérieur"},{"i":"49f4b346fb10","t":"T2","s":47.7,"e":0,"x":"Extérieur"},{"i":"be93888ce616","t":"T2","s":48.87,"e":2,"x":"Extérieur"},{"i":"d67e649845a5","t":"T2","s":49.47,"e":0,"x":"Extérieur"},{"i":"8d1401b88843","t":"T3","s":59.16,"e":1,"x":"Extérieur"},{"i":"b3c4387d2ab3","t":"T3","s":59.16,"e":0,"x":"Extérieur"},{"i":"63dc86cef577","t":"T3","s":59.18,"e":2,"x":"Extérieur"},{"i":"8fd0769c94f5","t":"T3","s":59.95,"e":0,"x":"Extérieur"},{"i":"5e81e8031b5c","t":"T3","s":61.2,"e":0,"x":"Extérieur"},{"i":"6e3be2e122c4","t":"T3","s":61.49,"e":2,"x":"Extérieur"},{"i":"ca3923f9f2cc","t":"T3","s":61.5,"e":1,"x":"Extérieur"},{"i":"ae2a494a6071","t":"T3","s":61.77,"e":0,"x":"Extérieur"},{"i":"4dc0dcdfad95","t":"T3","s":62.22,"e":3,"x":"Extérieur"},{"i":"1fe6c9b31331","t":"T3","s":62.3,"e":1,"x":"Extérieur"},{"i":"d6b9229c081b","t":"T3","s":62.5,"e":3,"x":"Extérieur"},{"i":"f614318e01d9","t":"T3","s":62.66,"e":3,"x":"Extérieur"},{"i":"456ad12327ac","t":"T3","s":62.69,"e":2,"x":"Extérieur"},{"i":"7a5cf6a4c9c1","t":"T3","s":62.69,"e":1,"x":"Extérieur"},{"i":"d727577cd2b0","t":"T3","s":63.74,"e":0,"x":"Extérieur"},{"i":"f89925790c5e","t":"T3","s":64.32,"e":2,"x":"Extérieur"},{"i":"06f5a59fdd13","t":"T3","s":64.45,"e":1,"x":"Extérieur"},{"i":"4ba39600ef58","t":"T3","s":64.45,"e":0,"x":"Extérieur"},{"i":"9f4499a4440b","t":"T3","s":64.79,"e":1,"x":"Extérieur"},{"i":"a5d9eb9ce39a","t":"T3","s":65.15,"e":1,"x":"Extérieur"},{"i":"faa26fa65416","t":"T3","s":65.15,"e":2,"x":"Extérieur"},{"i":"0ec27669bf5c","t":"T3","s":65.28,"e":1,"x":"Extérieur"},{"i":"6d68e6a731dd","t":"T3","s":65.28,"e":2,"x":"Extérieur"},{"i":"9a8b0f8bbde8","t":"T3","s":66.46,"e":3,"x":"Extérieur"},{"i":"3382b06a3220","t":"T3","s":67.01,"e":null,"x":"Extérieur"},{"i":"7874eb86c91b","t":"T3","s":67.46,"e":3,"x":"Extérieur"},{"i":"f4018d5036bc","t":"T3","s":67.61,"e":2,"x":"Extérieur"},{"i":"2a370d613ce5","t":"T3","s":67.64,"e":1,"x":"Extérieur"},{"i":"56f0ac8c5b04","t":"T4","s":76.94,"e":1,"x":"Extérieur"},{"i":"493083366a66","t":"T4","s":79.34,"e":3,"x":"Extérieur"},{"i":"9682a600442a","t":"T4","s":79.42,"e":2,"x":"Extérieur"},{"i":"c3a89397dd70","t":"T4","s":79.52,"e":1,"x":"Extérieur"},{"i":"c0f12218a740","t":"T4","s":79.93,"e":3,"x":"Extérieur"},{"i":"96faf1c7dc73","t":"T4","s":81.64,"e":3,"x":"Extérieur"},{"i":"e35eedf5a3bc","t":"T4","s":81.91,"e":1,"x":"Extérieur"},{"i":"63c0c677660d","t":"T4","s":82.03,"e":2,"x":"Extérieur"},{"i":"cc4cbdcbf969","t":"T4","s":85.25,"e":4,"x":"Extérieur"},{"i":"9ea3af085451","t":"T5+","s":105.1,"e":2,"x":"Extérieur"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=8d2c41c88c" defer></script>
+<script src="/neuf/programme.js?v=15c28fcdee" defer></script>
 
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};

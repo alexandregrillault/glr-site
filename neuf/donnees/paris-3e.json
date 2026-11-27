@@ -1,0 +1,123 @@
+{
+  "cp": "75003",
+  "maj": "2026-11-27",
+  "dept": "75",
+  "slug": "paris-3e",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "75103",
+  "ville": "Paris 3e",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2026": 1
+    },
+    "typologies": {
+      "T1": 2,
+      "T2": 3,
+      "T3": 1,
+      "T4": 0,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 6
+  },
+  "dept_nom": "Paris",
+  "programmes": [
+    {
+      "nom": "Le Turenne",
+      "gare": "Saint-Sébastien Froissart (M8)",
+      "slug": "le-turenne",
+      "image": null,
+      "picking": false,
+      "pige_id": "55e0f145575d",
+      "position": {
+        "approx": false,
+        "latitude": 48.861,
+        "longitude": 2.365
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2026",
+      "logements": [
+        {
+          "id": "a6a9a07920f5",
+          "p2d": true,
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.2,
+          "exterieur": null
+        },
+        {
+          "id": "e24016e9f329",
+          "p2d": true,
+          "typo": "T1",
+          "etage": 3,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.2,
+          "exterieur": null
+        },
+        {
+          "id": "3cc5297d2a38",
+          "p2d": true,
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 27.2,
+          "exterieur": null
+        },
+        {
+          "id": "412c4849b8a7",
+          "p2d": true,
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.5,
+          "exterieur": null
+        },
+        {
+          "id": "72be18c068d5",
+          "p2d": true,
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.5,
+          "exterieur": null
+        },
+        {
+          "id": "ae927252ecbe",
+          "p2d": true,
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 56.5,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2026-4",
+      "nb_lots_libres": 6,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 3
+    }
+  ]
+}

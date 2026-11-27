@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -387,7 +405,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"mantes-la-ville","villes":[{"v":"Mantes-la-Ville","s":"mantes-la-ville","cp":"78711","i":"78362","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[1.7273,48.9849],[1.7278,48.984],[1.7283,48.9826],[1.729,48.9815],[1.7299,48.9804],[1.7311,48.9793],[1.7322,48.9783],[1.7329,48.9778],[1.7334,48.9766],[1.7345,48.975],[1.7339,48.975],[1.7337,48.9746],[1.7336,48.9737],[1.732,48.9738],[1.7318,48.9725],[1.7315,48.9725],[1.7312,48.9715],[1.7311,48.971],[1.731,48.9706],[1.7309,48.9704],[1.7306,48.9699],[1.7303,48.9693],[1.7301,48.9692],[1.7301,48.9688],[1.7301,48.9685],[1.7302,48.9682],[1.7308,48.9668],[1.7303,48.9668],[1.7304,48.9664],[1.7265,48.9663],[1.7265,48.966],[1.7265,48.9658],[1.7264,48.9657],[1.7264,48.9656],[1.7263,48.9653],[1.7238,48.9653],[1.7237,48.965],[1.7236,48.9646],[1.7235,48.9643],[1.7236,48.9631],[1.7236,48.963],[1.7217,48.9633],[1.7195,48.9639],[1.7197,48.9628],[1.7197,48.9623],[1.7195,48.962],[1.7192,48.9614],[1.7191,48.9618],[1.7191,48.9622],[1.7189,48.9626],[1.7186,48.9626],[1.7185,48.9625],[1.7182,48.9625],[1.7182,48.9624],[1.7169,48.9626],[1.7167,48.9619],[1.7131,48.9625],[1.7129,48.9623],[1.7114,48.9625],[1.7115,48.9623],[1.7115,48.9623],[1.7106,48.9624],[1.7106,48.9624],[1.7102,48.9626],[1.7101,48.9623],[1.7104,48.9614],[1.7103,48.961],[1.7084,48.9611],[1.7084,48.9609],[1.7077,48.961],[1.7064,48.9611],[1.7069,48.9622],[1.7074,48.9634],[1.7075,48.9635],[1.707,48.9636],[1.7074,48.9643],[1.7075,48.9644],[1.7071,48.9645],[1.7072,48.9646],[1.7051,48.9649],[1.7046,48.9641],[1.7027,48.9645],[1.7026,48.9638],[1.7025,48.9637],[1.7007,48.9641],[1.7005,48.9639],[1.699,48.9643],[1.6985,48.9644],[1.6978,48.9646],[1.6976,48.9647],[1.6974,48.9645],[1.6943,48.9654],[1.695,48.9662],[1.6954,48.9667],[1.6957,48.9672],[1.6959,48.9675],[1.696,48.9678],[1.6966,48.9685],[1.6969,48.9689],[1.6972,48.9694],[1.6976,48.9702],[1.6981,48.9711],[1.6982,48.9713],[1.6984,48.9716],[1.6988,48.9722],[1.6989,48.9724],[1.6999,48.973],[1.7006,48.9736],[1.7005,48.9739],[1.7004,48.9741],[1.7,48.9742],[1.6997,48.9743],[1.6991,48.9743],[1.6985,48.9743],[1.6979,48.9743],[1.6976,48.9743],[1.6982,48.9757],[1.6985,48.9762],[1.6987,48.9766],[1.6987,48.9767],[1.6991,48.9772],[1.6993,48.9777],[1.7,48.979],[1.7001,48.9793],[1.6994,48.9793],[1.6985,48.9792],[1.6984,48.9791],[1.6979,48.9791],[1.6972,48.979],[1.6965,48.9789],[1.6953,48.9789],[1.6944,48.9788],[1.6941,48.9788],[1.6939,48.9789],[1.6937,48.9787],[1.6935,48.9787],[1.6932,48.9788],[1.6915,48.9788],[1.6894,48.9787],[1.6876,48.9787],[1.686,48.9786],[1.6862,48.9792],[1.6866,48.9806],[1.6886,48.9807],[1.6896,48.9808],[1.6902,48.9816],[1.6903,48.9818],[1.691,48.9817],[1.6918,48.9825],[1.6918,48.9825],[1.6923,48.983],[1.6924,48.9831],[1.6928,48.9829],[1.6934,48.9833],[1.6937,48.9834],[1.6941,48.9836],[1.6941,48.9837],[1.6945,48.984],[1.6952,48.9846],[1.6954,48.9848],[1.696,48.9853],[1.6963,48.9856],[1.6966,48.9856],[1.6961,48.9859],[1.6955,48.9863],[1.6953,48.9865],[1.6959,48.9874],[1.6967,48.9868],[1.697,48.9865],[1.6971,48.9863],[1.6976,48.9859],[1.7002,48.9876],[1.7004,48.9878],[1.7015,48.9884],[1.7032,48.9894],[1.705,48.9888],[1.7074,48.9876],[1.7074,48.9876],[1.7095,48.9865],[1.7115,48.9853],[1.7127,48.9847],[1.7142,48.984],[1.7154,48.9835],[1.7162,48.9832],[1.7164,48.9831],[1.7165,48.9832],[1.7174,48.9829],[1.7183,48.9826],[1.7187,48.9825],[1.7196,48.9823],[1.7209,48.9821],[1.721,48.9822],[1.7211,48.9823],[1.7215,48.9824],[1.7219,48.9827],[1.7222,48.9829],[1.7225,48.9832],[1.7228,48.9833],[1.7229,48.9835],[1.7232,48.9836],[1.7236,48.9838],[1.7244,48.9841],[1.7246,48.9843],[1.7248,48.9846],[1.726,48.9842],[1.726,48.9845],[1.7273,48.9849]]]}},"r":"4 programmes · 106 logements disponibles","p":[{"n":"Le Camélinat","s":"le-camelinat","k":false,"a":48.982,"o":1.71,"z":false,"u":"mantes-la-ville/le-camelinat/","l":"4e trimestre 2026","d":"3 logements disponibles"},{"n":"Mantea","s":"mantea","k":false,"a":48.98,"o":1.695,"z":false,"u":"mantes-la-ville/mantea/","l":"1er trimestre 2028","d":"9 logements disponibles"},{"n":"Opaline","s":"opaline","k":false,"a":48.987,"o":1.706,"z":false,"u":"mantes-la-ville/opaline/","l":"4e trimestre 2028","d":"57 logements disponibles"},{"n":"ATELIA - Mantes-la-Ville","s":"atelia-mantes-la-ville","k":false,"a":48.981,"o":1.709,"z":false,"u":"mantes-la-ville/atelia-mantes-la-ville/","l":"4e trimestre 2028","d":"37 logements disponibles"},{"n":"Parc Universite","s":"parc-universite","k":true,"a":48.975,"o":1.71,"z":true,"u":"mantes-la-ville/parc-universite/","l":"","d":"Grille sur demande"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

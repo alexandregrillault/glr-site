@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -367,7 +385,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"neuilly-sur-seine","villes":[{"v":"Neuilly-sur-Seine","s":"neuilly-sur-seine","cp":"92200","i":"92051","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.2457,48.8765],[2.2462,48.8769],[2.2468,48.8775],[2.2474,48.8781],[2.248,48.8787],[2.251,48.8812],[2.2519,48.8821],[2.2544,48.8849],[2.2525,48.8855],[2.2531,48.8861],[2.2536,48.8867],[2.2538,48.8869],[2.2544,48.8877],[2.255,48.8883],[2.2554,48.8885],[2.2568,48.8896],[2.2574,48.89],[2.2579,48.8903],[2.2589,48.891],[2.2591,48.8911],[2.2599,48.8918],[2.2616,48.8933],[2.2625,48.8942],[2.2633,48.8948],[2.2637,48.8951],[2.2643,48.8955],[2.2657,48.8962],[2.2679,48.8972],[2.2685,48.8974],[2.2701,48.898],[2.2711,48.8984],[2.2713,48.8982],[2.2716,48.8978],[2.2726,48.8969],[2.2732,48.8963],[2.2738,48.8958],[2.2768,48.8929],[2.2771,48.8927],[2.2777,48.8921],[2.2777,48.8921],[2.2788,48.8909],[2.2816,48.8883],[2.2832,48.8869],[2.2836,48.8864],[2.2845,48.8856],[2.2845,48.8856],[2.281,48.883],[2.2809,48.8828],[2.2806,48.8816],[2.2805,48.8811],[2.2799,48.8786],[2.2795,48.8785],[2.2775,48.878],[2.2646,48.8796],[2.2589,48.8803],[2.2585,48.8804],[2.2554,48.8743],[2.2548,48.8741],[2.2465,48.8761],[2.2463,48.8762],[2.2457,48.8765]]]}},"r":"2 programmes · 24 logements disponibles","p":[{"n":"Le Carre Des Lumieres","s":"le-carre-des-lumieres","k":false,"a":48.887,"o":2.258,"z":false,"u":"neuilly-sur-seine/le-carre-des-lumieres/","l":"Livré","d":"1 logement disponible"},{"n":"Collection Pierret","s":"collection-pierret","k":false,"a":48.882,"o":2.262,"z":false,"u":"neuilly-sur-seine/collection-pierret/","l":"2e trimestre 2028","d":"23 logements disponibles"},{"n":"Neuilly-sur-Seine - Quartier Parmentier","s":"neuilly-sur-seine-quartier-parmentier","k":true,"a":48.886,"o":2.265,"z":true,"u":"neuilly-sur-seine/neuilly-sur-seine-quartier-parmentier/","l":"","d":"Grille sur demande"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -360,7 +378,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"andilly","villes":[{"v":"Andilly","s":"andilly","cp":"95580","i":"95014","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.2928,48.9959],[2.292,48.9961],[2.2913,48.9964],[2.2906,48.9966],[2.2901,48.9968],[2.2906,48.9974],[2.2918,48.9986],[2.2921,48.9989],[2.2923,48.999],[2.2929,48.9991],[2.2934,48.9993],[2.2938,48.9995],[2.2942,48.9997],[2.2945,49],[2.295,49.0006],[2.2952,49.001],[2.2959,49.0023],[2.296,49.0024],[2.2961,49.0026],[2.2971,49.0033],[2.2972,49.0035],[2.2949,49.0037],[2.2948,49.0045],[2.2945,49.0045],[2.2949,49.0059],[2.2946,49.0059],[2.2942,49.0059],[2.2934,49.0061],[2.2922,49.0062],[2.2915,49.0064],[2.2917,49.0067],[2.292,49.0066],[2.2922,49.007],[2.2917,49.0071],[2.2922,49.0078],[2.2928,49.0076],[2.293,49.0077],[2.2933,49.0081],[2.2936,49.0086],[2.2941,49.0093],[2.2946,49.0091],[2.2948,49.0094],[2.2951,49.0098],[2.2953,49.0101],[2.2953,49.0103],[2.2957,49.0107],[2.2971,49.011],[2.2981,49.0119],[2.2998,49.0149],[2.3,49.015],[2.3006,49.0153],[2.3009,49.0154],[2.3011,49.0155],[2.3015,49.0159],[2.3016,49.016],[2.3009,49.0167],[2.3002,49.0171],[2.3004,49.0174],[2.3003,49.0175],[2.3001,49.018],[2.3001,49.0183],[2.3001,49.0187],[2.3003,49.0189],[2.3004,49.019],[2.3009,49.0192],[2.3012,49.0193],[2.3017,49.0197],[2.3018,49.0199],[2.3019,49.0201],[2.3021,49.0204],[2.3022,49.0205],[2.3027,49.0208],[2.303,49.0209],[2.3031,49.0211],[2.3031,49.0213],[2.3026,49.0215],[2.3026,49.0218],[2.3023,49.0223],[2.3023,49.0225],[2.3022,49.0229],[2.3016,49.023],[2.3015,49.0241],[2.3026,49.024],[2.3026,49.0241],[2.3039,49.024],[2.3045,49.024],[2.3051,49.0239],[2.3057,49.0238],[2.3057,49.0237],[2.3058,49.0235],[2.3059,49.0234],[2.305,49.0231],[2.3051,49.0231],[2.3042,49.0228],[2.3041,49.0208],[2.3045,49.0206],[2.3056,49.0201],[2.307,49.0194],[2.3082,49.0189],[2.3085,49.0187],[2.3093,49.0183],[2.3102,49.0179],[2.3113,49.0174],[2.3116,49.0172],[2.3128,49.0166],[2.3131,49.0166],[2.3128,49.0162],[2.3127,49.0158],[2.3127,49.0157],[2.3127,49.0148],[2.3127,49.0144],[2.3126,49.0142],[2.3121,49.0135],[2.3118,49.0132],[2.3116,49.0129],[2.3114,49.0122],[2.3114,49.0119],[2.3114,49.0117],[2.3115,49.0116],[2.3119,49.0112],[2.312,49.011],[2.3121,49.0107],[2.3122,49.0103],[2.3122,49.0099],[2.3124,49.0096],[2.3126,49.0094],[2.313,49.0091],[2.3133,49.0089],[2.3136,49.0084],[2.3139,49.008],[2.3137,49.0078],[2.3117,49.0068],[2.3109,49.0064],[2.3113,49.006],[2.3118,49.0057],[2.3124,49.0053],[2.313,49.005],[2.3127,49.0046],[2.312,49.0045],[2.3117,49.0044],[2.3112,49.0041],[2.311,49.0038],[2.3108,49.0021],[2.309,49.0018],[2.3086,49.0017],[2.3084,49.0018],[2.3079,49.0021],[2.3077,49.0022],[2.3074,49.0022],[2.3065,49.0023],[2.306,49.0025],[2.305,49.0012],[2.305,49.0005],[2.3051,49],[2.305,48.9994],[2.3046,48.9988],[2.3037,48.9974],[2.2962,48.9957],[2.2958,48.9956],[2.2949,48.9956],[2.2944,48.9956],[2.2942,48.9957],[2.2936,48.9957],[2.2928,48.9959]]]}},"r":"2 programmes · 8 logements disponibles","p":[{"n":"Le Clos Du Bois 2 - Brs","s":"le-clos-du-bois-2-brs","k":false,"a":49.008,"o":2.314,"z":false,"u":"andilly/le-clos-du-bois-2-brs/","l":"","d":"7 logements disponibles"},{"n":"LE CLOS DU BOIS 1 et 2","s":"le-clos-du-bois-1-et-2","k":false,"a":49.014,"o":2.312,"z":false,"u":"andilly/le-clos-du-bois-1-et-2/","l":"","d":"1 logement disponible"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

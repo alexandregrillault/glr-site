@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -353,7 +371,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"egly","villes":[{"v":"Égly","s":"egly","cp":"91520","i":"91207","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.2107,48.5696],[2.2096,48.5705],[2.2095,48.5705],[2.2092,48.5706],[2.208,48.571],[2.2078,48.5712],[2.2075,48.5713],[2.2068,48.5717],[2.2065,48.5719],[2.2049,48.5728],[2.2046,48.5729],[2.2033,48.5733],[2.203,48.5735],[2.2019,48.5738],[2.2017,48.5738],[2.2012,48.5739],[2.2004,48.5743],[2.2,48.5744],[2.1999,48.5745],[2.1998,48.5747],[2.1996,48.5746],[2.1992,48.575],[2.1987,48.5755],[2.1985,48.5757],[2.1986,48.5759],[2.1986,48.5764],[2.1984,48.5765],[2.1981,48.5763],[2.1976,48.5761],[2.1975,48.5761],[2.1969,48.576],[2.1955,48.5771],[2.1961,48.5774],[2.1965,48.5776],[2.1971,48.578],[2.1973,48.5781],[2.1977,48.5784],[2.1981,48.5785],[2.1987,48.5788],[2.1985,48.579],[2.1985,48.5791],[2.1988,48.5792],[2.1991,48.5794],[2.1992,48.5795],[2.1994,48.5799],[2.1999,48.5799],[2.2005,48.5799],[2.2012,48.58],[2.2017,48.5801],[2.2023,48.5801],[2.2026,48.5801],[2.2034,48.5801],[2.2036,48.5801],[2.204,48.5802],[2.2044,48.5803],[2.2055,48.5804],[2.2058,48.5805],[2.206,48.5805],[2.2067,48.5805],[2.2079,48.5805],[2.2086,48.5806],[2.2088,48.5807],[2.209,48.5809],[2.2097,48.5813],[2.21,48.5814],[2.21,48.5815],[2.21,48.5818],[2.2101,48.582],[2.2102,48.582],[2.2106,48.5819],[2.2108,48.5819],[2.211,48.5821],[2.2111,48.5823],[2.2112,48.5824],[2.2114,48.5825],[2.2118,48.5825],[2.2123,48.5825],[2.2127,48.5824],[2.2131,48.5824],[2.2133,48.5824],[2.2136,48.5825],[2.2137,48.5826],[2.2138,48.5828],[2.2138,48.5829],[2.2139,48.583],[2.2142,48.5831],[2.2146,48.5834],[2.215,48.5834],[2.2155,48.5834],[2.2176,48.5836],[2.2182,48.5837],[2.2191,48.5838],[2.2194,48.5838],[2.2197,48.5838],[2.2207,48.5839],[2.2219,48.584],[2.2222,48.5841],[2.2228,48.584],[2.2232,48.5841],[2.225,48.5843],[2.2258,48.5843],[2.2261,48.5844],[2.2268,48.5847],[2.2274,48.5849],[2.2285,48.5853],[2.2287,48.5856],[2.2289,48.5858],[2.2293,48.586],[2.2297,48.5863],[2.23,48.5865],[2.2305,48.5869],[2.2307,48.587],[2.2312,48.5872],[2.2316,48.5874],[2.2321,48.5876],[2.2333,48.5882],[2.2335,48.5881],[2.2337,48.5882],[2.2339,48.5884],[2.2341,48.5885],[2.2345,48.5888],[2.2347,48.5889],[2.2349,48.5889],[2.2352,48.589],[2.2356,48.5886],[2.2352,48.5882],[2.2348,48.5876],[2.2345,48.5872],[2.2342,48.5866],[2.2342,48.5863],[2.2346,48.5864],[2.2359,48.5866],[2.237,48.5865],[2.237,48.5863],[2.2376,48.5845],[2.2378,48.5841],[2.2375,48.584],[2.2376,48.5838],[2.2385,48.5831],[2.2385,48.583],[2.2388,48.5812],[2.2389,48.5806],[2.239,48.5805],[2.24,48.581],[2.2401,48.5804],[2.2393,48.58],[2.2406,48.5789],[2.241,48.5785],[2.2404,48.5778],[2.2395,48.5773],[2.2388,48.5767],[2.2385,48.5765],[2.2384,48.5765],[2.2381,48.5761],[2.2377,48.5757],[2.2374,48.5758],[2.2357,48.5742],[2.2327,48.5719],[2.2323,48.5715],[2.231,48.5705],[2.2296,48.5695],[2.2291,48.5692],[2.2288,48.5689],[2.2283,48.5685],[2.2268,48.5671],[2.2264,48.5666],[2.2255,48.5667],[2.2239,48.5668],[2.2237,48.5678],[2.2236,48.5683],[2.2236,48.5687],[2.2237,48.5692],[2.2237,48.5695],[2.2236,48.5698],[2.2231,48.5709],[2.2225,48.5718],[2.2224,48.5722],[2.2224,48.5724],[2.2224,48.5727],[2.2223,48.573],[2.222,48.5735],[2.222,48.5737],[2.222,48.5738],[2.2219,48.5739],[2.2216,48.5736],[2.2207,48.5731],[2.2202,48.5729],[2.2197,48.5726],[2.2191,48.5723],[2.2186,48.5723],[2.2181,48.5721],[2.2175,48.5719],[2.2163,48.5714],[2.216,48.5713],[2.2155,48.571],[2.2148,48.5707],[2.2138,48.5704],[2.2124,48.5701],[2.212,48.57],[2.2119,48.5699],[2.2116,48.5699],[2.2107,48.5696]]]}},"r":"1 programme · 66 logements disponibles","p":[{"n":"Les Jardins de Fréville","s":"les-jardins-de-freville","k":false,"a":48.579,"o":2.215,"z":false,"u":"egly/les-jardins-de-freville/","l":"2e trimestre 2029","d":"66 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

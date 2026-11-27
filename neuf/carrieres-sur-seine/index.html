@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -353,7 +371,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"carrieres-sur-seine","villes":[{"v":"Carrières-sur-Seine","s":"carrieres-sur-seine","cp":"78420","i":"78124","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.1609,48.9203],[2.1618,48.9207],[2.1629,48.9213],[2.1632,48.9214],[2.1644,48.922],[2.165,48.9223],[2.1658,48.9227],[2.1661,48.9228],[2.1657,48.9234],[2.1658,48.9238],[2.1659,48.924],[2.1662,48.9244],[2.1664,48.9247],[2.1664,48.9248],[2.1667,48.9249],[2.1667,48.9258],[2.1682,48.9265],[2.1686,48.9262],[2.1688,48.926],[2.1699,48.9251],[2.1702,48.9248],[2.1702,48.9243],[2.1703,48.9242],[2.1721,48.9222],[2.1721,48.9221],[2.1746,48.919],[2.1755,48.9178],[2.1757,48.9177],[2.1759,48.9176],[2.1766,48.9171],[2.1776,48.9161],[2.1778,48.916],[2.1796,48.9166],[2.1799,48.9167],[2.1813,48.9172],[2.1823,48.9175],[2.1829,48.9177],[2.1838,48.9179],[2.1848,48.9181],[2.1853,48.9182],[2.186,48.9183],[2.1869,48.9186],[2.1873,48.9179],[2.1877,48.9172],[2.188,48.9173],[2.1888,48.9175],[2.1898,48.9178],[2.1901,48.9178],[2.1907,48.918],[2.192,48.9182],[2.1931,48.9165],[2.1932,48.9164],[2.1932,48.9163],[2.1953,48.9171],[2.1955,48.9169],[2.197,48.9177],[2.1984,48.9185],[2.1992,48.919],[2.1998,48.9187],[2.2004,48.9183],[2.2008,48.918],[2.2011,48.9177],[2.2015,48.9173],[2.2022,48.9164],[2.2039,48.9145],[2.2023,48.9139],[2.2011,48.9134],[2.2006,48.9133],[2.2002,48.913],[2.1994,48.9126],[2.1982,48.912],[2.2005,48.9086],[2.2,48.9084],[2.197,48.9072],[2.1964,48.9069],[2.196,48.9067],[2.1955,48.9063],[2.1944,48.9056],[2.1941,48.9054],[2.1931,48.905],[2.1926,48.9048],[2.192,48.9046],[2.191,48.9043],[2.1901,48.9041],[2.1881,48.9036],[2.1869,48.9034],[2.1852,48.9031],[2.1826,48.9025],[2.1815,48.9022],[2.1808,48.9019],[2.1774,48.9007],[2.1766,48.9004],[2.1757,48.8999],[2.1746,48.8992],[2.1744,48.8991],[2.1739,48.8993],[2.1737,48.8995],[2.173,48.8999],[2.1728,48.9],[2.1717,48.9007],[2.1705,48.9015],[2.1671,48.9037],[2.1668,48.9035],[2.1659,48.904],[2.1657,48.9042],[2.1662,48.9045],[2.1612,48.9081],[2.1599,48.9091],[2.1606,48.9094],[2.1612,48.9096],[2.1629,48.9102],[2.1619,48.9113],[2.1616,48.9117],[2.1586,48.9141],[2.159,48.9143],[2.1601,48.9149],[2.1602,48.915],[2.1607,48.9153],[2.1617,48.916],[2.1621,48.9163],[2.1626,48.9167],[2.1631,48.9171],[2.1601,48.919],[2.1598,48.9191],[2.1594,48.9193],[2.1596,48.9194],[2.1609,48.9203]]]}},"r":"1 programme · 3 logements disponibles","p":[{"n":"9ème Art","s":"9eme-art","k":false,"a":48.915,"o":2.174,"z":false,"u":"carrieres-sur-seine/9eme-art/","l":"1er trimestre 2027","d":"3 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

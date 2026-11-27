@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -366,7 +384,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"garches","villes":[{"v":"Garches","s":"garches","cp":"92380","i":"92033","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.1826,48.8516],[2.1826,48.8516],[2.1843,48.8516],[2.1851,48.8518],[2.1869,48.8522],[2.187,48.8523],[2.1873,48.8526],[2.1884,48.8524],[2.19,48.8521],[2.1904,48.8521],[2.1911,48.8529],[2.1923,48.854],[2.192,48.8542],[2.1921,48.8544],[2.1925,48.8547],[2.1929,48.8549],[2.1935,48.8553],[2.1941,48.8559],[2.1943,48.8561],[2.1946,48.8559],[2.1953,48.8556],[2.1964,48.8552],[2.1968,48.8551],[2.1979,48.8548],[2.1986,48.8545],[2.1993,48.8542],[2.1997,48.854],[2.2008,48.8534],[2.2012,48.8532],[2.2014,48.8531],[2.2026,48.8527],[2.2034,48.8524],[2.204,48.8522],[2.2052,48.8519],[2.2055,48.8518],[2.2053,48.8512],[2.2052,48.8511],[2.2049,48.8509],[2.2043,48.8507],[2.2039,48.8504],[2.2021,48.8497],[2.2017,48.8495],[2.2007,48.8488],[2.199,48.8479],[2.1985,48.8477],[2.198,48.8474],[2.1979,48.8472],[2.1979,48.8469],[2.1978,48.8465],[2.1978,48.8463],[2.1979,48.8459],[2.198,48.8455],[2.1984,48.8448],[2.1989,48.8443],[2.199,48.844],[2.1991,48.8433],[2.1991,48.8429],[2.1991,48.8428],[2.1989,48.842],[2.1988,48.8416],[2.1988,48.8415],[2.1983,48.8414],[2.1965,48.8411],[2.195,48.8408],[2.1941,48.8406],[2.1936,48.8405],[2.1919,48.84],[2.1915,48.8399],[2.1909,48.8398],[2.1904,48.8397],[2.1894,48.8395],[2.188,48.8391],[2.1876,48.8389],[2.1882,48.8384],[2.1872,48.8377],[2.1865,48.8383],[2.1864,48.8385],[2.1852,48.8384],[2.1835,48.8383],[2.1811,48.8382],[2.1803,48.8382],[2.1779,48.8382],[2.177,48.8381],[2.1764,48.8381],[2.1744,48.8382],[2.1734,48.8383],[2.1719,48.8385],[2.1716,48.8385],[2.1713,48.8384],[2.1686,48.8379],[2.1679,48.8378],[2.1673,48.8377],[2.1667,48.8377],[2.1667,48.8379],[2.1668,48.8383],[2.1669,48.8393],[2.1669,48.8394],[2.1673,48.8394],[2.1673,48.8401],[2.1674,48.8418],[2.167,48.8419],[2.167,48.8422],[2.1743,48.8432],[2.1744,48.8432],[2.1752,48.8435],[2.1754,48.8435],[2.1789,48.8441],[2.1791,48.8442],[2.1793,48.8446],[2.1795,48.8452],[2.1804,48.8462],[2.1811,48.8472],[2.1813,48.8475],[2.1817,48.8482],[2.1818,48.8482],[2.1819,48.8487],[2.182,48.849],[2.1822,48.8497],[2.1823,48.8501],[2.1823,48.8503],[2.1825,48.8511],[2.1826,48.8516]]]}},"r":"2 programmes · 22 logements disponibles","p":[{"n":"Les Terrasses de L'Hippodrome","s":"les-terrasses-de-l-hippodrome","k":false,"a":48.853,"o":2.206,"z":false,"u":"garches/les-terrasses-de-l-hippodrome/","l":"1er trimestre 2027","d":"16 logements disponibles"},{"n":"Komo","s":"komo","k":false,"a":48.85,"o":2.196,"z":true,"u":"garches/komo/","l":"3e trimestre 2028","d":"6 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

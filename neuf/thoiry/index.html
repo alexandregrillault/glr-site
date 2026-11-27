@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -353,7 +371,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"thoiry","villes":[{"v":"Thoiry","s":"thoiry","cp":"78770","i":"78616","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[1.8058,48.8601],[1.8056,48.86],[1.8046,48.8598],[1.8041,48.8597],[1.8036,48.8596],[1.8024,48.8593],[1.802,48.8592],[1.8011,48.8589],[1.8009,48.8591],[1.8001,48.8587],[1.8001,48.8587],[1.7982,48.8572],[1.7978,48.8569],[1.7977,48.8563],[1.7968,48.8559],[1.7969,48.8558],[1.7968,48.8556],[1.7965,48.8554],[1.7964,48.8552],[1.7946,48.8537],[1.7944,48.8539],[1.7936,48.8543],[1.7929,48.8547],[1.7927,48.8546],[1.7922,48.8547],[1.7917,48.8547],[1.7916,48.8544],[1.7908,48.8546],[1.7876,48.8553],[1.787,48.8555],[1.7857,48.8557],[1.7853,48.8557],[1.7864,48.8567],[1.7865,48.8569],[1.7872,48.8575],[1.7877,48.8579],[1.7879,48.8582],[1.7881,48.8589],[1.7884,48.8598],[1.7857,48.8626],[1.7849,48.8648],[1.7833,48.8662],[1.7832,48.8663],[1.7831,48.8665],[1.7835,48.8669],[1.7836,48.8671],[1.7836,48.8671],[1.7835,48.8673],[1.7834,48.8674],[1.7837,48.8678],[1.7833,48.868],[1.7826,48.8683],[1.7817,48.8686],[1.7802,48.8693],[1.7796,48.8695],[1.7789,48.8697],[1.7781,48.8698],[1.7783,48.87],[1.7787,48.8703],[1.7781,48.8706],[1.7777,48.8709],[1.7771,48.8714],[1.7764,48.8718],[1.7758,48.8721],[1.7746,48.8726],[1.7752,48.8731],[1.7769,48.8745],[1.7773,48.8748],[1.7778,48.8745],[1.7823,48.8778],[1.7812,48.8787],[1.7804,48.8793],[1.7802,48.8795],[1.781,48.8799],[1.7839,48.8811],[1.7884,48.883],[1.7904,48.8838],[1.79,48.8843],[1.7898,48.8846],[1.7897,48.8849],[1.7893,48.886],[1.7898,48.886],[1.791,48.886],[1.7919,48.886],[1.793,48.886],[1.7938,48.886],[1.7961,48.886],[1.7967,48.8861],[1.7986,48.8861],[1.8011,48.886],[1.8017,48.886],[1.8022,48.886],[1.8039,48.886],[1.8053,48.886],[1.8056,48.886],[1.8066,48.8861],[1.8133,48.8858],[1.8138,48.8848],[1.8142,48.884],[1.8144,48.8838],[1.8167,48.8813],[1.8169,48.8809],[1.8181,48.8782],[1.817,48.8779],[1.8194,48.8753],[1.8231,48.8766],[1.8231,48.8764],[1.823,48.8759],[1.8228,48.8748],[1.8227,48.8743],[1.8227,48.8738],[1.8229,48.8734],[1.8207,48.873],[1.8204,48.8729],[1.82,48.8727],[1.8179,48.8719],[1.8167,48.8715],[1.8152,48.871],[1.8139,48.8705],[1.8131,48.8702],[1.811,48.8694],[1.8103,48.8691],[1.8101,48.869],[1.8096,48.8685],[1.8089,48.8678],[1.8086,48.8674],[1.8085,48.8674],[1.8091,48.8672],[1.8099,48.8669],[1.8106,48.8666],[1.8108,48.8664],[1.8084,48.8646],[1.8061,48.8629],[1.8074,48.8619],[1.807,48.8616],[1.8072,48.8612],[1.807,48.8607],[1.8058,48.8601]]]}},"r":"1 programme · 17 logements disponibles","p":[{"n":"Les Jardins Villarceaux","s":"les-jardins-villarceaux","k":false,"a":48.872,"o":1.787,"z":false,"u":"thoiry/les-jardins-villarceaux/","l":"3e trimestre 2028","d":"17 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

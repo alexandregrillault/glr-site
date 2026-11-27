@@ -96,7 +96,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -104,6 +120,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -320,6 +338,7 @@ footer a{color:var(--discret)}
   </div>
   <section class="immeuble" id="immeuble">
    
+   
       <div class="vue">
     
     <div class="plan-cadre">
@@ -340,61 +359,70 @@ footer a{color:var(--discret)}
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T1">T1</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
     <section class="typo"><h3>T1 · 9 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  <tr id="l-c4f3aed7b803"><td>27,5 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="c4f3aed7b803" data-s="27.5">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-e58fba466f79"><td>30,8 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="e58fba466f79" data-s="30.8">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-7099fa72220c"><td>33,44 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="7099fa72220c" data-s="33.44">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-745f6dfcfa5d"><td>33,44 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="745f6dfcfa5d" data-s="33.44">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-acfb36ff88ac"><td>33,44 m²</td><td>1er</td><td>—</td><td class="prix-lot" data-lot="acfb36ff88ac" data-s="33.44">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-78be2f1d8eed"><td>35,06 m²</td><td>1er</td><td>—</td><td class="prix-lot" data-lot="78be2f1d8eed" data-s="35.06">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-8a3f31b42873"><td>35,06 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="8a3f31b42873" data-s="35.06">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-a8b074a74e9f"><td>35,06 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="a8b074a74e9f" data-s="35.06">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-3a0306369f28"><td>36,79 m²</td><td>RDC</td><td>—</td><td class="prix-lot" data-lot="3a0306369f28" data-s="36.79">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-c4f3aed7b803"><td>27,5 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="c4f3aed7b803" data-s="27.5">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="c4f3aed7b803">Plan</button></td></tr>
+  <tr id="l-e58fba466f79"><td>30,8 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="e58fba466f79" data-s="30.8">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="e58fba466f79">Plan</button></td></tr>
+  <tr id="l-7099fa72220c"><td>33,44 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="7099fa72220c" data-s="33.44">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="7099fa72220c">Plan</button></td></tr>
+  <tr id="l-745f6dfcfa5d"><td>33,44 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="745f6dfcfa5d" data-s="33.44">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="745f6dfcfa5d">Plan</button></td></tr>
+  <tr id="l-acfb36ff88ac"><td>33,44 m²</td><td>1er</td><td>—</td><td class="prix-lot" data-lot="acfb36ff88ac" data-s="33.44">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="acfb36ff88ac">Plan</button></td></tr>
+  <tr id="l-78be2f1d8eed"><td>35,06 m²</td><td>1er</td><td>—</td><td class="prix-lot" data-lot="78be2f1d8eed" data-s="35.06">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="78be2f1d8eed">Plan</button></td></tr>
+  <tr id="l-8a3f31b42873"><td>35,06 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="8a3f31b42873" data-s="35.06">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="8a3f31b42873">Plan</button></td></tr>
+  <tr id="l-a8b074a74e9f"><td>35,06 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="a8b074a74e9f" data-s="35.06">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="a8b074a74e9f">Plan</button></td></tr>
+  <tr id="l-3a0306369f28"><td>36,79 m²</td><td>RDC</td><td>—</td><td class="prix-lot" data-lot="3a0306369f28" data-s="36.79">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="3a0306369f28">Plan</button></td></tr>
   </tbody></table></section>
     <section class="typo"><h3>T2 · 2 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  <tr id="l-8c6a5d9caa7e"><td>42,54 m²</td><td>1er</td><td>—</td><td class="prix-lot" data-lot="8c6a5d9caa7e" data-s="42.54">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-2a900276df7f"><td>47,09 m²</td><td>RDC</td><td>Jardin</td><td class="prix-lot" data-lot="2a900276df7f" data-s="47.09">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-8c6a5d9caa7e"><td>42,54 m²</td><td>1er</td><td>—</td><td class="prix-lot" data-lot="8c6a5d9caa7e" data-s="42.54">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="8c6a5d9caa7e">Plan</button></td></tr>
+  <tr id="l-2a900276df7f"><td>47,09 m²</td><td>RDC</td><td>Jardin</td><td class="prix-lot" data-lot="2a900276df7f" data-s="47.09">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="2a900276df7f">Plan</button></td></tr>
   </tbody></table></section>
     <section class="typo"><h3>T3 · 7 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  <tr id="l-ed29fbe8eba7"><td>62,86 m²</td><td>RDC</td><td>Jardin</td><td class="prix-lot" data-lot="ed29fbe8eba7" data-s="62.86">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-abe63a82db38"><td>66,03 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="abe63a82db38" data-s="66.03">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-b7ddd62ad8d3"><td>66,03 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="b7ddd62ad8d3" data-s="66.03">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-7a2abf507f67"><td>67,17 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="7a2abf507f67" data-s="67.17">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-cc3530739da9"><td>67,77 m²</td><td>RDC</td><td>Jardin</td><td class="prix-lot" data-lot="cc3530739da9" data-s="67.77">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-669e42f9a7b0"><td>68,6 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="669e42f9a7b0" data-s="68.6">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-82d10e578488"><td>68,6 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="82d10e578488" data-s="68.6">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-ed29fbe8eba7"><td>62,86 m²</td><td>RDC</td><td>Jardin</td><td class="prix-lot" data-lot="ed29fbe8eba7" data-s="62.86">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="ed29fbe8eba7">Plan</button></td></tr>
+  <tr id="l-abe63a82db38"><td>66,03 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="abe63a82db38" data-s="66.03">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="abe63a82db38">Plan</button></td></tr>
+  <tr id="l-b7ddd62ad8d3"><td>66,03 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="b7ddd62ad8d3" data-s="66.03">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="b7ddd62ad8d3">Plan</button></td></tr>
+  <tr id="l-7a2abf507f67"><td>67,17 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="7a2abf507f67" data-s="67.17">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="7a2abf507f67">Plan</button></td></tr>
+  <tr id="l-cc3530739da9"><td>67,77 m²</td><td>RDC</td><td>Jardin</td><td class="prix-lot" data-lot="cc3530739da9" data-s="67.77">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="cc3530739da9">Plan</button></td></tr>
+  <tr id="l-669e42f9a7b0"><td>68,6 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="669e42f9a7b0" data-s="68.6">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="669e42f9a7b0">Plan</button></td></tr>
+  <tr id="l-82d10e578488"><td>68,6 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="82d10e578488" data-s="68.6">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="82d10e578488">Plan</button></td></tr>
   </tbody></table></section>
     <section class="typo"><h3>T4 · 10 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  <tr id="l-af591c3363ec"><td>88 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="af591c3363ec" data-s="88">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-619ba3113571"><td>88,83 m²</td><td>5e</td><td>Balcon</td><td class="prix-lot" data-lot="619ba3113571" data-s="88.83">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-18a04b40f625"><td>97,85 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="18a04b40f625" data-s="97.85">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-1c6448401dcc"><td>97,85 m²</td><td>5e</td><td>Balcon</td><td class="prix-lot" data-lot="1c6448401dcc" data-s="97.85">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-27315dcc1e81"><td>97,85 m²</td><td>RDC</td><td>Jardin</td><td class="prix-lot" data-lot="27315dcc1e81" data-s="97.85">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-dd4cac71ddfe"><td>97,85 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="dd4cac71ddfe" data-s="97.85">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-e7116baba335"><td>97,85 m²</td><td>4e</td><td>Balcon</td><td class="prix-lot" data-lot="e7116baba335" data-s="97.85">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-f4ffc457a537"><td>97,85 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="f4ffc457a537" data-s="97.85">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-5dadde08d140"><td>98,83 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="5dadde08d140" data-s="98.83">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-a3ad06217c40"><td>101,12 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="a3ad06217c40" data-s="101.12">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-af591c3363ec"><td>88 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="af591c3363ec" data-s="88">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="af591c3363ec">Plan</button></td></tr>
+  <tr id="l-619ba3113571"><td>88,83 m²</td><td>5e</td><td>Balcon</td><td class="prix-lot" data-lot="619ba3113571" data-s="88.83">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="619ba3113571">Plan</button></td></tr>
+  <tr id="l-18a04b40f625"><td>97,85 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="18a04b40f625" data-s="97.85">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="18a04b40f625">Plan</button></td></tr>
+  <tr id="l-1c6448401dcc"><td>97,85 m²</td><td>5e</td><td>Balcon</td><td class="prix-lot" data-lot="1c6448401dcc" data-s="97.85">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="1c6448401dcc">Plan</button></td></tr>
+  <tr id="l-27315dcc1e81"><td>97,85 m²</td><td>RDC</td><td>Jardin</td><td class="prix-lot" data-lot="27315dcc1e81" data-s="97.85">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="27315dcc1e81">Plan</button></td></tr>
+  <tr id="l-dd4cac71ddfe"><td>97,85 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="dd4cac71ddfe" data-s="97.85">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="dd4cac71ddfe">Plan</button></td></tr>
+  <tr id="l-e7116baba335"><td>97,85 m²</td><td>4e</td><td>Balcon</td><td class="prix-lot" data-lot="e7116baba335" data-s="97.85">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="e7116baba335">Plan</button></td></tr>
+  <tr id="l-f4ffc457a537"><td>97,85 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="f4ffc457a537" data-s="97.85">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="f4ffc457a537">Plan</button></td></tr>
+  <tr id="l-5dadde08d140"><td>98,83 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="5dadde08d140" data-s="98.83">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="5dadde08d140">Plan</button></td></tr>
+  <tr id="l-a3ad06217c40"><td>101,12 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="a3ad06217c40" data-s="101.12">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="a3ad06217c40">Plan</button></td></tr>
   </tbody></table></section>
     <section class="typo"><h3>T5+ · 7 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  <tr id="l-ac9a7aa17171"><td>104,88 m²</td><td>RDC</td><td>Jardin</td><td class="prix-lot" data-lot="ac9a7aa17171" data-s="104.88">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-e77c4075f456"><td>108,2 m²</td><td>5e</td><td>Terrasse</td><td class="prix-lot" data-lot="e77c4075f456" data-s="108.2">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-dce12b6f0f92"><td>112,56 m²</td><td>5e</td><td>Terrasse</td><td class="prix-lot" data-lot="dce12b6f0f92" data-s="112.56">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-1a94c2ae29b4"><td>114,7 m²</td><td>6e</td><td>Terrasse</td><td class="prix-lot" data-lot="1a94c2ae29b4" data-s="114.7">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-48fa9ad56aeb"><td>117,35 m²</td><td>5e</td><td>Balcon</td><td class="prix-lot" data-lot="48fa9ad56aeb" data-s="117.35">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-21519858df8e"><td>121,31 m²</td><td>5e</td><td>Terrasse</td><td class="prix-lot" data-lot="21519858df8e" data-s="121.31">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-292871718893"><td>132 m²</td><td>4e</td><td>Balcon</td><td class="prix-lot" data-lot="292871718893" data-s="132">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-ac9a7aa17171"><td>104,88 m²</td><td>RDC</td><td>Jardin</td><td class="prix-lot" data-lot="ac9a7aa17171" data-s="104.88">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="ac9a7aa17171">Plan</button></td></tr>
+  <tr id="l-e77c4075f456"><td>108,2 m²</td><td>5e</td><td>Terrasse</td><td class="prix-lot" data-lot="e77c4075f456" data-s="108.2">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="e77c4075f456">Plan</button></td></tr>
+  <tr id="l-dce12b6f0f92"><td>112,56 m²</td><td>5e</td><td>Terrasse</td><td class="prix-lot" data-lot="dce12b6f0f92" data-s="112.56">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="dce12b6f0f92">Plan</button></td></tr>
+  <tr id="l-1a94c2ae29b4"><td>114,7 m²</td><td>6e</td><td>Terrasse</td><td class="prix-lot" data-lot="1a94c2ae29b4" data-s="114.7">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="1a94c2ae29b4">Plan</button></td></tr>
+  <tr id="l-48fa9ad56aeb"><td>117,35 m²</td><td>5e</td><td>Balcon</td><td class="prix-lot" data-lot="48fa9ad56aeb" data-s="117.35">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="48fa9ad56aeb">Plan</button></td></tr>
+  <tr id="l-21519858df8e"><td>121,31 m²</td><td>5e</td><td>Terrasse</td><td class="prix-lot" data-lot="21519858df8e" data-s="121.31">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="21519858df8e">Plan</button></td></tr>
+  <tr id="l-292871718893"><td>132 m²</td><td>4e</td><td>Balcon</td><td class="prix-lot" data-lot="292871718893" data-s="132">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="292871718893">Plan</button></td></tr>
   </tbody></table></section>
    </div>
   </section>
   
-  <section class="appel" id="compte">
+<section class="appel" id="compte" data-p="9cd9a549b764" data-lots="" data-plans="c4f3aed7b803,e58fba466f79,7099fa72220c,745f6dfcfa5d,acfb36ff88ac,78be2f1d8eed,8a3f31b42873,a8b074a74e9f,3a0306369f28,8c6a5d9caa7e,2a900276df7f,ed29fbe8eba7,abe63a82db38,b7ddd62ad8d3,7a2abf507f67,cc3530739da9,669e42f9a7b0,82d10e578488,af591c3363ec,619ba3113571,18a04b40f625,1c6448401dcc,27315dcc1e81,dd4cac71ddfe,e7116baba335,f4ffc457a537,5dadde08d140,a3ad06217c40,ac9a7aa17171,e77c4075f456,dce12b6f0f92,1a94c2ae29b4,48fa9ad56aeb,21519858df8e,292871718893">
     <h2>Voir les plans de ces logements</h2>
-    <p>Les plans de chaque logement sont réservés à votre espace client. Il se crée en une minute ; en attendant, appelez-nous et nous vous les envoyons.</p>
-    <div class="boutons"><a class="plein" href="tel:+33614550273">Appeler le 06 14 55 02 73</a><a class="creux" href="mailto:agl@glrimmobilier.com?subject=Plans%20de%20Signature%20Levallois%20%C3%A0%20Levallois-Perret">Écrire un e-mail</a></div>
+    <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
+    <form id="f3d" class="form3d" novalidate data-prog="Signature Levallois" data-ville="Levallois-Perret">
+      <label>Prénom<input name="prenom" autocomplete="given-name" maxlength="80" required></label>
+      <label>Téléphone<input name="telephone" type="tel" autocomplete="tel" maxlength="30" required></label>
+      <label>E-mail<input name="email" type="email" autocomplete="email" maxlength="160" required></label>
+      <label class="accord"><input name="accord" type="checkbox"><span>J’accepte d’être recontacté par GLR Immobilier au sujet de ce programme.</span></label>
+      <p class="erreur3d" id="f3d-err" role="alert"></p>
+      <button type="submit" class="plein">Créer mon accès</button>
+    </form>
+    <div id="f3d-ok" class="ok3d" hidden><p>Votre accès est créé : touchez « Plan » sur un logement pour voir son plan.</p></div>
+    <div class="boutons"><a class="creux" href="tel:+33614550273">Appeler le 06 14 55 02 73</a><a class="creux" href="mailto:agl@glrimmobilier.com?subject=Plans%20de%20Signature%20Levallois%20%C3%A0%20Levallois-Perret">Écrire un e-mail</a></div>
   </section>
   <p class="note" id="mention-tva" hidden>* TVA 5,5 % : prix réservé aux acheteurs éligibles, sous conditions de ressources.</p>
   <p class="note">Disponibilités et prix relevés le 27 novembre 2026 ; ils changent chaque semaine et sont confirmés par votre conseiller.</p>
@@ -402,8 +430,8 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"c4f3aed7b803","t":"T1","s":27.5,"e":2,"x":"Balcon"},{"i":"e58fba466f79","t":"T1","s":30.8,"e":1,"x":"Balcon"},{"i":"7099fa72220c","t":"T1","s":33.44,"e":3,"x":"Balcon"},{"i":"745f6dfcfa5d","t":"T1","s":33.44,"e":1,"x":"Balcon"},{"i":"acfb36ff88ac","t":"T1","s":33.44,"e":1,"x":""},{"i":"78be2f1d8eed","t":"T1","s":35.06,"e":1,"x":""},{"i":"8a3f31b42873","t":"T1","s":35.06,"e":2,"x":"Balcon"},{"i":"a8b074a74e9f","t":"T1","s":35.06,"e":3,"x":"Balcon"},{"i":"3a0306369f28","t":"T1","s":36.79,"e":0,"x":""},{"i":"8c6a5d9caa7e","t":"T2","s":42.54,"e":1,"x":""},{"i":"2a900276df7f","t":"T2","s":47.09,"e":0,"x":"Jardin"},{"i":"ed29fbe8eba7","t":"T3","s":62.86,"e":0,"x":"Jardin"},{"i":"abe63a82db38","t":"T3","s":66.03,"e":1,"x":"Balcon"},{"i":"b7ddd62ad8d3","t":"T3","s":66.03,"e":3,"x":"Balcon"},{"i":"7a2abf507f67","t":"T3","s":67.17,"e":1,"x":"Balcon"},{"i":"cc3530739da9","t":"T3","s":67.77,"e":0,"x":"Jardin"},{"i":"669e42f9a7b0","t":"T3","s":68.6,"e":3,"x":"Balcon"},{"i":"82d10e578488","t":"T3","s":68.6,"e":2,"x":"Balcon"},{"i":"af591c3363ec","t":"T4","s":88,"e":3,"x":"Balcon"},{"i":"619ba3113571","t":"T4","s":88.83,"e":5,"x":"Balcon"},{"i":"18a04b40f625","t":"T4","s":97.85,"e":1,"x":"Balcon"},{"i":"1c6448401dcc","t":"T4","s":97.85,"e":5,"x":"Balcon"},{"i":"27315dcc1e81","t":"T4","s":97.85,"e":0,"x":"Jardin"},{"i":"dd4cac71ddfe","t":"T4","s":97.85,"e":2,"x":"Balcon"},{"i":"e7116baba335","t":"T4","s":97.85,"e":4,"x":"Balcon"},{"i":"f4ffc457a537","t":"T4","s":97.85,"e":3,"x":"Balcon"},{"i":"5dadde08d140","t":"T4","s":98.83,"e":1,"x":"Balcon"},{"i":"a3ad06217c40","t":"T4","s":101.12,"e":2,"x":"Balcon"},{"i":"ac9a7aa17171","t":"T5+","s":104.88,"e":0,"x":"Jardin"},{"i":"e77c4075f456","t":"T5+","s":108.2,"e":5,"x":"Terrasse"},{"i":"dce12b6f0f92","t":"T5+","s":112.56,"e":5,"x":"Terrasse"},{"i":"1a94c2ae29b4","t":"T5+","s":114.7,"e":6,"x":"Terrasse"},{"i":"48fa9ad56aeb","t":"T5+","s":117.35,"e":5,"x":"Balcon"},{"i":"21519858df8e","t":"T5+","s":121.31,"e":5,"x":"Terrasse"},{"i":"292871718893","t":"T5+","s":132,"e":4,"x":"Balcon"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=8d2c41c88c" defer></script>
-
+<script src="/neuf/programme.js?v=15c28fcdee" defer></script>
+<script src="/neuf/visite3d.js?v=15c28fcdee" defer></script>
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};
 var poser=function(j){j=j||{};var a=j.prix||{},b=j.prix_tva_reduite||{};window.GLR_PRIX=a;window.GLR_PRIX_R=b;var deux=false;

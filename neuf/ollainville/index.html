@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -360,7 +378,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"ollainville","villes":[{"v":"Ollainville","s":"ollainville","cp":"91340","i":"91461","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.2031,48.6286],[2.2036,48.6287],[2.2041,48.6289],[2.2047,48.6292],[2.2051,48.6295],[2.2056,48.6307],[2.206,48.631],[2.2069,48.631],[2.2073,48.6309],[2.2074,48.6308],[2.2076,48.6309],[2.2084,48.6309],[2.2117,48.6307],[2.2131,48.6307],[2.2141,48.6307],[2.2148,48.6306],[2.2153,48.6305],[2.2164,48.6303],[2.2169,48.6302],[2.2178,48.6301],[2.218,48.6301],[2.2188,48.63],[2.2197,48.63],[2.2207,48.6298],[2.2218,48.6296],[2.2231,48.6293],[2.2241,48.6291],[2.225,48.6288],[2.2255,48.6286],[2.2255,48.6285],[2.2239,48.6224],[2.2233,48.6218],[2.2248,48.6217],[2.2254,48.6216],[2.2261,48.6216],[2.2261,48.6212],[2.2261,48.6205],[2.226,48.62],[2.2262,48.6198],[2.2266,48.6197],[2.2271,48.6197],[2.2273,48.6197],[2.2278,48.6197],[2.228,48.6196],[2.2286,48.6194],[2.229,48.6193],[2.2292,48.6193],[2.2296,48.6192],[2.2314,48.619],[2.2318,48.6189],[2.2324,48.619],[2.2325,48.6188],[2.2327,48.6187],[2.2329,48.6183],[2.2327,48.6174],[2.2327,48.6173],[2.2326,48.6169],[2.2326,48.6167],[2.2326,48.6164],[2.2329,48.6161],[2.2329,48.6158],[2.233,48.6155],[2.2332,48.6139],[2.2334,48.6131],[2.2338,48.613],[2.2347,48.613],[2.2352,48.613],[2.2358,48.6129],[2.2364,48.613],[2.2369,48.613],[2.237,48.6128],[2.2373,48.6116],[2.2384,48.6078],[2.2401,48.6082],[2.2427,48.6051],[2.2433,48.6038],[2.2426,48.6037],[2.2409,48.6034],[2.2409,48.6028],[2.2399,48.6027],[2.2399,48.6026],[2.2401,48.602],[2.2402,48.6017],[2.2403,48.6013],[2.2403,48.601],[2.2405,48.6009],[2.2403,48.6008],[2.2395,48.6001],[2.2391,48.5999],[2.239,48.5997],[2.238,48.5999],[2.2369,48.5996],[2.2362,48.5992],[2.2361,48.5991],[2.2352,48.5985],[2.2345,48.5982],[2.2353,48.5978],[2.2362,48.5973],[2.2364,48.5971],[2.2365,48.5969],[2.2368,48.5966],[2.2371,48.5959],[2.2372,48.5954],[2.2374,48.5947],[2.2376,48.5937],[2.2378,48.5927],[2.2383,48.5912],[2.2385,48.5912],[2.2393,48.5911],[2.2397,48.5911],[2.2398,48.5909],[2.239,48.5907],[2.2388,48.5907],[2.2381,48.5908],[2.2378,48.5907],[2.2374,48.5905],[2.2369,48.5904],[2.2366,48.5904],[2.2362,48.5903],[2.2359,48.5902],[2.2356,48.5902],[2.2354,48.5902],[2.2351,48.59],[2.2347,48.5897],[2.2344,48.5895],[2.2349,48.5889],[2.2347,48.5889],[2.2345,48.5888],[2.2341,48.5885],[2.2339,48.5884],[2.2337,48.5882],[2.2335,48.5881],[2.2333,48.5882],[2.2321,48.5876],[2.2316,48.5874],[2.2312,48.5872],[2.2307,48.587],[2.2305,48.5869],[2.23,48.5865],[2.2297,48.5863],[2.2293,48.586],[2.2289,48.5858],[2.2287,48.5856],[2.2285,48.5853],[2.2274,48.5849],[2.2268,48.5847],[2.2261,48.5844],[2.2258,48.5843],[2.225,48.5843],[2.2232,48.5841],[2.2228,48.584],[2.2222,48.5841],[2.2219,48.584],[2.2207,48.5839],[2.2197,48.5838],[2.2194,48.5838],[2.2191,48.5838],[2.2182,48.5837],[2.2176,48.5836],[2.2155,48.5834],[2.215,48.5834],[2.2146,48.5834],[2.2142,48.5831],[2.2139,48.583],[2.2138,48.5829],[2.2138,48.5828],[2.2137,48.5826],[2.2136,48.5825],[2.2126,48.5854],[2.2122,48.5853],[2.2121,48.5852],[2.2119,48.585],[2.2118,48.5848],[2.2116,48.5848],[2.2106,48.5845],[2.2104,48.5843],[2.2101,48.5843],[2.2094,48.5843],[2.2089,48.5841],[2.2088,48.5842],[2.2084,48.5843],[2.2076,48.5842],[2.206,48.5841],[2.2052,48.584],[2.2043,48.584],[2.204,48.5839],[2.2038,48.5843],[2.2034,48.5843],[2.2032,48.5844],[2.2031,48.5851],[2.2029,48.5864],[2.2028,48.5872],[2.2028,48.5876],[2.2027,48.588],[2.2027,48.5885],[2.2026,48.5886],[2.2026,48.5889],[2.2025,48.5891],[2.2028,48.59],[2.2029,48.5904],[2.2029,48.5907],[2.2029,48.5908],[2.2029,48.5911],[2.2024,48.5918],[2.2021,48.5921],[2.2021,48.5923],[2.202,48.5924],[2.2017,48.5923],[2.2014,48.5927],[2.2012,48.593],[2.2013,48.5933],[2.2017,48.5953],[2.202,48.5966],[2.2021,48.5968],[2.2022,48.597],[2.2024,48.5972],[2.2019,48.5971],[2.2021,48.5981],[2.2023,48.5981],[2.2024,48.5985],[2.2024,48.5987],[2.2021,48.5992],[2.2031,48.5995],[2.2044,48.6],[2.2047,48.6002],[2.2052,48.6005],[2.2058,48.6009],[2.2062,48.6014],[2.2068,48.6021],[2.2075,48.6029],[2.2082,48.6035],[2.2083,48.6037],[2.2084,48.6038],[2.2084,48.6043],[2.2087,48.6046],[2.2088,48.6048],[2.2092,48.605],[2.2123,48.6062],[2.2135,48.6067],[2.2055,48.6111],[2.2059,48.6117],[2.2061,48.612],[2.2067,48.6119],[2.208,48.6148],[2.2037,48.6162],[2.2034,48.6163],[2.2006,48.6174],[2.1993,48.6176],[2.1978,48.6186],[2.1975,48.6205],[2.1974,48.623],[2.1979,48.6252],[2.1983,48.6257],[2.199,48.6263],[2.1999,48.6269],[2.2001,48.6268],[2.202,48.6279],[2.2029,48.6285],[2.2031,48.6286]]]}},"r":"2 programmes · 39 logements disponibles","p":[{"n":"Floréal","s":"floreal","k":false,"a":48.588,"o":2.223,"z":false,"u":"ollainville/floreal/","l":"2e trimestre 2028","d":"19 logements disponibles"},{"n":"Les Villas Aolini","s":"les-villas-aolini","k":false,"a":48.588,"o":2.222,"z":false,"u":"ollainville/les-villas-aolini/","l":"1er trimestre 2029","d":"20 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

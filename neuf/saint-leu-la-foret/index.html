@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -353,7 +371,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"saint-leu-la-foret","villes":[{"v":"Saint-Leu-la-Forêt","s":"saint-leu-la-foret","cp":"95320","i":"95563","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.2529,49.0414],[2.2536,49.0412],[2.2538,49.0412],[2.2539,49.0412],[2.2554,49.0408],[2.2559,49.0406],[2.2561,49.0406],[2.2567,49.0404],[2.257,49.0403],[2.2573,49.0403],[2.2575,49.0402],[2.2579,49.0401],[2.2582,49.04],[2.2577,49.0371],[2.2556,49.025],[2.2566,49.0246],[2.2576,49.0241],[2.2574,49.0238],[2.2593,49.0225],[2.2599,49.0221],[2.2601,49.0219],[2.2603,49.0218],[2.2607,49.0216],[2.2611,49.0213],[2.2613,49.0212],[2.2614,49.0211],[2.2618,49.0206],[2.2619,49.0202],[2.2621,49.0199],[2.2621,49.0197],[2.2615,49.0193],[2.257,49.0163],[2.2571,49.0163],[2.2564,49.0157],[2.2563,49.0156],[2.2561,49.0153],[2.2552,49.0128],[2.2554,49.0122],[2.2555,49.0116],[2.2558,49.0107],[2.2556,49.0088],[2.2539,49.0066],[2.2537,49.0064],[2.2532,49.0059],[2.2529,49.0045],[2.2526,49.0035],[2.2525,49.0028],[2.2522,49.0019],[2.2513,49.0011],[2.2509,49.0009],[2.2506,49.0008],[2.249,49.0019],[2.2487,49.0022],[2.2477,49.0028],[2.2464,49.0038],[2.2464,49.0039],[2.2462,49.0048],[2.246,49.0053],[2.2461,49.0055],[2.2457,49.0057],[2.2455,49.0059],[2.2449,49.0063],[2.2441,49.0069],[2.2433,49.0074],[2.2428,49.0076],[2.2422,49.0078],[2.2408,49.0081],[2.2367,49.0091],[2.2354,49.0094],[2.2342,49.0097],[2.2336,49.0098],[2.2336,49.0097],[2.2316,49.0101],[2.2297,49.0104],[2.2255,49.0114],[2.2246,49.0116],[2.2239,49.0118],[2.225,49.0129],[2.2266,49.0143],[2.2266,49.0139],[2.2265,49.0136],[2.2275,49.0131],[2.2276,49.0129],[2.2303,49.0145],[2.2303,49.0146],[2.2308,49.0149],[2.2312,49.015],[2.2317,49.0155],[2.2321,49.0157],[2.2323,49.0159],[2.233,49.0166],[2.2334,49.0171],[2.2338,49.0175],[2.234,49.0178],[2.2343,49.0178],[2.2349,49.0185],[2.2352,49.0184],[2.2356,49.019],[2.2356,49.0192],[2.236,49.0197],[2.2363,49.0201],[2.2364,49.0205],[2.2373,49.0215],[2.2375,49.0215],[2.2379,49.022],[2.238,49.0221],[2.2384,49.0223],[2.2389,49.0227],[2.2393,49.0231],[2.2396,49.0233],[2.2398,49.0234],[2.24,49.0235],[2.2401,49.024],[2.2403,49.0241],[2.2403,49.0244],[2.2404,49.0246],[2.2405,49.025],[2.2406,49.0251],[2.2409,49.0253],[2.2409,49.0254],[2.2425,49.0273],[2.2426,49.0279],[2.2427,49.0282],[2.2426,49.0283],[2.2423,49.0293],[2.243,49.032],[2.2437,49.0352],[2.2445,49.0383],[2.2477,49.0373],[2.2486,49.0371],[2.2506,49.0365],[2.2516,49.0362],[2.2528,49.0358],[2.2529,49.0362],[2.2528,49.0365],[2.2526,49.0368],[2.2525,49.0371],[2.2525,49.0372],[2.252,49.0376],[2.2518,49.038],[2.2517,49.0386],[2.2516,49.0389],[2.2515,49.0392],[2.2515,49.0394],[2.2516,49.0396],[2.2517,49.0398],[2.2519,49.04],[2.2521,49.0402],[2.2527,49.0405],[2.2529,49.0407],[2.253,49.0408],[2.253,49.041],[2.2529,49.0414]]]}},"r":"1 programme · 16 logements disponibles","p":[{"n":"Aura Parc","s":"aura-parc","k":false,"a":48.385,"o":2.23,"z":true,"u":"saint-leu-la-foret/aura-parc/","l":"","d":"16 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

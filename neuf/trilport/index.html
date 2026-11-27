@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -359,7 +377,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"trilport","villes":[{"v":"Trilport","s":"trilport","cp":"77470","i":"77475","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.9709,48.9417],[2.9695,48.9413],[2.9693,48.9413],[2.9684,48.9427],[2.9677,48.9425],[2.9682,48.9417],[2.9676,48.9417],[2.9673,48.9416],[2.9671,48.942],[2.9661,48.9436],[2.9659,48.9435],[2.9654,48.9439],[2.9648,48.9445],[2.9641,48.9441],[2.9632,48.945],[2.9626,48.9447],[2.9624,48.945],[2.9619,48.9448],[2.9614,48.9451],[2.9596,48.9445],[2.959,48.9443],[2.9584,48.9448],[2.9581,48.945],[2.9577,48.9454],[2.9569,48.9463],[2.9566,48.9467],[2.9566,48.9466],[2.9556,48.9465],[2.9535,48.9462],[2.9534,48.9468],[2.9514,48.9464],[2.951,48.947],[2.9499,48.9467],[2.9499,48.9467],[2.9494,48.9466],[2.9493,48.9467],[2.9486,48.9466],[2.948,48.9476],[2.9473,48.9486],[2.9471,48.9485],[2.947,48.9487],[2.9441,48.9481],[2.94,48.9474],[2.9396,48.9474],[2.9392,48.9475],[2.9379,48.9478],[2.9362,48.9482],[2.9363,48.9484],[2.9366,48.9486],[2.937,48.9488],[2.936,48.9494],[2.935,48.95],[2.937,48.9512],[2.9376,48.9516],[2.9382,48.952],[2.9387,48.9523],[2.9392,48.9528],[2.9396,48.9533],[2.9402,48.9541],[2.9406,48.9546],[2.9418,48.9553],[2.9424,48.9556],[2.9428,48.9558],[2.9433,48.9562],[2.9434,48.9562],[2.9436,48.9567],[2.9438,48.957],[2.9441,48.9576],[2.9441,48.9577],[2.9442,48.9579],[2.9443,48.9583],[2.9444,48.9587],[2.9445,48.959],[2.9446,48.9599],[2.9446,48.9603],[2.9446,48.9615],[2.9445,48.9623],[2.9443,48.9635],[2.9442,48.9639],[2.9441,48.9648],[2.9438,48.9657],[2.9436,48.9664],[2.9433,48.9672],[2.943,48.9679],[2.9427,48.9685],[2.9422,48.9694],[2.9419,48.97],[2.9418,48.9704],[2.9413,48.9715],[2.9411,48.9721],[2.9409,48.9725],[2.9406,48.9729],[2.9404,48.9734],[2.9403,48.9736],[2.9417,48.9738],[2.9436,48.974],[2.9453,48.9742],[2.9464,48.9741],[2.9473,48.9739],[2.9476,48.974],[2.9509,48.9741],[2.9567,48.9743],[2.957,48.9743],[2.9567,48.975],[2.9566,48.9753],[2.9608,48.9742],[2.9622,48.9738],[2.9675,48.9723],[2.969,48.9719],[2.9704,48.9716],[2.972,48.9711],[2.9748,48.9704],[2.9768,48.9698],[2.9791,48.9692],[2.9848,48.9676],[2.9911,48.966],[2.9928,48.9655],[2.9942,48.9652],[2.9943,48.9651],[2.9946,48.9648],[2.9948,48.9646],[2.9953,48.9643],[2.9954,48.964],[2.9954,48.9638],[2.9955,48.9636],[2.9957,48.9635],[2.996,48.9633],[2.9961,48.9632],[2.9963,48.9626],[2.9965,48.9621],[2.9967,48.962],[2.997,48.9617],[2.9971,48.9615],[2.9973,48.9612],[2.9972,48.9609],[2.9972,48.9606],[2.9972,48.9597],[2.9972,48.9592],[2.9971,48.9592],[2.9971,48.9588],[2.9972,48.958],[2.9971,48.9576],[2.9966,48.9563],[2.9965,48.9558],[2.9962,48.955],[2.9959,48.9541],[2.9957,48.9537],[2.9954,48.9534],[2.9953,48.9532],[2.9951,48.9529],[2.9951,48.9529],[2.9951,48.9524],[2.9951,48.952],[2.995,48.9515],[2.9948,48.9512],[2.9946,48.9507],[2.9945,48.9504],[2.9944,48.9501],[2.9944,48.9499],[2.9938,48.9492],[2.9936,48.9488],[2.9929,48.9481],[2.9924,48.9477],[2.9925,48.9476],[2.9923,48.9474],[2.9906,48.948],[2.9884,48.9486],[2.9862,48.9493],[2.9842,48.95],[2.984,48.9499],[2.9817,48.9484],[2.9797,48.9471],[2.9774,48.9457],[2.9771,48.9455],[2.977,48.9454],[2.9769,48.9455],[2.9759,48.9454],[2.9757,48.9456],[2.9754,48.9457],[2.9752,48.9456],[2.9761,48.9445],[2.9757,48.9443],[2.9764,48.9437],[2.9753,48.9432],[2.9751,48.9435],[2.9737,48.9434],[2.9739,48.9427],[2.973,48.9427],[2.973,48.9429],[2.9729,48.9434],[2.9729,48.9435],[2.9724,48.9434],[2.9723,48.9433],[2.9724,48.9429],[2.9707,48.9422],[2.9709,48.9417]]]}},"r":"1 programme · 28 logements disponibles","p":[{"n":"Arcadia - TRILPORT","s":"arcadia-trilport","k":false,"a":48.959,"o":2.952,"z":false,"u":"trilport/arcadia-trilport/","l":"4e trimestre 2028","d":"28 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

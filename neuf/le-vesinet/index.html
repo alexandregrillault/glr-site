@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -353,7 +371,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"le-vesinet","villes":[{"v":"Le Vésinet","s":"le-vesinet","cp":"78110","i":"78650","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.1202,48.9031],[2.1209,48.9036],[2.1209,48.9038],[2.1224,48.9049],[2.1231,48.9055],[2.1242,48.9063],[2.1259,48.9076],[2.126,48.9076],[2.127,48.9073],[2.1287,48.9067],[2.1296,48.9065],[2.1313,48.9059],[2.1315,48.9061],[2.1318,48.9066],[2.1327,48.9082],[2.1329,48.9085],[2.1336,48.9095],[2.1338,48.9097],[2.1349,48.9081],[2.1356,48.907],[2.1357,48.9068],[2.1397,48.9009],[2.1398,48.9008],[2.1402,48.9003],[2.1407,48.8996],[2.141,48.8989],[2.1413,48.8987],[2.1417,48.8982],[2.1419,48.8978],[2.142,48.8976],[2.1423,48.8972],[2.1424,48.897],[2.1434,48.8954],[2.1446,48.8937],[2.1452,48.8927],[2.1486,48.8933],[2.1494,48.8926],[2.1505,48.8917],[2.1502,48.8911],[2.1468,48.8918],[2.1439,48.8923],[2.1436,48.8921],[2.1434,48.892],[2.1435,48.8899],[2.1435,48.889],[2.1436,48.889],[2.1449,48.8888],[2.1471,48.8884],[2.1478,48.8883],[2.1479,48.8881],[2.1478,48.888],[2.1469,48.8873],[2.1468,48.8872],[2.1463,48.8864],[2.1462,48.8864],[2.1459,48.8861],[2.1454,48.8847],[2.145,48.8836],[2.145,48.8834],[2.145,48.8834],[2.1445,48.8835],[2.1431,48.8838],[2.1425,48.8839],[2.1419,48.884],[2.1408,48.8842],[2.1405,48.8843],[2.1399,48.8843],[2.1395,48.8844],[2.1388,48.8846],[2.1384,48.8847],[2.1363,48.8852],[2.1349,48.8854],[2.134,48.8837],[2.1341,48.8836],[2.1336,48.8826],[2.1321,48.8798],[2.1319,48.8793],[2.131,48.8775],[2.1304,48.8764],[2.1301,48.8759],[2.1274,48.8783],[2.1255,48.88],[2.1238,48.8815],[2.1206,48.8844],[2.1201,48.8849],[2.12,48.8851],[2.1199,48.8854],[2.1198,48.8857],[2.1197,48.886],[2.1193,48.8873],[2.1182,48.8908],[2.1176,48.8928],[2.1168,48.8954],[2.1167,48.8957],[2.1165,48.8959],[2.1148,48.8971],[2.1145,48.897],[2.114,48.8969],[2.1135,48.8968],[2.1131,48.8969],[2.1129,48.897],[2.1125,48.8971],[2.1122,48.8973],[2.1121,48.8975],[2.112,48.898],[2.112,48.8982],[2.1122,48.8985],[2.1124,48.8988],[2.1127,48.899],[2.113,48.8991],[2.1133,48.8991],[2.1136,48.8991],[2.1137,48.8995],[2.1146,48.9024],[2.1151,48.9022],[2.1159,48.902],[2.1167,48.9017],[2.1176,48.9014],[2.1178,48.9012],[2.1179,48.9013],[2.1202,48.9031]]]}},"r":"1 programme · 4 logements disponibles","p":[{"n":"Résidence Sainte marguerite","s":"residence-sainte-marguerite","k":false,"a":48.893,"o":2.135,"z":false,"u":"le-vesinet/residence-sainte-marguerite/","l":"1er trimestre 2027","d":"4 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -380,7 +398,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"alfortville","villes":[{"v":"Alfortville","s":"alfortville","cp":"94140","i":"94002","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.4147,48.7772],[2.4168,48.7799],[2.4197,48.7841],[2.422,48.7879],[2.4227,48.7895],[2.4228,48.7911],[2.4225,48.7927],[2.4216,48.7945],[2.4207,48.7957],[2.4193,48.797],[2.4156,48.7998],[2.411,48.8037],[2.41,48.8047],[2.4093,48.8061],[2.4089,48.8075],[2.409,48.8085],[2.409,48.8086],[2.4095,48.8108],[2.4096,48.8114],[2.41,48.8125],[2.4102,48.8135],[2.4102,48.8141],[2.4103,48.8145],[2.4102,48.8149],[2.4102,48.8153],[2.41,48.8159],[2.4097,48.8163],[2.4094,48.8166],[2.4097,48.8165],[2.4107,48.8164],[2.4121,48.8163],[2.4136,48.8162],[2.4148,48.8162],[2.4157,48.8162],[2.4159,48.8162],[2.4169,48.8149],[2.4174,48.8142],[2.4181,48.8135],[2.4187,48.8128],[2.4194,48.8123],[2.4199,48.8118],[2.4209,48.8111],[2.4218,48.8103],[2.4222,48.8099],[2.4224,48.8098],[2.4226,48.8096],[2.4233,48.8086],[2.4243,48.8071],[2.4248,48.8063],[2.4255,48.8046],[2.4258,48.804],[2.4259,48.8036],[2.4263,48.8028],[2.4267,48.8017],[2.4277,48.799],[2.4286,48.7969],[2.4289,48.7963],[2.4296,48.7946],[2.4306,48.7922],[2.4313,48.7903],[2.432,48.7886],[2.4326,48.7872],[2.4328,48.7866],[2.4336,48.7849],[2.4339,48.7839],[2.433,48.7837],[2.4321,48.7833],[2.4309,48.7825],[2.4306,48.7824],[2.43,48.7823],[2.43,48.7804],[2.4291,48.7802],[2.4288,48.7802],[2.4283,48.7766],[2.4283,48.7761],[2.4256,48.7763],[2.4239,48.7764],[2.4147,48.7772]]]}},"r":"3 programmes · 94 logements disponibles","p":[{"n":"Refelets De Seine","s":"refelets-de-seine","k":false,"a":48.791,"o":2.425,"z":false,"u":"alfortville/refelets-de-seine/","l":"4e trimestre 2027","d":"3 logements disponibles"},{"n":"Olympe De Gouges","s":"olympe-de-gouges","k":false,"a":48.785,"o":2.424,"z":false,"u":"alfortville/olympe-de-gouges/","l":"3e trimestre 2028","d":"38 logements disponibles"},{"n":"Les Quarante Arpents","s":"les-quarante-arpents","k":false,"a":48.791,"o":2.423,"z":true,"u":"alfortville/les-quarante-arpents/","l":"4e trimestre 2028","d":"53 logements disponibles"},{"n":"A 10 min* du RER D !","s":"a-10-min-du-rer-d","k":true,"a":48.796,"o":2.421,"z":true,"u":"alfortville/a-10-min-du-rer-d/","l":"","d":"Grille sur demande"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

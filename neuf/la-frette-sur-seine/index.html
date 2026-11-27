@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -353,7 +371,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"la-frette-sur-seine","villes":[{"v":"La Frette-sur-Seine","s":"la-frette-sur-seine","cp":"95530","i":"95257","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.1782,48.9596],[2.1783,48.9599],[2.1783,48.9607],[2.1783,48.9612],[2.1781,48.9624],[2.1781,48.9633],[2.1782,48.9639],[2.1785,48.9649],[2.1788,48.9657],[2.1791,48.9661],[2.1785,48.9663],[2.178,48.9665],[2.1778,48.9666],[2.1775,48.9669],[2.1773,48.9672],[2.1772,48.9675],[2.1771,48.9678],[2.1772,48.968],[2.1771,48.9685],[2.1769,48.9689],[2.1768,48.969],[2.1764,48.9695],[2.1761,48.97],[2.1756,48.9713],[2.1755,48.9717],[2.1755,48.972],[2.1755,48.9723],[2.1756,48.9729],[2.1753,48.9736],[2.1747,48.9741],[2.1743,48.9745],[2.1738,48.975],[2.1732,48.9756],[2.1726,48.9761],[2.1716,48.9771],[2.1706,48.9782],[2.1705,48.9784],[2.1704,48.9784],[2.17,48.9786],[2.1695,48.9788],[2.1689,48.9791],[2.1683,48.9795],[2.1667,48.9805],[2.1663,48.9808],[2.166,48.9811],[2.1684,48.9829],[2.169,48.9834],[2.1695,48.9838],[2.1698,48.9841],[2.1701,48.9843],[2.1704,48.9844],[2.1708,48.9847],[2.1717,48.9852],[2.1722,48.9855],[2.1721,48.9856],[2.1725,48.9859],[2.1723,48.986],[2.1725,48.9861],[2.1728,48.9861],[2.1731,48.9862],[2.1737,48.9863],[2.1738,48.9863],[2.1738,48.9866],[2.1741,48.9866],[2.1745,48.9865],[2.1756,48.9863],[2.1762,48.9862],[2.1777,48.9859],[2.1786,48.9858],[2.179,48.9857],[2.1816,48.9846],[2.1818,48.9845],[2.1818,48.9828],[2.1818,48.9823],[2.1819,48.982],[2.182,48.9815],[2.1822,48.9811],[2.1825,48.9806],[2.1831,48.9798],[2.1835,48.9792],[2.1845,48.9777],[2.1848,48.9771],[2.183,48.9765],[2.1837,48.9756],[2.1833,48.9754],[2.1832,48.9754],[2.1834,48.9747],[2.1835,48.9744],[2.1837,48.9741],[2.1839,48.9737],[2.1838,48.9734],[2.1839,48.9728],[2.1837,48.9721],[2.1836,48.9718],[2.1835,48.9715],[2.1836,48.9714],[2.1838,48.9709],[2.1838,48.9705],[2.1838,48.9701],[2.1839,48.9698],[2.1842,48.9687],[2.1843,48.9686],[2.1846,48.9684],[2.1848,48.9682],[2.1848,48.968],[2.1847,48.9672],[2.1848,48.967],[2.1858,48.9669],[2.1855,48.9658],[2.1854,48.9656],[2.1854,48.9654],[2.1856,48.9653],[2.1857,48.9652],[2.1857,48.965],[2.1856,48.9645],[2.1856,48.9641],[2.1856,48.9639],[2.1852,48.9629],[2.184,48.9622],[2.1831,48.9619],[2.1829,48.9619],[2.1828,48.9617],[2.1824,48.9612],[2.1822,48.9607],[2.182,48.9606],[2.1818,48.9603],[2.1815,48.9599],[2.1813,48.9597],[2.181,48.9595],[2.1808,48.9594],[2.1806,48.959],[2.1798,48.9592],[2.1782,48.9596]]]}},"r":"1 programme · 3 logements disponibles","p":[{"n":"Villa Daubigny","s":"villa-daubigny","k":false,"a":48.981,"o":2.181,"z":false,"u":"la-frette-sur-seine/villa-daubigny/","l":"Livré","d":"3 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

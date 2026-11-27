@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -422,7 +440,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"mantes-la-jolie","villes":[{"v":"Mantes-la-Jolie","s":"mantes-la-jolie","cp":"78200","i":"78361","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[1.6581,49.0063],[1.6602,49.0067],[1.6621,49.0069],[1.6635,49.0071],[1.6662,49.0075],[1.6672,49.0077],[1.6682,49.0078],[1.6692,49.008],[1.6705,49.0081],[1.6721,49.0083],[1.6739,49.0084],[1.6783,49.009],[1.6797,49.0091],[1.6819,49.0093],[1.6843,49.0095],[1.6854,49.0096],[1.6864,49.0096],[1.6873,49.0096],[1.6909,49.0094],[1.6932,49.0093],[1.6954,49.0092],[1.6962,49.0092],[1.6969,49.0093],[1.6982,49.0096],[1.7005,49.01],[1.7018,49.0101],[1.7027,49.01],[1.7035,49.0099],[1.7054,49.0094],[1.7071,49.0089],[1.7085,49.0083],[1.7092,49.0081],[1.7103,49.0074],[1.7117,49.0064],[1.7121,49.0061],[1.7132,49.0055],[1.7143,49.0048],[1.7151,49.0043],[1.7162,49.0035],[1.717,49.0029],[1.7179,49.0021],[1.7193,49.0009],[1.72,49.0003],[1.721,48.9991],[1.7215,48.9984],[1.7217,48.9973],[1.7218,48.9964],[1.7228,48.9956],[1.7241,48.9945],[1.7252,48.9931],[1.7261,48.9924],[1.7262,48.9922],[1.725,48.9917],[1.7246,48.9916],[1.7247,48.9915],[1.7248,48.9913],[1.7252,48.9908],[1.7238,48.9908],[1.7249,48.9898],[1.7257,48.9885],[1.7259,48.9882],[1.726,48.988],[1.7262,48.9877],[1.7266,48.9869],[1.7258,48.9866],[1.7273,48.9849],[1.726,48.9845],[1.726,48.9842],[1.7248,48.9846],[1.7246,48.9843],[1.7244,48.9841],[1.7236,48.9838],[1.7232,48.9836],[1.7229,48.9835],[1.7228,48.9833],[1.7225,48.9832],[1.7222,48.9829],[1.7219,48.9827],[1.7215,48.9824],[1.7211,48.9823],[1.721,48.9822],[1.7209,48.9821],[1.7196,48.9823],[1.7187,48.9825],[1.7183,48.9826],[1.7174,48.9829],[1.7165,48.9832],[1.7164,48.9831],[1.7162,48.9832],[1.7154,48.9835],[1.7142,48.984],[1.7127,48.9847],[1.7115,48.9853],[1.7095,48.9865],[1.7074,48.9876],[1.7074,48.9876],[1.705,48.9888],[1.7032,48.9894],[1.6987,48.9889],[1.6971,48.9887],[1.6965,48.9884],[1.6957,48.9887],[1.6929,48.9891],[1.6927,48.9892],[1.6921,48.9892],[1.6918,48.9892],[1.6915,48.9892],[1.6913,48.9892],[1.6907,48.9895],[1.6898,48.99],[1.6893,48.9901],[1.689,48.99],[1.6882,48.9902],[1.6868,48.9906],[1.6865,48.9908],[1.6855,48.9912],[1.6851,48.9912],[1.6837,48.9917],[1.6826,48.992],[1.6824,48.992],[1.6809,48.9927],[1.68,48.9931],[1.6794,48.9934],[1.6788,48.9936],[1.6785,48.9935],[1.6783,48.9937],[1.6778,48.9939],[1.6758,48.9944],[1.6733,48.9951],[1.6731,48.9951],[1.6729,48.9949],[1.6725,48.9949],[1.6721,48.995],[1.6716,48.9951],[1.6712,48.9952],[1.6689,48.9956],[1.6667,48.9962],[1.664,48.9949],[1.6615,48.9955],[1.6606,48.9957],[1.6562,48.9968],[1.6571,49.0031],[1.6575,49.0039],[1.6577,49.0055],[1.658,49.0055],[1.6581,49.0063]]]}},"r":"8 programmes · 230 logements disponibles","p":[{"n":"\" Le 25 \"","s":"le-25","k":false,"a":48.993,"o":1.7,"z":false,"u":"mantes-la-jolie/le-25/","l":"Livré","d":"1 logement disponible"},{"n":"Éveil","s":"eveil","k":false,"a":48.987,"o":1.714,"z":false,"u":"mantes-la-jolie/eveil/","l":"4e trimestre 2026","d":"3 logements disponibles"},{"n":"La Fabrique","s":"la-fabrique","k":false,"a":48.987,"o":1.714,"z":false,"u":"mantes-la-jolie/la-fabrique/","l":"4e trimestre 2027","d":"13 logements disponibles"},{"n":"Coeur Saint Jean","s":"coeur-saint-jean","k":false,"a":48.996,"o":1.713,"z":false,"u":"mantes-la-jolie/coeur-saint-jean/","l":"4e trimestre 2028","d":"47 logements disponibles"},{"n":"L'avant Seine","s":"l-avant-seine","k":false,"a":48.999,"o":1.713,"z":false,"u":"mantes-la-jolie/l-avant-seine/","l":"4e trimestre 2028","d":"45 logements disponibles"},{"n":"Confidence","s":"confidence","k":false,"a":48.986,"o":1.714,"z":false,"u":"mantes-la-jolie/confidence/","l":"4e trimestre 2028","d":"33 logements disponibles"},{"n":"Jolie Seine","s":"jolie-seine","k":false,"a":48.997,"o":1.711,"z":false,"u":"mantes-la-jolie/jolie-seine/","l":"1er trimestre 2029","d":"44 logements disponibles"},{"n":"Villas Gassicourt","s":"villas-gassicourt","k":false,"a":48.998,"o":1.698,"z":false,"u":"mantes-la-jolie/villas-gassicourt/","l":"","d":"44 logements disponibles"},{"n":"Les Jardins Réaubourg","s":"les-jardins-reaubourg","k":true,"a":48.996,"o":1.692,"z":true,"u":"mantes-la-jolie/les-jardins-reaubourg/","l":"","d":"Grille sur demande"},{"n":"Solstice","s":"solstice","k":true,"a":48.996,"o":1.692,"z":true,"u":"mantes-la-jolie/solstice/","l":"","d":"Grille sur demande"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

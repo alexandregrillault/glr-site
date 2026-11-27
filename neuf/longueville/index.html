@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -353,7 +371,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"longueville","villes":[{"v":"Longueville","s":"longueville","cp":"77650","i":"77260","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[3.2648,48.514],[3.2647,48.5138],[3.2645,48.5137],[3.2642,48.5136],[3.2639,48.5133],[3.2637,48.5132],[3.2635,48.5131],[3.2632,48.513],[3.2629,48.5127],[3.2626,48.5126],[3.2624,48.5125],[3.262,48.5123],[3.2618,48.5122],[3.2615,48.5119],[3.261,48.5116],[3.2607,48.5114],[3.2601,48.5111],[3.2599,48.5109],[3.2595,48.5108],[3.2589,48.5106],[3.2586,48.5105],[3.258,48.5102],[3.2571,48.5099],[3.2564,48.5097],[3.255,48.5092],[3.2549,48.5091],[3.2547,48.5091],[3.2545,48.509],[3.2544,48.509],[3.2543,48.5089],[3.2542,48.5086],[3.2542,48.5083],[3.2541,48.5081],[3.254,48.5081],[3.2534,48.508],[3.2527,48.5081],[3.2524,48.508],[3.2522,48.5079],[3.252,48.5078],[3.2513,48.5077],[3.2508,48.5075],[3.2504,48.5073],[3.2501,48.5071],[3.2497,48.5082],[3.2496,48.5082],[3.2489,48.5078],[3.2489,48.5078],[3.2478,48.5071],[3.2473,48.5075],[3.2455,48.5063],[3.2454,48.5065],[3.2451,48.5073],[3.2438,48.5077],[3.2436,48.5074],[3.2434,48.5071],[3.243,48.5066],[3.2429,48.5063],[3.2423,48.5062],[3.2417,48.5062],[3.2416,48.5061],[3.2412,48.506],[3.2401,48.5058],[3.24,48.5056],[3.2401,48.5055],[3.2376,48.5052],[3.2367,48.5052],[3.2359,48.5051],[3.2328,48.5052],[3.2326,48.5046],[3.2305,48.5044],[3.2303,48.504],[3.2291,48.5042],[3.2291,48.5042],[3.2279,48.5044],[3.2275,48.5044],[3.2265,48.5041],[3.2253,48.5038],[3.2241,48.5037],[3.2225,48.5034],[3.2213,48.5032],[3.22,48.5031],[3.2195,48.5043],[3.219,48.5041],[3.2184,48.5039],[3.2184,48.5044],[3.2184,48.5058],[3.2187,48.5059],[3.2186,48.5069],[3.2184,48.5073],[3.2181,48.5078],[3.2179,48.5082],[3.2192,48.5092],[3.219,48.5097],[3.2192,48.51],[3.2193,48.5105],[3.2193,48.5112],[3.2183,48.5113],[3.2185,48.5124],[3.2202,48.5125],[3.2211,48.5126],[3.2208,48.5136],[3.2204,48.5143],[3.2203,48.5146],[3.22,48.5159],[3.2202,48.5166],[3.2205,48.5166],[3.2209,48.5166],[3.2206,48.5174],[3.2207,48.5178],[3.2207,48.5178],[3.2211,48.5179],[3.2211,48.5185],[3.2215,48.5187],[3.2217,48.5187],[3.2223,48.5188],[3.2226,48.5188],[3.2223,48.5198],[3.2229,48.5199],[3.2227,48.5205],[3.2223,48.5213],[3.2221,48.5213],[3.2218,48.522],[3.2215,48.5226],[3.2217,48.5226],[3.222,48.5226],[3.2222,48.5227],[3.2223,48.5228],[3.2228,48.5228],[3.2231,48.5229],[3.2231,48.5229],[3.2234,48.523],[3.224,48.5233],[3.2242,48.5234],[3.2246,48.5235],[3.2248,48.5236],[3.2251,48.5237],[3.2258,48.5239],[3.226,48.5239],[3.2264,48.5239],[3.2271,48.5239],[3.2276,48.5239],[3.2278,48.524],[3.228,48.524],[3.2279,48.5241],[3.2281,48.5242],[3.2289,48.5245],[3.2302,48.5248],[3.2304,48.5246],[3.2308,48.5247],[3.231,48.5249],[3.2303,48.5251],[3.232,48.5263],[3.2323,48.5265],[3.2332,48.5262],[3.2334,48.526],[3.2336,48.526],[3.2338,48.5259],[3.2341,48.5258],[3.2345,48.5255],[3.2347,48.5255],[3.2348,48.5254],[3.2348,48.5253],[3.2349,48.5252],[3.2351,48.5251],[3.2354,48.525],[3.2357,48.5248],[3.2358,48.5247],[3.236,48.5247],[3.2365,48.5244],[3.2367,48.5242],[3.2369,48.5241],[3.2371,48.5239],[3.2375,48.5237],[3.2376,48.5236],[3.2378,48.5236],[3.2379,48.5235],[3.238,48.5234],[3.2381,48.5234],[3.2383,48.5234],[3.2385,48.5234],[3.2384,48.5232],[3.2385,48.523],[3.2388,48.523],[3.2389,48.5229],[3.239,48.5226],[3.2392,48.5225],[3.2396,48.5229],[3.2401,48.5231],[3.2407,48.5234],[3.2413,48.5236],[3.2416,48.5237],[3.2418,48.5237],[3.2422,48.5238],[3.2423,48.5238],[3.2426,48.5237],[3.2435,48.523],[3.2446,48.5221],[3.2455,48.5228],[3.246,48.5232],[3.2469,48.5239],[3.2481,48.5233],[3.2482,48.5232],[3.2488,48.5227],[3.249,48.523],[3.2504,48.5223],[3.251,48.522],[3.2512,48.5219],[3.2521,48.5215],[3.2522,48.5216],[3.2531,48.5212],[3.2532,48.5213],[3.254,48.521],[3.2553,48.5217],[3.2574,48.5194],[3.2574,48.5194],[3.257,48.5189],[3.257,48.5188],[3.2578,48.5178],[3.2589,48.5165],[3.2595,48.5168],[3.2595,48.5168],[3.2599,48.517],[3.2602,48.5168],[3.2601,48.5168],[3.2604,48.5165],[3.261,48.5162],[3.261,48.5162],[3.2619,48.5157],[3.2629,48.5151],[3.2631,48.515],[3.2637,48.5147],[3.2643,48.5143],[3.2645,48.5142],[3.2648,48.514]]]}},"r":"1 programme · 14 logements disponibles","p":[{"n":"Les Jardins De Longueville","s":"les-jardins-de-longueville","k":false,"a":48.519,"o":3.246,"z":false,"u":"longueville/les-jardins-de-longueville/","l":"3e trimestre 2027","d":"14 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

@@ -96,7 +96,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -104,6 +120,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -320,6 +338,7 @@ footer a{color:var(--discret)}
   </div>
   <section class="immeuble" id="immeuble">
    
+   
       <div class="vue">
     
     <div class="plan-cadre">
@@ -419,7 +438,7 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"20c6c58eadef","t":"T1","s":28,"e":1,"x":"Extérieur"},{"i":"5909c25db375","t":"T1","s":28,"e":3,"x":"Extérieur"},{"i":"8978ed561ea3","t":"T1","s":28,"e":2,"x":"Extérieur"},{"i":"3e4ecfa72b35","t":"T2","s":39,"e":4,"x":"Extérieur"},{"i":"209cdc449778","t":"T2","s":40,"e":2,"x":"Extérieur"},{"i":"efd0297b65af","t":"T2","s":41,"e":4,"x":"Extérieur"},{"i":"ef1412da9a65","t":"T2","s":42,"e":6,"x":"Extérieur"},{"i":"12b14774927a","t":"T2","s":46,"e":9,"x":"Extérieur"},{"i":"1fd6a5a042c9","t":"T2","s":46,"e":7,"x":"Extérieur"},{"i":"82cdd0ed2251","t":"T2","s":46,"e":8,"x":"Extérieur"},{"i":"56a904175a71","t":"T2","s":49,"e":1,"x":"Extérieur"},{"i":"06955767483b","t":"T2","s":50,"e":4,"x":"Extérieur"},{"i":"6ebf82222cbd","t":"T2","s":50,"e":2,"x":"Extérieur"},{"i":"988ca6823e84","t":"T2","s":50,"e":5,"x":"Extérieur"},{"i":"ec81520f6451","t":"T2","s":50,"e":6,"x":"Extérieur"},{"i":"71087d22949a","t":"T3","s":57,"e":4,"x":"Extérieur"},{"i":"0b6a03592aec","t":"T3","s":60,"e":1,"x":"Extérieur"},{"i":"773901e1fe93","t":"T3","s":61,"e":4,"x":"Extérieur"},{"i":"aa09c9a1bedf","t":"T3","s":61,"e":6,"x":"Extérieur"},{"i":"bd2691faf72c","t":"T3","s":61,"e":5,"x":"Extérieur"},{"i":"c83f8a0b6fe5","t":"T3","s":61,"e":6,"x":"Extérieur"},{"i":"ceb7ff1a7da2","t":"T3","s":61,"e":5,"x":"Extérieur"},{"i":"9dd25d96b8c8","t":"T3","s":62,"e":4,"x":"Extérieur"},{"i":"ef958753ee60","t":"T3","s":63,"e":1,"x":"Extérieur"},{"i":"6e8f94f4475e","t":"T3","s":65,"e":7,"x":"Extérieur"},{"i":"c798cc7d1e22","t":"T3","s":67,"e":3,"x":"Extérieur"},{"i":"2f195639cdfb","t":"T3","s":68,"e":5,"x":"Extérieur"},{"i":"9c6ccf8ed412","t":"T3","s":68,"e":3,"x":"Extérieur"},{"i":"ae0c4fa1b86f","t":"T3","s":68,"e":6,"x":"Extérieur"},{"i":"e6b4b845888c","t":"T3","s":68,"e":4,"x":"Extérieur"},{"i":"8d9305d9263b","t":"T3","s":74,"e":2,"x":"Extérieur"},{"i":"dd9f79883008","t":"T3","s":74,"e":3,"x":"Extérieur"},{"i":"070566e5d153","t":"T4","s":69,"e":7,"x":"Extérieur"},{"i":"ad3daf5bfead","t":"T4","s":69,"e":9,"x":"Extérieur"},{"i":"b377f8a6b69b","t":"T4","s":73,"e":9,"x":"Extérieur"},{"i":"4281bfcda2b2","t":"T4","s":75,"e":7,"x":"Extérieur"},{"i":"72015e46bbe6","t":"T4","s":75,"e":5,"x":"Extérieur"},{"i":"d80d6f935ac7","t":"T4","s":75,"e":9,"x":"Extérieur"},{"i":"0cd3e9207f77","t":"T4","s":77,"e":7,"x":"Extérieur"},{"i":"e09fdb224cf9","t":"T4","s":77,"e":4,"x":"Extérieur"},{"i":"d89b3f79a8fe","t":"T4","s":84,"e":6,"x":"Extérieur"},{"i":"397543fdb1d7","t":"T4","s":86,"e":1,"x":"Extérieur"},{"i":"9937243bd15f","t":"T4","s":86,"e":6,"x":"Extérieur"},{"i":"71e17b417d5f","t":"T4","s":87,"e":8,"x":"Extérieur"},{"i":"c9adff1d602e","t":"T4","s":88,"e":1,"x":"Extérieur"},{"i":"cf5374cd799f","t":"T4","s":89,"e":8,"x":"Extérieur"},{"i":"db3912fa293f","t":"T4","s":90,"e":8,"x":"Extérieur"},{"i":"a7396465dfa1","t":"T4","s":91,"e":3,"x":"Extérieur"},{"i":"83051ddaf26a","t":"T4","s":92,"e":1,"x":"Extérieur"},{"i":"d8bbfc3c947f","t":"T5+","s":87,"e":6,"x":"Extérieur"},{"i":"0e2a3fab2949","t":"T5+","s":99,"e":9,"x":"Extérieur"},{"i":"f5be1abab23c","t":"T5+","s":113,"e":9,"x":"Extérieur"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=8d2c41c88c" defer></script>
+<script src="/neuf/programme.js?v=15c28fcdee" defer></script>
 
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};

@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -359,7 +377,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"baillet-en-france","villes":[{"v":"Baillet-en-France","s":"baillet-en-france","cp":"95560","i":"95042","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.2848,49.049],[2.2845,49.0493],[2.2839,49.0496],[2.2836,49.0498],[2.2832,49.0498],[2.2828,49.0498],[2.2823,49.0498],[2.2822,49.0496],[2.2817,49.0494],[2.2815,49.0493],[2.2809,49.0493],[2.2807,49.0492],[2.2807,49.0494],[2.2805,49.0501],[2.2804,49.0506],[2.2803,49.0507],[2.28,49.051],[2.2798,49.0512],[2.2797,49.0516],[2.2794,49.0521],[2.2792,49.0528],[2.279,49.0529],[2.279,49.0531],[2.279,49.0533],[2.2789,49.0543],[2.2789,49.0544],[2.2791,49.055],[2.279,49.0552],[2.2791,49.0556],[2.2791,49.0561],[2.2791,49.0571],[2.2792,49.0578],[2.2792,49.0581],[2.2791,49.0585],[2.2791,49.0588],[2.2789,49.0593],[2.2788,49.0597],[2.2789,49.0604],[2.279,49.0607],[2.2792,49.0609],[2.2793,49.0612],[2.2795,49.0617],[2.2795,49.0619],[2.2797,49.0623],[2.2801,49.0627],[2.2809,49.0643],[2.2806,49.0644],[2.2812,49.0653],[2.2811,49.0654],[2.2812,49.0658],[2.2804,49.0658],[2.2799,49.0657],[2.2795,49.0655],[2.2789,49.0655],[2.2786,49.0655],[2.2781,49.0654],[2.2775,49.0652],[2.2767,49.0649],[2.2759,49.0646],[2.2753,49.0645],[2.2746,49.0644],[2.2737,49.0643],[2.2731,49.0642],[2.2725,49.064],[2.272,49.064],[2.2717,49.0641],[2.2714,49.0642],[2.2714,49.0645],[2.2716,49.0651],[2.2717,49.0657],[2.2722,49.0658],[2.2735,49.0662],[2.2734,49.0664],[2.2734,49.0667],[2.2735,49.067],[2.2738,49.0678],[2.2741,49.0683],[2.2744,49.0687],[2.2748,49.0693],[2.2752,49.0699],[2.2753,49.0701],[2.276,49.072],[2.2761,49.0721],[2.2762,49.0721],[2.2781,49.0717],[2.2784,49.0717],[2.2793,49.0712],[2.2794,49.071],[2.2795,49.0708],[2.28,49.0707],[2.2803,49.0707],[2.2805,49.0708],[2.2808,49.0709],[2.2814,49.0713],[2.282,49.0715],[2.2823,49.0716],[2.2829,49.0715],[2.2833,49.0715],[2.2835,49.0715],[2.2838,49.0716],[2.2839,49.0718],[2.2842,49.0721],[2.2843,49.0723],[2.2847,49.0725],[2.2848,49.0725],[2.2854,49.0724],[2.286,49.0724],[2.2868,49.0724],[2.2871,49.0724],[2.2872,49.0723],[2.2879,49.0718],[2.288,49.0717],[2.2881,49.0717],[2.2887,49.0708],[2.2888,49.0707],[2.2891,49.0704],[2.2903,49.0698],[2.291,49.0704],[2.2917,49.0699],[2.2985,49.0674],[2.2986,49.0668],[2.2986,49.0665],[2.2996,49.0663],[2.2999,49.0662],[2.3,49.0661],[2.3001,49.0659],[2.3001,49.0655],[2.3004,49.0655],[2.3024,49.0656],[2.3031,49.0656],[2.3037,49.0655],[2.3094,49.0651],[2.3094,49.0653],[2.3095,49.0654],[2.3104,49.0656],[2.3107,49.0657],[2.3114,49.0659],[2.3117,49.066],[2.3126,49.0666],[2.3129,49.0667],[2.3135,49.067],[2.3138,49.0671],[2.3142,49.0672],[2.3146,49.0674],[2.3154,49.0675],[2.3155,49.0675],[2.3158,49.0674],[2.3173,49.0664],[2.3177,49.0662],[2.3182,49.066],[2.319,49.0658],[2.3202,49.0656],[2.3202,49.0654],[2.3238,49.0648],[2.3243,49.0647],[2.3249,49.0646],[2.3301,49.0636],[2.3304,49.0629],[2.3306,49.0622],[2.331,49.0613],[2.3312,49.0608],[2.3316,49.0596],[2.3318,49.0591],[2.332,49.0589],[2.3322,49.0586],[2.3329,49.0568],[2.3341,49.0538],[2.3351,49.0514],[2.3355,49.0504],[2.3345,49.0502],[2.3344,49.0501],[2.3345,49.0497],[2.3347,49.0497],[2.3343,49.0493],[2.3335,49.0496],[2.3325,49.05],[2.332,49.0502],[2.3308,49.0507],[2.3294,49.0516],[2.3289,49.0517],[2.3281,49.0519],[2.3274,49.052],[2.3269,49.052],[2.3263,49.0519],[2.3254,49.0517],[2.325,49.0517],[2.3246,49.0517],[2.3241,49.0518],[2.3232,49.052],[2.3232,49.0512],[2.3231,49.0511],[2.3218,49.0509],[2.3215,49.0508],[2.3211,49.0508],[2.3205,49.0506],[2.3194,49.0504],[2.3181,49.05],[2.3176,49.0499],[2.3175,49.0498],[2.3172,49.0496],[2.3171,49.0494],[2.317,49.0494],[2.3161,49.0494],[2.3137,49.0494],[2.3127,49.0494],[2.3126,49.0494],[2.3113,49.0489],[2.3101,49.0484],[2.3087,49.0478],[2.3082,49.0477],[2.3067,49.0472],[2.3068,49.0469],[2.3063,49.047],[2.3043,49.047],[2.3041,49.0471],[2.3037,49.0473],[2.3031,49.0475],[2.3025,49.0477],[2.3015,49.0481],[2.3006,49.0485],[2.3007,49.0486],[2.3008,49.0488],[2.3007,49.049],[2.3005,49.0493],[2.2999,49.0502],[2.2999,49.0503],[2.2989,49.0502],[2.2985,49.0501],[2.2975,49.0498],[2.297,49.0496],[2.2965,49.0494],[2.2953,49.0487],[2.2951,49.0485],[2.2948,49.0487],[2.2937,49.048],[2.2923,49.0473],[2.2906,49.0465],[2.2903,49.0463],[2.2874,49.049],[2.2863,49.05],[2.2862,49.0502],[2.2859,49.0501],[2.2858,49.0499],[2.285,49.0492],[2.2848,49.049]]]}},"r":"1 programme · 21 logements disponibles","p":[{"n":"Les Seigneuries","s":"les-seigneuries","k":false,"a":49.061,"o":2.297,"z":false,"u":"baillet-en-france/les-seigneuries/","l":"2e semestre 2028","d":"21 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

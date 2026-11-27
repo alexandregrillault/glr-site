@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -360,7 +378,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"saclay","villes":[{"v":"Saclay","s":"saclay","cp":"91400","i":"91534","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.2036,48.721],[2.2037,48.721],[2.2036,48.7207],[2.2033,48.7199],[2.2032,48.7199],[2.1995,48.7189],[2.199,48.7189],[2.1985,48.7188],[2.1979,48.7188],[2.1969,48.7185],[2.1961,48.7184],[2.1952,48.7183],[2.1945,48.7184],[2.1939,48.7184],[2.1933,48.7185],[2.1928,48.7186],[2.1924,48.7187],[2.1918,48.7188],[2.1911,48.7188],[2.1902,48.7188],[2.1892,48.7186],[2.1879,48.7185],[2.1871,48.7184],[2.1862,48.7183],[2.1856,48.7182],[2.1848,48.7182],[2.1827,48.718],[2.1757,48.7159],[2.1747,48.7156],[2.1725,48.7149],[2.1722,48.7148],[2.1716,48.7145],[2.1711,48.7144],[2.171,48.7145],[2.1713,48.7162],[2.1687,48.7165],[2.1683,48.7165],[2.1679,48.7164],[2.1664,48.716],[2.1662,48.7158],[2.166,48.7155],[2.1657,48.7156],[2.1652,48.7156],[2.1647,48.7157],[2.1642,48.7158],[2.1617,48.7161],[2.1606,48.7163],[2.1598,48.7164],[2.1593,48.7164],[2.1574,48.7167],[2.1565,48.7168],[2.1547,48.7188],[2.1532,48.7202],[2.1529,48.7203],[2.1513,48.7209],[2.1505,48.7211],[2.1471,48.7224],[2.1464,48.7227],[2.1459,48.7228],[2.145,48.723],[2.1435,48.7232],[2.1438,48.724],[2.146,48.7296],[2.1463,48.7297],[2.1467,48.7314],[2.1458,48.7318],[2.1455,48.7313],[2.144,48.7314],[2.1444,48.7319],[2.1413,48.7333],[2.1349,48.7373],[2.1348,48.7374],[2.1349,48.7375],[2.1358,48.7385],[2.1377,48.7407],[2.1381,48.7408],[2.1383,48.7409],[2.1384,48.741],[2.1386,48.7412],[2.14,48.7421],[2.1396,48.7425],[2.1392,48.7429],[2.1388,48.7432],[2.1378,48.7444],[2.1367,48.7455],[2.1371,48.7464],[2.1378,48.7462],[2.138,48.7465],[2.1393,48.746],[2.1399,48.7461],[2.1405,48.7461],[2.1406,48.7461],[2.1411,48.7461],[2.1416,48.7459],[2.1414,48.7465],[2.141,48.747],[2.1415,48.7479],[2.1424,48.749],[2.1426,48.7492],[2.1462,48.7512],[2.1466,48.7509],[2.1503,48.7528],[2.1504,48.7528],[2.1508,48.7536],[2.1514,48.7546],[2.1522,48.7543],[2.153,48.7537],[2.1533,48.7532],[2.1565,48.7523],[2.1561,48.7517],[2.1565,48.7516],[2.157,48.7514],[2.1591,48.7508],[2.1612,48.7501],[2.1624,48.7514],[2.1654,48.7545],[2.1655,48.7546],[2.167,48.7561],[2.1681,48.7567],[2.1721,48.7567],[2.1722,48.7567],[2.173,48.7575],[2.1733,48.7578],[2.1737,48.7577],[2.174,48.7574],[2.1742,48.7573],[2.1769,48.7581],[2.177,48.758],[2.1809,48.7589],[2.1835,48.7565],[2.1839,48.756],[2.184,48.7559],[2.1843,48.7557],[2.1845,48.7556],[2.1862,48.754],[2.1877,48.754],[2.188,48.754],[2.1885,48.7541],[2.189,48.7542],[2.1894,48.7544],[2.1896,48.7543],[2.1895,48.7542],[2.1893,48.7536],[2.1892,48.7535],[2.1892,48.753],[2.1891,48.7527],[2.1889,48.7523],[2.1876,48.7502],[2.1863,48.748],[2.1846,48.7453],[2.1845,48.7441],[2.1826,48.7414],[2.1843,48.7406],[2.1854,48.7402],[2.1864,48.74],[2.1871,48.7398],[2.1875,48.7397],[2.1884,48.7396],[2.1888,48.7395],[2.1892,48.7394],[2.1896,48.7393],[2.1903,48.7393],[2.1901,48.7392],[2.1894,48.7388],[2.1887,48.7386],[2.188,48.7384],[2.1878,48.7383],[2.1874,48.7379],[2.1865,48.7372],[2.1862,48.737],[2.1858,48.7368],[2.1857,48.7337],[2.1851,48.7327],[2.1845,48.7322],[2.184,48.7318],[2.1837,48.7315],[2.1836,48.7312],[2.183,48.7307],[2.1829,48.7299],[2.1828,48.7294],[2.1818,48.7281],[2.1822,48.7279],[2.1825,48.7278],[2.183,48.7276],[2.184,48.727],[2.1846,48.7267],[2.1853,48.7265],[2.1862,48.7263],[2.1867,48.7262],[2.1876,48.7258],[2.1886,48.7254],[2.1897,48.7247],[2.1903,48.7244],[2.1915,48.7238],[2.1923,48.7233],[2.1932,48.7228],[2.1943,48.7223],[2.1948,48.7221],[2.1952,48.7219],[2.1962,48.7216],[2.1966,48.7215],[2.1971,48.7215],[2.2014,48.7214],[2.2019,48.7213],[2.2025,48.7212],[2.2032,48.7211],[2.2036,48.721]]]}},"r":"2 programmes · 40 logements disponibles","p":[{"n":"Sensation","s":"sensation","k":false,"a":48.713,"o":2.186,"z":true,"u":"saclay/sensation/","l":"4e trimestre 2028","d":"19 logements disponibles"},{"n":"Le Clos des Meulières","s":"le-clos-des-meulieres","k":false,"a":48.733,"o":2.175,"z":false,"u":"saclay/le-clos-des-meulieres/","l":"2e trimestre 2029","d":"21 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

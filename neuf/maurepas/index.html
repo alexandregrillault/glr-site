@@ -97,7 +97,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -105,6 +121,8 @@ table.lots td.plan{white-space:normal;text-align:right}
 table.lots .prix-lot .tva small{display:block}
 section.typo{overflow-x:auto}
 @media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
+@media(max-width:480px){.lien-visite{white-space:normal;width:60px;line-height:1.15;padding:4px;font-size:.78rem;text-align:center}table.lots th,table.lots td{padding-left:4px;padding-right:4px}}
+@media(max-width:400px){table.lots{font-size:.8rem}.lien-visite{width:54px;font-size:.74rem}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -359,7 +377,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"maurepas","villes":[{"v":"Maurepas","s":"maurepas","cp":"78310","i":"78383","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[1.9011,48.7681],[1.9007,48.7685],[1.9003,48.7689],[1.9001,48.7694],[1.8999,48.7698],[1.8995,48.7703],[1.8992,48.7706],[1.8987,48.771],[1.8985,48.7712],[1.8981,48.7715],[1.8976,48.7719],[1.8974,48.7722],[1.8973,48.7723],[1.8972,48.7727],[1.8971,48.7731],[1.8972,48.7733],[1.8974,48.7741],[1.8976,48.7746],[1.8977,48.775],[1.8976,48.7752],[1.8975,48.7758],[1.8974,48.776],[1.897,48.7766],[1.8964,48.7776],[1.896,48.7779],[1.895,48.7787],[1.8948,48.7788],[1.8958,48.7802],[1.8972,48.7802],[1.8983,48.7802],[1.8989,48.7802],[1.8999,48.7802],[1.9014,48.7803],[1.9036,48.7803],[1.9036,48.7808],[1.9037,48.7809],[1.9039,48.7811],[1.9049,48.7819],[1.9062,48.7829],[1.9079,48.7843],[1.9089,48.7851],[1.9094,48.7855],[1.9094,48.7857],[1.9096,48.7857],[1.9108,48.7856],[1.9111,48.7855],[1.9114,48.7855],[1.9119,48.7853],[1.9122,48.7852],[1.9135,48.7846],[1.9146,48.7842],[1.915,48.784],[1.9155,48.784],[1.9172,48.7839],[1.9171,48.7833],[1.9171,48.783],[1.9173,48.7828],[1.9178,48.7825],[1.9183,48.7819],[1.9185,48.7817],[1.9188,48.7816],[1.9191,48.7814],[1.9197,48.7812],[1.92,48.781],[1.9205,48.7805],[1.9208,48.78],[1.921,48.7798],[1.9214,48.7793],[1.9217,48.7788],[1.9217,48.7789],[1.922,48.779],[1.9223,48.7791],[1.9225,48.7792],[1.9226,48.7796],[1.9227,48.7799],[1.9229,48.78],[1.9234,48.7801],[1.9235,48.7801],[1.9241,48.7808],[1.9244,48.781],[1.9246,48.7811],[1.9249,48.7813],[1.925,48.7818],[1.9262,48.782],[1.9265,48.7821],[1.9274,48.7823],[1.9278,48.7824],[1.9277,48.7825],[1.9278,48.7827],[1.928,48.7828],[1.9289,48.7831],[1.9294,48.7829],[1.9298,48.783],[1.9303,48.7832],[1.9306,48.7832],[1.9311,48.7832],[1.9315,48.7832],[1.932,48.7831],[1.9325,48.783],[1.933,48.7828],[1.9332,48.7828],[1.9336,48.7825],[1.9337,48.7823],[1.9338,48.7819],[1.9338,48.7817],[1.9339,48.7813],[1.934,48.7809],[1.9346,48.7807],[1.935,48.7806],[1.9353,48.7805],[1.936,48.78],[1.9367,48.7796],[1.9373,48.7792],[1.9379,48.7787],[1.9383,48.7785],[1.9385,48.7784],[1.9388,48.7781],[1.9388,48.7779],[1.9391,48.7774],[1.9393,48.7772],[1.9396,48.7766],[1.9397,48.7763],[1.9398,48.7762],[1.9398,48.776],[1.9398,48.7758],[1.9396,48.7754],[1.9391,48.7753],[1.9391,48.7751],[1.9393,48.775],[1.9394,48.7748],[1.9399,48.7747],[1.94,48.7748],[1.9403,48.7749],[1.9405,48.7742],[1.9406,48.7741],[1.9419,48.7735],[1.9421,48.7733],[1.9422,48.7732],[1.942,48.7732],[1.9421,48.7731],[1.9416,48.773],[1.9412,48.7727],[1.9414,48.7726],[1.9424,48.7722],[1.9427,48.772],[1.943,48.7717],[1.9435,48.7714],[1.9441,48.7709],[1.9443,48.7707],[1.9447,48.7706],[1.9457,48.7704],[1.9455,48.7701],[1.9473,48.7693],[1.9468,48.7688],[1.9465,48.7684],[1.9462,48.7681],[1.9465,48.7679],[1.9463,48.7679],[1.9462,48.7678],[1.946,48.7676],[1.9464,48.7674],[1.9461,48.7671],[1.9459,48.7672],[1.9453,48.7667],[1.9452,48.7665],[1.945,48.7664],[1.9448,48.7661],[1.945,48.7661],[1.9451,48.7661],[1.9458,48.7661],[1.9461,48.7659],[1.9465,48.7659],[1.9482,48.7656],[1.9484,48.7655],[1.9487,48.7657],[1.9487,48.7656],[1.949,48.7655],[1.9496,48.7654],[1.9526,48.7651],[1.9541,48.7649],[1.9547,48.7647],[1.9552,48.7645],[1.9544,48.7636],[1.9547,48.7635],[1.9544,48.7629],[1.9538,48.7621],[1.9534,48.7615],[1.9535,48.7615],[1.9535,48.7613],[1.9535,48.7611],[1.9531,48.7611],[1.9519,48.7598],[1.9522,48.7595],[1.949,48.7589],[1.9468,48.7584],[1.9449,48.758],[1.9429,48.7576],[1.9419,48.7573],[1.9408,48.757],[1.9405,48.7569],[1.9402,48.7567],[1.9397,48.757],[1.9396,48.757],[1.939,48.7573],[1.9381,48.7579],[1.9376,48.7582],[1.9364,48.7588],[1.9352,48.7594],[1.9339,48.76],[1.9331,48.7603],[1.9326,48.7605],[1.9311,48.7589],[1.9291,48.7568],[1.9184,48.7576],[1.9161,48.7577],[1.916,48.7578],[1.915,48.7587],[1.9146,48.759],[1.9132,48.7603],[1.9123,48.7612],[1.9115,48.7618],[1.911,48.7623],[1.9094,48.7636],[1.9092,48.7639],[1.9086,48.7644],[1.9084,48.7646],[1.9074,48.7654],[1.9072,48.7656],[1.9047,48.7666],[1.904,48.7668],[1.9031,48.7673],[1.9022,48.7677],[1.9013,48.768],[1.9011,48.7681]]]}},"r":"1 programme · 7 logements disponibles","p":[{"n":"Jardin Sauvole","s":"jardin-sauvole","k":false,"a":48.762,"o":1.926,"z":false,"u":"maurepas/jardin-sauvole/","l":"2e trimestre 2027","d":"7 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8d2c41c88c"></script>
+<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;
