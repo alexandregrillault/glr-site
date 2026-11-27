@@ -85,13 +85,14 @@
     ev.preventDefault(); ouvrir(b.getAttribute('data-3d'));
   });
   // Formulaire d'accès
+  var debut = Date.now(); // temps entre l'affichage du formulaire et l'envoi, envoyé à la fonction (un envoi instantané n'est pas un humain) ; aucun champ caché : Chrome les remplit
   var f = document.getElementById('f3d'); if (!f) return;
   f.addEventListener('submit', function (ev) {
     ev.preventDefault();
     var err = document.getElementById('f3d-err'), go = f.querySelector('button[type=submit]');
     function v(n) { return (f.elements[n].value || '').trim(); }
     var d = { action: 'inscrire', prenom: v('prenom'), telephone: v('telephone'), email: v('email'), accord: f.elements.accord.checked, p: prog,
-      programme: f.getAttribute('data-prog') || '', ville: f.getAttribute('data-ville') || '', societe: '', hp_glr: v('hp_glr') };
+      programme: f.getAttribute('data-prog') || '', ville: f.getAttribute('data-ville') || '', societe: '', hp_glr: '', delai_ms: Date.now() - debut };
     if (!d.prenom) { err.textContent = 'Indiquez votre prénom.'; return; }
     if (d.telephone.replace(/\D/g, '').length < 9) { err.textContent = 'Indiquez un numéro de téléphone valide.'; return; }
     if (!/^[^@\s]+@[^@\s.]+(\.[^@\s.]+)+$/.test(d.email)) { err.textContent = d.email ? 'L’adresse e-mail ne semble pas valide.' : 'Indiquez votre e-mail.'; return; }
