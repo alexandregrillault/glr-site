@@ -28,9 +28,18 @@
   function aller(url, opts, essai) {
     essai = essai || 0;
     return fetch(url, opts).then(function (r) {
-      if (r.status !== 503 || essai >= 2) return r;
-      return new Promise(function (ok) { setTimeout(ok, 1000); }).then(function () { return aller(url, opts, essai + 1); });
+      if ((r.status !== 503 && r.status !== 429) || essai >= 2) return r;
+      return new Promise(function (ok) { setTimeout(ok, 1000 * (essai + 1)); }).then(function () { return aller(url, opts, essai + 1); });
     });
+  }
+  // Téléchargement du fichier lui-même (lien signé) : une erreur réseau, un 429 ou un 5xx sont retentés deux fois avant d'abandonner.
+  function chercher(url, essai) {
+    essai = essai || 0;
+    var encore = function () { return new Promise(function (ok) { setTimeout(ok, 1000 * (essai + 1)); }).then(function () { return chercher(url, essai + 1); }); };
+    return fetch(url).then(function (r) {
+      if ((r.status === 429 || r.status >= 500) && essai < 2) return encore();
+      return r;
+    }, function (e) { if (essai < 2) return encore(); throw e; });
   }
   // Un « affichage » : un cadre, un message, des onglets, la boîte du plan. Un en haut (l'immeuble), un volet sous la ligne touchée.
   function vue(z) {
@@ -44,7 +53,11 @@
       if (v.lienPdf) { v.lienPdf.removeAttribute('href'); v.lienPdf.hidden = true; }
       if (v.planbox) v.planbox.hidden = true;
     };
-    v.message = function (t) { v.etat.textContent = t || ''; v.etat.hidden = !t; };
+    v.relance = null;
+    v.message = function (t, relance) { // relance : fonction appelée par le bouton « Réessayer » (échecs qui peuvent passer : limite, réseau, serveur)
+      v.etat.textContent = t || ''; v.etat.hidden = !t; v.relance = relance || null;
+      if (relance) { var b = document.createElement('button'); b.type = 'button'; b.className = 'reessayer'; b.textContent = 'Réessayer'; v.etat.appendChild(document.createTextNode(' ')); v.etat.appendChild(b); }
+    };
     // Onglets « Plan | Visite 3D » : seulement pour un logement qui a les deux
     v.onglet = function (lot, actif) {
       if (!v.onglets) return;
@@ -87,11 +100,11 @@
         if (!r.ok) { haut.ouvert = null; secours(); return null; }
         return r.json();
       })
-      .then(function (j) { if (!j || !j.url) return null; return fetch(j.url); })
+      .then(function (j) { if (!j || !j.url) return null; return chercher(j.url); })
       .then(function (r) { if (!r) return null; if (!r.ok) throw new Error('http'); return r.blob(); })
       .then(function (b) {
         if (!b || haut.ouvert !== 'immeuble') return;
-        haut.libere(); haut.lienBlob = URL.createObjectURL(new Blob([b], { type: 'text/html' }));
+        haut.libere(); haut.lienBlob = URL.createObjectURL(new Blob([b], { type: 'text/html;charset=utf-8' }));
         haut.cadre.src = haut.lienBlob; haut.z.classList.add('charge'); haut.message('');
       })
       .catch(function () { if (haut.ouvert === 'immeuble') { haut.ouvert = null; secours(); } });
@@ -137,6 +150,7 @@
   }
   function expire(v, lot, mode) { ecrireJeton(''); rouvrirFormulaire(); attente = { lot: lot, mode: mode }; fermer(); versFormulaire('Votre accès a expiré : recréez-le en une minute.'); }
   function chargerVisite(v, lot, jeton) {
+    var relance = function () { ouvrirLot(lot, 'visite'); };
     v.libere(); v.ouvert = lot; v.lot = lot; var req = ++v.req; v.z.classList.remove('charge'); v.onglet(lot, 'visite');
     v.message('Chargement de la visite 3D\u2026 (un peu long sur mobile)');
     var actuel = function () { return v.ouvert === lot && req === v.req; };
@@ -145,23 +159,24 @@
         if (!actuel()) return null;
         if (r.status === 401) { expire(v, lot, 'visite'); return null; }
         if (r.status === 404) { v.ouvert = null; v.message('Cette visite n\u2019est pas encore disponible.'); return null; }
-        if (r.status === 503) { v.ouvert = null; v.message('Réessayez dans un instant.'); return null; }
-        if (r.status === 429) { v.ouvert = null; v.message('Trop de demandes d\u2019un coup : réessayez dans quelques minutes.'); return null; }
+        if (r.status === 503) { v.ouvert = null; v.message('Le serveur est occupé.', relance); return null; }
+        if (r.status === 429) { v.ouvert = null; v.message('Trop de demandes d\u2019un coup.', relance); return null; }
         if (!r.ok) throw new Error('http');
         return r.json();
       })
-      .then(function (j) { if (!j || !j.url) return null; return fetch(j.url); })
+      .then(function (j) { if (!j || !j.url) return null; return chercher(j.url); })
       .then(function (r) { if (!r) return null; if (!r.ok) throw new Error('http'); return r.blob(); })
       .then(function (b) {
         if (!b || !actuel()) return;
-        v.libere(); v.lienBlob = URL.createObjectURL(new Blob([b], { type: 'text/html' }));
+        v.libere(); v.lienBlob = URL.createObjectURL(new Blob([b], { type: 'text/html;charset=utf-8' }));
         v.cadre.src = v.lienBlob; v.z.classList.add('charge'); v.message('');
       })
-      .catch(function () { if (actuel()) { v.ouvert = null; v.message('La visite n\u2019a pas pu se charger. Réessayez, ou appelez-nous.'); } });
+      .catch(function () { if (actuel()) { v.ouvert = null; v.message('La visite n\u2019a pas pu se charger.', relance); } });
   }
   // Plan du promoteur : la fonction répond soit par le fichier lui-même (image ou PDF), soit par du JSON {url, expire, pages}
   // avec un lien signé vers une image (&page=n pour les plans de plusieurs pages) : les deux sont acceptés.
   function chargerPlan(v, lot, n, jeton) {
+    var relance = function () { ouvrirLot(lot, 'plan', n > 1 ? n : 0); };
     var cle = 'plan:' + lot, req = ++v.req;
     v.libere(); v.ouvert = cle; v.lot = lot; v.page = n; if (n === 1) v.nb = 1; v.onglet(lot, 'plan'); v.majPager();
     v.message('Chargement du plan\u2026');
@@ -171,14 +186,14 @@
         if (!actuel()) return null;
         if (r.status === 401) { expire(v, lot, 'plan'); return null; }
         if (r.status === 404) { v.ouvert = null; v.message('Ce plan n\u2019est pas disponible. Appelez-nous, nous vous l\u2019envoyons.'); return null; }
-        if (r.status === 503) { v.ouvert = null; v.message('Réessayez dans un instant.'); return null; }
-        if (r.status === 429) { v.ouvert = null; v.message('Trop de demandes d\u2019un coup : réessayez dans quelques minutes.'); return null; }
+        if (r.status === 503) { v.ouvert = null; v.message('Le serveur est occupé.', relance); return null; }
+        if (r.status === 429) { v.ouvert = null; v.message('Trop de demandes d\u2019un coup.', relance); return null; }
         if (!r.ok) throw new Error('http');
         if (/json/i.test(r.headers.get('content-type') || '')) { // mode « lien signé » : JSON puis image
           return r.json().then(function (j) {
             if (!j || !j.url) throw new Error('json');
             v.nb = Math.max(1, parseInt(j.pages, 10) || 1);
-            return fetch(j.url).then(function (r2) { if (!r2.ok) throw new Error('http'); return r2.blob(); });
+            return chercher(j.url).then(function (r2) { if (!r2.ok) throw new Error('http'); return r2.blob(); });
           });
         }
         v.nb = 1; return r.blob(); // mode « fichier direct »
@@ -194,7 +209,7 @@
           } else { v.lienBlob = URL.createObjectURL(pdf); v.cadre.src = v.lienBlob; v.message(''); v.majPager(); }
         } else { v.ouvert = null; v.message('Ce plan ne peut pas s\u2019afficher ici. Appelez-nous, nous vous l\u2019envoyons.'); }
       })
-      .catch(function () { if (actuel()) { v.ouvert = null; v.message('Le plan n\u2019a pas pu se charger. Réessayez, ou appelez-nous.'); } });
+      .catch(function () { if (actuel()) { v.ouvert = null; v.message('Le plan n\u2019a pas pu se charger.', relance); } });
   }
   // L'immeuble (1,4 Mo) n'est chargé que lorsqu'il arrive à l'écran, ou au toucher du bouton : jamais à l'ouverture de la page.
   if (haut && 'IntersectionObserver' in window) {
@@ -247,6 +262,8 @@
     if (b) { ev.preventDefault(); var l3 = b.getAttribute('data-3d'); if (l3 === 'immeuble') ouvrirImmeuble(false); else ouvrirLot(l3, 'visite'); return; }
     b = t.closest('[data-plan]');
     if (b) { ev.preventDefault(); ouvrirLot(b.getAttribute('data-plan'), 'plan'); return; }
+    b = t.closest('.reessayer');
+    if (b && bas && bas.relance) { ev.preventDefault(); bas.relance(); return; }
     b = t.closest('[data-onglet]');
     if (b && bas && bas.lot) { ev.preventDefault(); ouvrirLot(bas.lot, b.getAttribute('data-onglet') === 'plan' ? 'plan' : 'visite', 0); return; }
     b = t.closest('[data-page]');

@@ -142,6 +142,7 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .onglets3d{padding:0;width:auto}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
+.etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
 .volet3d .planbox img{max-width:100%}
 @media(max-width:700px){.volet3d{margin:0 4px}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
