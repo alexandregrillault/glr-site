@@ -79,6 +79,12 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .appel a{display:inline-block;padding:12px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .appel a.plein{background:#fff;color:var(--bleu)}
 .appel a.creux{border:1px solid #fff;color:#fff}
+.immeuble3d{position:relative;min-height:260px;background:var(--carte);border:1px solid var(--trait);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.immeuble3d iframe{display:block;width:100%;height:min(78vh,720px);border:0;background:var(--carte)}
+.immeuble3d iframe:not([src]){display:none}
+.immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
+.immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
+.immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
@@ -288,7 +294,6 @@ footer a{color:var(--discret)}
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=villepinte&amp;vue=ville#carte">Retour à la carte de Villepinte</a></div>
   </header>
-  
   <div class="reperes">
     <div class="repere-cle"><b>5</b><span>logements disponibles</span></div>
     <div class="repere-cle"><b>3e trim. 2028</b><span>livraison prévue</span></div>
@@ -296,7 +301,7 @@ footer a{color:var(--discret)}
     <div class="repere-cle"><b>15 min</b><span>à pied de Villepinte (RER B)</span></div>
   </div>
   <section class="immeuble" id="immeuble">
-   <div class="vue">
+      <div class="vue">
     
     <div class="plan-cadre">
       <div class="etages" id="etages" role="group" aria-label="Choisir un étage"></div>

@@ -115,6 +115,12 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .appel a{display:inline-block;padding:12px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .appel a.plein{background:#fff;color:var(--bleu)}
 .appel a.creux{border:1px solid #fff;color:#fff}
+.immeuble3d{position:relative;min-height:260px;background:var(--carte);border:1px solid var(--trait);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.immeuble3d iframe{display:block;width:100%;height:min(78vh,720px);border:0;background:var(--carte)}
+.immeuble3d iframe:not([src]){display:none}
+.immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
+.immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
+.immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
@@ -504,11 +510,6 @@ function pageProgramme(d, p) {
     </div>
     <div class="hero-actions">${p.visite_3d ? '<button type="button" class="bouton-plein" data-3d="immeuble">Voir en 3D</button>' : ''}<a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=${esc(d.slug)}&amp;vue=ville#carte">Retour à la carte de ${esc(d.ville)}</a></div>
   </header>
-  ${p.visite_3d ? `<section class="visite3d" id="visite3d" data-p="${esc(p.pige_id || '')}" data-lots="${esc((p.logements || []).filter(l => l.v3d && l.id).map(l => l.id).join(','))}" hidden>
-    <div class="entete3d"><h2>Visite 3D</h2><button type="button" class="ferme3d">Fermer la visite</button></div>
-    <p class="etat3d" hidden></p>
-    <iframe title="Visite 3D de ${esc(p.nom)}" allow="fullscreen" loading="lazy"></iframe>
-  </section>` : ''}
   <div class="reperes">
     ${p.nb_lots_libres ? `<div class="repere-cle"><b>${nb(p.nb_lots_libres)}</b><span>${p.nb_lots_libres > 1 ? 'logements disponibles' : 'logement disponible'}</span></div>` : ''}
     ${p.livraison ? `<div class="repere-cle"><b>${esc(p.livraison.replace(/ trimestre /, ' trim. '))}</b><span>${dejaLivre(p) ? 'programme déjà livré' : 'livraison prévue'}</span></div>` : ''}
@@ -516,7 +517,14 @@ function pageProgramme(d, p) {
     ${p.gare ? `<div class="repere-cle"><b>${p.gare_minutes_a_pied ? p.gare_minutes_a_pied + ' min' : 'À côté'}</b><span>à pied ${esc(deGare(p.gare))}</span></div>` : ''}
   </div>
   ${typos.length ? `<section class="immeuble" id="immeuble">
-   <div class="vue">
+   ${p.visite_3d ? `<div class="vue vue3d">
+    <div class="immeuble3d" id="visite3d" data-p="${esc(p.pige_id || '')}" data-lots="${esc((p.logements || []).filter(l => l.v3d && l.id).map(l => l.id).join(','))}">
+      <p class="etat3d" hidden></p>
+      <iframe title="Visite 3D de ${esc(p.nom)}" allow="fullscreen"></iframe>
+      <button type="button" class="charger3d" data-3d="immeuble">Voir l’immeuble en 3D</button>
+    </div>
+    <p class="note">Visite 3D réalisée à partir des plans du promoteur : touchez un étage, puis un logement pour le visiter. Les plans des logements demandent un compte, créé en une minute.</p>
+   </div>` : `   <div class="vue">
     ${p.plan_masse ? `<figure class="plan-promoteur"><img src="${esc(p.plan_masse)}" alt="Plan de masse de ${esc(p.nom)}" loading="lazy"><figcaption>Plan de masse du promoteur, non contractuel.</figcaption></figure>` : ''}
     <div class="plan-cadre">
       <div class="etages" id="etages" role="group" aria-label="Choisir un étage"></div>
@@ -530,7 +538,7 @@ function pageProgramme(d, p) {
     <div class="coupe"><label for="heure">Soleil à</label><input type="range" id="heure" min="6" max="22" step="0.25" value="14"><output id="heure-val"></output></div>
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
-   </div>
+   </div>`}
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button>${typos.map(t => `<button type="button" aria-pressed="false" data-t="${esc(t)}">${esc(t)}</button>`).join('')}</div>
@@ -561,9 +569,9 @@ ${p.visite_3d ? `<section class="appel" id="compte">
   <p class="note">Disponibilités et prix relevés le ${dateFr(d.maj)} ; ils changent chaque semaine et sont confirmés par votre conseiller.</p>
 </main>
 ${pied}
-${typos.length ? `<script type="application/json" id="logements-data">${JSON.stringify((p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? null : l.etage, x: l.exterieur || '' }))).replace(/</g, '\\u003c')}</script>
-<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js" defer></script>
+${typos.length ? `${p.visite_3d ? '' : `<script type="application/json" id="logements-data">${JSON.stringify((p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? null : l.etage, x: l.exterieur || '' }))).replace(/</g, '\\u003c')}</script>`}
+${p.visite_3d ? '' : '<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>'}
+${p.visite_3d ? '' : '<script src="/neuf/programme.js" defer></script>'}
 ${p.visite_3d ? '<script src="/neuf/visite3d.js" defer></script>' : ''}
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+'\u00a0€'};
