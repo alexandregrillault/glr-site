@@ -143,6 +143,11 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .onglets3d{padding:0;width:auto}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
+.onglets-masse{padding:0 0 10px}
+.immeuble.masse-on>.vue:not(.vue-masse){display:none}
+.immeuble>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on>.vue.vue-masse{display:block}
+.vue-masse .volet3d{margin:0}
 .volet3d iframe{height:min(62vh,560px);min-height:380px}
 .etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
 .volet3d .planbox img{max-width:100%}
@@ -528,7 +533,7 @@ function pageProgramme(d, p) {
   const surfaces = ss.length ? (Math.round(Math.min(...ss)) === Math.round(Math.max(...ss)) ? Math.round(ss[0]) + '\u00a0m²' : Math.round(Math.min(...ss)) + ' à ' + Math.round(Math.max(...ss)) + '\u00a0m²') : '';
   const etage = e => e == null ? 'non précisé' : e === 0 ? 'RDC' : e + (e === 1 ? 'er' : 'e');
   const plan2d = (p.logements || []).some(l => l.p2d && l.id); // au moins un logement a un plan du promoteur (jamais d'adresse : seulement ce drapeau)
-  const acces = !!p.visite_3d || plan2d; // formulaire d'accès à la place de « appelez-nous »
+  const acces = !!p.visite_3d || plan2d || p.pm === true; // formulaire d'accès à la place de « appelez-nous »
   const idsPlan = (p.logements || []).filter(l => l.p2d && l.id).map(l => l.id).join(',');
   // Zone de l'immeuble 3D en haut de fiche (les plans et visites de logement s'ouvrent dans un volet sous leur ligne, construit par visite3d.js)
   const zoneDocs = () => `<div class="immeuble3d" id="visite3d">
@@ -560,6 +565,8 @@ function pageProgramme(d, p) {
     ${p.gare ? `<div class="repere-cle"><b>${p.gare_minutes_a_pied ? p.gare_minutes_a_pied + ' min' : 'À côté'}</b><span>à pied ${esc(deGare(p.gare))}</span></div>` : ''}
   </div>
   ${typos.length ? `<section class="immeuble" id="immeuble">
+   ${p.pm === true ? `<div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">${p.visite_3d ? 'Immeuble 3D' : 'Maquette'}</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de ${esc(p.nom)}" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>` : ''}
    ${p.visite_3d ? `<div class="vue vue3d">
     ${zoneDocs()}
     <p class="note">Immeuble en 3D réalisé à partir des plans du promoteur : touchez un étage, puis un logement pour voir son plan 3D et le faire tourner. Le plan du promoteur de chaque logement s’ouvre avec un compte, créé en une minute.</p>
