@@ -278,6 +278,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -563,6 +566,7 @@ function pageProgramme(d, p) {
       <hr class="filet">
       <p class="chapo">${p.picking ? 'Nous pouvons vous obtenir la grille de ce programme sur demande.' : `${p.promoteur ? 'Un programme ' + esc(p.promoteur) : 'Un programme neuf'}${p.quartier ? ', quartier ' + esc(p.quartier) : ''}${p.livraison ? (dejaLivre(p) ? ', déjà livré' : ', livré au ' + esc(p.livraison)) : ''}.`}</p>
       <div class="puces">${(p.typologies || []).map(t => `<span class="puce">${esc(t)}</span>`).join('')}${(p.dispositifs || []).filter(x => !/LLI|LMNP/i.test(x)).map(t => `<span class="puce laiton">${esc(t)}</span>`).join('')}${p.picking ? '<span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span>' : ''}</div>
+      ${p.rue ? `<p class="voir-rue"><a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=${p.rue.latitude},${p.rue.longitude}" target="_blank" rel="noopener noreferrer">Voir la rue</a></p>` : ''}
     </div>
     <div class="hero-actions">${p.visite_3d ? '<button type="button" class="bouton-plein" data-3d="immeuble">Voir en 3D</button>' : ''}<a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=${esc(d.slug)}&amp;vue=ville#carte">Retour à la carte de ${esc(d.ville)}</a></div>
   </header>
