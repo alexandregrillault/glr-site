@@ -7,7 +7,7 @@
   if (!racine || !zone) return;
   var cadre = zone.querySelector('iframe'), etat = zone.querySelector('.etat3d'), titre = zone.querySelector('h2');
   var prog = zone.getAttribute('data-p'), clesOk = (zone.getAttribute('data-lots') || '').split(',');
-  // La fonction range le fichier de l'immeuble sous la clé du programme (constaté le 27/11 : l=immeuble → 404, l=<clé du programme> → 401 sans jeton).
+  // Immeuble : appel sans le paramètre l ; logement : l = clé du lot (contrat de la fonction plans-3d, vérifié par CRM le 27/11/2026).
   var lienBlob = null, lotOuvert = null, attente = null;
   function lireJeton() { try { return localStorage.getItem(CLE) || ''; } catch (e) { return ''; } }
   function ecrireJeton(j) { try { if (j) localStorage.setItem(CLE, j); else localStorage.removeItem(CLE); } catch (e) {} }
@@ -27,7 +27,7 @@
     zone.hidden = false; titre.textContent = lot === 'immeuble' ? 'Visite 3D de l’immeuble' : 'Visite 3D du logement';
     message('Chargement de la visite 3D… (un peu long sur mobile)');
     zone.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    fetch(FN + '?p=' + encodeURIComponent(prog) + '&l=' + encodeURIComponent(lot === 'immeuble' ? prog : lot) + '&t=' + encodeURIComponent(jeton), { headers: { accept: 'application/json' } })
+    fetch(FN + '?p=' + encodeURIComponent(prog) + (lot === 'immeuble' ? '' : '&l=' + encodeURIComponent(lot)) + '&t=' + encodeURIComponent(jeton), { headers: { accept: 'application/json' } })
       .then(function (r) {
         if (r.status === 401) { ecrireJeton(''); fermer(); attente = lot; versFormulaire('Votre accès a expiré : recréez-le en une minute.'); return null; }
         if (r.status === 404) { message('Cette visite n’est pas encore disponible.'); return null; }
