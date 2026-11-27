@@ -79,6 +79,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .appel a{display:inline-block;padding:12px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .appel a.plein{background:#fff;color:var(--bleu)}
 .appel a.creux{border:1px solid #fff;color:#fff}
+button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
+.visite3d[hidden]{display:none}
+.visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.visite3d h2{margin:0;font-size:1.2rem}
+.visite3d .ferme3d{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.visite3d .etat3d{margin:0 0 10px;color:var(--discret)}
+.visite3d iframe{display:block;width:100%;height:min(78vh,720px);border:1px solid var(--trait);border-radius:8px;background:#fff}
+.form3d{display:grid;gap:10px;margin:0 0 1rem;max-width:460px}
+.form3d label{display:grid;gap:4px;color:#fff;font-weight:600}
+.form3d input:not([type=checkbox]){padding:11px 12px;border:0;border-radius:6px;font:inherit;color:#161A1E;background:#fff}
+.form3d .accord{display:flex;gap:10px;align-items:flex-start;font-weight:400;color:var(--teinte)}
+.form3d .accord input{margin-top:4px;flex:none}
+.form3d .piege{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.form3d .erreur3d{margin:0;color:#fff;font-weight:600;min-height:1.2em}
+.form3d button.plein{justify-self:start;background:#fff;color:var(--bleu);border:0;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .carte{height:420px;border-radius:8px;border:1px solid var(--trait);margin:0 0 .6rem;z-index:0}
 .carte-zone{position:relative}
 .maplibregl-map{font-family:var(--body);border-radius:8px}
@@ -271,6 +288,7 @@ footer a{color:var(--discret)}
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=le-blanc-mesnil&amp;vue=ville#carte">Retour à la carte de Le Blanc-Mesnil</a></div>
   </header>
+  
   <div class="reperes">
     <div class="repere-cle"><b>74</b><span>logements disponibles</span></div>
     <div class="repere-cle"><b>4e trim. 2028</b><span>livraison prévue</span></div>
@@ -397,6 +415,7 @@ footer a{color:var(--discret)}
 <script type="application/json" id="logements-data">[{"i":"8aac937bdf3a","t":"T2","s":40.6,"e":7,"x":"Extérieur"},{"i":"64e205ea126a","t":"T2","s":41.08,"e":5,"x":"Extérieur"},{"i":"e879a65d346f","t":"T2","s":41.08,"e":6,"x":"Extérieur"},{"i":"359eefd462b5","t":"T2","s":41.75,"e":4,"x":"Extérieur"},{"i":"496bb9a943a4","t":"T2","s":41.75,"e":3,"x":"Extérieur"},{"i":"66934b7a266d","t":"T2","s":41.75,"e":1,"x":"Extérieur"},{"i":"fc587a00a7bb","t":"T2","s":41.75,"e":2,"x":"Extérieur"},{"i":"4c86adebc17e","t":"T2","s":42.04,"e":4,"x":"Extérieur"},{"i":"d35f8960b2d2","t":"T2","s":42.04,"e":6,"x":"Extérieur"},{"i":"815e148d999d","t":"T2","s":42.71,"e":7,"x":"Extérieur"},{"i":"261501e96b93","t":"T2","s":43.26,"e":7,"x":"Extérieur"},{"i":"8051cf63ecb2","t":"T2","s":44.03,"e":5,"x":"Extérieur"},{"i":"92f42818b195","t":"T2","s":44.03,"e":6,"x":"Extérieur"},{"i":"af23f58f77a7","t":"T2","s":44.03,"e":2,"x":"Extérieur"},{"i":"cbcaf58fe99b","t":"T2","s":44.03,"e":3,"x":"Extérieur"},{"i":"d12a03997cab","t":"T2","s":44.03,"e":4,"x":"Extérieur"},{"i":"daa1695617d3","t":"T2","s":44.03,"e":1,"x":"Extérieur"},{"i":"8de4edd9ac95","t":"T2","s":46.58,"e":5,"x":"Extérieur"},{"i":"2c7154b4ecef","t":"T2","s":46.96,"e":6,"x":"Extérieur"},{"i":"41a29bc33079","t":"T2","s":46.96,"e":5,"x":"Extérieur"},{"i":"195f62cdb5aa","t":"T2","s":47.73,"e":3,"x":"Extérieur"},{"i":"5fa4929cb925","t":"T2","s":47.73,"e":4,"x":"Extérieur"},{"i":"c6ee45120dc0","t":"T2","s":47.73,"e":1,"x":"Extérieur"},{"i":"e7e1afa35e64","t":"T2","s":47.73,"e":2,"x":"Extérieur"},{"i":"3cd9b8702ee1","t":"T2","s":48.57,"e":4,"x":"Extérieur"},{"i":"da0753b1094c","t":"T2","s":48.57,"e":2,"x":"Extérieur"},{"i":"f7030f9c0b5c","t":"T2","s":48.57,"e":1,"x":"Extérieur"},{"i":"1db7c56b9c7f","t":"T3","s":63.29,"e":7,"x":"Extérieur"},{"i":"0145671cbedc","t":"T3","s":63.86,"e":2,"x":"Extérieur"},{"i":"2548d1c881b0","t":"T3","s":63.86,"e":3,"x":"Extérieur"},{"i":"865efe61d294","t":"T3","s":63.86,"e":1,"x":"Extérieur"},{"i":"c0c5b23e9c1e","t":"T3","s":63.86,"e":4,"x":"Extérieur"},{"i":"51df7c6fa40e","t":"T3","s":64.68,"e":1,"x":"Extérieur"},{"i":"47a249b2a4ec","t":"T3","s":65.42,"e":3,"x":"Extérieur"},{"i":"61b1e480f88c","t":"T3","s":65.42,"e":4,"x":"Extérieur"},{"i":"aabf7010fd5f","t":"T3","s":65.42,"e":2,"x":"Extérieur"},{"i":"0b891a2af906","t":"T3","s":65.44,"e":3,"x":"Extérieur"},{"i":"1e30817d17b1","t":"T3","s":65.44,"e":0,"x":"Extérieur"},{"i":"539cd505e5d7","t":"T3","s":65.44,"e":4,"x":"Extérieur"},{"i":"8a61c9bc734c","t":"T3","s":65.44,"e":2,"x":"Extérieur"},{"i":"991a49023d5b","t":"T3","s":65.44,"e":1,"x":"Extérieur"},{"i":"f009608c757a","t":"T3","s":66.17,"e":4,"x":"Extérieur"},{"i":"00e825f00633","t":"T3","s":68.15,"e":4,"x":"Extérieur"},{"i":"724e2c2aa482","t":"T3","s":68.15,"e":0,"x":"Extérieur"},{"i":"dfddd6152973","t":"T3","s":68.15,"e":2,"x":"Extérieur"},{"i":"67aad09ec525","t":"T3","s":70.09,"e":5,"x":"Extérieur"},{"i":"79ff6dbd27a9","t":"T3","s":70.09,"e":3,"x":"Extérieur"},{"i":"ebd134f0a8b6","t":"T3","s":70.09,"e":4,"x":"Extérieur"},{"i":"604b8570ccf5","t":"T3","s":70.31,"e":3,"x":"Extérieur"},{"i":"708912b8e4d2","t":"T3","s":70.31,"e":1,"x":"Extérieur"},{"i":"0b36aee896d1","t":"T3","s":72.34,"e":4,"x":"Extérieur"},{"i":"60c535f5b60a","t":"T3","s":72.34,"e":2,"x":"Extérieur"},{"i":"8e376a864a96","t":"T3","s":72.34,"e":0,"x":"Extérieur"},{"i":"b571d18f7d2e","t":"T3","s":72.34,"e":3,"x":"Extérieur"},{"i":"920f24f93bd7","t":"T4","s":78.67,"e":5,"x":"Extérieur"},{"i":"0e8f396e81ff","t":"T4","s":81.06,"e":4,"x":"Extérieur"},{"i":"12f6ff96186e","t":"T4","s":81.06,"e":6,"x":"Extérieur"},{"i":"1a216550b661","t":"T4","s":81.06,"e":3,"x":"Extérieur"},{"i":"dc6864d206f0","t":"T4","s":81.06,"e":2,"x":"Extérieur"},{"i":"042f52026878","t":"T4","s":81.36,"e":4,"x":"Extérieur"},{"i":"080bfdcd174f","t":"T4","s":81.36,"e":2,"x":"Extérieur"},{"i":"41f78ed777f1","t":"T4","s":81.36,"e":3,"x":"Extérieur"},{"i":"cb7a344a1038","t":"T4","s":81.36,"e":1,"x":"Extérieur"},{"i":"ce222bc1927b","t":"T4","s":83.72,"e":0,"x":"Extérieur"},{"i":"2314d95ba828","t":"T4","s":83.93,"e":0,"x":"Extérieur"},{"i":"473b890926cc","t":"T4","s":83.93,"e":4,"x":"Extérieur"},{"i":"d1d6c4bba6d9","t":"T4","s":83.93,"e":2,"x":"Extérieur"},{"i":"d49a56c49632","t":"T4","s":83.93,"e":3,"x":"Extérieur"},{"i":"fc426c82b62f","t":"T4","s":83.93,"e":1,"x":"Extérieur"},{"i":"06c052ed0e9d","t":"T4","s":84.95,"e":2,"x":"Extérieur"},{"i":"37de5ef908f9","t":"T4","s":84.95,"e":3,"x":"Extérieur"},{"i":"f3f22351c6fb","t":"T4","s":84.95,"e":1,"x":"Extérieur"},{"i":"836294b31ca4","t":"T4","s":89.46,"e":5,"x":"Extérieur"},{"i":"f7d53c1c3e93","t":"T5+","s":104.45,"e":0,"x":"Extérieur"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script src="/neuf/programme.js" defer></script>
+
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};
 var poser=function(j){j=j||{};var a=j.prix||{},b=j.prix_tva_reduite||{};window.GLR_PRIX=a;window.GLR_PRIX_R=b;var deux=false;

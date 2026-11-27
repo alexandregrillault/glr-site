@@ -79,6 +79,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .appel a{display:inline-block;padding:12px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .appel a.plein{background:#fff;color:var(--bleu)}
 .appel a.creux{border:1px solid #fff;color:#fff}
+button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
+.visite3d[hidden]{display:none}
+.visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.visite3d h2{margin:0;font-size:1.2rem}
+.visite3d .ferme3d{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.visite3d .etat3d{margin:0 0 10px;color:var(--discret)}
+.visite3d iframe{display:block;width:100%;height:min(78vh,720px);border:1px solid var(--trait);border-radius:8px;background:#fff}
+.form3d{display:grid;gap:10px;margin:0 0 1rem;max-width:460px}
+.form3d label{display:grid;gap:4px;color:#fff;font-weight:600}
+.form3d input:not([type=checkbox]){padding:11px 12px;border:0;border-radius:6px;font:inherit;color:#161A1E;background:#fff}
+.form3d .accord{display:flex;gap:10px;align-items:flex-start;font-weight:400;color:var(--teinte)}
+.form3d .accord input{margin-top:4px;flex:none}
+.form3d .piege{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.form3d .erreur3d{margin:0;color:#fff;font-weight:600;min-height:1.2em}
+.form3d button.plein{justify-self:start;background:#fff;color:var(--bleu);border:0;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .carte{height:420px;border-radius:8px;border:1px solid var(--trait);margin:0 0 .6rem;z-index:0}
 .carte-zone{position:relative}
 .maplibregl-map{font-family:var(--body);border-radius:8px}
@@ -271,6 +288,7 @@ footer a{color:var(--discret)}
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=villeneuve-la-garenne&amp;vue=ville#carte">Retour à la carte de Villeneuve-la-Garenne</a></div>
   </header>
+  
   <div class="reperes">
     <div class="repere-cle"><b>41</b><span>logements disponibles</span></div>
     <div class="repere-cle"><b>4e trim. 2028</b><span>livraison prévue</span></div>
@@ -367,6 +385,7 @@ footer a{color:var(--discret)}
 <script type="application/json" id="logements-data">[{"i":"e1bd822678d4","t":"T1","s":25.4,"e":5,"x":"Extérieur"},{"i":"b4e3e7857664","t":"T2","s":44.5,"e":4,"x":"Extérieur"},{"i":"e341addbf324","t":"T2","s":44.5,"e":3,"x":"Extérieur"},{"i":"a0f683a00e0b","t":"T2","s":48.3,"e":3,"x":"Extérieur"},{"i":"387918d4b396","t":"T2","s":48.5,"e":2,"x":"Extérieur"},{"i":"5f2207a74b18","t":"T2","s":51,"e":1,"x":"Extérieur"},{"i":"6a373253f51a","t":"T3","s":61.6,"e":6,"x":"Extérieur"},{"i":"69e7fef066cb","t":"T3","s":61.9,"e":5,"x":"Extérieur"},{"i":"757d3d5a4017","t":"T3","s":61.9,"e":4,"x":"Extérieur"},{"i":"09ad44237198","t":"T3","s":62.5,"e":1,"x":"Extérieur"},{"i":"0e10a9a3a8bd","t":"T3","s":62.6,"e":2,"x":"Extérieur"},{"i":"9d29a864850d","t":"T3","s":62.6,"e":2,"x":"Extérieur"},{"i":"a0235a4f4573","t":"T3","s":62.6,"e":3,"x":"Extérieur"},{"i":"d09475c0fdb0","t":"T3","s":62.6,"e":1,"x":"Extérieur"},{"i":"4b08291ec222","t":"T3","s":62.8,"e":2,"x":"Extérieur"},{"i":"1a95e07217ba","t":"T3","s":63.5,"e":2,"x":"Extérieur"},{"i":"5857b6b96144","t":"T3","s":63.6,"e":1,"x":"Extérieur"},{"i":"5cbe6845959c","t":"T3","s":63.7,"e":3,"x":"Extérieur"},{"i":"f133a45044a3","t":"T3","s":63.7,"e":2,"x":"Extérieur"},{"i":"164f0d464c27","t":"T3","s":65.9,"e":2,"x":"Extérieur"},{"i":"628eb60eeaba","t":"T3","s":65.9,"e":1,"x":"Extérieur"},{"i":"2fc1ff1b2222","t":"T3","s":66.1,"e":1,"x":"Extérieur"},{"i":"e17e4cedb40e","t":"T3","s":66.1,"e":2,"x":"Extérieur"},{"i":"769506acb57f","t":"T3","s":66.4,"e":5,"x":"Extérieur"},{"i":"d077d9b01f37","t":"T3","s":68,"e":3,"x":"Extérieur"},{"i":"08358599de79","t":"T4","s":75.7,"e":3,"x":"Extérieur"},{"i":"77f89d88fb40","t":"T4","s":77.3,"e":4,"x":"Extérieur"},{"i":"c09fce8c57ab","t":"T4","s":77.4,"e":3,"x":"Extérieur"},{"i":"2bd33cfb0a1d","t":"T4","s":80.4,"e":5,"x":"Extérieur"},{"i":"e2a133a2b61d","t":"T4","s":80.4,"e":5,"x":"Extérieur"},{"i":"29447ff2dc80","t":"T4","s":82.9,"e":3,"x":"Extérieur"},{"i":"c06b7f15a507","t":"T4","s":83,"e":4,"x":"Extérieur"},{"i":"9f43840780d0","t":"T4","s":83.06,"e":4,"x":"Extérieur"},{"i":"865fc9e1ad33","t":"T4","s":86.5,"e":4,"x":"Extérieur"},{"i":"f2f96138cfe8","t":"T4","s":86.6,"e":5,"x":"Extérieur"},{"i":"177d1b5af368","t":"T4","s":87.3,"e":6,"x":"Extérieur"},{"i":"a5141eeb06e9","t":"T5+","s":97.8,"e":4,"x":"Extérieur"},{"i":"405622b3f27a","t":"T5+","s":97.9,"e":6,"x":"Extérieur"},{"i":"4a78a2a57a08","t":"T5+","s":103.7,"e":5,"x":"Extérieur"},{"i":"506beba5421b","t":"T5+","s":103.8,"e":3,"x":"Extérieur"},{"i":"652b34f6211a","t":"T5+","s":104.6,"e":6,"x":"Extérieur"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script src="/neuf/programme.js" defer></script>
+
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};
 var poser=function(j){j=j||{};var a=j.prix||{},b=j.prix_tva_reduite||{};window.GLR_PRIX=a;window.GLR_PRIX_R=b;var deux=false;

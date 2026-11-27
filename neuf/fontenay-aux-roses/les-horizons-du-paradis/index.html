@@ -79,6 +79,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .appel a{display:inline-block;padding:12px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .appel a.plein{background:#fff;color:var(--bleu)}
 .appel a.creux{border:1px solid #fff;color:#fff}
+button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
+.visite3d[hidden]{display:none}
+.visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.visite3d h2{margin:0;font-size:1.2rem}
+.visite3d .ferme3d{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.visite3d .etat3d{margin:0 0 10px;color:var(--discret)}
+.visite3d iframe{display:block;width:100%;height:min(78vh,720px);border:1px solid var(--trait);border-radius:8px;background:#fff}
+.form3d{display:grid;gap:10px;margin:0 0 1rem;max-width:460px}
+.form3d label{display:grid;gap:4px;color:#fff;font-weight:600}
+.form3d input:not([type=checkbox]){padding:11px 12px;border:0;border-radius:6px;font:inherit;color:#161A1E;background:#fff}
+.form3d .accord{display:flex;gap:10px;align-items:flex-start;font-weight:400;color:var(--teinte)}
+.form3d .accord input{margin-top:4px;flex:none}
+.form3d .piege{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.form3d .erreur3d{margin:0;color:#fff;font-weight:600;min-height:1.2em}
+.form3d button.plein{justify-self:start;background:#fff;color:var(--bleu);border:0;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .carte{height:420px;border-radius:8px;border:1px solid var(--trait);margin:0 0 .6rem;z-index:0}
 .carte-zone{position:relative}
 .maplibregl-map{font-family:var(--body);border-radius:8px}
@@ -271,6 +288,7 @@ footer a{color:var(--discret)}
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=fontenay-aux-roses&amp;vue=ville#carte">Retour à la carte de Fontenay-aux-Roses</a></div>
   </header>
+  
   <div class="reperes">
     <div class="repere-cle"><b>20</b><span>logements disponibles</span></div>
     <div class="repere-cle"><b>4e trim. 2028</b><span>livraison prévue</span></div>
@@ -340,6 +358,7 @@ footer a{color:var(--discret)}
 <script type="application/json" id="logements-data">[{"i":"3ef3800118d6","t":"T2","s":43.57,"e":3,"x":"Extérieur"},{"i":"52ab5aaded56","t":"T2","s":43.57,"e":4,"x":"Extérieur"},{"i":"48b5c6fff205","t":"T2","s":43.63,"e":1,"x":""},{"i":"9698a1016610","t":"T2","s":46.39,"e":1,"x":""},{"i":"234bf685d2dd","t":"T2","s":47.6,"e":0,"x":"Extérieur"},{"i":"575c882eadd5","t":"T3","s":61.02,"e":5,"x":"Extérieur"},{"i":"1e4ec420921b","t":"T3","s":61.45,"e":8,"x":"Extérieur"},{"i":"cd6ba102df9f","t":"T3","s":62.52,"e":5,"x":"Extérieur"},{"i":"fe514535fcf0","t":"T3","s":62.56,"e":6,"x":"Extérieur"},{"i":"126cb2db4357","t":"T3","s":66.47,"e":1,"x":"Extérieur"},{"i":"16b3bcffe862","t":"T3","s":66.47,"e":3,"x":"Extérieur"},{"i":"8408ffc3d92d","t":"T3","s":66.47,"e":2,"x":"Extérieur"},{"i":"fbc8aef7feb4","t":"T3","s":66.47,"e":4,"x":"Extérieur"},{"i":"fbf1a7fbdac6","t":"T3","s":66.47,"e":5,"x":"Extérieur"},{"i":"6789a7a24b10","t":"T3","s":70.54,"e":2,"x":"Extérieur"},{"i":"a574d19266ae","t":"T4","s":81.28,"e":6,"x":"Extérieur"},{"i":"2e8aa7dd83e2","t":"T4","s":86.07,"e":4,"x":"Extérieur"},{"i":"f32c4d540628","t":"T4","s":86.16,"e":3,"x":"Extérieur"},{"i":"9eaa40fbe9a8","t":"T4","s":86.64,"e":7,"x":"Extérieur"},{"i":"bd36c7e52981","t":"T4","s":86.67,"e":3,"x":"Extérieur"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script src="/neuf/programme.js" defer></script>
+
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};
 var poser=function(j){j=j||{};var a=j.prix||{},b=j.prix_tva_reduite||{};window.GLR_PRIX=a;window.GLR_PRIX_R=b;var deux=false;

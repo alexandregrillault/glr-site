@@ -79,6 +79,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .appel a{display:inline-block;padding:12px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .appel a.plein{background:#fff;color:var(--bleu)}
 .appel a.creux{border:1px solid #fff;color:#fff}
+button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
+.visite3d[hidden]{display:none}
+.visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.visite3d h2{margin:0;font-size:1.2rem}
+.visite3d .ferme3d{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.visite3d .etat3d{margin:0 0 10px;color:var(--discret)}
+.visite3d iframe{display:block;width:100%;height:min(78vh,720px);border:1px solid var(--trait);border-radius:8px;background:#fff}
+.form3d{display:grid;gap:10px;margin:0 0 1rem;max-width:460px}
+.form3d label{display:grid;gap:4px;color:#fff;font-weight:600}
+.form3d input:not([type=checkbox]){padding:11px 12px;border:0;border-radius:6px;font:inherit;color:#161A1E;background:#fff}
+.form3d .accord{display:flex;gap:10px;align-items:flex-start;font-weight:400;color:var(--teinte)}
+.form3d .accord input{margin-top:4px;flex:none}
+.form3d .piege{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.form3d .erreur3d{margin:0;color:#fff;font-weight:600;min-height:1.2em}
+.form3d button.plein{justify-self:start;background:#fff;color:var(--bleu);border:0;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .carte{height:420px;border-radius:8px;border:1px solid var(--trait);margin:0 0 .6rem;z-index:0}
 .carte-zone{position:relative}
 .maplibregl-map{font-family:var(--body);border-radius:8px}
@@ -271,6 +288,7 @@ footer a{color:var(--discret)}
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=noisy-le-sec&amp;vue=ville#carte">Retour à la carte de Noisy-le-Sec</a></div>
   </header>
+  
   <div class="reperes">
     <div class="repere-cle"><b>63</b><span>logements disponibles</span></div>
     <div class="repere-cle"><b>1er trim. 2030</b><span>livraison prévue</span></div>
@@ -386,6 +404,7 @@ footer a{color:var(--discret)}
 <script type="application/json" id="logements-data">[{"i":"6e907dfed659","t":"T1","s":28.9,"e":0,"x":""},{"i":"48ee0aaf8028","t":"T1","s":29.52,"e":1,"x":""},{"i":"0db8ac9b4ce1","t":"T1","s":29.53,"e":6,"x":""},{"i":"27e348744a91","t":"T1","s":29.53,"e":5,"x":""},{"i":"631bf8c0df03","t":"T1","s":29.53,"e":4,"x":""},{"i":"a12dcddd6716","t":"T2","s":43.87,"e":5,"x":""},{"i":"1d36b1e1b5cf","t":"T2","s":44.92,"e":4,"x":""},{"i":"2bf452023edd","t":"T2","s":44.92,"e":5,"x":""},{"i":"9f7d693283f9","t":"T2","s":44.92,"e":6,"x":""},{"i":"085358b263a6","t":"T2","s":46.01,"e":3,"x":""},{"i":"3a5c0bad190a","t":"T2","s":46.01,"e":4,"x":""},{"i":"b279b0acded4","t":"T2","s":46.01,"e":6,"x":""},{"i":"c127a5263445","t":"T2","s":46.01,"e":1,"x":""},{"i":"c178816571cf","t":"T2","s":46.01,"e":2,"x":""},{"i":"d785e1cac037","t":"T2","s":46.01,"e":5,"x":""},{"i":"41ce9e481f2e","t":"T2","s":46.41,"e":6,"x":""},{"i":"73f368c6c799","t":"T2","s":46.41,"e":3,"x":""},{"i":"8b9e68174b5f","t":"T2","s":46.41,"e":5,"x":""},{"i":"9fe171951c81","t":"T2","s":46.41,"e":2,"x":""},{"i":"bc0b5ddadbdc","t":"T2","s":46.41,"e":4,"x":""},{"i":"3c7239f46814","t":"T2","s":46.42,"e":1,"x":""},{"i":"457788d65d98","t":"T2","s":48.82,"e":0,"x":""},{"i":"143c3052f7f5","t":"T3","s":63.39,"e":2,"x":""},{"i":"3182dc1f3953","t":"T3","s":63.39,"e":1,"x":""},{"i":"8e10e9bcfb2f","t":"T3","s":63.39,"e":3,"x":""},{"i":"0fb18776293b","t":"T3","s":64.38,"e":1,"x":""},{"i":"996a092afc6b","t":"T3","s":64.38,"e":3,"x":""},{"i":"a90a0e0d7f7b","t":"T3","s":64.38,"e":4,"x":""},{"i":"d5344e47b6b5","t":"T3","s":64.38,"e":5,"x":""},{"i":"e3797144adc4","t":"T3","s":64.38,"e":2,"x":""},{"i":"e81c2cd3b2a6","t":"T3","s":66.33,"e":0,"x":""},{"i":"37d8f9eee516","t":"T3","s":66.55,"e":1,"x":""},{"i":"3a99cbe4dbd1","t":"T3","s":66.55,"e":5,"x":""},{"i":"588f87500644","t":"T3","s":66.55,"e":3,"x":""},{"i":"8ea0cbe4a2c2","t":"T3","s":66.55,"e":4,"x":""},{"i":"a84086fc9e9f","t":"T3","s":66.56,"e":2,"x":""},{"i":"2119c1e0474e","t":"T3","s":67.43,"e":6,"x":""},{"i":"31918a14787d","t":"T3","s":67.43,"e":1,"x":""},{"i":"349c89067b18","t":"T3","s":67.43,"e":4,"x":""},{"i":"5429530a60c0","t":"T3","s":67.43,"e":5,"x":""},{"i":"8a1965c20587","t":"T3","s":67.43,"e":3,"x":""},{"i":"c42affa7c7f2","t":"T3","s":67.43,"e":2,"x":""},{"i":"25efd5eda0f7","t":"T3","s":72.82,"e":5,"x":""},{"i":"7eb59fdf5504","t":"T3","s":72.82,"e":6,"x":""},{"i":"a0ca48c93cf8","t":"T4","s":77.28,"e":5,"x":""},{"i":"db899e0e31f8","t":"T4","s":78.71,"e":1,"x":""},{"i":"23ced76f0546","t":"T4","s":79.09,"e":3,"x":""},{"i":"2b1c488aba84","t":"T4","s":79.09,"e":5,"x":""},{"i":"72626cb05767","t":"T4","s":79.09,"e":6,"x":""},{"i":"ad8c8e5df1c2","t":"T4","s":79.09,"e":4,"x":""},{"i":"e81080441c3d","t":"T4","s":79.09,"e":2,"x":""},{"i":"58080c0b110a","t":"T4","s":81.53,"e":6,"x":""},{"i":"d1f3d6f09153","t":"T4","s":81.82,"e":6,"x":""},{"i":"1b0bb3a18c8c","t":"T4","s":82.09,"e":6,"x":""},{"i":"b418d298b7b9","t":"T4","s":83.2,"e":7,"x":""},{"i":"05ab9daf7e6c","t":"T4","s":83.42,"e":7,"x":""},{"i":"07476cdd546f","t":"T4","s":83.82,"e":1,"x":""},{"i":"216b9a573e90","t":"T4","s":84.22,"e":4,"x":""},{"i":"88937cf226aa","t":"T4","s":84.22,"e":3,"x":""},{"i":"dc3425db28f1","t":"T4","s":84.22,"e":2,"x":""},{"i":"6b1ec3e8ae27","t":"T4","s":86.21,"e":7,"x":""},{"i":"a974f07e76a4","t":"T4","s":91.23,"e":7,"x":""},{"i":"cc511eb589fd","t":"T4","s":96.28,"e":7,"x":""}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script src="/neuf/programme.js" defer></script>
+
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};
 var poser=function(j){j=j||{};var a=j.prix||{},b=j.prix_tva_reduite||{};window.GLR_PRIX=a;window.GLR_PRIX_R=b;var deux=false;

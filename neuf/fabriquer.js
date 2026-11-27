@@ -35,7 +35,7 @@ function verifier(d, fichier) {
   const interdits = ['prix', 'prix_lot', 'lots', 'plan', 'plans', 'plan_url', 'commission', 'commission_pct', 'extranet', 'lat', 'lng'];
   const vus = JSON.stringify(d).match(new RegExp('"(' + interdits.join('|') + ')"', 'g'));
   if (vus) throw new Error(fichier + ' : champs interdits sur une page publique ' + [...new Set(vus)].join(', '));
-  const permis = ['id', 'typo', 'pieces', 'surface', 'etage', 'exterieur', 'statut'];
+  const permis = ['id', 'typo', 'pieces', 'surface', 'etage', 'exterieur', 'statut', 'v3d'];
   for (const p of d.programmes) {
     if (!/^[a-z0-9-]+$/.test(p.slug || '')) throw new Error(fichier + ' : slug de programme invalide ' + p.slug);
     // Clés publiques seulement (substr(md5('glr-neuf:' || id), 1, 12)) : jamais l'identifiant interne de la pige
@@ -44,6 +44,7 @@ function verifier(d, fichier) {
     if (!d.test && (p.logements || []).some(l => l.id != null && !cle(l.id))) throw new Error(fichier + ' : ' + p.slug + ' : id de logement doit être la clé publique de 12 caractères');
     for (const l of p.logements || []) {
       if (l.statut != null && !['libre', 'option'].includes(l.statut)) throw new Error(fichier + ' : ' + p.slug + ' : statut de logement inconnu ' + l.statut);
+      if (l.v3d != null && l.v3d !== true) throw new Error(fichier + ' : ' + p.slug + ' : v3d doit valoir true ou être absent');
       const en_trop = Object.keys(l).filter(k => !permis.includes(k));
       if (en_trop.length) throw new Error(fichier + ' : ' + p.slug + ' : champs de logement non permis ' + en_trop.join(', '));
     }
@@ -114,6 +115,23 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .appel a{display:inline-block;padding:12px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .appel a.plein{background:#fff;color:var(--bleu)}
 .appel a.creux{border:1px solid #fff;color:#fff}
+button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
+.visite3d[hidden]{display:none}
+.visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.visite3d h2{margin:0;font-size:1.2rem}
+.visite3d .ferme3d{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.visite3d .etat3d{margin:0 0 10px;color:var(--discret)}
+.visite3d iframe{display:block;width:100%;height:min(78vh,720px);border:1px solid var(--trait);border-radius:8px;background:#fff}
+.form3d{display:grid;gap:10px;margin:0 0 1rem;max-width:460px}
+.form3d label{display:grid;gap:4px;color:#fff;font-weight:600}
+.form3d input:not([type=checkbox]){padding:11px 12px;border:0;border-radius:6px;font:inherit;color:#161A1E;background:#fff}
+.form3d .accord{display:flex;gap:10px;align-items:flex-start;font-weight:400;color:var(--teinte)}
+.form3d .accord input{margin-top:4px;flex:none}
+.form3d .piege{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.form3d .erreur3d{margin:0;color:#fff;font-weight:600;min-height:1.2em}
+.form3d button.plein{justify-self:start;background:#fff;color:var(--bleu);border:0;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .carte{height:420px;border-radius:8px;border:1px solid var(--trait);margin:0 0 .6rem;z-index:0}
 .carte-zone{position:relative}
 .maplibregl-map{font-family:var(--body);border-radius:8px}
@@ -471,7 +489,7 @@ function pageProgramme(d, p) {
   const etage = e => e == null ? 'non précisé' : e === 0 ? 'RDC' : e + (e === 1 ? 'er' : 'e');
   const tableau = t => `<section class="typo"><h3>${esc(t)} · ${pluriel(groupes[t].length, 'logement', 'logements')}</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  ${groupes[t].sort((a, b) => (a.surface || 0) - (b.surface || 0)).map(l => `<tr id="l-${esc(l.id == null ? '' : l.id)}"><td>${l.surface != null ? nb(l.surface) + '\u00a0m²' : '—'}</td><td>${etage(l.etage)}</td><td>${esc(l.exterieur || '—')}</td><td class="prix-lot" data-lot="${esc(l.id == null ? '' : l.id)}" data-s="${l.surface || ''}">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>`).join('\n  ')}
+  ${groupes[t].sort((a, b) => (a.surface || 0) - (b.surface || 0)).map(l => `<tr id="l-${esc(l.id == null ? '' : l.id)}"><td>${l.surface != null ? nb(l.surface) + '\u00a0m²' : '—'}</td><td>${etage(l.etage)}</td><td>${esc(l.exterieur || '—')}</td><td class="prix-lot" data-lot="${esc(l.id == null ? '' : l.id)}" data-s="${l.surface || ''}">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a>${p.visite_3d && l.v3d && l.id ? `<button type="button" class="lien-visite" data-3d="${esc(l.id)}">Visite 3D</button>` : ''}</td></tr>`).join('\n  ')}
   </tbody></table></section>`;
   return `${tete({ titre, description, url, test: d.test })}
 <main class="page-prog">
@@ -484,8 +502,13 @@ function pageProgramme(d, p) {
       <p class="chapo">${p.picking ? 'Nous pouvons vous obtenir la grille de ce programme sur demande.' : `${p.promoteur ? 'Un programme ' + esc(p.promoteur) : 'Un programme neuf'}${p.quartier ? ', quartier ' + esc(p.quartier) : ''}${p.livraison ? (dejaLivre(p) ? ', déjà livré' : ', livré au ' + esc(p.livraison)) : ''}.`}</p>
       <div class="puces">${(p.typologies || []).map(t => `<span class="puce">${esc(t)}</span>`).join('')}${(p.dispositifs || []).filter(x => !/LLI|LMNP/i.test(x)).map(t => `<span class="puce laiton">${esc(t)}</span>`).join('')}${p.picking ? '<span class="puce laiton" title="Programme proposé sans mandat de commercialisation">Picking</span>' : ''}</div>
     </div>
-    <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=${esc(d.slug)}&amp;vue=ville#carte">Retour à la carte de ${esc(d.ville)}</a></div>
+    <div class="hero-actions">${p.visite_3d ? '<button type="button" class="bouton-plein" data-3d="immeuble">Voir en 3D</button>' : ''}<a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=${esc(d.slug)}&amp;vue=ville#carte">Retour à la carte de ${esc(d.ville)}</a></div>
   </header>
+  ${p.visite_3d ? `<section class="visite3d" id="visite3d" data-p="${esc(p.pige_id || '')}" data-lots="${esc((p.logements || []).filter(l => l.v3d && l.id).map(l => l.id).join(','))}" hidden>
+    <div class="entete3d"><h2>Visite 3D</h2><button type="button" class="ferme3d">Fermer la visite</button></div>
+    <p class="etat3d" hidden></p>
+    <iframe title="Visite 3D de ${esc(p.nom)}" allow="fullscreen" loading="lazy"></iframe>
+  </section>` : ''}
   <div class="reperes">
     ${p.nb_lots_libres ? `<div class="repere-cle"><b>${nb(p.nb_lots_libres)}</b><span>${p.nb_lots_libres > 1 ? 'logements disponibles' : 'logement disponible'}</span></div>` : ''}
     ${p.livraison ? `<div class="repere-cle"><b>${esc(p.livraison.replace(/ trimestre /, ' trim. '))}</b><span>${dejaLivre(p) ? 'programme déjà livré' : 'livraison prévue'}</span></div>` : ''}
@@ -515,11 +538,25 @@ function pageProgramme(d, p) {
    </div>
   </section>
   ${p.image ? `<figure class="perspective"><img src="${esc(p.image)}" alt="Perspective de ${esc(p.nom)}" loading="lazy"><figcaption>Perspective du promoteur, non contractuelle.</figcaption></figure>` : ''}` : `<h2>Les logements</h2><p>La grille de ce programme est envoyée sur demande.</p>`}
-  <section class="appel" id="compte">
+${p.visite_3d ? `<section class="appel" id="compte">
+    <h2>Voir les plans et la visite 3D</h2>
+    <p>Créez votre accès en une minute : vous voyez les plans de ces logements et la visite en 3D. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
+    <form id="f3d" class="form3d" novalidate data-prog="${esc(p.nom)}" data-ville="${esc(d.ville)}">
+      <label>Prénom<input name="prenom" autocomplete="given-name" maxlength="80" required></label>
+      <label>Téléphone<input name="telephone" type="tel" autocomplete="tel" maxlength="30" required></label>
+      <label>E-mail<input name="email" type="email" autocomplete="email" maxlength="160" required></label>
+      <input name="societe" class="piege" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="accord"><input name="accord" type="checkbox"><span>J\u2019accepte d\u2019être recontacté par GLR Immobilier au sujet de ce programme.</span></label>
+      <p class="erreur3d" id="f3d-err" role="alert"></p>
+      <button type="submit" class="plein">Créer mon accès</button>
+    </form>
+    <p id="f3d-ok" hidden>Votre accès est créé : touchez « Voir en 3D » en haut de la page, ou « Visite 3D » sur un logement.</p>
+    <div class="boutons"><a class="creux" href="tel:${CONTACT.tel}">Appeler le ${CONTACT.telAffiche}</a><a class="creux" href="mailto:${CONTACT.mail}?subject=${encodeURIComponent('Plans de ' + p.nom + ' à ' + d.ville)}">Écrire un e-mail</a></div>
+  </section>` : `  <section class="appel" id="compte">
     <h2>Voir les plans de ces logements</h2>
     <p>Les plans de chaque logement sont réservés à votre espace client. Il se crée en une minute ; en attendant, appelez-nous et nous vous les envoyons.</p>
     <div class="boutons"><a class="plein" href="tel:${CONTACT.tel}">Appeler le ${CONTACT.telAffiche}</a><a class="creux" href="mailto:${CONTACT.mail}?subject=${encodeURIComponent('Plans de ' + p.nom + ' à ' + d.ville)}">Écrire un e-mail</a></div>
-  </section>
+  </section>`}
   <p class="note" id="mention-tva" hidden>* TVA 5,5 % : prix réservé aux acheteurs éligibles, sous conditions de ressources.</p>
   <p class="note">Disponibilités et prix relevés le ${dateFr(d.maj)} ; ils changent chaque semaine et sont confirmés par votre conseiller.</p>
 </main>
@@ -527,6 +564,7 @@ ${pied}
 ${typos.length ? `<script type="application/json" id="logements-data">${JSON.stringify((p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? null : l.etage, x: l.exterieur || '' }))).replace(/</g, '\\u003c')}</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script src="/neuf/programme.js" defer></script>
+${p.visite_3d ? '<script src="/neuf/visite3d.js" defer></script>' : ''}
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+'\u00a0€'};
 var poser=function(j){j=j||{};var a=j.prix||{},b=j.prix_tva_reduite||{};window.GLR_PRIX=a;window.GLR_PRIX_R=b;var deux=false;
