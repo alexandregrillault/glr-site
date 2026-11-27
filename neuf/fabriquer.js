@@ -135,7 +135,16 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
-.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.volet td{padding:8px 0;max-width:0;width:100%;overflow:hidden;background:var(--teinte)}
+table.lots tr.ouverte>td{background:var(--teinte)}
+.volet3d{margin:0 8px;min-height:0;align-items:stretch;justify-content:flex-start;background:var(--carte)}
+.volet3d .volet-barre{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;flex-wrap:wrap}
+.volet3d .onglets3d{padding:0;width:auto}
+.volet3d .ferme3d{margin:0 0 0 auto}
+.volet3d .etat3d{margin:14px 0}
+.volet3d .planbox img{max-width:100%}
+@media(max-width:700px){.volet3d{margin:0 4px}}
+@media(max-width:480px){.lien-visite{padding:4px 6px;font-size:.8rem}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
@@ -517,16 +526,15 @@ function pageProgramme(d, p) {
   const plan2d = (p.logements || []).some(l => l.p2d && l.id); // au moins un logement a un plan du promoteur (jamais d'adresse : seulement ce drapeau)
   const acces = !!p.visite_3d || plan2d; // formulaire d'accès à la place de « appelez-nous »
   const idsPlan = (p.logements || []).filter(l => l.p2d && l.id).map(l => l.id).join(',');
-  const zoneDocs = mode => `<div class="immeuble3d${mode === 'plan' ? ' plan-seul' : ''}" id="visite3d" data-mode="${mode}" data-p="${esc(p.pige_id || '')}" data-lots="${esc((p.logements || []).filter(l => l.v3d && l.id).map(l => l.id).join(','))}" data-plans="${esc(idsPlan)}"${mode === 'plan' ? ' hidden' : ''}>
-      <div class="onglets3d" hidden><button type="button" data-onglet="visite" aria-pressed="true">Visite 3D</button><button type="button" data-onglet="plan" aria-pressed="false">Plan du promoteur</button></div>
+  // Zone de l'immeuble 3D en haut de fiche (les plans et visites de logement s'ouvrent dans un volet sous leur ligne, construit par visite3d.js)
+  const zoneDocs = () => `<div class="immeuble3d" id="visite3d">
       <p class="etat3d" hidden></p>
-      <iframe title="${mode === 'plan' ? 'Plan' : 'Visite 3D'} de ${esc(p.nom)}" allow="fullscreen"></iframe>
-      <div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan du logement"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan</a></div>
-      ${mode === 'plan' ? '<button type="button" class="ferme3d">Fermer le plan</button>' : '<button type="button" class="charger3d" data-3d="immeuble">Voir l’immeuble en 3D</button>'}
+      <iframe title="Visite 3D de ${esc(p.nom)}" allow="fullscreen"></iframe>
+      <button type="button" class="charger3d" data-3d="immeuble">Voir l’immeuble en 3D</button>
     </div>`;
   const tableau = t => `<section class="typo"><h3>${esc(t)} · ${pluriel(groupes[t].length, 'logement', 'logements')}</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  ${groupes[t].sort((a, b) => (a.surface || 0) - (b.surface || 0)).map(l => `<tr id="l-${esc(l.id == null ? '' : l.id)}"><td>${l.surface != null ? nb(l.surface) + '\u00a0m²' : '—'}</td><td>${etage(l.etage)}</td><td>${esc(l.exterieur || '—')}</td><td class="prix-lot" data-lot="${esc(l.id == null ? '' : l.id)}" data-s="${l.surface || ''}">…</td><td class="plan">${p.visite_3d && l.v3d && l.id ? `<button type="button" class="lien-visite" data-3d="${esc(l.id)}">Visite 3D</button>` : l.p2d && l.id ? `<button type="button" class="lien-visite" data-plan="${esc(l.id)}">Plan</button>` : acces ? '' : '<a href="#compte"><span class="long">Voir le </span>plan</a>'}</td></tr>`).join('\n  ')}
+  ${groupes[t].sort((a, b) => (a.surface || 0) - (b.surface || 0)).map(l => `<tr id="l-${esc(l.id == null ? '' : l.id)}"><td>${l.surface != null ? nb(l.surface) + '\u00a0m²' : '—'}</td><td>${etage(l.etage)}</td><td>${esc(l.exterieur || '—')}</td><td class="prix-lot" data-lot="${esc(l.id == null ? '' : l.id)}" data-s="${l.surface || ''}">…</td><td class="plan">${p.visite_3d && l.v3d && l.id && l.p2d ? `<button type="button" class="lien-visite" data-plan="${esc(l.id)}">Plan + 3D</button>` : p.visite_3d && l.v3d && l.id ? `<button type="button" class="lien-visite" data-3d="${esc(l.id)}">Visite 3D</button>` : l.p2d && l.id ? `<button type="button" class="lien-visite" data-plan="${esc(l.id)}">Plan</button>` : acces ? '' : '<a href="#compte"><span class="long">Voir le </span>plan</a>'}</td></tr>`).join('\n  ')}
   </tbody></table></section>`;
   return `${tete({ titre, description, url, test: d.test })}
 <main class="page-prog">
@@ -547,9 +555,9 @@ function pageProgramme(d, p) {
     ${surfaces ? `<div class="repere-cle"><b>${surfaces}</b><span>surfaces disponibles</span></div>` : ''}
     ${p.gare ? `<div class="repere-cle"><b>${p.gare_minutes_a_pied ? p.gare_minutes_a_pied + ' min' : 'À côté'}</b><span>à pied ${esc(deGare(p.gare))}</span></div>` : ''}
   </div>
-  ${typos.length ? `${plan2d && !p.visite_3d ? '<div class="vue-plan">' + zoneDocs('plan') + '</div>' : ''}<section class="immeuble" id="immeuble">
+  ${typos.length ? `<section class="immeuble" id="immeuble">
    ${p.visite_3d ? `<div class="vue vue3d">
-    ${zoneDocs('3d')}
+    ${zoneDocs()}
     <p class="note">Visite 3D réalisée à partir des plans du promoteur : touchez un étage, puis un logement pour le visiter. Les plans des logements demandent un compte, créé en une minute.</p>
    </div>` : ''}
    ${p.visite_3d ? `   <div class="vue" id="secours3d" hidden>
@@ -588,7 +596,7 @@ function pageProgramme(d, p) {
    </div>
   </section>
   ${p.image ? `<figure class="perspective"><img src="${esc(p.image)}" alt="Perspective de ${esc(p.nom)}" loading="lazy"><figcaption>Perspective du promoteur, non contractuelle.</figcaption></figure>` : ''}` : `<h2>Les logements</h2><p>La grille de ce programme est envoyée sur demande.</p>`}
-${acces ? `<section class="appel" id="compte">
+${acces ? `<section class="appel" id="compte" data-p="${esc(p.pige_id || '')}" data-lots="${esc((p.logements || []).filter(l => l.v3d && l.id).map(l => l.id).join(','))}" data-plans="${esc(idsPlan)}">
     <h2>${p.visite_3d ? 'Voir les plans et la visite 3D' : 'Voir les plans de ces logements'}</h2>
     <p>Créez votre accès en une minute : ${p.visite_3d ? 'vous voyez les plans de ces logements et la visite en 3D' : 'vous voyez les plans de ces logements'}. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="${esc(p.nom)}" data-ville="${esc(d.ville)}">
