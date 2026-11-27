@@ -138,8 +138,11 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
-.lien-visite{display:inline-block;margin-left:0;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
-@media(max-width:560px){.lien-visite{display:block;margin:6px 0 0;white-space:nowrap}table.lots td.plan{white-space:normal}}
+.lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+table.lots td.plan{white-space:normal;text-align:right}
+table.lots .prix-lot .tva small{display:block}
+section.typo{overflow-x:auto}
+@media(max-width:700px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
