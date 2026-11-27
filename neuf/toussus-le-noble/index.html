@@ -86,8 +86,18 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
 .immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
+[hidden]{display:none!important}
+.onglets3d{display:flex;gap:8px;padding:10px;width:100%;box-sizing:border-box}
+.onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
+.planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.planbox img{display:block;width:100%;height:auto;margin:0 auto}
+.planbox img:not([src]){display:none}
+.planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
+.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
-.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:0;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
 @media(max-width:560px){.lien-visite{display:block;margin:6px 0 0;white-space:nowrap}table.lots td.plan{white-space:normal}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
@@ -337,7 +347,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"toussus-le-noble","villes":[{"v":"Toussus-le-Noble","s":"toussus-le-noble","cp":"78117","i":"78620","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.1388,48.7432],[2.1392,48.7429],[2.1396,48.7425],[2.14,48.7421],[2.1386,48.7412],[2.1384,48.741],[2.1383,48.7409],[2.1381,48.7408],[2.1377,48.7407],[2.1358,48.7385],[2.1349,48.7375],[2.126,48.7376],[2.1257,48.7394],[2.1255,48.7398],[2.1255,48.74],[2.1251,48.7402],[2.1248,48.7404],[2.1225,48.741],[2.1217,48.7413],[2.1212,48.7415],[2.1206,48.7418],[2.1196,48.7423],[2.1179,48.7413],[2.1169,48.7412],[2.1163,48.7409],[2.1164,48.7396],[2.114,48.7398],[2.1136,48.7395],[2.1127,48.7397],[2.111,48.7399],[2.1108,48.7396],[2.1091,48.7393],[2.1046,48.7381],[2.1057,48.7417],[2.1055,48.7417],[2.1059,48.7425],[2.1035,48.7429],[2.1023,48.742],[2.1019,48.7417],[2.101,48.7428],[2.1013,48.7438],[2.1023,48.7442],[2.1017,48.7449],[2.1026,48.7454],[2.1,48.7453],[2.1,48.7453],[2.0983,48.7455],[2.0985,48.7458],[2.0989,48.7463],[2.0991,48.7465],[2.0994,48.7467],[2.0995,48.7469],[2.1003,48.7476],[2.1007,48.748],[2.1017,48.749],[2.1025,48.7499],[2.1035,48.7514],[2.104,48.7522],[2.1041,48.7528],[2.1047,48.7543],[2.1047,48.7548],[2.1051,48.7551],[2.1056,48.7556],[2.1059,48.756],[2.1063,48.7574],[2.1073,48.7572],[2.1104,48.7579],[2.1124,48.7578],[2.1142,48.7579],[2.1157,48.7572],[2.1166,48.7567],[2.1168,48.7567],[2.1183,48.7563],[2.1184,48.7563],[2.1198,48.756],[2.1231,48.7552],[2.1232,48.7547],[2.1233,48.7542],[2.1233,48.7535],[2.1234,48.7532],[2.1235,48.753],[2.1239,48.7528],[2.1243,48.7525],[2.1245,48.7523],[2.1245,48.7521],[2.1244,48.752],[2.1242,48.7518],[2.1244,48.7517],[2.1247,48.7516],[2.1253,48.7516],[2.1257,48.7516],[2.1261,48.7518],[2.1269,48.7521],[2.1271,48.7522],[2.1275,48.7524],[2.1286,48.7529],[2.1287,48.7533],[2.1288,48.7531],[2.129,48.753],[2.1294,48.7525],[2.1296,48.7523],[2.13,48.752],[2.1309,48.7512],[2.131,48.7512],[2.1291,48.7505],[2.1322,48.7484],[2.1304,48.7456],[2.1311,48.7453],[2.1335,48.7446],[2.1362,48.7439],[2.1375,48.7436],[2.1384,48.7434],[2.1388,48.7432]]]}},"r":"1 programme · 16 logements disponibles","p":[{"n":"La Ferme - Maisons","s":"la-ferme-maisons","k":false,"a":48.745,"o":2.112,"z":false,"u":"toussus-le-noble/la-ferme-maisons/","l":"3e trimestre 2028","d":"16 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8411913833"></script>
+<script type="module" src="/neuf/carte.js?v=05397589a0"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

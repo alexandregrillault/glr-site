@@ -86,8 +86,18 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
 .immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
+[hidden]{display:none!important}
+.onglets3d{display:flex;gap:8px;padding:10px;width:100%;box-sizing:border-box}
+.onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
+.planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.planbox img{display:block;width:100%;height:auto;margin:0 auto}
+.planbox img:not([src]){display:none}
+.planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
+.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
-.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:0;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
 @media(max-width:560px){.lien-visite{display:block;margin:6px 0 0;white-space:nowrap}table.lots td.plan{white-space:normal}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
@@ -371,7 +381,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"villeneuve-la-garenne","villes":[{"v":"Villeneuve-la-Garenne","s":"villeneuve-la-garenne","cp":"92390","i":"92078","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.3285,48.9228],[2.3278,48.9232],[2.3275,48.9234],[2.3265,48.9241],[2.3255,48.9248],[2.3254,48.9249],[2.3226,48.926],[2.3218,48.9263],[2.3191,48.9273],[2.3186,48.9275],[2.3184,48.9275],[2.3207,48.931],[2.3209,48.9312],[2.3211,48.9313],[2.3222,48.9328],[2.321,48.9344],[2.3203,48.9352],[2.3196,48.9358],[2.3194,48.936],[2.319,48.9364],[2.3187,48.9366],[2.3181,48.937],[2.3174,48.9373],[2.3166,48.9375],[2.3154,48.9379],[2.3146,48.9381],[2.3143,48.9383],[2.3139,48.9385],[2.3126,48.9392],[2.3109,48.9397],[2.3092,48.9403],[2.31,48.9413],[2.3093,48.9415],[2.31,48.9436],[2.3105,48.9448],[2.3117,48.9479],[2.3137,48.9476],[2.3156,48.9473],[2.3171,48.9471],[2.319,48.9468],[2.3204,48.9465],[2.3223,48.9463],[2.3242,48.946],[2.3259,48.9456],[2.328,48.9451],[2.3295,48.9446],[2.3309,48.9441],[2.3321,48.9436],[2.3332,48.9429],[2.334,48.9423],[2.3349,48.9416],[2.3354,48.9409],[2.3359,48.94],[2.3364,48.9384],[2.3366,48.9369],[2.3367,48.9364],[2.337,48.9354],[2.3369,48.9347],[2.3369,48.9338],[2.3368,48.9334],[2.3364,48.9323],[2.336,48.9316],[2.3353,48.9301],[2.3345,48.9287],[2.3336,48.9275],[2.3328,48.9267],[2.3319,48.926],[2.3309,48.925],[2.3299,48.924],[2.3288,48.923],[2.3285,48.9228]]]}},"r":"3 programmes · 149 logements disponibles","p":[{"n":"Central Quai 2","s":"central-quai-2","k":false,"a":48.932,"o":2.332,"z":false,"u":"villeneuve-la-garenne/central-quai-2/","l":"4e trimestre 2028","d":"41 logements disponibles"},{"n":"Central Quai","s":"central-quai","k":false,"a":48.932,"o":2.332,"z":false,"u":"villeneuve-la-garenne/central-quai/","l":"4e trimestre 2028","d":"40 logements disponibles"},{"n":"Evidence","s":"evidence","k":false,"a":48.932,"o":2.332,"z":false,"u":"villeneuve-la-garenne/evidence/","l":"2e trimestre 2029","d":"68 logements disponibles"},{"n":"Dernières opportunités !","s":"dernieres-opportunites","k":true,"a":48.935,"o":2.323,"z":true,"u":"villeneuve-la-garenne/dernieres-opportunites/","l":"","d":"Grille sur demande"},{"n":"Majestic en Seine","s":"majestic-en-seine","k":true,"a":48.935,"o":2.323,"z":true,"u":"villeneuve-la-garenne/majestic-en-seine/","l":"","d":"Grille sur demande"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8411913833"></script>
+<script type="module" src="/neuf/carte.js?v=05397589a0"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

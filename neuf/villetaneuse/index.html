@@ -86,8 +86,18 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
 .immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
+[hidden]{display:none!important}
+.onglets3d{display:flex;gap:8px;padding:10px;width:100%;box-sizing:border-box}
+.onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
+.planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.planbox img{display:block;width:100%;height:auto;margin:0 auto}
+.planbox img:not([src]){display:none}
+.planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
+.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
-.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:0;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
 @media(max-width:560px){.lien-visite{display:block;margin:6px 0 0;white-space:nowrap}table.lots td.plan{white-space:normal}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
@@ -343,7 +353,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"villetaneuse","villes":[{"v":"Villetaneuse","s":"villetaneuse","cp":"93430","i":"93079","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.3535,48.9656],[2.3535,48.9652],[2.3539,48.965],[2.3546,48.9646],[2.354,48.9642],[2.3535,48.9638],[2.353,48.9634],[2.3535,48.9631],[2.353,48.9627],[2.3535,48.9624],[2.3529,48.962],[2.3525,48.9617],[2.3524,48.9611],[2.3531,48.9607],[2.3528,48.9603],[2.3536,48.9601],[2.354,48.9599],[2.3549,48.9597],[2.3546,48.9592],[2.3536,48.9578],[2.353,48.9569],[2.3535,48.9568],[2.3537,48.956],[2.3537,48.954],[2.3522,48.9515],[2.3506,48.9487],[2.3481,48.9472],[2.346,48.9464],[2.3455,48.9468],[2.3443,48.9476],[2.3426,48.9489],[2.3421,48.9492],[2.3388,48.9517],[2.337,48.9529],[2.336,48.9536],[2.3352,48.9541],[2.3341,48.9548],[2.3337,48.9551],[2.3334,48.9553],[2.3336,48.9557],[2.334,48.9562],[2.3343,48.956],[2.3346,48.9563],[2.3351,48.9568],[2.3351,48.9568],[2.3354,48.957],[2.3355,48.9571],[2.3356,48.9571],[2.336,48.9575],[2.3362,48.9577],[2.3364,48.9577],[2.3365,48.958],[2.3369,48.9586],[2.337,48.9587],[2.3381,48.9601],[2.338,48.9602],[2.3376,48.9607],[2.3375,48.9609],[2.338,48.9616],[2.3384,48.9622],[2.3389,48.9629],[2.3394,48.9627],[2.3399,48.9626],[2.3439,48.9684],[2.3444,48.9682],[2.3447,48.9682],[2.3451,48.9682],[2.3455,48.9681],[2.3459,48.968],[2.3471,48.9677],[2.3473,48.9677],[2.3483,48.9675],[2.3485,48.9675],[2.3492,48.9674],[2.35,48.9671],[2.3505,48.967],[2.3516,48.9666],[2.3516,48.9663],[2.3516,48.9662],[2.3518,48.9661],[2.352,48.9659],[2.3523,48.9658],[2.3526,48.9657],[2.3535,48.9656]]]}},"r":"1 programme · 17 logements disponibles","p":[{"n":"Les Jardins Fajon","s":"les-jardins-fajon","k":false,"a":48.961,"o":2.346,"z":false,"u":"villetaneuse/les-jardins-fajon/","l":"4e trimestre 2027","d":"17 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8411913833"></script>
+<script type="module" src="/neuf/carte.js?v=05397589a0"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

@@ -7,6 +7,10 @@
   var racine = document.getElementById('compte'), zone = document.getElementById('visite3d');
   if (!racine || !zone) return;
   var cadre = zone.querySelector('iframe'), etat = zone.querySelector('.etat3d');
+  var est3d = zone.getAttribute('data-mode') !== 'plan'; // 'plan' : fiche sans visite 3D, seulement le plan du promoteur
+  var clesPlan = (zone.getAttribute('data-plans') || '').split(','), planbox = zone.querySelector('.planbox'), img = planbox && planbox.querySelector('img'), lienPdf = planbox && planbox.querySelector('a.ouvrir-plan'), onglets = zone.querySelector('.onglets3d');
+  var urlPlan = null;
+  var mobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && /Macintosh/.test(navigator.userAgent));
   var prog = zone.getAttribute('data-p'), clesOk = (zone.getAttribute('data-lots') || '').split(',');
   // Immeuble : appel sans le paramètre l ; logement : l = clé du lot (contrat de la fonction plans-3d, vérifié par CRM le 27/11/2026).
   var lienBlob = null, lotOuvert = null, attente = null;
@@ -15,7 +19,21 @@
   function lireJeton() { try { var j = localStorage.getItem(CLE) || ''; if (j && !jetonValide(j)) { localStorage.removeItem(CLE); return ''; } return j; } catch (e) { return ''; } }
   function rouvrirFormulaire() { var f = document.getElementById('f3d'), ok = document.getElementById('f3d-ok'); if (f) f.hidden = false; if (ok) ok.hidden = true; }
   function ecrireJeton(j) { try { if (j) localStorage.setItem(CLE, j); else localStorage.removeItem(CLE); } catch (e) {} }
-  function libere() { if (lienBlob) { URL.revokeObjectURL(lienBlob); lienBlob = null; } cadre.removeAttribute('src'); }
+  function libere() {
+    if (lienBlob) { URL.revokeObjectURL(lienBlob); lienBlob = null; }
+    if (urlPlan) { URL.revokeObjectURL(urlPlan); urlPlan = null; }
+    cadre.removeAttribute('src');
+    if (img) img.removeAttribute('src');
+    if (lienPdf) { lienPdf.removeAttribute('href'); lienPdf.hidden = true; }
+    if (planbox) planbox.hidden = true;
+  }
+  // Onglets « Visite 3D | Plan du promoteur » : seulement pour un logement qui a les deux
+  function onglet(lot, actif) {
+    if (!onglets) return;
+    var deux = lot !== 'immeuble' && est3d && clesOk.indexOf(lot) > -1 && clesPlan.indexOf(lot) > -1;
+    onglets.hidden = !deux; onglets.setAttribute('data-lot', lot || '');
+    onglets.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-onglet') === actif ? 'true' : 'false'); });
+  }
   function message(t) { etat.textContent = t || ''; etat.hidden = !t; }
   function versFormulaire(t) {
     var f = document.getElementById('f3d');
@@ -38,7 +56,7 @@
     if (!immeuble && !jeton) { attente = lot; versFormulaire('Pour voir ce logement, créez votre accès : cela prend une minute.'); return; }
     if (immeuble && lotOuvert === 'immeuble' && cadre.getAttribute('src')) { if (!sansDefiler) zone.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
     var vz = zone.closest('.vue3d'); if (vz) vz.hidden = false; // le cadre peut avoir été masqué par le repli : un logement demandé doit toujours se voir
-    libere(); lotOuvert = lot; zone.classList.remove('charge');
+    libere(); lotOuvert = lot; zone.classList.remove('charge'); onglet(lot, 'visite');
     message('Chargement de la visite 3D\u2026 (un peu long sur mobile)');
     if (!sansDefiler) zone.scrollIntoView({ behavior: 'smooth', block: 'start' });
     var adresse = FN + '?p=' + encodeURIComponent(prog) + (immeuble ? '' : '&l=' + encodeURIComponent(lot)) + (jeton ? '&t=' + encodeURIComponent(jeton) : '');
@@ -62,8 +80,38 @@
       })
       .catch(function () { if (lotOuvert === lot) { lotOuvert = null; if (immeuble) { secours(); return; } message('La visite n\u2019a pas pu se charger. Réessayez, ou appelez-nous.'); } });
   }
+  // Plan du promoteur d'un logement : seulement avec un accès ; la fonction renvoie directement le fichier (image ou PDF).
+  function ouvrirPlan(lot, sansDefiler) {
+    var jeton = lireJeton(), cle = 'plan:' + lot;
+    if (!jeton) { attente = cle; versFormulaire('Pour voir le plan, créez votre accès : cela prend une minute.'); return; }
+    var vz = zone.closest('.vue3d'); if (vz) vz.hidden = false; zone.hidden = false;
+    libere(); lotOuvert = cle; zone.classList.add('charge'); onglet(lot, 'plan');
+    message('Chargement du plan\u2026');
+    if (!sansDefiler) zone.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    fetch(FN + '?p=' + encodeURIComponent(prog) + '&l=' + encodeURIComponent(lot) + '&t=' + encodeURIComponent(jeton) + '&doc=plan')
+      .then(function (r) {
+        if (r.status === 401) { ecrireJeton(''); rouvrirFormulaire(); lotOuvert = null; attente = cle; message(''); versFormulaire('Votre accès a expiré : recréez-le en une minute.'); return null; }
+        if (r.status === 404) { lotOuvert = null; message('Ce plan n\u2019est pas disponible. Appelez-nous, nous vous l\u2019envoyons.'); return null; }
+        if (r.status === 429) { lotOuvert = null; message('Trop de demandes d\u2019un coup : réessayez dans quelques minutes.'); return null; }
+        if (!r.ok) throw new Error('http');
+        return r.blob();
+      })
+      .then(function (b) {
+        if (!b || lotOuvert !== cle) return;
+        var t = String(b.type || '').toLowerCase();
+        if (t.indexOf('image/') === 0) { urlPlan = URL.createObjectURL(b); img.src = urlPlan; planbox.hidden = false; message(''); }
+        else if (t.indexOf('pdf') > -1) {
+          var pdf = new Blob([b], { type: 'application/pdf' });
+          if (mobile) {
+            // iPhone : un PDF ne s'affiche pas bien dans un cadre ; on l'ouvre dans une page à part, au toucher du client
+            urlPlan = URL.createObjectURL(pdf); lienPdf.href = urlPlan; lienPdf.hidden = false; planbox.hidden = false; message('');
+          } else { lienBlob = URL.createObjectURL(pdf); cadre.src = lienBlob; message(''); }
+        } else { lotOuvert = null; message('Ce plan ne peut pas s\u2019afficher ici. Appelez-nous, nous vous l\u2019envoyons.'); }
+      })
+      .catch(function () { if (lotOuvert === cle) { lotOuvert = null; message('Le plan n\u2019a pas pu se charger (fichier lourd ?). Réessayez, ou appelez-nous.'); } });
+  }
   // L'immeuble (1,4 Mo) n'est chargé que lorsqu'il arrive à l'écran, ou au toucher du bouton : jamais à l'ouverture de la page.
-  if ('IntersectionObserver' in window) {
+  if (est3d && 'IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function (es) { if (es.some(function (e) { return e.isIntersecting; })) { obs.disconnect(); if (!lotOuvert) ouvrir('immeuble', true); } }, { rootMargin: '200px' });
     obs.observe(zone);
   }
@@ -81,9 +129,14 @@
     else if (ev.data.glr3d === 'lot' && typeof ev.data.lot === 'string' && clesOk.indexOf(ev.data.lot) > -1) ouvrir(ev.data.lot);
   });
   document.addEventListener('click', function (ev) {
-    var b = ev.target.closest && ev.target.closest('[data-3d]');
-    if (!b) return;
-    ev.preventDefault(); ouvrir(b.getAttribute('data-3d'));
+    var t = ev.target.closest ? ev.target : null; if (!t) return;
+    var b = t.closest('[data-3d]');
+    if (b) { ev.preventDefault(); ouvrir(b.getAttribute('data-3d')); return; }
+    b = t.closest('[data-plan]');
+    if (b) { ev.preventDefault(); ouvrirPlan(b.getAttribute('data-plan')); return; }
+    b = t.closest('[data-onglet]');
+    if (b && onglets) { ev.preventDefault(); var lot = onglets.getAttribute('data-lot'); if (b.getAttribute('data-onglet') === 'plan') ouvrirPlan(lot, true); else ouvrir(lot, true); return; }
+    if (t.closest('.ferme3d')) { libere(); lotOuvert = null; message(''); if (!est3d) zone.hidden = true; }
   });
   // Formulaire d'accès
   var debut = Date.now(); // temps entre l'affichage du formulaire et l'envoi, envoyé à la fonction (un envoi instantané n'est pas un humain) ; aucun champ caché : Chrome les remplit
@@ -108,7 +161,8 @@
         ecrireJeton(j.jeton); go.disabled = false; go.textContent = 'Créer mon accès';
         document.getElementById('f3d-err').textContent = '';
         document.getElementById('f3d-ok').hidden = false; f.hidden = true;
-        var l = attente || 'immeuble'; attente = null; ouvrir(l); // le logement demandé s'ouvre ; sinon l'immeuble
+        var l = attente || (est3d ? 'immeuble' : null); attente = null; // le logement ou le plan demandé s'ouvre ; sinon l'immeuble
+        if (l) { if (l.indexOf('plan:') === 0) ouvrirPlan(l.slice(5)); else ouvrir(l); }
       })
       .catch(function (e) {
         go.disabled = false; go.textContent = 'Créer mon accès';

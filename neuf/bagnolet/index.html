@@ -86,8 +86,18 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
 .immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
+[hidden]{display:none!important}
+.onglets3d{display:flex;gap:8px;padding:10px;width:100%;box-sizing:border-box}
+.onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
+.planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.planbox img{display:block;width:100%;height:auto;margin:0 auto}
+.planbox img:not([src]){display:none}
+.planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
+.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
-.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:0;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
 @media(max-width:560px){.lien-visite{display:block;margin:6px 0 0;white-space:nowrap}table.lots td.plan{white-space:normal}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
@@ -350,7 +360,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"bagnolet","villes":[{"v":"Bagnolet","s":"bagnolet","cp":"93170","i":"93006","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.4134,48.8731],[2.4144,48.8739],[2.4154,48.8747],[2.4158,48.8751],[2.4169,48.8756],[2.4176,48.876],[2.418,48.8763],[2.4197,48.8774],[2.4203,48.8778],[2.4208,48.878],[2.4219,48.8783],[2.4228,48.8783],[2.4232,48.8783],[2.4246,48.8783],[2.4257,48.8783],[2.4269,48.8782],[2.4272,48.8782],[2.4282,48.8782],[2.4289,48.8782],[2.4295,48.8783],[2.4298,48.8783],[2.4304,48.8784],[2.4314,48.8786],[2.4322,48.8788],[2.433,48.879],[2.4333,48.8788],[2.4337,48.8786],[2.4342,48.8784],[2.4356,48.8778],[2.4365,48.8775],[2.4371,48.8773],[2.4368,48.8769],[2.4368,48.8768],[2.4366,48.8765],[2.4367,48.8764],[2.4366,48.8759],[2.4364,48.8753],[2.4363,48.8748],[2.4359,48.8747],[2.4354,48.8746],[2.4345,48.8743],[2.4343,48.8742],[2.4339,48.8739],[2.4337,48.8736],[2.4329,48.8725],[2.4326,48.872],[2.4325,48.8718],[2.4322,48.8716],[2.4317,48.8714],[2.4314,48.8712],[2.4308,48.871],[2.4305,48.8707],[2.4305,48.8701],[2.4304,48.8697],[2.4303,48.8695],[2.4294,48.8689],[2.4287,48.8683],[2.4289,48.8683],[2.4294,48.8682],[2.429,48.8679],[2.4296,48.8676],[2.4293,48.8672],[2.429,48.867],[2.4287,48.8668],[2.4282,48.8666],[2.4278,48.8664],[2.4279,48.8662],[2.4281,48.8655],[2.4282,48.8651],[2.4284,48.8643],[2.4287,48.8636],[2.4279,48.8635],[2.4264,48.8632],[2.4262,48.8631],[2.4239,48.8627],[2.424,48.8621],[2.4237,48.862],[2.4232,48.8619],[2.423,48.8618],[2.4229,48.8615],[2.4227,48.8612],[2.4225,48.8609],[2.4227,48.8607],[2.4229,48.8606],[2.4231,48.8603],[2.4234,48.8599],[2.4234,48.8597],[2.4234,48.8583],[2.4234,48.8573],[2.422,48.8571],[2.4206,48.8568],[2.4183,48.8563],[2.4177,48.8562],[2.4175,48.8561],[2.4168,48.8559],[2.4153,48.8552],[2.4151,48.8562],[2.4149,48.8573],[2.4147,48.8587],[2.4144,48.8602],[2.4144,48.8606],[2.4143,48.8621],[2.4141,48.8634],[2.414,48.8647],[2.414,48.865],[2.414,48.8654],[2.414,48.8665],[2.414,48.8675],[2.414,48.8692],[2.4138,48.8707],[2.4137,48.8716],[2.4136,48.8724],[2.4134,48.8731]]]}},"r":"1 programme · 34 logements disponibles","p":[{"n":"Le 5 Raspail","s":"le-5-raspail","k":false,"a":48.875,"o":2.43,"z":false,"u":"bagnolet/le-5-raspail/","l":"4e trimestre 2028","d":"34 logements disponibles"},{"n":"Entre les lignes 3 et 11 du métro","s":"entre-les-lignes-3-et-11-du-metro","k":true,"a":48.867,"o":2.425,"z":true,"u":"bagnolet/entre-les-lignes-3-et-11-du-metro/","l":"","d":"Grille sur demande"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8411913833"></script>
+<script type="module" src="/neuf/carte.js?v=05397589a0"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

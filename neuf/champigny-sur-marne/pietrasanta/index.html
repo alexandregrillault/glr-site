@@ -85,8 +85,18 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
 .immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
+[hidden]{display:none!important}
+.onglets3d{display:flex;gap:8px;padding:10px;width:100%;box-sizing:border-box}
+.onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
+.planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.planbox img{display:block;width:100%;height:auto;margin:0 auto}
+.planbox img:not([src]){display:none}
+.planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
+.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
-.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:0;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
 @media(max-width:560px){.lien-visite{display:block;margin:6px 0 0;white-space:nowrap}table.lots td.plan{white-space:normal}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
@@ -390,7 +400,7 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"e8eb88058b25","t":"T1","s":32.46,"e":3,"x":"Balcon"},{"i":"823aa37b8e5d","t":"T1","s":32.94,"e":1,"x":"Balcon"},{"i":"75ec05fb8a79","t":"T2","s":41.65,"e":2,"x":"Balcon"},{"i":"15bfdb1f9e9f","t":"T2","s":42.1,"e":1,"x":"Balcon"},{"i":"d8dd744afec1","t":"T3","s":58.59,"e":3,"x":"Balcon"},{"i":"ffff91da05bb","t":"T3","s":59.04,"e":2,"x":"Terrasse"},{"i":"f1da8260c5de","t":"T3","s":60.31,"e":2,"x":"Balcon"},{"i":"588cc23153fa","t":"T3","s":60.34,"e":3,"x":"Balcon"},{"i":"e2f39aa065d9","t":"T3","s":60.91,"e":1,"x":"Balcon"},{"i":"156ac69f685c","t":"T3","s":61.3,"e":3,"x":"Balcon"},{"i":"6a2160586b75","t":"T3","s":61.3,"e":4,"x":"Balcon"},{"i":"e16a05130450","t":"T3","s":61.3,"e":2,"x":"Balcon"},{"i":"3b3ba32599ee","t":"T3","s":61.61,"e":1,"x":"Terrasse"},{"i":"27467f7132fc","t":"T3","s":61.96,"e":3,"x":"Balcon"},{"i":"c2e52e69da94","t":"T3","s":62.14,"e":2,"x":"Balcon"},{"i":"56751b7bb1b0","t":"T3","s":62.49,"e":2,"x":"Balcon"},{"i":"c49c7e523ffc","t":"T3","s":62.65,"e":4,"x":"Terrasse"},{"i":"41f7bfe4a7b5","t":"T3","s":62.66,"e":1,"x":"Balcon"},{"i":"706a17a4790c","t":"T3","s":62.7,"e":5,"x":"Balcon"},{"i":"1e59a2716807","t":"T3","s":63.73,"e":2,"x":"Balcon"},{"i":"114004222525","t":"T3","s":63.86,"e":1,"x":"Balcon"},{"i":"a80d84f444ca","t":"T3","s":64.34,"e":1,"x":"Balcon"},{"i":"029d75a2a2a8","t":"T3","s":64.4,"e":2,"x":"Balcon"},{"i":"028927a5bfa4","t":"T3","s":65.36,"e":1,"x":"Balcon"},{"i":"8fe98e8d8c0c","t":"T3","s":65.85,"e":2,"x":"Balcon"},{"i":"3aae6b6a6845","t":"T3","s":66.48,"e":1,"x":"Terrasse"},{"i":"1bb9030a3569","t":"T3","s":67.15,"e":1,"x":"Balcon"},{"i":"dd6ccb53159c","t":"T4","s":84.53,"e":1,"x":"Terrasse"},{"i":"8a2a19d6cc7e","t":"T4","s":86.71,"e":4,"x":"Balcon"},{"i":"6c64587ea4e5","t":"T4","s":87.03,"e":3,"x":"Terrasse"},{"i":"d97b1f6a4491","t":"T5+","s":89.82,"e":4,"x":"Terrasse"},{"i":"c671738de0c5","t":"T5+","s":93.34,"e":4,"x":"Terrasse"},{"i":"fbbc482c5ade","t":"T5+","s":94.94,"e":2,"x":"Balcon"},{"i":"61eb6b81682b","t":"T5+","s":95.14,"e":4,"x":"Terrasse"},{"i":"82426ec7b573","t":"T5+","s":100.63,"e":5,"x":"Terrasse"},{"i":"60d6e4c62600","t":"T5+","s":105.8,"e":4,"x":"Terrasse"},{"i":"c487daf22fe8","t":"T5+","s":106.35,"e":5,"x":"Terrasse"},{"i":"cdd4811a825f","t":"T5+","s":107.03,"e":0,"x":"Terrasse"},{"i":"a2e2331c1e40","t":"T5+","s":107.36,"e":4,"x":"Terrasse"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=8411913833" defer></script>
+<script src="/neuf/programme.js?v=05397589a0" defer></script>
 
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};

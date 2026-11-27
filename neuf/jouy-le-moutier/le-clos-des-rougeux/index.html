@@ -85,8 +85,18 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
 .immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
+[hidden]{display:none!important}
+.onglets3d{display:flex;gap:8px;padding:10px;width:100%;box-sizing:border-box}
+.onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
+.planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.planbox img{display:block;width:100%;height:auto;margin:0 auto}
+.planbox img:not([src]){display:none}
+.planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
+.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
-.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:0;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
 @media(max-width:560px){.lien-visite{display:block;margin:6px 0 0;white-space:nowrap}table.lots td.plan{white-space:normal}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
@@ -371,7 +381,7 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"a9d209d32970","t":"T1","s":26.88,"e":0,"x":""},{"i":"d7c480349b9c","t":"T1","s":26.97,"e":0,"x":""},{"i":"565e2b7f0eef","t":"T2","s":35.97,"e":1,"x":""},{"i":"abfdbe994bba","t":"T2","s":38.67,"e":0,"x":""},{"i":"03b3c1f35636","t":"T2","s":41.5,"e":1,"x":""},{"i":"3d32cf8532ce","t":"T2","s":42,"e":0,"x":""},{"i":"7e3f71bd2091","t":"T2","s":42.83,"e":2,"x":""},{"i":"a40dd56d888f","t":"T2","s":43.02,"e":2,"x":""},{"i":"14d254655515","t":"T2","s":43.84,"e":0,"x":""},{"i":"ff46c5d601db","t":"T2","s":43.92,"e":1,"x":""},{"i":"0b56e7eda2fd","t":"T2","s":44.02,"e":1,"x":""},{"i":"021331367ef9","t":"T2","s":44.43,"e":1,"x":""},{"i":"ceceaf708ae4","t":"T2","s":45.21,"e":0,"x":""},{"i":"1392220cd028","t":"T2","s":50.64,"e":2,"x":""},{"i":"51c220f9384a","t":"T3","s":58.3,"e":2,"x":""},{"i":"36aaa8a86686","t":"T3","s":59.63,"e":0,"x":""},{"i":"221204f63073","t":"T3","s":62.32,"e":2,"x":""},{"i":"53b285471b86","t":"T3","s":62.97,"e":2,"x":""},{"i":"1c0d0124000d","t":"T3","s":64.1,"e":1,"x":""},{"i":"54ef8bf18c14","t":"T3","s":64.79,"e":1,"x":""},{"i":"8ad37e2c7eab","t":"T4","s":73.25,"e":2,"x":""},{"i":"99b47aec983c","t":"T4","s":74.75,"e":1,"x":""},{"i":"b2d1db6ec472","t":"T4","s":81.22,"e":0,"x":"Extérieur"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=8411913833" defer></script>
+<script src="/neuf/programme.js?v=05397589a0" defer></script>
 
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};

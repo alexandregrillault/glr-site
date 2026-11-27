@@ -86,8 +86,18 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
 .immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
+[hidden]{display:none!important}
+.onglets3d{display:flex;gap:8px;padding:10px;width:100%;box-sizing:border-box}
+.onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
+.planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.planbox img{display:block;width:100%;height:auto;margin:0 auto}
+.planbox img:not([src]){display:none}
+.planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
+.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
-.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:0;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
 @media(max-width:560px){.lien-visite{display:block;margin:6px 0 0;white-space:nowrap}table.lots td.plan{white-space:normal}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
@@ -350,7 +360,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"arcueil","villes":[{"v":"Arcueil","s":"arcueil","cp":"94110","i":"94003","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.345,48.8054],[2.3445,48.8047],[2.3442,48.8042],[2.3441,48.8039],[2.3439,48.8033],[2.3441,48.8032],[2.3464,48.8023],[2.3462,48.8021],[2.3475,48.8017],[2.3475,48.8016],[2.3478,48.8015],[2.3476,48.8013],[2.3461,48.7996],[2.3473,48.7992],[2.3477,48.799],[2.3474,48.7988],[2.3477,48.7987],[2.347,48.7983],[2.3459,48.798],[2.3452,48.7978],[2.346,48.7971],[2.3452,48.7969],[2.3444,48.7973],[2.3438,48.7977],[2.343,48.7981],[2.3425,48.7983],[2.3413,48.7988],[2.341,48.7989],[2.3409,48.7988],[2.3404,48.798],[2.3402,48.7975],[2.34,48.7973],[2.3396,48.7974],[2.3379,48.798],[2.3376,48.7981],[2.3369,48.7982],[2.3364,48.7983],[2.335,48.7983],[2.3347,48.7984],[2.3338,48.7985],[2.3333,48.7991],[2.3332,48.7992],[2.3329,48.7993],[2.3329,48.7994],[2.3315,48.7996],[2.3315,48.7995],[2.3301,48.7996],[2.3296,48.7997],[2.3281,48.7997],[2.3276,48.8003],[2.3274,48.8004],[2.3265,48.8007],[2.3262,48.8008],[2.3252,48.8011],[2.3242,48.8014],[2.3239,48.8016],[2.3245,48.803],[2.3254,48.8054],[2.3256,48.8058],[2.3258,48.8063],[2.326,48.8067],[2.3262,48.8075],[2.3264,48.8083],[2.3252,48.8084],[2.325,48.8082],[2.3248,48.8076],[2.3248,48.807],[2.3245,48.807],[2.3243,48.8067],[2.3244,48.8058],[2.3243,48.8059],[2.324,48.8054],[2.3217,48.806],[2.321,48.8057],[2.3204,48.8061],[2.3193,48.8061],[2.3183,48.806],[2.3179,48.8084],[2.3187,48.8094],[2.3191,48.81],[2.3194,48.81],[2.3219,48.8097],[2.3236,48.8097],[2.3252,48.8096],[2.3256,48.8096],[2.3265,48.8107],[2.3282,48.8128],[2.3285,48.8131],[2.3287,48.8134],[2.3291,48.8138],[2.3321,48.8132],[2.3322,48.8134],[2.3328,48.8133],[2.3327,48.813],[2.3341,48.8126],[2.3343,48.8129],[2.3344,48.8131],[2.3346,48.8135],[2.3347,48.8136],[2.3351,48.8135],[2.3367,48.8135],[2.3368,48.8134],[2.3371,48.8133],[2.3373,48.8136],[2.3384,48.8133],[2.3383,48.8132],[2.3403,48.8124],[2.3396,48.8115],[2.3391,48.8109],[2.3391,48.8108],[2.3407,48.8101],[2.342,48.8098],[2.3423,48.8096],[2.3422,48.8093],[2.342,48.8086],[2.3434,48.8083],[2.3426,48.8066],[2.3444,48.8057],[2.345,48.8054]]]}},"r":"2 programmes · 4 logements disponibles","p":[{"n":"L'eclat","s":"l-eclat","k":false,"a":48.804,"o":2.337,"z":false,"u":"arcueil/l-eclat/","l":"Livré","d":"2 logements disponibles"},{"n":"Le Domaine L'adhara","s":"le-domaine-l-adhara","k":false,"a":48.81,"o":2.333,"z":false,"u":"arcueil/le-domaine-l-adhara/","l":"Livré","d":"2 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8411913833"></script>
+<script type="module" src="/neuf/carte.js?v=05397589a0"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

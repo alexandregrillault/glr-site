@@ -85,8 +85,18 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
 .immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
+[hidden]{display:none!important}
+.onglets3d{display:flex;gap:8px;padding:10px;width:100%;box-sizing:border-box}
+.onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
+.planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.planbox img{display:block;width:100%;height:auto;margin:0 auto}
+.planbox img:not([src]){display:none}
+.planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
+.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
-.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:0;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
 @media(max-width:560px){.lien-visite{display:block;margin:6px 0 0;white-space:nowrap}table.lots td.plan{white-space:normal}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
@@ -369,7 +379,7 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"74c099834887","t":"T1","s":29.53,"e":2,"x":""},{"i":"3b069f7d1fdb","t":"T1","s":37.39,"e":1,"x":""},{"i":"4380f6ccf775","t":"T2","s":46.65,"e":1,"x":""},{"i":"3934af6d86a7","t":"T2","s":48.56,"e":3,"x":""},{"i":"80c02a7829cc","t":"T2","s":48.56,"e":4,"x":""},{"i":"c2cb3b2cecf0","t":"T2","s":48.56,"e":2,"x":""},{"i":"cfb04fa7cd3f","t":"T2","s":48.56,"e":7,"x":""},{"i":"dd0653073ea5","t":"T2","s":48.56,"e":5,"x":""},{"i":"f5833b8d17b9","t":"T2","s":48.56,"e":6,"x":""},{"i":"4275b0cc20ce","t":"T3","s":59.54,"e":7,"x":""},{"i":"4a1b2bd1f312","t":"T3","s":59.54,"e":6,"x":""},{"i":"69cc4ba1c7ac","t":"T3","s":59.54,"e":2,"x":""},{"i":"98ab837be778","t":"T3","s":59.54,"e":5,"x":""},{"i":"bfbb011f4b81","t":"T3","s":59.54,"e":8,"x":""},{"i":"254c5b05b804","t":"T3","s":60.82,"e":1,"x":""},{"i":"0d54bb80a15b","t":"T3","s":60.87,"e":3,"x":""},{"i":"0b6f485b7287","t":"T3","s":60.95,"e":5,"x":""},{"i":"55caa282505f","t":"T3","s":60.95,"e":3,"x":""},{"i":"c03a7b8489ce","t":"T3","s":60.95,"e":6,"x":""},{"i":"fa8b70c0a593","t":"T3","s":60.95,"e":4,"x":""},{"i":"c1cd71a78d7f","t":"T3","s":61.27,"e":7,"x":""},{"i":"e8a5a021a75b","t":"T3","s":61.27,"e":8,"x":""},{"i":"fe7dc1652835","t":"T3","s":61.27,"e":5,"x":""},{"i":"962063f4e192","t":"T3","s":63.63,"e":1,"x":""}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=8411913833" defer></script>
+<script src="/neuf/programme.js?v=05397589a0" defer></script>
 
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};

@@ -85,8 +85,18 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
 .immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
+[hidden]{display:none!important}
+.onglets3d{display:flex;gap:8px;padding:10px;width:100%;box-sizing:border-box}
+.onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
+.planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.planbox img{display:block;width:100%;height:auto;margin:0 auto}
+.planbox img:not([src]){display:none}
+.planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
+.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
-.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:0;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
 @media(max-width:560px){.lien-visite{display:block;margin:6px 0 0;white-space:nowrap}table.lots td.plan{white-space:normal}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
@@ -373,7 +383,7 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"d40d63d177c8","t":"T2","s":41.85,"e":2,"x":"Extérieur"},{"i":"6d2386256476","t":"T2","s":47.65,"e":0,"x":"Extérieur"},{"i":"7d702db01abd","t":"T2","s":51.86,"e":1,"x":"Extérieur"},{"i":"ba8fbc44da7e","t":"T3","s":59.23,"e":3,"x":"Extérieur"},{"i":"ad2fa1f08e92","t":"T3","s":62.29,"e":3,"x":"Extérieur"},{"i":"5c54cc33084a","t":"T3","s":65.65,"e":2,"x":"Extérieur"},{"i":"04e3fa51eb1b","t":"T3","s":65.88,"e":1,"x":"Extérieur"},{"i":"1b6cc914ef5b","t":"T3","s":65.88,"e":3,"x":"Extérieur"},{"i":"bfd188a732f1","t":"T3","s":65.88,"e":4,"x":"Extérieur"},{"i":"ec4e75f00aab","t":"T3","s":65.88,"e":2,"x":"Extérieur"},{"i":"3bd10863c59c","t":"T3","s":66.3,"e":4,"x":"Extérieur"},{"i":"708c3cffdfc0","t":"T3","s":66.3,"e":3,"x":"Extérieur"},{"i":"e810b52c2ac7","t":"T3","s":66.42,"e":4,"x":"Extérieur"},{"i":"f2568aa8514a","t":"T3","s":66.42,"e":1,"x":"Extérieur"},{"i":"d74d45b109e9","t":"T4","s":81.12,"e":1,"x":"Extérieur"},{"i":"e6953b9aba60","t":"T4","s":85.43,"e":0,"x":"Extérieur"},{"i":"a2590b78d32e","t":"T4","s":90.99,"e":2,"x":"Extérieur"},{"i":"181ffc384507","t":"T4","s":91.01,"e":2,"x":"Extérieur"},{"i":"e82ebbb49108","t":"T4","s":91.01,"e":4,"x":"Extérieur"},{"i":"eaec8f7c3faa","t":"T4","s":91.01,"e":3,"x":"Extérieur"},{"i":"6ea0592d3335","t":"T4","s":91.14,"e":4,"x":"Extérieur"},{"i":"484a33470e39","t":"T5+","s":105.98,"e":3,"x":"Extérieur"},{"i":"26ba6bbe9050","t":"T5+","s":108.3,"e":2,"x":"Extérieur"},{"i":"d89f7aba5b02","t":"T5+","s":108.3,"e":1,"x":"Extérieur"},{"i":"b89bc57faa8a","t":"T5+","s":113.67,"e":2,"x":"Extérieur"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=8411913833" defer></script>
+<script src="/neuf/programme.js?v=05397589a0" defer></script>
 
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};

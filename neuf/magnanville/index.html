@@ -86,8 +86,18 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
 .immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
+[hidden]{display:none!important}
+.onglets3d{display:flex;gap:8px;padding:10px;width:100%;box-sizing:border-box}
+.onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
+.planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.planbox img{display:block;width:100%;height:auto;margin:0 auto}
+.planbox img:not([src]){display:none}
+.planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
+.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
-.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:0;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
 @media(max-width:560px){.lien-visite{display:block;margin:6px 0 0;white-space:nowrap}table.lots td.plan{white-space:normal}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
@@ -343,7 +353,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"magnanville","villes":[{"v":"Magnanville","s":"magnanville","cp":"78200","i":"78354","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[1.6659,48.9702],[1.6662,48.9706],[1.6664,48.971],[1.6666,48.9711],[1.667,48.9707],[1.6677,48.9708],[1.6697,48.9742],[1.6714,48.9752],[1.6715,48.9751],[1.6722,48.9747],[1.6724,48.9747],[1.6726,48.9748],[1.6737,48.9752],[1.6744,48.9755],[1.6754,48.976],[1.6759,48.9762],[1.6762,48.9765],[1.6765,48.9766],[1.6771,48.977],[1.6772,48.977],[1.6779,48.9772],[1.6784,48.9773],[1.6797,48.9782],[1.6808,48.9782],[1.6815,48.9782],[1.6819,48.9783],[1.6832,48.9786],[1.6835,48.9787],[1.6841,48.9786],[1.6844,48.9787],[1.6847,48.9786],[1.686,48.9786],[1.6876,48.9787],[1.6894,48.9787],[1.6915,48.9788],[1.6932,48.9788],[1.6935,48.9787],[1.6937,48.9787],[1.6939,48.9789],[1.6941,48.9788],[1.6944,48.9788],[1.6953,48.9789],[1.6965,48.9789],[1.6972,48.979],[1.6979,48.9791],[1.6984,48.9791],[1.6985,48.9792],[1.6994,48.9793],[1.7001,48.9793],[1.7,48.979],[1.6993,48.9777],[1.6991,48.9772],[1.6987,48.9767],[1.6987,48.9766],[1.6985,48.9762],[1.6982,48.9757],[1.6976,48.9743],[1.6979,48.9743],[1.6985,48.9743],[1.6991,48.9743],[1.6997,48.9743],[1.7,48.9742],[1.7004,48.9741],[1.7005,48.9739],[1.7006,48.9736],[1.6999,48.973],[1.6989,48.9724],[1.6988,48.9722],[1.6984,48.9716],[1.6982,48.9713],[1.6981,48.9711],[1.6976,48.9702],[1.6972,48.9694],[1.6969,48.9689],[1.6966,48.9685],[1.696,48.9678],[1.6959,48.9675],[1.6957,48.9672],[1.6954,48.9667],[1.695,48.9662],[1.6943,48.9654],[1.6974,48.9645],[1.6976,48.9647],[1.6978,48.9646],[1.6985,48.9644],[1.699,48.9643],[1.7005,48.9639],[1.7007,48.9641],[1.7025,48.9637],[1.7025,48.9636],[1.7021,48.963],[1.7018,48.9625],[1.7014,48.9621],[1.7003,48.961],[1.7001,48.9607],[1.6999,48.9605],[1.6997,48.9601],[1.6996,48.9598],[1.6996,48.9595],[1.6995,48.9587],[1.6994,48.9579],[1.6988,48.9578],[1.698,48.9577],[1.6967,48.9577],[1.696,48.9576],[1.6943,48.9577],[1.6936,48.9577],[1.6916,48.9577],[1.6894,48.9579],[1.687,48.958],[1.686,48.9581],[1.6856,48.9582],[1.6847,48.9586],[1.6833,48.9592],[1.6822,48.9597],[1.682,48.9599],[1.6822,48.9601],[1.6806,48.9612],[1.6801,48.9611],[1.6797,48.961],[1.6782,48.9607],[1.6769,48.9606],[1.6755,48.9619],[1.6744,48.9615],[1.6742,48.962],[1.6741,48.9625],[1.674,48.9629],[1.6737,48.9634],[1.6735,48.964],[1.6734,48.9642],[1.673,48.9646],[1.6723,48.9653],[1.6721,48.9655],[1.6715,48.9659],[1.6704,48.9666],[1.6703,48.9667],[1.6685,48.9678],[1.6672,48.9687],[1.6668,48.9691],[1.6665,48.9696],[1.666,48.9701],[1.6659,48.9702]]]}},"r":"1 programme · 1 logements disponibles","p":[{"n":"Les Temporelles Magnanville","s":"les-temporelles-magnanville","k":false,"a":48.967,"o":1.682,"z":false,"u":"magnanville/les-temporelles-magnanville/","l":"Livré","d":"1 logement disponible"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8411913833"></script>
+<script type="module" src="/neuf/carte.js?v=05397589a0"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

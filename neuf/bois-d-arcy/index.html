@@ -86,8 +86,18 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
 .immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
+[hidden]{display:none!important}
+.onglets3d{display:flex;gap:8px;padding:10px;width:100%;box-sizing:border-box}
+.onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
+.planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.planbox img{display:block;width:100%;height:auto;margin:0 auto}
+.planbox img:not([src]){display:none}
+.planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
+.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
-.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:0;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
 @media(max-width:560px){.lien-visite{display:block;margin:6px 0 0;white-space:nowrap}table.lots td.plan{white-space:normal}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
@@ -337,7 +347,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"bois-d-arcy","villes":[{"v":"Bois-d'Arcy","s":"bois-d-arcy","cp":"78390","i":"78073","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.0484,48.8032],[2.049,48.8028],[2.0511,48.8014],[2.0516,48.8011],[2.0516,48.801],[2.0511,48.8002],[2.0505,48.799],[2.0501,48.7983],[2.0489,48.7985],[2.0482,48.7985],[2.0469,48.7987],[2.0438,48.7991],[2.0434,48.7991],[2.0427,48.7991],[2.0423,48.7991],[2.0416,48.799],[2.0412,48.7989],[2.0404,48.7987],[2.0379,48.7981],[2.0359,48.7977],[2.0342,48.7973],[2.0331,48.797],[2.0326,48.7969],[2.0315,48.7968],[2.0312,48.7968],[2.0298,48.7967],[2.0284,48.7967],[2.0276,48.7967],[2.0257,48.7968],[2.0231,48.7969],[2.0231,48.7968],[2.0227,48.7968],[2.0213,48.7969],[2.0197,48.7971],[2.0188,48.7972],[2.0168,48.7974],[2.0159,48.7974],[2.0158,48.7974],[2.0152,48.7974],[2.0125,48.7976],[2.007,48.7981],[2.0014,48.7985],[1.9988,48.7989],[1.9953,48.7992],[1.9945,48.7992],[1.9944,48.7991],[1.9932,48.7998],[1.9929,48.8],[1.993,48.8003],[1.9932,48.801],[1.9933,48.8011],[1.9939,48.8032],[1.9944,48.8048],[1.9948,48.806],[1.9949,48.8063],[1.995,48.8065],[1.9951,48.8067],[1.9951,48.8069],[1.9954,48.8078],[1.9958,48.8091],[1.9962,48.8106],[1.9968,48.8125],[1.9969,48.813],[1.9971,48.813],[1.9975,48.8131],[1.998,48.8132],[1.9982,48.8133],[2.0003,48.8138],[2.0024,48.8142],[2.0035,48.8139],[2.0075,48.813],[2.0093,48.8137],[2.0105,48.8142],[2.0119,48.8148],[2.0126,48.8151],[2.0126,48.8153],[2.0136,48.8149],[2.0149,48.8144],[2.0155,48.8141],[2.0161,48.8139],[2.0175,48.8133],[2.019,48.8127],[2.0193,48.8126],[2.0201,48.8121],[2.0207,48.8116],[2.021,48.8115],[2.0217,48.8114],[2.0221,48.8119],[2.0227,48.8117],[2.0228,48.8114],[2.0234,48.8114],[2.0238,48.8112],[2.0241,48.8115],[2.0242,48.8116],[2.0244,48.8116],[2.0247,48.8119],[2.0259,48.8114],[2.026,48.8113],[2.026,48.8108],[2.027,48.8103],[2.0271,48.8104],[2.0276,48.8102],[2.028,48.8102],[2.0283,48.8103],[2.0285,48.8103],[2.0284,48.8101],[2.0284,48.81],[2.0283,48.8097],[2.029,48.8095],[2.0299,48.8096],[2.0298,48.8095],[2.0307,48.8095],[2.0306,48.8093],[2.032,48.8091],[2.0318,48.8089],[2.0326,48.8087],[2.0345,48.8084],[2.0364,48.8079],[2.0365,48.8078],[2.0358,48.8066],[2.0356,48.8064],[2.0363,48.8063],[2.0364,48.8059],[2.0365,48.8059],[2.0378,48.8055],[2.0394,48.8051],[2.0405,48.8048],[2.0407,48.805],[2.0409,48.8052],[2.0414,48.805],[2.0412,48.8045],[2.0421,48.8041],[2.0424,48.8039],[2.0426,48.8038],[2.0427,48.8037],[2.0429,48.8034],[2.043,48.8033],[2.0433,48.8033],[2.0442,48.8034],[2.0457,48.8032],[2.0458,48.8031],[2.0463,48.8041],[2.0473,48.8039],[2.0474,48.8039],[2.048,48.8035],[2.0484,48.8032]]]}},"r":"1 programme · 2 logements disponibles","p":[{"n":"Agora","s":"agora","k":false,"a":48.801,"o":2.031,"z":false,"u":"bois-d-arcy/agora/","l":"4e trimestre 2026","d":"2 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8411913833"></script>
+<script type="module" src="/neuf/carte.js?v=05397589a0"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

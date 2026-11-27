@@ -85,8 +85,18 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
 .immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
+[hidden]{display:none!important}
+.onglets3d{display:flex;gap:8px;padding:10px;width:100%;box-sizing:border-box}
+.onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
+.planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.planbox img{display:block;width:100%;height:auto;margin:0 auto}
+.planbox img:not([src]){display:none}
+.planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
+.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
-.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:0;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
 @media(max-width:560px){.lien-visite{display:block;margin:6px 0 0;white-space:nowrap}table.lots td.plan{white-space:normal}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
@@ -368,7 +378,7 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"a839cb765e5e","t":"T1","s":36.95,"e":5,"x":"Extérieur"},{"i":"a119b6ff0006","t":"T2","s":39.17,"e":4,"x":"Extérieur"},{"i":"5bb490a9df9e","t":"T2","s":40.12,"e":2,"x":"Extérieur"},{"i":"2dec7eeeec18","t":"T2","s":41.2,"e":3,"x":"Extérieur"},{"i":"d82579c70329","t":"T2","s":41.2,"e":2,"x":"Extérieur"},{"i":"255f3f7c5b97","t":"T2","s":41.93,"e":3,"x":"Extérieur"},{"i":"c87060142c7d","t":"T2","s":47.11,"e":0,"x":"Extérieur"},{"i":"368d2c8d65f6","t":"T2","s":48.81,"e":5,"x":"Extérieur"},{"i":"3c4bb95b9798","t":"T3","s":54.32,"e":4,"x":"Extérieur"},{"i":"9dafc9402fb3","t":"T3","s":59.07,"e":3,"x":"Extérieur"},{"i":"e4f0f735a54c","t":"T3","s":59.07,"e":1,"x":"Extérieur"},{"i":"331cda9abe3f","t":"T3","s":59.43,"e":0,"x":"Extérieur"},{"i":"86c69a3afcab","t":"T3","s":59.83,"e":4,"x":"Extérieur"},{"i":"a73b5b3d247d","t":"T3","s":59.83,"e":1,"x":"Extérieur"},{"i":"ad053eb3e27b","t":"T3","s":59.83,"e":3,"x":"Extérieur"},{"i":"d55b5c4554f4","t":"T3","s":59.83,"e":5,"x":"Extérieur"},{"i":"6e4bc4d6a1a6","t":"T3","s":60.99,"e":3,"x":"Extérieur"},{"i":"9aedd319330e","t":"T3","s":61.04,"e":0,"x":"Extérieur"},{"i":"3fc59c72a7f2","t":"T3","s":61.35,"e":2,"x":"Extérieur"},{"i":"658d998feaea","t":"T3","s":61.35,"e":3,"x":"Extérieur"},{"i":"d7c56c4d15de","t":"T3","s":61.35,"e":1,"x":"Extérieur"},{"i":"e167cbb34902","t":"T3","s":62.16,"e":0,"x":"Extérieur"},{"i":"99c38c13f032","t":"T3","s":65.71,"e":5,"x":"Extérieur"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=8411913833" defer></script>
+<script src="/neuf/programme.js?v=05397589a0" defer></script>
 
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};

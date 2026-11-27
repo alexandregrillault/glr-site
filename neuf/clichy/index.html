@@ -86,8 +86,18 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
 .immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
+[hidden]{display:none!important}
+.onglets3d{display:flex;gap:8px;padding:10px;width:100%;box-sizing:border-box}
+.onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
+.planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.planbox img{display:block;width:100%;height:auto;margin:0 auto}
+.planbox img:not([src]){display:none}
+.planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
+.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
-.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:0;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
 @media(max-width:560px){.lien-visite{display:block;margin:6px 0 0;white-space:nowrap}table.lots td.plan{white-space:normal}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
@@ -392,7 +402,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"clichy","villes":[{"v":"Clichy","s":"clichy","cp":"92110","i":"92024","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.3138,48.914],[2.3145,48.9131],[2.3156,48.9116],[2.316,48.9111],[2.3166,48.9103],[2.3163,48.9102],[2.3168,48.9096],[2.3183,48.9081],[2.3184,48.908],[2.318,48.9079],[2.3185,48.9072],[2.3193,48.9064],[2.3202,48.9054],[2.3209,48.9047],[2.3209,48.9046],[2.3206,48.9037],[2.3205,48.9035],[2.3202,48.9029],[2.3196,48.9014],[2.3199,48.9005],[2.3185,48.8996],[2.3125,48.8978],[2.3123,48.8977],[2.3107,48.8971],[2.3077,48.896],[2.3057,48.8951],[2.3038,48.8942],[2.301,48.8958],[2.2993,48.8968],[2.2982,48.8975],[2.2953,48.8991],[2.2939,48.8999],[2.2929,48.9005],[2.2874,48.9036],[2.2878,48.9038],[2.2889,48.9044],[2.2903,48.9051],[2.2923,48.906],[2.2932,48.9066],[2.2936,48.907],[2.294,48.9075],[2.2944,48.9077],[2.2951,48.9082],[2.2968,48.9091],[2.2982,48.9097],[2.3006,48.9106],[2.3013,48.9109],[2.3023,48.9112],[2.3042,48.9115],[2.3075,48.9122],[2.3091,48.9126],[2.3105,48.913],[2.3117,48.9134],[2.3138,48.914]]]}},"r":"5 programmes · 76 logements disponibles","p":[{"n":"Nexus-clichy","s":"nexus-clichy","k":false,"a":48.904,"o":2.304,"z":false,"u":"clichy/nexus-clichy/","l":"Livré","d":"1 logement disponible"},{"n":"Topaze","s":"topaze","k":false,"a":48.905,"o":2.3,"z":false,"u":"clichy/topaze/","l":"1er trimestre 2027","d":"3 logements disponibles"},{"n":"Carré Martre","s":"carre-martre","k":false,"a":48.899,"o":2.311,"z":false,"u":"clichy/carre-martre/","l":"1er trimestre 2028","d":"40 logements disponibles"},{"n":"Le 107","s":"le-107","k":false,"a":48.902,"o":2.317,"z":false,"u":"clichy/le-107/","l":"2e trimestre 2028","d":"4 logements disponibles"},{"n":"Latitude Seine","s":"latitude-seine","k":false,"a":48.905,"o":2.298,"z":false,"u":"clichy/latitude-seine/","l":"2e trimestre 2029","d":"28 logements disponibles"},{"n":"Les Terrasses Vendôme","s":"les-terrasses-vendome","k":true,"a":48.904,"o":2.304,"z":true,"u":"clichy/les-terrasses-vendome/","l":"","d":"Grille sur demande"},{"n":"Rendez-vous le 4 décembre","s":"rendez-vous-le-4-decembre","k":true,"a":48.904,"o":2.304,"z":true,"u":"clichy/rendez-vous-le-4-decembre/","l":"","d":"Grille sur demande"},{"n":"Impasse du Parc","s":"impasse-du-parc","k":true,"a":48.904,"o":2.304,"z":true,"u":"clichy/impasse-du-parc/","l":"","d":"Grille sur demande"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8411913833"></script>
+<script type="module" src="/neuf/carte.js?v=05397589a0"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

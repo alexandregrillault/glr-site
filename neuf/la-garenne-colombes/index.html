@@ -86,8 +86,18 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
 .immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
+[hidden]{display:none!important}
+.onglets3d{display:flex;gap:8px;padding:10px;width:100%;box-sizing:border-box}
+.onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
+.planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.planbox img{display:block;width:100%;height:auto;margin:0 auto}
+.planbox img:not([src]){display:none}
+.planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
+.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
-.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:0;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
 @media(max-width:560px){.lien-visite{display:block;margin:6px 0 0;white-space:nowrap}table.lots td.plan{white-space:normal}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
@@ -337,7 +347,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"la-garenne-colombes","villes":[{"v":"La Garenne-Colombes","s":"la-garenne-colombes","cp":"92250","i":"92035","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.2291,48.906],[2.2324,48.9069],[2.2349,48.9076],[2.2372,48.9086],[2.2374,48.9087],[2.2395,48.9094],[2.2402,48.9096],[2.2419,48.9101],[2.2419,48.9102],[2.2442,48.9109],[2.2443,48.9109],[2.2455,48.9114],[2.2468,48.9118],[2.2474,48.912],[2.2499,48.9127],[2.2514,48.913],[2.2523,48.9132],[2.2531,48.9133],[2.2555,48.9136],[2.2561,48.9136],[2.2565,48.9136],[2.2574,48.9136],[2.2579,48.9135],[2.2578,48.9129],[2.2579,48.9129],[2.2577,48.9115],[2.2577,48.9109],[2.257,48.9109],[2.2578,48.9081],[2.2582,48.9061],[2.258,48.906],[2.2571,48.9058],[2.2563,48.9055],[2.2558,48.9054],[2.2559,48.9045],[2.2551,48.9043],[2.2532,48.9037],[2.2523,48.9034],[2.2512,48.9032],[2.2497,48.9028],[2.2493,48.9027],[2.2483,48.9024],[2.2469,48.9021],[2.2465,48.902],[2.2462,48.9022],[2.2459,48.9026],[2.2457,48.903],[2.2445,48.9027],[2.2434,48.9024],[2.2432,48.9024],[2.243,48.9023],[2.2426,48.9028],[2.2413,48.9025],[2.2395,48.9022],[2.2393,48.9022],[2.2387,48.9021],[2.2374,48.9018],[2.2347,48.9013],[2.2316,48.9007],[2.2319,48.9009],[2.2306,48.9033],[2.2304,48.9038],[2.2291,48.906]]]}},"r":"1 programme · 7 logements disponibles","p":[{"n":"Signature","s":"signature","k":false,"a":48.905,"o":2.235,"z":false,"u":"la-garenne-colombes/signature/","l":"2e trimestre 2028","d":"7 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=8411913833"></script>
+<script type="module" src="/neuf/carte.js?v=05397589a0"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

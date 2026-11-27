@@ -124,8 +124,18 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
 .immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
 .immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
+[hidden]{display:none!important}
+.onglets3d{display:flex;gap:8px;padding:10px;width:100%;box-sizing:border-box}
+.onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
+.planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.planbox img{display:block;width:100%;height:auto;margin:0 auto}
+.planbox img:not([src]){display:none}
+.planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
+.immeuble3d.plan-seul{margin:1.2rem 0;padding:10px}
+.immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
-.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:0;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
 @media(max-width:560px){.lien-visite{display:block;margin:6px 0 0;white-space:nowrap}table.lots td.plan{white-space:normal}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
@@ -498,9 +508,19 @@ function pageProgramme(d, p) {
   const ss = (p.logements || []).map(l => l.surface).filter(x => x != null);
   const surfaces = ss.length ? (Math.round(Math.min(...ss)) === Math.round(Math.max(...ss)) ? Math.round(ss[0]) + '\u00a0m²' : Math.round(Math.min(...ss)) + ' à ' + Math.round(Math.max(...ss)) + '\u00a0m²') : '';
   const etage = e => e == null ? 'non précisé' : e === 0 ? 'RDC' : e + (e === 1 ? 'er' : 'e');
+  const plan2d = (p.logements || []).some(l => l.p2d && l.id); // au moins un logement a un plan du promoteur (jamais d'adresse : seulement ce drapeau)
+  const acces = !!p.visite_3d || plan2d; // formulaire d'accès à la place de « appelez-nous »
+  const idsPlan = (p.logements || []).filter(l => l.p2d && l.id).map(l => l.id).join(',');
+  const zoneDocs = mode => `<div class="immeuble3d${mode === 'plan' ? ' plan-seul' : ''}" id="visite3d" data-mode="${mode}" data-p="${esc(p.pige_id || '')}" data-lots="${esc((p.logements || []).filter(l => l.v3d && l.id).map(l => l.id).join(','))}" data-plans="${esc(idsPlan)}"${mode === 'plan' ? ' hidden' : ''}>
+      <div class="onglets3d" hidden><button type="button" data-onglet="visite" aria-pressed="true">Visite 3D</button><button type="button" data-onglet="plan" aria-pressed="false">Plan du promoteur</button></div>
+      <p class="etat3d" hidden></p>
+      <iframe title="${mode === 'plan' ? 'Plan' : 'Visite 3D'} de ${esc(p.nom)}" allow="fullscreen"></iframe>
+      <div class="planbox" hidden><img alt="Plan du logement"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan</a></div>
+      ${mode === 'plan' ? '<button type="button" class="ferme3d">Fermer le plan</button>' : '<button type="button" class="charger3d" data-3d="immeuble">Voir l’immeuble en 3D</button>'}
+    </div>`;
   const tableau = t => `<section class="typo"><h3>${esc(t)} · ${pluriel(groupes[t].length, 'logement', 'logements')}</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  ${groupes[t].sort((a, b) => (a.surface || 0) - (b.surface || 0)).map(l => `<tr id="l-${esc(l.id == null ? '' : l.id)}"><td>${l.surface != null ? nb(l.surface) + '\u00a0m²' : '—'}</td><td>${etage(l.etage)}</td><td>${esc(l.exterieur || '—')}</td><td class="prix-lot" data-lot="${esc(l.id == null ? '' : l.id)}" data-s="${l.surface || ''}">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a>${p.visite_3d && l.v3d && l.id ? `<button type="button" class="lien-visite" data-3d="${esc(l.id)}">Visite 3D</button>` : ''}</td></tr>`).join('\n  ')}
+  ${groupes[t].sort((a, b) => (a.surface || 0) - (b.surface || 0)).map(l => `<tr id="l-${esc(l.id == null ? '' : l.id)}"><td>${l.surface != null ? nb(l.surface) + '\u00a0m²' : '—'}</td><td>${etage(l.etage)}</td><td>${esc(l.exterieur || '—')}</td><td class="prix-lot" data-lot="${esc(l.id == null ? '' : l.id)}" data-s="${l.surface || ''}">…</td><td class="plan">${p.visite_3d && l.v3d && l.id ? `<button type="button" class="lien-visite" data-3d="${esc(l.id)}">Visite 3D</button>` : l.p2d && l.id ? `<button type="button" class="lien-visite" data-plan="${esc(l.id)}">Plan</button>` : acces ? '' : '<a href="#compte"><span class="long">Voir le </span>plan</a>'}</td></tr>`).join('\n  ')}
   </tbody></table></section>`;
   return `${tete({ titre, description, url, test: d.test })}
 <main class="page-prog">
@@ -521,13 +541,9 @@ function pageProgramme(d, p) {
     ${surfaces ? `<div class="repere-cle"><b>${surfaces}</b><span>surfaces disponibles</span></div>` : ''}
     ${p.gare ? `<div class="repere-cle"><b>${p.gare_minutes_a_pied ? p.gare_minutes_a_pied + ' min' : 'À côté'}</b><span>à pied ${esc(deGare(p.gare))}</span></div>` : ''}
   </div>
-  ${typos.length ? `<section class="immeuble" id="immeuble">
+  ${typos.length ? `${plan2d && !p.visite_3d ? '<div class="vue-plan">' + zoneDocs('plan') + '</div>' : ''}<section class="immeuble" id="immeuble">
    ${p.visite_3d ? `<div class="vue vue3d">
-    <div class="immeuble3d" id="visite3d" data-p="${esc(p.pige_id || '')}" data-lots="${esc((p.logements || []).filter(l => l.v3d && l.id).map(l => l.id).join(','))}">
-      <p class="etat3d" hidden></p>
-      <iframe title="Visite 3D de ${esc(p.nom)}" allow="fullscreen"></iframe>
-      <button type="button" class="charger3d" data-3d="immeuble">Voir l’immeuble en 3D</button>
-    </div>
+    ${zoneDocs('3d')}
     <p class="note">Visite 3D réalisée à partir des plans du promoteur : touchez un étage, puis un logement pour le visiter. Les plans des logements demandent un compte, créé en une minute.</p>
    </div>` : ''}
    ${p.visite_3d ? `   <div class="vue" id="secours3d" hidden>
@@ -566,9 +582,9 @@ function pageProgramme(d, p) {
    </div>
   </section>
   ${p.image ? `<figure class="perspective"><img src="${esc(p.image)}" alt="Perspective de ${esc(p.nom)}" loading="lazy"><figcaption>Perspective du promoteur, non contractuelle.</figcaption></figure>` : ''}` : `<h2>Les logements</h2><p>La grille de ce programme est envoyée sur demande.</p>`}
-${p.visite_3d ? `<section class="appel" id="compte">
-    <h2>Voir les plans et la visite 3D</h2>
-    <p>Créez votre accès en une minute : vous voyez les plans de ces logements et la visite en 3D. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
+${acces ? `<section class="appel" id="compte">
+    <h2>${p.visite_3d ? 'Voir les plans et la visite 3D' : 'Voir les plans de ces logements'}</h2>
+    <p>Créez votre accès en une minute : ${p.visite_3d ? 'vous voyez les plans de ces logements et la visite en 3D' : 'vous voyez les plans de ces logements'}. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="${esc(p.nom)}" data-ville="${esc(d.ville)}">
       <label>Prénom<input name="prenom" autocomplete="given-name" maxlength="80" required></label>
       <label>Téléphone<input name="telephone" type="tel" autocomplete="tel" maxlength="30" required></label>
@@ -577,7 +593,7 @@ ${p.visite_3d ? `<section class="appel" id="compte">
       <p class="erreur3d" id="f3d-err" role="alert"></p>
       <button type="submit" class="plein">Créer mon accès</button>
     </form>
-    <div id="f3d-ok" class="ok3d" hidden><p>Votre accès est créé : vous pouvez voir les plans et la visite 3D de ce programme.</p><button type="button" class="plein" data-3d="immeuble">Voir l’immeuble en 3D</button></div>
+    <div id="f3d-ok" class="ok3d" hidden>${p.visite_3d ? '<p>Votre accès est créé : vous pouvez voir les plans et la visite 3D de ce programme.</p><button type="button" class="plein" data-3d="immeuble">Voir l’immeuble en 3D</button>' : '<p>Votre accès est créé : touchez « Plan » sur un logement pour voir son plan.</p>'}</div>
     <div class="boutons"><a class="creux" href="tel:${CONTACT.tel}">Appeler le ${CONTACT.telAffiche}</a><a class="creux" href="mailto:${CONTACT.mail}?subject=${encodeURIComponent('Plans de ' + p.nom + ' à ' + d.ville)}">Écrire un e-mail</a></div>
   </section>` : `  <section class="appel" id="compte">
     <h2>Voir les plans de ces logements</h2>
@@ -591,7 +607,7 @@ ${pied}
 ${typos.length ? `${`<script type="application/json" id="logements-data">${JSON.stringify((p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? null : l.etage, x: l.exterieur || '' }))).replace(/</g, '\\u003c')}</script>`}
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 ${p.visite_3d ? '' : '<script src="/neuf/programme.js?v=' + VERSION_JS + '" defer></script>'}
-${p.visite_3d ? '<script src="/neuf/visite3d.js?v=' + VERSION_JS + '" defer></script>' : ''}
+${acces ? '<script src="/neuf/visite3d.js?v=' + VERSION_JS + '" defer></script>' : ''}
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+'\u00a0€'};
 var poser=function(j){j=j||{};var a=j.prix||{},b=j.prix_tva_reduite||{};window.GLR_PRIX=a;window.GLR_PRIX_R=b;var deux=false;
