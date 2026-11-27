@@ -1,0 +1,82 @@
+{
+  "cp": "78390",
+  "maj": "2026-11-27",
+  "dept": "78",
+  "slug": "bois-d-arcy",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "78073",
+  "ville": "Bois-d'Arcy",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2026": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 0,
+      "T3": 0,
+      "T4": 1,
+      "T5+": 1
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 2
+  },
+  "dept_nom": "Yvelines",
+  "programmes": [
+    {
+      "nom": "Agora",
+      "gare": "Fontenay-le-Fleury (ligne N)",
+      "slug": "agora",
+      "image": null,
+      "picking": false,
+      "pige_id": "e983f8927112",
+      "position": {
+        "approx": false,
+        "latitude": 48.801,
+        "longitude": 2.031
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2026",
+      "logements": [
+        {
+          "id": "df3690475db8",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 86.05,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "1fa79284ec9a",
+          "typo": "T5+",
+          "etage": null,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 111.4,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2026-4",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 13
+    }
+  ]
+}

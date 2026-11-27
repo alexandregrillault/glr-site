@@ -1,0 +1,160 @@
+{
+  "cp": "78630",
+  "maj": "2026-11-27",
+  "dept": "78",
+  "slug": "orgeval",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "78466",
+  "ville": "Orgeval",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2030": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 3,
+      "T3": 1,
+      "T4": 4,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 8
+  },
+  "dept_nom": "Yvelines",
+  "programmes": [
+    {
+      "nom": "Les Jardins Foch",
+      "gare": "Villennes-sur-Seine (ligne J)",
+      "slug": "les-jardins-foch",
+      "image": null,
+      "picking": false,
+      "pige_id": "4db4b615683d",
+      "position": {
+        "approx": false,
+        "latitude": 48.92,
+        "longitude": 1.978
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2030",
+      "logements": [
+        {
+          "id": "3b0f0daaa6a3",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 37.9,
+          "exterieur": null
+        },
+        {
+          "id": "0c0d3f68ed39",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.11,
+          "exterieur": null
+        },
+        {
+          "id": "774fca45756c",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 46.25,
+          "exterieur": null
+        },
+        {
+          "id": "b6e0f031e23d",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.29,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "1da423504f8e",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 77.21,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "1df2c65ddd45",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 77.21,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "e43389b98026",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 87.44,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "99559541da1b",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 93.57,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [
+        "BRS"
+      ],
+      "livraison_cle": "2030-1",
+      "nb_lots_libres": 8,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 34
+    },
+    {
+      "nom": "L'Orée du Château",
+      "gare": "Villennes-sur-Seine (ligne J)",
+      "slug": "l-oree-du-chateau",
+      "image": null,
+      "picking": true,
+      "pige_id": "1780e0de7110",
+      "position": {
+        "approx": true,
+        "latitude": 48.919,
+        "longitude": 1.97
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 40
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "cp": "78110",
+  "maj": "2026-11-27",
+  "dept": "78",
+  "slug": "le-vesinet",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "78650",
+  "ville": "Le Vésinet",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 0,
+      "T3": 2,
+      "T4": 0,
+      "T5+": 2
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 4
+  },
+  "dept_nom": "Yvelines",
+  "programmes": [
+    {
+      "nom": "Résidence Sainte marguerite",
+      "gare": "Le Vésinet Centre (RER A)",
+      "slug": "residence-sainte-marguerite",
+      "image": null,
+      "picking": false,
+      "pige_id": "b5adb372e30e",
+      "position": {
+        "approx": false,
+        "latitude": 48.893,
+        "longitude": 2.135
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "logements": [
+        {
+          "id": "458220555598",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.75,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "650e61096814",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.05,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "f3ec80ba7f15",
+          "typo": "T5+",
+          "etage": 1,
+          "pieces": 5,
+          "statut": "option",
+          "surface": 131.4,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "496ab72a5211",
+          "typo": "T5+",
+          "etage": 4,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 139.5,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3",
+        "T5+"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-1",
+      "nb_lots_libres": 4,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 4
+    }
+  ]
+}

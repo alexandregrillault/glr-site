@@ -1,0 +1,108 @@
+{
+  "cp": "78114",
+  "maj": "2026-11-27",
+  "dept": "78",
+  "slug": "magny-les-hameaux",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "78356",
+  "ville": "Magny-les-Hameaux",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 1,
+      "T3": 1,
+      "T4": 3,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 5
+  },
+  "dept_nom": "Yvelines",
+  "programmes": [
+    {
+      "nom": "Les Hameaux de Magny",
+      "gare": "Saint-Rémy-lès-Chevreuse (RER B)",
+      "slug": "les-hameaux-de-magny",
+      "image": null,
+      "picking": false,
+      "pige_id": "10460b31a4ef",
+      "position": {
+        "approx": false,
+        "latitude": 48.729,
+        "longitude": 2.077
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "logements": [
+        {
+          "id": "66d20c8ce0d0",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 55.5,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "9252e4709eaf",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 75.3,
+          "exterieur": null
+        },
+        {
+          "id": "0e91551d99c4",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 76.9,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "ca54eeb13898",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 78.6,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "3e236791f9f0",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 86.4,
+          "exterieur": "Jardin"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-1",
+      "nb_lots_libres": 5,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 37
+    }
+  ]
+}

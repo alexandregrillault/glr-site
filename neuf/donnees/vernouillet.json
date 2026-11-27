@@ -1,0 +1,114 @@
+{
+  "cp": "78540",
+  "maj": "2026-11-27",
+  "dept": "78",
+  "slug": "vernouillet",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "78643",
+  "ville": "Vernouillet",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {},
+    "typologies": {
+      "T1": 0,
+      "T2": 0,
+      "T3": 3,
+      "T4": 3,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 6
+  },
+  "dept_nom": "Yvelines",
+  "programmes": [
+    {
+      "nom": "Nexus-vernouillet",
+      "gare": "Vernouillet - Verneuil (ligne J)",
+      "slug": "nexus-vernouillet",
+      "image": null,
+      "picking": false,
+      "pige_id": "c421a5d62d69",
+      "position": {
+        "approx": false,
+        "latitude": 48.975,
+        "longitude": 1.987
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "07e7a7e9133a",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61.75,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "b4a0f7c8b319",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61.98,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "5cf036c0ac03",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.35,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "50e99bc65f31",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 76.63,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "735bf8f20133",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 76.63,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "461c948d6eb8",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 76.87,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2023-2",
+      "nb_lots_libres": 6,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 10
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "cp": "78260",
+  "maj": "2026-11-27",
+  "dept": "78",
+  "slug": "acheres",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": true
+  },
+  "insee": "78005",
+  "ville": "Achères",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {},
+    "typologies": {
+      "T1": 1,
+      "T2": 2,
+      "T3": 2,
+      "T4": 1,
+      "T5+": 2
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 2,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 8
+  },
+  "dept_nom": "Yvelines",
+  "programmes": [
+    {
+      "nom": "Les jardins de Gaia",
+      "gare": "Achères Ville (RER A)",
+      "slug": "les-jardins-de-gaia",
+      "image": null,
+      "picking": false,
+      "pige_id": "14875f6435b4",
+      "position": {
+        "approx": false,
+        "latitude": 48.963,
+        "longitude": 2.071
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "bf6fe57afc57",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 43.5,
+          "exterieur": null
+        },
+        {
+          "id": "249540849645",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.5,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "b94697282762",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 8,
+          "statut": "libre",
+          "surface": 186.5,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T5+"
+      ],
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2026-1",
+      "nb_lots_libres": 3,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 13
+    },
+    {
+      "nom": "Nouvelle résidence",
+      "gare": "Achères Ville (RER A)",
+      "slug": "nouvelle-residence",
+      "image": null,
+      "picking": false,
+      "pige_id": "af613e008a24",
+      "position": {
+        "approx": false,
+        "latitude": 48.954,
+        "longitude": 2.064
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [
+        {
+          "id": "4c8f8f52a86e",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 35.78,
+          "exterieur": null
+        },
+        {
+          "id": "8555366963d2",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 38.57,
+          "exterieur": null
+        },
+        {
+          "id": "e92cc2d79f18",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 55.91,
+          "exterieur": null
+        },
+        {
+          "id": "d1aaf34fe8b6",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 76.91,
+          "exterieur": null
+        },
+        {
+          "id": "8f9348bf6ee5",
+          "typo": "T5+",
+          "etage": 4,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 96.81,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": null,
+      "nb_lots_libres": 5,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 27
+    }
+  ]
+}

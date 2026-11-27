@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Villas Gassicourt à Mantes-la-Jolie — programme neuf | GLR Immobilier</title>
+<meta name="description" content="Villas Gassicourt, programme neuf à Mantes-la-Jolie (78200). 44 logements disponibles. Plans envoyés par GLR Immobilier.">
+<link rel="canonical" href="https://www.glrimmobilier.com/neuf/mantes-la-jolie/villas-gassicourt/">
+<meta property="og:title" content="Villas Gassicourt à Mantes-la-Jolie — programme neuf | GLR Immobilier">
+<meta property="og:description" content="Villas Gassicourt, programme neuf à Mantes-la-Jolie (78200). 44 logements disponibles. Plans envoyés par GLR Immobilier.">
+<meta property="og:url" content="https://www.glrimmobilier.com/neuf/mantes-la-jolie/villas-gassicourt/">
+<meta property="og:image" content="https://www.glrimmobilier.com/logo-glr.png">
+<link rel="icon" type="image/png" href="/logo-glr.png">
+<meta name="theme-color" content="#F4F0E8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Archivo:wght@400;500;600&display=swap">
+<style>
+/* Fondu enchaîné entre deux pages du site (de la carte à l'immeuble) : pas d'écran vide */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.7s;animation-timing-function:ease-in-out}
+/* le cadre de la carte se transforme en cadre de l'immeuble (même élément d'une page à l'autre) */
+#carte,#imm3d{view-transition-name:scene}
+::view-transition-group(scene){animation-duration:.8s;animation-timing-function:cubic-bezier(.4,0,.2,1)}
+::view-transition-old(scene),::view-transition-new(scene){animation-duration:.8s;height:100%;object-fit:cover}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+
+:root{color-scheme:light;--bleu:#005875;--laiton:#B0894C;--laiton-texte:#8A6A2F;--fond:#F4F0E8;--carte:#FBF8F1;--texte:#161A1E;--discret:#616B75;--trait:#D8D2C5;--teinte:#DCE7EC;
+  --display:"Bodoni Moda","Didot","Times New Roman",serif;--body:"Archivo","Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fond);color:var(--texte);font-family:var(--body);font-size:16px;line-height:1.6}
+a{color:var(--bleu)}
+.test{background:#FFF3CD;color:#5C4400;text-align:center;font-size:.85rem;padding:6px 16px;border-bottom:1px solid #E8D48A}
+header{padding:18px 16px;border-bottom:1px solid var(--trait);display:flex;align-items:center;justify-content:space-between;gap:12px}
+header img{display:block;height:48px;width:auto}
+header .tel{font-size:.9rem;font-weight:600;text-decoration:none;white-space:nowrap}
+main{max-width:1040px;margin:0 auto;padding:28px 16px 56px}
+.fil{font-size:.82rem;color:var(--discret);margin:0 0 14px}
+.fil a{color:var(--discret)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(1.9rem,6vw,2.8rem);line-height:1.12;margin:0 0 .5rem}
+.chapo{color:var(--discret);margin:0 0 1.4rem;max-width:720px}
+.filet{width:56px;height:2px;background:var(--laiton);margin:0 0 1.2rem;border:0}
+h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 .9rem;scroll-margin-top:12px}
+.chiffres{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1rem}
+.chiffre{background:var(--carte);border:1px solid var(--trait);border-radius:8px;padding:14px}
+.chiffre b{display:block;font-family:var(--display);font-weight:500;font-size:1.7rem;color:var(--bleu);line-height:1.1}
+.chiffre span{font-size:.85rem;color:var(--discret)}
+.deux{display:grid;gap:12px}
+.bloc{background:var(--carte);border:1px solid var(--trait);border-radius:8px;padding:16px}
+.bloc h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--laiton-texte);margin:0 0 .7rem;font-weight:600}
+.barre{display:grid;grid-template-columns:44px 1fr 44px;align-items:center;gap:8px;font-size:.9rem;margin:6px 0}
+.barre i{display:block;height:10px;border-radius:5px;background:var(--teinte);overflow:hidden}
+.barre i s{display:block;height:100%;background:var(--bleu);text-decoration:none}
+.barre em{font-style:normal;text-align:right;color:var(--discret)}
+.guide p{margin:0 0 .8rem}
+.guide ul{margin:0 0 .8rem;padding-left:1.1rem}
+.filtres{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.filtres button{font:inherit;font-size:.9rem;padding:8px 14px;border-radius:20px;border:1px solid var(--trait);background:var(--carte);color:var(--texte);cursor:pointer}
+.filtres button[aria-pressed=true]{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.liste{display:grid;gap:12px}
+.prog{background:var(--carte);border:1px solid var(--trait);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.prog h3{font-family:var(--display);font-weight:500;font-size:1.25rem;margin:0;line-height:1.2}
+.prog .qui{font-size:.88rem;color:var(--discret);margin:0}
+.prog dl{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;margin:0;font-size:.92rem}
+.prog dt{color:var(--discret)}
+.prog dd{margin:0}
+.puces{display:flex;flex-wrap:wrap;gap:6px}
+.puce{font-size:.8rem;padding:3px 9px;border-radius:12px;background:var(--teinte);color:var(--bleu);font-weight:600}
+.puce.laiton{background:transparent;border:1px solid var(--laiton);color:var(--laiton-texte)}
+.prog .bas{margin-top:auto;display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding-top:8px;border-top:1px solid var(--trait)}
+.prog .prix{font-weight:600}
+.prog .prix small{display:block;font-weight:400;font-size:.78rem;color:var(--discret)}
+.prog .dispo{font-size:.88rem;color:var(--bleu);font-weight:600;white-space:nowrap}
+.vide{display:none;color:var(--discret);padding:12px 0}
+.appel{background:var(--bleu);color:#fff;border-radius:10px;padding:22px 18px;margin:2.4rem 0 0}
+.appel h2{color:#fff;margin:0 0 .5rem}
+.appel p{margin:0 0 1rem;color:var(--teinte)}
+.appel .boutons{display:flex;flex-wrap:wrap;gap:10px}
+.appel a{display:inline-block;padding:12px 18px;border-radius:6px;font-weight:600;text-decoration:none}
+.appel a.plein{background:#fff;color:var(--bleu)}
+.appel a.creux{border:1px solid #fff;color:#fff}
+.immeuble3d{position:relative;min-height:260px;background:var(--carte);border:1px solid var(--trait);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.immeuble3d iframe{display:block;width:100%;height:min(78vh,720px);border:0;background:var(--carte)}
+.immeuble3d iframe:not([src]){display:none}
+.immeuble3d .etat3d{margin:0 0 12px;padding:0 14px;text-align:center;color:var(--discret)}
+.immeuble3d .charger3d{margin:10px 0;border:0;background:var(--bleu);color:#fff;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
+.immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
+button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
+.lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
+.visite3d[hidden]{display:none}
+.visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.visite3d h2{margin:0;font-size:1.2rem}
+.visite3d .ferme3d{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.visite3d .etat3d{margin:0 0 10px;color:var(--discret)}
+.visite3d iframe{display:block;width:100%;height:min(78vh,720px);border:1px solid var(--trait);border-radius:8px;background:#fff}
+.form3d{display:grid;gap:10px;margin:0 0 1rem;max-width:460px}
+.form3d label{display:grid;gap:4px;color:#fff;font-weight:600}
+.form3d input:not([type=checkbox]){padding:11px 12px;border:0;border-radius:6px;font:inherit;color:#161A1E;background:#fff}
+.form3d .accord{display:flex;gap:10px;align-items:flex-start;font-weight:400;color:var(--teinte)}
+.form3d .accord input{margin-top:4px;flex:none}
+.form3d .piege{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.form3d .erreur3d{margin:0;color:#fff;font-weight:600;min-height:1.2em}
+.form3d button.plein{justify-self:start;background:#fff;color:var(--bleu);border:0;border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer}
+.carte{height:420px;border-radius:8px;border:1px solid var(--trait);margin:0 0 .6rem;z-index:0}
+.carte-zone{position:relative}
+.maplibregl-map{font-family:var(--body);border-radius:8px}
+.maplibregl-ctrl-attrib{font-size:10px;background:rgba(251,248,241,.85)!important}
+button.repere{padding:0;cursor:pointer;display:block}
+button.repere.approx{background:#fff;border:3px dashed var(--bleu);box-sizing:border-box}
+button.repere.approx.picking{border-color:var(--laiton)}
+.fil-carte{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:.5rem 0 0;font-size:.92rem;color:var(--discret);min-height:2.2em}
+.boutons-carte{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.fil-carte b{color:var(--bleu);font-weight:600}
+.fil-carte button{font:inherit;font-size:.85rem;background:transparent;border:1px solid var(--trait);border-radius:6px;padding:6px 10px;color:var(--texte);cursor:pointer;white-space:nowrap}
+.etiquette-prog{background:#005875;color:#fff;font-family:var(--display);font-size:1rem;font-weight:500;padding:5px 12px;border-radius:6px;white-space:nowrap;box-shadow:0 3px 10px rgba(22,26,30,.25);animation:nait .5s cubic-bezier(.3,1.5,.5,1) 1.8s both;pointer-events:none}
+.etiquette-prog::after{content:"";position:absolute;left:50%;top:100%;margin-left:-6px;border:6px solid transparent;border-top-color:#005875}
+.num-dep{font-family:var(--body);font-weight:600;font-size:1.05rem;color:#6E7884;text-shadow:0 0 4px #fff,0 0 8px #fff;pointer-events:none}
+button.repere.pop{animation:pop .55s cubic-bezier(.3,1.6,.5,1) both}
+button.repere{overflow:visible} /* surtout pas de position ici : la carte place elle-même chaque repère */
+button.repere.nait{animation:nait .7s cubic-bezier(.3,1.5,.5,1) .25s both}
+button.repere.nait::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;border:2px solid currentColor;color:var(--bleu);animation:onde 1.1s ease-out both;pointer-events:none}
+button.repere.picking.nait::after{color:var(--laiton)}
+@keyframes nait{from{scale:0;opacity:0}to{scale:1;opacity:1}}
+@keyframes onde{from{scale:.4;opacity:.9}to{scale:4.5;opacity:0}}
+.lieu{width:30px;height:30px;border-radius:50%;background:#fff;border:2px solid var(--trait);display:grid;place-items:center;box-shadow:0 2px 6px rgba(22,26,30,.2);animation:nait .5s cubic-bezier(.3,1.5,.5,1) both}
+.lieu svg{width:17px;height:17px}
+.lieu.petit{width:22px;height:22px;border-width:1.5px;box-shadow:0 1px 3px rgba(22,26,30,.18)}.lieu.petit svg{width:12px;height:12px}
+.lieu .nom{position:absolute;left:100%;top:50%;translate:5px -50%;white-space:nowrap;font-family:var(--body);font-size:.72rem;font-weight:600;color:#005875;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 5px #fff;pointer-events:none}
+.lieu.transport{color:#005875;border-color:#005875}.lieu.ecole{color:#8A6A2F;border-color:#B0894C}.lieu.commerce{color:#616B75;border-color:#9AA3AC}
+.proches{list-style:none;margin:2px 0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:.86rem;color:var(--texte)}
+.proches li{line-height:1.45}.proches small{color:var(--discret)}
+.lieu-mini{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;border:1.5px solid currentColor;margin-right:6px;vertical-align:-5px}
+.lieu-mini svg{width:12px;height:12px}.lieu-mini.transport{color:#005875}.lieu-mini.ecole{color:#8A6A2F}.lieu-mini.commerce{color:#616B75}
+@keyframes pop{from{scale:0;opacity:0}to{scale:1;opacity:1}}
+button.repere:hover{scale:1.25;transition:scale .15s}
+.panneau{position:static;margin:.6rem 0 0;background:var(--carte);border:1px solid var(--trait);border-top:3px solid var(--laiton);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.panneau[hidden]{display:none}
+.panneau .titre{font-family:var(--display);font-weight:500;font-size:1.25rem;color:var(--bleu)}
+.panneau .sous{font-size:.88rem;color:var(--discret)}
+.panneau .heure{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--discret)}
+.panneau .heure input{flex:1;accent-color:#B0894C}
+.panneau .heure output{min-width:70px;text-align:right;color:var(--laiton-texte);font-weight:600}
+.panneau .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+.panneau a.voir{background:var(--bleu);color:#fff;padding:9px 14px;border-radius:6px;font-weight:600;text-decoration:none;font-size:.92rem}
+.panneau button{font:inherit;font-size:.9rem;background:transparent;border:1px solid var(--trait);border-radius:6px;padding:8px 12px;color:var(--texte);cursor:pointer}
+.recherche{position:relative;margin:0 0 14px}
+.recherche label{display:block;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 6px}
+.recherche input{width:100%;font:inherit;font-size:1.05rem;padding:13px 14px;border:1px solid var(--trait);border-radius:8px;background:#fff;color:var(--texte)}
+.recherche input:focus{outline:2px solid var(--bleu);outline-offset:1px;border-color:var(--bleu)}
+.propositions{position:absolute;left:0;right:0;top:100%;margin:4px 0 0;padding:4px;list-style:none;background:#fff;border:1px solid var(--trait);border-radius:8px;box-shadow:0 6px 18px rgba(22,26,30,.12);z-index:1000;display:none}
+.propositions li{padding:10px 12px;border-radius:6px;cursor:pointer}
+.propositions li small{color:var(--discret);margin-left:6px}
+.propositions li[aria-selected=true],.propositions li:hover{background:var(--teinte)}
+.carte.grande{height:520px}
+@media (max-width:600px){.carte{height:460px}.carte.grande{height:480px}}
+.resume{display:none;background:var(--carte);border:1px solid var(--trait);border-left:3px solid var(--laiton);border-radius:8px;padding:14px 16px;margin:0 0 1rem}
+.resume b{font-family:var(--display);font-weight:500;font-size:1.35rem;color:var(--bleu)}
+.resume p{margin:.3rem 0 .7rem;color:var(--discret)}
+.resume a.bouton{display:inline-block;background:var(--bleu);color:#fff;padding:10px 16px;border-radius:6px;font-weight:600;text-decoration:none}
+.resume.absente{border-left-color:var(--trait)}
+.legende{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;color:var(--discret);margin:0 0 1rem}
+.legende i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:middle}
+.repere{width:18px;height:18px;border-radius:50%;background:var(--bleu);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.repere.picking{background:var(--laiton)}
+.leaflet-popup-content{font-family:var(--body);font-size:.9rem;line-height:1.45}
+.leaflet-popup-content b{font-family:var(--display);font-weight:500;font-size:1.05rem}
+.leaflet-popup-content a.voir{display:inline-block;margin-top:6px;font-weight:600}
+.typo{margin:0 0 1.4rem}
+.typo h3{font-family:var(--display);font-weight:500;font-size:1.2rem;margin:0 0 .5rem}
+table.lots{width:100%;border-collapse:collapse;background:var(--carte);border:1px solid var(--trait);border-radius:8px;overflow:hidden;font-size:.92rem}
+table.lots th{text-align:left;font-weight:600;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--laiton-texte);padding:9px 10px;border-bottom:1px solid var(--trait)}
+table.lots td{padding:9px 10px;border-bottom:1px solid var(--trait)}
+table.lots tr:last-child td{border-bottom:0}
+table.lots td.plan{text-align:right;white-space:nowrap}
+table.lots td.plan a{font-weight:600;text-decoration:none}
+table.lots td.prix-lot{font-weight:600;white-space:nowrap}
+table.lots td.prix-lot .tva{font-weight:600;color:var(--bleu)}
+table.lots td.prix-lot small{font-weight:400;font-size:.72rem;color:var(--discret)}
+@media (max-width:480px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 5px}table.lots .long{display:none}table.lots th{font-size:.7rem;letter-spacing:.02em}}
+@media (min-width:960px) and (max-width:1200px){table.lots{font-size:.86rem}table.lots th,table.lots td{padding:8px 6px}table.lots .long{display:none}table.lots th{font-size:.7rem;letter-spacing:.02em}}
+.immeuble .scene{position:relative;background:linear-gradient(#FBF8F1,#F4F0E8);border:1px solid var(--trait);border-radius:8px;padding:8px;margin:0 0 .4rem;overflow:hidden}
+.immeuble svg{display:block;width:100%;height:auto;max-height:520px}
+.immeuble .lot{cursor:pointer;transition:opacity .2s}
+.immeuble .lot.eteint{opacity:.18}
+.immeuble .lot.actif polygon{stroke:#B0894C;stroke-width:2.5}
+.fiche-lot{background:var(--carte);border:1px solid var(--trait);border-left:3px solid var(--laiton);border-radius:8px;padding:10px 14px;margin:.6rem 0 0;font-size:.92rem;color:var(--discret);min-height:3.2em}
+.fiche-lot b{color:var(--bleu)}
+.bulle{position:absolute;min-width:150px;background:#fff;border:1px solid var(--trait);border-top:3px solid var(--laiton);border-radius:6px;padding:8px 10px;font-size:.88rem;line-height:1.4;box-shadow:0 6px 18px rgba(22,26,30,.15);pointer-events:none}
+.bulle b{color:var(--bleu)}
+.bulle a{pointer-events:auto;font-weight:600}
+tr.vise td{background:var(--teinte)}
+.legende-typo{display:flex;flex-wrap:wrap;gap:12px;font-size:.8rem;color:var(--discret);margin:0 0 .4rem}
+.legende-typo i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:5px;vertical-align:middle}
+.page-prog{max-width:1240px}
+.hero{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:0 0 1.2rem}
+.hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
+.hero .chapo{margin:0 0 .9rem}
+.hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
+.retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
+.reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
+.repere-cle{background:var(--carte);border:1px solid var(--trait);border-radius:8px;padding:13px 14px}
+.repere-cle b{display:block;font-family:var(--display);font-weight:500;font-size:1.45rem;color:var(--bleu);line-height:1.15}
+.repere-cle span{font-size:.84rem;color:var(--discret)}
+.titre-listes{font-family:var(--display);font-weight:500;font-size:1.35rem;margin:0 0 .7rem}
+.immeuble .listes .typo h3{font-size:1.02rem}
+.immeuble .listes{margin-top:1.4rem}
+.immeuble .vue{background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:12px}
+.onglets{display:flex;gap:4px;border-bottom:1px solid var(--trait);margin:0 0 12px}
+.onglets button{font:inherit;font-weight:600;font-size:.95rem;padding:9px 14px;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--discret);cursor:pointer;margin-bottom:-1px}
+.onglets button[aria-selected=true]{color:var(--bleu);border-bottom-color:var(--laiton)}
+.plan-cadre{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:stretch}
+.etages{display:flex;flex-direction:column;gap:4px}
+.etages button{font:inherit;font-size:.82rem;font-weight:600;min-width:58px;padding:6px 8px;border:1px solid var(--trait);border-radius:6px;background:#fff;color:var(--texte);cursor:pointer;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.etages button small{font-weight:600;color:var(--bleu);background:var(--teinte);border-radius:9px;padding:0 6px;font-size:.74rem}
+.etages button.vide{color:var(--discret)}.etages button.vide small{background:transparent;color:var(--discret)}
+.etages button.tout{justify-content:center;margin-bottom:4px;border-color:var(--laiton);color:var(--laiton-texte)}
+.etages button[aria-pressed=true]{background:var(--bleu);border-color:var(--bleu);color:#fff}
+.etages button[aria-pressed=true] small{background:rgba(255,255,255,.22);color:#fff}
+.plan-dessin{min-width:0}
+.etage-titre{margin:0 0 6px;font-size:.88rem;color:var(--discret)}
+#plan{display:block;width:100%;height:auto;border-radius:8px;border:1px solid var(--trait)}
+#plan[hidden],#imm3d[hidden],.vues[hidden]{display:none}
+#plan text{font-family:var(--body);pointer-events:none}
+#plan .case{cursor:pointer;outline:none}
+#plan .case rect:first-child{transition:opacity .2s}
+#plan .case.eteinte{opacity:.22}
+#plan .case.choisie rect:first-child{stroke:#B0894C;stroke-width:.55}
+.plan-promoteur{margin:0 0 12px}.plan-promoteur img{width:100%;border-radius:8px;border:1px solid var(--trait)}.plan-promoteur figcaption{font-size:.8rem;color:var(--discret);margin-top:4px}
+.immeuble .vue .note{margin:.6rem 0 0}
+@media (min-width:700px){.reperes{grid-template-columns:repeat(4,1fr)}}
+@media (min-width:960px){
+  .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
+  .immeuble .vue{position:sticky;top:10px}
+  .immeuble .listes{margin-top:0}
+}
+.vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
+.vues button{font:inherit;font-size:.88rem;padding:8px 12px;border-radius:6px;border:1px solid var(--trait);background:#fff;color:var(--bleu);font-weight:600;cursor:pointer}
+.vues button:hover{background:var(--teinte)}
+.geste{position:absolute;left:50%;bottom:14px;translate:-50% 0;background:rgba(0,88,117,.92);color:#fff;font-size:.88rem;font-weight:600;padding:8px 14px 8px 40px;border-radius:20px;pointer-events:none;opacity:0;transition:opacity .4s;z-index:2;white-space:nowrap}
+.geste.visible{opacity:1}
+.geste .main{position:absolute;left:12px;top:50%;width:16px;height:16px;margin-top:-8px;border-radius:50%;border:2px solid #fff;animation:glisse 1.6s ease-in-out infinite}
+@keyframes glisse{0%,100%{translate:-4px 0}50%{translate:6px 0}}
+.info-prog{position:absolute;left:50%;bottom:calc(100% + 8px);translate:-50% 0;background:#005875;color:#fff;font-family:var(--body);font-size:.8rem;line-height:1.35;padding:6px 10px;border-radius:6px;white-space:nowrap;text-align:left;box-shadow:0 3px 10px rgba(22,26,30,.25);opacity:0;pointer-events:none;transition:opacity .15s;z-index:5}
+.info-prog b{display:block;font-family:var(--display);font-weight:500;font-size:.95rem}
+button.repere.groupe{width:24px;height:24px;display:flex;align-items:center;justify-content:center}
+button.repere.groupe::before{content:attr(data-n);color:#fff;font:600 .62rem var(--body)}
+button.repere.groupe.ouvert{z-index:8}
+button.repere.groupe.ouvert .info-prog,button.repere.groupe:focus-visible .info-prog{opacity:1;pointer-events:auto}
+.choix-prog{display:block;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,.35);cursor:pointer;text-decoration:underline}
+.info-prog::after{content:"";position:absolute;left:50%;top:100%;margin-left:-5px;border:5px solid transparent;border-top-color:#005875}
+button.repere:hover .info-prog,button.repere:focus-visible .info-prog{opacity:1}
+button.repere:hover{z-index:6}
+.lieu:hover .info-prog,.lieu:focus .info-prog{opacity:1}
+.lieu:hover,.lieu:focus{z-index:6;outline:none}
+.lieu.ecole .info-prog{background:#8A6A2F}.lieu.ecole .info-prog::after{border-top-color:#8A6A2F}
+.lieu.commerce .info-prog{background:#4A545E}.lieu.commerce .info-prog::after{border-top-color:#4A545E}
+.boussole{position:absolute;left:12px;bottom:12px;width:64px;height:64px;padding:0;border:0;background:transparent;cursor:pointer;z-index:4;filter:drop-shadow(0 2px 5px rgba(22,26,30,.22))}
+.boussole svg{display:block;width:100%;height:100%}
+.boussole .aiguille{transition:transform .12s linear;transform-origin:0 0}
+.scene3d{position:relative;border:1px solid var(--trait);border-radius:10px;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,#FFFFFF 0%,#F4F0E8 70%);min-height:240px;touch-action:pan-y}
+.scene3d canvas{display:block;width:100%;touch-action:none}
+.coupe{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:.9rem;color:var(--discret)}
+.coupe input{flex:1;accent-color:#005875}
+.coupe output{min-width:110px;text-align:right;color:var(--bleu);font-weight:600}
+.aide{font-size:.85rem;color:var(--discret);margin:.5rem 0 0}
+.perspective{margin:1rem 0 0}.perspective img{width:100%;border-radius:8px;border:1px solid var(--trait)}.perspective figcaption{font-size:.8rem;color:var(--discret);margin-top:4px}
+.infos{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0 0 1rem}
+.infos dt{color:var(--discret)}
+.infos dd{margin:0}
+.note{font-size:.8rem;color:var(--discret);margin:1.2rem 0 0}
+footer{border-top:1px solid var(--trait);padding:22px 16px;text-align:center;font-size:.85rem;color:var(--discret)}
+footer a{color:var(--discret)}
+.villes{display:grid;gap:12px}
+.villes a{display:block;background:var(--carte);border:1px solid var(--trait);border-radius:8px;padding:16px;text-decoration:none;color:var(--texte)}
+.villes a b{font-family:var(--display);font-weight:500;font-size:1.3rem;color:var(--bleu)}
+.villes a span{display:block;color:var(--discret);font-size:.9rem}
+@media (min-width:700px){.chiffres{grid-template-columns:repeat(4,1fr)}.deux{grid-template-columns:1fr 1fr}.liste,.villes{grid-template-columns:1fr 1fr}}
+@media (min-width:1000px){.liste{grid-template-columns:1fr 1fr 1fr}}
+</style>
+</head>
+<body>
+<header><a href="/" aria-label="GLR Immobilier — accueil"><img src="/logo-glr.png" alt="GLR Immobilier" width="85" height="68"></a><a class="tel" href="tel:+33614550273">06 14 55 02 73</a></header>
+<main class="page-prog">
+  <p class="fil"><a href="/">Accueil</a> › <a href="/neuf/">Immobilier neuf</a> › <a href="../">Mantes-la-Jolie</a> › Villas Gassicourt</p>
+  <header class="hero">
+    <div>
+      <p class="sur">Programme neuf · Mantes-la-Jolie (78200)</p>
+      <h1>Villas Gassicourt</h1>
+      <hr class="filet">
+      <p class="chapo">Un programme neuf.</p>
+      <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce laiton">TVA 5,5 %</span></div>
+    </div>
+    <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=mantes-la-jolie&amp;vue=ville#carte">Retour à la carte de Mantes-la-Jolie</a></div>
+  </header>
+  <div class="reperes">
+    <div class="repere-cle"><b>44</b><span>logements disponibles</span></div>
+    
+    <div class="repere-cle"><b>40 à 78 m²</b><span>surfaces disponibles</span></div>
+    <div class="repere-cle"><b>13 min</b><span>à pied de Mantes-la-Jolie (ligne N)</span></div>
+  </div>
+  <section class="immeuble" id="immeuble">
+   
+      <div class="vue">
+    
+    <div class="plan-cadre">
+      <div class="etages" id="etages" role="group" aria-label="Choisir un étage"></div>
+      <div class="plan-dessin">
+        <p class="etage-titre" id="etage-titre"></p>
+        <div class="scene3d" id="imm3d" data-lat="48.998" data-lng="1.698" aria-label="L’immeuble sur son terrain : faites-le tourner, choisissez un étage, touchez un logement"><div class="geste" id="geste"><span class="main"></span>Glissez pour tourner</div><button type="button" class="boussole" id="boussole-immeuble" aria-label="Boussole : la pointe bleue marquée N indique le nord. Appuyer pour remettre le nord en haut." title="Remettre le nord en haut"><svg viewBox="-30 -30 60 60"><circle r="28" fill="#fff" stroke="#D8D2C5" stroke-width="1.4"/><g class="aiguille"><text x="0" y="-15.5" font-size="11" font-weight="700" text-anchor="middle" fill="#005875" font-family="Archivo,Arial,sans-serif">N</text><polygon points="0,-13 6.5,6 0,2 -6.5,6" fill="#005875"/><polygon points="0,2 6.5,6 0,20 -6.5,6" fill="#D8D2C5"/><line x1="-22" y1="0" x2="-18" y2="0" stroke="#9AA3AC" stroke-width="1.4"/><line x1="18" y1="0" x2="22" y2="0" stroke="#9AA3AC" stroke-width="1.4"/><line x1="0" y1="22" x2="0" y2="25" stroke="#9AA3AC" stroke-width="1.4"/></g><circle r="2" fill="#B0894C"/></svg></button></div>
+        <svg id="plan" hidden role="img" aria-label="Plan de masse : l’immeuble sur son terrain, avec les logements disponibles de l’étage choisi"></svg>
+      </div>
+    </div>
+    <div class="vues" role="group" aria-label="Changer de vue"><button type="button" data-vue="ensemble">Vue d’ensemble</button><button type="button" data-vue="rue">Depuis la rue</button><button type="button" data-vue="arriere">Côté jardin</button><button type="button" data-vue="dessus">Du dessus</button><button type="button" data-vue="tour">Faire le tour</button></div>
+    <div class="coupe"><label for="heure">Soleil à</label><input type="range" id="heure" min="6" max="22" step="0.25" value="14"><output id="heure-val"></output></div>
+    <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
+    <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
+   </div>
+   <div class="listes">
+    <h2 class="titre-listes">Les logements disponibles</h2>
+    <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button></div>
+    <section class="typo"><h3>T2 · 13 logements</h3>
+  <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
+  <tr id="l-9fdf0686f43f"><td>40 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="9fdf0686f43f" data-s="40">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-45ec22534288"><td>41 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="45ec22534288" data-s="41">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-ad326a9d5bda"><td>41 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="ad326a9d5bda" data-s="41">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-048b1e7469ef"><td>42 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="048b1e7469ef" data-s="42">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-07877e283604"><td>42 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="07877e283604" data-s="42">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-556b8531c3fe"><td>42 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="556b8531c3fe" data-s="42">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-9d6be9723500"><td>42 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="9d6be9723500" data-s="42">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-aee0bac6cf95"><td>42 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="aee0bac6cf95" data-s="42">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-b283af389e06"><td>42 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="b283af389e06" data-s="42">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-12fe95cab279"><td>44 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="12fe95cab279" data-s="44">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-81a338254c91"><td>44 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="81a338254c91" data-s="44">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-81f6765a7f4e"><td>44 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="81f6765a7f4e" data-s="44">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-aac0fa02b85c"><td>50 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="aac0fa02b85c" data-s="50">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  </tbody></table></section>
+    <section class="typo"><h3>T3 · 24 logements</h3>
+  <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
+  <tr id="l-643aa165b3be"><td>54 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="643aa165b3be" data-s="54">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-4a6881c8c846"><td>55 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="4a6881c8c846" data-s="55">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-cabfec5880b8"><td>55 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="cabfec5880b8" data-s="55">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-cc7330a873a1"><td>55 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="cc7330a873a1" data-s="55">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-74683c384c20"><td>56 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="74683c384c20" data-s="56">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-a1c84a9e5f62"><td>56 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="a1c84a9e5f62" data-s="56">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-fc59c4801f26"><td>56 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="fc59c4801f26" data-s="56">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-23ae508c331a"><td>57 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="23ae508c331a" data-s="57">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-82281de52870"><td>57 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="82281de52870" data-s="57">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-314e68ad810d"><td>58 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="314e68ad810d" data-s="58">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-16f09b69f1cf"><td>59 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="16f09b69f1cf" data-s="59">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-e0f31e04ea91"><td>59 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="e0f31e04ea91" data-s="59">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-95d2fd015f5f"><td>60 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="95d2fd015f5f" data-s="60">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-b05375b7fb5c"><td>60 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="b05375b7fb5c" data-s="60">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-c5bbb8a2c7c7"><td>60 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="c5bbb8a2c7c7" data-s="60">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-f86b846619f2"><td>60 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="f86b846619f2" data-s="60">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-0b63f181b31a"><td>62 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="0b63f181b31a" data-s="62">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-16a1e1a4eb06"><td>62 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="16a1e1a4eb06" data-s="62">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-535c422dbf94"><td>62 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="535c422dbf94" data-s="62">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-a4a7687c676c"><td>62 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="a4a7687c676c" data-s="62">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-ab5bf97969c5"><td>62 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="ab5bf97969c5" data-s="62">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-e79dac070f33"><td>62 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="e79dac070f33" data-s="62">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-d20f689f2ffa"><td>64 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="d20f689f2ffa" data-s="64">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-7022aab83ee6"><td>67 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="7022aab83ee6" data-s="67">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  </tbody></table></section>
+    <section class="typo"><h3>T4 · 7 logements</h3>
+  <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
+  <tr id="l-5aca3969731e"><td>73 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="5aca3969731e" data-s="73">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-b9c1ae844889"><td>75 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="b9c1ae844889" data-s="75">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-6dbe7788d3c3"><td>76 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="6dbe7788d3c3" data-s="76">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-1049dace6211"><td>78 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="1049dace6211" data-s="78">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-1f39bcd9e846"><td>78 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="1f39bcd9e846" data-s="78">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-4edd41125cf9"><td>78 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="4edd41125cf9" data-s="78">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-8aaa3f5a62a2"><td>78 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="8aaa3f5a62a2" data-s="78">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  </tbody></table></section>
+   </div>
+  </section>
+  
+  <section class="appel" id="compte">
+    <h2>Voir les plans de ces logements</h2>
+    <p>Les plans de chaque logement sont réservés à votre espace client. Il se crée en une minute ; en attendant, appelez-nous et nous vous les envoyons.</p>
+    <div class="boutons"><a class="plein" href="tel:+33614550273">Appeler le 06 14 55 02 73</a><a class="creux" href="mailto:agl@glrimmobilier.com?subject=Plans%20de%20Villas%20Gassicourt%20%C3%A0%20Mantes-la-Jolie">Écrire un e-mail</a></div>
+  </section>
+  <p class="note" id="mention-tva" hidden>* TVA 5,5 % : prix réservé aux acheteurs éligibles, sous conditions de ressources.</p>
+  <p class="note">Disponibilités et prix relevés le 27 novembre 2026 ; ils changent chaque semaine et sont confirmés par votre conseiller.</p>
+</main>
+<footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
+<script type="application/json" id="logements-data">[{"i":"9fdf0686f43f","t":"T2","s":40,"e":2,"x":"Extérieur"},{"i":"45ec22534288","t":"T2","s":41,"e":0,"x":"Extérieur"},{"i":"ad326a9d5bda","t":"T2","s":41,"e":2,"x":"Extérieur"},{"i":"048b1e7469ef","t":"T2","s":42,"e":0,"x":"Extérieur"},{"i":"07877e283604","t":"T2","s":42,"e":2,"x":"Extérieur"},{"i":"556b8531c3fe","t":"T2","s":42,"e":2,"x":"Extérieur"},{"i":"9d6be9723500","t":"T2","s":42,"e":0,"x":"Extérieur"},{"i":"aee0bac6cf95","t":"T2","s":42,"e":1,"x":"Extérieur"},{"i":"b283af389e06","t":"T2","s":42,"e":2,"x":"Extérieur"},{"i":"12fe95cab279","t":"T2","s":44,"e":2,"x":"Extérieur"},{"i":"81a338254c91","t":"T2","s":44,"e":2,"x":"Extérieur"},{"i":"81f6765a7f4e","t":"T2","s":44,"e":2,"x":"Extérieur"},{"i":"aac0fa02b85c","t":"T2","s":50,"e":2,"x":"Extérieur"},{"i":"643aa165b3be","t":"T3","s":54,"e":1,"x":"Extérieur"},{"i":"4a6881c8c846","t":"T3","s":55,"e":2,"x":"Extérieur"},{"i":"cabfec5880b8","t":"T3","s":55,"e":0,"x":"Extérieur"},{"i":"cc7330a873a1","t":"T3","s":55,"e":1,"x":"Extérieur"},{"i":"74683c384c20","t":"T3","s":56,"e":0,"x":"Extérieur"},{"i":"a1c84a9e5f62","t":"T3","s":56,"e":2,"x":"Extérieur"},{"i":"fc59c4801f26","t":"T3","s":56,"e":1,"x":"Extérieur"},{"i":"23ae508c331a","t":"T3","s":57,"e":0,"x":"Extérieur"},{"i":"82281de52870","t":"T3","s":57,"e":1,"x":"Extérieur"},{"i":"314e68ad810d","t":"T3","s":58,"e":1,"x":"Extérieur"},{"i":"16f09b69f1cf","t":"T3","s":59,"e":1,"x":"Extérieur"},{"i":"e0f31e04ea91","t":"T3","s":59,"e":0,"x":"Extérieur"},{"i":"95d2fd015f5f","t":"T3","s":60,"e":0,"x":"Extérieur"},{"i":"b05375b7fb5c","t":"T3","s":60,"e":0,"x":"Extérieur"},{"i":"c5bbb8a2c7c7","t":"T3","s":60,"e":1,"x":"Extérieur"},{"i":"f86b846619f2","t":"T3","s":60,"e":1,"x":"Extérieur"},{"i":"0b63f181b31a","t":"T3","s":62,"e":0,"x":"Extérieur"},{"i":"16a1e1a4eb06","t":"T3","s":62,"e":1,"x":"Extérieur"},{"i":"535c422dbf94","t":"T3","s":62,"e":2,"x":"Extérieur"},{"i":"a4a7687c676c","t":"T3","s":62,"e":1,"x":"Extérieur"},{"i":"ab5bf97969c5","t":"T3","s":62,"e":2,"x":"Extérieur"},{"i":"e79dac070f33","t":"T3","s":62,"e":0,"x":"Extérieur"},{"i":"d20f689f2ffa","t":"T3","s":64,"e":2,"x":"Extérieur"},{"i":"7022aab83ee6","t":"T3","s":67,"e":2,"x":"Extérieur"},{"i":"5aca3969731e","t":"T4","s":73,"e":2,"x":"Extérieur"},{"i":"b9c1ae844889","t":"T4","s":75,"e":2,"x":"Extérieur"},{"i":"6dbe7788d3c3","t":"T4","s":76,"e":1,"x":"Extérieur"},{"i":"1049dace6211","t":"T4","s":78,"e":1,"x":"Extérieur"},{"i":"1f39bcd9e846","t":"T4","s":78,"e":0,"x":"Extérieur"},{"i":"4edd41125cf9","t":"T4","s":78,"e":0,"x":"Extérieur"},{"i":"8aaa3f5a62a2","t":"T4","s":78,"e":1,"x":"Extérieur"}]</script>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
+<script src="/neuf/programme.js" defer></script>
+
+<script>
+(function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};
+var poser=function(j){j=j||{};var a=j.prix||{},b=j.prix_tva_reduite||{};window.GLR_PRIX=a;window.GLR_PRIX_R=b;var deux=false;
+cs.forEach(function(c){var k=c.getAttribute('data-lot'),v=a[k],w=b[k];if(w)deux=true;
+c.innerHTML=v||w?(v?eu(v):'')+(w?(v?'<br>':'')+'<span class="tva">'+eu(w)+' <small>TVA 5,5 %*</small></span>':''):'sur demande'});
+var n=document.getElementById('mention-tva');if(n)n.hidden=!deux;};
+fetch("https://hydqfbxdtpmbuooexekp.supabase.co/functions/v1/neuf-prix"+'?p='+encodeURIComponent("64140a2c7c2e"),{headers:{accept:'application/json'}})
+.then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){poser(j)}).catch(function(){poser(null)});
+})();
+</script>
+</body>
+</html>

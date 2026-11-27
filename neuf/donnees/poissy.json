@@ -1,0 +1,736 @@
+{
+  "cp": "78300",
+  "maj": "2026-11-27",
+  "dept": "78",
+  "slug": "poissy",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": true
+  },
+  "insee": "78498",
+  "ville": "Poissy",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2028": 3
+    },
+    "typologies": {
+      "T1": 1,
+      "T2": 9,
+      "T3": 33,
+      "T4": 9,
+      "T5+": 5
+    },
+    "prix_entree": null,
+    "nb_programmes": 4,
+    "nb_promoteurs": 3,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 57
+  },
+  "dept_nom": "Yvelines",
+  "programmes": [
+    {
+      "nom": "Instants Nature",
+      "gare": "Poissy (ligne J)",
+      "slug": "instants-nature",
+      "image": null,
+      "picking": false,
+      "pige_id": "534c662d66db",
+      "position": {
+        "approx": true,
+        "latitude": 48.928,
+        "longitude": 2.036
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "2a158139d7cf",
+          "typo": "T1",
+          "etage": 0,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 31,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2023-2",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 9
+    },
+    {
+      "nom": "Promenade De Lisle",
+      "gare": "Poissy (ligne J)",
+      "slug": "promenade-de-lisle",
+      "image": null,
+      "picking": false,
+      "pige_id": "629d8667e6af",
+      "position": {
+        "approx": false,
+        "latitude": 48.936,
+        "longitude": 2.053
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2028",
+      "logements": [
+        {
+          "id": "f2d6fc4b4d5e",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.59,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "2cbe7760bc76",
+          "typo": "T4",
+          "etage": 5,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 86.47,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "383d2703378a",
+          "typo": "T5+",
+          "etage": 5,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 97.49,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [
+        "BRS",
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2028-1",
+      "nb_lots_libres": 3,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 12
+    },
+    {
+      "nom": "Les Jardins des Vergers",
+      "gare": "Poissy (ligne J)",
+      "slug": "les-jardins-des-vergers",
+      "image": null,
+      "picking": false,
+      "pige_id": "d8aab6523273",
+      "position": {
+        "approx": false,
+        "latitude": 48.921,
+        "longitude": 2.037
+      },
+      "quartier": null,
+      "livraison": "3e trimestre 2028",
+      "logements": [
+        {
+          "id": "66236e2d02f1",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 40.56,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "74f950b00811",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "03210e613fe9",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.42,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "7ba0e0951f12",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.54,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "8f2eff0df5e9",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.54,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "ec9d7fbd488b",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.55,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "60c39f6a6c33",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.56,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "73b696073669",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 58.03,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "abc201d2c0d5",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 60.24,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "36430a0fe48b",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 60.38,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "eed725dc7845",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 60.38,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "f9177999e69c",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 60.49,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "a67d1ba0618f",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 60.66,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "e71723054185",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 60.66,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "eab8a4400a40",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 60.66,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "9f970dd3d03c",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 60.93,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "8dc8bcd960c3",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 60.99,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "fea872e72873",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 60.99,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "2626e53ca323",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61.36,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "b1e01e401965",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.17,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "007d14cc8d04",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.19,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "83682cb1a01a",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.19,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "4bf05acfa19c",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 79.68,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "db52931da41f",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.98,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "d383448e3f11",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 82.56,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "219054a1a647",
+          "typo": "T5+",
+          "etage": 1,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 90.8,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "32c6ecf36ac7",
+          "typo": "T5+",
+          "etage": 1,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 90.8,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "4dc3539af57b",
+          "typo": "T5+",
+          "etage": 1,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 90.8,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "d030d49ad70a",
+          "typo": "T5+",
+          "etage": 1,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 90.8,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2028-3",
+      "nb_lots_libres": 29,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 18
+    },
+    {
+      "nom": "Lisiere Des Loges",
+      "gare": "Poissy (ligne J)",
+      "slug": "lisiere-des-loges",
+      "image": null,
+      "picking": false,
+      "pige_id": "0e3dc843147c",
+      "position": {
+        "approx": false,
+        "latitude": 48.936,
+        "longitude": 2.057
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2028",
+      "logements": [
+        {
+          "id": "2de0257f7da1",
+          "typo": "T2",
+          "etage": null,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 39.37,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "4fe876e64ac5",
+          "typo": "T2",
+          "etage": null,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.77,
+          "exterieur": null
+        },
+        {
+          "id": "8d0dc5c3770b",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.2,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "c1811bbb893d",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.34,
+          "exterieur": null
+        },
+        {
+          "id": "ce53e401c5a6",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.34,
+          "exterieur": null
+        },
+        {
+          "id": "dd427ee96969",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.34,
+          "exterieur": null
+        },
+        {
+          "id": "f630b99f4d55",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.34,
+          "exterieur": null
+        },
+        {
+          "id": "5977fcd07e34",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.73,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "ad35b4e53189",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 65.73,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "e5cfb3226d18",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.73,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "7a1e8b7910dc",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.67,
+          "exterieur": null
+        },
+        {
+          "id": "945d6a652d71",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.67,
+          "exterieur": null
+        },
+        {
+          "id": "b1ee7d54524a",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.67,
+          "exterieur": null
+        },
+        {
+          "id": "c5837122e000",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.67,
+          "exterieur": null
+        },
+        {
+          "id": "9fc8bec2e921",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 67.04,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "e1fe7e6e8cbe",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 67.04,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "0ff2caec03fa",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 67.38,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "4df482881130",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 67.38,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "91412b6157aa",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 67.38,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "a71fcf06315e",
+          "typo": "T3",
+          "etage": 5,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 69.14,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "4f5df488645d",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 87.72,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "c20c3373974a",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 87.72,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "fccf54c7b7c5",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 87.72,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "21c640e4c527",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 89.18,
+          "exterieur": "Balcon"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2028-4",
+      "nb_lots_libres": 24,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 15
+    },
+    {
+      "nom": "Le Clos de Lisle - BRS",
+      "gare": "Poissy (ligne J)",
+      "slug": "le-clos-de-lisle-brs",
+      "image": null,
+      "picking": true,
+      "pige_id": "3a4a48b95dfd",
+      "position": {
+        "approx": true,
+        "latitude": 48.924,
+        "longitude": 2.025
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 20
+    },
+    {
+      "nom": "Lisle Lumière",
+      "gare": "Poissy (ligne J)",
+      "slug": "lisle-lumiere",
+      "image": null,
+      "picking": true,
+      "pige_id": "08ca0199e1a0",
+      "position": {
+        "approx": true,
+        "latitude": 48.924,
+        "longitude": 2.025
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 20
+    },
+    {
+      "nom": "L'atrium",
+      "gare": "Poissy (ligne J)",
+      "slug": "l-atrium",
+      "image": null,
+      "picking": true,
+      "pige_id": "947a066b6942",
+      "position": {
+        "approx": true,
+        "latitude": 48.924,
+        "longitude": 2.025
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 20
+    }
+  ]
+}

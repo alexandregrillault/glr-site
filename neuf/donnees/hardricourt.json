@@ -1,0 +1,196 @@
+{
+  "cp": "78250",
+  "maj": "2026-11-27",
+  "dept": "78",
+  "slug": "hardricourt",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "78299",
+  "ville": "Hardricourt",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2028": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 4,
+      "T3": 5,
+      "T4": 0,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 0,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 9
+  },
+  "dept_nom": "Yvelines",
+  "programmes": [
+    {
+      "nom": "\" Le 20 \"",
+      "gare": "Meulan - Hardricourt (ligne J)",
+      "slug": "le-20",
+      "image": null,
+      "picking": false,
+      "pige_id": "aad00826afb9",
+      "position": {
+        "approx": false,
+        "latitude": 49.006,
+        "longitude": 1.9
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "a0613ee07af1",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 51.3,
+          "exterieur": "Balcon"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2025-2",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 2
+    },
+    {
+      "nom": "Le Clos de la Montcient",
+      "gare": "Meulan - Hardricourt (ligne J)",
+      "slug": "le-clos-de-la-montcient",
+      "image": null,
+      "picking": false,
+      "pige_id": "d8faacde9ad0",
+      "position": {
+        "approx": false,
+        "latitude": 49.007,
+        "longitude": 1.899
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2028",
+      "logements": [
+        {
+          "id": "abf0001380cd",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 40.6,
+          "exterieur": null
+        },
+        {
+          "id": "2bd3a98ec9ec",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.3,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "277c4119a823",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.1,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "c18ea339901a",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 53.7,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "6a2b1efd91b5",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 54.4,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "c99483ae6143",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 56.7,
+          "exterieur": null
+        },
+        {
+          "id": "7996c18b52d2",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 56.9,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "271eaa209bad",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.2,
+          "exterieur": "Jardin"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2028-1",
+      "nb_lots_libres": 8,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 3
+    },
+    {
+      "nom": "Mira",
+      "gare": "Meulan - Hardricourt (ligne J)",
+      "slug": "mira",
+      "image": null,
+      "picking": true,
+      "pige_id": "798eeb37fc26",
+      "position": {
+        "approx": true,
+        "latitude": 49.009,
+        "longitude": 1.883
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 18
+    }
+  ]
+}

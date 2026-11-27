@@ -1,0 +1,90 @@
+{
+  "cp": "78420",
+  "maj": "2026-11-27",
+  "dept": "78",
+  "slug": "carrieres-sur-seine",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "78124",
+  "ville": "Carrières-sur-Seine",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 1,
+      "T3": 0,
+      "T4": 1,
+      "T5+": 1
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 3
+  },
+  "dept_nom": "Yvelines",
+  "programmes": [
+    {
+      "nom": "9ème Art",
+      "gare": "Houilles - Carrières-sur-Seine (RER A)",
+      "slug": "9eme-art",
+      "image": null,
+      "picking": false,
+      "pige_id": "70ed32a111a1",
+      "position": {
+        "approx": false,
+        "latitude": 48.915,
+        "longitude": 2.174
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "logements": [
+        {
+          "id": "dfa0c8bf9226",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 42,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "78a5be58b4cc",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "d7bdd903b749",
+          "typo": "T5+",
+          "etage": 2,
+          "pieces": 5,
+          "statut": "option",
+          "surface": 87,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-1",
+      "nb_lots_libres": 3,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 14
+    }
+  ]
+}

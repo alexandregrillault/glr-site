@@ -1,0 +1,196 @@
+{
+  "cp": "78600",
+  "maj": "2026-11-27",
+  "dept": "78",
+  "slug": "maisons-laffitte",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "78358",
+  "ville": "Maisons-Laffitte",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2026": 1,
+      "2028": 1
+    },
+    "typologies": {
+      "T1": 1,
+      "T2": 0,
+      "T3": 0,
+      "T4": 2,
+      "T5+": 6
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 2,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 9
+  },
+  "dept_nom": "Yvelines",
+  "programmes": [
+    {
+      "nom": "Résidence Jehan Alain",
+      "gare": "Maisons-Laffitte (ligne L)",
+      "slug": "residence-jehan-alain",
+      "image": null,
+      "picking": false,
+      "pige_id": "1a8f369f5bbf",
+      "position": {
+        "approx": false,
+        "latitude": 48.948,
+        "longitude": 2.147
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2026",
+      "logements": [
+        {
+          "id": "119a4965c517",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 33,
+          "exterieur": null
+        },
+        {
+          "id": "96c5d2cf38b1",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 147.6,
+          "exterieur": "Jardin"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2026-4",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 5
+    },
+    {
+      "nom": "Domaine Celadon",
+      "gare": "Maisons-Laffitte (ligne L)",
+      "slug": "domaine-celadon",
+      "image": null,
+      "picking": false,
+      "pige_id": "c23251a9d5d9",
+      "position": {
+        "approx": false,
+        "latitude": 48.95,
+        "longitude": 2.135
+      },
+      "quartier": null,
+      "livraison": "3e trimestre 2028",
+      "logements": [
+        {
+          "id": "57a81463dd3a",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 84.16,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "4c0fdc8e1ac2",
+          "typo": "T5+",
+          "etage": null,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 92.98,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "d4ed9f08a52f",
+          "typo": "T5+",
+          "etage": null,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 92.98,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "2137a90a5eae",
+          "typo": "T5+",
+          "etage": null,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 98.59,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "66c70b8b591f",
+          "typo": "T5+",
+          "etage": null,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 100.77,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "f1a614cc2911",
+          "typo": "T5+",
+          "etage": null,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 100.77,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "c38e1b478658",
+          "typo": "T5+",
+          "etage": null,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 116.13,
+          "exterieur": "Jardin"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2028-3",
+      "nb_lots_libres": 7,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 11
+    },
+    {
+      "nom": "Villa Mansonia",
+      "gare": "Maisons-Laffitte (ligne L)",
+      "slug": "villa-mansonia",
+      "image": null,
+      "picking": true,
+      "pige_id": "4bb9fd78ca28",
+      "position": {
+        "approx": true,
+        "latitude": 48.95,
+        "longitude": 2.153
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 11
+    }
+  ]
+}

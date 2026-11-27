@@ -1,0 +1,206 @@
+{
+  "cp": "78380",
+  "maj": "2026-11-27",
+  "dept": "78",
+  "slug": "bougival",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "78092",
+  "ville": "Bougival",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {},
+    "typologies": {
+      "T1": 2,
+      "T2": 2,
+      "T3": 1,
+      "T4": 4,
+      "T5+": 4
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 2,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 13
+  },
+  "dept_nom": "Yvelines",
+  "programmes": [
+    {
+      "nom": "L'Îlot Camélias",
+      "gare": "Louveciennes (ligne L)",
+      "slug": "l-ilot-camelias",
+      "image": null,
+      "picking": false,
+      "pige_id": "9a23b2227934",
+      "position": {
+        "approx": false,
+        "latitude": 48.866,
+        "longitude": 2.139
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "cf34b2cf7e85",
+          "typo": "T1",
+          "etage": 0,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 49,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "f26f63df5100",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 49,
+          "exterieur": null
+        },
+        {
+          "id": "29ffb70fc3c9",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "c80bf313de29",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "38c760cb706e",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 56,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "621e8ea2ae06",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81,
+          "exterieur": null
+        },
+        {
+          "id": "a8851afa025c",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 88.4,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "041a5ee1a850",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 93,
+          "exterieur": null
+        },
+        {
+          "id": "ebc8935e5f30",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 97,
+          "exterieur": null
+        },
+        {
+          "id": "e2a7e2a939e6",
+          "typo": "T5+",
+          "etage": 1,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 89.5,
+          "exterieur": null
+        },
+        {
+          "id": "b48dcb0589a2",
+          "typo": "T5+",
+          "etage": 2,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 106.5,
+          "exterieur": null
+        },
+        {
+          "id": "1aea3f90895a",
+          "typo": "T5+",
+          "etage": 2,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 127.3,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2025-3",
+      "nb_lots_libres": 12,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 17
+    },
+    {
+      "nom": "Le Hameau des Impressionnistes",
+      "gare": "Louveciennes (ligne L)",
+      "slug": "le-hameau-des-impressionnistes",
+      "image": null,
+      "picking": false,
+      "pige_id": "889737e8dc2d",
+      "position": {
+        "approx": false,
+        "latitude": 48.864,
+        "longitude": 2.138
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "48135a61f4a7",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 137.08,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T5+"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2025-4",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 14
+    }
+  ]
+}

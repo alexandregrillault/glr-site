@@ -1,0 +1,128 @@
+{
+  "cp": "78310",
+  "maj": "2026-11-27",
+  "dept": "78",
+  "slug": "maurepas",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "78383",
+  "ville": "Maurepas",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 3,
+      "T3": 3,
+      "T4": 0,
+      "T5+": 1
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 7
+  },
+  "dept_nom": "Yvelines",
+  "programmes": [
+    {
+      "nom": "Jardin Sauvole",
+      "gare": "La Verrière (ligne N)",
+      "slug": "jardin-sauvole",
+      "image": null,
+      "picking": false,
+      "pige_id": "cc77759b15a7",
+      "position": {
+        "approx": false,
+        "latitude": 48.762,
+        "longitude": 1.926
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2027",
+      "logements": [
+        {
+          "id": "5392ca082595",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.29,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "581fb66f7d89",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.29,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "036de5af785d",
+          "typo": "T2",
+          "etage": null,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 49.94,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "025c9240d3ca",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.87,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "3175eb3154c6",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.55,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "b1b8ec824533",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 70.12,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "8a3d5d032530",
+          "typo": "T5+",
+          "etage": 5,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 89.03,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T5+"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2027-2",
+      "nb_lots_libres": 7,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 19
+    }
+  ]
+}

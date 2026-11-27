@@ -1,0 +1,91 @@
+{
+  "cp": "78160",
+  "maj": "2026-11-27",
+  "dept": "78",
+  "slug": "marly-le-roi",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "78372",
+  "ville": "Marly-le-Roi",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2028": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 0,
+      "T3": 2,
+      "T4": 1,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 0,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 3
+  },
+  "dept_nom": "Yvelines",
+  "programmes": [
+    {
+      "nom": "Casalia - Marly-le-Roi",
+      "gare": "Mareil-Marly (T13)",
+      "slug": "casalia-marly-le-roi",
+      "image": null,
+      "picking": false,
+      "pige_id": "645f9441e2a0",
+      "position": {
+        "approx": false,
+        "latitude": 48.876,
+        "longitude": 2.087
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2028",
+      "logements": [
+        {
+          "id": "c65fc2bdc732",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 56.5,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "344de9b08b90",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61.85,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "46d03af8e2db",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 86.25,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2028-2",
+      "nb_lots_libres": 3,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 10
+    }
+  ]
+}
