@@ -234,6 +234,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -330,6 +333,7 @@ footer a{color:var(--discret)}
       <hr class="filet">
       <p class="chapo">Un programme neuf, livré au 1er trimestre 2028.</p>
       <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce">T5+</span><span class="puce laiton">TVA 5,5 %</span></div>
+      
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=aubervilliers&amp;vue=ville#carte">Retour à la carte de Aubervilliers</a></div>
   </header>
@@ -340,7 +344,8 @@ footer a{color:var(--discret)}
     <div class="repere-cle"><b>4 min</b><span>à pied de Aimé Césaire (M12)</span></div>
   </div>
   <section class="immeuble" id="immeuble">
-   
+   <div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">Maquette</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de Les Terrasses du Canal" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>
    
       <div class="vue">
     
@@ -357,7 +362,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
-   
+   </div>
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T1">T1</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
@@ -411,7 +416,7 @@ footer a{color:var(--discret)}
   <tr id="l-a4f86cc25a9b"><td>64,46 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="a4f86cc25a9b" data-s="64.46">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="a4f86cc25a9b">Plan</button></td></tr>
   <tr id="l-aaf7e09dc8c4"><td>64,73 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="aaf7e09dc8c4" data-s="64.73">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="aaf7e09dc8c4">Plan</button></td></tr>
   <tr id="l-c72bf1826052"><td>64,73 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="c72bf1826052" data-s="64.73">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="c72bf1826052">Plan</button></td></tr>
-  <tr id="l-d36c4b262905"><td>64,73 m²</td><td>3e</td><td>Extérieur</td><td class="prix-lot" data-lot="d36c4b262905" data-s="64.73">…</td><td class="plan"></td></tr>
+  <tr id="l-d36c4b262905"><td>64,73 m²</td><td>3e</td><td>Extérieur</td><td class="prix-lot" data-lot="d36c4b262905" data-s="64.73">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="d36c4b262905">Plan</button></td></tr>
   <tr id="l-3434e9454a10"><td>66,06 m²</td><td>5e</td><td>Extérieur</td><td class="prix-lot" data-lot="3434e9454a10" data-s="66.06">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="3434e9454a10">Plan</button></td></tr>
   <tr id="l-3fbf35312a5c"><td>67 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="3fbf35312a5c" data-s="67">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="3fbf35312a5c">Plan</button></td></tr>
   <tr id="l-89c73de7322b"><td>67 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="89c73de7322b" data-s="67">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="89c73de7322b">Plan</button></td></tr>
@@ -451,7 +456,7 @@ footer a{color:var(--discret)}
    </div>
   </section>
   
-<section class="appel" id="compte" data-p="a279e68688cf" data-lots="" data-plans="18624129f025,715c64a421fd,b8b3dd96ecb0,c384c59cf143,722c8368d55b,5c7cff84b4ac,20ab4768e0d6,0d7520307755,bcd6750536c0,7b97d38e4ae1,5271b5649eb2,d8cb51f790a7,eb9187eb2960,8b912843c4e3,be99ac8fa224,00076a4448b4,dd971dc69601,06a129a7188c,80f763909c9f,d89a4587bd3c,854269eb8b78,21059a978dc2,91ff17eab40f,f2523c24b4a4,4cb95544112e,d31a4ee2d470,d49533ccf480,2700f84a04f1,2d196d6625b7,3fbadeea45d3,19f9c2724f06,1c8dcb95b2ef,02d54ea9ed12,719e466f2905,a539f0263d04,34fd7350ec24,032441ced60b,b6a02b0baf97,92b0996f02be,a4f86cc25a9b,aaf7e09dc8c4,c72bf1826052,3434e9454a10,3fbf35312a5c,89c73de7322b,af2512ce4ef2,7276ee39c5c6,0c152f785673,35413cac1005,8c7d9bc6382a,8f799aab8ed4,dc91cfb3c281,f9a64a97f149,286e28f45eab,6ea9ae18a10d,a930a8a41bb6,bfeed854ffd3,50a7f4406eaa,9e3508677d2c,bbb237d50556,07f0825cb66f,26c99763bfd5,b0d47c59d1dd,dcc243a1f623,5e09fc4450be,c103ebf829cf,50277284136e,4b4ca05ddb95,99f4c1fbcb19,573088a4cf4c,1952022043ba">
+<section class="appel" id="compte" data-p="a279e68688cf" data-lots="" data-plans="18624129f025,715c64a421fd,b8b3dd96ecb0,c384c59cf143,722c8368d55b,5c7cff84b4ac,20ab4768e0d6,0d7520307755,bcd6750536c0,7b97d38e4ae1,5271b5649eb2,d8cb51f790a7,eb9187eb2960,8b912843c4e3,be99ac8fa224,00076a4448b4,dd971dc69601,06a129a7188c,80f763909c9f,d89a4587bd3c,854269eb8b78,21059a978dc2,91ff17eab40f,f2523c24b4a4,4cb95544112e,d31a4ee2d470,d49533ccf480,2700f84a04f1,2d196d6625b7,3fbadeea45d3,19f9c2724f06,1c8dcb95b2ef,02d54ea9ed12,719e466f2905,a539f0263d04,34fd7350ec24,032441ced60b,b6a02b0baf97,92b0996f02be,a4f86cc25a9b,aaf7e09dc8c4,c72bf1826052,d36c4b262905,3434e9454a10,3fbf35312a5c,89c73de7322b,af2512ce4ef2,7276ee39c5c6,0c152f785673,35413cac1005,8c7d9bc6382a,8f799aab8ed4,dc91cfb3c281,f9a64a97f149,286e28f45eab,6ea9ae18a10d,a930a8a41bb6,bfeed854ffd3,50a7f4406eaa,9e3508677d2c,bbb237d50556,07f0825cb66f,26c99763bfd5,b0d47c59d1dd,dcc243a1f623,5e09fc4450be,c103ebf829cf,50277284136e,4b4ca05ddb95,99f4c1fbcb19,573088a4cf4c,1952022043ba">
     <h2>Voir les plans de ces logements</h2>
     <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="Les Terrasses du Canal" data-ville="Aubervilliers">

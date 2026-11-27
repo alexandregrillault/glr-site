@@ -234,6 +234,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -330,6 +333,7 @@ footer a{color:var(--discret)}
       <hr class="filet">
       <p class="chapo">Un programme neuf, livré au 1er trimestre 2029.</p>
       <div class="puces"><span class="puce">T4</span><span class="puce">T5+</span><span class="puce laiton">PTZ</span></div>
+      
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=ollainville&amp;vue=ville#carte">Retour à la carte de Ollainville</a></div>
   </header>
@@ -340,7 +344,8 @@ footer a{color:var(--discret)}
     <div class="repere-cle"><b>8 min</b><span>à pied de Égly (RER C)</span></div>
   </div>
   <section class="immeuble" id="immeuble">
-   
+   <div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">Maquette</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de Les Villas Aolini" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>
    
       <div class="vue">
     
@@ -357,7 +362,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
-   
+   </div>
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
@@ -379,7 +384,7 @@ footer a{color:var(--discret)}
   <tr id="l-0fefd0bee5b6"><td>95,82 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="0fefd0bee5b6" data-s="95.82">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="0fefd0bee5b6">Plan</button></td></tr>
   <tr id="l-1598b837d2d7"><td>95,82 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="1598b837d2d7" data-s="95.82">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="1598b837d2d7">Plan</button></td></tr>
   <tr id="l-1b60c90e007f"><td>95,82 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="1b60c90e007f" data-s="95.82">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="1b60c90e007f">Plan</button></td></tr>
-  <tr id="l-c42e7ce3c158"><td>95,82 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="c42e7ce3c158" data-s="95.82">…</td><td class="plan"></td></tr>
+  <tr id="l-c42e7ce3c158"><td>95,82 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="c42e7ce3c158" data-s="95.82">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="c42e7ce3c158">Plan</button></td></tr>
   <tr id="l-d562a54b5c8d"><td>95,82 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="d562a54b5c8d" data-s="95.82">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="d562a54b5c8d">Plan</button></td></tr>
   <tr id="l-668ced3b5c1d"><td>109,15 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="668ced3b5c1d" data-s="109.15">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="668ced3b5c1d">Plan</button></td></tr>
   <tr id="l-805bb3aa5aaa"><td>109,15 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="805bb3aa5aaa" data-s="109.15">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="805bb3aa5aaa">Plan</button></td></tr>
@@ -390,7 +395,7 @@ footer a{color:var(--discret)}
    </div>
   </section>
   
-<section class="appel" id="compte" data-p="403718c9949d" data-lots="" data-plans="1b4b21355ee0,26833eab4238,53eb7bbbb9de,5c943d0f8862,acb3abe005b1,bc6b4f9d2328,bd97bb22476c,ebf031f7fc8d,293b1266fac2,9ae5f15ac131,0fefd0bee5b6,1598b837d2d7,1b60c90e007f,d562a54b5c8d,668ced3b5c1d,805bb3aa5aaa,92a78cc91011,9c86bc20e103,916744b5b368">
+<section class="appel" id="compte" data-p="403718c9949d" data-lots="" data-plans="1b4b21355ee0,26833eab4238,53eb7bbbb9de,5c943d0f8862,acb3abe005b1,bc6b4f9d2328,bd97bb22476c,ebf031f7fc8d,293b1266fac2,9ae5f15ac131,0fefd0bee5b6,1598b837d2d7,1b60c90e007f,c42e7ce3c158,d562a54b5c8d,668ced3b5c1d,805bb3aa5aaa,92a78cc91011,9c86bc20e103,916744b5b368">
     <h2>Voir les plans de ces logements</h2>
     <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="Les Villas Aolini" data-ville="Ollainville">

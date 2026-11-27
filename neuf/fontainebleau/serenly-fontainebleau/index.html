@@ -234,6 +234,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -330,6 +333,7 @@ footer a{color:var(--discret)}
       <hr class="filet">
       <p class="chapo">Un programme neuf, livré au 2e trimestre 2029.</p>
       <div class="puces"><span class="puce">T2</span></div>
+      
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=fontainebleau&amp;vue=ville#carte">Retour à la carte de Fontainebleau</a></div>
   </header>
@@ -340,7 +344,8 @@ footer a{color:var(--discret)}
     
   </div>
   <section class="immeuble" id="immeuble">
-   
+   <div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">Maquette</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de Serenly Fontainebleau" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>
    
       <div class="vue">
     
@@ -357,7 +362,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
-   
+   </div>
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T2">T2</button></div>
@@ -372,7 +377,7 @@ footer a{color:var(--discret)}
   <tr id="l-5af24b523430"><td>38,77 m²</td><td>RDC</td><td>Jardin</td><td class="prix-lot" data-lot="5af24b523430" data-s="38.77">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="5af24b523430">Plan</button></td></tr>
   <tr id="l-b8ab45a9bad6"><td>38,88 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="b8ab45a9bad6" data-s="38.88">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="b8ab45a9bad6">Plan</button></td></tr>
   <tr id="l-b7eb2af71632"><td>38,95 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="b7eb2af71632" data-s="38.95">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="b7eb2af71632">Plan</button></td></tr>
-  <tr id="l-5cad95d13047"><td>38,98 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="5cad95d13047" data-s="38.98">…</td><td class="plan"></td></tr>
+  <tr id="l-5cad95d13047"><td>38,98 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="5cad95d13047" data-s="38.98">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="5cad95d13047">Plan</button></td></tr>
   <tr id="l-71f6ed551a7b"><td>39,75 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="71f6ed551a7b" data-s="39.75">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="71f6ed551a7b">Plan</button></td></tr>
   <tr id="l-fe3c0d421d03"><td>39,75 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="fe3c0d421d03" data-s="39.75">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="fe3c0d421d03">Plan</button></td></tr>
   <tr id="l-062612cc43c2"><td>39,82 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="062612cc43c2" data-s="39.82">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="062612cc43c2">Plan</button></td></tr>
@@ -391,7 +396,7 @@ footer a{color:var(--discret)}
    </div>
   </section>
   
-<section class="appel" id="compte" data-p="bc569b21cd33" data-lots="" data-plans="46936fb18b70,79390f9ae1c6,a9075e8e13da,5804c333734e,36a065907657,d0bf89c93e73,5af24b523430,b8ab45a9bad6,b7eb2af71632,71f6ed551a7b,fe3c0d421d03,062612cc43c2,4eaef4d9c339,91cc6dc47c30,17d170cc493c,35476e76ed2c,181a4dc51366,3f85fa617c97,1bc2cc1bf931,f2ae84749a08,54b59764db44,f7f5c97acb39,519b17ce45fc">
+<section class="appel" id="compte" data-p="bc569b21cd33" data-lots="" data-plans="46936fb18b70,79390f9ae1c6,a9075e8e13da,5804c333734e,36a065907657,d0bf89c93e73,5af24b523430,b8ab45a9bad6,b7eb2af71632,5cad95d13047,71f6ed551a7b,fe3c0d421d03,062612cc43c2,4eaef4d9c339,91cc6dc47c30,17d170cc493c,35476e76ed2c,181a4dc51366,3f85fa617c97,1bc2cc1bf931,f2ae84749a08,54b59764db44,f7f5c97acb39,519b17ce45fc">
     <h2>Voir les plans de ces logements</h2>
     <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="Serenly Fontainebleau" data-ville="Fontainebleau">

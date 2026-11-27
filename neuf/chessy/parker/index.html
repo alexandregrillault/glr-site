@@ -234,6 +234,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -330,6 +333,7 @@ footer a{color:var(--discret)}
       <hr class="filet">
       <p class="chapo">Un programme neuf, livré au 3e trimestre 2027.</p>
       <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce">T5+</span><span class="puce laiton">PTZ</span></div>
+      
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=chessy&amp;vue=ville#carte">Retour à la carte de Chessy</a></div>
   </header>
@@ -340,7 +344,8 @@ footer a{color:var(--discret)}
     <div class="repere-cle"><b>9 min</b><span>à pied de Val d&#39;Europe (RER A)</span></div>
   </div>
   <section class="immeuble" id="immeuble">
-   
+   <div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">Maquette</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de Parker" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>
    
       <div class="vue">
     
@@ -357,7 +362,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
-   
+   </div>
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
@@ -377,7 +382,7 @@ footer a{color:var(--discret)}
   <tr id="l-9271069e57c4"><td>80,47 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="9271069e57c4" data-s="80.47">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="9271069e57c4">Plan</button></td></tr>
   <tr id="l-ef547bc00f84"><td>81,78 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="ef547bc00f84" data-s="81.78">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="ef547bc00f84">Plan</button></td></tr>
   <tr id="l-5149e9941c4b"><td>81,8 m²</td><td>2e</td><td>Terrasse</td><td class="prix-lot" data-lot="5149e9941c4b" data-s="81.8">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="5149e9941c4b">Plan</button></td></tr>
-  <tr id="l-94935cbbaa2d"><td>88,01 m²</td><td>3e</td><td>Terrasse</td><td class="prix-lot" data-lot="94935cbbaa2d" data-s="88.01">…</td><td class="plan"></td></tr>
+  <tr id="l-94935cbbaa2d"><td>88,01 m²</td><td>3e</td><td>Terrasse</td><td class="prix-lot" data-lot="94935cbbaa2d" data-s="88.01">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="94935cbbaa2d">Plan</button></td></tr>
   <tr id="l-55139834dec9"><td>88,19 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="55139834dec9" data-s="88.19">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="55139834dec9">Plan</button></td></tr>
   <tr id="l-c893ab1b783b"><td>88,19 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="c893ab1b783b" data-s="88.19">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="c893ab1b783b">Plan</button></td></tr>
   </tbody></table></section>
@@ -392,7 +397,7 @@ footer a{color:var(--discret)}
    </div>
   </section>
   
-<section class="appel" id="compte" data-p="2dc09470f27c" data-lots="" data-plans="40d58b7f5866,e79b6203ce7a,45d45bffb083,3cec5cb22997,a7be17500cc1,9271069e57c4,ef547bc00f84,5149e9941c4b,55139834dec9,c893ab1b783b,35c745f9dbf5,e269f9a90a44,3f8fcf4d8dd6,4784b2376f62,b545086f36fd">
+<section class="appel" id="compte" data-p="2dc09470f27c" data-lots="" data-plans="40d58b7f5866,e79b6203ce7a,45d45bffb083,3cec5cb22997,a7be17500cc1,9271069e57c4,ef547bc00f84,5149e9941c4b,94935cbbaa2d,55139834dec9,c893ab1b783b,35c745f9dbf5,e269f9a90a44,3f8fcf4d8dd6,4784b2376f62,b545086f36fd">
     <h2>Voir les plans de ces logements</h2>
     <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="Parker" data-ville="Chessy">

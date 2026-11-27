@@ -234,6 +234,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -330,6 +333,7 @@ footer a{color:var(--discret)}
       <hr class="filet">
       <p class="chapo">Un programme neuf, livré au 3e trimestre 2028.</p>
       <div class="puces"><span class="puce">T4</span><span class="puce">T5+</span><span class="puce laiton">PTZ</span></div>
+      
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=maisons-laffitte&amp;vue=ville#carte">Retour à la carte de Maisons-Laffitte</a></div>
   </header>
@@ -340,7 +344,8 @@ footer a{color:var(--discret)}
     <div class="repere-cle"><b>11 min</b><span>à pied de Maisons-Laffitte (ligne L)</span></div>
   </div>
   <section class="immeuble" id="immeuble">
-   
+   <div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">Maquette</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de Domaine Celadon" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>
    
       <div class="vue">
     
@@ -357,7 +362,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
-   
+   </div>
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
@@ -367,17 +372,17 @@ footer a{color:var(--discret)}
   </tbody></table></section>
     <section class="typo"><h3>T5+ · 6 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  <tr id="l-4c0fdc8e1ac2"><td>92,98 m²</td><td>non précisé</td><td>Jardin</td><td class="prix-lot" data-lot="4c0fdc8e1ac2" data-s="92.98">…</td><td class="plan"></td></tr>
-  <tr id="l-d4ed9f08a52f"><td>92,98 m²</td><td>non précisé</td><td>Jardin</td><td class="prix-lot" data-lot="d4ed9f08a52f" data-s="92.98">…</td><td class="plan"></td></tr>
+  <tr id="l-4c0fdc8e1ac2"><td>92,98 m²</td><td>non précisé</td><td>Jardin</td><td class="prix-lot" data-lot="4c0fdc8e1ac2" data-s="92.98">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="4c0fdc8e1ac2">Plan</button></td></tr>
+  <tr id="l-d4ed9f08a52f"><td>92,98 m²</td><td>non précisé</td><td>Jardin</td><td class="prix-lot" data-lot="d4ed9f08a52f" data-s="92.98">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="d4ed9f08a52f">Plan</button></td></tr>
   <tr id="l-2137a90a5eae"><td>98,59 m²</td><td>non précisé</td><td>Jardin</td><td class="prix-lot" data-lot="2137a90a5eae" data-s="98.59">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="2137a90a5eae">Plan</button></td></tr>
-  <tr id="l-66c70b8b591f"><td>100,77 m²</td><td>non précisé</td><td>Jardin</td><td class="prix-lot" data-lot="66c70b8b591f" data-s="100.77">…</td><td class="plan"></td></tr>
-  <tr id="l-f1a614cc2911"><td>100,77 m²</td><td>non précisé</td><td>Jardin</td><td class="prix-lot" data-lot="f1a614cc2911" data-s="100.77">…</td><td class="plan"></td></tr>
-  <tr id="l-c38e1b478658"><td>116,13 m²</td><td>non précisé</td><td>Jardin</td><td class="prix-lot" data-lot="c38e1b478658" data-s="116.13">…</td><td class="plan"></td></tr>
+  <tr id="l-66c70b8b591f"><td>100,77 m²</td><td>non précisé</td><td>Jardin</td><td class="prix-lot" data-lot="66c70b8b591f" data-s="100.77">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="66c70b8b591f">Plan</button></td></tr>
+  <tr id="l-f1a614cc2911"><td>100,77 m²</td><td>non précisé</td><td>Jardin</td><td class="prix-lot" data-lot="f1a614cc2911" data-s="100.77">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="f1a614cc2911">Plan</button></td></tr>
+  <tr id="l-c38e1b478658"><td>116,13 m²</td><td>non précisé</td><td>Jardin</td><td class="prix-lot" data-lot="c38e1b478658" data-s="116.13">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="c38e1b478658">Plan</button></td></tr>
   </tbody></table></section>
    </div>
   </section>
   
-<section class="appel" id="compte" data-p="c23251a9d5d9" data-lots="" data-plans="57a81463dd3a,2137a90a5eae">
+<section class="appel" id="compte" data-p="c23251a9d5d9" data-lots="" data-plans="57a81463dd3a,4c0fdc8e1ac2,d4ed9f08a52f,2137a90a5eae,66c70b8b591f,f1a614cc2911,c38e1b478658">
     <h2>Voir les plans de ces logements</h2>
     <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="Domaine Celadon" data-ville="Maisons-Laffitte">

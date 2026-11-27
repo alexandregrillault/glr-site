@@ -234,6 +234,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -330,6 +333,7 @@ footer a{color:var(--discret)}
       <hr class="filet">
       <p class="chapo">Un programme neuf, livré au 3e trimestre 2028.</p>
       <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce">T5+</span><span class="puce laiton">TVA 5,5 %</span></div>
+      
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=aubervilliers&amp;vue=ville#carte">Retour à la carte de Aubervilliers</a></div>
   </header>
@@ -340,7 +344,8 @@ footer a{color:var(--discret)}
     <div class="repere-cle"><b>4 min</b><span>à pied de Mairie d&#39;Aubervilliers (M12)</span></div>
   </div>
   <section class="immeuble" id="immeuble">
-   
+   <div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">Maquette</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de Le Clos des Vertus" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>
    
       <div class="vue">
     
@@ -357,7 +362,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
-   
+   </div>
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
@@ -378,7 +383,7 @@ footer a{color:var(--discret)}
   <tr id="l-06ffbfd8f4d5"><td>47,18 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="06ffbfd8f4d5" data-s="47.18">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="06ffbfd8f4d5">Plan</button></td></tr>
   <tr id="l-74e8d7c9cbea"><td>47,23 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="74e8d7c9cbea" data-s="47.23">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="74e8d7c9cbea">Plan</button></td></tr>
   <tr id="l-892565466bd9"><td>48,22 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="892565466bd9" data-s="48.22">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="892565466bd9">Plan</button></td></tr>
-  <tr id="l-e75684064c41"><td>53,28 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="e75684064c41" data-s="53.28">…</td><td class="plan"></td></tr>
+  <tr id="l-e75684064c41"><td>53,28 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="e75684064c41" data-s="53.28">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="e75684064c41">Plan</button></td></tr>
   </tbody></table></section>
     <section class="typo"><h3>T3 · 24 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
@@ -417,7 +422,7 @@ footer a{color:var(--discret)}
   <tr id="l-8c3cd0931562"><td>83,82 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="8c3cd0931562" data-s="83.82">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="8c3cd0931562">Plan</button></td></tr>
   <tr id="l-a5cd40a350dd"><td>83,82 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="a5cd40a350dd" data-s="83.82">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="a5cd40a350dd">Plan</button></td></tr>
   <tr id="l-ad9c1f3d6b87"><td>83,82 m²</td><td>3e</td><td>Extérieur</td><td class="prix-lot" data-lot="ad9c1f3d6b87" data-s="83.82">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="ad9c1f3d6b87">Plan</button></td></tr>
-  <tr id="l-6b1bd950e87f"><td>84,49 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="6b1bd950e87f" data-s="84.49">…</td><td class="plan"></td></tr>
+  <tr id="l-6b1bd950e87f"><td>84,49 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="6b1bd950e87f" data-s="84.49">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="6b1bd950e87f">Plan</button></td></tr>
   <tr id="l-9582162484d5"><td>84,49 m²</td><td>4e</td><td>Extérieur</td><td class="prix-lot" data-lot="9582162484d5" data-s="84.49">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="9582162484d5">Plan</button></td></tr>
   <tr id="l-a8579077d5e9"><td>84,49 m²</td><td>3e</td><td>Extérieur</td><td class="prix-lot" data-lot="a8579077d5e9" data-s="84.49">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="a8579077d5e9">Plan</button></td></tr>
   <tr id="l-410212c5df9a"><td>85,05 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="410212c5df9a" data-s="85.05">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="410212c5df9a">Plan</button></td></tr>
@@ -445,7 +450,7 @@ footer a{color:var(--discret)}
    </div>
   </section>
   
-<section class="appel" id="compte" data-p="fa307abef110" data-lots="" data-plans="9493ea93281d,a69d4c1c42db,abeb2ffcd18c,8c04f0978b63,3a454335e98f,eb685f2d949b,0fbd70cc3d3b,2a57153d88a3,f58a3aa8757b,5ce3582e957d,63012fee2fa5,df2b065c04ac,06ffbfd8f4d5,74e8d7c9cbea,892565466bd9,843d9b5741d1,e03fa09ca18d,6040bbcb79c2,6a7eb3f9e275,14448be491d6,2209ba0ea520,f319359f37f3,3b4cf0d8dfc1,ff98acca283a,f75683f6c998,188ae3ad2d4b,4b34dff4201f,da74efc4c938,1f4ab9e648db,3e9615c6cc99,190575f169d6,958ecf773ea2,fbf37fdda956,ca06e43b6fe8,e103f95abe59,ed8a08fd0967,4d90479dd496,6e652f25034f,ce27595e0a66,2dbf6940b9c8,8e42fce33158,cd277b32c19e,eb22f00d0222,4aa757c22d94,8c3cd0931562,a5cd40a350dd,ad9c1f3d6b87,9582162484d5,a8579077d5e9,410212c5df9a,73eca946915f,c2c58df9c28a,d54712525c57,32abd580b31e,88bcb3dc0bb9,1f755385a423,aa4e34e8053f,3cd4844eaf75,651ccd022b9e,be31ab164f76,f19dbde5447a,f686256bddd3,9de18679529f,62ddcc02f468,21afb33d7a1b,9df7061bae2f">
+<section class="appel" id="compte" data-p="fa307abef110" data-lots="" data-plans="9493ea93281d,a69d4c1c42db,abeb2ffcd18c,8c04f0978b63,3a454335e98f,eb685f2d949b,0fbd70cc3d3b,2a57153d88a3,f58a3aa8757b,5ce3582e957d,63012fee2fa5,df2b065c04ac,06ffbfd8f4d5,74e8d7c9cbea,892565466bd9,e75684064c41,843d9b5741d1,e03fa09ca18d,6040bbcb79c2,6a7eb3f9e275,14448be491d6,2209ba0ea520,f319359f37f3,3b4cf0d8dfc1,ff98acca283a,f75683f6c998,188ae3ad2d4b,4b34dff4201f,da74efc4c938,1f4ab9e648db,3e9615c6cc99,190575f169d6,958ecf773ea2,fbf37fdda956,ca06e43b6fe8,e103f95abe59,ed8a08fd0967,4d90479dd496,6e652f25034f,ce27595e0a66,2dbf6940b9c8,8e42fce33158,cd277b32c19e,eb22f00d0222,4aa757c22d94,8c3cd0931562,a5cd40a350dd,ad9c1f3d6b87,6b1bd950e87f,9582162484d5,a8579077d5e9,410212c5df9a,73eca946915f,c2c58df9c28a,d54712525c57,32abd580b31e,88bcb3dc0bb9,1f755385a423,aa4e34e8053f,3cd4844eaf75,651ccd022b9e,be31ab164f76,f19dbde5447a,f686256bddd3,9de18679529f,62ddcc02f468,21afb33d7a1b,9df7061bae2f">
     <h2>Voir les plans de ces logements</h2>
     <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="Le Clos des Vertus" data-ville="Aubervilliers">

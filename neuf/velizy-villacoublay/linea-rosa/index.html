@@ -234,6 +234,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -330,6 +333,7 @@ footer a{color:var(--discret)}
       <hr class="filet">
       <p class="chapo">Un programme neuf, livré au 4e trimestre 2028.</p>
       <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce">T5+</span><span class="puce laiton">PTZ</span></div>
+      
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=velizy-villacoublay&amp;vue=ville#carte">Retour à la carte de Vélizy-Villacoublay</a></div>
   </header>
@@ -340,7 +344,8 @@ footer a{color:var(--discret)}
     <div class="repere-cle"><b>6 min</b><span>à pied de Inovel Parc Nord (T6)</span></div>
   </div>
   <section class="immeuble" id="immeuble">
-   
+   <div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">Maquette</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de Linea Rosa" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>
    
       <div class="vue">
     
@@ -357,7 +362,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
-   
+   </div>
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T1">T1</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
@@ -368,14 +373,14 @@ footer a{color:var(--discret)}
     <section class="typo"><h3>T2 · 19 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
   <tr id="l-17610763fb02"><td>41,4 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="17610763fb02" data-s="41.4">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="17610763fb02">Plan</button></td></tr>
-  <tr id="l-52903d719b68"><td>41,4 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="52903d719b68" data-s="41.4">…</td><td class="plan"></td></tr>
+  <tr id="l-52903d719b68"><td>41,4 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="52903d719b68" data-s="41.4">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="52903d719b68">Plan</button></td></tr>
   <tr id="l-7e4829b27bc0"><td>41,9 m²</td><td>4e</td><td>Balcon</td><td class="prix-lot" data-lot="7e4829b27bc0" data-s="41.9">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="7e4829b27bc0">Plan</button></td></tr>
   <tr id="l-4b44115e338c"><td>42,4 m²</td><td>RDC</td><td>Terrasse</td><td class="prix-lot" data-lot="4b44115e338c" data-s="42.4">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="4b44115e338c">Plan</button></td></tr>
   <tr id="l-05df78a0d30e"><td>42,5 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="05df78a0d30e" data-s="42.5">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="05df78a0d30e">Plan</button></td></tr>
   <tr id="l-6b56b82dbf02"><td>42,5 m²</td><td>4e</td><td>Balcon</td><td class="prix-lot" data-lot="6b56b82dbf02" data-s="42.5">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="6b56b82dbf02">Plan</button></td></tr>
   <tr id="l-a89625f34e9f"><td>42,5 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="a89625f34e9f" data-s="42.5">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="a89625f34e9f">Plan</button></td></tr>
   <tr id="l-4f07e77381d4"><td>42,9 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="4f07e77381d4" data-s="42.9">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="4f07e77381d4">Plan</button></td></tr>
-  <tr id="l-5a463b9e4552"><td>43 m²</td><td>RDC</td><td>Jardin</td><td class="prix-lot" data-lot="5a463b9e4552" data-s="43">…</td><td class="plan"></td></tr>
+  <tr id="l-5a463b9e4552"><td>43 m²</td><td>RDC</td><td>Jardin</td><td class="prix-lot" data-lot="5a463b9e4552" data-s="43">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="5a463b9e4552">Plan</button></td></tr>
   <tr id="l-3a46183c0cb7"><td>43,2 m²</td><td>4e</td><td>Balcon</td><td class="prix-lot" data-lot="3a46183c0cb7" data-s="43.2">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="3a46183c0cb7">Plan</button></td></tr>
   <tr id="l-956acd4694e5"><td>43,2 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="956acd4694e5" data-s="43.2">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="956acd4694e5">Plan</button></td></tr>
   <tr id="l-9e073f7de181"><td>43,2 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="9e073f7de181" data-s="43.2">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="9e073f7de181">Plan</button></td></tr>
@@ -456,7 +461,7 @@ footer a{color:var(--discret)}
    </div>
   </section>
   
-<section class="appel" id="compte" data-p="6d86b11ac918" data-lots="" data-plans="5052da08cf06,17610763fb02,7e4829b27bc0,4b44115e338c,05df78a0d30e,6b56b82dbf02,a89625f34e9f,4f07e77381d4,3a46183c0cb7,956acd4694e5,9e073f7de181,81aa3b95d03a,0f51deb41885,382588cf40b8,698eadc3f632,f6fb85d514d9,fdac08142d5b,96cbafaa2462,9859e4a2a489,fa23b3afc7b2,485c30432372,5901e0519f24,95e33510bddc,22c7850b3b39,57d06c8c3bcf,8fe9e2c2f48d,22a32c818fa8,727a76ac3bfe,1e9134290917,21f3357a8205,9603a9f33719,a9448ccce52a,d45d9150bc1e,d9f6cd98504b,fc108634133b,21f1f56aab45,e8f87916c673,ee48a2dcfff2,09f09aa4f5a6,a08fd7de4dec,3310bcbc7863,2b3565e9a1a4,2c4f84cd1f9c,f60afa021041,1fdba43383c2,24aa8c180bbe,9a096cd181fa,c6e386af0838,d8db75319a16,6cac1ad6300b,6fa70b5cc6b3,ea94500168a7,882ebe1fb068,816156514381,2043350006dd,46cfb1269970,0dcdd0cf05b4,360ba82f4a15,ce2bc95f2565,dcd3baa57fd2,8d84c893af95,4f4d5f7c92ed,d60f043d8cb1,3d068352fcb5,709168f077c0,4e1b00ff5689,0690eb94a9da,0d53fa9522a7,8203ea1e21bd,c39b82ca6632,bf06726f4740,81d581febc09,d87a20314688,85aaad225198,f841d4bbb139">
+<section class="appel" id="compte" data-p="6d86b11ac918" data-lots="" data-plans="5052da08cf06,17610763fb02,52903d719b68,7e4829b27bc0,4b44115e338c,05df78a0d30e,6b56b82dbf02,a89625f34e9f,4f07e77381d4,5a463b9e4552,3a46183c0cb7,956acd4694e5,9e073f7de181,81aa3b95d03a,0f51deb41885,382588cf40b8,698eadc3f632,f6fb85d514d9,fdac08142d5b,96cbafaa2462,9859e4a2a489,fa23b3afc7b2,485c30432372,5901e0519f24,95e33510bddc,22c7850b3b39,57d06c8c3bcf,8fe9e2c2f48d,22a32c818fa8,727a76ac3bfe,1e9134290917,21f3357a8205,9603a9f33719,a9448ccce52a,d45d9150bc1e,d9f6cd98504b,fc108634133b,21f1f56aab45,e8f87916c673,ee48a2dcfff2,09f09aa4f5a6,a08fd7de4dec,3310bcbc7863,2b3565e9a1a4,2c4f84cd1f9c,f60afa021041,1fdba43383c2,24aa8c180bbe,9a096cd181fa,c6e386af0838,d8db75319a16,6cac1ad6300b,6fa70b5cc6b3,ea94500168a7,882ebe1fb068,816156514381,2043350006dd,46cfb1269970,0dcdd0cf05b4,360ba82f4a15,ce2bc95f2565,dcd3baa57fd2,8d84c893af95,4f4d5f7c92ed,d60f043d8cb1,3d068352fcb5,709168f077c0,4e1b00ff5689,0690eb94a9da,0d53fa9522a7,8203ea1e21bd,c39b82ca6632,bf06726f4740,81d581febc09,d87a20314688,85aaad225198,f841d4bbb139">
     <h2>Voir les plans de ces logements</h2>
     <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="Linea Rosa" data-ville="Vélizy-Villacoublay">

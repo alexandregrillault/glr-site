@@ -234,6 +234,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -330,6 +333,7 @@ footer a{color:var(--discret)}
       <hr class="filet">
       <p class="chapo">Un programme neuf, livré au 2e trimestre 2027.</p>
       <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce">T5+</span></div>
+      
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=champigny-sur-marne&amp;vue=ville#carte">Retour à la carte de Champigny-sur-Marne</a></div>
   </header>
@@ -340,7 +344,8 @@ footer a{color:var(--discret)}
     <div class="repere-cle"><b>11 min</b><span>à pied des Boullereaux Champigny (RER E)</span></div>
   </div>
   <section class="immeuble" id="immeuble">
-   
+   <div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">Maquette</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de Le Clos 86" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>
    
       <div class="vue">
     
@@ -357,19 +362,19 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
-   
+   </div>
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
     <section class="typo"><h3>T2 · 2 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  <tr id="l-92e51fb77951"><td>41,32 m²</td><td>5e</td><td>—</td><td class="prix-lot" data-lot="92e51fb77951" data-s="41.32">…</td><td class="plan"></td></tr>
+  <tr id="l-92e51fb77951"><td>41,32 m²</td><td>5e</td><td>—</td><td class="prix-lot" data-lot="92e51fb77951" data-s="41.32">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="92e51fb77951">Plan</button></td></tr>
   <tr id="l-de0f0885d65d"><td>42,19 m²</td><td>4e</td><td>Extérieur</td><td class="prix-lot" data-lot="de0f0885d65d" data-s="42.19">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="de0f0885d65d">Plan</button></td></tr>
   </tbody></table></section>
     <section class="typo"><h3>T3 · 14 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
   <tr id="l-ecf3114fc537"><td>61,46 m²</td><td>3e</td><td>Extérieur</td><td class="prix-lot" data-lot="ecf3114fc537" data-s="61.46">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="ecf3114fc537">Plan</button></td></tr>
-  <tr id="l-bb48f2c2f1f2"><td>61,91 m²</td><td>3e</td><td>Extérieur</td><td class="prix-lot" data-lot="bb48f2c2f1f2" data-s="61.91">…</td><td class="plan"></td></tr>
+  <tr id="l-bb48f2c2f1f2"><td>61,91 m²</td><td>3e</td><td>Extérieur</td><td class="prix-lot" data-lot="bb48f2c2f1f2" data-s="61.91">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="bb48f2c2f1f2">Plan</button></td></tr>
   <tr id="l-f07dcd27682b"><td>62,11 m²</td><td>3e</td><td>Extérieur</td><td class="prix-lot" data-lot="f07dcd27682b" data-s="62.11">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="f07dcd27682b">Plan</button></td></tr>
   <tr id="l-8db4aeab0032"><td>66,1 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="8db4aeab0032" data-s="66.1">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="8db4aeab0032">Plan</button></td></tr>
   <tr id="l-ac9fbbf73f66"><td>66,1 m²</td><td>3e</td><td>Extérieur</td><td class="prix-lot" data-lot="ac9fbbf73f66" data-s="66.1">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="ac9fbbf73f66">Plan</button></td></tr>
@@ -392,12 +397,12 @@ footer a{color:var(--discret)}
   </tbody></table></section>
     <section class="typo"><h3>T5+ · 1 logement</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  <tr id="l-cfd8a096b06c"><td>95,76 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="cfd8a096b06c" data-s="95.76">…</td><td class="plan"></td></tr>
+  <tr id="l-cfd8a096b06c"><td>95,76 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="cfd8a096b06c" data-s="95.76">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="cfd8a096b06c">Plan</button></td></tr>
   </tbody></table></section>
    </div>
   </section>
   
-<section class="appel" id="compte" data-p="290db54086bb" data-lots="" data-plans="de0f0885d65d,ecf3114fc537,f07dcd27682b,8db4aeab0032,ac9fbbf73f66,c227b8ff8e1f,f53a19580700,c9722af37c34,23c89f94b3f7,2456ace20d51,89dd8efff325,c4f7804af85a,e459101964e9,eee5fca10d15,0faad53da2ff,832372ad8d7b,89716b35b214,da584a8104da">
+<section class="appel" id="compte" data-p="290db54086bb" data-lots="" data-plans="92e51fb77951,de0f0885d65d,ecf3114fc537,bb48f2c2f1f2,f07dcd27682b,8db4aeab0032,ac9fbbf73f66,c227b8ff8e1f,f53a19580700,c9722af37c34,23c89f94b3f7,2456ace20d51,89dd8efff325,c4f7804af85a,e459101964e9,eee5fca10d15,0faad53da2ff,832372ad8d7b,89716b35b214,da584a8104da,cfd8a096b06c">
     <h2>Voir les plans de ces logements</h2>
     <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="Le Clos 86" data-ville="Champigny-sur-Marne">

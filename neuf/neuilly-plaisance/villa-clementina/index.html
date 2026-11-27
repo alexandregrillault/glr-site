@@ -234,6 +234,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -330,6 +333,7 @@ footer a{color:var(--discret)}
       <hr class="filet">
       <p class="chapo">Un programme neuf, livré au 3e trimestre 2027.</p>
       <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce laiton">PTZ</span></div>
+      
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=neuilly-plaisance&amp;vue=ville#carte">Retour à la carte de Neuilly-Plaisance</a></div>
   </header>
@@ -340,7 +344,8 @@ footer a{color:var(--discret)}
     <div class="repere-cle"><b>17 min</b><span>à pied de Neuilly-Plaisance (RER A)</span></div>
   </div>
   <section class="immeuble" id="immeuble">
-   
+   <div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">Maquette</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de Villa Clementina" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>
    
       <div class="vue">
     
@@ -357,7 +362,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
-   
+   </div>
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button></div>
@@ -365,7 +370,7 @@ footer a{color:var(--discret)}
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
   <tr id="l-170828ca3f3c"><td>43 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="170828ca3f3c" data-s="43">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="170828ca3f3c">Plan</button></td></tr>
   <tr id="l-3484d0fb9d15"><td>43 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="3484d0fb9d15" data-s="43">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="3484d0fb9d15">Plan</button></td></tr>
-  <tr id="l-17ba1081caf7"><td>46,5 m²</td><td>1er</td><td>Terrasse</td><td class="prix-lot" data-lot="17ba1081caf7" data-s="46.5">…</td><td class="plan"></td></tr>
+  <tr id="l-17ba1081caf7"><td>46,5 m²</td><td>1er</td><td>Terrasse</td><td class="prix-lot" data-lot="17ba1081caf7" data-s="46.5">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="17ba1081caf7">Plan</button></td></tr>
   <tr id="l-e4430b4a4597"><td>46,5 m²</td><td>3e</td><td>Terrasse</td><td class="prix-lot" data-lot="e4430b4a4597" data-s="46.5">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="e4430b4a4597">Plan</button></td></tr>
   <tr id="l-ecc5fdf6b1c0"><td>46,5 m²</td><td>2e</td><td>Terrasse</td><td class="prix-lot" data-lot="ecc5fdf6b1c0" data-s="46.5">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="ecc5fdf6b1c0">Plan</button></td></tr>
   <tr id="l-7ec0850a8b6c"><td>46,7 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="7ec0850a8b6c" data-s="46.7">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="7ec0850a8b6c">Plan</button></td></tr>
@@ -385,7 +390,7 @@ footer a{color:var(--discret)}
    </div>
   </section>
   
-<section class="appel" id="compte" data-p="3c3ac417ac4d" data-lots="" data-plans="170828ca3f3c,3484d0fb9d15,e4430b4a4597,ecc5fdf6b1c0,7ec0850a8b6c,68ccb58966aa,9af66f708b03,021e77fdc09f,321ca6828e96,a367bc2c8515,dab7d04a6643,ae4c5051e159,5c5f91338c0c,99e4745709c4">
+<section class="appel" id="compte" data-p="3c3ac417ac4d" data-lots="" data-plans="170828ca3f3c,3484d0fb9d15,17ba1081caf7,e4430b4a4597,ecc5fdf6b1c0,7ec0850a8b6c,68ccb58966aa,9af66f708b03,021e77fdc09f,321ca6828e96,a367bc2c8515,dab7d04a6643,ae4c5051e159,5c5f91338c0c,99e4745709c4">
     <h2>Voir les plans de ces logements</h2>
     <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="Villa Clementina" data-ville="Neuilly-Plaisance">

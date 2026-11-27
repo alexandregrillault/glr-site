@@ -234,6 +234,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -330,6 +333,7 @@ footer a{color:var(--discret)}
       <hr class="filet">
       <p class="chapo">Un programme neuf, livré au 4e trimestre 2028.</p>
       <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce">T5+</span><span class="puce laiton">PTZ</span><span class="puce laiton">TVA 5,5 %</span></div>
+      
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=l-hay-les-roses&amp;vue=ville#carte">Retour à la carte de L&#39;Haÿ-les-Roses</a></div>
   </header>
@@ -340,7 +344,8 @@ footer a{color:var(--discret)}
     <div class="repere-cle"><b>19 min</b><span>à pied de l&#39;Haÿ-les-Roses (M14)</span></div>
   </div>
   <section class="immeuble" id="immeuble">
-   
+   <div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">Maquette</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de Fragrance" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>
    
       <div class="vue">
     
@@ -357,7 +362,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
-   
+   </div>
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T1">T1</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
@@ -384,7 +389,7 @@ footer a{color:var(--discret)}
   </tbody></table></section>
     <section class="typo"><h3>T3 · 19 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  <tr id="l-d2721d1c19a2"><td>61,33 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="d2721d1c19a2" data-s="61.33">…</td><td class="plan"></td></tr>
+  <tr id="l-d2721d1c19a2"><td>61,33 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="d2721d1c19a2" data-s="61.33">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="d2721d1c19a2">Plan</button></td></tr>
   <tr id="l-83ceaf25804d"><td>62,52 m²</td><td>5e</td><td>Balcon</td><td class="prix-lot" data-lot="83ceaf25804d" data-s="62.52">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="83ceaf25804d">Plan</button></td></tr>
   <tr id="l-bdd631e50231"><td>62,52 m²</td><td>4e</td><td>Balcon</td><td class="prix-lot" data-lot="bdd631e50231" data-s="62.52">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="bdd631e50231">Plan</button></td></tr>
   <tr id="l-f65890400928"><td>62,52 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="f65890400928" data-s="62.52">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="f65890400928">Plan</button></td></tr>
@@ -401,7 +406,7 @@ footer a{color:var(--discret)}
   <tr id="l-c150b843e8dd"><td>64,7 m²</td><td>4e</td><td>Balcon</td><td class="prix-lot" data-lot="c150b843e8dd" data-s="64.7">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="c150b843e8dd">Plan</button></td></tr>
   <tr id="l-dec91226fb23"><td>64,7 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="dec91226fb23" data-s="64.7">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="dec91226fb23">Plan</button></td></tr>
   <tr id="l-e865a28a6e53"><td>64,7 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="e865a28a6e53" data-s="64.7">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="e865a28a6e53">Plan</button></td></tr>
-  <tr id="l-fc856102a328"><td>64,7 m²</td><td>5e</td><td>Balcon</td><td class="prix-lot" data-lot="fc856102a328" data-s="64.7">…</td><td class="plan"></td></tr>
+  <tr id="l-fc856102a328"><td>64,7 m²</td><td>5e</td><td>Balcon</td><td class="prix-lot" data-lot="fc856102a328" data-s="64.7">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="fc856102a328">Plan</button></td></tr>
   <tr id="l-3ae96a6be3ee"><td>65 m²</td><td>7e</td><td>Terrasse</td><td class="prix-lot" data-lot="3ae96a6be3ee" data-s="65">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="3ae96a6be3ee">Plan</button></td></tr>
   </tbody></table></section>
     <section class="typo"><h3>T4 · 3 logements</h3>
@@ -418,7 +423,7 @@ footer a{color:var(--discret)}
    </div>
   </section>
   
-<section class="appel" id="compte" data-p="dbc425e92b6a" data-lots="" data-plans="072cac64cf3a,3dd61abe407e,436b790e368d,73c569b1e9a6,ccf43486a7ea,07eb4f84fa22,c0bf53ef77cf,e3e3793502c7,90ec4d99d9bb,ce3bcc04185c,6fc52fbd098f,95db138a507e,a8ecb1712fd1,cc659c8f18ad,69c1f039ef94,83ceaf25804d,bdd631e50231,f65890400928,49346a18467b,6f93067d9d36,d91273888158,f8ec598ebad0,1fa109deaba0,2913e830c8b1,89f8b8710f03,cfd1a15ce1ed,7042172e8006,1a2f58a0f4d3,c150b843e8dd,dec91226fb23,e865a28a6e53,3ae96a6be3ee,c9fb5fa972d4,b86bbdb543dc,f540988f18d2,3a3b9da07f3f,2bde869a3ba5">
+<section class="appel" id="compte" data-p="dbc425e92b6a" data-lots="" data-plans="072cac64cf3a,3dd61abe407e,436b790e368d,73c569b1e9a6,ccf43486a7ea,07eb4f84fa22,c0bf53ef77cf,e3e3793502c7,90ec4d99d9bb,ce3bcc04185c,6fc52fbd098f,95db138a507e,a8ecb1712fd1,cc659c8f18ad,69c1f039ef94,d2721d1c19a2,83ceaf25804d,bdd631e50231,f65890400928,49346a18467b,6f93067d9d36,d91273888158,f8ec598ebad0,1fa109deaba0,2913e830c8b1,89f8b8710f03,cfd1a15ce1ed,7042172e8006,1a2f58a0f4d3,c150b843e8dd,dec91226fb23,e865a28a6e53,fc856102a328,3ae96a6be3ee,c9fb5fa972d4,b86bbdb543dc,f540988f18d2,3a3b9da07f3f,2bde869a3ba5">
     <h2>Voir les plans de ces logements</h2>
     <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="Fragrance" data-ville="L&#39;Haÿ-les-Roses">

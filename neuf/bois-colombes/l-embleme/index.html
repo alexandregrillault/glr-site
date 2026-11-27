@@ -234,6 +234,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -330,6 +333,7 @@ footer a{color:var(--discret)}
       <hr class="filet">
       <p class="chapo">Un programme neuf, déjà livré.</p>
       <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce laiton">PTZ</span></div>
+      
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=bois-colombes&amp;vue=ville#carte">Retour à la carte de Bois-Colombes</a></div>
   </header>
@@ -340,7 +344,8 @@ footer a{color:var(--discret)}
     <div class="repere-cle"><b>6 min</b><span>à pied de Quatre Routes (T1)</span></div>
   </div>
   <section class="immeuble" id="immeuble">
-   
+   <div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">Maquette</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de L&#39;embleme" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>
    
       <div class="vue">
     
@@ -357,7 +362,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
-   
+   </div>
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button></div>
@@ -368,7 +373,7 @@ footer a{color:var(--discret)}
   </tbody></table></section>
     <section class="typo"><h3>T3 · 29 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  <tr id="l-7e7bb395b881"><td>55,03 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="7e7bb395b881" data-s="55.03">…</td><td class="plan"></td></tr>
+  <tr id="l-7e7bb395b881"><td>55,03 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="7e7bb395b881" data-s="55.03">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="7e7bb395b881">Plan</button></td></tr>
   <tr id="l-b9c6d8fe9e17"><td>58,11 m²</td><td>5e</td><td>Balcon</td><td class="prix-lot" data-lot="b9c6d8fe9e17" data-s="58.11">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="b9c6d8fe9e17">Plan</button></td></tr>
   <tr id="l-9672862a1010"><td>58,13 m²</td><td>4e</td><td>Balcon</td><td class="prix-lot" data-lot="9672862a1010" data-s="58.13">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="9672862a1010">Plan</button></td></tr>
   <tr id="l-cf85dad840b5"><td>58,17 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="cf85dad840b5" data-s="58.17">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="cf85dad840b5">Plan</button></td></tr>
@@ -377,9 +382,9 @@ footer a{color:var(--discret)}
   <tr id="l-bbec3a03bd02"><td>58,39 m²</td><td>6e</td><td>Balcon</td><td class="prix-lot" data-lot="bbec3a03bd02" data-s="58.39">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="bbec3a03bd02">Plan</button></td></tr>
   <tr id="l-634e4f6ca37f"><td>58,46 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="634e4f6ca37f" data-s="58.46">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="634e4f6ca37f">Plan</button></td></tr>
   <tr id="l-d29574bd0e67"><td>58,5 m²</td><td>4e</td><td>Balcon</td><td class="prix-lot" data-lot="d29574bd0e67" data-s="58.5">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="d29574bd0e67">Plan</button></td></tr>
-  <tr id="l-de180b213062"><td>59,41 m²</td><td>5e</td><td>Balcon</td><td class="prix-lot" data-lot="de180b213062" data-s="59.41">…</td><td class="plan"></td></tr>
+  <tr id="l-de180b213062"><td>59,41 m²</td><td>5e</td><td>Balcon</td><td class="prix-lot" data-lot="de180b213062" data-s="59.41">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="de180b213062">Plan</button></td></tr>
   <tr id="l-d3a6c7876c91"><td>59,42 m²</td><td>4e</td><td>Balcon</td><td class="prix-lot" data-lot="d3a6c7876c91" data-s="59.42">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="d3a6c7876c91">Plan</button></td></tr>
-  <tr id="l-39a982bc3cc8"><td>59,45 m²</td><td>1er</td><td>Terrasse</td><td class="prix-lot" data-lot="39a982bc3cc8" data-s="59.45">…</td><td class="plan"></td></tr>
+  <tr id="l-39a982bc3cc8"><td>59,45 m²</td><td>1er</td><td>Terrasse</td><td class="prix-lot" data-lot="39a982bc3cc8" data-s="59.45">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="39a982bc3cc8">Plan</button></td></tr>
   <tr id="l-db1fd02d5ff4"><td>59,49 m²</td><td>6e</td><td>Terrasse</td><td class="prix-lot" data-lot="db1fd02d5ff4" data-s="59.49">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="db1fd02d5ff4">Plan</button></td></tr>
   <tr id="l-7a6b2e376603"><td>59,56 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="7a6b2e376603" data-s="59.56">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="7a6b2e376603">Plan</button></td></tr>
   <tr id="l-3e3bb2a88ed5"><td>59,61 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="3e3bb2a88ed5" data-s="59.61">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="3e3bb2a88ed5">Plan</button></td></tr>
@@ -427,7 +432,7 @@ footer a{color:var(--discret)}
    </div>
   </section>
   
-<section class="appel" id="compte" data-p="67e61020cef3" data-lots="" data-plans="3e7dd38041f4,8190d94d5534,b9c6d8fe9e17,9672862a1010,cf85dad840b5,9c1056f7bf23,e77bfeac8aa7,bbec3a03bd02,634e4f6ca37f,d29574bd0e67,d3a6c7876c91,db1fd02d5ff4,7a6b2e376603,3e3bb2a88ed5,d16d3eba52f6,07e75bb15db7,c4b0fad02959,f8ef01a0a097,c8501df13750,5851376fa007,15d37ab42099,97403ae5c11d,571f6d92d3c6,56d82affc827,750cfb9c8193,6077479415e2,5378d0c3c75f,c0731d931f85,a909a7b3c135,4f6784809f4e,c89f4f82c041,d73b274d9cbb,47468038aff0,ee9c1efdde5a,ea6d2d2834aa,49a498787aa5,0c867e739e16,a6ff8f0d0f78,b426560f5405,f26c0296daa9,f3566d028806,ffccce7ac1a5,c136348fe3c9,97f2ba7ebf5d,a95bc9c4475d,9524cbf632c7,7fe1b1e63056,7d8638673241,3aed2fbad84e,1cbaef51d3d6,d276d74cd11f">
+<section class="appel" id="compte" data-p="67e61020cef3" data-lots="" data-plans="3e7dd38041f4,8190d94d5534,7e7bb395b881,b9c6d8fe9e17,9672862a1010,cf85dad840b5,9c1056f7bf23,e77bfeac8aa7,bbec3a03bd02,634e4f6ca37f,d29574bd0e67,de180b213062,d3a6c7876c91,39a982bc3cc8,db1fd02d5ff4,7a6b2e376603,3e3bb2a88ed5,d16d3eba52f6,07e75bb15db7,c4b0fad02959,f8ef01a0a097,c8501df13750,5851376fa007,15d37ab42099,97403ae5c11d,571f6d92d3c6,56d82affc827,750cfb9c8193,6077479415e2,5378d0c3c75f,c0731d931f85,a909a7b3c135,4f6784809f4e,c89f4f82c041,d73b274d9cbb,47468038aff0,ee9c1efdde5a,ea6d2d2834aa,49a498787aa5,0c867e739e16,a6ff8f0d0f78,b426560f5405,f26c0296daa9,f3566d028806,ffccce7ac1a5,c136348fe3c9,97f2ba7ebf5d,a95bc9c4475d,9524cbf632c7,7fe1b1e63056,7d8638673241,3aed2fbad84e,1cbaef51d3d6,d276d74cd11f">
     <h2>Voir les plans de ces logements</h2>
     <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="L&#39;embleme" data-ville="Bois-Colombes">

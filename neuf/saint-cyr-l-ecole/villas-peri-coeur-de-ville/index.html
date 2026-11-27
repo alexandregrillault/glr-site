@@ -234,6 +234,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -330,6 +333,7 @@ footer a{color:var(--discret)}
       <hr class="filet">
       <p class="chapo">Un programme neuf, livré au 4e trimestre 2028.</p>
       <div class="puces"><span class="puce">T1</span><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span></div>
+      
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=saint-cyr-l-ecole&amp;vue=ville#carte">Retour à la carte de Saint-Cyr-l&#39;École</a></div>
   </header>
@@ -340,7 +344,8 @@ footer a{color:var(--discret)}
     <div class="repere-cle"><b>4 min</b><span>à pied de Saint-Cyr (ligne N)</span></div>
   </div>
   <section class="immeuble" id="immeuble">
-   
+   <div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">Maquette</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de Villas Péri - Coeur de Ville" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>
    
       <div class="vue">
     
@@ -357,7 +362,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
-   
+   </div>
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T1">T1</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button></div>
@@ -408,12 +413,12 @@ footer a{color:var(--discret)}
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
   <tr id="l-090b37fd6006"><td>76,11 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="090b37fd6006" data-s="76.11">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="090b37fd6006">Plan</button></td></tr>
   <tr id="l-7edf2cce70fd"><td>82,02 m²</td><td>3e</td><td>Extérieur</td><td class="prix-lot" data-lot="7edf2cce70fd" data-s="82.02">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="7edf2cce70fd">Plan</button></td></tr>
-  <tr id="l-9b93a3838896"><td>83,96 m²</td><td>4e</td><td>Extérieur</td><td class="prix-lot" data-lot="9b93a3838896" data-s="83.96">…</td><td class="plan"></td></tr>
+  <tr id="l-9b93a3838896"><td>83,96 m²</td><td>4e</td><td>Extérieur</td><td class="prix-lot" data-lot="9b93a3838896" data-s="83.96">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="9b93a3838896">Plan</button></td></tr>
   </tbody></table></section>
    </div>
   </section>
   
-<section class="appel" id="compte" data-p="2964588743c6" data-lots="" data-plans="467dcfcb608f,602f9ef842f1,914edc300817,7ffbd614f00e,b2eed95e8f32,46621e6bf1f7,11b6a665d196,2d74aba3c369,cbd6f136a10e,4827a6c32046,c9eaab469783,3bac6d0c4388,48c2eec85976,fc150b55553f,ec9ff64e1869,b177b1d271e4,726cfb60b4b0,88e6a25ec6d9,4811e4755ea7,ac58ba668293,f6d6ba8a4846,80dc519eefdf,1a1322bb0551,a115df781201,a8416f35ad89,295a6c05226a,574121ac0596,3eee282e0c42,f0943b5fe9df,30afda1176cf,1fa4ae935999,4d4b503fb67c,c55d8e1734a8,e187dc36c0b9,090b37fd6006,7edf2cce70fd">
+<section class="appel" id="compte" data-p="2964588743c6" data-lots="" data-plans="467dcfcb608f,602f9ef842f1,914edc300817,7ffbd614f00e,b2eed95e8f32,46621e6bf1f7,11b6a665d196,2d74aba3c369,cbd6f136a10e,4827a6c32046,c9eaab469783,3bac6d0c4388,48c2eec85976,fc150b55553f,ec9ff64e1869,b177b1d271e4,726cfb60b4b0,88e6a25ec6d9,4811e4755ea7,ac58ba668293,f6d6ba8a4846,80dc519eefdf,1a1322bb0551,a115df781201,a8416f35ad89,295a6c05226a,574121ac0596,3eee282e0c42,f0943b5fe9df,30afda1176cf,1fa4ae935999,4d4b503fb67c,c55d8e1734a8,e187dc36c0b9,090b37fd6006,7edf2cce70fd,9b93a3838896">
     <h2>Voir les plans de ces logements</h2>
     <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="Villas Péri - Coeur de Ville" data-ville="Saint-Cyr-l&#39;École">

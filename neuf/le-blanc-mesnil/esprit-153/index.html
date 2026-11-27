@@ -234,6 +234,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -330,6 +333,7 @@ footer a{color:var(--discret)}
       <hr class="filet">
       <p class="chapo">Un programme neuf, livré au 1er trimestre 2027.</p>
       <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce">T5+</span><span class="puce laiton">PTZ</span><span class="puce laiton">TVA 5,5 %</span></div>
+      
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=le-blanc-mesnil&amp;vue=ville#carte">Retour à la carte de Le Blanc-Mesnil</a></div>
   </header>
@@ -340,7 +344,8 @@ footer a{color:var(--discret)}
     <div class="repere-cle"><b>17 min</b><span>à pied du Bourget (RER B)</span></div>
   </div>
   <section class="immeuble" id="immeuble">
-   
+   <div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">Maquette</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de Esprit 153" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>
    
       <div class="vue">
     
@@ -357,14 +362,14 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
-   
+   </div>
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
     <section class="typo"><h3>T2 · 14 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
   <tr id="l-9eb6ad1582cd"><td>39,18 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="9eb6ad1582cd" data-s="39.18">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="9eb6ad1582cd">Plan</button></td></tr>
-  <tr id="l-c1c8111e4433"><td>39,18 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="c1c8111e4433" data-s="39.18">…</td><td class="plan"></td></tr>
+  <tr id="l-c1c8111e4433"><td>39,18 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="c1c8111e4433" data-s="39.18">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="c1c8111e4433">Plan</button></td></tr>
   <tr id="l-7e45687be868"><td>41,27 m²</td><td>RDC</td><td>Jardin</td><td class="prix-lot" data-lot="7e45687be868" data-s="41.27">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="7e45687be868">Plan</button></td></tr>
   <tr id="l-88ae7281b4de"><td>43,9 m²</td><td>RDC</td><td>Jardin</td><td class="prix-lot" data-lot="88ae7281b4de" data-s="43.9">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="88ae7281b4de">Plan</button></td></tr>
   <tr id="l-fc54c97e17da"><td>44,39 m²</td><td>6e</td><td>—</td><td class="prix-lot" data-lot="fc54c97e17da" data-s="44.39">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="fc54c97e17da">Plan</button></td></tr>
@@ -430,7 +435,7 @@ footer a{color:var(--discret)}
    </div>
   </section>
   
-<section class="appel" id="compte" data-p="296e0fa84c5e" data-lots="" data-plans="9eb6ad1582cd,7e45687be868,88ae7281b4de,fc54c97e17da,e9418f74a5a4,2da9f5effd75,fa8480d20196,efc3381703bb,38defaacdca5,1dbe5c4eef2c,df419e4dfa52,d6db96ad4219,1acbcb884a9a,3f33f788bdc9,56de4e451b21,54d84efcaf5c,5999faddae99,7468ef45da62,6504e9e7f044,cb8bf952187e,f1833022e94d,b4c6df5aea61,c9e56c3f05ac,b5c3cafe57bf,f34aac1bc75a,708b83c293f9,c9e40816a3da,9a7dc08074ab,b8c5e6fcda11,f6934575856a,f9e88789a828,31c5e49ecd47,5890ad75855e,b8714c36884f,06cbcc888d25,eb53e3c53255,e520c867db66,e0a90ab45efa,5b469c7b10b8,b38b223aecfe,31ed91178677,1f0705ad4909,5eed9c92f799,5ce8c30ad29e,ef00a44ad6ea,ab5af6baf004,7f7181b13fa0,e9b29f5247d1,f8bf0a032c6e,113cfa576bdc,cf0f7a934c2d,5f3d3699c71b,1f15f5f4395f">
+<section class="appel" id="compte" data-p="296e0fa84c5e" data-lots="" data-plans="9eb6ad1582cd,c1c8111e4433,7e45687be868,88ae7281b4de,fc54c97e17da,e9418f74a5a4,2da9f5effd75,fa8480d20196,efc3381703bb,38defaacdca5,1dbe5c4eef2c,df419e4dfa52,d6db96ad4219,1acbcb884a9a,3f33f788bdc9,56de4e451b21,54d84efcaf5c,5999faddae99,7468ef45da62,6504e9e7f044,cb8bf952187e,f1833022e94d,b4c6df5aea61,c9e56c3f05ac,b5c3cafe57bf,f34aac1bc75a,708b83c293f9,c9e40816a3da,9a7dc08074ab,b8c5e6fcda11,f6934575856a,f9e88789a828,31c5e49ecd47,5890ad75855e,b8714c36884f,06cbcc888d25,eb53e3c53255,e520c867db66,e0a90ab45efa,5b469c7b10b8,b38b223aecfe,31ed91178677,1f0705ad4909,5eed9c92f799,5ce8c30ad29e,ef00a44ad6ea,ab5af6baf004,7f7181b13fa0,e9b29f5247d1,f8bf0a032c6e,113cfa576bdc,cf0f7a934c2d,5f3d3699c71b,1f15f5f4395f">
     <h2>Voir les plans de ces logements</h2>
     <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="Esprit 153" data-ville="Le Blanc-Mesnil">

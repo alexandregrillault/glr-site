@@ -234,6 +234,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -330,6 +333,7 @@ footer a{color:var(--discret)}
       <hr class="filet">
       <p class="chapo">Un programme neuf, déjà livré.</p>
       <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span></div>
+      
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=courbevoie&amp;vue=ville#carte">Retour à la carte de Courbevoie</a></div>
   </header>
@@ -340,7 +344,8 @@ footer a{color:var(--discret)}
     <div class="repere-cle"><b>10 min</b><span>à pied de Bécon les Bruyères (ligne L)</span></div>
   </div>
   <section class="immeuble" id="immeuble">
-   
+   <div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">Maquette</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de Le Parc" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>
    
       <div class="vue">
     
@@ -357,7 +362,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
-   
+   </div>
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button></div>
@@ -370,7 +375,7 @@ footer a{color:var(--discret)}
   <tr id="l-ea8ffaf17b87"><td>70,15 m²</td><td>4e</td><td>Balcon</td><td class="prix-lot" data-lot="ea8ffaf17b87" data-s="70.15">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="ea8ffaf17b87">Plan</button></td></tr>
   <tr id="l-12d9c28e0dee"><td>70,25 m²</td><td>6e</td><td>Balcon</td><td class="prix-lot" data-lot="12d9c28e0dee" data-s="70.25">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="12d9c28e0dee">Plan</button></td></tr>
   <tr id="l-6c43b9c8130d"><td>86,2 m²</td><td>9e</td><td>Balcon</td><td class="prix-lot" data-lot="6c43b9c8130d" data-s="86.2">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="6c43b9c8130d">Plan</button></td></tr>
-  <tr id="l-2109a6423af5"><td>86,85 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="2109a6423af5" data-s="86.85">…</td><td class="plan"></td></tr>
+  <tr id="l-2109a6423af5"><td>86,85 m²</td><td>1er</td><td>Balcon</td><td class="prix-lot" data-lot="2109a6423af5" data-s="86.85">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="2109a6423af5">Plan</button></td></tr>
   </tbody></table></section>
     <section class="typo"><h3>T4 · 4 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
@@ -382,7 +387,7 @@ footer a{color:var(--discret)}
    </div>
   </section>
   
-<section class="appel" id="compte" data-p="5720db6324ca" data-lots="" data-plans="19f954054fb4,ea8ffaf17b87,12d9c28e0dee,6c43b9c8130d,f2eab2a4c769,3b4d7ba5fd6c,8075cf92beab,19182748d07d">
+<section class="appel" id="compte" data-p="5720db6324ca" data-lots="" data-plans="19f954054fb4,ea8ffaf17b87,12d9c28e0dee,6c43b9c8130d,2109a6423af5,f2eab2a4c769,3b4d7ba5fd6c,8075cf92beab,19182748d07d">
     <h2>Voir les plans de ces logements</h2>
     <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="Le Parc" data-ville="Courbevoie">

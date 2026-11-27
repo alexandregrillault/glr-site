@@ -234,6 +234,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -330,6 +333,7 @@ footer a{color:var(--discret)}
       <hr class="filet">
       <p class="chapo">Un programme neuf, livré au 4e trimestre 2028.</p>
       <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce laiton">PTZ</span><span class="puce laiton">TVA 5,5 %</span></div>
+      
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=gagny&amp;vue=ville#carte">Retour à la carte de Gagny</a></div>
   </header>
@@ -340,7 +344,8 @@ footer a{color:var(--discret)}
     <div class="repere-cle"><b>1 min</b><span>à pied du Chénay Gagny (RER E)</span></div>
   </div>
   <section class="immeuble" id="immeuble">
-   
+   <div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">Maquette</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de Carré Chenay" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>
    
       <div class="vue">
     
@@ -357,7 +362,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
-   
+   </div>
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button></div>
@@ -368,17 +373,17 @@ footer a{color:var(--discret)}
     <section class="typo"><h3>T3 · 14 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
   <tr id="l-b1f48fc5251b"><td>52,42 m²</td><td>4e</td><td>Balcon</td><td class="prix-lot" data-lot="b1f48fc5251b" data-s="52.42">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="b1f48fc5251b">Plan</button></td></tr>
-  <tr id="l-da2de9ac9b69"><td>53,65 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="da2de9ac9b69" data-s="53.65">…</td><td class="plan"></td></tr>
+  <tr id="l-da2de9ac9b69"><td>53,65 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="da2de9ac9b69" data-s="53.65">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="da2de9ac9b69">Plan</button></td></tr>
   <tr id="l-14d0f3447072"><td>66,95 m²</td><td>non précisé</td><td>Terrasse</td><td class="prix-lot" data-lot="14d0f3447072" data-s="66.95">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="14d0f3447072">Plan</button></td></tr>
-  <tr id="l-18cddac8748b"><td>66,95 m²</td><td>3e</td><td>Terrasse</td><td class="prix-lot" data-lot="18cddac8748b" data-s="66.95">…</td><td class="plan"></td></tr>
+  <tr id="l-18cddac8748b"><td>66,95 m²</td><td>3e</td><td>Terrasse</td><td class="prix-lot" data-lot="18cddac8748b" data-s="66.95">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="18cddac8748b">Plan</button></td></tr>
   <tr id="l-ba493fa757bf"><td>66,95 m²</td><td>non précisé</td><td>Terrasse</td><td class="prix-lot" data-lot="ba493fa757bf" data-s="66.95">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="ba493fa757bf">Plan</button></td></tr>
   <tr id="l-0a59dd451a9c"><td>68,41 m²</td><td>non précisé</td><td>Balcon</td><td class="prix-lot" data-lot="0a59dd451a9c" data-s="68.41">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="0a59dd451a9c">Plan</button></td></tr>
-  <tr id="l-2b4c262a767d"><td>68,41 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="2b4c262a767d" data-s="68.41">…</td><td class="plan"></td></tr>
-  <tr id="l-c15cb12a0118"><td>68,41 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="c15cb12a0118" data-s="68.41">…</td><td class="plan"></td></tr>
-  <tr id="l-a3481a67683f"><td>68,87 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="a3481a67683f" data-s="68.87">…</td><td class="plan"></td></tr>
-  <tr id="l-a4d915e3db12"><td>68,87 m²</td><td>1er</td><td>Terrasse</td><td class="prix-lot" data-lot="a4d915e3db12" data-s="68.87">…</td><td class="plan"></td></tr>
+  <tr id="l-2b4c262a767d"><td>68,41 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="2b4c262a767d" data-s="68.41">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="2b4c262a767d">Plan</button></td></tr>
+  <tr id="l-c15cb12a0118"><td>68,41 m²</td><td>3e</td><td>Balcon</td><td class="prix-lot" data-lot="c15cb12a0118" data-s="68.41">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="c15cb12a0118">Plan</button></td></tr>
+  <tr id="l-a3481a67683f"><td>68,87 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="a3481a67683f" data-s="68.87">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="a3481a67683f">Plan</button></td></tr>
+  <tr id="l-a4d915e3db12"><td>68,87 m²</td><td>1er</td><td>Terrasse</td><td class="prix-lot" data-lot="a4d915e3db12" data-s="68.87">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="a4d915e3db12">Plan</button></td></tr>
   <tr id="l-ece6ea53fef7"><td>69,65 m²</td><td>4e</td><td>Terrasse</td><td class="prix-lot" data-lot="ece6ea53fef7" data-s="69.65">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="ece6ea53fef7">Plan</button></td></tr>
-  <tr id="l-0c308e6a90b3"><td>70,35 m²</td><td>3e</td><td>Terrasse</td><td class="prix-lot" data-lot="0c308e6a90b3" data-s="70.35">…</td><td class="plan"></td></tr>
+  <tr id="l-0c308e6a90b3"><td>70,35 m²</td><td>3e</td><td>Terrasse</td><td class="prix-lot" data-lot="0c308e6a90b3" data-s="70.35">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="0c308e6a90b3">Plan</button></td></tr>
   <tr id="l-c7344849dc56"><td>70,35 m²</td><td>non précisé</td><td>Terrasse</td><td class="prix-lot" data-lot="c7344849dc56" data-s="70.35">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="c7344849dc56">Plan</button></td></tr>
   <tr id="l-ddc0e6bd3353"><td>70,35 m²</td><td>non précisé</td><td>Terrasse</td><td class="prix-lot" data-lot="ddc0e6bd3353" data-s="70.35">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="ddc0e6bd3353">Plan</button></td></tr>
   </tbody></table></section>
@@ -393,7 +398,7 @@ footer a{color:var(--discret)}
    </div>
   </section>
   
-<section class="appel" id="compte" data-p="69bb589955d9" data-lots="" data-plans="09d2b8c211b2,b1f48fc5251b,14d0f3447072,ba493fa757bf,0a59dd451a9c,ece6ea53fef7,c7344849dc56,ddc0e6bd3353,cffd60456b6a,49dab6e904ef,0e3bd6368ea5,2eec0509d1f1,a0f012857431">
+<section class="appel" id="compte" data-p="69bb589955d9" data-lots="" data-plans="09d2b8c211b2,b1f48fc5251b,da2de9ac9b69,14d0f3447072,18cddac8748b,ba493fa757bf,0a59dd451a9c,2b4c262a767d,c15cb12a0118,a3481a67683f,a4d915e3db12,ece6ea53fef7,0c308e6a90b3,c7344849dc56,ddc0e6bd3353,cffd60456b6a,49dab6e904ef,0e3bd6368ea5,2eec0509d1f1,a0f012857431">
     <h2>Voir les plans de ces logements</h2>
     <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="Carré Chenay" data-ville="Gagny">

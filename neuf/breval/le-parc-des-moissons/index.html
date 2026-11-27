@@ -234,6 +234,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -330,6 +333,7 @@ footer a{color:var(--discret)}
       <hr class="filet">
       <p class="chapo">Un programme neuf, livré au 1er trimestre 2027.</p>
       <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce">T5+</span><span class="puce laiton">PTZ</span></div>
+      
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=breval&amp;vue=ville#carte">Retour à la carte de Bréval</a></div>
   </header>
@@ -340,7 +344,8 @@ footer a{color:var(--discret)}
     <div class="repere-cle"><b>13 min</b><span>à pied de GL Bréval</span></div>
   </div>
   <section class="immeuble" id="immeuble">
-   
+   <div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">Maquette</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de Le Parc Des Moissons" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>
    
       <div class="vue">
     
@@ -357,7 +362,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
-   
+   </div>
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
@@ -375,7 +380,7 @@ footer a{color:var(--discret)}
   <tr id="l-3ed929b89e3d"><td>63,38 m²</td><td>RDC</td><td>Balcon</td><td class="prix-lot" data-lot="3ed929b89e3d" data-s="63.38">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="3ed929b89e3d">Plan</button></td></tr>
   <tr id="l-6b0506dc66c9"><td>64,9 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="6b0506dc66c9" data-s="64.9">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="6b0506dc66c9">Plan</button></td></tr>
   <tr id="l-9bbf9a312860"><td>67,23 m²</td><td>2e</td><td>Balcon</td><td class="prix-lot" data-lot="9bbf9a312860" data-s="67.23">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="9bbf9a312860">Plan</button></td></tr>
-  <tr id="l-da683e4905c3"><td>67,28 m²</td><td>RDC</td><td>Jardin</td><td class="prix-lot" data-lot="da683e4905c3" data-s="67.28">…</td><td class="plan"></td></tr>
+  <tr id="l-da683e4905c3"><td>67,28 m²</td><td>RDC</td><td>Jardin</td><td class="prix-lot" data-lot="da683e4905c3" data-s="67.28">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="da683e4905c3">Plan</button></td></tr>
   </tbody></table></section>
     <section class="typo"><h3>T4 · 1 logement</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
@@ -390,7 +395,7 @@ footer a{color:var(--discret)}
    </div>
   </section>
   
-<section class="appel" id="compte" data-p="e62364c6ac50" data-lots="" data-plans="583a2f0dea38,9ac008621f3a,132474920482,9063758f324a,a2b8290d0071,00fcb49f88a9,3ed929b89e3d,6b0506dc66c9,9bbf9a312860,a6de37e7ca32,093d9c3f1f7f,726b71f4f9b0,be2d65e4d1d7">
+<section class="appel" id="compte" data-p="e62364c6ac50" data-lots="" data-plans="583a2f0dea38,9ac008621f3a,132474920482,9063758f324a,a2b8290d0071,00fcb49f88a9,3ed929b89e3d,6b0506dc66c9,9bbf9a312860,da683e4905c3,a6de37e7ca32,093d9c3f1f7f,726b71f4f9b0,be2d65e4d1d7">
     <h2>Voir les plans de ces logements</h2>
     <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="Le Parc Des Moissons" data-ville="Bréval">

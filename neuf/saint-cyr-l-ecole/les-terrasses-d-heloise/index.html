@@ -234,6 +234,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -330,6 +333,7 @@ footer a{color:var(--discret)}
       <hr class="filet">
       <p class="chapo">Un programme neuf, livré au 4e trimestre 2028.</p>
       <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span></div>
+      
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=saint-cyr-l-ecole&amp;vue=ville#carte">Retour à la carte de Saint-Cyr-l&#39;École</a></div>
   </header>
@@ -340,7 +344,8 @@ footer a{color:var(--discret)}
     <div class="repere-cle"><b>11 min</b><span>à pied de Saint-Cyr (ligne N)</span></div>
   </div>
   <section class="immeuble" id="immeuble">
-   
+   <div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">Maquette</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de Les Terrasses d&#39;Héloise" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>
    
       <div class="vue">
     
@@ -357,17 +362,17 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
-   
+   </div>
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button></div>
     <section class="typo"><h3>T2 · 10 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
   <tr id="l-cabd0a90cdaf"><td>37,63 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="cabd0a90cdaf" data-s="37.63">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="cabd0a90cdaf">Plan</button></td></tr>
-  <tr id="l-a0dc06b388fe"><td>39,08 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="a0dc06b388fe" data-s="39.08">…</td><td class="plan"></td></tr>
+  <tr id="l-a0dc06b388fe"><td>39,08 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="a0dc06b388fe" data-s="39.08">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="a0dc06b388fe">Plan</button></td></tr>
   <tr id="l-dbec6c2c5d9c"><td>39,25 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="dbec6c2c5d9c" data-s="39.25">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="dbec6c2c5d9c">Plan</button></td></tr>
   <tr id="l-1b07df0f35c5"><td>40 m²</td><td>3e</td><td>Extérieur</td><td class="prix-lot" data-lot="1b07df0f35c5" data-s="40">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="1b07df0f35c5">Plan</button></td></tr>
-  <tr id="l-ec4d8b04c7cf"><td>40 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="ec4d8b04c7cf" data-s="40">…</td><td class="plan"></td></tr>
+  <tr id="l-ec4d8b04c7cf"><td>40 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="ec4d8b04c7cf" data-s="40">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="ec4d8b04c7cf">Plan</button></td></tr>
   <tr id="l-dca477cc5ec2"><td>40,8 m²</td><td>3e</td><td>Extérieur</td><td class="prix-lot" data-lot="dca477cc5ec2" data-s="40.8">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="dca477cc5ec2">Plan</button></td></tr>
   <tr id="l-f6924874c745"><td>40,8 m²</td><td>4e</td><td>Extérieur</td><td class="prix-lot" data-lot="f6924874c745" data-s="40.8">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="f6924874c745">Plan</button></td></tr>
   <tr id="l-c84b377443a2"><td>41,05 m²</td><td>RDC</td><td>Extérieur</td><td class="prix-lot" data-lot="c84b377443a2" data-s="41.05">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="c84b377443a2">Plan</button></td></tr>
@@ -381,7 +386,7 @@ footer a{color:var(--discret)}
   <tr id="l-8d2a5ed2e08b"><td>57,94 m²</td><td>3e</td><td>Extérieur</td><td class="prix-lot" data-lot="8d2a5ed2e08b" data-s="57.94">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="8d2a5ed2e08b">Plan</button></td></tr>
   <tr id="l-4f1c157c1227"><td>58,64 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="4f1c157c1227" data-s="58.64">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="4f1c157c1227">Plan</button></td></tr>
   <tr id="l-165800cfa0ad"><td>59,21 m²</td><td>4e</td><td>Extérieur</td><td class="prix-lot" data-lot="165800cfa0ad" data-s="59.21">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="165800cfa0ad">Plan</button></td></tr>
-  <tr id="l-798d9f1f455a"><td>59,42 m²</td><td>3e</td><td>Extérieur</td><td class="prix-lot" data-lot="798d9f1f455a" data-s="59.42">…</td><td class="plan"></td></tr>
+  <tr id="l-798d9f1f455a"><td>59,42 m²</td><td>3e</td><td>Extérieur</td><td class="prix-lot" data-lot="798d9f1f455a" data-s="59.42">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="798d9f1f455a">Plan</button></td></tr>
   <tr id="l-7ef2aa3d31ae"><td>59,42 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="7ef2aa3d31ae" data-s="59.42">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="7ef2aa3d31ae">Plan</button></td></tr>
   <tr id="l-2876cce6be4e"><td>59,7 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="2876cce6be4e" data-s="59.7">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="2876cce6be4e">Plan</button></td></tr>
   <tr id="l-3d4fe9ffdc99"><td>59,7 m²</td><td>1er</td><td>Extérieur</td><td class="prix-lot" data-lot="3d4fe9ffdc99" data-s="59.7">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="3d4fe9ffdc99">Plan</button></td></tr>
@@ -405,7 +410,7 @@ footer a{color:var(--discret)}
    </div>
   </section>
   
-<section class="appel" id="compte" data-p="ee1381b3d9a2" data-lots="" data-plans="cabd0a90cdaf,dbec6c2c5d9c,1b07df0f35c5,dca477cc5ec2,f6924874c745,c84b377443a2,3aebda6efbc7,72601880e7e8,a58e8c638444,4999fedf2c76,8d2a5ed2e08b,4f1c157c1227,165800cfa0ad,7ef2aa3d31ae,2876cce6be4e,3d4fe9ffdc99,73134546a462,4b9524cd4423,9e88650cc869,ce9aa2236994,0ea5e2f79550,2830d6f900ac,48127a693ecb,5e15aa6daf82,e393170229ac,0688dae8294a,05b852eaa2c0,6e1d778679ad,376640954185">
+<section class="appel" id="compte" data-p="ee1381b3d9a2" data-lots="" data-plans="cabd0a90cdaf,a0dc06b388fe,dbec6c2c5d9c,1b07df0f35c5,ec4d8b04c7cf,dca477cc5ec2,f6924874c745,c84b377443a2,3aebda6efbc7,72601880e7e8,a58e8c638444,4999fedf2c76,8d2a5ed2e08b,4f1c157c1227,165800cfa0ad,798d9f1f455a,7ef2aa3d31ae,2876cce6be4e,3d4fe9ffdc99,73134546a462,4b9524cd4423,9e88650cc869,ce9aa2236994,0ea5e2f79550,2830d6f900ac,48127a693ecb,5e15aa6daf82,e393170229ac,0688dae8294a,05b852eaa2c0,6e1d778679ad,376640954185">
     <h2>Voir les plans de ces logements</h2>
     <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="Les Terrasses d&#39;Héloise" data-ville="Saint-Cyr-l&#39;École">

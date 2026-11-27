@@ -234,6 +234,9 @@ tr.vise td{background:var(--teinte)}
 .hero .sur{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laiton-texte);font-weight:600;margin:0 0 .5rem}
 .hero .chapo{margin:0 0 .9rem}
 .hero-actions{display:flex;gap:8px;flex-wrap:wrap}
+.voir-rue{margin:12px 0 0}
+.voir-rue a{display:inline-block;padding:11px 18px;border:1px solid var(--bleu);border-radius:6px;color:var(--bleu);background:#fff;font-weight:600;text-decoration:none}
+@media(max-width:480px){.voir-rue a{display:block;text-align:center;min-height:44px;box-sizing:border-box;line-height:22px}}
 .bouton-plein{background:var(--bleu);color:#fff;padding:11px 18px;border-radius:6px;font-weight:600;text-decoration:none}
 .retour-carte{font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--trait);border-radius:6px;padding:10px 14px;background:var(--carte)}
 .reperes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 1.6rem}
@@ -330,6 +333,7 @@ footer a{color:var(--discret)}
       <hr class="filet">
       <p class="chapo">Un programme neuf, livré au 3e trimestre 2029.</p>
       <div class="puces"><span class="puce">T2</span><span class="puce">T3</span><span class="puce">T4</span><span class="puce">T5+</span></div>
+      
     </div>
     <div class="hero-actions"><a class="bouton-plein" href="#compte">Recevoir les plans</a><a class="retour-carte" href="/neuf/?ville=nanterre&amp;vue=ville#carte">Retour à la carte de Nanterre</a></div>
   </header>
@@ -340,7 +344,8 @@ footer a{color:var(--discret)}
     <div class="repere-cle"><b>8 min</b><span>à pied de Nanterre Préfecture / Esplanade Charles De Gaulle (RER A)</span></div>
   </div>
   <section class="immeuble" id="immeuble">
-   
+   <div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">Maquette</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de Par Nature ..." allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>
    
       <div class="vue">
     
@@ -357,56 +362,65 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
-   
+   </div>
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
     <section class="typo"><h3>T2 · 8 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  <tr id="l-6126873efa64"><td>51,68 m²</td><td>5e</td><td>Extérieur</td><td class="prix-lot" data-lot="6126873efa64" data-s="51.68">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-bcbd9204039b"><td>51,68 m²</td><td>6e</td><td>Extérieur</td><td class="prix-lot" data-lot="bcbd9204039b" data-s="51.68">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-eba2ee965739"><td>51,68 m²</td><td>7e</td><td>Extérieur</td><td class="prix-lot" data-lot="eba2ee965739" data-s="51.68">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-069f1ee95939"><td>53,5 m²</td><td>8e</td><td>Extérieur</td><td class="prix-lot" data-lot="069f1ee95939" data-s="53.5">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-11c29c205775"><td>53,5 m²</td><td>6e</td><td>Extérieur</td><td class="prix-lot" data-lot="11c29c205775" data-s="53.5">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-2247f810bfb1"><td>53,5 m²</td><td>5e</td><td>Extérieur</td><td class="prix-lot" data-lot="2247f810bfb1" data-s="53.5">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-6f7a6860a50e"><td>53,5 m²</td><td>4e</td><td>Extérieur</td><td class="prix-lot" data-lot="6f7a6860a50e" data-s="53.5">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-de70de641453"><td>53,5 m²</td><td>9e</td><td>Extérieur</td><td class="prix-lot" data-lot="de70de641453" data-s="53.5">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-6126873efa64"><td>51,68 m²</td><td>5e</td><td>Extérieur</td><td class="prix-lot" data-lot="6126873efa64" data-s="51.68">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="6126873efa64">Plan</button></td></tr>
+  <tr id="l-bcbd9204039b"><td>51,68 m²</td><td>6e</td><td>Extérieur</td><td class="prix-lot" data-lot="bcbd9204039b" data-s="51.68">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="bcbd9204039b">Plan</button></td></tr>
+  <tr id="l-eba2ee965739"><td>51,68 m²</td><td>7e</td><td>Extérieur</td><td class="prix-lot" data-lot="eba2ee965739" data-s="51.68">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="eba2ee965739">Plan</button></td></tr>
+  <tr id="l-069f1ee95939"><td>53,5 m²</td><td>8e</td><td>Extérieur</td><td class="prix-lot" data-lot="069f1ee95939" data-s="53.5">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="069f1ee95939">Plan</button></td></tr>
+  <tr id="l-11c29c205775"><td>53,5 m²</td><td>6e</td><td>Extérieur</td><td class="prix-lot" data-lot="11c29c205775" data-s="53.5">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="11c29c205775">Plan</button></td></tr>
+  <tr id="l-2247f810bfb1"><td>53,5 m²</td><td>5e</td><td>Extérieur</td><td class="prix-lot" data-lot="2247f810bfb1" data-s="53.5">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="2247f810bfb1">Plan</button></td></tr>
+  <tr id="l-6f7a6860a50e"><td>53,5 m²</td><td>4e</td><td>Extérieur</td><td class="prix-lot" data-lot="6f7a6860a50e" data-s="53.5">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="6f7a6860a50e">Plan</button></td></tr>
+  <tr id="l-de70de641453"><td>53,5 m²</td><td>9e</td><td>Extérieur</td><td class="prix-lot" data-lot="de70de641453" data-s="53.5">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="de70de641453">Plan</button></td></tr>
   </tbody></table></section>
     <section class="typo"><h3>T3 · 15 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  <tr id="l-1c0748837c36"><td>62,46 m²</td><td>7e</td><td>Extérieur</td><td class="prix-lot" data-lot="1c0748837c36" data-s="62.46">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-62a33414f06d"><td>63,34 m²</td><td>3e</td><td>Extérieur</td><td class="prix-lot" data-lot="62a33414f06d" data-s="63.34">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-898e124944b9"><td>63,34 m²</td><td>9e</td><td>Extérieur</td><td class="prix-lot" data-lot="898e124944b9" data-s="63.34">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-936f21bdc18f"><td>63,34 m²</td><td>4e</td><td>Extérieur</td><td class="prix-lot" data-lot="936f21bdc18f" data-s="63.34">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-98f4df688d8c"><td>63,34 m²</td><td>7e</td><td>Extérieur</td><td class="prix-lot" data-lot="98f4df688d8c" data-s="63.34">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-bcab0d625b4b"><td>63,34 m²</td><td>6e</td><td>Extérieur</td><td class="prix-lot" data-lot="bcab0d625b4b" data-s="63.34">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-ce2f69cc467f"><td>63,34 m²</td><td>8e</td><td>Extérieur</td><td class="prix-lot" data-lot="ce2f69cc467f" data-s="63.34">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-0447c4491ef2"><td>68 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="0447c4491ef2" data-s="68">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-6ef3c0623298"><td>68,71 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="6ef3c0623298" data-s="68.71">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-fa376ece0635"><td>68,77 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="fa376ece0635" data-s="68.77">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-c75a6c51952b"><td>70,37 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="c75a6c51952b" data-s="70.37">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-bef1d4767eba"><td>70,82 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="bef1d4767eba" data-s="70.82">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-1622b8d788d7"><td>71,06 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="1622b8d788d7" data-s="71.06">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-3abeb5a6a94a"><td>71,08 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="3abeb5a6a94a" data-s="71.08">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-f970476b0b9a"><td>71,84 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="f970476b0b9a" data-s="71.84">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-1c0748837c36"><td>62,46 m²</td><td>7e</td><td>Extérieur</td><td class="prix-lot" data-lot="1c0748837c36" data-s="62.46">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="1c0748837c36">Plan</button></td></tr>
+  <tr id="l-62a33414f06d"><td>63,34 m²</td><td>3e</td><td>Extérieur</td><td class="prix-lot" data-lot="62a33414f06d" data-s="63.34">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="62a33414f06d">Plan</button></td></tr>
+  <tr id="l-898e124944b9"><td>63,34 m²</td><td>9e</td><td>Extérieur</td><td class="prix-lot" data-lot="898e124944b9" data-s="63.34">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="898e124944b9">Plan</button></td></tr>
+  <tr id="l-936f21bdc18f"><td>63,34 m²</td><td>4e</td><td>Extérieur</td><td class="prix-lot" data-lot="936f21bdc18f" data-s="63.34">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="936f21bdc18f">Plan</button></td></tr>
+  <tr id="l-98f4df688d8c"><td>63,34 m²</td><td>7e</td><td>Extérieur</td><td class="prix-lot" data-lot="98f4df688d8c" data-s="63.34">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="98f4df688d8c">Plan</button></td></tr>
+  <tr id="l-bcab0d625b4b"><td>63,34 m²</td><td>6e</td><td>Extérieur</td><td class="prix-lot" data-lot="bcab0d625b4b" data-s="63.34">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="bcab0d625b4b">Plan</button></td></tr>
+  <tr id="l-ce2f69cc467f"><td>63,34 m²</td><td>8e</td><td>Extérieur</td><td class="prix-lot" data-lot="ce2f69cc467f" data-s="63.34">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="ce2f69cc467f">Plan</button></td></tr>
+  <tr id="l-0447c4491ef2"><td>68 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="0447c4491ef2" data-s="68">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="0447c4491ef2">Plan</button></td></tr>
+  <tr id="l-6ef3c0623298"><td>68,71 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="6ef3c0623298" data-s="68.71">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="6ef3c0623298">Plan</button></td></tr>
+  <tr id="l-fa376ece0635"><td>68,77 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="fa376ece0635" data-s="68.77">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="fa376ece0635">Plan</button></td></tr>
+  <tr id="l-c75a6c51952b"><td>70,37 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="c75a6c51952b" data-s="70.37">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="c75a6c51952b">Plan</button></td></tr>
+  <tr id="l-bef1d4767eba"><td>70,82 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="bef1d4767eba" data-s="70.82">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="bef1d4767eba">Plan</button></td></tr>
+  <tr id="l-1622b8d788d7"><td>71,06 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="1622b8d788d7" data-s="71.06">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="1622b8d788d7">Plan</button></td></tr>
+  <tr id="l-3abeb5a6a94a"><td>71,08 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="3abeb5a6a94a" data-s="71.08">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="3abeb5a6a94a">Plan</button></td></tr>
+  <tr id="l-f970476b0b9a"><td>71,84 m²</td><td>2e</td><td>Extérieur</td><td class="prix-lot" data-lot="f970476b0b9a" data-s="71.84">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="f970476b0b9a">Plan</button></td></tr>
   </tbody></table></section>
     <section class="typo"><h3>T4 · 3 logements</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  <tr id="l-3b5c31f041ac"><td>84,58 m²</td><td>7e</td><td>Extérieur</td><td class="prix-lot" data-lot="3b5c31f041ac" data-s="84.58">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-b1790f17bcbc"><td>84,59 m²</td><td>9e</td><td>Extérieur</td><td class="prix-lot" data-lot="b1790f17bcbc" data-s="84.59">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
-  <tr id="l-5840e953ab25"><td>86,16 m²</td><td>7e</td><td>Extérieur</td><td class="prix-lot" data-lot="5840e953ab25" data-s="86.16">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-3b5c31f041ac"><td>84,58 m²</td><td>7e</td><td>Extérieur</td><td class="prix-lot" data-lot="3b5c31f041ac" data-s="84.58">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="3b5c31f041ac">Plan</button></td></tr>
+  <tr id="l-b1790f17bcbc"><td>84,59 m²</td><td>9e</td><td>Extérieur</td><td class="prix-lot" data-lot="b1790f17bcbc" data-s="84.59">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="b1790f17bcbc">Plan</button></td></tr>
+  <tr id="l-5840e953ab25"><td>86,16 m²</td><td>7e</td><td>Extérieur</td><td class="prix-lot" data-lot="5840e953ab25" data-s="86.16">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="5840e953ab25">Plan</button></td></tr>
   </tbody></table></section>
     <section class="typo"><h3>T5+ · 1 logement</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  <tr id="l-fde666525f3f"><td>98,98 m²</td><td>8e</td><td>Extérieur</td><td class="prix-lot" data-lot="fde666525f3f" data-s="98.98">…</td><td class="plan"><a href="#compte"><span class="long">Voir le </span>plan</a></td></tr>
+  <tr id="l-fde666525f3f"><td>98,98 m²</td><td>8e</td><td>Extérieur</td><td class="prix-lot" data-lot="fde666525f3f" data-s="98.98">…</td><td class="plan"><button type="button" class="lien-visite" data-plan="fde666525f3f">Plan</button></td></tr>
   </tbody></table></section>
    </div>
   </section>
   
-  <section class="appel" id="compte">
+<section class="appel" id="compte" data-p="cef161b95ed9" data-lots="" data-plans="6126873efa64,bcbd9204039b,eba2ee965739,069f1ee95939,11c29c205775,2247f810bfb1,6f7a6860a50e,de70de641453,1c0748837c36,62a33414f06d,898e124944b9,936f21bdc18f,98f4df688d8c,bcab0d625b4b,ce2f69cc467f,0447c4491ef2,6ef3c0623298,fa376ece0635,c75a6c51952b,bef1d4767eba,1622b8d788d7,3abeb5a6a94a,f970476b0b9a,3b5c31f041ac,b1790f17bcbc,5840e953ab25,fde666525f3f">
     <h2>Voir les plans de ces logements</h2>
-    <p>Les plans de chaque logement sont réservés à votre espace client. Il se crée en une minute ; en attendant, appelez-nous et nous vous les envoyons.</p>
-    <div class="boutons"><a class="plein" href="tel:+33614550273">Appeler le 06 14 55 02 73</a><a class="creux" href="mailto:agl@glrimmobilier.com?subject=Plans%20de%20Par%20Nature%20...%20%C3%A0%20Nanterre">Écrire un e-mail</a></div>
+    <p>Créez votre accès en une minute : vous voyez les plans de ces logements. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
+    <form id="f3d" class="form3d" novalidate data-prog="Par Nature ..." data-ville="Nanterre">
+      <label>Prénom<input name="prenom" autocomplete="given-name" maxlength="80" required></label>
+      <label>Téléphone<input name="telephone" type="tel" autocomplete="tel" maxlength="30" required></label>
+      <label>E-mail<input name="email" type="email" autocomplete="email" maxlength="160" required></label>
+      <label class="accord"><input name="accord" type="checkbox"><span>J’accepte d’être recontacté par GLR Immobilier au sujet de ce programme.</span></label>
+      <p class="erreur3d" id="f3d-err" role="alert"></p>
+      <button type="submit" class="plein">Créer mon accès</button>
+    </form>
+    <div id="f3d-ok" class="ok3d" hidden><p>Votre accès est créé : touchez « Plan » sur un logement pour voir son plan.</p></div>
+    <div class="boutons"><a class="creux" href="tel:+33614550273">Appeler le 06 14 55 02 73</a><a class="creux" href="mailto:agl@glrimmobilier.com?subject=Plans%20de%20Par%20Nature%20...%20%C3%A0%20Nanterre">Écrire un e-mail</a></div>
   </section>
   <p class="note" id="mention-tva" hidden>* TVA 5,5 % : prix réservé aux acheteurs éligibles, sous conditions de ressources.</p>
   <p class="note">Disponibilités et prix relevés le 27 novembre 2026 ; ils changent chaque semaine et sont confirmés par votre conseiller.</p>
@@ -415,7 +429,7 @@ footer a{color:var(--discret)}
 <script type="application/json" id="logements-data">[{"i":"6126873efa64","t":"T2","s":51.68,"e":5,"x":"Extérieur"},{"i":"bcbd9204039b","t":"T2","s":51.68,"e":6,"x":"Extérieur"},{"i":"eba2ee965739","t":"T2","s":51.68,"e":7,"x":"Extérieur"},{"i":"069f1ee95939","t":"T2","s":53.5,"e":8,"x":"Extérieur"},{"i":"11c29c205775","t":"T2","s":53.5,"e":6,"x":"Extérieur"},{"i":"2247f810bfb1","t":"T2","s":53.5,"e":5,"x":"Extérieur"},{"i":"6f7a6860a50e","t":"T2","s":53.5,"e":4,"x":"Extérieur"},{"i":"de70de641453","t":"T2","s":53.5,"e":9,"x":"Extérieur"},{"i":"1c0748837c36","t":"T3","s":62.46,"e":7,"x":"Extérieur"},{"i":"62a33414f06d","t":"T3","s":63.34,"e":3,"x":"Extérieur"},{"i":"898e124944b9","t":"T3","s":63.34,"e":9,"x":"Extérieur"},{"i":"936f21bdc18f","t":"T3","s":63.34,"e":4,"x":"Extérieur"},{"i":"98f4df688d8c","t":"T3","s":63.34,"e":7,"x":"Extérieur"},{"i":"bcab0d625b4b","t":"T3","s":63.34,"e":6,"x":"Extérieur"},{"i":"ce2f69cc467f","t":"T3","s":63.34,"e":8,"x":"Extérieur"},{"i":"0447c4491ef2","t":"T3","s":68,"e":2,"x":"Extérieur"},{"i":"6ef3c0623298","t":"T3","s":68.71,"e":2,"x":"Extérieur"},{"i":"fa376ece0635","t":"T3","s":68.77,"e":2,"x":"Extérieur"},{"i":"c75a6c51952b","t":"T3","s":70.37,"e":2,"x":"Extérieur"},{"i":"bef1d4767eba","t":"T3","s":70.82,"e":2,"x":"Extérieur"},{"i":"1622b8d788d7","t":"T3","s":71.06,"e":2,"x":"Extérieur"},{"i":"3abeb5a6a94a","t":"T3","s":71.08,"e":2,"x":"Extérieur"},{"i":"f970476b0b9a","t":"T3","s":71.84,"e":2,"x":"Extérieur"},{"i":"3b5c31f041ac","t":"T4","s":84.58,"e":7,"x":"Extérieur"},{"i":"b1790f17bcbc","t":"T4","s":84.59,"e":9,"x":"Extérieur"},{"i":"5840e953ab25","t":"T4","s":86.16,"e":7,"x":"Extérieur"},{"i":"fde666525f3f","t":"T5+","s":98.98,"e":8,"x":"Extérieur"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script src="/neuf/programme.js?v=94749ba394" defer></script>
-
+<script src="/neuf/visite3d.js?v=94749ba394" defer></script>
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};
 var poser=function(j){j=j||{};var a=j.prix||{},b=j.prix_tva_reduite||{};window.GLR_PRIX=a;window.GLR_PRIX_R=b;var deux=false;
