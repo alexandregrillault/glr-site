@@ -142,9 +142,32 @@
     bs.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
     document.querySelectorAll('section.typo').forEach(function (sec) { sec.style.display = !t || sec.querySelector('h3').textContent.indexOf(t + ' ') === 0 ? '' : 'none'; });
   }); });
+  // Survol (ou toucher sur téléphone) d'une ligne de la liste → l'immeuble repère le logement ; et dans l'autre sens, l'immeuble → la ligne.
+  // On ne parle au cadre que lorsqu'il montre l'immeuble, et seulement pour un logement qui a sa visite (clé publique connue de la page).
+  var ligneVisee = null;
+  function surligner(cle) {
+    if (ligneVisee) { ligneVisee.classList.remove('vise'); ligneVisee = null; }
+    if (!cle) return;
+    var tr = document.getElementById('l-' + cle); if (!tr) return;
+    tr.classList.add('vise'); ligneVisee = tr;
+    if (window.innerWidth >= 960) { try { tr.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } catch (e) {} }
+  }
+  function direAuCadre(cle) {
+    try { if (lotOuvert === 'immeuble' && cadre.contentWindow && cadre.getAttribute('src')) cadre.contentWindow.postMessage({ glr3d: 'survol', lot: cle }, location.origin); } catch (e) {}
+  }
+  if (est3d) document.querySelectorAll('table.lots tr[id^="l-"]').forEach(function (tr) {
+    var cle = tr.id.slice(2); if (clesOk.indexOf(cle) < 0) return;
+    tr.addEventListener('mouseenter', function () { direAuCadre(cle); });
+    tr.addEventListener('mouseleave', function () { direAuCadre(null); });
+    tr.addEventListener('click', function (ev) { if (ev.target.closest && ev.target.closest('button,a')) return; direAuCadre(cle); }); // téléphone : un toucher sur la ligne
+  });
   // Le cadre dit quel logement on a touché (ou « retour à l'immeuble ») ; on n'écoute que notre cadre, et que des clés connues.
   window.addEventListener('message', function (ev) {
     if (ev.source !== cadre.contentWindow || !ev.data || typeof ev.data !== 'object') return;
+    if (ev.data.glr3d === 'survol') { // l'immeuble nous dit quel logement est survolé : la ligne de la liste est surlignée
+      var cle = ev.data.lot; if (cle !== null && !(typeof cle === 'string' && clesOk.indexOf(cle) > -1)) return;
+      surligner(cle); return;
+    }
     if (ev.data.glr3d === 'immeuble') { lotOuvert = null; ouvrir('immeuble', true); }
     else if (ev.data.glr3d === 'lot' && typeof ev.data.lot === 'string' && clesOk.indexOf(ev.data.lot) > -1) ouvrir(ev.data.lot);
   });
