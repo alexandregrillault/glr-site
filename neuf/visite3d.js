@@ -51,6 +51,14 @@
     var sc = document.createElement('script'); sc.src = '/neuf/programme.js' + vq; document.body.appendChild(sc);
   }
   // L'immeuble s'ouvre SANS formulaire (et sans jeton s'il n'y en a pas) ; le formulaire n'est demandé que pour un logement.
+  // La fonction répond 503 {"error":"reessayer"} quand le stockage refuse un instant : deux nouveaux essais à 1 seconde d'écart, sans rien afficher.
+  function aller(url, opts, essai) {
+    essai = essai || 0;
+    return fetch(url, opts).then(function (r) {
+      if (r.status !== 503 || essai >= 2) return r;
+      return new Promise(function (ok) { setTimeout(ok, 1000); }).then(function () { return aller(url, opts, essai + 1); });
+    });
+  }
   function ouvrir(lot, sansDefiler) {
     var jeton = lireJeton(), immeuble = lot === 'immeuble';
     if (!immeuble && !jeton) { attente = lot; versFormulaire('Pour voir ce logement, créez votre accès : cela prend une minute.'); return; }
@@ -60,13 +68,14 @@
     message('Chargement de la visite 3D\u2026 (un peu long sur mobile)');
     if (!sansDefiler) zone.scrollIntoView({ behavior: 'smooth', block: 'start' });
     var adresse = FN + '?p=' + encodeURIComponent(prog) + (immeuble ? '' : '&l=' + encodeURIComponent(lot)) + (jeton ? '&t=' + encodeURIComponent(jeton) : '');
-    fetch(adresse, { headers: { accept: 'application/json' } })
+    aller(adresse, { headers: { accept: 'application/json' } })
       .then(function (r) {
         if (r.status === 401) {
           if (jeton) { ecrireJeton(''); rouvrirFormulaire(); lotOuvert = null; if (immeuble) { ouvrir('immeuble', sansDefiler); return null; } attente = lot; message(''); versFormulaire('Votre accès a expiré : recréez-le en une minute.'); return null; }
           lotOuvert = null; if (immeuble) { secours(); return null; } message('Pour voir cette visite, créez votre accès : cela prend une minute.'); return null;
         }
         if (r.status === 404) { lotOuvert = null; if (immeuble) { secours(); return null; } message('Cette visite n\u2019est pas encore disponible.'); return null; }
+        if (r.status === 503) { lotOuvert = null; if (immeuble) { secours(); return null; } message('Réessayez dans un instant.'); return null; }
         if (r.status === 429) { lotOuvert = null; if (immeuble) { secours(); return null; } message('Trop de demandes d\u2019un coup : réessayez dans quelques minutes.'); return null; }
         if (!r.ok) throw new Error('http');
         return r.json();
@@ -100,10 +109,11 @@
     message('Chargement du plan\u2026');
     if (!sansDefiler) zone.scrollIntoView({ behavior: 'smooth', block: 'start' });
     var actuel = function () { return lotOuvert === cle && req === numReq; };
-    fetch(FN + '?p=' + encodeURIComponent(prog) + '&l=' + encodeURIComponent(lot) + '&t=' + encodeURIComponent(jeton) + '&doc=plan' + (n > 1 ? '&page=' + n : ''))
+    aller(FN + '?p=' + encodeURIComponent(prog) + '&l=' + encodeURIComponent(lot) + '&t=' + encodeURIComponent(jeton) + '&doc=plan' + (n > 1 ? '&page=' + n : ''))
       .then(function (r) {
         if (r.status === 401) { ecrireJeton(''); rouvrirFormulaire(); lotOuvert = null; attente = cle; message(''); versFormulaire('Votre accès a expiré : recréez-le en une minute.'); return null; }
         if (r.status === 404) { lotOuvert = null; message('Ce plan n\u2019est pas disponible. Appelez-nous, nous vous l\u2019envoyons.'); return null; }
+        if (r.status === 503) { lotOuvert = null; message('Réessayez dans un instant.'); return null; }
         if (r.status === 429) { lotOuvert = null; message('Trop de demandes d\u2019un coup : réessayez dans quelques minutes.'); return null; }
         if (!r.ok) throw new Error('http');
         if (/json/i.test(r.headers.get('content-type') || '')) {
