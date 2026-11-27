@@ -39,6 +39,10 @@ function verifier(d, fichier) {
   if (vus) throw new Error(fichier + ' : champs interdits sur une page publique ' + [...new Set(vus)].join(', '));
   const permis = ['id', 'typo', 'pieces', 'surface', 'etage', 'exterieur', 'statut', 'v3d', 'p2d'];
   for (const p of d.programmes) {
+    if (p.rue != null) {
+      const r = p.rue, ok = r && typeof r === 'object' && !Array.isArray(r) && Object.keys(r).sort().join() === 'latitude,longitude' && [r.latitude, r.longitude].every(n => typeof n === 'number' && Number.isFinite(n) && Math.abs(n * 1e5 - Math.round(n * 1e5)) < 1e-6) && r.latitude >= 48.1 && r.latitude <= 49.3 && r.longitude >= 1.4 && r.longitude <= 3.6;
+      if (!ok) throw new Error(fichier + ' : ' + p.slug + ' : rue doit être {latitude, longitude} en Île-de-France, 5 décimales au plus');
+    }
     if (p.pm != null && p.pm !== true) throw new Error(fichier + ' : ' + p.slug + ' : pm doit valoir true ou être absent');
     if (!/^[a-z0-9-]+$/.test(p.slug || '')) throw new Error(fichier + ' : slug de programme invalide ' + p.slug);
     // Clés publiques seulement (substr(md5('glr-neuf:' || id), 1, 12)) : jamais l'identifiant interne de la pige

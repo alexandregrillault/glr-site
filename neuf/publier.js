@@ -52,6 +52,10 @@ function controlerChamps(d, ville) {
   for (const p of d.programmes || []) {
     for (const k of ['pige_id', 'id']) if (p[k] != null && !CLE_PUBLIQUE.test(String(p[k]))) arret(nom + p.slug + ' : ' + k + ' n\'est pas une clé publique de 12 caractères');
     if (p.visite_3d != null && p.visite_3d !== true) arret(nom + p.slug + ' : visite_3d doit valoir true ou être absent');
+    if (p.rue != null) { // « rue » : point précis réservé au bouton « Voir la rue » (5 décimales au plus, Île-de-France seulement, rien d'autre dans l'objet)
+      const r = p.rue, ok = r && typeof r === 'object' && !Array.isArray(r) && Object.keys(r).sort().join() === 'latitude,longitude' && [r.latitude, r.longitude].every(n => typeof n === 'number' && Number.isFinite(n) && Math.abs(n * 1e5 - Math.round(n * 1e5)) < 1e-6) && r.latitude >= 48.1 && r.latitude <= 49.3 && r.longitude >= 1.4 && r.longitude <= 3.6;
+      if (!ok) arret(nom + p.slug + ' : rue doit être {latitude, longitude} en Île-de-France, 5 décimales au plus');
+    }
     if (p.pm != null && p.pm !== true) arret(nom + p.slug + ' : pm doit valoir true ou être absent'); // pm : « ce programme a un plan de masse du promoteur » (vrai seulement, jamais de lien ; plan_masse est interdit)
     for (const l of p.logements || []) {
       const en_trop = Object.keys(l).filter(k => !LOGEMENT_PERMIS.includes(k));
