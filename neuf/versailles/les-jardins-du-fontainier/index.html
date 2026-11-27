@@ -90,6 +90,9 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 .onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
 .planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.pagesplan{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin:0 0 8px}
+.pagesplan button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 12px;font:inherit;font-weight:600;cursor:pointer}
+.pagesplan button:disabled{opacity:.4;cursor:default}
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
@@ -378,7 +381,7 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"600a8e45ae49","t":"T1","s":33.7,"e":2,"x":"Loggia"},{"i":"17eaba7afb0f","t":"T1","s":34.4,"e":2,"x":"Balcon"},{"i":"bd8973e3cf08","t":"T2","s":47.4,"e":2,"x":"Loggia"},{"i":"834e5e7983ff","t":"T2","s":54.6,"e":0,"x":"Jardin"},{"i":"c108fe9fb5ab","t":"T3","s":63.5,"e":2,"x":"Loggia"},{"i":"7c410f82bd2b","t":"T3","s":78.7,"e":1,"x":"Jardin"},{"i":"31b48d9a38f1","t":"T4","s":96.4,"e":1,"x":"Loggia"},{"i":"26db199b3bcc","t":"T4","s":97.2,"e":2,"x":"Terrasse"},{"i":"b3483db86551","t":"T4","s":102.6,"e":2,"x":"Terrasse"},{"i":"82d5a15df9da","t":"T4","s":104.1,"e":0,"x":"Jardin"},{"i":"d7942fc2c5a2","t":"T5+","s":109.5,"e":1,"x":"Loggia"},{"i":"3ca9a3f6ab70","t":"T5+","s":122.1,"e":0,"x":"Jardin"},{"i":"3f0178d80b85","t":"T5+","s":127.5,"e":0,"x":"Jardin"},{"i":"6903450774c5","t":"T5+","s":128.1,"e":2,"x":"Balcon"},{"i":"ceed57a0e564","t":"T5+","s":135.8,"e":1,"x":"Jardin"},{"i":"652ed90c4a51","t":"T5+","s":144.3,"e":0,"x":"Jardin"},{"i":"711112b16530","t":"T5+","s":149,"e":0,"x":"Jardin"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=05397589a0" defer></script>
+<script src="/neuf/programme.js?v=d519005d66" defer></script>
 
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};

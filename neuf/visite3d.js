@@ -80,35 +80,55 @@
       })
       .catch(function () { if (lotOuvert === lot) { lotOuvert = null; if (immeuble) { secours(); return; } message('La visite n\u2019a pas pu se charger. Réessayez, ou appelez-nous.'); } });
   }
-  // Plan du promoteur d'un logement : seulement avec un accès ; la fonction renvoie directement le fichier (image ou PDF).
-  function ouvrirPlan(lot, sansDefiler) {
-    var jeton = lireJeton(), cle = 'plan:' + lot;
+  // Plan du promoteur d'un logement : seulement avec un accès. La fonction répond soit par le fichier lui-même (image ou PDF),
+  // soit par du JSON {url, expire, pages} avec un lien signé vers une image (&page=n pour les plans de plusieurs pages) : les deux sont acceptés.
+  var pagePlan = 1, nbPages = 1, lotPlan = null, numReq = 0;
+  var pager = planbox && planbox.querySelector('.pagesplan');
+  function majPager() {
+    if (!pager) return;
+    pager.hidden = !(nbPages > 1);
+    var sp = pager.querySelector('span'); if (sp) sp.textContent = 'Page ' + pagePlan + ' sur ' + nbPages;
+    var bp = pager.querySelector('[data-page=prec]'), bs2 = pager.querySelector('[data-page=suiv]');
+    if (bp) bp.disabled = pagePlan <= 1; if (bs2) bs2.disabled = pagePlan >= nbPages;
+  }
+  function montrerImage(b) { urlPlan = URL.createObjectURL(b); img.src = urlPlan; planbox.hidden = false; message(''); majPager(); }
+  function ouvrirPlan(lot, sansDefiler, page) {
+    var jeton = lireJeton(), cle = 'plan:' + lot, n = page || 1, req = ++numReq;
     if (!jeton) { attente = cle; versFormulaire('Pour voir le plan, créez votre accès : cela prend une minute.'); return; }
     var vz = zone.closest('.vue3d'); if (vz) vz.hidden = false; zone.hidden = false;
-    libere(); lotOuvert = cle; zone.classList.add('charge'); onglet(lot, 'plan');
+    libere(); lotOuvert = cle; lotPlan = lot; pagePlan = n; if (n === 1) nbPages = 1; zone.classList.add('charge'); onglet(lot, 'plan'); majPager();
     message('Chargement du plan\u2026');
     if (!sansDefiler) zone.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    fetch(FN + '?p=' + encodeURIComponent(prog) + '&l=' + encodeURIComponent(lot) + '&t=' + encodeURIComponent(jeton) + '&doc=plan')
+    var actuel = function () { return lotOuvert === cle && req === numReq; };
+    fetch(FN + '?p=' + encodeURIComponent(prog) + '&l=' + encodeURIComponent(lot) + '&t=' + encodeURIComponent(jeton) + '&doc=plan' + (n > 1 ? '&page=' + n : ''))
       .then(function (r) {
         if (r.status === 401) { ecrireJeton(''); rouvrirFormulaire(); lotOuvert = null; attente = cle; message(''); versFormulaire('Votre accès a expiré : recréez-le en une minute.'); return null; }
         if (r.status === 404) { lotOuvert = null; message('Ce plan n\u2019est pas disponible. Appelez-nous, nous vous l\u2019envoyons.'); return null; }
         if (r.status === 429) { lotOuvert = null; message('Trop de demandes d\u2019un coup : réessayez dans quelques minutes.'); return null; }
         if (!r.ok) throw new Error('http');
-        return r.blob();
+        if (/json/i.test(r.headers.get('content-type') || '')) {
+          // Mode « lien signé » : JSON puis image
+          return r.json().then(function (j) {
+            if (!j || !j.url) throw new Error('json');
+            nbPages = Math.max(1, parseInt(j.pages, 10) || 1);
+            return fetch(j.url).then(function (r2) { if (!r2.ok) throw new Error('http'); return r2.blob(); });
+          });
+        }
+        nbPages = 1; return r.blob(); // mode « fichier direct »
       })
       .then(function (b) {
-        if (!b || lotOuvert !== cle) return;
+        if (!b || !actuel()) return;
         var t = String(b.type || '').toLowerCase();
-        if (t.indexOf('image/') === 0) { urlPlan = URL.createObjectURL(b); img.src = urlPlan; planbox.hidden = false; message(''); }
+        if (t.indexOf('image/') === 0) montrerImage(b);
         else if (t.indexOf('pdf') > -1) {
           var pdf = new Blob([b], { type: 'application/pdf' });
           if (mobile) {
             // iPhone : un PDF ne s'affiche pas bien dans un cadre ; on l'ouvre dans une page à part, au toucher du client
-            urlPlan = URL.createObjectURL(pdf); lienPdf.href = urlPlan; lienPdf.hidden = false; planbox.hidden = false; message('');
-          } else { lienBlob = URL.createObjectURL(pdf); cadre.src = lienBlob; message(''); }
+            urlPlan = URL.createObjectURL(pdf); lienPdf.href = urlPlan; lienPdf.hidden = false; planbox.hidden = false; message(''); majPager();
+          } else { lienBlob = URL.createObjectURL(pdf); cadre.src = lienBlob; message(''); majPager(); }
         } else { lotOuvert = null; message('Ce plan ne peut pas s\u2019afficher ici. Appelez-nous, nous vous l\u2019envoyons.'); }
       })
-      .catch(function () { if (lotOuvert === cle) { lotOuvert = null; message('Le plan n\u2019a pas pu se charger (fichier lourd ?). Réessayez, ou appelez-nous.'); } });
+      .catch(function () { if (actuel()) { lotOuvert = null; message('Le plan n\u2019a pas pu se charger. Réessayez, ou appelez-nous.'); } });
   }
   // L'immeuble (1,4 Mo) n'est chargé que lorsqu'il arrive à l'écran, ou au toucher du bouton : jamais à l'ouverture de la page.
   if (est3d && 'IntersectionObserver' in window) {
@@ -136,6 +156,8 @@
     if (b) { ev.preventDefault(); ouvrirPlan(b.getAttribute('data-plan')); return; }
     b = t.closest('[data-onglet]');
     if (b && onglets) { ev.preventDefault(); var lot = onglets.getAttribute('data-lot'); if (b.getAttribute('data-onglet') === 'plan') ouvrirPlan(lot, true); else ouvrir(lot, true); return; }
+    b = t.closest('[data-page]');
+    if (b && lotPlan) { ev.preventDefault(); var np = pagePlan + (b.getAttribute('data-page') === 'suiv' ? 1 : -1); if (np >= 1 && np <= nbPages) ouvrirPlan(lotPlan, true, np); return; }
     if (t.closest('.ferme3d')) { libere(); lotOuvert = null; message(''); if (!est3d) zone.hidden = true; }
   });
   // Formulaire d'accès

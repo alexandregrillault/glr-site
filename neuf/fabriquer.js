@@ -129,6 +129,9 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 .onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
 .planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.pagesplan{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin:0 0 8px}
+.pagesplan button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 12px;font:inherit;font-weight:600;cursor:pointer}
+.pagesplan button:disabled{opacity:.4;cursor:default}
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
@@ -515,7 +518,7 @@ function pageProgramme(d, p) {
       <div class="onglets3d" hidden><button type="button" data-onglet="visite" aria-pressed="true">Visite 3D</button><button type="button" data-onglet="plan" aria-pressed="false">Plan du promoteur</button></div>
       <p class="etat3d" hidden></p>
       <iframe title="${mode === 'plan' ? 'Plan' : 'Visite 3D'} de ${esc(p.nom)}" allow="fullscreen"></iframe>
-      <div class="planbox" hidden><img alt="Plan du logement"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan</a></div>
+      <div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan du logement"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan</a></div>
       ${mode === 'plan' ? '<button type="button" class="ferme3d">Fermer le plan</button>' : '<button type="button" class="charger3d" data-3d="immeuble">Voir l’immeuble en 3D</button>'}
     </div>`;
   const tableau = t => `<section class="typo"><h3>${esc(t)} · ${pluriel(groupes[t].length, 'logement', 'logements')}</h3>

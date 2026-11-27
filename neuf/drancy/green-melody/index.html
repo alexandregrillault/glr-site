@@ -90,6 +90,9 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .onglets3d button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 .onglets3d button[aria-pressed=true]{background:var(--bleu);color:#fff}
 .planbox{width:100%;max-height:78vh;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;text-align:center;padding:8px;box-sizing:border-box}
+.pagesplan{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin:0 0 8px}
+.pagesplan button{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 12px;font:inherit;font-weight:600;cursor:pointer}
+.pagesplan button:disabled{opacity:.4;cursor:default}
 .planbox img{display:block;width:100%;height:auto;margin:0 auto}
 .planbox img:not([src]){display:none}
 .planbox .ouvrir-plan{display:inline-block;margin:14px;padding:12px 18px;border-radius:6px;background:var(--bleu);color:#fff;font-weight:600;text-decoration:none}
@@ -383,7 +386,7 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"66770701b702","t":"T2","s":38,"e":2,"x":"Extérieur"},{"i":"91bf64a37c3d","t":"T2","s":39,"e":4,"x":"Extérieur"},{"i":"476f7a0b928f","t":"T2","s":41,"e":3,"x":"Extérieur"},{"i":"203c0ec68efd","t":"T2","s":43,"e":3,"x":"Extérieur"},{"i":"2d90a2c5bbb1","t":"T2","s":43,"e":1,"x":"Extérieur"},{"i":"34abe8e2e1ac","t":"T2","s":43,"e":1,"x":"Extérieur"},{"i":"6355203da25d","t":"T2","s":43,"e":3,"x":"Extérieur"},{"i":"b9d463276bc9","t":"T2","s":43,"e":3,"x":"Extérieur"},{"i":"c33c806acb3b","t":"T2","s":43,"e":2,"x":"Extérieur"},{"i":"d1334fa24883","t":"T2","s":45,"e":1,"x":""},{"i":"4969605b1d19","t":"T2","s":46,"e":3,"x":"Extérieur"},{"i":"f7cc41a9e83d","t":"T2","s":47,"e":5,"x":""},{"i":"483f3232df4c","t":"T3","s":58,"e":4,"x":"Extérieur"},{"i":"9344b326916b","t":"T3","s":59,"e":4,"x":"Extérieur"},{"i":"1cbcd169201c","t":"T3","s":60,"e":2,"x":"Extérieur"},{"i":"55d0590d4839","t":"T3","s":60,"e":2,"x":"Extérieur"},{"i":"cc2df6795939","t":"T3","s":60,"e":3,"x":"Extérieur"},{"i":"fa3a45b50e70","t":"T3","s":60,"e":3,"x":"Extérieur"},{"i":"45ae23eed1d0","t":"T3","s":61,"e":2,"x":"Extérieur"},{"i":"d7b5cb4678da","t":"T3","s":61,"e":2,"x":"Extérieur"},{"i":"e175becf51bd","t":"T3","s":61,"e":4,"x":"Extérieur"},{"i":"eee57c86c072","t":"T3","s":61,"e":3,"x":"Extérieur"},{"i":"257634ba4180","t":"T3","s":63,"e":2,"x":"Extérieur"},{"i":"428934cf6afd","t":"T3","s":63,"e":1,"x":"Extérieur"},{"i":"64b9173fab57","t":"T3","s":63,"e":3,"x":"Extérieur"},{"i":"8a67e4b71392","t":"T3","s":65,"e":1,"x":"Extérieur"},{"i":"cd9793e45139","t":"T4","s":78,"e":5,"x":"Extérieur"},{"i":"0dcada7df282","t":"T4","s":80,"e":2,"x":"Extérieur"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=05397589a0" defer></script>
+<script src="/neuf/programme.js?v=d519005d66" defer></script>
 
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};
