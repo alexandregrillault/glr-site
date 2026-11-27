@@ -37,7 +37,7 @@ function verifier(d, fichier) {
   const interdits = ['prix', 'prix_lot', 'lots', 'plan', 'plans', 'plan_url', 'commission', 'commission_pct', 'extranet', 'lat', 'lng'];
   const vus = JSON.stringify(d).match(new RegExp('"(' + interdits.join('|') + ')"', 'g'));
   if (vus) throw new Error(fichier + ' : champs interdits sur une page publique ' + [...new Set(vus)].join(', '));
-  const permis = ['id', 'typo', 'pieces', 'surface', 'etage', 'exterieur', 'statut', 'v3d'];
+  const permis = ['id', 'typo', 'pieces', 'surface', 'etage', 'exterieur', 'statut', 'v3d', 'p2d'];
   for (const p of d.programmes) {
     if (!/^[a-z0-9-]+$/.test(p.slug || '')) throw new Error(fichier + ' : slug de programme invalide ' + p.slug);
     // Clés publiques seulement (substr(md5('glr-neuf:' || id), 1, 12)) : jamais l'identifiant interne de la pige
@@ -46,6 +46,7 @@ function verifier(d, fichier) {
     if (!d.test && (p.logements || []).some(l => l.id != null && !cle(l.id))) throw new Error(fichier + ' : ' + p.slug + ' : id de logement doit être la clé publique de 12 caractères');
     for (const l of p.logements || []) {
       if (l.statut != null && !['libre', 'option'].includes(l.statut)) throw new Error(fichier + ' : ' + p.slug + ' : statut de logement inconnu ' + l.statut);
+      if (l.p2d != null && l.p2d !== true) throw new Error(fichier + ' : ' + p.slug + ' : p2d doit valoir true ou être absent');
       if (l.v3d != null && l.v3d !== true) throw new Error(fichier + ' : ' + p.slug + ' : v3d doit valoir true ou être absent');
       const en_trop = Object.keys(l).filter(k => !permis.includes(k));
       if (en_trop.length) throw new Error(fichier + ' : ' + p.slug + ' : champs de logement non permis ' + en_trop.join(', '));

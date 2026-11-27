@@ -30,7 +30,7 @@ async function rest(chemin, opts = {}) {
 
 // ---- Garde-fou : champ interdit ----------------------------------------------------------------------------------
 const CLE_PUBLIQUE = /^[0-9a-f]{12}$/;
-const LOGEMENT_PERMIS = ['id', 'typo', 'pieces', 'surface', 'etage', 'exterieur', 'statut', 'v3d']; // v3d : « ce logement a une visite 3D » (vrai seulement ; décision d'Alex du 27/11/2026)
+const LOGEMENT_PERMIS = ['id', 'typo', 'pieces', 'surface', 'etage', 'exterieur', 'statut', 'v3d', 'p2d']; // p2d : « ce logement a un plan du promoteur » (vrai seulement, jamais d'adresse) ; v3d : « ce logement a une visite 3D » (vrai seulement ; décision d'Alex du 27/11/2026)
 const PRIX_TOLERES_VIDES = ['prix_a_partir_de', 'prix_entree', 'prix_m2_moyen']; // rendus vides par la base ; un chiffre dedans arrête tout
 const NOM_INTERDIT = /(^|_)(prix|prix_lot|lots?|plans?|plan_url|commission\w*|extranet|intranet|lat|lng|image|images|photo|photos)$|^immolead|^pige_interne|^id_pige$/i;
 
@@ -55,6 +55,7 @@ function controlerChamps(d, ville) {
     for (const l of p.logements || []) {
       const en_trop = Object.keys(l).filter(k => !LOGEMENT_PERMIS.includes(k));
       if (en_trop.length) arret(nom + p.slug + ' : champs de logement non permis ' + en_trop.join(', '));
+      if (l.p2d != null && l.p2d !== true) arret(nom + p.slug + ' : p2d doit valoir true ou être absent');
       if (l.v3d != null && l.v3d !== true) arret(nom + p.slug + ' : v3d doit valoir true ou être absent');
       if (l.id != null && !CLE_PUBLIQUE.test(String(l.id))) arret(nom + p.slug + ' : id de logement qui n\'est pas une clé publique');
     }
