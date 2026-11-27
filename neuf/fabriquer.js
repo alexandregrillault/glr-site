@@ -34,11 +34,12 @@ function verifier(d, fichier) {
   if (d.version !== 1) throw new Error(fichier + ' : version ' + d.version + ' inconnue');
   if (!/^[a-z0-9-]+$/.test(d.slug)) throw new Error(fichier + ' : slug invalide');
   // Rien de confidentiel sur une page publique (dépôt public) : ni prix de lot, ni plan, ni commission (décision d'Alex du 24/11/2026 : listing sans prix, plans avec compte).
-  const interdits = ['prix', 'prix_lot', 'lots', 'plan', 'plans', 'plan_url', 'commission', 'commission_pct', 'extranet', 'lat', 'lng'];
+  const interdits = ['prix', 'prix_lot', 'lots', 'plan', 'plans', 'plan_url', 'plan_masse', 'commission', 'commission_pct', 'extranet', 'lat', 'lng'];
   const vus = JSON.stringify(d).match(new RegExp('"(' + interdits.join('|') + ')"', 'g'));
   if (vus) throw new Error(fichier + ' : champs interdits sur une page publique ' + [...new Set(vus)].join(', '));
   const permis = ['id', 'typo', 'pieces', 'surface', 'etage', 'exterieur', 'statut', 'v3d', 'p2d'];
   for (const p of d.programmes) {
+    if (p.pm != null && p.pm !== true) throw new Error(fichier + ' : ' + p.slug + ' : pm doit valoir true ou être absent');
     if (!/^[a-z0-9-]+$/.test(p.slug || '')) throw new Error(fichier + ' : slug de programme invalide ' + p.slug);
     // Clés publiques seulement (substr(md5('glr-neuf:' || id), 1, 12)) : jamais l'identifiant interne de la pige
     const cle = x => /^[0-9a-f]{12}$/.test(String(x));

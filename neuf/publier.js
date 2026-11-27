@@ -32,7 +32,7 @@ async function rest(chemin, opts = {}) {
 const CLE_PUBLIQUE = /^[0-9a-f]{12}$/;
 const LOGEMENT_PERMIS = ['id', 'typo', 'pieces', 'surface', 'etage', 'exterieur', 'statut', 'v3d', 'p2d']; // p2d : « ce logement a un plan du promoteur » (vrai seulement, jamais d'adresse) ; v3d : « ce logement a une visite 3D » (vrai seulement ; décision d'Alex du 27/11/2026)
 const PRIX_TOLERES_VIDES = ['prix_a_partir_de', 'prix_entree', 'prix_m2_moyen']; // rendus vides par la base ; un chiffre dedans arrête tout
-const NOM_INTERDIT = /(^|_)(prix|prix_lot|lots?|plans?|plan_url|commission\w*|extranet|intranet|lat|lng|image|images|photo|photos)$|^immolead|^pige_interne|^id_pige$/i;
+const NOM_INTERDIT = /(^|_)(prix|prix_lot|lots?|plans?|plan_url|plan_masse|commission\w*|extranet|intranet|lat|lng|image|images|photo|photos)$|^immolead|^pige_interne|^id_pige$/i;
 
 function parcourir(x, chemin, faire) {
   if (Array.isArray(x)) x.forEach((v, i) => parcourir(v, chemin + '[' + i + ']', faire));
@@ -52,6 +52,7 @@ function controlerChamps(d, ville) {
   for (const p of d.programmes || []) {
     for (const k of ['pige_id', 'id']) if (p[k] != null && !CLE_PUBLIQUE.test(String(p[k]))) arret(nom + p.slug + ' : ' + k + ' n\'est pas une clé publique de 12 caractères');
     if (p.visite_3d != null && p.visite_3d !== true) arret(nom + p.slug + ' : visite_3d doit valoir true ou être absent');
+    if (p.pm != null && p.pm !== true) arret(nom + p.slug + ' : pm doit valoir true ou être absent'); // pm : « ce programme a un plan de masse du promoteur » (vrai seulement, jamais de lien ; plan_masse est interdit)
     for (const l of p.logements || []) {
       const en_trop = Object.keys(l).filter(k => !LOGEMENT_PERMIS.includes(k));
       if (en_trop.length) arret(nom + p.slug + ' : champs de logement non permis ' + en_trop.join(', '));
