@@ -1,0 +1,96 @@
+{
+  "cp": "77410",
+  "maj": "2026-11-27",
+  "dept": "77",
+  "slug": "villevaude",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "77517",
+  "ville": "Villevaudé",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {},
+    "typologies": {
+      "T1": 0,
+      "T2": 0,
+      "T3": 0,
+      "T4": 3,
+      "T5+": 1
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 4
+  },
+  "dept_nom": "Seine-et-Marne",
+  "programmes": [
+    {
+      "nom": "Les Jardins de Villevaudé",
+      "gare": null,
+      "slug": "les-jardins-de-villevaude",
+      "image": null,
+      "picking": false,
+      "pige_id": "d3aaeec77720",
+      "position": {
+        "approx": false,
+        "latitude": 48.908,
+        "longitude": 2.668
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "79be1df3a3ec",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 79,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "b4f41b079997",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 79,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "3a4387e277cd",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 80,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "ebc30a3bfe02",
+          "typo": "T5+",
+          "etage": null,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 132,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2024-1",
+      "nb_lots_libres": 4,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": null
+    }
+  ]
+}

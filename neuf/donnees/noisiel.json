@@ -1,0 +1,146 @@
+{
+  "cp": "77186",
+  "maj": "2026-11-27",
+  "dept": "77",
+  "slug": "noisiel",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": true
+  },
+  "insee": "77337",
+  "ville": "Noisiel",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 0,
+      "T3": 6,
+      "T4": 1,
+      "T5+": 1
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 8
+  },
+  "dept_nom": "Seine-et-Marne",
+  "programmes": [
+    {
+      "nom": "Carré Noisiel",
+      "gare": "Noisiel (RER A)",
+      "slug": "carre-noisiel",
+      "image": null,
+      "picking": false,
+      "pige_id": "90607229b14d",
+      "position": {
+        "approx": false,
+        "latitude": 48.85,
+        "longitude": 2.616
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2027",
+      "logements": [
+        {
+          "id": "4f864962fb9e",
+          "p2d": true,
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.52,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "7a22c8150e90",
+          "p2d": true,
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.52,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "2b8efaec3013",
+          "p2d": true,
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.21,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "7735b271298e",
+          "p2d": true,
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.21,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "8c3cdcd0aa18",
+          "p2d": true,
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.21,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "beeb398a35f5",
+          "p2d": true,
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 72.33,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "85eb304857c9",
+          "p2d": true,
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 83.43,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "ffdd0a05e7ec",
+          "p2d": true,
+          "typo": "T5+",
+          "etage": 4,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 107.5,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2027-4",
+      "nb_lots_libres": 8,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 10
+    }
+  ]
+}

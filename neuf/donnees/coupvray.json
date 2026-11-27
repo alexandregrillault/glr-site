@@ -1,0 +1,461 @@
+{
+  "cp": "77700",
+  "maj": "2026-11-27",
+  "dept": "77",
+  "slug": "coupvray",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "77132",
+  "ville": "Coupvray",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2026": 2,
+      "2027": 1,
+      "2028": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 1,
+      "T3": 4,
+      "T4": 17,
+      "T5+": 13
+    },
+    "prix_entree": null,
+    "nb_programmes": 4,
+    "nb_promoteurs": 4,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 35
+  },
+  "dept_nom": "Seine-et-Marne",
+  "programmes": [
+    {
+      "nom": "L'epistoliere",
+      "gare": "Esbly (T14)",
+      "slug": "l-epistoliere",
+      "image": null,
+      "picking": false,
+      "pige_id": "ecf6fcc588b7",
+      "position": {
+        "approx": false,
+        "latitude": 48.893,
+        "longitude": 2.794
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2026",
+      "logements": [
+        {
+          "id": "9aead7c4d56b",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 60.6,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "99f2d88de559",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 77.5,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "9021db076a7e",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.6,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2026-4",
+      "nb_lots_libres": 3,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 21
+    },
+    {
+      "nom": "L'Explorateur",
+      "gare": "Marne-la-Vallée Chessy (RER A)",
+      "slug": "l-explorateur",
+      "image": null,
+      "picking": false,
+      "pige_id": "566b9845d023",
+      "position": {
+        "approx": true,
+        "latitude": 48.87,
+        "longitude": 2.786
+      },
+      "quartier": null,
+      "livraison": "2e semestre 2026",
+      "logements": [
+        {
+          "id": "386f2a6da465",
+          "p2d": true,
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 89.95,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2026-4",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 4
+    },
+    {
+      "nom": "Les Demeures du Val",
+      "gare": "Esbly (T14)",
+      "slug": "les-demeures-du-val",
+      "image": null,
+      "picking": false,
+      "pige_id": "5831e4dc5099",
+      "position": {
+        "approx": false,
+        "latitude": 48.891,
+        "longitude": 2.802
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "logements": [
+        {
+          "id": "807a976f2a29",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 63.47,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "75f73d49d121",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 76.46,
+          "exterieur": "Balcon"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-1",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 19
+    },
+    {
+      "nom": "Les Allées des Trois Ormes Chapitre 2",
+      "gare": "Marne-la-Vallée Chessy (RER A)",
+      "slug": "les-allees-des-trois-ormes-chapitre-2",
+      "image": null,
+      "picking": false,
+      "pige_id": "091d0ae15a6b",
+      "position": {
+        "approx": false,
+        "latitude": 48.88,
+        "longitude": 2.8
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2028",
+      "logements": [
+        {
+          "id": "1c3c55ef3846",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 47.9,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "b75f71115035",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.3,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "8d1c558a4c12",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.1,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "770b3edb04d3",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 67.2,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "0244a2a06769",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 92.8,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "ea4d75af1894",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 92.8,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "4a6007fb2243",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 93,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "ebd058c2ecf7",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 93,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "1492a7c6ed52",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 93.4,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "de2c2b4eab75",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 93.8,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "85b90ef31095",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 95.68,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "f7b6fb77c5ea",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 95.7,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "0a64069ceb16",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 95.82,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "fbaea831313f",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 95.83,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "2f2064a5fd5f",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 95.84,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "2ca6de45ebbb",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 95.93,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "e05bd7d09973",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 105.2,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "0ff3a0862469",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 108.6,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "4d95c60a67f0",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 110.13,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "7c679374b7b8",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 110.2,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "7ddd90566619",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 110.26,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "35a384c35d45",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 110.9,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "92d2e0df62a5",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 112.4,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "4a559d906535",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 6,
+          "statut": "libre",
+          "surface": 120.09,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "35a1fc649cf6",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 6,
+          "statut": "libre",
+          "surface": 120.21,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "53feb0093dc6",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 6,
+          "statut": "libre",
+          "surface": 120.21,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "bc29b005b958",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 6,
+          "statut": "libre",
+          "surface": 120.22,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "e04e184ca3fb",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 6,
+          "statut": "libre",
+          "surface": 120.24,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "839cffb98c48",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 6,
+          "statut": "libre",
+          "surface": 120.5,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2028-2",
+      "nb_lots_libres": 29,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 22
+    }
+  ]
+}
