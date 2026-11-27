@@ -22,10 +22,10 @@
   // Repli : si l'immeuble ne se charge pas (fonction indisponible, limite atteinte…), la maquette automatique prend sa place.
   var secoursFait = false;
   function secours() {
-    if (secoursFait) return; secoursFait = true;
     var v = document.getElementById('secours3d'), z = document.querySelector('.vue3d');
     if (!v) return;
     if (z) z.hidden = true; v.hidden = false;
+    if (secoursFait) return; secoursFait = true;
     var sc = document.createElement('script'); sc.src = '/neuf/programme.js'; document.body.appendChild(sc);
   }
   // L'immeuble s'ouvre SANS formulaire (et sans jeton s'il n'y en a pas) ; le formulaire n'est demandé que pour un logement.
@@ -33,6 +33,7 @@
     var jeton = lireJeton(), immeuble = lot === 'immeuble';
     if (!immeuble && !jeton) { attente = lot; versFormulaire('Pour voir ce logement, créez votre accès : cela prend une minute.'); return; }
     if (immeuble && lotOuvert === 'immeuble' && cadre.getAttribute('src')) { if (!sansDefiler) zone.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
+    var vz = zone.closest('.vue3d'); if (vz) vz.hidden = false; // le cadre peut avoir été masqué par le repli : un logement demandé doit toujours se voir
     libere(); lotOuvert = lot; zone.classList.remove('charge');
     message('Chargement de la visite 3D\u2026 (un peu long sur mobile)');
     if (!sansDefiler) zone.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -97,8 +98,9 @@
       .then(function (r) { if (r.status === 429) throw new Error('429'); return r.json().then(function (j) { if (!r.ok || !j || !j.jeton) throw new Error('x'); return j; }); })
       .then(function (j) {
         ecrireJeton(j.jeton); go.disabled = false; go.textContent = 'Créer mon accès';
+        document.getElementById('f3d-err').textContent = '';
         document.getElementById('f3d-ok').hidden = false; f.hidden = true;
-        if (attente) { var l = attente; attente = null; ouvrir(l); }
+        var l = attente || 'immeuble'; attente = null; ouvrir(l); // le logement demandé s'ouvre ; sinon l'immeuble
       })
       .catch(function (e) {
         go.disabled = false; go.textContent = 'Créer mon accès';

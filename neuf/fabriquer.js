@@ -123,6 +123,7 @@ h2{font-family:var(--display);font-weight:500;font-size:1.45rem;margin:2.2rem 0 
 .immeuble3d.charge .charger3d,.immeuble3d.charge .etat3d{display:none}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:inline-block;margin-left:10px;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+@media(max-width:560px){.lien-visite{display:block;margin:6px 0 0;white-space:nowrap}table.lots td.plan{white-space:normal}}
 .visite3d{margin:1.4rem 0;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px}
 .visite3d[hidden]{display:none}
 .visite3d .entete3d{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -130,6 +131,8 @@ button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .visite3d .ferme3d{border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 .visite3d .etat3d{margin:0 0 10px;color:var(--discret)}
 .visite3d iframe{display:block;width:100%;height:min(78vh,720px);border:1px solid var(--trait);border-radius:8px;background:#fff}
+.form3d[hidden],.ok3d[hidden]{display:none}
+.ok3d button.plein{border:0;background:#fff;color:var(--bleu);border-radius:6px;padding:12px 18px;font:inherit;font-weight:600;cursor:pointer;margin-bottom:1rem}
 .form3d{display:grid;gap:10px;margin:0 0 1rem;max-width:460px}
 .form3d label{display:grid;gap:4px;color:#fff;font-weight:600}
 .form3d input:not([type=checkbox]){padding:11px 12px;border:0;border-radius:6px;font:inherit;color:#161A1E;background:#fff}
@@ -573,7 +576,7 @@ ${p.visite_3d ? `<section class="appel" id="compte">
       <p class="erreur3d" id="f3d-err" role="alert"></p>
       <button type="submit" class="plein">Créer mon accès</button>
     </form>
-    <p id="f3d-ok" hidden>Votre accès est créé : touchez « Voir en 3D » en haut de la page, ou « Visite 3D » sur un logement.</p>
+    <div id="f3d-ok" class="ok3d" hidden><p>Votre accès est créé : vous pouvez voir les plans et la visite 3D de ce programme.</p><button type="button" class="plein" data-3d="immeuble">Voir l’immeuble en 3D</button></div>
     <div class="boutons"><a class="creux" href="tel:${CONTACT.tel}">Appeler le ${CONTACT.telAffiche}</a><a class="creux" href="mailto:${CONTACT.mail}?subject=${encodeURIComponent('Plans de ' + p.nom + ' à ' + d.ville)}">Écrire un e-mail</a></div>
   </section>` : `  <section class="appel" id="compte">
     <h2>Voir les plans de ces logements</h2>
