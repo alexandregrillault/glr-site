@@ -1,0 +1,132 @@
+{
+  "cp": "95150",
+  "maj": "2026-11-27",
+  "dept": "95",
+  "slug": "taverny",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": true
+  },
+  "insee": "95607",
+  "ville": "Taverny",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2026": 1,
+      "2027": 1
+    },
+    "typologies": {
+      "T1": 1,
+      "T2": 2,
+      "T3": 1,
+      "T4": 0,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 2,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 4
+  },
+  "dept_nom": "Val-d'Oise",
+  "programmes": [
+    {
+      "nom": "Harmony",
+      "gare": "Taverny (ligne H)",
+      "slug": "harmony",
+      "image": null,
+      "picking": false,
+      "pige_id": "ec803ee19873",
+      "position": {
+        "approx": false,
+        "latitude": 49.027,
+        "longitude": 2.224
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2026",
+      "logements": [
+        {
+          "id": "f5037b7c7c20",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 38.71,
+          "exterieur": null
+        },
+        {
+          "id": "de81578eacdd",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.33,
+          "exterieur": "Balcon"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3"
+      ],
+      "dispositifs": [
+        "BRS",
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2026-4",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 3
+    },
+    {
+      "nom": "Jardin Romantique",
+      "gare": "Taverny (ligne H)",
+      "slug": "jardin-romantique",
+      "image": null,
+      "picking": false,
+      "pige_id": "94c1af821046",
+      "position": {
+        "approx": false,
+        "latitude": 49.028,
+        "longitude": 2.225
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2027",
+      "logements": [
+        {
+          "id": "b5947e744b8e",
+          "typo": "T1",
+          "etage": 0,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 29.98,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "6350e343753e",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.1,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2027-4",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 5
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "cp": "95530",
+  "maj": "2026-11-27",
+  "dept": "95",
+  "slug": "la-frette-sur-seine",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "95257",
+  "ville": "La Frette-sur-Seine",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {},
+    "typologies": {
+      "T1": 0,
+      "T2": 2,
+      "T3": 1,
+      "T4": 0,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 3
+  },
+  "dept_nom": "Val-d'Oise",
+  "programmes": [
+    {
+      "nom": "Villa Daubigny",
+      "gare": "La Frette - Montigny (ligne J)",
+      "slug": "villa-daubigny",
+      "image": null,
+      "picking": false,
+      "pige_id": "f1f709d62c29",
+      "position": {
+        "approx": false,
+        "latitude": 48.981,
+        "longitude": 2.181
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "6fd283e6c826",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 41,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "3c8910d6c1ad",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 47,
+          "exterieur": null
+        },
+        {
+          "id": "6eac5cdcd69e",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2026-1",
+      "nb_lots_libres": 3,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 2
+    }
+  ]
+}

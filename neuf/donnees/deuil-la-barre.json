@@ -1,0 +1,157 @@
+{
+  "cp": "95170",
+  "maj": "2026-11-27",
+  "dept": "95",
+  "slug": "deuil-la-barre",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "95197",
+  "ville": "Deuil-la-Barre",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 0,
+      "T3": 1,
+      "T4": 7,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 8
+  },
+  "dept_nom": "Val-d'Oise",
+  "programmes": [
+    {
+      "nom": "Les Jardins d'Ormesson",
+      "gare": "La Barre Ormesson (ligne H)",
+      "slug": "les-jardins-d-ormesson",
+      "image": null,
+      "picking": false,
+      "pige_id": "4972ddb37025",
+      "position": {
+        "approx": false,
+        "latitude": 48.969,
+        "longitude": 2.315
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2027",
+      "logements": [
+        {
+          "id": "3da1f0578a16",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.33,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "84a7f9f2229d",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 80.54,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "2f32271ab12a",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 80.75,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "a07f1b6eea35",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 80.79,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "f89e62035298",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 80.96,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "6450f2708c02",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.73,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "f3a59e5128fb",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.75,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "1bc021e28b6b",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 82.43,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-2",
+      "nb_lots_libres": 8,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 4
+    },
+    {
+      "nom": "Nouveau À Deuil-la-barre / Gare D'enghien",
+      "gare": "La Barre Ormesson (ligne H)",
+      "slug": "nouveau-a-deuil-la-barre-gare-d-enghien",
+      "image": null,
+      "picking": true,
+      "pige_id": "7cb40350924c",
+      "position": {
+        "approx": true,
+        "latitude": 48.97,
+        "longitude": 2.327
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 11
+    }
+  ]
+}

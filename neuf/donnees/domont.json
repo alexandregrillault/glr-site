@@ -1,0 +1,89 @@
+{
+  "cp": "95330",
+  "maj": "2026-11-27",
+  "dept": "95",
+  "slug": "domont",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "95199",
+  "ville": "Domont",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 2,
+      "T3": 1,
+      "T4": 0,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 3
+  },
+  "dept_nom": "Val-d'Oise",
+  "programmes": [
+    {
+      "nom": "Le Clos Longpre",
+      "gare": "Domont (ligne H)",
+      "slug": "le-clos-longpre",
+      "image": null,
+      "picking": false,
+      "pige_id": "ed75f047aa08",
+      "position": {
+        "approx": false,
+        "latitude": 49.026,
+        "longitude": 2.329
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "logements": [
+        {
+          "id": "e0bd89a5920f",
+          "typo": "T2",
+          "etage": null,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 47.37,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "2c6c0c128460",
+          "typo": "T2",
+          "etage": null,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 58.8,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "efd9f1886502",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.4,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-1",
+      "nb_lots_libres": 3,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 13
+    }
+  ]
+}

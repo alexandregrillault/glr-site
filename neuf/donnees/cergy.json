@@ -1,0 +1,1022 @@
+{
+  "cp": "95000",
+  "maj": "2026-11-27",
+  "dept": "95",
+  "slug": "cergy",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": true
+  },
+  "insee": "95127",
+  "ville": "Cergy",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 4,
+      "2028": 1,
+      "2029": 1
+    },
+    "typologies": {
+      "T1": 9,
+      "T2": 18,
+      "T3": 17,
+      "T4": 17,
+      "T5+": 19
+    },
+    "prix_entree": null,
+    "nb_programmes": 8,
+    "nb_promoteurs": 4,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 80
+  },
+  "dept_nom": "Val-d'Oise",
+  "programmes": [
+    {
+      "nom": "L’isara - Bat 1",
+      "gare": "Cergy Préfecture (RER A)",
+      "slug": "l-isara-bat-1",
+      "image": null,
+      "picking": false,
+      "pige_id": "2af785bfa54c",
+      "position": {
+        "approx": false,
+        "latitude": 49.045,
+        "longitude": 2.068
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "logements": [
+        {
+          "id": "031c9f124333",
+          "typo": "T5+",
+          "etage": 6,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 150.8,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T5+"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-1",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 17
+    },
+    {
+      "nom": "Vivarea",
+      "gare": "Cergy Saint-Christophe (RER A)",
+      "slug": "vivarea",
+      "image": null,
+      "picking": false,
+      "pige_id": "cfb7f7fec0cb",
+      "position": {
+        "approx": false,
+        "latitude": 49.048,
+        "longitude": 2.052
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2027",
+      "logements": [
+        {
+          "id": "73608e82f6fd",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 60.1,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "84ca2347f4fa",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.53,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "5bb46679ebc2",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 68.46,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3"
+      ],
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2027-2",
+      "nb_lots_libres": 3,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 17
+    },
+    {
+      "nom": "L’isara - Bat 2",
+      "gare": "Cergy Préfecture (RER A)",
+      "slug": "l-isara-bat-2",
+      "image": null,
+      "picking": false,
+      "pige_id": "1c380d9b9c91",
+      "position": {
+        "approx": false,
+        "latitude": 49.033,
+        "longitude": 2.068
+      },
+      "quartier": null,
+      "livraison": "3e trimestre 2027",
+      "logements": [
+        {
+          "id": "4050fd66ead4",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 64.5,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "145b2b147dbd",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 68,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "dcf545dba152",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 68,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-3",
+      "nb_lots_libres": 3,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 12
+    },
+    {
+      "nom": "Bucolia",
+      "gare": "Cergy Saint-Christophe (RER A)",
+      "slug": "bucolia",
+      "image": null,
+      "picking": false,
+      "pige_id": "558f8cd7d924",
+      "position": {
+        "approx": false,
+        "latitude": 49.049,
+        "longitude": 2.051
+      },
+      "quartier": null,
+      "livraison": "3e trimestre 2027",
+      "logements": [
+        {
+          "id": "bf9cfeaf30b3",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 70.3,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3"
+      ],
+      "dispositifs": [
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2027-3",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 15
+    },
+    {
+      "nom": "Le Hameau Du Lac",
+      "gare": "Cergy Préfecture (RER A)",
+      "slug": "le-hameau-du-lac",
+      "image": null,
+      "picking": false,
+      "pige_id": "4d3196388944",
+      "position": {
+        "approx": false,
+        "latitude": 49.043,
+        "longitude": 2.064
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2028",
+      "logements": [
+        {
+          "id": "27d00eb94741",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 89.08,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "2998058ff188",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 89.08,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "2eb08d28e586",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 89.08,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "33a4befa5da0",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "option",
+          "surface": 89.08,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "494e1b7c9d2d",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "option",
+          "surface": 89.08,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "5335206f597e",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 89.08,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "c8ca9b9b12fc",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 89.08,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "efd0542bad39",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 89.08,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "fbec3a548704",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "option",
+          "surface": 89.08,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "fe9af58f0f2d",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "option",
+          "surface": 89.08,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "02f12f75ca7b",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "option",
+          "surface": 109.97,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "21c0f45729d4",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 109.97,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "cb4889eb248d",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 109.97,
+          "exterieur": "Jardin"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T5+"
+      ],
+      "dispositifs": [
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2028-2",
+      "nb_lots_libres": 13,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 17
+    },
+    {
+      "nom": "Epopée",
+      "gare": "Cergy le Haut (RER A)",
+      "slug": "epopee",
+      "image": null,
+      "picking": false,
+      "pige_id": "ac7cdf673400",
+      "position": {
+        "approx": false,
+        "latitude": 49.05,
+        "longitude": 2.006
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2029",
+      "logements": [
+        {
+          "id": "a0d703bf5d30",
+          "typo": "T1",
+          "etage": 3,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 25.07,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "7bc848616529",
+          "typo": "T1",
+          "etage": 4,
+          "pieces": 1,
+          "statut": "option",
+          "surface": 27.38,
+          "exterieur": null
+        },
+        {
+          "id": "169e79186eeb",
+          "typo": "T1",
+          "etage": null,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 32.62,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "c124d214030b",
+          "typo": "T1",
+          "etage": 0,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 37.03,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "81b2c138b8ce",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.43,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "5b2cee0bb659",
+          "typo": "T2",
+          "etage": null,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.59,
+          "exterieur": null
+        },
+        {
+          "id": "6c1d4e6af1ee",
+          "typo": "T2",
+          "etage": null,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.59,
+          "exterieur": null
+        },
+        {
+          "id": "e23d9f23d060",
+          "typo": "T2",
+          "etage": null,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.59,
+          "exterieur": null
+        },
+        {
+          "id": "47207d9d11f1",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.86,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "b67caa1b355a",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.9,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "6539d8d73150",
+          "typo": "T2",
+          "etage": null,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.26,
+          "exterieur": null
+        },
+        {
+          "id": "ee40b296865f",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.53,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "575d3a1d9555",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.86,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "866540924152",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.96,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "1254d6b90fbf",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45.04,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "5eafc13f7208",
+          "typo": "T2",
+          "etage": null,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45.05,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "9d199593b37e",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45.11,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "a6b68c04c29d",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45.17,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "d6cb65516c84",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45.19,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "41a1b0467b49",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45.22,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "0188a58c3560",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 47.2,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "5a01fafb4e8b",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 49,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "460869945343",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.17,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "4b36c49c3147",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.17,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "6f09a36fe2b3",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 65.44,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "4a3293e94fd1",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.64,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "535ccf723473",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.78,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "c8ab6761953c",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.78,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "d3a850912e10",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.78,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "72422c3734f5",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.32,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "3a6611f7dd69",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 67.15,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "d152dc86d014",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 68.62,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "9bbd8cac21d5",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 78.98,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "c57a71784e1e",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 78.98,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "482ea5262ff1",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 79.69,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "b8217cf023f9",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 79.7,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "1d00776c2cdc",
+          "typo": "T4",
+          "etage": 5,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 80.17,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "3cad5058b51d",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 80.17,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "da678159afd5",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.18,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "8c1bd464eca2",
+          "typo": "T4",
+          "etage": 5,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.2,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "c24e6f58a55a",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.25,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "5cc726b2b56b",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.91,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "146d532ed2ea",
+          "typo": "T4",
+          "etage": 5,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.95,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "9d1b09de6a7b",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 83.37,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "cc37ff5880d1",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 83.37,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "4651ea06f2ad",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 84.05,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "8764a171f7ab",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 85.24,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "4ee78172ed5b",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 85.52,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "885119aa474c",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 85.56,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "33f69d912ac4",
+          "typo": "T5+",
+          "etage": 5,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 91.68,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "2dac2bb25654",
+          "typo": "T5+",
+          "etage": 5,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 95.83,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "d1c661be5b7c",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 97.86,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "ae99537178e8",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 101.46,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "3c280a7f862f",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 102.91,
+          "exterieur": "Jardin"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2029-1",
+      "nb_lots_libres": 54,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 6
+    },
+    {
+      "nom": "Résidence Étudiante Studéa Cergy Université 2",
+      "gare": "Cergy Saint-Christophe (RER A)",
+      "slug": "residence-etudiante-studea-cergy-universite-2",
+      "image": null,
+      "picking": false,
+      "pige_id": "e14dbeecb9af",
+      "position": {
+        "approx": false,
+        "latitude": 49.052,
+        "longitude": 2.039
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "cbf0769b804b",
+          "typo": "T1",
+          "etage": 0,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 18.72,
+          "exterieur": null
+        },
+        {
+          "id": "7fa56c1048bd",
+          "typo": "T1",
+          "etage": 0,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 18.77,
+          "exterieur": null
+        },
+        {
+          "id": "11f7ab834023",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 18.86,
+          "exterieur": null
+        },
+        {
+          "id": "0a320c3172d2",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 18.88,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1"
+      ],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": 4,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 6
+    },
+    {
+      "nom": "Résidence Étudiante Studéa Cergy Université 1",
+      "gare": "Cergy Saint-Christophe (RER A)",
+      "slug": "residence-etudiante-studea-cergy-universite-1",
+      "image": null,
+      "picking": false,
+      "pige_id": "869ec59eff75",
+      "position": {
+        "approx": false,
+        "latitude": 49.051,
+        "longitude": 2.039
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "456d1c513bc1",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 22.24,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1"
+      ],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 5
+    },
+    {
+      "nom": "Sillage",
+      "gare": "Cergy Saint-Christophe (RER A)",
+      "slug": "sillage",
+      "image": null,
+      "picking": true,
+      "pige_id": "dbd4e3fce778",
+      "position": {
+        "approx": true,
+        "latitude": 49.037,
+        "longitude": 2.046
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 20
+    },
+    {
+      "nom": "Ville Nature",
+      "gare": "Cergy Saint-Christophe (RER A)",
+      "slug": "ville-nature",
+      "image": null,
+      "picking": true,
+      "pige_id": "e774e25b4bd6",
+      "position": {
+        "approx": true,
+        "latitude": 49.037,
+        "longitude": 2.046
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 20
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "cp": "95520",
+  "maj": "2026-11-27",
+  "dept": "95",
+  "slug": "osny",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "95476",
+  "ville": "Osny",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 1,
+      "T3": 0,
+      "T4": 0,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 1
+  },
+  "dept_nom": "Val-d'Oise",
+  "programmes": [
+    {
+      "nom": "Residence Des Impressionnistes",
+      "gare": "Osny (ligne J)",
+      "slug": "residence-des-impressionnistes",
+      "image": null,
+      "picking": false,
+      "pige_id": "50fd60b15e2f",
+      "position": {
+        "approx": false,
+        "latitude": 49.06,
+        "longitude": 2.061
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "logements": [
+        {
+          "id": "2a4867563e90",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45.3,
+          "exterieur": "Jardin"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-1",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 5
+    }
+  ]
+}
