@@ -1,0 +1,995 @@
+{
+  "cp": "94000",
+  "maj": "2026-11-27",
+  "dept": "94",
+  "slug": "creteil",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": true
+  },
+  "insee": "94028",
+  "ville": "Créteil",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2028": 2,
+      "2029": 1
+    },
+    "typologies": {
+      "T1": 11,
+      "T2": 28,
+      "T3": 34,
+      "T4": 13,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 5,
+    "nb_promoteurs": 3,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 86
+  },
+  "dept_nom": "Val-de-Marne",
+  "programmes": [
+    {
+      "nom": "Nexus-creteil",
+      "gare": "Le Vert de Maisons (RER D)",
+      "slug": "nexus-creteil",
+      "image": null,
+      "picking": false,
+      "pige_id": "036051b6790a",
+      "position": {
+        "approx": false,
+        "latitude": 48.788,
+        "longitude": 2.437
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "4e274a2678e3",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 85.95,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "b2e732e340f2",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 87.67,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "f25cd2d2bd1c",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 87.67,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "0d073764d0e3",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 88.25,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "9ad734c63f1f",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 88.92,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2022-2",
+      "nb_lots_libres": 5,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 5
+    },
+    {
+      "nom": "Good Morning Campus  (2)",
+      "gare": "Créteil Préfecture (M8)",
+      "slug": "good-morning-campus-2",
+      "image": null,
+      "picking": false,
+      "pige_id": "6a63fc32a6e3",
+      "position": {
+        "approx": false,
+        "latitude": 48.78,
+        "longitude": 2.456
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "e53a243871fe",
+          "typo": "T3",
+          "etage": 9,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 55.57,
+          "exterieur": null
+        },
+        {
+          "id": "90d67b342467",
+          "typo": "T3",
+          "etage": 9,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 56.37,
+          "exterieur": null
+        },
+        {
+          "id": "1918ed195c8c",
+          "typo": "T3",
+          "etage": 9,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 60.23,
+          "exterieur": null
+        },
+        {
+          "id": "07a8e312850b",
+          "typo": "T3",
+          "etage": 9,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.1,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2024-2",
+      "nb_lots_libres": 4,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 3
+    },
+    {
+      "nom": "Massolacum",
+      "gare": "Créteil Préfecture (M8)",
+      "slug": "massolacum",
+      "image": null,
+      "picking": false,
+      "pige_id": "26c7dddd343b",
+      "position": {
+        "approx": false,
+        "latitude": 48.781,
+        "longitude": 2.469
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2028",
+      "logements": [
+        {
+          "id": "11d6d3f43aeb",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 47.9,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "993538a7af4e",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 48.3,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "77022eaa4285",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 62.1,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "be92780ac5fd",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 62.6,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "e4c6da3a704e",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "f87f032472c8",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 63,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "fe2b5ee3634c",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 63,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "85653ec8ca84",
+          "typo": "T4",
+          "etage": 5,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 88.5,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "d8c275af8c02",
+          "typo": "T4",
+          "etage": 5,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 92,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2028-1",
+      "nb_lots_libres": 9,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 10
+    },
+    {
+      "nom": "Station Eiffel",
+      "gare": "Créteil L'Échat (M8)",
+      "slug": "station-eiffel",
+      "image": null,
+      "picking": false,
+      "pige_id": "db15d846fa0b",
+      "position": {
+        "approx": false,
+        "latitude": 48.797,
+        "longitude": 2.449
+      },
+      "quartier": null,
+      "livraison": "3e trimestre 2028",
+      "logements": [
+        {
+          "id": "241237af0f95",
+          "typo": "T1",
+          "etage": 6,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 34,
+          "exterieur": null
+        },
+        {
+          "id": "6abf434d0efe",
+          "typo": "T1",
+          "etage": 7,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 34,
+          "exterieur": null
+        },
+        {
+          "id": "a6d99575b799",
+          "typo": "T1",
+          "etage": 10,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 34,
+          "exterieur": null
+        },
+        {
+          "id": "c430b1d0596a",
+          "typo": "T1",
+          "etage": 8,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 34,
+          "exterieur": null
+        },
+        {
+          "id": "cd82c4a56fa7",
+          "typo": "T1",
+          "etage": 4,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 34,
+          "exterieur": null
+        },
+        {
+          "id": "d25561db3acb",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "option",
+          "surface": 34,
+          "exterieur": null
+        },
+        {
+          "id": "e89604f38b2d",
+          "typo": "T1",
+          "etage": 5,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 34,
+          "exterieur": null
+        },
+        {
+          "id": "ed72bc0b73fe",
+          "typo": "T1",
+          "etage": 9,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 34,
+          "exterieur": null
+        },
+        {
+          "id": "fb74e6706988",
+          "typo": "T1",
+          "etage": 3,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 34,
+          "exterieur": null
+        },
+        {
+          "id": "02ebc4f30b4c",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 39,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "6cc2a7ff12ef",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 39,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "a52d76b3ba12",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 39,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "f8c1d1147bff",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 39,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "ac23cc85ef54",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 41,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "b64b3a926348",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 41,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "3f3ce215581e",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "da03bad5e5ed",
+          "typo": "T2",
+          "etage": 16,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "f145ae54ea25",
+          "typo": "T2",
+          "etage": 17,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "03292b744342",
+          "typo": "T2",
+          "etage": 13,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43,
+          "exterieur": null
+        },
+        {
+          "id": "a6eb8a5dacf5",
+          "typo": "T2",
+          "etage": 15,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44,
+          "exterieur": null
+        },
+        {
+          "id": "e19c6677936b",
+          "typo": "T2",
+          "etage": 14,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44,
+          "exterieur": null
+        },
+        {
+          "id": "2892ab3662c2",
+          "typo": "T3",
+          "etage": 17,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 60,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "0b5a8640ec6e",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "f5542daae74b",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "02b96a07f0bf",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "314019a0d8e9",
+          "typo": "T3",
+          "etage": 15,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "c38ae90da546",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "e4b3f49e1a6e",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "1f0cd5c44abc",
+          "typo": "T3",
+          "etage": 17,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "276c7f6620d5",
+          "typo": "T3",
+          "etage": 13,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "4c708424a2cc",
+          "typo": "T3",
+          "etage": 15,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "6dd5961a20c5",
+          "typo": "T3",
+          "etage": 12,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "adad5b84b23c",
+          "typo": "T3",
+          "etage": 16,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "09136ed02ab0",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 78,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "2649052ea73f",
+          "typo": "T4",
+          "etage": 7,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 78,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "448206448bfd",
+          "typo": "T4",
+          "etage": 9,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 78,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "b3756719651f",
+          "typo": "T4",
+          "etage": 17,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 78,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "f838c6ad478b",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 78,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "9e3303b70c2b",
+          "typo": "T4",
+          "etage": 15,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 85,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2028-3",
+      "nb_lots_libres": 39,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 1
+    },
+    {
+      "nom": "Les Balcons De L'echat",
+      "gare": "Créteil Université (M8)",
+      "slug": "les-balcons-de-l-echat",
+      "image": null,
+      "picking": false,
+      "pige_id": "29f65496da3a",
+      "position": {
+        "approx": true,
+        "latitude": 48.784,
+        "longitude": 2.449
+      },
+      "quartier": null,
+      "livraison": "3e trimestre 2029",
+      "logements": [
+        {
+          "id": "ea61cfa4245b",
+          "typo": "T1",
+          "etage": 8,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 33,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "f02ae0c7d3a5",
+          "typo": "T1",
+          "etage": 9,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 33,
+          "exterieur": null
+        },
+        {
+          "id": "01afb1795882",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 38,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "202f18a53c8c",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 38,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "8e8ff7ec746b",
+          "typo": "T2",
+          "etage": 5,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 38,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "9a02b04eaf93",
+          "typo": "T2",
+          "etage": 7,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 38,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "bc900aca4416",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 38,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "efde466c5d73",
+          "typo": "T2",
+          "etage": 6,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 38,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "2cec269975f4",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "4d28e6c69be1",
+          "typo": "T2",
+          "etage": 7,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "73d82890df5a",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "80d838efd4e4",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "906f2e44fa23",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "924bd7a474e5",
+          "typo": "T2",
+          "etage": 5,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "babdf3d227c5",
+          "typo": "T2",
+          "etage": 6,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "fd021ccd7b35",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "5efae29d0d77",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "6377d9699332",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "c0662cccdaeb",
+          "typo": "T3",
+          "etage": 5,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "ce9c1c66a810",
+          "typo": "T3",
+          "etage": 7,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "e922a5bb6517",
+          "typo": "T3",
+          "etage": 6,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "047c02dc941c",
+          "typo": "T3",
+          "etage": 6,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "12b66ee83d3a",
+          "typo": "T3",
+          "etage": 8,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "194195023c7f",
+          "typo": "T3",
+          "etage": 7,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "55529f5f4d95",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "6e289a4ebb86",
+          "typo": "T3",
+          "etage": 5,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "6f7615118f19",
+          "typo": "T3",
+          "etage": 9,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "8c1703982edd",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "cb7c5cc3f6be",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2029-3",
+      "nb_lots_libres": 29,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 8
+    },
+    {
+      "nom": "Fontaine Du Mesly",
+      "gare": "Créteil Université (M8)",
+      "slug": "fontaine-du-mesly",
+      "image": null,
+      "picking": true,
+      "pige_id": "ba778fec3989",
+      "position": {
+        "approx": true,
+        "latitude": 48.785,
+        "longitude": 2.452
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 8
+    },
+    {
+      "nom": "Héritage",
+      "gare": "Créteil Université (M8)",
+      "slug": "heritage",
+      "image": null,
+      "picking": true,
+      "pige_id": "34f761d600c1",
+      "position": {
+        "approx": true,
+        "latitude": 48.785,
+        "longitude": 2.452
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 8
+    }
+  ]
+}

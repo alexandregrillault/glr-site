@@ -1,0 +1,127 @@
+{
+  "cp": "94110",
+  "maj": "2026-11-27",
+  "dept": "94",
+  "slug": "arcueil",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A bis",
+    "transports": [],
+    "tva_reduite": true
+  },
+  "insee": "94003",
+  "ville": "Arcueil",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {},
+    "typologies": {
+      "T1": 0,
+      "T2": 0,
+      "T3": 0,
+      "T4": 3,
+      "T5+": 1
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 2,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 4
+  },
+  "dept_nom": "Val-de-Marne",
+  "programmes": [
+    {
+      "nom": "L'eclat",
+      "gare": "Laplace (RER B)",
+      "slug": "l-eclat",
+      "image": null,
+      "picking": false,
+      "pige_id": "094df3699ac3",
+      "position": {
+        "approx": false,
+        "latitude": 48.804,
+        "longitude": 2.337
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "2ed5f8b04795",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 79.24,
+          "exterieur": null
+        },
+        {
+          "id": "869c5663e576",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 88.82,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4"
+      ],
+      "dispositifs": [
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2026-2",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 7
+    },
+    {
+      "nom": "Le Domaine L'adhara",
+      "gare": "Laplace (RER B)",
+      "slug": "le-domaine-l-adhara",
+      "image": null,
+      "picking": false,
+      "pige_id": "842cf55da4f5",
+      "position": {
+        "approx": false,
+        "latitude": 48.81,
+        "longitude": 2.333
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "1f8023e326e7",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 85,
+          "exterieur": null
+        },
+        {
+          "id": "d8122f2e35d6",
+          "typo": "T5+",
+          "etage": 2,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 115.22,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2026-3",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 3
+    }
+  ]
+}

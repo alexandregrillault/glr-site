@@ -1,0 +1,108 @@
+{
+  "cp": "94160",
+  "maj": "2026-11-27",
+  "dept": "94",
+  "slug": "saint-mande",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A bis",
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "94067",
+  "ville": "Saint-Mandé",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1,
+      "2028": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 0,
+      "T3": 0,
+      "T4": 1,
+      "T5+": 1
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 2,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 2
+  },
+  "dept_nom": "Val-de-Marne",
+  "programmes": [
+    {
+      "nom": "L'intemporel",
+      "gare": "Saint-Mandé (M1)",
+      "slug": "l-intemporel",
+      "image": null,
+      "picking": false,
+      "pige_id": "2f43ab460841",
+      "position": {
+        "approx": false,
+        "latitude": 48.84,
+        "longitude": 2.419
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "logements": [
+        {
+          "id": "955cbf02f7af",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 106.7,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2027-1",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 9
+    },
+    {
+      "nom": "Carre Victor",
+      "gare": "Porte Dorée (T3a)",
+      "slug": "carre-victor",
+      "image": null,
+      "picking": false,
+      "pige_id": "e33b4652ba45",
+      "position": {
+        "approx": false,
+        "latitude": 48.836,
+        "longitude": 2.413
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2028",
+      "logements": [
+        {
+          "id": "24eb1614fb1d",
+          "typo": "T5+",
+          "etage": 5,
+          "pieces": 5,
+          "statut": "option",
+          "surface": 103.96,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T5+"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2028-2",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 6
+    }
+  ]
+}

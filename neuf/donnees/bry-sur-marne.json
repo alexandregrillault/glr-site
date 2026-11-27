@@ -1,0 +1,568 @@
+{
+  "cp": "94360",
+  "maj": "2026-11-27",
+  "dept": "94",
+  "slug": "bry-sur-marne",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A bis",
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "94015",
+  "ville": "Bry-sur-Marne",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1,
+      "2028": 1
+    },
+    "typologies": {
+      "T1": 50,
+      "T2": 0,
+      "T3": 0,
+      "T4": 1,
+      "T5+": 2
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 53
+  },
+  "dept_nom": "Val-de-Marne",
+  "programmes": [
+    {
+      "nom": "Le Colobel",
+      "gare": "Bry-sur-Marne (RER A)",
+      "slug": "le-colobel",
+      "image": null,
+      "picking": false,
+      "pige_id": "dd890b9a8878",
+      "position": {
+        "approx": false,
+        "latitude": 48.844,
+        "longitude": 2.521
+      },
+      "quartier": null,
+      "livraison": "3e trimestre 2027",
+      "logements": [
+        {
+          "id": "8f1d8590310c",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 81.33,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "1c10677e1839",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 111.79,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "f0cbdf2553c1",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "option",
+          "surface": 111.79,
+          "exterieur": "Jardin"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2027-3",
+      "nb_lots_libres": 3,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 5
+    },
+    {
+      "nom": "Les Loges De Bry",
+      "gare": "Bry-sur-Marne (RER A)",
+      "slug": "les-loges-de-bry",
+      "image": null,
+      "picking": false,
+      "pige_id": "9d33873fc8f8",
+      "position": {
+        "approx": false,
+        "latitude": 48.838,
+        "longitude": 2.535
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2028",
+      "logements": [
+        {
+          "id": "1a6e851e55a6",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.49,
+          "exterieur": null
+        },
+        {
+          "id": "39de5ddc7f2d",
+          "typo": "T1",
+          "etage": 4,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.49,
+          "exterieur": null
+        },
+        {
+          "id": "44d46c75e442",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.49,
+          "exterieur": null
+        },
+        {
+          "id": "56b194651c9d",
+          "typo": "T1",
+          "etage": 4,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.49,
+          "exterieur": null
+        },
+        {
+          "id": "6e986a650e32",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.49,
+          "exterieur": null
+        },
+        {
+          "id": "9b4ba27702e7",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.49,
+          "exterieur": null
+        },
+        {
+          "id": "b10b56135386",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.49,
+          "exterieur": null
+        },
+        {
+          "id": "15f6e17d7447",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.61,
+          "exterieur": null
+        },
+        {
+          "id": "7b98a89c0d16",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.61,
+          "exterieur": null
+        },
+        {
+          "id": "da1fb7cf9a22",
+          "typo": "T1",
+          "etage": 4,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.61,
+          "exterieur": null
+        },
+        {
+          "id": "0d47f7fd5143",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.86,
+          "exterieur": null
+        },
+        {
+          "id": "1dcab530354b",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.86,
+          "exterieur": null
+        },
+        {
+          "id": "2ab77d4c4662",
+          "typo": "T1",
+          "etage": 4,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.86,
+          "exterieur": null
+        },
+        {
+          "id": "341f56ea36ec",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.86,
+          "exterieur": null
+        },
+        {
+          "id": "40f3c59fe786",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.86,
+          "exterieur": null
+        },
+        {
+          "id": "6ef10a2956cb",
+          "typo": "T1",
+          "etage": 4,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.86,
+          "exterieur": null
+        },
+        {
+          "id": "728565d3b8fe",
+          "typo": "T1",
+          "etage": 4,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.86,
+          "exterieur": null
+        },
+        {
+          "id": "8ab82f7fad80",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.86,
+          "exterieur": null
+        },
+        {
+          "id": "8afeb394d5c7",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.86,
+          "exterieur": null
+        },
+        {
+          "id": "cbcf9208e244",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.86,
+          "exterieur": null
+        },
+        {
+          "id": "ccd5d8480c5c",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.86,
+          "exterieur": null
+        },
+        {
+          "id": "f7756355bac6",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.86,
+          "exterieur": null
+        },
+        {
+          "id": "fadedc18f0cf",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 20.86,
+          "exterieur": null
+        },
+        {
+          "id": "01f8e9c9e58e",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "1b22b469264d",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "1dbc0d654e7d",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "3ca9ece71912",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "47c248e1514e",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "66019abb018d",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "84956834f24a",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "971b0a077c55",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "9a064c43c498",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "option",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "a86a2388dc57",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "ae55503653e8",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "b6a1eba96f55",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "bd3da54b7cc1",
+          "typo": "T1",
+          "etage": 4,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "bfd2031d23ef",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "c45fe3a7068c",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "c5df0b677596",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "cd1bc90bd2e8",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "d8dbecda94e0",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "ddc7d31f52b9",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "ddd9c39bf4e0",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "de5b39ba5b64",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "e4ca355a49b4",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "e8b76df6def6",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "ed8ea3acba95",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 21.06,
+          "exterieur": null
+        },
+        {
+          "id": "354178d22123",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 24.53,
+          "exterieur": null
+        },
+        {
+          "id": "e3b8f9d381a4",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 24.53,
+          "exterieur": null
+        },
+        {
+          "id": "ecbba3ff2ca8",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 26.71,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2028-1",
+      "nb_lots_libres": 50,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 14
+    }
+  ]
+}

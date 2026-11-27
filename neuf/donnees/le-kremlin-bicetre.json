@@ -1,0 +1,155 @@
+{
+  "cp": "94270",
+  "maj": "2026-11-27",
+  "dept": "94",
+  "slug": "le-kremlin-bicetre",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A bis",
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "94043",
+  "ville": "Le Kremlin-Bicêtre",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1
+    },
+    "typologies": {
+      "T1": 1,
+      "T2": 1,
+      "T3": 1,
+      "T4": 4,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 2,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 7
+  },
+  "dept_nom": "Val-de-Marne",
+  "programmes": [
+    {
+      "nom": "Coeur Jaures",
+      "gare": "Le Kremlin - Bicêtre (M7)",
+      "slug": "coeur-jaures",
+      "image": null,
+      "picking": false,
+      "pige_id": "64abaab3dcd0",
+      "position": {
+        "approx": false,
+        "latitude": 48.812,
+        "longitude": 2.356
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "da5ca5b00bf9",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 85,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2025-4",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 7
+    },
+    {
+      "nom": "Karactere",
+      "gare": "Le Kremlin - Bicêtre (M7)",
+      "slug": "karactere",
+      "image": null,
+      "picking": false,
+      "pige_id": "64c6b87a1f39",
+      "position": {
+        "approx": false,
+        "latitude": 48.814,
+        "longitude": 2.361
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2027",
+      "logements": [
+        {
+          "id": "46cb4530af44",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "option",
+          "surface": 36.07,
+          "exterieur": null
+        },
+        {
+          "id": "656a37ee94f4",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.09,
+          "exterieur": null
+        },
+        {
+          "id": "e053b56c4b0a",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.51,
+          "exterieur": null
+        },
+        {
+          "id": "f0e89fc23b5d",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 75.89,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "6e26d7938bf3",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 86.45,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "a574e9a356e9",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 87.05,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2027-2",
+      "nb_lots_libres": 6,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 6
+    }
+  ]
+}

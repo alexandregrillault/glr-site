@@ -1,0 +1,324 @@
+{
+  "cp": "94250",
+  "maj": "2026-11-27",
+  "dept": "94",
+  "slug": "gentilly",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A bis",
+    "transports": [],
+    "tva_reduite": true
+  },
+  "insee": "94037",
+  "ville": "Gentilly",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2026": 2,
+      "2028": 1
+    },
+    "typologies": {
+      "T1": 9,
+      "T2": 3,
+      "T3": 3,
+      "T4": 5,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 3,
+    "nb_promoteurs": 3,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 20
+  },
+  "dept_nom": "Val-de-Marne",
+  "programmes": [
+    {
+      "nom": "L'Interface",
+      "gare": "Hôpital Bicêtre (M14)",
+      "slug": "l-interface",
+      "image": null,
+      "picking": false,
+      "pige_id": "84dfd3e3026f",
+      "position": {
+        "approx": false,
+        "latitude": 48.81,
+        "longitude": 2.349
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2026",
+      "logements": [
+        {
+          "id": "cfc21b2129c3",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 26.43,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "e5a61e5862d4",
+          "typo": "T1",
+          "etage": 5,
+          "pieces": 1,
+          "statut": "option",
+          "surface": 26.43,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "f4500b2920be",
+          "typo": "T1",
+          "etage": 3,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 26.43,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "b5ac936b5601",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 29.7,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "72986a2fe2c3",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "option",
+          "surface": 36.74,
+          "exterieur": null
+        },
+        {
+          "id": "98ee2eee866f",
+          "typo": "T1",
+          "etage": 5,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 36.74,
+          "exterieur": null
+        },
+        {
+          "id": "de96fede9a4e",
+          "typo": "T1",
+          "etage": 3,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 36.74,
+          "exterieur": null
+        },
+        {
+          "id": "e22fde4acefd",
+          "typo": "T1",
+          "etage": 4,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 36.74,
+          "exterieur": null
+        },
+        {
+          "id": "8135829ecde4",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 37.2,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "97ba3b1ef8b0",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 37.2,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "edcfdee55d54",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 37.2,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2026-4",
+      "nb_lots_libres": 11,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 1
+    },
+    {
+      "nom": "Prisma",
+      "gare": "Hôpital Bicêtre (M14)",
+      "slug": "prisma",
+      "image": null,
+      "picking": false,
+      "pige_id": "19e5a0435c98",
+      "position": {
+        "approx": false,
+        "latitude": 48.81,
+        "longitude": 2.349
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2026",
+      "logements": [
+        {
+          "id": "ce43a079a3d9",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 77.57,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4"
+      ],
+      "dispositifs": [
+        "BRS",
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2026-4",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 1
+    },
+    {
+      "nom": "Les Terrasses de Gentilly",
+      "gare": "Hôpital Bicêtre (M14)",
+      "slug": "les-terrasses-de-gentilly",
+      "image": null,
+      "picking": false,
+      "pige_id": "27914ebe0741",
+      "position": {
+        "approx": false,
+        "latitude": 48.814,
+        "longitude": 2.35
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2028",
+      "logements": [
+        {
+          "id": "ed00328bf974",
+          "typo": "T1",
+          "etage": 0,
+          "pieces": 1,
+          "statut": "option",
+          "surface": 32.4,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "a4f49f124ea1",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 58.4,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "7a1fa0522a24",
+          "typo": "T3",
+          "etage": 5,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.1,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "5858ba1563f2",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 88.5,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "d6ea3a22b1a6",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 76.3,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "4d563583bc73",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 76.4,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "222c6be7abf8",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 89.1,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "26420cadeaa2",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 89.2,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2028-1",
+      "nb_lots_libres": 8,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 7
+    },
+    {
+      "nom": "Les Terrasses De La Bievre",
+      "gare": "Gentilly (RER B)",
+      "slug": "les-terrasses-de-la-bievre",
+      "image": null,
+      "picking": true,
+      "pige_id": "b31f15468c32",
+      "position": {
+        "approx": true,
+        "latitude": 48.812,
+        "longitude": 2.343
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 5
+    }
+  ]
+}

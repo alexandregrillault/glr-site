@@ -1,0 +1,119 @@
+{
+  "cp": "94130",
+  "maj": "2026-11-27",
+  "dept": "94",
+  "slug": "nogent-sur-marne",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "94052",
+  "ville": "Nogent-sur-Marne",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 2
+    },
+    "typologies": {
+      "T1": 1,
+      "T2": 0,
+      "T3": 2,
+      "T4": 0,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 3
+  },
+  "dept_nom": "Val-de-Marne",
+  "programmes": [
+    {
+      "nom": "Terrasses De Strasbourg",
+      "gare": "Nogent - Le Perreux (RER E)",
+      "slug": "terrasses-de-strasbourg",
+      "image": null,
+      "picking": false,
+      "pige_id": "b8a21de2fefe",
+      "position": {
+        "approx": false,
+        "latitude": 48.846,
+        "longitude": 2.491
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "logements": [
+        {
+          "id": "ac0b817a2351",
+          "typo": "T1",
+          "etage": 0,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 30.9,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "cff569116950",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 65.56,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T3"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2027-1",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 10
+    },
+    {
+      "nom": "Les Viselets",
+      "gare": "Nogent-sur-Marne (RER A)",
+      "slug": "les-viselets",
+      "image": null,
+      "picking": false,
+      "pige_id": "65e31efb9e67",
+      "position": {
+        "approx": false,
+        "latitude": 48.839,
+        "longitude": 2.479
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2027",
+      "logements": [
+        {
+          "id": "9182598686f1",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.96,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2027-2",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 9
+    }
+  ]
+}

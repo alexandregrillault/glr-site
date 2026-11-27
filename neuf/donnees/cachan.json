@@ -1,0 +1,391 @@
+{
+  "cp": "94230",
+  "maj": "2026-11-27",
+  "dept": "94",
+  "slug": "cachan",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A bis",
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "94016",
+  "ville": "Cachan",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1,
+      "2028": 2
+    },
+    "typologies": {
+      "T1": 1,
+      "T2": 2,
+      "T3": 16,
+      "T4": 2,
+      "T5+": 4
+    },
+    "prix_entree": null,
+    "nb_programmes": 3,
+    "nb_promoteurs": 3,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 25
+  },
+  "dept_nom": "Val-de-Marne",
+  "programmes": [
+    {
+      "nom": "Promenade Campus",
+      "gare": "Bagneux (RER B)",
+      "slug": "promenade-campus",
+      "image": null,
+      "picking": false,
+      "pige_id": "dddf702804a2",
+      "position": {
+        "approx": false,
+        "latitude": 48.789,
+        "longitude": 2.331
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2027",
+      "logements": [
+        {
+          "id": "c0cf3a564ab1",
+          "typo": "T1",
+          "etage": 0,
+          "pieces": 1,
+          "statut": "option",
+          "surface": 33.06,
+          "exterieur": "Jardin"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-4",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 10
+    },
+    {
+      "nom": "Chrysalis",
+      "gare": "Arcueil - Cachan (RER B)",
+      "slug": "chrysalis",
+      "image": null,
+      "picking": false,
+      "pige_id": "d74e1d8a1cf0",
+      "position": {
+        "approx": false,
+        "latitude": 48.795,
+        "longitude": 2.328
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2028",
+      "logements": [
+        {
+          "id": "6ae13152f3a8",
+          "typo": "T3",
+          "etage": 5,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.8,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "712401f88019",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 65.8,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "6a934a1def2c",
+          "typo": "T3",
+          "etage": 5,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.9,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "4ec80a67b100",
+          "typo": "T5+",
+          "etage": 6,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 98.2,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "6bda44e6b642",
+          "typo": "T5+",
+          "etage": 6,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 99,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "af4b205a9997",
+          "typo": "T5+",
+          "etage": 7,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 99,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3",
+        "T5+"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2028-2",
+      "nb_lots_libres": 6,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 5
+    },
+    {
+      "nom": "Coeur Carnot",
+      "gare": "Bagneux (RER B)",
+      "slug": "coeur-carnot",
+      "image": null,
+      "picking": false,
+      "pige_id": "d277ebb150b8",
+      "position": {
+        "approx": true,
+        "latitude": 48.791,
+        "longitude": 2.332
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2028",
+      "logements": [
+        {
+          "id": "6c49fe0c6f6e",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 47.94,
+          "exterieur": null
+        },
+        {
+          "id": "ac1be27d231d",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 53.58,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "ff7502adc8fb",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 48.75,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "04c4aa73384e",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 53.16,
+          "exterieur": null
+        },
+        {
+          "id": "596fc7ba4296",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 53.16,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "20ea3dea0d7e",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 54.83,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "39da35905e6b",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 55.77,
+          "exterieur": null
+        },
+        {
+          "id": "9251388731b0",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.43,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "a34cb57ac5cc",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.44,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "ca53fe12d233",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.13,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "d5ca9ad77810",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.58,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "fc1fe936d0e0",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.77,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "32f8c74f0c7a",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.92,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "55cacc781171",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.62,
+          "exterieur": null
+        },
+        {
+          "id": "e9921fb15606",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.62,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "5d27a501840a",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 86.06,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "a5711b9e0c4a",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 86.06,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "a385d0e454c3",
+          "typo": "T5+",
+          "etage": 6,
+          "pieces": 5,
+          "statut": "option",
+          "surface": 98.5,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2028-4",
+      "nb_lots_libres": 18,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 10
+    },
+    {
+      "nom": "À 11 min* à pied du RER B !",
+      "gare": "Bagneux (RER B)",
+      "slug": "a-11-min-a-pied-du-rer-b",
+      "image": null,
+      "picking": true,
+      "pige_id": "1e00757c3120",
+      "position": {
+        "approx": true,
+        "latitude": 48.791,
+        "longitude": 2.332
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 10
+    },
+    {
+      "nom": "La Fabrique",
+      "gare": "Bagneux (RER B)",
+      "slug": "la-fabrique",
+      "image": null,
+      "picking": true,
+      "pige_id": "7dd0e9f8c766",
+      "position": {
+        "approx": true,
+        "latitude": 48.791,
+        "longitude": 2.332
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 10
+    }
+  ]
+}

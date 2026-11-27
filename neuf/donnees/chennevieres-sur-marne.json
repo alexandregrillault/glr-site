@@ -1,0 +1,948 @@
+{
+  "cp": "94430",
+  "maj": "2026-11-27",
+  "dept": "94",
+  "slug": "chennevieres-sur-marne",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": true
+  },
+  "insee": "94019",
+  "ville": "Chennevières-sur-Marne",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1,
+      "2028": 4
+    },
+    "typologies": {
+      "T1": 7,
+      "T2": 38,
+      "T3": 24,
+      "T4": 8,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 7,
+    "nb_promoteurs": 3,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 77
+  },
+  "dept_nom": "Val-de-Marne",
+  "programmes": [
+    {
+      "nom": "Les Demeures des Coteaux",
+      "gare": "La Varenne - Chennevières (RER A)",
+      "slug": "les-demeures-des-coteaux",
+      "image": null,
+      "picking": false,
+      "pige_id": "71e7de0a6fdd",
+      "position": {
+        "approx": false,
+        "latitude": 48.792,
+        "longitude": 2.529
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "55667b0ea4eb",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 96.59,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "5566769955ab",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 96.73,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2025-4",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 15
+    },
+    {
+      "nom": "Opportunity",
+      "gare": null,
+      "slug": "opportunity",
+      "image": null,
+      "picking": false,
+      "pige_id": "0e6101d6bece",
+      "position": {
+        "approx": false,
+        "latitude": 48.8,
+        "longitude": 2.544
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "9a73752310a1",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 62.54,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2025-4",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": null
+    },
+    {
+      "nom": "L'Opaline",
+      "gare": null,
+      "slug": "l-opaline",
+      "image": null,
+      "picking": false,
+      "pige_id": "6c74516710c9",
+      "position": {
+        "approx": false,
+        "latitude": 48.791,
+        "longitude": 2.555
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "logements": [
+        {
+          "id": "9fb5612aa0b2",
+          "typo": "T1",
+          "etage": 0,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 29.9,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "e4beabce572d",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 56.9,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "3f038bf0f350",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 86.1,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-1",
+      "nb_lots_libres": 3,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": null
+    },
+    {
+      "nom": "L'Orée - Chennevières-sur-Marne",
+      "gare": "Villiers-sur-Marne - Le Plessis-Trévise (RER E)",
+      "slug": "l-oree-chennevieres-sur-marne",
+      "image": null,
+      "picking": false,
+      "pige_id": "a402ed5f7ca4",
+      "position": {
+        "approx": false,
+        "latitude": 48.8,
+        "longitude": 2.559
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2028",
+      "logements": [
+        {
+          "id": "509535f80f88",
+          "typo": "T2",
+          "etage": 5,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.29,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "5b6bdaf49c11",
+          "typo": "T2",
+          "etage": 6,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.4,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "e955fb4c50a0",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.5,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "23610b669a5a",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.6,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "8106e9fce6fa",
+          "typo": "T2",
+          "etage": 6,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.1,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "088b245434ae",
+          "typo": "T2",
+          "etage": 5,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.6,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "a2f1b58b402c",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 48.2,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "ea1e382ef1d8",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 57,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "f807b6866dc5",
+          "typo": "T3",
+          "etage": 5,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 57.21,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "ce2959d8e8bb",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.9,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "f1adaefbef86",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.86,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "6a4b15ee8142",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.88,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "91cf66bc639a",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 78.8,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "e8b85bc20822",
+          "typo": "T4",
+          "etage": 5,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 85.32,
+          "exterieur": "Balcon"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2028-1",
+      "nb_lots_libres": 14,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 36
+    },
+    {
+      "nom": "Le Discovery",
+      "gare": "Villiers-sur-Marne - Le Plessis-Trévise (RER E)",
+      "slug": "le-discovery",
+      "image": null,
+      "picking": false,
+      "pige_id": "694335ee5a99",
+      "position": {
+        "approx": false,
+        "latitude": 48.801,
+        "longitude": 2.541
+      },
+      "quartier": null,
+      "livraison": "1er semestre 2028",
+      "logements": [
+        {
+          "id": "e589c833fc56",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 37.17,
+          "exterieur": null
+        },
+        {
+          "id": "e62d35a324ea",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 39.06,
+          "exterieur": null
+        },
+        {
+          "id": "518e6d791f42",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 39.17,
+          "exterieur": null
+        },
+        {
+          "id": "603afd89581d",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 39.31,
+          "exterieur": null
+        },
+        {
+          "id": "095089eacccc",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.07,
+          "exterieur": null
+        },
+        {
+          "id": "b615c75940b2",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.36,
+          "exterieur": null
+        },
+        {
+          "id": "3bc78fc77458",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.87,
+          "exterieur": null
+        },
+        {
+          "id": "e54fa31a0034",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.39,
+          "exterieur": null
+        },
+        {
+          "id": "70bfc9dd35c3",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 46.49,
+          "exterieur": null
+        },
+        {
+          "id": "4be4e9b4ddf3",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 56.46,
+          "exterieur": null
+        },
+        {
+          "id": "913e815cc888",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 57.88,
+          "exterieur": null
+        },
+        {
+          "id": "11f301074290",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 58.3,
+          "exterieur": null
+        },
+        {
+          "id": "18eaae91bd61",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 58.3,
+          "exterieur": null
+        },
+        {
+          "id": "f27696cc1dcd",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 58.3,
+          "exterieur": null
+        },
+        {
+          "id": "30b0de1d79bf",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 58.42,
+          "exterieur": null
+        },
+        {
+          "id": "d912fbb3fbce",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 58.42,
+          "exterieur": null
+        },
+        {
+          "id": "c94121db074f",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 60.86,
+          "exterieur": null
+        },
+        {
+          "id": "f15770d46756",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 60.86,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2028-2",
+      "nb_lots_libres": 18,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 31
+    },
+    {
+      "nom": "L'Atrium",
+      "gare": "Villiers-sur-Marne - Le Plessis-Trévise (RER E)",
+      "slug": "l-atrium",
+      "image": null,
+      "picking": false,
+      "pige_id": "ae3ebc9278b6",
+      "position": {
+        "approx": false,
+        "latitude": 48.802,
+        "longitude": 2.54
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2028",
+      "logements": [
+        {
+          "id": "cb604d644bc0",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 23.91,
+          "exterieur": null
+        },
+        {
+          "id": "22c919d84347",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 29.31,
+          "exterieur": null
+        },
+        {
+          "id": "376b2ff7db4b",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 36.17,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "5d44a1f963be",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 36.17,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "7363c86fdd3d",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 36.7,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "85db51033591",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 36.7,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "c3af0026fb02",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.34,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "75d99dcbd444",
+          "typo": "T2",
+          "etage": 5,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.51,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "5a9e894e0a9e",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 43.55,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "385f98e97801",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.34,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "1ec5b240c17d",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.57,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "2fb210650f44",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 46.74,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "1bf6826d16e1",
+          "typo": "T2",
+          "etage": 5,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 49.73,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "9af7442b6230",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 60.2,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "8a2003ccf982",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61.97,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "75f8bd5ecb53",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.25,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "e9397f93c787",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.25,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "1a704a0212a7",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.26,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "8488c3b1dcf5",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.26,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "ba4c038f6982",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.46,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "4cb5c3809957",
+          "typo": "T3",
+          "etage": 5,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 68.04,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "9669e5a42d43",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 77.59,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "22bbf0fe2b37",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 78.39,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "2e118fd58c7b",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 78.52,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2028-4",
+      "nb_lots_libres": 24,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 30
+    },
+    {
+      "nom": "La Vicomté",
+      "gare": "Villiers-sur-Marne - Le Plessis-Trévise (RER E)",
+      "slug": "la-vicomte",
+      "image": null,
+      "picking": false,
+      "pige_id": "a6f7a7dbc299",
+      "position": {
+        "approx": false,
+        "latitude": 48.801,
+        "longitude": 2.541
+      },
+      "quartier": null,
+      "livraison": "2e semestre 2028",
+      "logements": [
+        {
+          "id": "1813e4cc2b68",
+          "typo": "T1",
+          "etage": 0,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 28.87,
+          "exterieur": null
+        },
+        {
+          "id": "8adb08d9eb5d",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 31.44,
+          "exterieur": null
+        },
+        {
+          "id": "f5b655c49061",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 31.44,
+          "exterieur": null
+        },
+        {
+          "id": "ee4c681268d0",
+          "typo": "T1",
+          "etage": 3,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 32.66,
+          "exterieur": null
+        },
+        {
+          "id": "19988309172b",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 40.57,
+          "exterieur": null
+        },
+        {
+          "id": "0fc3bf004e7e",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 40.58,
+          "exterieur": null
+        },
+        {
+          "id": "942f41d46475",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 40.58,
+          "exterieur": null
+        },
+        {
+          "id": "0d718725b635",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.96,
+          "exterieur": null
+        },
+        {
+          "id": "f736ba490e78",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.74,
+          "exterieur": null
+        },
+        {
+          "id": "3b363a84fe52",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.9,
+          "exterieur": null
+        },
+        {
+          "id": "26c864f1879b",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.11,
+          "exterieur": null
+        },
+        {
+          "id": "bd5787ca74de",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.11,
+          "exterieur": null
+        },
+        {
+          "id": "9e0f465520d9",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.63,
+          "exterieur": null
+        },
+        {
+          "id": "4fee1a5efd58",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.62,
+          "exterieur": null
+        },
+        {
+          "id": "7e15d4afb489",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.62,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2028-4",
+      "nb_lots_libres": 15,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 31
+    },
+    {
+      "nom": "65 Coeuilly",
+      "gare": null,
+      "slug": "65-coeuilly",
+      "image": null,
+      "picking": true,
+      "pige_id": "98aa680e11fc",
+      "position": {
+        "approx": true,
+        "latitude": 48.795,
+        "longitude": 2.544
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": null
+    }
+  ]
+}

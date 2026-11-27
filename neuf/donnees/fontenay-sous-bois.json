@@ -1,0 +1,537 @@
+{
+  "cp": "94120",
+  "maj": "2026-11-27",
+  "dept": "94",
+  "slug": "fontenay-sous-bois",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A bis",
+    "transports": [],
+    "tva_reduite": true
+  },
+  "insee": "94033",
+  "ville": "Fontenay-sous-Bois",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2026": 1,
+      "2027": 1,
+      "2028": 3
+    },
+    "typologies": {
+      "T1": 3,
+      "T2": 3,
+      "T3": 12,
+      "T4": 14,
+      "T5+": 4
+    },
+    "prix_entree": null,
+    "nb_programmes": 6,
+    "nb_promoteurs": 4,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 36
+  },
+  "dept_nom": "Val-de-Marne",
+  "programmes": [
+    {
+      "nom": "Ampère",
+      "gare": "Val de Fontenay (RER A)",
+      "slug": "ampere",
+      "image": null,
+      "picking": false,
+      "pige_id": "aa271d3312b3",
+      "position": {
+        "approx": false,
+        "latitude": 48.858,
+        "longitude": 2.473
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "745d59765c5f",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 66.85,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "ebee8197ac5b",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 67.7,
+          "exterieur": "Balcon"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3"
+      ],
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2025-1",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 16
+    },
+    {
+      "nom": "Origyn",
+      "gare": "Fontenay-sous-Bois (RER A)",
+      "slug": "origyn",
+      "image": null,
+      "picking": false,
+      "pige_id": "2f63c8a7e5aa",
+      "position": {
+        "approx": false,
+        "latitude": 48.842,
+        "longitude": 2.472
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2026",
+      "logements": [
+        {
+          "id": "9f04b8d9e85e",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 73.12,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "c888085d0839",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 90.6,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "14dd0a8e59f7",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 107.92,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "d53cd29727bb",
+          "typo": "T5+",
+          "etage": 4,
+          "pieces": 5,
+          "statut": "option",
+          "surface": 111,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "df80300459e0",
+          "typo": "T5+",
+          "etage": 4,
+          "pieces": 5,
+          "statut": "option",
+          "surface": 113.94,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2026-4",
+      "nb_lots_libres": 5,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 9
+    },
+    {
+      "nom": "Villa Rosélia",
+      "gare": "Val de Fontenay (RER A)",
+      "slug": "villa-roselia",
+      "image": null,
+      "picking": false,
+      "pige_id": "7e4dc047a99b",
+      "position": {
+        "approx": false,
+        "latitude": 48.859,
+        "longitude": 2.471
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "logements": [
+        {
+          "id": "f92ca6ab3a18",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 44.4,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "bc06b68a0f76",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.4,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T4"
+      ],
+      "dispositifs": [
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2027-1",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 18
+    },
+    {
+      "nom": "Lumine&sens",
+      "gare": "Val de Fontenay (RER A)",
+      "slug": "lumine-sens",
+      "image": null,
+      "picking": false,
+      "pige_id": "f7f66f3a29dd",
+      "position": {
+        "approx": false,
+        "latitude": 48.851,
+        "longitude": 2.476
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2028",
+      "logements": [
+        {
+          "id": "36ed3b8b51c4",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "4b1cea12c32e",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "518832eb9838",
+          "typo": "T3",
+          "etage": 6,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "aa6085ec830e",
+          "typo": "T3",
+          "etage": 5,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "20a3d9d503af",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 79.3,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "c7c409c378cb",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 79.3,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "f2b3cf95e540",
+          "typo": "T4",
+          "etage": 5,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 79.3,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "656037fef2ab",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 80.3,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "7495182e2ad2",
+          "typo": "T4",
+          "etage": 5,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 80.3,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "3b8c25a21477",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 80.9,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "083ef6c1bdae",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "f6eddc093c3c",
+          "typo": "T4",
+          "etage": 5,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 97,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "e7ddc3ac3667",
+          "typo": "T5+",
+          "etage": 5,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 105.9,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2028-2",
+      "nb_lots_libres": 13,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 13
+    },
+    {
+      "nom": "Lumine&sens 2",
+      "gare": "Val de Fontenay (RER A)",
+      "slug": "lumine-sens-2",
+      "image": null,
+      "picking": false,
+      "pige_id": "df770c4a000e",
+      "position": {
+        "approx": false,
+        "latitude": 48.851,
+        "longitude": 2.476
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2028",
+      "logements": [
+        {
+          "id": "40849d7b7eba",
+          "typo": "T1",
+          "etage": 3,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 28.9,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "4ee91954ba63",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 28.9,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "7c1454541045",
+          "typo": "T1",
+          "etage": 3,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 31.7,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "5f8db7007dc6",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 68.4,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "67f554b232e7",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.6,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "8f2bc8ae9017",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 82,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "2928ad738ae8",
+          "typo": "T5+",
+          "etage": 4,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 102.9,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2028-2",
+      "nb_lots_libres": 7,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 13
+    },
+    {
+      "nom": "Horizéa",
+      "gare": "Fontenay-sous-Bois (RER A)",
+      "slug": "horizea",
+      "image": null,
+      "picking": false,
+      "pige_id": "97bfca565774",
+      "position": {
+        "approx": false,
+        "latitude": 48.852,
+        "longitude": 2.462
+      },
+      "quartier": null,
+      "livraison": "3e trimestre 2028",
+      "logements": [
+        {
+          "id": "e25cbc2d622b",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.62,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "437a64087f77",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 49.6,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "429ab9c454de",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 61.65,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "db1bf3ee5e7b",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.19,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "5ee0b9e6c79a",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.54,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "acc9f9f4ee94",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.79,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "42307de223d8",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 82.56,
+          "exterieur": "Jardin"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2028-3",
+      "nb_lots_libres": 7,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 12
+    }
+  ]
+}
