@@ -1,6 +1,6 @@
 {
   "cp": "93370",
-  "maj": "2026-11-25",
+  "maj": "2026-11-27",
   "dept": "93",
   "slug": "montfermeil",
   "guide": {
@@ -21,15 +21,15 @@
     "typologies": {
       "T1": 1,
       "T2": 45,
-      "T3": 110,
-      "T4": 25,
+      "T3": 109,
+      "T4": 24,
       "T5+": 0
     },
     "prix_entree": null,
     "nb_programmes": 6,
     "nb_promoteurs": 4,
     "prix_m2_moyen": null,
-    "nb_lots_libres": 181
+    "nb_lots_libres": 179
   },
   "dept_nom": "Seine-Saint-Denis",
   "programmes": [
@@ -53,8 +53,17 @@
           "typo": "T3",
           "etage": 3,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 65.7,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "26ef60bc215d",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.1,
           "exterieur": "Terrasse"
         }
       ],
@@ -66,7 +75,7 @@
         "TVA 5,5 %"
       ],
       "livraison_cle": "2026-2",
-      "nb_lots_libres": 1,
+      "nb_lots_libres": 2,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 4
     },
@@ -234,15 +243,6 @@
           "exterieur": null
         },
         {
-          "id": "1e350d257953",
-          "typo": "T3",
-          "etage": 3,
-          "pieces": 3,
-          "statut": "libre",
-          "surface": 60.8,
-          "exterieur": null
-        },
-        {
           "id": "2f5a6824e459",
           "typo": "T3",
           "etage": 3,
@@ -286,15 +286,6 @@
           "statut": "libre",
           "surface": 80.8,
           "exterieur": null
-        },
-        {
-          "id": "6734d659bddf",
-          "typo": "T4",
-          "etage": 3,
-          "pieces": 4,
-          "statut": "option",
-          "surface": 82.5,
-          "exterieur": null
         }
       ],
       "promoteur": "",
@@ -305,7 +296,7 @@
       ],
       "dispositifs": [],
       "livraison_cle": "2027-4",
-      "nb_lots_libres": 13,
+      "nb_lots_libres": 11,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 4
     },
@@ -1253,15 +1244,6 @@
           "exterieur": "Extérieur"
         },
         {
-          "id": "d3bc4bcb6e24",
-          "typo": "T3",
-          "etage": 3,
-          "pieces": 3,
-          "statut": "libre",
-          "surface": 62.42,
-          "exterieur": "Extérieur"
-        },
-        {
           "id": "50ddb9045276",
           "typo": "T3",
           "etage": 3,
@@ -1623,7 +1605,7 @@
         "TVA 5,5 %"
       ],
       "livraison_cle": "2028-4",
-      "nb_lots_libres": 70,
+      "nb_lots_libres": 69,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 5
     },

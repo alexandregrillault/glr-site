@@ -1,6 +1,6 @@
 {
   "cp": "93160",
-  "maj": "2026-11-25",
+  "maj": "2026-11-27",
   "dept": "93",
   "slug": "noisy-le-grand",
   "guide": {
@@ -19,7 +19,7 @@
     },
     "typologies": {
       "T1": 4,
-      "T2": 31,
+      "T2": 32,
       "T3": 40,
       "T4": 9,
       "T5+": 3
@@ -28,7 +28,7 @@
     "nb_programmes": 10,
     "nb_promoteurs": 6,
     "prix_m2_moyen": null,
-    "nb_lots_libres": 87
+    "nb_lots_libres": 88
   },
   "dept_nom": "Seine-Saint-Denis",
   "programmes": [
@@ -87,7 +87,7 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
-          "statut": "libre",
+          "statut": "option",
           "surface": 40.98,
           "exterieur": "Balcon"
         },
@@ -190,24 +190,34 @@
       "livraison": "Livré",
       "logements": [
         {
+          "id": "ab91f7d50dcd",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 49.88,
+          "exterieur": "Balcon"
+        },
+        {
           "id": "580577ddee27",
           "typo": "T3",
           "etage": 0,
           "pieces": 3,
-          "statut": "option",
+          "statut": "libre",
           "surface": 63.33,
           "exterieur": "Jardin"
         }
       ],
       "promoteur": "",
       "typologies": [
+        "T2",
         "T3"
       ],
       "dispositifs": [
         "PTZ"
       ],
       "livraison_cle": "2026-2",
-      "nb_lots_libres": 1,
+      "nb_lots_libres": 2,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 11
     },
@@ -385,7 +395,7 @@
           "typo": "T2",
           "etage": 0,
           "pieces": 2,
-          "statut": "libre",
+          "statut": "option",
           "surface": 36.5,
           "exterieur": "Jardin"
         },
@@ -412,7 +422,7 @@
           "typo": "T2",
           "etage": 2,
           "pieces": 2,
-          "statut": "libre",
+          "statut": "option",
           "surface": 38.5,
           "exterieur": "Balcon"
         },
@@ -439,7 +449,7 @@
           "typo": "T2",
           "etage": 2,
           "pieces": 2,
-          "statut": "libre",
+          "statut": "option",
           "surface": 45,
           "exterieur": "Balcon"
         },
@@ -994,7 +1004,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
-          "statut": "option",
+          "statut": "libre",
           "surface": 58.8,
           "exterieur": "Extérieur"
         },
@@ -1030,7 +1040,7 @@
           "typo": "T3",
           "etage": 0,
           "pieces": 3,
-          "statut": "option",
+          "statut": "libre",
           "surface": 67.51,
           "exterieur": "Extérieur"
         },

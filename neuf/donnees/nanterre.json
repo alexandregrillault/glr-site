@@ -1,6 +1,6 @@
 {
   "cp": "92000",
-  "maj": "2026-11-25",
+  "maj": "2026-11-27",
   "dept": "92",
   "slug": "nanterre",
   "guide": {
@@ -16,20 +16,20 @@
     "livraisons": {
       "2027": 2,
       "2028": 1,
-      "2029": 3
+      "2029": 2
     },
     "typologies": {
       "T1": 3,
-      "T2": 32,
+      "T2": 33,
       "T3": 73,
-      "T4": 52,
-      "T5+": 7
+      "T4": 51,
+      "T5+": 6
     },
     "prix_entree": null,
-    "nb_programmes": 6,
-    "nb_promoteurs": 6,
+    "nb_programmes": 5,
+    "nb_promoteurs": 5,
     "prix_m2_moyen": null,
-    "nb_lots_libres": 167
+    "nb_lots_libres": 166
   },
   "dept_nom": "Hauts-de-Seine",
   "programmes": [
@@ -117,7 +117,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 64.14,
           "exterieur": "Extérieur"
         },
@@ -276,7 +276,7 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
-          "statut": "libre",
+          "statut": "option",
           "surface": 48.57,
           "exterieur": null
         },
@@ -294,7 +294,7 @@
           "typo": "T2",
           "etage": 4,
           "pieces": 2,
-          "statut": "option",
+          "statut": "libre",
           "surface": 53.56,
           "exterieur": "Loggia"
         },
@@ -366,7 +366,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
-          "statut": "option",
+          "statut": "libre",
           "surface": 64.75,
           "exterieur": "Loggia"
         },
@@ -411,7 +411,7 @@
           "typo": "T3",
           "etage": 4,
           "pieces": 3,
-          "statut": "option",
+          "statut": "libre",
           "surface": 65.26,
           "exterieur": "Loggia"
         },
@@ -420,7 +420,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 65.44,
           "exterieur": "Loggia"
         },
@@ -582,7 +582,7 @@
           "typo": "T3",
           "etage": 3,
           "pieces": 3,
-          "statut": "option",
+          "statut": "libre",
           "surface": 69.47,
           "exterieur": "Balcon"
         },
@@ -600,7 +600,7 @@
           "typo": "T3",
           "etage": 5,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 71.39,
           "exterieur": "Loggia"
         },
@@ -776,20 +776,11 @@
           "exterieur": "Loggia"
         },
         {
-          "id": "ecacb592f311",
-          "typo": "T5+",
-          "etage": 3,
-          "pieces": 5,
-          "statut": "option",
-          "surface": 107.74,
-          "exterieur": "Terrasse"
-        },
-        {
           "id": "803730ee6c2a",
           "typo": "T5+",
           "etage": 5,
           "pieces": 5,
-          "statut": "option",
+          "statut": "libre",
           "surface": 113.21,
           "exterieur": "Loggia"
         },
@@ -815,7 +806,7 @@
         "TVA 5,5 %"
       ],
       "livraison_cle": "2028-3",
-      "nb_lots_libres": 64,
+      "nb_lots_libres": 63,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 7
     },
@@ -839,7 +830,7 @@
           "typo": "T2",
           "etage": 5,
           "pieces": 2,
-          "statut": "libre",
+          "statut": "option",
           "surface": 51.68,
           "exterieur": "Extérieur"
         },
@@ -857,7 +848,7 @@
           "typo": "T2",
           "etage": 7,
           "pieces": 2,
-          "statut": "libre",
+          "statut": "option",
           "surface": 51.68,
           "exterieur": "Extérieur"
         },
@@ -880,11 +871,20 @@
           "exterieur": "Extérieur"
         },
         {
+          "id": "2247f810bfb1",
+          "typo": "T2",
+          "etage": 5,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 53.5,
+          "exterieur": "Extérieur"
+        },
+        {
           "id": "6f7a6860a50e",
           "typo": "T2",
           "etage": 4,
           "pieces": 2,
-          "statut": "libre",
+          "statut": "option",
           "surface": 53.5,
           "exterieur": "Extérieur"
         },
@@ -893,7 +893,7 @@
           "typo": "T2",
           "etage": 9,
           "pieces": 2,
-          "statut": "libre",
+          "statut": "option",
           "surface": 53.5,
           "exterieur": "Extérieur"
         },
@@ -902,7 +902,7 @@
           "typo": "T3",
           "etage": 7,
           "pieces": 3,
-          "statut": "option",
+          "statut": "libre",
           "surface": 62.46,
           "exterieur": "Extérieur"
         },
@@ -938,7 +938,7 @@
           "typo": "T3",
           "etage": 7,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 63.34,
           "exterieur": "Extérieur"
         },
@@ -947,7 +947,7 @@
           "typo": "T3",
           "etage": 6,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 63.34,
           "exterieur": "Extérieur"
         },
@@ -956,7 +956,7 @@
           "typo": "T3",
           "etage": 8,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 63.34,
           "exterieur": "Extérieur"
         },
@@ -974,7 +974,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 68.71,
           "exterieur": "Extérieur"
         },
@@ -992,7 +992,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
-          "statut": "option",
+          "statut": "libre",
           "surface": 70.37,
           "exterieur": "Extérieur"
         },
@@ -1001,7 +1001,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 70.82,
           "exterieur": "Extérieur"
         },
@@ -1046,7 +1046,7 @@
           "typo": "T4",
           "etage": 9,
           "pieces": 4,
-          "statut": "option",
+          "statut": "libre",
           "surface": 84.59,
           "exterieur": "Extérieur"
         },
@@ -1055,7 +1055,7 @@
           "typo": "T4",
           "etage": 7,
           "pieces": 4,
-          "statut": "option",
+          "statut": "libre",
           "surface": 86.16,
           "exterieur": "Extérieur"
         },
@@ -1078,42 +1078,7 @@
       ],
       "dispositifs": [],
       "livraison_cle": "2029-3",
-      "nb_lots_libres": 26,
-      "prix_a_partir_de": null,
-      "gare_minutes_a_pied": 8
-    },
-    {
-      "nom": "West Village - Tribeca",
-      "gare": "Nanterre-La-Folie (RER E)",
-      "slug": "west-village-tribeca",
-      "image": null,
-      "picking": false,
-      "pige_id": "aea0017314cd",
-      "position": {
-        "approx": false,
-        "latitude": 48.903,
-        "longitude": 2.224
-      },
-      "quartier": null,
-      "livraison": "3e trimestre 2029",
-      "logements": [
-        {
-          "id": "7573321c1497",
-          "typo": "T4",
-          "etage": 6,
-          "pieces": 4,
-          "statut": "libre",
-          "surface": 86.45,
-          "exterieur": "Extérieur"
-        }
-      ],
-      "promoteur": "",
-      "typologies": [
-        "T4"
-      ],
-      "dispositifs": [],
-      "livraison_cle": "2029-3",
-      "nb_lots_libres": 1,
+      "nb_lots_libres": 27,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 8
     },
@@ -1713,12 +1678,12 @@
       "gare_minutes_a_pied": 10
     },
     {
-      "nom": "Lexington",
+      "nom": "West Village - Tribeca",
       "gare": "Nanterre Ville (RER A)",
-      "slug": "lexington",
+      "slug": "west-village-tribeca",
       "image": null,
       "picking": true,
-      "pige_id": "05c0765a1bfb",
+      "pige_id": "dae9c905abe2",
       "position": {
         "approx": true,
         "latitude": 48.897,
@@ -1736,12 +1701,12 @@
       "gare_minutes_a_pied": 7
     },
     {
-      "nom": "Résidence Eklo",
+      "nom": "Brooklyn",
       "gare": "Nanterre Ville (RER A)",
-      "slug": "residence-eklo",
+      "slug": "brooklyn",
       "image": null,
       "picking": true,
-      "pige_id": "502ef82ebef2",
+      "pige_id": "e9bdefe7e073",
       "position": {
         "approx": true,
         "latitude": 48.897,
@@ -1782,12 +1747,35 @@
       "gare_minutes_a_pied": 7
     },
     {
-      "nom": "Brooklyn",
+      "nom": "Lexington",
       "gare": "Nanterre Ville (RER A)",
-      "slug": "brooklyn",
+      "slug": "lexington",
       "image": null,
       "picking": true,
-      "pige_id": "e9bdefe7e073",
+      "pige_id": "05c0765a1bfb",
+      "position": {
+        "approx": true,
+        "latitude": 48.897,
+        "longitude": 2.202
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 7
+    },
+    {
+      "nom": "Résidence Eklo",
+      "gare": "Nanterre Ville (RER A)",
+      "slug": "residence-eklo",
+      "image": null,
+      "picking": true,
+      "pige_id": "502ef82ebef2",
       "position": {
         "approx": true,
         "latitude": 48.897,

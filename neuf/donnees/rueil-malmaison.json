@@ -1,6 +1,6 @@
 {
   "cp": "92500",
-  "maj": "2026-11-25",
+  "maj": "2026-11-27",
   "dept": "92",
   "slug": "rueil-malmaison",
   "guide": {
@@ -23,13 +23,13 @@
       "T2": 14,
       "T3": 18,
       "T4": 42,
-      "T5+": 10
+      "T5+": 11
     },
     "prix_entree": null,
     "nb_programmes": 7,
     "nb_promoteurs": 4,
     "prix_m2_moyen": null,
-    "nb_lots_libres": 91
+    "nb_lots_libres": 92
   },
   "dept_nom": "Hauts-de-Seine",
   "programmes": [
@@ -53,7 +53,7 @@
           "typo": "T1",
           "etage": 3,
           "pieces": 1,
-          "statut": "libre",
+          "statut": "option",
           "surface": 26.44,
           "exterieur": null
         },
@@ -98,7 +98,7 @@
           "typo": "T2",
           "etage": 2,
           "pieces": 2,
-          "statut": "option",
+          "statut": "libre",
           "surface": 42.95,
           "exterieur": "Balcon"
         },
@@ -107,7 +107,7 @@
           "typo": "T3",
           "etage": 0,
           "pieces": 3,
-          "statut": "option",
+          "statut": "libre",
           "surface": 61.9,
           "exterieur": "Jardin"
         },
@@ -116,7 +116,7 @@
           "typo": "T3",
           "etage": 0,
           "pieces": 3,
-          "statut": "option",
+          "statut": "libre",
           "surface": 64.1,
           "exterieur": "Jardin"
         },
@@ -310,9 +310,9 @@
         {
           "id": "9933df6648ba",
           "typo": "T2",
-          "etage": 3,
+          "etage": null,
           "pieces": 2,
-          "statut": "option",
+          "statut": "libre",
           "surface": 45.98,
           "exterieur": "Terrasse"
         },
@@ -321,7 +321,7 @@
           "typo": "T5+",
           "etage": 2,
           "pieces": 5,
-          "statut": "libre",
+          "statut": "option",
           "surface": 113.77,
           "exterieur": "Terrasse"
         }
@@ -413,7 +413,7 @@
           "typo": "T3",
           "etage": 0,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 65.9,
           "exterieur": "Terrasse"
         },
@@ -725,6 +725,15 @@
           "statut": "libre",
           "surface": 89.02,
           "exterieur": null
+        },
+        {
+          "id": "ca74fc497486",
+          "typo": "T5+",
+          "etage": 3,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 116.53,
+          "exterieur": null
         }
       ],
       "promoteur": "",
@@ -732,13 +741,14 @@
         "T1",
         "T2",
         "T3",
-        "T4"
+        "T4",
+        "T5+"
       ],
       "dispositifs": [
         "PTZ"
       ],
       "livraison_cle": "2027-4",
-      "nb_lots_libres": 6,
+      "nb_lots_libres": 7,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 18
     },
@@ -870,7 +880,7 @@
           "typo": "T3",
           "etage": null,
           "pieces": 3,
-          "statut": "option",
+          "statut": "libre",
           "surface": 69.14,
           "exterieur": "Extérieur"
         },

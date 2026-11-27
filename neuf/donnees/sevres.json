@@ -1,6 +1,6 @@
 {
   "cp": "92310",
-  "maj": "2026-11-25",
+  "maj": "2026-11-27",
   "dept": "92",
   "slug": "sevres",
   "guide": {
@@ -19,8 +19,8 @@
     "typologies": {
       "T1": 0,
       "T2": 3,
-      "T3": 12,
-      "T4": 9,
+      "T3": 13,
+      "T4": 8,
       "T5+": 3
     },
     "prix_entree": null,
@@ -60,8 +60,17 @@
           "typo": "T2",
           "etage": 2,
           "pieces": 2,
-          "statut": "libre",
+          "statut": "option",
           "surface": 51.72,
+          "exterieur": null
+        },
+        {
+          "id": "382c8727105a",
+          "typo": "T3",
+          "etage": 5,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 57.57,
           "exterieur": null
         },
         {
@@ -96,7 +105,7 @@
           "typo": "T3",
           "etage": 5,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 69.94,
           "exterieur": null
         },
@@ -191,7 +200,7 @@
       ],
       "dispositifs": [],
       "livraison_cle": "2027-3",
-      "nb_lots_libres": 15,
+      "nb_lots_libres": 16,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 5
     },
@@ -292,15 +301,6 @@
           "exterieur": null
         },
         {
-          "id": "534c8923b4fc",
-          "typo": "T4",
-          "etage": 0,
-          "pieces": 4,
-          "statut": "libre",
-          "surface": 96.94,
-          "exterieur": null
-        },
-        {
           "id": "097cb5c78308",
           "typo": "T4",
           "etage": 3,
@@ -331,7 +331,7 @@
         "TVA 5,5 %"
       ],
       "livraison_cle": "2027-4",
-      "nb_lots_libres": 12,
+      "nb_lots_libres": 11,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 9
     }

@@ -1,6 +1,6 @@
 {
   "cp": "92140",
-  "maj": "2026-11-25",
+  "maj": "2026-11-27",
   "dept": "92",
   "slug": "clamart",
   "guide": {
@@ -19,8 +19,8 @@
     },
     "typologies": {
       "T1": 3,
-      "T2": 10,
-      "T3": 12,
+      "T2": 12,
+      "T3": 13,
       "T4": 22,
       "T5+": 4
     },
@@ -28,7 +28,7 @@
     "nb_programmes": 6,
     "nb_promoteurs": 5,
     "prix_m2_moyen": null,
-    "nb_lots_libres": 51
+    "nb_lots_libres": 54
   },
   "dept_nom": "Hauts-de-Seine",
   "programmes": [
@@ -164,7 +164,7 @@
           "typo": "T3",
           "etage": 6,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 55.17,
           "exterieur": null
         }
@@ -235,7 +235,7 @@
           "typo": "T5+",
           "etage": 5,
           "pieces": 5,
-          "statut": "option",
+          "statut": "libre",
           "surface": 124,
           "exterieur": "Extérieur"
         }
@@ -299,7 +299,7 @@
           "typo": "T2",
           "etage": 3,
           "pieces": 2,
-          "statut": "libre",
+          "statut": "option",
           "surface": 35.45,
           "exterieur": "Extérieur"
         },
@@ -455,6 +455,15 @@
           "statut": "libre",
           "surface": 88.21,
           "exterieur": "Extérieur"
+        },
+        {
+          "id": "f05aa71dc64f",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 88.21,
+          "exterieur": "Extérieur"
         }
       ],
       "promoteur": "",
@@ -466,7 +475,7 @@
       ],
       "dispositifs": [],
       "livraison_cle": "2028-2",
-      "nb_lots_libres": 21,
+      "nb_lots_libres": 22,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 12
     },
@@ -486,11 +495,29 @@
       "livraison": "2e trimestre 2028",
       "logements": [
         {
-          "id": "b9c2b24d2445",
+          "id": "9239093f8c19",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45.1,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "e87f486d6fbc",
           "typo": "T2",
           "etage": 2,
           "pieces": 2,
           "statut": "libre",
+          "surface": 45.1,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "b9c2b24d2445",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "option",
           "surface": 45.63,
           "exterieur": "Balcon"
         },
@@ -508,7 +535,7 @@
           "typo": "T3",
           "etage": 4,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 60.63,
           "exterieur": "Balcon"
         },
@@ -520,6 +547,15 @@
           "statut": "libre",
           "surface": 60.64,
           "exterieur": "Terrasse"
+        },
+        {
+          "id": "5be272c1f749",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61.92,
+          "exterieur": "Balcon"
         },
         {
           "id": "49fb0fdbc44f",
@@ -630,15 +666,6 @@
           "exterieur": "Balcon"
         },
         {
-          "id": "7208c3d9a9e4",
-          "typo": "T4",
-          "etage": 1,
-          "pieces": 4,
-          "statut": "option",
-          "surface": 88.07,
-          "exterieur": "Balcon"
-        },
-        {
           "id": "c9f8a882e843",
           "typo": "T4",
           "etage": 3,
@@ -656,7 +683,7 @@
       ],
       "dispositifs": [],
       "livraison_cle": "2028-2",
-      "nb_lots_libres": 18,
+      "nb_lots_libres": 20,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 2
     },

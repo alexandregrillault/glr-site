@@ -1,6 +1,6 @@
 {
   "cp": "93200",
-  "maj": "2026-11-25",
+  "maj": "2026-11-27",
   "dept": "93",
   "slug": "saint-denis",
   "guide": {
@@ -18,57 +18,20 @@
       "2028": 6
     },
     "typologies": {
-      "T1": 2,
-      "T2": 13,
-      "T3": 87,
-      "T4": 57,
+      "T1": 0,
+      "T2": 11,
+      "T3": 86,
+      "T4": 56,
       "T5+": 12
     },
     "prix_entree": null,
-    "nb_programmes": 9,
-    "nb_promoteurs": 6,
+    "nb_programmes": 8,
+    "nb_promoteurs": 5,
     "prix_m2_moyen": null,
-    "nb_lots_libres": 171
+    "nb_lots_libres": 165
   },
   "dept_nom": "Seine-Saint-Denis",
   "programmes": [
-    {
-      "nom": "Apogee",
-      "gare": "Carrefour Pleyel (M13)",
-      "slug": "apogee",
-      "image": null,
-      "picking": false,
-      "pige_id": "d1e454e0a320",
-      "position": {
-        "approx": false,
-        "latitude": 48.923,
-        "longitude": 2.34
-      },
-      "quartier": null,
-      "livraison": "Livré",
-      "logements": [
-        {
-          "id": "c2fbf67ec538",
-          "typo": "T1",
-          "etage": 6,
-          "pieces": 1,
-          "statut": "option",
-          "surface": 29.5,
-          "exterieur": "Extérieur"
-        }
-      ],
-      "promoteur": "",
-      "typologies": [
-        "T1"
-      ],
-      "dispositifs": [
-        "TVA 5,5 %"
-      ],
-      "livraison_cle": "2025-4",
-      "nb_lots_libres": 1,
-      "prix_a_partir_de": null,
-      "gare_minutes_a_pied": 6
-    },
     {
       "nom": "Le Mansart",
       "gare": "Alcide d'Orbigny (T5)",
@@ -85,15 +48,6 @@
       "livraison": "2e trimestre 2027",
       "logements": [
         {
-          "id": "e2e0657c9d2f",
-          "typo": "T2",
-          "etage": 2,
-          "pieces": 2,
-          "statut": "option",
-          "surface": 43.12,
-          "exterieur": "Extérieur"
-        },
-        {
           "id": "628c6462775b",
           "typo": "T2",
           "etage": 2,
@@ -107,7 +61,7 @@
           "typo": "T2",
           "etage": 2,
           "pieces": 2,
-          "statut": "option",
+          "statut": "libre",
           "surface": 50.43,
           "exterieur": "Extérieur"
         },
@@ -116,7 +70,7 @@
           "typo": "T3",
           "etage": 0,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 61.88,
           "exterieur": "Extérieur"
         },
@@ -166,7 +120,7 @@
         "TVA 5,5 %"
       ],
       "livraison_cle": "2027-2",
-      "nb_lots_libres": 8,
+      "nb_lots_libres": 7,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 5
     },
@@ -190,7 +144,7 @@
           "typo": "T5+",
           "etage": 5,
           "pieces": 5,
-          "statut": "libre",
+          "statut": "option",
           "surface": 104.94,
           "exterieur": "Extérieur"
         }
@@ -223,20 +177,11 @@
       "livraison": "1er trimestre 2028",
       "logements": [
         {
-          "id": "d891b8b16358",
-          "typo": "T1",
-          "etage": 8,
-          "pieces": 1,
-          "statut": "option",
-          "surface": 24.28,
-          "exterieur": null
-        },
-        {
           "id": "a0e75bdfcf03",
           "typo": "T2",
           "etage": 10,
           "pieces": 2,
-          "statut": "libre",
+          "statut": "option",
           "surface": 44.92,
           "exterieur": "Loggia"
         },
@@ -365,15 +310,6 @@
           "statut": "libre",
           "surface": 78.19,
           "exterieur": "Balcon"
-        },
-        {
-          "id": "356c9c602357",
-          "typo": "T4",
-          "etage": 2,
-          "pieces": 4,
-          "statut": "option",
-          "surface": 78.1,
-          "exterieur": "Terrasse"
         },
         {
           "id": "2018b5e73690",
@@ -567,7 +503,6 @@
       ],
       "promoteur": "",
       "typologies": [
-        "T1",
         "T2",
         "T3",
         "T4",
@@ -575,7 +510,7 @@
       ],
       "dispositifs": [],
       "livraison_cle": "2028-1",
-      "nb_lots_libres": 38,
+      "nb_lots_libres": 36,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 7
     },
@@ -653,7 +588,7 @@
           "typo": "T3",
           "etage": 8,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 67.59,
           "exterieur": "Loggia"
         },
@@ -689,7 +624,7 @@
           "typo": "T3",
           "etage": 6,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 68.76,
           "exterieur": "Loggia"
         },
@@ -1137,15 +1072,6 @@
           "exterieur": "Extérieur"
         },
         {
-          "id": "25dd0be276fc",
-          "typo": "T3",
-          "etage": 3,
-          "pieces": 3,
-          "statut": "libre",
-          "surface": 66.2,
-          "exterieur": "Extérieur"
-        },
-        {
           "id": "71d5970df96f",
           "typo": "T3",
           "etage": 5,
@@ -1158,15 +1084,6 @@
           "id": "06252a34928b",
           "typo": "T3",
           "etage": 4,
-          "pieces": 3,
-          "statut": "libre",
-          "surface": 66.9,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "395f1eaa9dbd",
-          "typo": "T3",
-          "etage": 2,
           "pieces": 3,
           "statut": "libre",
           "surface": 66.9,
@@ -1381,238 +1298,9 @@
         "TVA 5,5 %"
       ],
       "livraison_cle": "2028-4",
-      "nb_lots_libres": 34,
+      "nb_lots_libres": 32,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 5
-    },
-    {
-      "nom": "Saint Denis - Les Venelles Du Landy - Brs",
-      "gare": "Stade de France Saint-Denis (RER D)",
-      "slug": "saint-denis-les-venelles-du-landy-brs",
-      "image": null,
-      "picking": false,
-      "pige_id": "5346b46a14c4",
-      "position": {
-        "approx": false,
-        "latitude": 48.915,
-        "longitude": 2.352
-      },
-      "quartier": null,
-      "livraison": "4e trimestre 2028",
-      "logements": [
-        {
-          "id": "2c04cab9a7e3",
-          "typo": "T2",
-          "etage": 4,
-          "pieces": 2,
-          "statut": "option",
-          "surface": 45.5,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "59b94c564a0d",
-          "typo": "T2",
-          "etage": 2,
-          "pieces": 2,
-          "statut": "option",
-          "surface": 45.5,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "df4d3c1a2f41",
-          "typo": "T3",
-          "etage": 7,
-          "pieces": 3,
-          "statut": "libre",
-          "surface": 63.4,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "b7273564fbdd",
-          "typo": "T3",
-          "etage": 2,
-          "pieces": 3,
-          "statut": "libre",
-          "surface": 64.2,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "c4358d726d2b",
-          "typo": "T3",
-          "etage": 7,
-          "pieces": 3,
-          "statut": "libre",
-          "surface": 64.4,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "e0331b41f747",
-          "typo": "T3",
-          "etage": 5,
-          "pieces": 3,
-          "statut": "libre",
-          "surface": 64.4,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "02e2e32f0e3f",
-          "typo": "T3",
-          "etage": 6,
-          "pieces": 3,
-          "statut": "libre",
-          "surface": 64.6,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "cd348d00e956",
-          "typo": "T3",
-          "etage": 6,
-          "pieces": 3,
-          "statut": "libre",
-          "surface": 67.3,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "e6bb1e4ba063",
-          "typo": "T3",
-          "etage": 7,
-          "pieces": 3,
-          "statut": "libre",
-          "surface": 67.3,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "ecfb89bd5374",
-          "typo": "T3",
-          "etage": 3,
-          "pieces": 3,
-          "statut": "libre",
-          "surface": 67.4,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "59c59ab37605",
-          "typo": "T3",
-          "etage": 5,
-          "pieces": 3,
-          "statut": "libre",
-          "surface": 67.5,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "50c4cd7657ec",
-          "typo": "T3",
-          "etage": 1,
-          "pieces": 3,
-          "statut": "libre",
-          "surface": 68.3,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "cdeba0b6cbb9",
-          "typo": "T4",
-          "etage": 5,
-          "pieces": 4,
-          "statut": "libre",
-          "surface": 81.5,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "ddb550f0146a",
-          "typo": "T4",
-          "etage": 2,
-          "pieces": 4,
-          "statut": "libre",
-          "surface": 81.5,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "3d9b59854dc3",
-          "typo": "T4",
-          "etage": 4,
-          "pieces": 4,
-          "statut": "libre",
-          "surface": 81.7,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "8085238b2648",
-          "typo": "T4",
-          "etage": 3,
-          "pieces": 4,
-          "statut": "libre",
-          "surface": 81.7,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "c58cef020400",
-          "typo": "T4",
-          "etage": 1,
-          "pieces": 4,
-          "statut": "libre",
-          "surface": 81.7,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "5d16c1a3884d",
-          "typo": "T4",
-          "etage": 2,
-          "pieces": 4,
-          "statut": "libre",
-          "surface": 83.2,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "05481b2130e1",
-          "typo": "T4",
-          "etage": 4,
-          "pieces": 4,
-          "statut": "libre",
-          "surface": 83.3,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "166898f424cf",
-          "typo": "T4",
-          "etage": 3,
-          "pieces": 4,
-          "statut": "libre",
-          "surface": 83.3,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "1940fc6d3b1b",
-          "typo": "T4",
-          "etage": 1,
-          "pieces": 4,
-          "statut": "libre",
-          "surface": 83.3,
-          "exterieur": "Extérieur"
-        },
-        {
-          "id": "9abf3d5752cf",
-          "typo": "T4",
-          "etage": 5,
-          "pieces": 4,
-          "statut": "libre",
-          "surface": 83.3,
-          "exterieur": "Extérieur"
-        }
-      ],
-      "promoteur": "",
-      "typologies": [
-        "T2",
-        "T3",
-        "T4"
-      ],
-      "dispositifs": [
-        "BRS",
-        "TVA 5,5 %"
-      ],
-      "livraison_cle": "2028-4",
-      "nb_lots_libres": 22,
-      "prix_a_partir_de": null,
-      "gare_minutes_a_pied": 4
     },
     {
       "nom": "Reflets",
@@ -1629,6 +1317,15 @@
       "quartier": null,
       "livraison": "4e trimestre 2028",
       "logements": [
+        {
+          "id": "dd42fcf9dfee",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 61.2,
+          "exterieur": "Extérieur"
+        },
         {
           "id": "03c4e8a8b52a",
           "typo": "T3",
@@ -1652,7 +1349,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
-          "statut": "option",
+          "statut": "libre",
           "surface": 66.7,
           "exterieur": "Extérieur"
         },
@@ -1830,9 +1527,229 @@
         "TVA 5,5 %"
       ],
       "livraison_cle": "2028-4",
-      "nb_lots_libres": 21,
+      "nb_lots_libres": 22,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 3
+    },
+    {
+      "nom": "Saint Denis - Les Venelles Du Landy - Brs",
+      "gare": "Stade de France Saint-Denis (RER D)",
+      "slug": "saint-denis-les-venelles-du-landy-brs",
+      "image": null,
+      "picking": false,
+      "pige_id": "5346b46a14c4",
+      "position": {
+        "approx": false,
+        "latitude": 48.915,
+        "longitude": 2.352
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2028",
+      "logements": [
+        {
+          "id": "59b94c564a0d",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 45.5,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "df4d3c1a2f41",
+          "typo": "T3",
+          "etage": 7,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.4,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "b7273564fbdd",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.2,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "c4358d726d2b",
+          "typo": "T3",
+          "etage": 7,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.4,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "e0331b41f747",
+          "typo": "T3",
+          "etage": 5,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.4,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "02e2e32f0e3f",
+          "typo": "T3",
+          "etage": 6,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.6,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "cd348d00e956",
+          "typo": "T3",
+          "etage": 6,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 67.3,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "e6bb1e4ba063",
+          "typo": "T3",
+          "etage": 7,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 67.3,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "ecfb89bd5374",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 67.4,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "59c59ab37605",
+          "typo": "T3",
+          "etage": 5,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 67.5,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "50c4cd7657ec",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 68.3,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "cdeba0b6cbb9",
+          "typo": "T4",
+          "etage": 5,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.5,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "ddb550f0146a",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.5,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "3d9b59854dc3",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.7,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "8085238b2648",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.7,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "c58cef020400",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.7,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "5d16c1a3884d",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 83.2,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "05481b2130e1",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 83.3,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "166898f424cf",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 83.3,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "1940fc6d3b1b",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 83.3,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "9abf3d5752cf",
+          "typo": "T4",
+          "etage": 5,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 83.3,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [
+        "BRS",
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2028-4",
+      "nb_lots_libres": 21,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 4
     },
     {
       "nom": "Les Terrasses D'iris - Brs",

@@ -1,6 +1,6 @@
 {
   "cp": "93230",
-  "maj": "2026-11-25",
+  "maj": "2026-11-27",
   "dept": "93",
   "slug": "romainville",
   "guide": {
@@ -18,16 +18,16 @@
     },
     "typologies": {
       "T1": 0,
-      "T2": 4,
-      "T3": 13,
-      "T4": 5,
-      "T5+": 0
+      "T2": 6,
+      "T3": 15,
+      "T4": 7,
+      "T5+": 1
     },
     "prix_entree": null,
     "nb_programmes": 1,
     "nb_promoteurs": 1,
     "prix_m2_moyen": null,
-    "nb_lots_libres": 22
+    "nb_lots_libres": 29
   },
   "dept_nom": "Seine-Saint-Denis",
   "programmes": [
@@ -46,6 +46,15 @@
       "quartier": null,
       "livraison": "4e trimestre 2028",
       "logements": [
+        {
+          "id": "21a31ba26bbf",
+          "typo": "T2",
+          "etage": null,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.5,
+          "exterieur": "Balcon"
+        },
         {
           "id": "22458f67a01d",
           "typo": "T2",
@@ -83,7 +92,25 @@
           "exterieur": "Balcon"
         },
         {
+          "id": "14ba85f05448",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 46.9,
+          "exterieur": "Terrasse"
+        },
+        {
           "id": "be8f0a65440b",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 58.5,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "c58c1f179ca3",
           "typo": "T3",
           "etage": null,
           "pieces": 3,
@@ -114,18 +141,9 @@
           "typo": "T3",
           "etage": 0,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 63.89,
           "exterieur": "Jardin"
-        },
-        {
-          "id": "dbde36008b9e",
-          "typo": "T3",
-          "etage": null,
-          "pieces": 3,
-          "statut": "option",
-          "surface": 64.5,
-          "exterieur": "Balcon"
         },
         {
           "id": "18fe5fbcb4ef",
@@ -143,6 +161,15 @@
           "pieces": 3,
           "statut": "libre",
           "surface": 65,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "385b425c95e4",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.5,
           "exterieur": "Balcon"
         },
         {
@@ -191,6 +218,15 @@
           "exterieur": "Balcon"
         },
         {
+          "id": "f8f3e9f090b5",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 67.5,
+          "exterieur": "Balcon"
+        },
+        {
           "id": "c513c8367aef",
           "typo": "T3",
           "etage": null,
@@ -198,6 +234,24 @@
           "statut": "libre",
           "surface": 69.2,
           "exterieur": "Balcon"
+        },
+        {
+          "id": "8a7de772edcd",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 77.1,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "373f8b5d9a88",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 79.1,
+          "exterieur": "Terrasse"
         },
         {
           "id": "03a757468af1",
@@ -218,11 +272,20 @@
           "exterieur": "Balcon"
         },
         {
+          "id": "960788eb7434",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 79.2,
+          "exterieur": "Balcon"
+        },
+        {
           "id": "14d01d0bc373",
           "typo": "T4",
           "etage": 1,
           "pieces": 4,
-          "statut": "libre",
+          "statut": "option",
           "surface": 80.5,
           "exterieur": "Terrasse"
         },
@@ -236,26 +299,27 @@
           "exterieur": "Terrasse"
         },
         {
-          "id": "ba210b624899",
-          "typo": "T4",
+          "id": "579857746717",
+          "typo": "T5+",
           "etage": null,
-          "pieces": 4,
+          "pieces": 5,
           "statut": "option",
-          "surface": 86.3,
-          "exterieur": "Balcon"
+          "surface": 95.7,
+          "exterieur": "Terrasse"
         }
       ],
       "promoteur": "",
       "typologies": [
         "T2",
         "T3",
-        "T4"
+        "T4",
+        "T5+"
       ],
       "dispositifs": [
         "TVA 5,5 %"
       ],
       "livraison_cle": "2028-4",
-      "nb_lots_libres": 22,
+      "nb_lots_libres": 29,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 9
     },

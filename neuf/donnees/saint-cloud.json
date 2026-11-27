@@ -1,6 +1,6 @@
 {
   "cp": "92210",
-  "maj": "2026-11-25",
+  "maj": "2026-11-27",
   "dept": "92",
   "slug": "saint-cloud",
   "guide": {
@@ -18,16 +18,16 @@
     },
     "typologies": {
       "T1": 0,
-      "T2": 0,
-      "T3": 14,
-      "T4": 6,
+      "T2": 3,
+      "T3": 16,
+      "T4": 7,
       "T5+": 2
     },
     "prix_entree": null,
     "nb_programmes": 1,
     "nb_promoteurs": 1,
     "prix_m2_moyen": null,
-    "nb_lots_libres": 22
+    "nb_lots_libres": 28
   },
   "dept_nom": "Hauts-de-Seine",
   "programmes": [
@@ -47,6 +47,42 @@
       "livraison": "4e trimestre 2028",
       "logements": [
         {
+          "id": "5b7c8df3baa1",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.26,
+          "exterieur": null
+        },
+        {
+          "id": "13c3642db172",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 48.79,
+          "exterieur": null
+        },
+        {
+          "id": "1fec099d595a",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 48.81,
+          "exterieur": null
+        },
+        {
+          "id": "7545b27bfd8b",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 57.65,
+          "exterieur": "Jardin"
+        },
+        {
           "id": "6d32d7320b65",
           "typo": "T3",
           "etage": 0,
@@ -62,6 +98,15 @@
           "pieces": 3,
           "statut": "libre",
           "surface": 65.7,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "c1b81f092017",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.71,
           "exterieur": "Balcon"
         },
         {
@@ -173,6 +218,15 @@
           "exterieur": "Terrasse"
         },
         {
+          "id": "d9efb59a41e1",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 78.09,
+          "exterieur": "Terrasse"
+        },
+        {
           "id": "bab9b75fc231",
           "typo": "T4",
           "etage": 0,
@@ -247,13 +301,14 @@
       ],
       "promoteur": "",
       "typologies": [
+        "T2",
         "T3",
         "T4",
         "T5+"
       ],
       "dispositifs": [],
       "livraison_cle": "2028-4",
-      "nb_lots_libres": 22,
+      "nb_lots_libres": 28,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 2
     }

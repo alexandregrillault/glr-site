@@ -1,6 +1,6 @@
 {
   "cp": "92600",
-  "maj": "2026-11-25",
+  "maj": "2026-11-27",
   "dept": "92",
   "slug": "asnieres-sur-seine",
   "guide": {
@@ -14,22 +14,22 @@
   "version": 1,
   "chiffres": {
     "livraisons": {
-      "2027": 2,
+      "2027": 3,
       "2028": 3,
       "2029": 4
     },
     "typologies": {
-      "T1": 24,
-      "T2": 49,
+      "T1": 25,
+      "T2": 53,
       "T3": 59,
-      "T4": 43,
+      "T4": 45,
       "T5+": 9
     },
     "prix_entree": null,
-    "nb_programmes": 11,
+    "nb_programmes": 12,
     "nb_promoteurs": 5,
     "prix_m2_moyen": null,
-    "nb_lots_libres": 184
+    "nb_lots_libres": 191
   },
   "dept_nom": "Hauts-de-Seine",
   "programmes": [
@@ -186,6 +186,97 @@
       "nb_lots_libres": 3,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 5
+    },
+    {
+      "nom": "67 Nanterre - Asnieres-sur-seine VEFA",
+      "gare": "Gabriel Péri (M13)",
+      "slug": "67-nanterre-asnieres-sur-seine-vefa",
+      "image": null,
+      "picking": false,
+      "pige_id": "8e817afe3762",
+      "position": {
+        "approx": true,
+        "latitude": 48.917,
+        "longitude": 2.289
+      },
+      "quartier": null,
+      "livraison": "2027",
+      "logements": [
+        {
+          "id": "81e80703d97b",
+          "typo": "T1",
+          "etage": 3,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 19.1,
+          "exterieur": null
+        },
+        {
+          "id": "8663d2419398",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 36.7,
+          "exterieur": null
+        },
+        {
+          "id": "a5e9401c48db",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 40.6,
+          "exterieur": null
+        },
+        {
+          "id": "5bb9f41fac91",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.7,
+          "exterieur": null
+        },
+        {
+          "id": "9091590fdbfe",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 52.2,
+          "exterieur": null
+        },
+        {
+          "id": "63132fd62cb1",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 90.4,
+          "exterieur": null
+        },
+        {
+          "id": "c229c21e70ea",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 91.5,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2",
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-5",
+      "nb_lots_libres": 7,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 6
     },
     {
       "nom": "Les Terrasses Voltaire",
@@ -999,7 +1090,7 @@
           "typo": "T2",
           "etage": 4,
           "pieces": 2,
-          "statut": "libre",
+          "statut": "option",
           "surface": 36.9,
           "exterieur": null
         },
@@ -1437,7 +1528,7 @@
           "typo": "T3",
           "etage": 6,
           "pieces": 3,
-          "statut": "option",
+          "statut": "libre",
           "surface": 66.4,
           "exterieur": null
         },
@@ -1500,7 +1591,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 72.1,
           "exterieur": null
         },

@@ -1,6 +1,6 @@
 {
   "cp": "92130",
-  "maj": "2026-11-25",
+  "maj": "2026-11-27",
   "dept": "92",
   "slug": "issy-les-moulineaux",
   "guide": {
@@ -22,13 +22,13 @@
       "T2": 17,
       "T3": 27,
       "T4": 18,
-      "T5+": 7
+      "T5+": 8
     },
     "prix_entree": null,
     "nb_programmes": 11,
     "nb_promoteurs": 10,
     "prix_m2_moyen": null,
-    "nb_lots_libres": 82
+    "nb_lots_libres": 83
   },
   "dept_nom": "Hauts-de-Seine",
   "programmes": [
@@ -79,7 +79,7 @@
           "typo": "T1",
           "etage": 6,
           "pieces": 1,
-          "statut": "libre",
+          "statut": "option",
           "surface": 35.9,
           "exterieur": null
         },
@@ -270,7 +270,7 @@
           "typo": "T2",
           "etage": 6,
           "pieces": 2,
-          "statut": "option",
+          "statut": "libre",
           "surface": 46.08,
           "exterieur": "Extérieur"
         },
@@ -279,7 +279,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
-          "statut": "option",
+          "statut": "libre",
           "surface": 65.14,
           "exterieur": "Extérieur"
         }
@@ -928,7 +928,7 @@
           "typo": "T4",
           "etage": 2,
           "pieces": 4,
-          "statut": "option",
+          "statut": "libre",
           "surface": 79.6,
           "exterieur": "Extérieur"
         },
@@ -949,6 +949,15 @@
           "statut": "option",
           "surface": 89.5,
           "exterieur": "Extérieur"
+        },
+        {
+          "id": "9c83d958b39e",
+          "typo": "T5+",
+          "etage": 8,
+          "pieces": 5,
+          "statut": "option",
+          "surface": 134,
+          "exterieur": "Extérieur"
         }
       ],
       "promoteur": "",
@@ -956,13 +965,14 @@
         "T1",
         "T2",
         "T3",
-        "T4"
+        "T4",
+        "T5+"
       ],
       "dispositifs": [
         "PTZ"
       ],
       "livraison_cle": "2028-4",
-      "nb_lots_libres": 12,
+      "nb_lots_libres": 13,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 3
     },

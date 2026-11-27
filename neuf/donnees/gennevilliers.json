@@ -1,6 +1,6 @@
 {
   "cp": "92230",
-  "maj": "2026-11-25",
+  "maj": "2026-11-27",
   "dept": "92",
   "slug": "gennevilliers",
   "guide": {
@@ -14,12 +14,12 @@
   "version": 1,
   "chiffres": {
     "livraisons": {
-      "2027": 4,
+      "2027": 5,
       "2028": 2
     },
     "typologies": {
       "T1": 12,
-      "T2": 8,
+      "T2": 7,
       "T3": 30,
       "T4": 29,
       "T5+": 10
@@ -28,7 +28,7 @@
     "nb_programmes": 7,
     "nb_promoteurs": 6,
     "prix_m2_moyen": null,
-    "nb_lots_libres": 89
+    "nb_lots_libres": 88
   },
   "dept_nom": "Hauts-de-Seine",
   "programmes": [
@@ -77,40 +77,59 @@
       "gare_minutes_a_pied": 1
     },
     {
-      "nom": "Serene C",
+      "nom": "Serene A",
       "gare": "Gabriel Péri (M13)",
-      "slug": "serene-c",
+      "slug": "serene-a",
       "image": null,
       "picking": false,
-      "pige_id": "a01b436f82a6",
+      "pige_id": "0c04f703c850",
       "position": {
         "approx": false,
         "latitude": 48.919,
         "longitude": 2.291
       },
       "quartier": null,
-      "livraison": "2e trimestre 2027",
+      "livraison": "3e trimestre 2027",
       "logements": [
         {
-          "id": "dce8f5fdc248",
+          "id": "f9a5c0c2599d",
           "typo": "T2",
           "etage": 0,
           "pieces": 2,
-          "statut": "libre",
-          "surface": 54.83,
+          "statut": "option",
+          "surface": 55,
           "exterieur": "Jardin"
+        },
+        {
+          "id": "a60ea36f3595",
+          "typo": "T5+",
+          "etage": 5,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 98.55,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "1453dafdf827",
+          "typo": "T5+",
+          "etage": 5,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 99.91,
+          "exterieur": "Balcon"
         }
       ],
       "promoteur": "",
       "typologies": [
-        "T2"
+        "T2",
+        "T5+"
       ],
       "dispositifs": [
         "PTZ",
         "TVA 5,5 %"
       ],
-      "livraison_cle": "2027-2",
-      "nb_lots_libres": 1,
+      "livraison_cle": "2027-3",
+      "nb_lots_libres": 3,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 5
     },
@@ -159,6 +178,44 @@
       "nb_lots_libres": 2,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 1
+    },
+    {
+      "nom": "Serene C",
+      "gare": "Gabriel Péri (M13)",
+      "slug": "serene-c",
+      "image": null,
+      "picking": false,
+      "pige_id": "a01b436f82a6",
+      "position": {
+        "approx": false,
+        "latitude": 48.919,
+        "longitude": 2.291
+      },
+      "quartier": null,
+      "livraison": "3e trimestre 2027",
+      "logements": [
+        {
+          "id": "dce8f5fdc248",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 54.83,
+          "exterieur": "Jardin"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2"
+      ],
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2027-3",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 5
     },
     {
       "nom": "Coeur Des Agnettes",
@@ -210,15 +267,6 @@
           "statut": "option",
           "surface": 31.2,
           "exterieur": "Balcon"
-        },
-        {
-          "id": "75d788ebf38a",
-          "typo": "T2",
-          "etage": 8,
-          "pieces": 2,
-          "statut": "option",
-          "surface": 46.8,
-          "exterieur": "Terrasse"
         },
         {
           "id": "5185a4240bab",
@@ -341,7 +389,7 @@
         "TVA 5,5 %"
       ],
       "livraison_cle": "2027-4",
-      "nb_lots_libres": 17,
+      "nb_lots_libres": 16,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 5
     },
@@ -383,7 +431,7 @@
           "typo": "T1",
           "etage": 1,
           "pieces": 1,
-          "statut": "libre",
+          "statut": "option",
           "surface": 30.6,
           "exterieur": "Extérieur"
         },
@@ -473,7 +521,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
-          "statut": "option",
+          "statut": "libre",
           "surface": 66.9,
           "exterieur": "Extérieur"
         },
@@ -746,7 +794,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 67.5,
           "exterieur": "Terrasse"
         },
@@ -755,7 +803,7 @@
           "typo": "T3",
           "etage": 2,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 67.5,
           "exterieur": "Balcon"
         },
@@ -818,7 +866,7 @@
           "typo": "T3",
           "etage": 1,
           "pieces": 3,
-          "statut": "libre",
+          "statut": "option",
           "surface": 72.4,
           "exterieur": "Terrasse"
         },
@@ -978,63 +1026,6 @@
       "nb_lots_libres": 33,
       "prix_a_partir_de": null,
       "gare_minutes_a_pied": 7
-    },
-    {
-      "nom": "Serene A",
-      "gare": "Gabriel Péri (M13)",
-      "slug": "serene-a",
-      "image": null,
-      "picking": false,
-      "pige_id": "0c04f703c850",
-      "position": {
-        "approx": false,
-        "latitude": 48.919,
-        "longitude": 2.291
-      },
-      "quartier": null,
-      "livraison": null,
-      "logements": [
-        {
-          "id": "f9a5c0c2599d",
-          "typo": "T2",
-          "etage": 0,
-          "pieces": 2,
-          "statut": "libre",
-          "surface": 55,
-          "exterieur": "Jardin"
-        },
-        {
-          "id": "a60ea36f3595",
-          "typo": "T5+",
-          "etage": 5,
-          "pieces": 5,
-          "statut": "libre",
-          "surface": 98.55,
-          "exterieur": "Terrasse"
-        },
-        {
-          "id": "1453dafdf827",
-          "typo": "T5+",
-          "etage": 5,
-          "pieces": 5,
-          "statut": "libre",
-          "surface": 99.91,
-          "exterieur": "Balcon"
-        }
-      ],
-      "promoteur": "",
-      "typologies": [
-        "T2",
-        "T5+"
-      ],
-      "dispositifs": [
-        "PTZ",
-        "TVA 5,5 %"
-      ],
-      "livraison_cle": null,
-      "nb_lots_libres": 3,
-      "prix_a_partir_de": null,
-      "gare_minutes_a_pied": 5
     },
     {
       "nom": "À 13 min à pied du métro 13",
