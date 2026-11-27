@@ -105,9 +105,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -270,6 +271,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -398,7 +401,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"paris-13e","villes":[{"v":"Paris 13e","s":"paris-13e","cp":"75013","i":"75113","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.3661,48.845],[2.3717,48.8407],[2.3736,48.8393],[2.3753,48.8376],[2.3784,48.835],[2.381,48.8329],[2.3843,48.8303],[2.3872,48.8279],[2.3885,48.8267],[2.3901,48.8257],[2.3894,48.8253],[2.3888,48.8251],[2.3879,48.8248],[2.3869,48.8245],[2.3852,48.8237],[2.3831,48.823],[2.3815,48.8224],[2.3808,48.8217],[2.3795,48.8213],[2.3791,48.8212],[2.3779,48.8208],[2.3765,48.8203],[2.3761,48.8202],[2.3756,48.82],[2.3746,48.8197],[2.374,48.8195],[2.3737,48.8194],[2.3726,48.8191],[2.3715,48.8187],[2.3706,48.8184],[2.3695,48.8181],[2.3671,48.8173],[2.3656,48.8168],[2.365,48.8167],[2.3642,48.8164],[2.3633,48.8161],[2.3602,48.8161],[2.3569,48.816],[2.3562,48.8159],[2.3559,48.8159],[2.3547,48.8168],[2.353,48.818],[2.3524,48.8186],[2.3513,48.818],[2.3505,48.8176],[2.349,48.817],[2.3488,48.8169],[2.3472,48.8161],[2.3469,48.816],[2.3466,48.816],[2.3464,48.816],[2.3455,48.8161],[2.3452,48.8161],[2.3448,48.8161],[2.3444,48.816],[2.3445,48.8156],[2.3444,48.8156],[2.3439,48.8158],[2.344,48.8162],[2.344,48.817],[2.3441,48.8178],[2.3443,48.8185],[2.3446,48.8192],[2.3446,48.8196],[2.3443,48.8198],[2.3438,48.8204],[2.3436,48.8206],[2.343,48.8211],[2.3427,48.8213],[2.3425,48.8215],[2.342,48.8221],[2.3418,48.8225],[2.3417,48.8227],[2.3417,48.823],[2.3415,48.8236],[2.3415,48.8238],[2.3416,48.8251],[2.3416,48.8253],[2.3417,48.8262],[2.3418,48.8264],[2.3416,48.8265],[2.3416,48.8277],[2.3416,48.8284],[2.3415,48.8288],[2.3414,48.8294],[2.3413,48.8306],[2.3412,48.8312],[2.3413,48.8316],[2.3411,48.832],[2.3411,48.832],[2.3412,48.8327],[2.3413,48.8331],[2.3416,48.8348],[2.3417,48.8353],[2.3421,48.8383],[2.3427,48.8382],[2.3445,48.8378],[2.3464,48.8375],[2.347,48.8373],[2.3489,48.8371],[2.3507,48.8369],[2.3519,48.8368],[2.3527,48.8371],[2.356,48.8381],[2.3598,48.8393],[2.3617,48.8399],[2.3619,48.8401],[2.3629,48.8414],[2.3632,48.8418],[2.3639,48.8427],[2.3642,48.8432],[2.3649,48.8441],[2.3651,48.8444],[2.3661,48.845]]]}},"r":"2 programmes · 19 logements disponibles","p":[{"n":"Parc en ciel","s":"parc-en-ciel","k":false,"a":48.827,"o":2.383,"z":false,"u":"paris-13e/parc-en-ciel/","l":"Livré","d":"2 logements disponibles"},{"n":"Passage Foubert","s":"passage-foubert","k":false,"a":48.826,"o":2.353,"z":false,"u":"paris-13e/passage-foubert/","l":"1er trimestre 2028","d":"17 logements disponibles"},{"n":"The Wood Life","s":"the-wood-life","k":true,"a":48.859,"o":2.347,"z":true,"u":"paris-13e/the-wood-life/","l":"","d":"Grille sur demande"},{"n":"Woodeum Paris Rive Gauche","s":"woodeum-paris-rive-gauche","k":true,"a":48.859,"o":2.347,"z":true,"u":"paris-13e/woodeum-paris-rive-gauche/","l":"","d":"Grille sur demande"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script type="module" src="/neuf/carte.js?v=94749ba394"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

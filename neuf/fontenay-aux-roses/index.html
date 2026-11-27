@@ -105,9 +105,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -270,6 +271,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -391,7 +394,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"fontenay-aux-roses","villes":[{"v":"Fontenay-aux-Roses","s":"fontenay-aux-roses","cp":"92260","i":"92032","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.2717,48.7905],[2.2721,48.7907],[2.2724,48.7908],[2.2726,48.7908],[2.273,48.7908],[2.273,48.791],[2.2723,48.7937],[2.2722,48.7941],[2.2741,48.7949],[2.2762,48.7958],[2.2764,48.7958],[2.2767,48.7959],[2.2775,48.7957],[2.2784,48.7956],[2.2785,48.7956],[2.2796,48.7955],[2.2798,48.7955],[2.2803,48.7956],[2.2805,48.795],[2.281,48.7951],[2.2816,48.7953],[2.2819,48.7954],[2.2826,48.7956],[2.2842,48.7959],[2.2845,48.7959],[2.285,48.7962],[2.2852,48.7963],[2.2854,48.7966],[2.2865,48.7961],[2.2877,48.795],[2.2878,48.7949],[2.2879,48.7945],[2.2891,48.795],[2.2894,48.7951],[2.2898,48.7954],[2.2901,48.7955],[2.2915,48.7958],[2.2918,48.7959],[2.2922,48.796],[2.2927,48.796],[2.2935,48.796],[2.2951,48.7957],[2.2953,48.7956],[2.2958,48.7956],[2.2962,48.7958],[2.2964,48.7956],[2.297,48.7952],[2.2983,48.7945],[2.2982,48.7943],[2.2977,48.7939],[2.2975,48.7937],[2.2978,48.7934],[2.2988,48.7924],[2.2989,48.7923],[2.3002,48.7901],[2.3009,48.7889],[2.3019,48.7873],[2.3031,48.7855],[2.3034,48.7854],[2.3027,48.7853],[2.2956,48.7845],[2.2935,48.7842],[2.293,48.7841],[2.2915,48.7838],[2.2916,48.7836],[2.2907,48.7834],[2.2904,48.7833],[2.2901,48.7832],[2.2898,48.7831],[2.2894,48.783],[2.2891,48.783],[2.2889,48.7829],[2.2886,48.7828],[2.2881,48.7827],[2.2879,48.7826],[2.2876,48.7825],[2.2872,48.7825],[2.2865,48.7825],[2.2862,48.7825],[2.2857,48.7825],[2.2853,48.7825],[2.2852,48.7825],[2.2848,48.7826],[2.2845,48.7826],[2.2843,48.7827],[2.2837,48.7828],[2.2831,48.7829],[2.2826,48.783],[2.2824,48.783],[2.2822,48.7831],[2.282,48.7832],[2.2819,48.7832],[2.2819,48.7834],[2.2817,48.7834],[2.2813,48.7834],[2.281,48.7835],[2.2808,48.7836],[2.2808,48.7839],[2.2799,48.7841],[2.2795,48.7841],[2.2795,48.7841],[2.279,48.7841],[2.2788,48.7843],[2.2791,48.7852],[2.2802,48.785],[2.2802,48.7855],[2.2797,48.7855],[2.2787,48.7857],[2.2784,48.7857],[2.2773,48.786],[2.2767,48.7861],[2.276,48.7861],[2.2756,48.7859],[2.2751,48.7858],[2.2748,48.7858],[2.2745,48.786],[2.274,48.7864],[2.2739,48.7865],[2.2738,48.7867],[2.274,48.7875],[2.274,48.7877],[2.2744,48.7877],[2.2748,48.7876],[2.275,48.7877],[2.2747,48.7879],[2.2745,48.7879],[2.2736,48.7881],[2.2735,48.7882],[2.273,48.7884],[2.2726,48.7887],[2.2721,48.7892],[2.272,48.7897],[2.2717,48.7905]]]}},"r":"3 programmes · 64 logements disponibles","p":[{"n":"Villa Fontana","s":"villa-fontana","k":false,"a":48.794,"o":2.284,"z":false,"u":"fontenay-aux-roses/villa-fontana/","l":"Livré","d":"1 logement disponible"},{"n":"L'Orée des Vergers","s":"l-oree-des-vergers","k":false,"a":48.791,"o":2.286,"z":false,"u":"fontenay-aux-roses/l-oree-des-vergers/","l":"4e trimestre 2028","d":"43 logements disponibles"},{"n":"Les Horizons du Paradis","s":"les-horizons-du-paradis","k":false,"a":48.791,"o":2.288,"z":false,"u":"fontenay-aux-roses/les-horizons-du-paradis/","l":"4e trimestre 2028","d":"20 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script type="module" src="/neuf/carte.js?v=94749ba394"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

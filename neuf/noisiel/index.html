@@ -105,9 +105,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -270,6 +271,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -377,7 +380,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"noisiel","villes":[{"v":"Noisiel","s":"noisiel","cp":"77186","i":"77337","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.5996,48.8664],[2.6012,48.866],[2.6032,48.8654],[2.6042,48.8652],[2.6048,48.865],[2.6057,48.8648],[2.6058,48.8648],[2.6066,48.8643],[2.6074,48.8639],[2.6086,48.8635],[2.6089,48.8633],[2.6104,48.8621],[2.6112,48.8614],[2.6119,48.8609],[2.6128,48.8603],[2.6136,48.8599],[2.6145,48.8596],[2.6153,48.8593],[2.6162,48.8591],[2.6176,48.8589],[2.6187,48.8588],[2.6198,48.8587],[2.621,48.8587],[2.6227,48.8585],[2.6245,48.8583],[2.6257,48.858],[2.6265,48.8577],[2.627,48.8573],[2.6275,48.8573],[2.6288,48.8574],[2.6295,48.8574],[2.6295,48.857],[2.6291,48.8556],[2.6291,48.854],[2.6292,48.8538],[2.6294,48.8533],[2.6295,48.8527],[2.6296,48.8523],[2.6299,48.8518],[2.6315,48.8512],[2.6321,48.8507],[2.6321,48.8505],[2.6319,48.8501],[2.6328,48.8488],[2.633,48.8485],[2.6341,48.848],[2.6365,48.847],[2.6376,48.8457],[2.638,48.8454],[2.6344,48.8439],[2.6313,48.8425],[2.6273,48.8407],[2.6229,48.8397],[2.6193,48.8388],[2.6194,48.8386],[2.6195,48.8385],[2.6203,48.8368],[2.6202,48.8363],[2.6202,48.8357],[2.62,48.8353],[2.6197,48.835],[2.6195,48.8347],[2.6193,48.8338],[2.619,48.8329],[2.6189,48.8323],[2.6189,48.832],[2.6212,48.8305],[2.6218,48.8302],[2.622,48.83],[2.6221,48.8299],[2.6221,48.8296],[2.6222,48.8293],[2.6224,48.829],[2.6232,48.8283],[2.6236,48.8278],[2.622,48.8273],[2.6193,48.8265],[2.6189,48.8264],[2.6171,48.826],[2.6165,48.826],[2.6156,48.8259],[2.6149,48.8259],[2.6149,48.826],[2.6138,48.8259],[2.6135,48.8259],[2.613,48.8259],[2.6121,48.8261],[2.6114,48.8261],[2.6113,48.8262],[2.6108,48.8262],[2.6106,48.8265],[2.6103,48.8269],[2.6106,48.8275],[2.6109,48.8281],[2.6111,48.8286],[2.6112,48.8289],[2.6112,48.8292],[2.6109,48.8297],[2.6109,48.8301],[2.6109,48.8303],[2.6109,48.8307],[2.6108,48.8317],[2.611,48.8321],[2.6116,48.8329],[2.6118,48.8332],[2.6118,48.8334],[2.6118,48.8339],[2.612,48.8345],[2.6121,48.8347],[2.612,48.8352],[2.6122,48.8361],[2.6124,48.8364],[2.6124,48.8366],[2.6124,48.8367],[2.612,48.8371],[2.612,48.8377],[2.6121,48.8383],[2.6119,48.8383],[2.6118,48.8385],[2.6116,48.8394],[2.6116,48.8395],[2.6114,48.8405],[2.6113,48.841],[2.6111,48.8422],[2.611,48.8427],[2.6109,48.8434],[2.612,48.8434],[2.6117,48.8458],[2.6115,48.8471],[2.6136,48.847],[2.6135,48.8478],[2.6135,48.8483],[2.6138,48.8504],[2.6137,48.8505],[2.6137,48.8506],[2.6138,48.8506],[2.6139,48.8521],[2.6139,48.8527],[2.6137,48.8526],[2.6129,48.8526],[2.6116,48.8526],[2.611,48.8526],[2.611,48.8527],[2.611,48.854],[2.6108,48.859],[2.6108,48.859],[2.6097,48.8593],[2.6091,48.8595],[2.6069,48.8602],[2.6064,48.8604],[2.6061,48.8606],[2.6032,48.8625],[2.6018,48.864],[2.6014,48.8644],[2.6009,48.8649],[2.6006,48.8652],[2.6004,48.8655],[2.5997,48.8659],[2.5994,48.8661],[2.5996,48.8664]]]}},"r":"1 programme · 8 logements disponibles","p":[{"n":"Carré Noisiel","s":"carre-noisiel","k":false,"a":48.85,"o":2.616,"z":false,"u":"noisiel/carre-noisiel/","l":"4e trimestre 2027","d":"8 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script type="module" src="/neuf/carte.js?v=94749ba394"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

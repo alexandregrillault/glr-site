@@ -104,9 +104,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -269,6 +270,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -354,6 +357,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
+   
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button></div>
@@ -403,7 +407,7 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"ec4a62ccd0a5","t":"T3","s":64.2,"e":15,"x":"Balcon"},{"i":"e0ed022e49c5","t":"T3","s":64.75,"e":10,"x":"Balcon"},{"i":"955e68e48a27","t":"T3","s":64.81,"e":13,"x":"Balcon"},{"i":"ba577032e153","t":"T3","s":64.81,"e":14,"x":"Balcon"},{"i":"da2cc7307e81","t":"T3","s":64.81,"e":12,"x":"Balcon"},{"i":"babed3f91f0b","t":"T3","s":65.39,"e":9,"x":"Balcon"},{"i":"a2fc7630cd0c","t":"T3","s":67.59,"e":8,"x":"Loggia"},{"i":"f93644d8b711","t":"T3","s":67.59,"e":7,"x":"Loggia"},{"i":"a73c82128ebc","t":"T3","s":68.41,"e":12,"x":"Loggia"},{"i":"d5b849746dd5","t":"T3","s":68.41,"e":11,"x":"Loggia"},{"i":"658c7d63426e","t":"T3","s":68.76,"e":6,"x":"Loggia"},{"i":"ca3f2575a114","t":"T3","s":68.76,"e":5,"x":"Loggia"},{"i":"6f94bb8244c7","t":"T3","s":68.98,"e":14,"x":"Loggia"},{"i":"a93d2437dc6f","t":"T3","s":68.98,"e":15,"x":"Loggia"},{"i":"b4f37fa48127","t":"T3","s":68.98,"e":13,"x":"Loggia"},{"i":"2f9a83c2d6cf","t":"T4","s":81.93,"e":8,"x":"Loggia"},{"i":"22f502242ba8","t":"T4","s":82.18,"e":11,"x":"Loggia"},{"i":"58a2378757cd","t":"T4","s":82.3,"e":12,"x":"Loggia"},{"i":"5b23237bb0f8","t":"T4","s":82.3,"e":13,"x":"Loggia"},{"i":"9e807438d173","t":"T4","s":82.3,"e":14,"x":"Loggia"},{"i":"5529b667a12b","t":"T4","s":85.32,"e":3,"x":"Balcon"},{"i":"08fb44bcc58f","t":"T4","s":85.42,"e":10,"x":"Balcon"},{"i":"3c2b67001b21","t":"T4","s":85.7,"e":6,"x":"Balcon"},{"i":"9b787911578e","t":"T4","s":85.7,"e":7,"x":"Balcon"},{"i":"17c0d75e6143","t":"T4","s":85.78,"e":9,"x":"Balcon"},{"i":"36129aef8a07","t":"T4","s":85.78,"e":8,"x":"Balcon"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=15c28fcdee" defer></script>
+<script src="/neuf/programme.js?v=94749ba394" defer></script>
 
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};

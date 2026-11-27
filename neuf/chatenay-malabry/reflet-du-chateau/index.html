@@ -104,9 +104,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -269,6 +270,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -354,6 +357,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
+   
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button></div>
@@ -407,8 +411,8 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"6700c5539865","t":"T2","s":46.84,"e":1,"x":"Balcon"},{"i":"ff4243d7566a","t":"T3","s":67.23,"e":1,"x":"Balcon"},{"i":"20d0da63f78f","t":"T3","s":68.49,"e":3,"x":"Balcon"},{"i":"fa6ac014adbb","t":"T3","s":68.49,"e":2,"x":"Balcon"},{"i":"7400c3386a45","t":"T3","s":69.92,"e":3,"x":"Balcon"},{"i":"83fede2b9dab","t":"T3","s":69.92,"e":2,"x":"Balcon"},{"i":"53d75b262e39","t":"T4","s":75.28,"e":1,"x":"Balcon"},{"i":"80c90335ffe3","t":"T4","s":78.48,"e":2,"x":"Balcon"},{"i":"9071e585c254","t":"T4","s":78.48,"e":1,"x":"Balcon"},{"i":"9ceb3a48020a","t":"T4","s":78.48,"e":4,"x":"Balcon"},{"i":"2ad9d3bf21a3","t":"T4","s":80.31,"e":2,"x":"Balcon"},{"i":"efa53366bdc3","t":"T4","s":80.31,"e":1,"x":"Balcon"},{"i":"0c660a2e2b7a","t":"T4","s":80.81,"e":3,"x":"Balcon"},{"i":"d0cb29b135b8","t":"T4","s":80.81,"e":2,"x":"Balcon"},{"i":"fa5336c9e7b5","t":"T4","s":80.81,"e":1,"x":"Balcon"},{"i":"088686871e70","t":"T4","s":82.04,"e":2,"x":"Balcon"},{"i":"5f98d38b5384","t":"T4","s":82.04,"e":1,"x":"Balcon"},{"i":"fd429a15cc58","t":"T4","s":82.04,"e":3,"x":"Balcon"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=15c28fcdee" defer></script>
-<script src="/neuf/visite3d.js?v=15c28fcdee" defer></script>
+<script src="/neuf/programme.js?v=94749ba394" defer></script>
+<script src="/neuf/visite3d.js?v=94749ba394" defer></script>
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};
 var poser=function(j){j=j||{};var a=j.prix||{},b=j.prix_tva_reduite||{};window.GLR_PRIX=a;window.GLR_PRIX_R=b;var deux=false;

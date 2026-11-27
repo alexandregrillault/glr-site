@@ -105,9 +105,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -270,6 +271,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -371,7 +374,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"paris-9e","villes":[{"v":"Paris 9e","s":"paris-9e","cp":"75009","i":"75109","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.3272,48.8835],[2.3274,48.8835],[2.3279,48.8836],[2.3281,48.8837],[2.3295,48.8846],[2.3309,48.8842],[2.3326,48.8838],[2.3374,48.8824],[2.3398,48.882],[2.3429,48.8826],[2.3469,48.8834],[2.3472,48.8835],[2.3495,48.8837],[2.3495,48.8836],[2.3496,48.8835],[2.3497,48.8824],[2.3498,48.8811],[2.3499,48.8806],[2.3495,48.8797],[2.3493,48.8791],[2.3492,48.8786],[2.3491,48.8779],[2.3491,48.8775],[2.349,48.8773],[2.349,48.8772],[2.3484,48.8761],[2.3482,48.8758],[2.3482,48.8755],[2.3479,48.874],[2.3479,48.8725],[2.3479,48.8713],[2.3479,48.8707],[2.347,48.8708],[2.3419,48.8717],[2.34,48.872],[2.3383,48.8717],[2.3359,48.8713],[2.3348,48.8711],[2.3325,48.8707],[2.3321,48.8706],[2.33,48.8703],[2.329,48.8701],[2.328,48.8699],[2.3259,48.8696],[2.326,48.8701],[2.3261,48.8706],[2.3266,48.8726],[2.3266,48.8727],[2.3265,48.8728],[2.3269,48.8734],[2.327,48.8738],[2.3269,48.8742],[2.3267,48.8748],[2.3266,48.8754],[2.3267,48.8755],[2.3269,48.8759],[2.3269,48.8762],[2.3269,48.8771],[2.327,48.8778],[2.327,48.8787],[2.327,48.8797],[2.3271,48.8804],[2.3271,48.8808],[2.3272,48.8835]]]}},"r":"1 programme · 3 logements disponibles","p":[{"n":"Le 67","s":"le-67","k":false,"a":48.882,"o":2.328,"z":false,"u":"paris-9e/le-67/","l":"1er trimestre 2027","d":"3 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script type="module" src="/neuf/carte.js?v=94749ba394"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

@@ -105,9 +105,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -270,6 +271,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -377,7 +380,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"le-plessis-bouchard","villes":[{"v":"Le Plessis-Bouchard","s":"le-plessis-bouchard","cp":"95130","i":"95491","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.2172,49.0028],[2.2172,49.003],[2.2173,49.0032],[2.2176,49.0037],[2.218,49.0044],[2.219,49.0064],[2.2193,49.007],[2.2194,49.0071],[2.2199,49.0079],[2.2239,49.0118],[2.2246,49.0116],[2.2255,49.0114],[2.2297,49.0104],[2.2316,49.0101],[2.2336,49.0097],[2.2336,49.0098],[2.2342,49.0097],[2.2354,49.0094],[2.2367,49.0091],[2.2408,49.0081],[2.2422,49.0078],[2.2428,49.0076],[2.2433,49.0074],[2.2441,49.0069],[2.2449,49.0063],[2.2455,49.0059],[2.2457,49.0057],[2.2461,49.0055],[2.246,49.0053],[2.2462,49.0048],[2.2464,49.0039],[2.2464,49.0038],[2.2477,49.0028],[2.2487,49.0022],[2.249,49.0019],[2.2506,49.0008],[2.2504,49.0007],[2.2494,49],[2.2491,48.9997],[2.2485,48.9991],[2.2437,48.9942],[2.2423,48.9947],[2.2406,48.9953],[2.2384,48.996],[2.2377,48.9962],[2.237,48.9964],[2.2362,48.9967],[2.2351,48.997],[2.2344,48.9972],[2.2336,48.9975],[2.2314,48.9981],[2.2295,48.9986],[2.2284,48.999],[2.2276,48.9993],[2.2266,48.9997],[2.2263,48.9999],[2.2258,49],[2.2251,49.0002],[2.2226,49.0011],[2.221,49.0016],[2.2178,49.0026],[2.2172,49.0028]]]}},"r":"1 programme · 12 logements disponibles","p":[{"n":"Le Clos Gaillardet","s":"le-clos-gaillardet","k":false,"a":49.003,"o":2.237,"z":false,"u":"le-plessis-bouchard/le-clos-gaillardet/","l":"4e trimestre 2027","d":"12 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script type="module" src="/neuf/carte.js?v=94749ba394"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

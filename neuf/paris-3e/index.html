@@ -105,9 +105,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -270,6 +271,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -371,7 +374,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"paris-3e","villes":[{"v":"Paris 3e","s":"paris-3e","cp":"75003","i":"75103","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.3502,48.862],[2.3507,48.8629],[2.351,48.8634],[2.3514,48.8642],[2.352,48.8652],[2.3525,48.8662],[2.353,48.867],[2.3533,48.8676],[2.3537,48.8684],[2.3543,48.8693],[2.355,48.8692],[2.3558,48.869],[2.3565,48.8688],[2.3593,48.8684],[2.3622,48.868],[2.3633,48.8678],[2.3639,48.8675],[2.3643,48.8673],[2.3648,48.8664],[2.3649,48.8662],[2.3652,48.8657],[2.3667,48.8632],[2.3667,48.8631],[2.3669,48.8625],[2.3673,48.861],[2.3681,48.8576],[2.3682,48.8569],[2.3685,48.8558],[2.3683,48.8558],[2.3669,48.856],[2.3649,48.8563],[2.3643,48.8565],[2.3629,48.8569],[2.3618,48.8572],[2.3608,48.8577],[2.3594,48.8583],[2.3588,48.8587],[2.3573,48.8598],[2.357,48.86],[2.3567,48.8601],[2.3535,48.8612],[2.3502,48.862]]]}},"r":"1 programme · 6 logements disponibles","p":[{"n":"Le Turenne","s":"le-turenne","k":false,"a":48.861,"o":2.365,"z":false,"u":"paris-3e/le-turenne/","l":"4e trimestre 2026","d":"6 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script type="module" src="/neuf/carte.js?v=94749ba394"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

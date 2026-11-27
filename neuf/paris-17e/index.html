@@ -105,9 +105,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -270,6 +271,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -398,7 +401,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"paris-17e","villes":[{"v":"Paris 17e","s":"paris-17e","cp":"75017","i":"75117","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.3038,48.8942],[2.3057,48.8951],[2.3077,48.896],[2.3107,48.8971],[2.3123,48.8977],[2.3125,48.8978],[2.3185,48.8996],[2.3199,48.9005],[2.3204,48.9008],[2.3221,48.9008],[2.3222,48.9008],[2.3233,48.9008],[2.3258,48.901],[2.3265,48.901],[2.3301,48.901],[2.3299,48.9002],[2.3295,48.899],[2.3291,48.8981],[2.3285,48.8962],[2.3283,48.8954],[2.327,48.8916],[2.3266,48.8904],[2.3263,48.8896],[2.3259,48.8884],[2.3256,48.8875],[2.3256,48.8875],[2.3259,48.8867],[2.326,48.8866],[2.3266,48.8854],[2.3273,48.8839],[2.3274,48.8835],[2.3272,48.8835],[2.321,48.8822],[2.3188,48.8818],[2.3165,48.8813],[2.3156,48.8812],[2.3141,48.881],[2.3126,48.8809],[2.3122,48.8808],[2.3102,48.8806],[2.3098,48.8805],[2.3093,48.8805],[2.3089,48.8804],[2.3086,48.8803],[2.3071,48.88],[2.305,48.8795],[2.301,48.8787],[2.2982,48.8781],[2.296,48.8751],[2.2956,48.8745],[2.295,48.8738],[2.2942,48.874],[2.293,48.8744],[2.2905,48.8752],[2.2845,48.8771],[2.282,48.8779],[2.2799,48.8786],[2.2805,48.8811],[2.2806,48.8816],[2.2809,48.8828],[2.281,48.883],[2.2845,48.8856],[2.2845,48.8856],[2.2856,48.8866],[2.2905,48.889],[2.2911,48.8893],[2.2916,48.8895],[2.2929,48.8896],[2.294,48.8897],[2.295,48.8899],[2.2955,48.8901],[2.2973,48.8911],[2.2981,48.8914],[2.2986,48.8917],[2.3006,48.8926],[2.3018,48.8932],[2.3033,48.8939],[2.3038,48.8942]]]}},"r":"4 programmes · 15 logements disponibles","p":[{"n":"Patio Villiers","s":"patio-villiers","k":false,"a":48.883,"o":2.315,"z":false,"u":"paris-17e/patio-villiers/","l":"1er trimestre 2027","d":"4 logements disponibles"},{"n":"Saint Ouen - Paris","s":"saint-ouen-paris-6b69","k":false,"a":48.894,"o":2.321,"z":true,"u":"paris-17e/saint-ouen-paris-6b69/","l":"2027","d":"6 logements disponibles"},{"n":"Saint-ouen - Paris","s":"saint-ouen-paris-f623","k":false,"a":48.894,"o":2.321,"z":true,"u":"paris-17e/saint-ouen-paris-f623/","l":"2027","d":"1 logement disponible"},{"n":"Villa Pouchet","s":"villa-pouchet","k":false,"a":48.894,"o":2.321,"z":false,"u":"paris-17e/villa-pouchet/","l":"3e trimestre 2028","d":"4 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script type="module" src="/neuf/carte.js?v=94749ba394"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

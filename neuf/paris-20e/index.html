@@ -105,9 +105,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -270,6 +271,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -419,7 +422,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"paris-20e","villes":[{"v":"Paris 20e","s":"paris-20e","cp":"75020","i":"75120","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.4153,48.8552],[2.4155,48.8542],[2.416,48.8514],[2.4163,48.8494],[2.4163,48.8492],[2.4164,48.8487],[2.4161,48.8473],[2.416,48.8466],[2.4131,48.8469],[2.4114,48.847],[2.4111,48.847],[2.4097,48.8472],[2.4061,48.8475],[2.3991,48.8481],[2.3992,48.8488],[2.3992,48.8489],[2.3989,48.8498],[2.3988,48.8503],[2.3985,48.8511],[2.3984,48.8513],[2.3971,48.853],[2.396,48.8543],[2.3943,48.8565],[2.3923,48.8576],[2.3922,48.8577],[2.3901,48.8583],[2.3897,48.8584],[2.3895,48.8585],[2.3894,48.8587],[2.3889,48.8599],[2.3874,48.8628],[2.3872,48.8631],[2.3861,48.8641],[2.3852,48.8649],[2.3843,48.8656],[2.3836,48.8663],[2.3833,48.8667],[2.383,48.8672],[2.3805,48.869],[2.3783,48.8708],[2.3779,48.8711],[2.3769,48.872],[2.3772,48.8722],[2.3776,48.8723],[2.3792,48.8727],[2.3798,48.8729],[2.3806,48.873],[2.3819,48.8733],[2.3827,48.8734],[2.3832,48.8735],[2.3842,48.8736],[2.3848,48.8737],[2.3851,48.8738],[2.3854,48.8739],[2.3863,48.8744],[2.3867,48.8746],[2.387,48.8746],[2.3883,48.8747],[2.3885,48.8748],[2.3889,48.8749],[2.3896,48.8753],[2.3905,48.8754],[2.3913,48.8755],[2.3923,48.8755],[2.3927,48.8754],[2.3935,48.8753],[2.3948,48.8753],[2.3954,48.8753],[2.3976,48.8754],[2.3979,48.8755],[2.3988,48.8755],[2.3992,48.8755],[2.4026,48.876],[2.4036,48.8763],[2.4044,48.8765],[2.4052,48.8768],[2.4062,48.8771],[2.4066,48.8771],[2.4069,48.8772],[2.4075,48.8774],[2.4081,48.8776],[2.4096,48.8781],[2.4099,48.8782],[2.4107,48.8784],[2.4108,48.8784],[2.4125,48.8764],[2.4134,48.8731],[2.4136,48.8724],[2.4137,48.8716],[2.4138,48.8707],[2.414,48.8692],[2.414,48.8675],[2.414,48.8665],[2.414,48.8654],[2.414,48.865],[2.414,48.8647],[2.4141,48.8634],[2.4143,48.8621],[2.4144,48.8606],[2.4144,48.8602],[2.4147,48.8587],[2.4149,48.8573],[2.4151,48.8562],[2.4153,48.8552]]]}},"r":"4 programmes · 25 logements disponibles","p":[{"n":"Premieres Loges - Pls","s":"premieres-loges-pls","k":false,"a":48.871,"o":2.393,"z":false,"u":"paris-20e/premieres-loges-pls/","l":"Livré","d":"1 logement disponible"},{"n":"Sérénité (75020)","s":"serenite-75020","k":false,"a":48.87,"o":2.39,"z":false,"u":"paris-20e/serenite-75020/","l":"2e trimestre 2027","d":"2 logements disponibles"},{"n":"Le 117 Bis","s":"le-117-bis","k":false,"a":48.857,"o":2.404,"z":false,"u":"paris-20e/le-117-bis/","l":"4e trimestre 2028","d":"17 logements disponibles"},{"n":"37 Chine","s":"37-chine","k":false,"a":48.868,"o":2.397,"z":false,"u":"paris-20e/37-chine/","l":"","d":"5 logements disponibles"},{"n":"Gambetta Garden","s":"gambetta-garden","k":true,"a":48.859,"o":2.347,"z":true,"u":"paris-20e/gambetta-garden/","l":"","d":"Grille sur demande"},{"n":"Privia - Paris 20eme","s":"privia-paris-20eme","k":true,"a":48.859,"o":2.347,"z":true,"u":"paris-20e/privia-paris-20eme/","l":"","d":"Grille sur demande"},{"n":"7 Constant Berthaut","s":"7-constant-berthaut","k":true,"a":48.859,"o":2.347,"z":true,"u":"paris-20e/7-constant-berthaut/","l":"","d":"Grille sur demande"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script type="module" src="/neuf/carte.js?v=94749ba394"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

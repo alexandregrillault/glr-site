@@ -105,9 +105,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -270,6 +271,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -377,7 +380,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"villetaneuse","villes":[{"v":"Villetaneuse","s":"villetaneuse","cp":"93430","i":"93079","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.3535,48.9656],[2.3535,48.9652],[2.3539,48.965],[2.3546,48.9646],[2.354,48.9642],[2.3535,48.9638],[2.353,48.9634],[2.3535,48.9631],[2.353,48.9627],[2.3535,48.9624],[2.3529,48.962],[2.3525,48.9617],[2.3524,48.9611],[2.3531,48.9607],[2.3528,48.9603],[2.3536,48.9601],[2.354,48.9599],[2.3549,48.9597],[2.3546,48.9592],[2.3536,48.9578],[2.353,48.9569],[2.3535,48.9568],[2.3537,48.956],[2.3537,48.954],[2.3522,48.9515],[2.3506,48.9487],[2.3481,48.9472],[2.346,48.9464],[2.3455,48.9468],[2.3443,48.9476],[2.3426,48.9489],[2.3421,48.9492],[2.3388,48.9517],[2.337,48.9529],[2.336,48.9536],[2.3352,48.9541],[2.3341,48.9548],[2.3337,48.9551],[2.3334,48.9553],[2.3336,48.9557],[2.334,48.9562],[2.3343,48.956],[2.3346,48.9563],[2.3351,48.9568],[2.3351,48.9568],[2.3354,48.957],[2.3355,48.9571],[2.3356,48.9571],[2.336,48.9575],[2.3362,48.9577],[2.3364,48.9577],[2.3365,48.958],[2.3369,48.9586],[2.337,48.9587],[2.3381,48.9601],[2.338,48.9602],[2.3376,48.9607],[2.3375,48.9609],[2.338,48.9616],[2.3384,48.9622],[2.3389,48.9629],[2.3394,48.9627],[2.3399,48.9626],[2.3439,48.9684],[2.3444,48.9682],[2.3447,48.9682],[2.3451,48.9682],[2.3455,48.9681],[2.3459,48.968],[2.3471,48.9677],[2.3473,48.9677],[2.3483,48.9675],[2.3485,48.9675],[2.3492,48.9674],[2.35,48.9671],[2.3505,48.967],[2.3516,48.9666],[2.3516,48.9663],[2.3516,48.9662],[2.3518,48.9661],[2.352,48.9659],[2.3523,48.9658],[2.3526,48.9657],[2.3535,48.9656]]]}},"r":"1 programme · 17 logements disponibles","p":[{"n":"Les Jardins Fajon","s":"les-jardins-fajon","k":false,"a":48.961,"o":2.346,"z":false,"u":"villetaneuse/les-jardins-fajon/","l":"4e trimestre 2027","d":"17 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script type="module" src="/neuf/carte.js?v=94749ba394"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

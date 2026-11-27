@@ -104,9 +104,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -269,6 +270,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -354,6 +357,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
+   
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
@@ -393,7 +397,7 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"0c8ae73af552","t":"T4","s":80,"e":null,"x":"Extérieur"},{"i":"3cda26fe1d82","t":"T4","s":80,"e":null,"x":"Extérieur"},{"i":"79257f162ef6","t":"T4","s":80,"e":null,"x":"Extérieur"},{"i":"858e1873a136","t":"T4","s":80,"e":null,"x":"Extérieur"},{"i":"c895a34df6a8","t":"T4","s":80,"e":null,"x":"Extérieur"},{"i":"e6e7d2acd591","t":"T4","s":83,"e":1,"x":""},{"i":"0841b21c3f80","t":"T4","s":94,"e":null,"x":"Extérieur"},{"i":"a5e62a8cff8b","t":"T4","s":94,"e":null,"x":"Extérieur"},{"i":"6fa033d0b5d3","t":"T4","s":96,"e":null,"x":"Extérieur"},{"i":"81fd69eabdaa","t":"T4","s":96,"e":null,"x":"Extérieur"},{"i":"b74e45831e8a","t":"T4","s":96,"e":null,"x":"Extérieur"},{"i":"fb4bca7864c3","t":"T4","s":96,"e":null,"x":"Extérieur"},{"i":"7b8a9dadd4df","t":"T4","s":117,"e":null,"x":"Extérieur"},{"i":"6052fb04e662","t":"T5+","s":117,"e":null,"x":"Extérieur"},{"i":"b73e3c813839","t":"T5+","s":117,"e":null,"x":"Extérieur"},{"i":"c5f6457bd54e","t":"T5+","s":117,"e":null,"x":"Extérieur"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=15c28fcdee" defer></script>
+<script src="/neuf/programme.js?v=94749ba394" defer></script>
 
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};

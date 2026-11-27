@@ -104,9 +104,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -269,6 +270,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -354,6 +357,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
+   
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button></div>
@@ -445,8 +449,8 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"497281ddd174","t":"T2","s":41.41,"e":0,"x":"Jardin"},{"i":"fc0806ac577b","t":"T2","s":42.92,"e":0,"x":"Jardin"},{"i":"02dc5ef0dc06","t":"T2","s":43.12,"e":1,"x":"Balcon"},{"i":"94ac0591d08a","t":"T2","s":43.19,"e":2,"x":"Balcon"},{"i":"0ed4667c6a0c","t":"T2","s":43.21,"e":3,"x":"Balcon"},{"i":"e56e05c83655","t":"T2","s":43.22,"e":4,"x":"Balcon"},{"i":"612e0de87985","t":"T2","s":43.59,"e":0,"x":"Jardin"},{"i":"ebe2a3cf32d3","t":"T2","s":43.93,"e":0,"x":"Jardin"},{"i":"e728eb801352","t":"T2","s":44.59,"e":0,"x":"Terrasse"},{"i":"7ae38aef77e4","t":"T2","s":44.77,"e":0,"x":"Jardin"},{"i":"6180487db867","t":"T2","s":44.91,"e":1,"x":"Balcon"},{"i":"6c8141f2a766","t":"T2","s":44.91,"e":2,"x":"Balcon"},{"i":"f995560fe0e4","t":"T2","s":44.91,"e":3,"x":"Balcon"},{"i":"57b5a77bb155","t":"T2","s":44.92,"e":4,"x":"Balcon"},{"i":"2c5b29cbdc07","t":"T2","s":46.02,"e":3,"x":"Balcon"},{"i":"e69a5852fabb","t":"T2","s":46.04,"e":2,"x":"Balcon"},{"i":"7744b6f1974d","t":"T2","s":46.05,"e":4,"x":"Balcon"},{"i":"87ca655b4761","t":"T2","s":46.06,"e":1,"x":"Terrasse"},{"i":"1243cb37a1ad","t":"T2","s":48.83,"e":0,"x":"Jardin"},{"i":"b899d2e717b5","t":"T2","s":49.66,"e":0,"x":"Jardin"},{"i":"f1231154d4f5","t":"T2","s":51.58,"e":4,"x":"Balcon"},{"i":"06ae948ebb2b","t":"T2","s":51.59,"e":2,"x":"Balcon"},{"i":"fea392d5b1c7","t":"T2","s":51.59,"e":3,"x":"Balcon"},{"i":"ec280745f51b","t":"T2","s":51.73,"e":1,"x":"Balcon"},{"i":"54c86e5240b9","t":"T3","s":57.25,"e":0,"x":"Terrasse"},{"i":"1e3a2cacbb3e","t":"T3","s":59.42,"e":4,"x":"Balcon"},{"i":"4a79607f5994","t":"T3","s":59.42,"e":3,"x":"Balcon"},{"i":"808730324493","t":"T3","s":59.42,"e":1,"x":"Balcon"},{"i":"ba88e025212b","t":"T3","s":59.42,"e":2,"x":"Balcon"},{"i":"a49d73429d98","t":"T3","s":60.04,"e":1,"x":"Balcon"},{"i":"c73f6cc8abed","t":"T3","s":60.19,"e":2,"x":"Balcon"},{"i":"4abcf3e5e48b","t":"T3","s":60.22,"e":3,"x":"Balcon"},{"i":"0caa477afb42","t":"T3","s":60.3,"e":4,"x":"Balcon"},{"i":"8367b29c06e5","t":"T3","s":60.79,"e":3,"x":"Balcon"},{"i":"2c7b4b0b0ac2","t":"T3","s":60.88,"e":2,"x":"Balcon"},{"i":"4ad4b68a01a9","t":"T3","s":60.96,"e":1,"x":"Balcon"},{"i":"2e52ab686dfa","t":"T3","s":61.03,"e":4,"x":"Balcon"},{"i":"1fd602dc0a81","t":"T3","s":61.67,"e":2,"x":"Balcon"},{"i":"4deebf88242e","t":"T3","s":61.67,"e":1,"x":"Balcon"},{"i":"a1cc4d05f66b","t":"T3","s":61.67,"e":4,"x":"Balcon"},{"i":"a2dac9e5c41b","t":"T3","s":61.67,"e":3,"x":"Balcon"},{"i":"074077c00b94","t":"T3","s":63.61,"e":0,"x":"Jardin"},{"i":"5530ba8b6722","t":"T3","s":64.91,"e":0,"x":"Jardin"},{"i":"b598f188289a","t":"T3","s":65.83,"e":2,"x":"Balcon"},{"i":"c5e1ca41b36b","t":"T3","s":65.85,"e":1,"x":"Balcon"},{"i":"0f5ab5d0c822","t":"T3","s":65.86,"e":4,"x":"Balcon"},{"i":"1efaf5b2dbf8","t":"T3","s":65.91,"e":3,"x":"Balcon"},{"i":"247d089dc325","t":"T3","s":66.96,"e":0,"x":"Jardin"},{"i":"fa81cb1a357a","t":"T4","s":78.08,"e":4,"x":"Balcon"},{"i":"8ce8c71e4e4d","t":"T4","s":78.62,"e":2,"x":"Balcon"},{"i":"a2458261cdcd","t":"T4","s":78.7,"e":3,"x":"Balcon"},{"i":"f33e263ad3a9","t":"T4","s":78.72,"e":1,"x":"Balcon"},{"i":"18518f05e1f2","t":"T4","s":79.15,"e":4,"x":"Balcon"},{"i":"21f70d79037e","t":"T4","s":79.15,"e":3,"x":"Balcon"},{"i":"8ab095976c78","t":"T4","s":79.15,"e":2,"x":"Balcon"},{"i":"cd2626079fe6","t":"T4","s":79.15,"e":1,"x":"Balcon"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=15c28fcdee" defer></script>
-<script src="/neuf/visite3d.js?v=15c28fcdee" defer></script>
+<script src="/neuf/programme.js?v=94749ba394" defer></script>
+<script src="/neuf/visite3d.js?v=94749ba394" defer></script>
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};
 var poser=function(j){j=j||{};var a=j.prix||{},b=j.prix_tva_reduite||{};window.GLR_PRIX=a;window.GLR_PRIX_R=b;var deux=false;

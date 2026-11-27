@@ -105,9 +105,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -270,6 +271,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -406,7 +409,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"vanves","villes":[{"v":"Vanves","s":"vanves","cp":"92170","i":"92075","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.3013,48.8251],[2.2992,48.8235],[2.2977,48.8223],[2.2955,48.8203],[2.295,48.82],[2.2947,48.8198],[2.294,48.8194],[2.2934,48.8189],[2.2929,48.8187],[2.292,48.8182],[2.2909,48.8177],[2.2898,48.8172],[2.2891,48.8169],[2.289,48.8169],[2.288,48.8165],[2.286,48.8158],[2.2853,48.8156],[2.2847,48.8155],[2.2826,48.815],[2.2813,48.8148],[2.2782,48.8142],[2.2781,48.8148],[2.278,48.8149],[2.2772,48.8153],[2.2769,48.8153],[2.2761,48.815],[2.2745,48.8146],[2.2736,48.8145],[2.2729,48.8144],[2.2726,48.8144],[2.2729,48.8148],[2.2732,48.8152],[2.2734,48.8154],[2.2743,48.816],[2.275,48.8166],[2.276,48.8173],[2.2761,48.8173],[2.2771,48.8174],[2.2772,48.8175],[2.2782,48.8183],[2.2789,48.8186],[2.2795,48.8188],[2.2803,48.8194],[2.2807,48.8196],[2.2814,48.8201],[2.2819,48.8202],[2.2814,48.8211],[2.282,48.8213],[2.2816,48.8219],[2.2812,48.8226],[2.2811,48.8229],[2.2816,48.8231],[2.2813,48.8233],[2.281,48.8235],[2.2808,48.8244],[2.2808,48.8247],[2.28,48.8252],[2.2808,48.8256],[2.2805,48.8259],[2.2814,48.8264],[2.2823,48.8267],[2.283,48.8271],[2.2832,48.8271],[2.2835,48.8272],[2.2844,48.8275],[2.2846,48.8275],[2.2847,48.8274],[2.2849,48.8275],[2.2858,48.8274],[2.287,48.8275],[2.2879,48.8275],[2.2879,48.8276],[2.2866,48.8284],[2.2867,48.8285],[2.2878,48.8282],[2.2894,48.8283],[2.2902,48.828],[2.2922,48.8271],[2.3002,48.8254],[2.3013,48.8251]]]}},"r":"6 programmes · 54 logements disponibles","p":[{"n":"30 Rue D'Issy","s":"30-rue-d-issy","k":false,"a":48.823,"o":2.282,"z":false,"u":"vanves/30-rue-d-issy/","l":"Livré","d":"1 logement disponible"},{"n":"Graphykk","s":"graphykk","k":false,"a":48.818,"o":2.284,"z":false,"u":"vanves/graphykk/","l":"Livré","d":"1 logement disponible"},{"n":"Art'Chipel","s":"art-chipel","k":false,"a":48.818,"o":2.286,"z":false,"u":"vanves/art-chipel/","l":"4e trimestre 2026","d":"2 logements disponibles"},{"n":"Terra Nova","s":"terra-nova","k":false,"a":48.819,"o":2.285,"z":false,"u":"vanves/terra-nova/","l":"4e trimestre 2027","d":"14 logements disponibles"},{"n":"Alba","s":"alba","k":false,"a":48.817,"o":2.287,"z":false,"u":"vanves/alba/","l":"3e trimestre 2028","d":"6 logements disponibles"},{"n":"Nora","s":"nora","k":false,"a":48.819,"o":2.286,"z":true,"u":"vanves/nora/","l":"4e trimestre 2028","d":"30 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script type="module" src="/neuf/carte.js?v=94749ba394"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

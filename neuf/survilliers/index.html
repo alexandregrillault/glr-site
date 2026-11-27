@@ -105,9 +105,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -270,6 +271,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -371,7 +374,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"survilliers","villes":[{"v":"Survilliers","s":"survilliers","cp":"95470","i":"95604","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.5421,49.1222],[2.5422,49.1222],[2.5441,49.1213],[2.544,49.1201],[2.5424,49.1193],[2.5412,49.1193],[2.5391,49.1193],[2.5377,49.1178],[2.5377,49.1177],[2.5393,49.1176],[2.5396,49.1164],[2.5405,49.1165],[2.5416,49.1166],[2.5424,49.1166],[2.5439,49.1165],[2.5454,49.1164],[2.547,49.1164],[2.5471,49.1164],[2.5471,49.117],[2.5471,49.1171],[2.5473,49.1176],[2.5474,49.1179],[2.5477,49.1188],[2.5477,49.1196],[2.5477,49.1203],[2.5488,49.1215],[2.5492,49.1219],[2.5499,49.1226],[2.5511,49.1231],[2.5516,49.1233],[2.5533,49.1246],[2.5547,49.1243],[2.5557,49.1241],[2.5564,49.124],[2.5569,49.1237],[2.557,49.1234],[2.557,49.1219],[2.5569,49.1213],[2.5562,49.119],[2.556,49.1186],[2.5557,49.1181],[2.5554,49.1178],[2.5559,49.1177],[2.5551,49.1168],[2.555,49.1167],[2.5539,49.1153],[2.5536,49.1148],[2.553,49.114],[2.5524,49.1141],[2.552,49.113],[2.5518,49.1124],[2.5523,49.1119],[2.5525,49.1116],[2.5527,49.1114],[2.5529,49.1111],[2.5534,49.1105],[2.5549,49.1094],[2.5555,49.1091],[2.556,49.1094],[2.5569,49.1069],[2.5568,49.1069],[2.5572,49.1059],[2.5575,49.1054],[2.5576,49.1051],[2.5578,49.1046],[2.5579,49.1043],[2.5579,49.1034],[2.5579,49.1029],[2.5577,49.1023],[2.5591,49.102],[2.5588,49.1016],[2.5588,49.1015],[2.5576,49.101],[2.5581,49.1004],[2.5575,49.1002],[2.5579,49.0997],[2.5585,49.0991],[2.5579,49.0987],[2.5596,49.0975],[2.5592,49.0973],[2.5591,49.0971],[2.5589,49.0971],[2.5584,49.0967],[2.5574,49.096],[2.5569,49.096],[2.556,49.0959],[2.5549,49.0957],[2.5537,49.0957],[2.5528,49.0958],[2.5526,49.0959],[2.5519,49.0959],[2.5512,49.0958],[2.5507,49.0964],[2.5494,49.096],[2.5503,49.0949],[2.5493,49.0947],[2.5505,49.0928],[2.5497,49.0925],[2.5501,49.0918],[2.5497,49.0916],[2.5481,49.0918],[2.5481,49.0923],[2.5462,49.092],[2.5461,49.0927],[2.5456,49.0927],[2.5458,49.0919],[2.5457,49.0908],[2.5447,49.0916],[2.5435,49.0922],[2.5404,49.0924],[2.5397,49.0923],[2.5394,49.0922],[2.5381,49.0919],[2.5368,49.0917],[2.5357,49.0915],[2.5354,49.0915],[2.5328,49.0918],[2.5318,49.0919],[2.5311,49.0919],[2.5305,49.0919],[2.5309,49.0958],[2.5311,49.0975],[2.5313,49.0995],[2.5318,49.1054],[2.532,49.1083],[2.5322,49.1095],[2.5324,49.1121],[2.5325,49.1136],[2.5328,49.1171],[2.5328,49.1181],[2.5329,49.1191],[2.533,49.1195],[2.5343,49.1195],[2.5346,49.1196],[2.5347,49.1197],[2.5349,49.1196],[2.5362,49.1199],[2.5368,49.1201],[2.5379,49.1213],[2.5385,49.1218],[2.5386,49.1217],[2.539,49.1218],[2.5405,49.122],[2.5408,49.1221],[2.5421,49.1222]]]}},"r":"1 programme · 17 logements disponibles","p":[{"n":"La Cour aux Blés","s":"la-cour-aux-bles","k":false,"a":49.098,"o":2.541,"z":false,"u":"survilliers/la-cour-aux-bles/","l":"4e trimestre 2027","d":"17 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script type="module" src="/neuf/carte.js?v=94749ba394"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

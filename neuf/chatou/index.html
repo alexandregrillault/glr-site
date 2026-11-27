@@ -105,9 +105,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -270,6 +271,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -405,7 +408,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"chatou","villes":[{"v":"Chatou","s":"chatou","cp":"78400","i":"78146","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.1744,48.8991],[2.1737,48.8986],[2.1732,48.8984],[2.1723,48.8978],[2.1719,48.8976],[2.1713,48.8973],[2.1707,48.8969],[2.1701,48.8964],[2.1693,48.8958],[2.1689,48.8955],[2.1683,48.895],[2.1678,48.8944],[2.1676,48.894],[2.1674,48.8937],[2.1671,48.8932],[2.1667,48.8923],[2.1666,48.8921],[2.1662,48.8916],[2.166,48.8913],[2.1657,48.8911],[2.1651,48.8905],[2.1648,48.8902],[2.1646,48.89],[2.1641,48.8896],[2.1639,48.8893],[2.1637,48.889],[2.1634,48.8886],[2.1631,48.8879],[2.1631,48.8878],[2.1629,48.8873],[2.1629,48.8871],[2.163,48.8867],[2.1633,48.8857],[2.1634,48.8854],[2.1634,48.885],[2.1635,48.8849],[2.1635,48.8844],[2.1635,48.8839],[2.1635,48.8835],[2.1634,48.8831],[2.1633,48.8829],[2.1631,48.8827],[2.1627,48.8823],[2.1624,48.8821],[2.1623,48.882],[2.1618,48.8818],[2.1615,48.8816],[2.161,48.8815],[2.1607,48.8814],[2.1603,48.8813],[2.1597,48.8811],[2.1593,48.881],[2.1589,48.8808],[2.1583,48.8806],[2.1565,48.8809],[2.1558,48.8811],[2.1555,48.8811],[2.1515,48.8819],[2.1502,48.8822],[2.1495,48.8824],[2.1484,48.8826],[2.1478,48.8828],[2.1465,48.8831],[2.145,48.8834],[2.145,48.8836],[2.1454,48.8847],[2.1459,48.8861],[2.1462,48.8864],[2.1463,48.8864],[2.1468,48.8872],[2.1469,48.8873],[2.1478,48.888],[2.1479,48.8881],[2.1478,48.8883],[2.1471,48.8884],[2.1449,48.8888],[2.1436,48.889],[2.1435,48.889],[2.1435,48.8899],[2.1434,48.892],[2.1436,48.8921],[2.1439,48.8923],[2.1468,48.8918],[2.1502,48.8911],[2.1505,48.8917],[2.1494,48.8926],[2.1486,48.8933],[2.1452,48.8927],[2.1446,48.8937],[2.1434,48.8954],[2.1424,48.897],[2.1423,48.8972],[2.142,48.8976],[2.1419,48.8978],[2.1417,48.8982],[2.1413,48.8987],[2.141,48.8989],[2.1407,48.8996],[2.1402,48.9003],[2.1398,48.9008],[2.1397,48.9009],[2.1357,48.9068],[2.1356,48.907],[2.1349,48.9081],[2.1338,48.9097],[2.1336,48.9095],[2.1329,48.9085],[2.1327,48.9082],[2.1318,48.9066],[2.1315,48.9061],[2.1313,48.9059],[2.1296,48.9065],[2.1287,48.9067],[2.127,48.9073],[2.126,48.9076],[2.129,48.9099],[2.1313,48.9116],[2.132,48.9121],[2.1354,48.9113],[2.1359,48.9112],[2.1375,48.911],[2.1381,48.911],[2.1392,48.9108],[2.1403,48.9106],[2.1405,48.9106],[2.1404,48.9099],[2.1395,48.9099],[2.1397,48.9096],[2.1398,48.9092],[2.1404,48.9078],[2.1413,48.9064],[2.1416,48.906],[2.142,48.9054],[2.1423,48.9048],[2.1426,48.9043],[2.1426,48.9043],[2.1431,48.9035],[2.1436,48.9029],[2.1445,48.9033],[2.1447,48.9035],[2.1453,48.9037],[2.1459,48.904],[2.1468,48.9045],[2.147,48.9045],[2.1471,48.9042],[2.1475,48.9044],[2.1477,48.9041],[2.1484,48.9044],[2.1496,48.9048],[2.1499,48.9049],[2.1498,48.9049],[2.1497,48.9054],[2.1503,48.9057],[2.1505,48.9052],[2.1507,48.9045],[2.1509,48.9045],[2.1515,48.9048],[2.1516,48.9048],[2.1523,48.9051],[2.1523,48.905],[2.1525,48.9049],[2.1526,48.9048],[2.1554,48.9061],[2.1558,48.9063],[2.1559,48.9062],[2.1561,48.906],[2.1565,48.906],[2.1566,48.9061],[2.1581,48.9068],[2.1585,48.9064],[2.1589,48.9066],[2.1588,48.9067],[2.1592,48.907],[2.1593,48.9071],[2.16,48.9074],[2.1602,48.9076],[2.1612,48.9081],[2.1662,48.9045],[2.1657,48.9042],[2.1659,48.904],[2.1668,48.9035],[2.1671,48.9037],[2.1705,48.9015],[2.1717,48.9007],[2.1728,48.9],[2.173,48.8999],[2.1737,48.8995],[2.1739,48.8993],[2.1744,48.8991]]]}},"r":"3 programmes · 69 logements disponibles","p":[{"n":"Le Patio des Artistes","s":"le-patio-des-artistes","k":false,"a":48.897,"o":2.153,"z":false,"u":"chatou/le-patio-des-artistes/","l":"Livré","d":"4 logements disponibles"},{"n":"Rooj - Lumiere","s":"rooj-lumiere","k":false,"a":48.895,"o":2.151,"z":false,"u":"chatou/rooj-lumiere/","l":"4e trimestre 2028","d":"56 logements disponibles"},{"n":"Allure","s":"allure","k":false,"a":48.898,"o":2.161,"z":false,"u":"chatou/allure/","l":"4e trimestre 2028","d":"9 logements disponibles"},{"n":"40 Avenue Foch","s":"40-avenue-foch","k":true,"a":48.896,"o":2.15,"z":true,"u":"chatou/40-avenue-foch/","l":"","d":"Grille sur demande"},{"n":"Villa Des Landes","s":"villa-des-landes","k":true,"a":48.896,"o":2.15,"z":true,"u":"chatou/villa-des-landes/","l":"","d":"Grille sur demande"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script type="module" src="/neuf/carte.js?v=94749ba394"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

@@ -104,9 +104,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -269,6 +270,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -354,6 +357,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
+   
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
@@ -412,7 +416,7 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"8e9b3b196be2","t":"T3","s":56.95,"e":3,"x":"Balcon"},{"i":"a5c525a4bc13","t":"T3","s":58.42,"e":2,"x":"Balcon"},{"i":"a10c584016c1","t":"T3","s":59.27,"e":1,"x":"Balcon"},{"i":"b14eb13913a4","t":"T3","s":61.69,"e":0,"x":"Jardin"},{"i":"a4d1013cf671","t":"T3","s":68.19,"e":2,"x":"Terrasse"},{"i":"c15b9063220b","t":"T4","s":80.11,"e":0,"x":"Jardin"},{"i":"9560bbcaff37","t":"T4","s":82.43,"e":0,"x":"Jardin"},{"i":"3f817d0fe87f","t":"T4","s":82.79,"e":0,"x":"Jardin"},{"i":"6c679778df72","t":"T4","s":82.8,"e":0,"x":"Jardin"},{"i":"ee4811750c01","t":"T4","s":89.23,"e":0,"x":"Jardin"},{"i":"0716b318deb9","t":"T4","s":89.25,"e":0,"x":"Jardin"},{"i":"22672daa99a6","t":"T4","s":89.25,"e":0,"x":"Jardin"},{"i":"2a33eaae1a12","t":"T4","s":89.25,"e":0,"x":"Jardin"},{"i":"8f9a6c6884ab","t":"T4","s":89.25,"e":0,"x":"Jardin"},{"i":"9e67aad7401b","t":"T4","s":89.25,"e":0,"x":"Jardin"},{"i":"ac16977393cd","t":"T4","s":89.25,"e":0,"x":"Jardin"},{"i":"c9bf8b70bd5f","t":"T4","s":89.25,"e":0,"x":"Jardin"},{"i":"d0f87be68318","t":"T4","s":89.25,"e":0,"x":"Jardin"},{"i":"15dedd25dd20","t":"T4","s":89.26,"e":0,"x":"Jardin"},{"i":"bd137a2a6e9a","t":"T4","s":89.26,"e":0,"x":"Jardin"},{"i":"bd4f0cc4e650","t":"T4","s":89.26,"e":0,"x":"Jardin"},{"i":"f1f5b95f7325","t":"T4","s":89.26,"e":0,"x":"Jardin"},{"i":"30f89c4c2a6c","t":"T4","s":91.48,"e":0,"x":"Jardin"},{"i":"3d7312f7ae3d","t":"T4","s":94.77,"e":0,"x":"Jardin"},{"i":"5cb62b4090ca","t":"T4","s":94.77,"e":0,"x":"Jardin"},{"i":"741428ec2059","t":"T4","s":94.77,"e":0,"x":"Jardin"},{"i":"c0d87768b487","t":"T4","s":94.77,"e":0,"x":"Jardin"},{"i":"cb71b462a618","t":"T4","s":94.77,"e":0,"x":"Jardin"},{"i":"f494abd30ac9","t":"T4","s":94.77,"e":0,"x":"Jardin"},{"i":"6e1558207415","t":"T5+","s":89.75,"e":0,"x":"Jardin"},{"i":"a1a735749056","t":"T5+","s":89.75,"e":0,"x":"Jardin"},{"i":"b734dc39558d","t":"T5+","s":89.75,"e":0,"x":"Jardin"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=15c28fcdee" defer></script>
+<script src="/neuf/programme.js?v=94749ba394" defer></script>
 
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};

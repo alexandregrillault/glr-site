@@ -105,9 +105,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -270,6 +271,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -378,7 +381,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"le-chesnay-rocquencourt","villes":[{"v":"Le Chesnay-Rocquencourt","s":"le-chesnay-rocquencourt","cp":"78150","i":"78158","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.103,48.8431],[2.1051,48.8424],[2.1053,48.8419],[2.1058,48.8417],[2.1064,48.8416],[2.1079,48.8414],[2.1095,48.8412],[2.1099,48.8412],[2.1099,48.841],[2.1106,48.8409],[2.1107,48.8409],[2.1109,48.8404],[2.1119,48.8408],[2.1143,48.8404],[2.114,48.8404],[2.1167,48.8398],[2.1167,48.8398],[2.1174,48.8395],[2.1196,48.8387],[2.1189,48.8368],[2.1207,48.8363],[2.1206,48.8361],[2.1227,48.8358],[2.1233,48.8357],[2.1258,48.8352],[2.1263,48.8352],[2.1268,48.8351],[2.1288,48.8351],[2.1297,48.8352],[2.131,48.8353],[2.1316,48.8353],[2.1334,48.8355],[2.1338,48.8355],[2.1352,48.8357],[2.1376,48.836],[2.1383,48.8361],[2.14,48.8363],[2.1431,48.8368],[2.1438,48.8369],[2.1444,48.8369],[2.1452,48.8369],[2.1459,48.8369],[2.1459,48.8362],[2.146,48.8359],[2.147,48.8328],[2.1473,48.8319],[2.1474,48.8317],[2.1479,48.8302],[2.1485,48.8285],[2.1481,48.8285],[2.1476,48.8283],[2.147,48.8282],[2.1465,48.828],[2.1459,48.8276],[2.1454,48.8274],[2.145,48.8272],[2.1445,48.827],[2.1444,48.8269],[2.143,48.8257],[2.1428,48.8255],[2.1424,48.8254],[2.1402,48.8242],[2.1397,48.8236],[2.1396,48.8234],[2.1386,48.822],[2.138,48.8211],[2.1379,48.821],[2.1379,48.8191],[2.1378,48.819],[2.1377,48.8189],[2.1372,48.8187],[2.1369,48.8185],[2.1368,48.8183],[2.1364,48.816],[2.1363,48.8151],[2.1361,48.814],[2.1324,48.8146],[2.1317,48.8147],[2.131,48.8148],[2.1294,48.815],[2.1295,48.8153],[2.1293,48.8155],[2.1295,48.8158],[2.1291,48.8159],[2.129,48.8156],[2.1287,48.8156],[2.1285,48.8155],[2.1284,48.8156],[2.1251,48.8168],[2.1249,48.8168],[2.1247,48.8169],[2.1211,48.8182],[2.1178,48.8194],[2.1158,48.8201],[2.115,48.8204],[2.1141,48.8206],[2.1143,48.8207],[2.1145,48.8208],[2.1141,48.8225],[2.114,48.8228],[2.114,48.8231],[2.1132,48.826],[2.1131,48.8267],[2.1126,48.8286],[2.111,48.8281],[2.1083,48.8272],[2.1073,48.8269],[2.106,48.8261],[2.1058,48.826],[2.1055,48.8258],[2.1046,48.8245],[2.1039,48.8241],[2.1034,48.8239],[2.1025,48.8234],[2.1023,48.8235],[2.096,48.8253],[2.0957,48.8254],[2.0957,48.8254],[2.0927,48.8236],[2.0925,48.8235],[2.0907,48.8252],[2.0895,48.8264],[2.0892,48.8265],[2.0897,48.8272],[2.0901,48.8277],[2.0902,48.8279],[2.0906,48.8283],[2.0907,48.8284],[2.0921,48.8302],[2.0929,48.8312],[2.094,48.8325],[2.0949,48.8336],[2.0957,48.8346],[2.0964,48.8355],[2.0964,48.8357],[2.0963,48.8357],[2.0953,48.836],[2.0949,48.8362],[2.0951,48.8364],[2.0953,48.8367],[2.0956,48.8368],[2.0957,48.837],[2.0958,48.8373],[2.0959,48.8377],[2.0965,48.8383],[2.0968,48.8386],[2.0984,48.8386],[2.0995,48.8385],[2.1013,48.8383],[2.1014,48.8383],[2.1015,48.8389],[2.1018,48.8397],[2.1019,48.84],[2.1027,48.8418],[2.1026,48.8419],[2.103,48.8431]]]}},"r":"2 programmes · 12 logements disponibles","p":[{"n":"Ecrin De Ville","s":"ecrin-de-ville","k":false,"a":48.823,"o":2.126,"z":false,"u":"le-chesnay-rocquencourt/ecrin-de-ville/","l":"Livré","d":"5 logements disponibles"},{"n":"Le Clos de la Chênaie","s":"le-clos-de-la-chenaie","k":false,"a":48.83,"o":2.129,"z":false,"u":"le-chesnay-rocquencourt/le-clos-de-la-chenaie/","l":"3e trimestre 2027","d":"7 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script type="module" src="/neuf/carte.js?v=94749ba394"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

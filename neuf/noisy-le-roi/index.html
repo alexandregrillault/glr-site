@@ -105,9 +105,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -270,6 +271,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -371,7 +374,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"noisy-le-roi","villes":[{"v":"Noisy-le-Roi","s":"noisy-le-roi","cp":"78590","i":"78455","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.0594,48.8294],[2.058,48.8297],[2.0549,48.8303],[2.0536,48.8306],[2.0528,48.8307],[2.0527,48.8307],[2.0539,48.8318],[2.0531,48.8321],[2.0533,48.8324],[2.053,48.8324],[2.0528,48.8325],[2.0527,48.8326],[2.0524,48.8328],[2.0522,48.8331],[2.0523,48.8334],[2.0525,48.8338],[2.0529,48.8345],[2.0526,48.8346],[2.0533,48.836],[2.0534,48.8363],[2.0534,48.8369],[2.0529,48.837],[2.0499,48.8381],[2.0475,48.8393],[2.0472,48.839],[2.0452,48.8401],[2.0446,48.8397],[2.0434,48.8404],[2.0439,48.8407],[2.0419,48.842],[2.0417,48.843],[2.0412,48.8438],[2.0411,48.8441],[2.0403,48.8441],[2.0397,48.8439],[2.0393,48.8439],[2.0386,48.8437],[2.0379,48.8434],[2.037,48.8441],[2.0352,48.8446],[2.0363,48.8465],[2.0376,48.8483],[2.0382,48.849],[2.0386,48.8496],[2.0389,48.85],[2.0393,48.8503],[2.04,48.851],[2.0406,48.8515],[2.0407,48.8516],[2.0407,48.8517],[2.0402,48.8522],[2.0409,48.8525],[2.0414,48.8528],[2.0415,48.8529],[2.0417,48.8536],[2.0419,48.8552],[2.042,48.8554],[2.0419,48.856],[2.0421,48.8566],[2.0429,48.8578],[2.0409,48.8585],[2.0417,48.8595],[2.0421,48.8596],[2.0418,48.86],[2.0413,48.8603],[2.0409,48.8605],[2.0416,48.8618],[2.0417,48.8618],[2.0423,48.8616],[2.043,48.8615],[2.0436,48.8614],[2.0437,48.8621],[2.0438,48.8624],[2.0438,48.8638],[2.0449,48.8632],[2.0454,48.8629],[2.0468,48.8622],[2.0474,48.8618],[2.0482,48.8614],[2.0489,48.861],[2.0496,48.8607],[2.0503,48.8603],[2.0507,48.8601],[2.0514,48.8596],[2.0524,48.8592],[2.0527,48.859],[2.0543,48.8581],[2.0553,48.8576],[2.0568,48.8567],[2.0583,48.8559],[2.0592,48.8554],[2.0601,48.8549],[2.0603,48.8548],[2.061,48.8548],[2.0646,48.8547],[2.0696,48.8546],[2.0689,48.8519],[2.0688,48.8518],[2.0676,48.8473],[2.0671,48.8456],[2.0672,48.8455],[2.0675,48.8455],[2.0675,48.8454],[2.0674,48.8449],[2.0686,48.8449],[2.0687,48.8448],[2.0693,48.8448],[2.0701,48.8447],[2.071,48.8446],[2.0717,48.8445],[2.0732,48.8444],[2.0731,48.8442],[2.0732,48.844],[2.0722,48.8432],[2.072,48.8429],[2.0715,48.8416],[2.0717,48.8416],[2.0727,48.8416],[2.0726,48.8408],[2.0728,48.8405],[2.0727,48.8389],[2.0726,48.8388],[2.0724,48.8387],[2.0725,48.8385],[2.0722,48.8381],[2.0722,48.837],[2.0715,48.8371],[2.071,48.8371],[2.0705,48.8362],[2.07,48.8363],[2.0679,48.8368],[2.0675,48.8361],[2.0675,48.8361],[2.067,48.835],[2.0668,48.8351],[2.0666,48.8347],[2.0656,48.835],[2.0652,48.8344],[2.0646,48.8332],[2.0645,48.8328],[2.0643,48.8321],[2.0639,48.8321],[2.0629,48.8321],[2.0619,48.8321],[2.0609,48.832],[2.0594,48.832],[2.0593,48.832],[2.0589,48.8306],[2.0588,48.8304],[2.0593,48.8303],[2.0597,48.8302],[2.0594,48.8294]]]}},"r":"1 programme · 51 logements disponibles","p":[{"n":"Plaine Horizon","s":"plaine-horizon","k":false,"a":48.842,"o":2.059,"z":false,"u":"noisy-le-roi/plaine-horizon/","l":"4e trimestre 2028","d":"51 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script type="module" src="/neuf/carte.js?v=94749ba394"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

@@ -104,9 +104,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -269,6 +270,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -354,6 +357,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
+   
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button></div>
@@ -418,8 +422,8 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"5809bceb2758","t":"T2","s":39.43,"e":0,"x":""},{"i":"a18d5f44f7f0","t":"T2","s":40.62,"e":3,"x":""},{"i":"0ae0c0809a5e","t":"T2","s":42.47,"e":4,"x":""},{"i":"3b63f0085bf7","t":"T2","s":42.47,"e":3,"x":"Terrasse"},{"i":"ed754663fd16","t":"T2","s":43.01,"e":3,"x":""},{"i":"30c029206b16","t":"T2","s":44.81,"e":5,"x":"Terrasse"},{"i":"bee5e206a11f","t":"T2","s":44.81,"e":6,"x":"Balcon"},{"i":"913abbe69dc5","t":"T2","s":45.95,"e":0,"x":"Terrasse"},{"i":"2f98310ceb2e","t":"T2","s":46.23,"e":0,"x":"Terrasse"},{"i":"8fa7b05cb979","t":"T2","s":57.88,"e":3,"x":"Terrasse"},{"i":"9794b22e9e2d","t":"T3","s":54.46,"e":5,"x":"Terrasse"},{"i":"bf6ce81bd868","t":"T3","s":60.56,"e":6,"x":"Balcon"},{"i":"b14e961eb8a7","t":"T3","s":62.1,"e":0,"x":""},{"i":"b5f707b59021","t":"T3","s":62.24,"e":0,"x":""},{"i":"185f8e26c280","t":"T3","s":62.34,"e":3,"x":""},{"i":"87f8951b871c","t":"T3","s":62.99,"e":4,"x":"Terrasse"},{"i":"9a70694d9a1b","t":"T3","s":63.32,"e":0,"x":""},{"i":"5d6c800c7fc8","t":"T3","s":65.29,"e":5,"x":""},{"i":"ee3b32820d5d","t":"T3","s":65.66,"e":4,"x":"Terrasse"},{"i":"cf3f31acd6bb","t":"T3","s":65.69,"e":0,"x":""},{"i":"bc06d312120a","t":"T4","s":71.26,"e":6,"x":"Terrasse"},{"i":"77f460bc79a1","t":"T4","s":75.45,"e":4,"x":"Terrasse"},{"i":"5181e825bc4e","t":"T4","s":76.95,"e":2,"x":""},{"i":"a975eaa5298f","t":"T4","s":76.95,"e":4,"x":""},{"i":"acab75e26f46","t":"T4","s":76.95,"e":3,"x":""},{"i":"9e713e9bcf57","t":"T4","s":84.29,"e":4,"x":""},{"i":"6872f636a101","t":"T4","s":88.51,"e":null,"x":"Terrasse"},{"i":"bcf9395b08ef","t":"T4","s":88.59,"e":null,"x":"Terrasse"},{"i":"b4ff54a188b6","t":"T4","s":88.62,"e":null,"x":"Terrasse"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=15c28fcdee" defer></script>
-<script src="/neuf/visite3d.js?v=15c28fcdee" defer></script>
+<script src="/neuf/programme.js?v=94749ba394" defer></script>
+<script src="/neuf/visite3d.js?v=94749ba394" defer></script>
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};
 var poser=function(j){j=j||{};var a=j.prix||{},b=j.prix_tva_reduite||{};window.GLR_PRIX=a;window.GLR_PRIX_R=b;var deux=false;

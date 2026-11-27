@@ -105,9 +105,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -270,6 +271,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -426,7 +429,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"paris-18e","villes":[{"v":"Paris 18e","s":"paris-18e","cp":"75018","i":"75118","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.352,48.9015],[2.3552,48.9015],[2.3656,48.9018],[2.368,48.9018],[2.3691,48.9018],[2.3703,48.9018],[2.3702,48.9016],[2.3702,48.9011],[2.3703,48.9009],[2.3703,48.9006],[2.3703,48.9003],[2.3703,48.8997],[2.3703,48.8989],[2.3703,48.8985],[2.3704,48.8974],[2.3704,48.8969],[2.3705,48.8966],[2.3712,48.896],[2.3713,48.8958],[2.3718,48.8954],[2.3706,48.8947],[2.3705,48.8946],[2.3702,48.8942],[2.37,48.894],[2.3699,48.8936],[2.3695,48.8929],[2.3687,48.891],[2.3681,48.8897],[2.368,48.8896],[2.3676,48.8886],[2.3673,48.8879],[2.3671,48.8875],[2.3668,48.8866],[2.3666,48.8864],[2.3658,48.8855],[2.3648,48.8845],[2.3647,48.8844],[2.3643,48.8844],[2.3625,48.8844],[2.3599,48.8844],[2.359,48.8844],[2.3584,48.8844],[2.3563,48.8842],[2.3534,48.884],[2.3511,48.8838],[2.3498,48.8838],[2.3495,48.8837],[2.3472,48.8835],[2.3469,48.8834],[2.3429,48.8826],[2.3398,48.882],[2.3374,48.8824],[2.3326,48.8838],[2.3309,48.8842],[2.3295,48.8846],[2.3281,48.8837],[2.3279,48.8836],[2.3274,48.8835],[2.3273,48.8839],[2.3266,48.8854],[2.326,48.8866],[2.3259,48.8867],[2.3256,48.8875],[2.3256,48.8875],[2.3259,48.8884],[2.3263,48.8896],[2.3266,48.8904],[2.327,48.8916],[2.3283,48.8954],[2.3285,48.8962],[2.3291,48.8981],[2.3295,48.899],[2.3299,48.9002],[2.3301,48.901],[2.332,48.9011],[2.3379,48.9012],[2.3398,48.9012],[2.345,48.9013],[2.352,48.9015]]]}},"r":"6 programmes · 82 logements disponibles","p":[{"n":"Atelier Versigny","s":"atelier-versigny","k":false,"a":48.895,"o":2.344,"z":false,"u":"paris-18e/atelier-versigny/","l":"Livré","d":"1 logement disponible"},{"n":"Les Terrasses Championnet","s":"les-terrasses-championnet","k":false,"a":48.895,"o":2.351,"z":false,"u":"paris-18e/les-terrasses-championnet/","l":"1er trimestre 2028","d":"13 logements disponibles"},{"n":"Rive de Parc","s":"rive-de-parc","k":false,"a":48.896,"o":2.363,"z":false,"u":"paris-18e/rive-de-parc/","l":"2e trimestre 2028","d":"28 logements disponibles"},{"n":"Esprit Montmartre","s":"esprit-montmartre","k":false,"a":48.886,"o":2.346,"z":false,"u":"paris-18e/esprit-montmartre/","l":"4e trimestre 2028","d":"15 logements disponibles"},{"n":"Ateliers Dollfus","s":"ateliers-dollfus","k":false,"a":48.897,"o":2.333,"z":false,"u":"paris-18e/ateliers-dollfus/","l":"3e trimestre 2029","d":"22 logements disponibles"},{"n":"Impulsion","s":"impulsion","k":false,"a":48.895,"o":2.358,"z":false,"u":"paris-18e/impulsion/","l":"","d":"3 logements disponibles"},{"n":"Les Penthouses Championnet","s":"les-penthouses-championnet","k":true,"a":48.859,"o":2.347,"z":true,"u":"paris-18e/les-penthouses-championnet/","l":"","d":"Grille sur demande"},{"n":"Paris 18","s":"paris-18","k":true,"a":48.859,"o":2.347,"z":true,"u":"paris-18e/paris-18/","l":"","d":"Grille sur demande"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script type="module" src="/neuf/carte.js?v=94749ba394"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

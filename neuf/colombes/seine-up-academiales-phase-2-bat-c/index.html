@@ -104,9 +104,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -269,6 +270,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -354,6 +357,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
+   
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T1">T1</button></div>
@@ -404,7 +408,7 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"04967021a787","t":"T1","s":22.5,"e":5,"x":""},{"i":"35d8dcd8b203","t":"T1","s":22.5,"e":4,"x":""},{"i":"029209b96da7","t":"T1","s":23.5,"e":5,"x":""},{"i":"137fe2f2ec33","t":"T1","s":23.5,"e":6,"x":""},{"i":"3b34b7143139","t":"T1","s":23.5,"e":6,"x":""},{"i":"4a9e4cd24e73","t":"T1","s":23.5,"e":5,"x":""},{"i":"4d5cefad6a38","t":"T1","s":23.5,"e":4,"x":""},{"i":"5cf1341005db","t":"T1","s":23.5,"e":5,"x":""},{"i":"61b37291539f","t":"T1","s":23.5,"e":4,"x":""},{"i":"643496165287","t":"T1","s":23.5,"e":6,"x":""},{"i":"6a4692b8eb54","t":"T1","s":23.5,"e":4,"x":""},{"i":"7fcb8840b601","t":"T1","s":23.5,"e":5,"x":""},{"i":"808c88f725c2","t":"T1","s":23.5,"e":5,"x":""},{"i":"863e230e7e07","t":"T1","s":23.5,"e":5,"x":""},{"i":"8b05819ea2e2","t":"T1","s":23.5,"e":6,"x":""},{"i":"8e28dd120089","t":"T1","s":23.5,"e":4,"x":""},{"i":"8f7791c603bc","t":"T1","s":23.5,"e":6,"x":""},{"i":"ba420eca6a4f","t":"T1","s":23.5,"e":5,"x":""},{"i":"c9937abdbe10","t":"T1","s":23.5,"e":6,"x":""},{"i":"cbf2c0a06c60","t":"T1","s":23.5,"e":4,"x":""},{"i":"cd9af490b4f7","t":"T1","s":23.5,"e":4,"x":""},{"i":"cfb7792c40c8","t":"T1","s":23.5,"e":6,"x":""},{"i":"d2ef47fe6648","t":"T1","s":23.5,"e":6,"x":""},{"i":"d81a90290208","t":"T1","s":23.5,"e":4,"x":""},{"i":"d826d8fc8ae2","t":"T1","s":23.5,"e":6,"x":""},{"i":"e1064ea76cc6","t":"T1","s":23.5,"e":4,"x":""},{"i":"f4c7a3444216","t":"T1","s":23.5,"e":5,"x":""},{"i":"000f8a0f41a2","t":"T1","s":25,"e":4,"x":""},{"i":"b05940eceb53","t":"T1","s":25,"e":6,"x":""},{"i":"bea1f68a663a","t":"T1","s":25,"e":5,"x":""}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=15c28fcdee" defer></script>
+<script src="/neuf/programme.js?v=94749ba394" defer></script>
 
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};

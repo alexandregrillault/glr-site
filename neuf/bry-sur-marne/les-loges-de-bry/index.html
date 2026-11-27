@@ -104,9 +104,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -269,6 +270,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -354,6 +357,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
+   
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T1">T1</button></div>
@@ -433,8 +437,8 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"1a6e851e55a6","t":"T1","s":20.49,"e":2,"x":""},{"i":"39de5ddc7f2d","t":"T1","s":20.49,"e":4,"x":""},{"i":"44d46c75e442","t":"T1","s":20.49,"e":2,"x":""},{"i":"56b194651c9d","t":"T1","s":20.49,"e":4,"x":""},{"i":"6e986a650e32","t":"T1","s":20.49,"e":2,"x":""},{"i":"9b4ba27702e7","t":"T1","s":20.49,"e":2,"x":""},{"i":"b10b56135386","t":"T1","s":20.49,"e":1,"x":""},{"i":"15f6e17d7447","t":"T1","s":20.61,"e":2,"x":""},{"i":"7b98a89c0d16","t":"T1","s":20.61,"e":2,"x":""},{"i":"da1fb7cf9a22","t":"T1","s":20.61,"e":4,"x":""},{"i":"0d47f7fd5143","t":"T1","s":20.86,"e":1,"x":""},{"i":"1dcab530354b","t":"T1","s":20.86,"e":2,"x":""},{"i":"2ab77d4c4662","t":"T1","s":20.86,"e":4,"x":""},{"i":"341f56ea36ec","t":"T1","s":20.86,"e":2,"x":""},{"i":"40f3c59fe786","t":"T1","s":20.86,"e":2,"x":""},{"i":"6ef10a2956cb","t":"T1","s":20.86,"e":4,"x":""},{"i":"728565d3b8fe","t":"T1","s":20.86,"e":4,"x":""},{"i":"8ab82f7fad80","t":"T1","s":20.86,"e":1,"x":""},{"i":"8afeb394d5c7","t":"T1","s":20.86,"e":1,"x":""},{"i":"cbcf9208e244","t":"T1","s":20.86,"e":2,"x":""},{"i":"ccd5d8480c5c","t":"T1","s":20.86,"e":1,"x":""},{"i":"f7756355bac6","t":"T1","s":20.86,"e":2,"x":""},{"i":"fadedc18f0cf","t":"T1","s":20.86,"e":2,"x":""},{"i":"01f8e9c9e58e","t":"T1","s":21.06,"e":2,"x":""},{"i":"1b22b469264d","t":"T1","s":21.06,"e":2,"x":""},{"i":"1dbc0d654e7d","t":"T1","s":21.06,"e":2,"x":""},{"i":"3ca9ece71912","t":"T1","s":21.06,"e":2,"x":""},{"i":"47c248e1514e","t":"T1","s":21.06,"e":2,"x":""},{"i":"66019abb018d","t":"T1","s":21.06,"e":2,"x":""},{"i":"84956834f24a","t":"T1","s":21.06,"e":2,"x":""},{"i":"971b0a077c55","t":"T1","s":21.06,"e":1,"x":""},{"i":"9a064c43c498","t":"T1","s":21.06,"e":2,"x":""},{"i":"a86a2388dc57","t":"T1","s":21.06,"e":1,"x":""},{"i":"ae55503653e8","t":"T1","s":21.06,"e":2,"x":""},{"i":"b6a1eba96f55","t":"T1","s":21.06,"e":2,"x":""},{"i":"bd3da54b7cc1","t":"T1","s":21.06,"e":4,"x":""},{"i":"bfd2031d23ef","t":"T1","s":21.06,"e":2,"x":""},{"i":"c45fe3a7068c","t":"T1","s":21.06,"e":2,"x":""},{"i":"c5df0b677596","t":"T1","s":21.06,"e":2,"x":""},{"i":"cd1bc90bd2e8","t":"T1","s":21.06,"e":2,"x":""},{"i":"d8dbecda94e0","t":"T1","s":21.06,"e":1,"x":""},{"i":"ddc7d31f52b9","t":"T1","s":21.06,"e":1,"x":""},{"i":"ddd9c39bf4e0","t":"T1","s":21.06,"e":2,"x":""},{"i":"de5b39ba5b64","t":"T1","s":21.06,"e":2,"x":""},{"i":"e4ca355a49b4","t":"T1","s":21.06,"e":2,"x":""},{"i":"e8b76df6def6","t":"T1","s":21.06,"e":1,"x":""},{"i":"ed8ea3acba95","t":"T1","s":21.06,"e":2,"x":""},{"i":"354178d22123","t":"T1","s":24.53,"e":1,"x":""},{"i":"e3b8f9d381a4","t":"T1","s":24.53,"e":2,"x":""},{"i":"ecbba3ff2ca8","t":"T1","s":26.71,"e":1,"x":""}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=15c28fcdee" defer></script>
-<script src="/neuf/visite3d.js?v=15c28fcdee" defer></script>
+<script src="/neuf/programme.js?v=94749ba394" defer></script>
+<script src="/neuf/visite3d.js?v=94749ba394" defer></script>
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};
 var poser=function(j){j=j||{};var a=j.prix||{},b=j.prix_tva_reduite||{};window.GLR_PRIX=a;window.GLR_PRIX_R=b;var deux=false;

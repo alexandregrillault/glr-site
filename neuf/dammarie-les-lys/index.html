@@ -105,9 +105,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -270,6 +271,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -371,7 +374,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"dammarie-les-lys","villes":[{"v":"Dammarie-les-Lys","s":"dammarie-les-lys","cp":"77190","i":"77152","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.6532,48.5237],[2.6536,48.5225],[2.654,48.5214],[2.654,48.5211],[2.6546,48.5193],[2.6548,48.5187],[2.655,48.5178],[2.6549,48.5179],[2.6534,48.5179],[2.651,48.518],[2.651,48.5176],[2.6511,48.5168],[2.6513,48.515],[2.6505,48.515],[2.6501,48.5122],[2.6498,48.5102],[2.6497,48.5096],[2.6497,48.5089],[2.6496,48.5086],[2.6496,48.508],[2.6493,48.506],[2.649,48.5056],[2.6486,48.505],[2.6483,48.5044],[2.6479,48.5036],[2.6477,48.5035],[2.6475,48.5031],[2.6473,48.5028],[2.6471,48.5023],[2.647,48.5021],[2.6466,48.5015],[2.6462,48.5007],[2.6458,48.5001],[2.6458,48.5001],[2.6448,48.4989],[2.6447,48.4987],[2.6442,48.4979],[2.6437,48.4975],[2.6432,48.4969],[2.6422,48.4959],[2.642,48.4956],[2.6415,48.4952],[2.6413,48.495],[2.6414,48.495],[2.641,48.4947],[2.6407,48.4947],[2.6398,48.4951],[2.6391,48.4953],[2.6387,48.4955],[2.6385,48.4955],[2.6378,48.4958],[2.6349,48.4969],[2.634,48.4972],[2.634,48.4971],[2.6329,48.4975],[2.6316,48.498],[2.6296,48.4987],[2.6249,48.5004],[2.6244,48.5006],[2.6197,48.5023],[2.6152,48.504],[2.6151,48.504],[2.6125,48.505],[2.6121,48.5051],[2.6115,48.5052],[2.6112,48.5052],[2.6107,48.5052],[2.6095,48.5052],[2.6087,48.5053],[2.6086,48.5053],[2.6081,48.5053],[2.6078,48.5052],[2.6076,48.5052],[2.6073,48.5053],[2.6071,48.5055],[2.6071,48.5057],[2.607,48.5058],[2.6064,48.5061],[2.6061,48.5062],[2.6058,48.5065],[2.6056,48.5066],[2.6053,48.5071],[2.6051,48.5074],[2.6046,48.5078],[2.6043,48.508],[2.6029,48.5085],[2.6019,48.5088],[2.5992,48.5098],[2.5942,48.5117],[2.5927,48.5122],[2.5905,48.513],[2.588,48.5139],[2.5859,48.5147],[2.5858,48.5148],[2.5859,48.5151],[2.5861,48.5154],[2.5861,48.5157],[2.5861,48.5162],[2.5862,48.5167],[2.5862,48.5169],[2.5861,48.5171],[2.5859,48.5174],[2.5856,48.5175],[2.5852,48.5177],[2.585,48.5178],[2.5848,48.5178],[2.5858,48.5191],[2.5861,48.5189],[2.5868,48.5197],[2.5869,48.5198],[2.5885,48.5206],[2.5901,48.5192],[2.5939,48.5167],[2.5997,48.5159],[2.6007,48.5159],[2.6041,48.5159],[2.6056,48.5161],[2.6092,48.5171],[2.6123,48.5184],[2.615,48.5196],[2.6193,48.5218],[2.6219,48.5235],[2.6246,48.5244],[2.6292,48.5263],[2.632,48.5276],[2.6325,48.5278],[2.6373,48.5302],[2.6399,48.5322],[2.6442,48.5346],[2.6447,48.5341],[2.6448,48.5337],[2.645,48.5322],[2.6465,48.5307],[2.6481,48.5294],[2.6498,48.5279],[2.6498,48.5275],[2.6505,48.527],[2.6516,48.5261],[2.6526,48.5256],[2.6528,48.5254],[2.6529,48.5249],[2.6531,48.5242],[2.6532,48.5237]]]}},"r":"1 programme · 70 logements disponibles","p":[{"n":"Les Allées des Lys","s":"les-allees-des-lys","k":false,"a":48.515,"o":2.62,"z":true,"u":"dammarie-les-lys/les-allees-des-lys/","l":"2e trimestre 2029","d":"70 logements disponibles"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script type="module" src="/neuf/carte.js?v=94749ba394"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

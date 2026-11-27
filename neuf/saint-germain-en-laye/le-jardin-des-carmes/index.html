@@ -104,9 +104,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -269,6 +270,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -354,6 +357,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
+   
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T1">T1</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
@@ -442,8 +446,8 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"6b10905b89c0","t":"T1","s":25.9,"e":2,"x":"Balcon"},{"i":"3aaa28a22f64","t":"T1","s":31.1,"e":0,"x":""},{"i":"395c23201e25","t":"T1","s":31.2,"e":0,"x":"Balcon"},{"i":"4fcfa9b0bc9e","t":"T1","s":41,"e":0,"x":"Terrasse"},{"i":"b936cced3250","t":"T2","s":41.2,"e":2,"x":"Balcon"},{"i":"2e877bbc896a","t":"T2","s":42.1,"e":2,"x":"Balcon"},{"i":"80a8831d13a5","t":"T2","s":42.1,"e":1,"x":"Balcon"},{"i":"24866d9873d2","t":"T2","s":42.6,"e":2,"x":"Balcon"},{"i":"8c53bcef431d","t":"T2","s":43.8,"e":3,"x":"Balcon"},{"i":"4bf32181390b","t":"T2","s":44.1,"e":2,"x":"Balcon"},{"i":"67a305ca93bd","t":"T2","s":44.1,"e":0,"x":"Jardin"},{"i":"c77c3843d5a2","t":"T2","s":44.1,"e":0,"x":"Balcon"},{"i":"5c9858d0fe0b","t":"T2","s":45.1,"e":0,"x":"Balcon"},{"i":"bac2c372f2fb","t":"T2","s":48.5,"e":3,"x":"Balcon"},{"i":"de42cedbb7ae","t":"T2","s":49.4,"e":2,"x":"Balcon"},{"i":"8698a6446504","t":"T2","s":49.8,"e":1,"x":"Balcon"},{"i":"25cb1a3f8083","t":"T2","s":49.9,"e":2,"x":"Balcon"},{"i":"d77f6091cb73","t":"T2","s":56.5,"e":0,"x":"Balcon"},{"i":"0111f83f584b","t":"T3","s":60,"e":3,"x":"Balcon"},{"i":"078d8478a50b","t":"T3","s":60,"e":0,"x":"Balcon"},{"i":"e8fa14278687","t":"T3","s":60.6,"e":2,"x":"Balcon"},{"i":"9eb63e5c0c64","t":"T3","s":61.3,"e":2,"x":"Balcon"},{"i":"1ec9ba2ce671","t":"T3","s":69.1,"e":0,"x":"Balcon"},{"i":"4ff0548f7360","t":"T3","s":69.3,"e":1,"x":"Balcon"},{"i":"a6677474d518","t":"T3","s":71.1,"e":2,"x":"Terrasse"},{"i":"1b69097739af","t":"T3","s":72.3,"e":4,"x":"Terrasse"},{"i":"f3e2461b29ee","t":"T3","s":72.3,"e":2,"x":"Balcon"},{"i":"7c4843e47571","t":"T3","s":75.4,"e":1,"x":"Balcon"},{"i":"fdcabdda3d83","t":"T3","s":78.1,"e":0,"x":"Balcon"},{"i":"71ac5f41b532","t":"T3","s":79.1,"e":3,"x":"Balcon"},{"i":"aaec12bd32b7","t":"T3","s":79.1,"e":2,"x":"Balcon"},{"i":"73e20c19a8d3","t":"T4","s":85.3,"e":2,"x":"Balcon"},{"i":"e7d5d2b0cc7e","t":"T4","s":85.3,"e":1,"x":"Balcon"},{"i":"d48b4fc6c24a","t":"T4","s":89.8,"e":3,"x":"Balcon"},{"i":"1cc8729f0659","t":"T4","s":94.7,"e":0,"x":"Balcon"},{"i":"a04634583274","t":"T4","s":94.7,"e":1,"x":"Balcon"},{"i":"9c26e16087cc","t":"T4","s":97.7,"e":3,"x":"Terrasse"},{"i":"6d4ffa064818","t":"T4","s":107,"e":0,"x":"Jardin"},{"i":"ed4be5f3bde6","t":"T4","s":107,"e":1,"x":"Balcon"},{"i":"e7fd1ba8e22c","t":"T4","s":107.3,"e":2,"x":"Balcon"},{"i":"e494d8c95766","t":"T4","s":121.3,"e":2,"x":"Terrasse"},{"i":"6aa9db7bba52","t":"T5+","s":111.3,"e":3,"x":"Balcon"},{"i":"b783f53538f9","t":"T5+","s":114.1,"e":3,"x":"Terrasse"},{"i":"3635239d9eee","t":"T5+","s":116.7,"e":3,"x":"Terrasse"},{"i":"3be4e36e4a22","t":"T5+","s":123.2,"e":3,"x":"Balcon"},{"i":"069da7e370f1","t":"T5+","s":124.5,"e":4,"x":"Terrasse"},{"i":"475794477003","t":"T5+","s":135.4,"e":1,"x":"Balcon"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=15c28fcdee" defer></script>
-<script src="/neuf/visite3d.js?v=15c28fcdee" defer></script>
+<script src="/neuf/programme.js?v=94749ba394" defer></script>
+<script src="/neuf/visite3d.js?v=94749ba394" defer></script>
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};
 var poser=function(j){j=j||{};var a=j.prix||{},b=j.prix_tva_reduite||{};window.GLR_PRIX=a;window.GLR_PRIX_R=b;var deux=false;

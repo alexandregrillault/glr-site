@@ -104,9 +104,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -269,6 +270,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -354,6 +357,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
+   
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T1">T1</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button></div>
@@ -411,7 +415,7 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"4f7627378374","t":"T1","s":29.57,"e":3,"x":"Extérieur"},{"i":"e0b3b11c187a","t":"T1","s":29.58,"e":1,"x":"Extérieur"},{"i":"d2a9ed028528","t":"T1","s":42.31,"e":0,"x":"Extérieur"},{"i":"bba6f3eec0c2","t":"T2","s":43.3,"e":1,"x":"Extérieur"},{"i":"d067651de457","t":"T2","s":43.3,"e":3,"x":"Extérieur"},{"i":"5e77215599ee","t":"T2","s":44.9,"e":0,"x":"Extérieur"},{"i":"754ab972ba6e","t":"T2","s":45.58,"e":1,"x":"Extérieur"},{"i":"b7abda22ac44","t":"T2","s":45.58,"e":2,"x":"Extérieur"},{"i":"ccc7d91d5ab6","t":"T2","s":45.58,"e":3,"x":"Extérieur"},{"i":"e6b427a40f0c","t":"T2","s":45.6,"e":1,"x":"Extérieur"},{"i":"68304f9af807","t":"T2","s":49.2,"e":3,"x":"Extérieur"},{"i":"de7ad68290df","t":"T2","s":49.2,"e":1,"x":"Extérieur"},{"i":"d8513a140cec","t":"T3","s":60.04,"e":3,"x":"Extérieur"},{"i":"c1dc2a185cde","t":"T3","s":61.85,"e":0,"x":"Extérieur"},{"i":"3304e325dd16","t":"T3","s":64.1,"e":2,"x":"Extérieur"},{"i":"3910e7fb5f41","t":"T3","s":64.1,"e":1,"x":"Extérieur"},{"i":"4d980fce410e","t":"T3","s":64.1,"e":4,"x":"Extérieur"},{"i":"8cfa56b2f373","t":"T3","s":64.1,"e":3,"x":"Extérieur"},{"i":"dfdc467dda24","t":"T3","s":69.29,"e":0,"x":"Extérieur"},{"i":"3078940a3aba","t":"T3","s":69.31,"e":3,"x":"Extérieur"},{"i":"ab02f2be19dc","t":"T3","s":72.9,"e":4,"x":"Extérieur"},{"i":"d27289528565","t":"T3","s":72.9,"e":1,"x":"Extérieur"},{"i":"d2ed4e2aa466","t":"T3","s":72.9,"e":3,"x":"Extérieur"},{"i":"f8465c1751d6","t":"T3","s":72.9,"e":2,"x":"Extérieur"},{"i":"21b2090d1083","t":"T4","s":83.72,"e":2,"x":"Extérieur"},{"i":"4af06193b099","t":"T4","s":83.72,"e":1,"x":"Extérieur"},{"i":"7ad64f1f030c","t":"T4","s":83.72,"e":3,"x":"Extérieur"},{"i":"202ece9595a8","t":"T4","s":86.1,"e":1,"x":"Extérieur"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=15c28fcdee" defer></script>
+<script src="/neuf/programme.js?v=94749ba394" defer></script>
 
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};

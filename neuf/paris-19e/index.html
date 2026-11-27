@@ -105,9 +105,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -270,6 +271,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -406,7 +409,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"paris-19e","villes":[{"v":"Paris 19e","s":"paris-19e","cp":"75019","i":"75119","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.4108,48.8784],[2.4107,48.8784],[2.4099,48.8782],[2.4096,48.8781],[2.4081,48.8776],[2.4075,48.8774],[2.4069,48.8772],[2.4066,48.8771],[2.4062,48.8771],[2.4052,48.8768],[2.4044,48.8765],[2.4036,48.8763],[2.4026,48.876],[2.3992,48.8755],[2.3988,48.8755],[2.3979,48.8755],[2.3976,48.8754],[2.3954,48.8753],[2.3948,48.8753],[2.3935,48.8753],[2.3927,48.8754],[2.3923,48.8755],[2.3913,48.8755],[2.3905,48.8754],[2.3896,48.8753],[2.3889,48.8749],[2.3885,48.8748],[2.3883,48.8747],[2.387,48.8746],[2.3867,48.8746],[2.3863,48.8744],[2.3854,48.8739],[2.3851,48.8738],[2.3848,48.8737],[2.3842,48.8736],[2.3832,48.8735],[2.3827,48.8734],[2.3819,48.8733],[2.3806,48.873],[2.3798,48.8729],[2.3792,48.8727],[2.3776,48.8723],[2.3772,48.8722],[2.3769,48.872],[2.3733,48.8753],[2.3703,48.878],[2.3703,48.8786],[2.3703,48.8805],[2.3702,48.8813],[2.3702,48.882],[2.3702,48.8825],[2.3702,48.8827],[2.3699,48.883],[2.3696,48.8831],[2.3692,48.8834],[2.3688,48.8839],[2.3685,48.8841],[2.3682,48.8841],[2.368,48.8842],[2.3663,48.8843],[2.3647,48.8844],[2.3648,48.8845],[2.3658,48.8855],[2.3666,48.8864],[2.3668,48.8866],[2.3671,48.8875],[2.3673,48.8879],[2.3676,48.8886],[2.368,48.8896],[2.3681,48.8897],[2.3687,48.891],[2.3695,48.8929],[2.3699,48.8936],[2.37,48.894],[2.3702,48.8942],[2.3705,48.8946],[2.3706,48.8947],[2.3718,48.8954],[2.3713,48.8958],[2.3712,48.896],[2.3705,48.8966],[2.3704,48.8969],[2.3704,48.8974],[2.3703,48.8985],[2.3703,48.8989],[2.3703,48.8997],[2.3703,48.9003],[2.3703,48.9006],[2.3703,48.9009],[2.3702,48.9011],[2.3702,48.9016],[2.3703,48.9018],[2.372,48.9019],[2.3836,48.9021],[2.3845,48.9021],[2.3856,48.9019],[2.3882,48.9014],[2.3893,48.9012],[2.3906,48.9009],[2.3908,48.9009],[2.3918,48.9004],[2.3924,48.9],[2.3928,48.8998],[2.3934,48.8994],[2.3955,48.8983],[2.3956,48.8982],[2.3969,48.8959],[2.3976,48.8947],[2.3977,48.8946],[2.3979,48.8939],[2.398,48.8935],[2.3982,48.8926],[2.3989,48.8897],[2.3989,48.8895],[2.3991,48.8885],[2.3993,48.8854],[2.4001,48.8838],[2.4006,48.8834],[2.4015,48.8826],[2.4046,48.8813],[2.4056,48.881],[2.4081,48.8805],[2.4094,48.8803],[2.4107,48.8786],[2.4108,48.8784]]]}},"r":"5 programmes · 18 logements disponibles","p":[{"n":"100 La Villette - Paris","s":"100-la-villette-paris","k":false,"a":48.875,"o":2.368,"z":true,"u":"paris-19e/100-la-villette-paris/","l":"2027","d":"7 logements disponibles"},{"n":"L'intemporel","s":"l-intemporel","k":false,"a":48.876,"o":2.39,"z":false,"u":"paris-19e/l-intemporel/","l":"","d":"7 logements disponibles"},{"n":"Résidence Étudiante Studéa Paris Tessier","s":"residence-etudiante-studea-paris-tessier","k":false,"a":48.896,"o":2.373,"z":false,"u":"paris-19e/residence-etudiante-studea-paris-tessier/","l":"Livré","d":"2 logements disponibles"},{"n":"Fessart - Melingue - Residence Principale","s":"fessart-melingue-residence-principale","k":false,"a":48.877,"o":2.386,"z":false,"u":"paris-19e/fessart-melingue-residence-principale/","l":"","d":"1 logement disponible"},{"n":"Résidence Étudiante Studéa Buttes Chaumont 1","s":"residence-etudiante-studea-buttes-chaumont-1","k":false,"a":48.885,"o":2.384,"z":false,"u":"paris-19e/residence-etudiante-studea-buttes-chaumont-1/","l":"Livré","d":"1 logement disponible"},{"n":"Villa Liberté","s":"villa-liberte","k":true,"a":48.859,"o":2.347,"z":true,"u":"paris-19e/villa-liberte/","l":"","d":"Grille sur demande"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script type="module" src="/neuf/carte.js?v=94749ba394"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

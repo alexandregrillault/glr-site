@@ -105,9 +105,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -270,6 +271,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -385,7 +388,7 @@ footer a{color:var(--discret)}
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 <script type="application/json" id="carte-data">{"ville":"levallois-perret","villes":[{"v":"Levallois-Perret","s":"levallois-perret","cp":"92300","i":"92044","c":{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[2.3038,48.8942],[2.3033,48.8939],[2.3018,48.8932],[2.3006,48.8926],[2.2986,48.8917],[2.2981,48.8914],[2.2973,48.8911],[2.2955,48.8901],[2.295,48.8899],[2.294,48.8897],[2.2929,48.8896],[2.2916,48.8895],[2.2911,48.8893],[2.2905,48.889],[2.2856,48.8866],[2.2845,48.8856],[2.2836,48.8864],[2.2832,48.8869],[2.2816,48.8883],[2.2788,48.8909],[2.2777,48.8921],[2.2777,48.8921],[2.2771,48.8927],[2.2768,48.8929],[2.2738,48.8958],[2.2732,48.8963],[2.2726,48.8969],[2.2716,48.8978],[2.2713,48.8982],[2.2711,48.8984],[2.2723,48.8989],[2.2737,48.8993],[2.2745,48.8996],[2.2755,48.8999],[2.2794,48.9008],[2.2826,48.9016],[2.2834,48.9019],[2.2843,48.9023],[2.2854,48.9028],[2.2862,48.9031],[2.2874,48.9036],[2.2929,48.9005],[2.2939,48.8999],[2.2953,48.8991],[2.2982,48.8975],[2.2993,48.8968],[2.301,48.8958],[2.3038,48.8942]]]}},"r":"2 programmes · 42 logements disponibles","p":[{"n":"Signature Levallois","s":"signature-levallois","k":false,"a":48.891,"o":2.284,"z":false,"u":"levallois-perret/signature-levallois/","l":"1er trimestre 2028","d":"35 logements disponibles"},{"n":"28 Vergniaud","s":"28-vergniaud","k":false,"a":48.889,"o":2.283,"z":false,"u":"levallois-perret/28-vergniaud/","l":"2e trimestre 2028","d":"7 logements disponibles"},{"n":"Écrin Levallois","s":"ecrin-levallois","k":true,"a":48.895,"o":2.287,"z":true,"u":"levallois-perret/ecrin-levallois/","l":"","d":"Grille sur demande"}]}]}</script>
-<script type="module" src="/neuf/carte.js?v=15c28fcdee"></script>
+<script type="module" src="/neuf/carte.js?v=94749ba394"></script>
 <script>
 (function(){var bs=document.querySelectorAll('.filtres button'),cs=document.querySelectorAll('.prog'),v=document.querySelector('.vide');
 bs.forEach(function(b){b.addEventListener('click',function(){var t=b.getAttribute('data-t'),n=0;

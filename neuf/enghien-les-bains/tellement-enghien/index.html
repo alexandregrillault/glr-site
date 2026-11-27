@@ -104,9 +104,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -269,6 +270,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -354,6 +357,7 @@ footer a{color:var(--discret)}
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>
+   
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button><button type="button" aria-pressed="false" data-t="T1">T1</button><button type="button" aria-pressed="false" data-t="T2">T2</button><button type="button" aria-pressed="false" data-t="T3">T3</button><button type="button" aria-pressed="false" data-t="T4">T4</button><button type="button" aria-pressed="false" data-t="T5+">T5+</button></div>
@@ -408,7 +412,7 @@ footer a{color:var(--discret)}
 <footer>GLR Immobilier — logements neufs en Île-de-France · <a href="/">Accueil</a> · <a href="/mentions-legales/">Mentions légales</a></footer>
 <script type="application/json" id="logements-data">[{"i":"adc5c3c02f86","t":"T1","s":37.29,"e":0,"x":"Extérieur"},{"i":"49463b90dbdd","t":"T2","s":51.6,"e":0,"x":"Extérieur"},{"i":"5bcc4e2d1ff5","t":"T3","s":61.06,"e":2,"x":"Extérieur"},{"i":"b6a563b9f035","t":"T3","s":61.06,"e":3,"x":"Extérieur"},{"i":"967aed56bbfc","t":"T3","s":62.29,"e":1,"x":"Extérieur"},{"i":"9c150397563a","t":"T3","s":62.29,"e":2,"x":"Extérieur"},{"i":"1166a60a777e","t":"T3","s":62.37,"e":1,"x":"Extérieur"},{"i":"48c1efb9eee4","t":"T3","s":62.37,"e":2,"x":"Extérieur"},{"i":"057f411dd1f4","t":"T3","s":63.52,"e":2,"x":"Extérieur"},{"i":"87961fec4ba9","t":"T3","s":64.41,"e":1,"x":"Extérieur"},{"i":"ccb493c9566d","t":"T3","s":64.41,"e":2,"x":"Extérieur"},{"i":"ddb9245571a2","t":"T3","s":64.44,"e":1,"x":"Extérieur"},{"i":"ff8e213f8f53","t":"T3","s":64.66,"e":3,"x":"Extérieur"},{"i":"79c1e0c3fb71","t":"T3","s":67,"e":1,"x":"Extérieur"},{"i":"1b1df5e5932e","t":"T3","s":68.25,"e":3,"x":"Extérieur"},{"i":"35daa7805aa2","t":"T4","s":87.29,"e":3,"x":"Extérieur"},{"i":"114576c646e3","t":"T4","s":89.96,"e":1,"x":"Extérieur"},{"i":"1497c29632e5","t":"T4","s":90.16,"e":0,"x":"Extérieur"},{"i":"9a55831f4710","t":"T4","s":90.27,"e":1,"x":"Extérieur"},{"i":"a51cb722674d","t":"T4","s":91.12,"e":1,"x":"Extérieur"},{"i":"60dc0dde61b6","t":"T5+","s":102.09,"e":2,"x":"Extérieur"},{"i":"3d04a5ec090d","t":"T5+","s":105.88,"e":1,"x":"Extérieur"}]</script>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<script src="/neuf/programme.js?v=15c28fcdee" defer></script>
+<script src="/neuf/programme.js?v=94749ba394" defer></script>
 
 <script>
 (function(){var cs=document.querySelectorAll('td.prix-lot'),eu=function(n){return Math.round(n).toLocaleString('fr-FR')+' €'};
