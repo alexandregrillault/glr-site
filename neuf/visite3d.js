@@ -270,6 +270,8 @@
   });
   document.addEventListener('click', function (ev) {
     var t = ev.target.closest ? ev.target : null; if (!t) return;
+    var zi = t.closest('.planbox img');
+    if (zi && zi.getAttribute('src')) { ev.preventDefault(); try { window.open(zi.getAttribute('src'), '_blank'); } catch (e) {} return; } // un toucher sur le plan l'ouvre en grand (pincer-zoom du navigateur)
     var b = t.closest('[data-masse]');
     if (b) { ev.preventDefault(); if (b.getAttribute('data-masse') === 'masse') ouvrirMasse(); else fermerMasse(); return; }
     b = t.closest('[data-3d]');

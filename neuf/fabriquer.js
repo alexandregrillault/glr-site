@@ -144,9 +144,10 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
 .onglets-masse{padding:0 0 10px}
-.immeuble.masse-on>.vue:not(.vue-masse){display:none}
-.immeuble>.vue.vue-masse{display:none;margin:0}
-.immeuble.masse-on>.vue.vue-masse{display:block}
+.immeuble.masse-on .colonne-imm>.vue:not(.vue-masse){display:none}
+.colonne-imm>.vue.vue-masse{display:none;margin:0}
+.immeuble.masse-on .colonne-imm>.vue.vue-masse{display:block}
+.planbox img{cursor:zoom-in}
 .vue-masse .volet3d{margin:0}
 .volet3d iframe{height:clamp(480px,62vh,560px)}
 @media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
@@ -309,6 +310,8 @@ tr.vise td{background:var(--teinte)}
 @media (min-width:960px){
   .immeuble{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 24px;align-items:start}
   .immeuble .vue{position:sticky;top:10px}
+  .immeuble .colonne-imm{position:sticky;top:10px}
+  .immeuble .colonne-imm .vue{position:static}
   .immeuble .listes{margin-top:0}
 }
 .vues{display:flex;flex-wrap:wrap;gap:6px;margin:.5rem 0 .6rem}
@@ -566,7 +569,7 @@ function pageProgramme(d, p) {
     ${p.gare ? `<div class="repere-cle"><b>${p.gare_minutes_a_pied ? p.gare_minutes_a_pied + ' min' : 'À côté'}</b><span>à pied ${esc(deGare(p.gare))}</span></div>` : ''}
   </div>
   ${typos.length ? `<section class="immeuble" id="immeuble">
-   ${p.pm === true ? `<div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">${p.visite_3d ? 'Immeuble 3D' : 'Maquette'}</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
+   ${p.pm === true ? `<div class="colonne-imm"><div class="onglets3d onglets-masse"><button type="button" data-masse="vue" aria-pressed="true">${p.visite_3d ? 'Immeuble 3D' : 'Maquette'}</button><button type="button" data-masse="masse" aria-pressed="false">Plan de masse</button></div>
    <div class="vue vue-masse"><div class="immeuble3d volet3d"><p class="etat3d" hidden></p><iframe title="Plan de masse de ${esc(p.nom)}" allow="fullscreen"></iframe><div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan de masse"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan de masse</a></div></div></div>` : ''}
    ${p.visite_3d ? `<div class="vue vue3d">
     ${zoneDocs()}
@@ -601,6 +604,7 @@ function pageProgramme(d, p) {
     <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
     <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>`}
+   ${p.pm === true ? '</div>' : ''}
    <div class="listes">
     <h2 class="titre-listes">Les logements disponibles</h2>
     <div class="filtres" role="group" aria-label="Montrer une taille de logement"><button type="button" aria-pressed="true" data-t="">Tous</button>${typos.map(t => `<button type="button" aria-pressed="false" data-t="${esc(t)}">${esc(t)}</button>`).join('')}</div>
