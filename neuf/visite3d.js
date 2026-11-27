@@ -112,8 +112,8 @@
   // ---- Volet sous la ligne d'un logement ----
   function creerVolet(nbCol) {
     var tr = document.createElement('tr'); tr.className = 'volet';
-    tr.innerHTML = '<td colspan="' + nbCol + '"><div class="immeuble3d volet3d"><div class="volet-barre"><div class="onglets3d" hidden><button type="button" data-onglet="plan" aria-pressed="false">Plan</button><button type="button" data-onglet="visite" aria-pressed="false">Visite 3D</button></div><button type="button" class="ferme3d">Fermer</button></div>'
-      + '<p class="etat3d" hidden></p><iframe title="Visite 3D du logement" allow="fullscreen"></iframe>'
+    tr.innerHTML = '<td colspan="' + nbCol + '"><div class="immeuble3d volet3d"><div class="volet-barre"><div class="onglets3d" hidden><button type="button" data-onglet="plan" aria-pressed="false">Plan</button><button type="button" data-onglet="visite" aria-pressed="false">Plan 3D</button></div><button type="button" class="ferme3d">Fermer</button></div>'
+      + '<p class="etat3d" hidden></p><iframe title="Plan 3D du logement" allow="fullscreen"></iframe>'
       + '<div class="planbox" hidden><div class="pagesplan" hidden><button type="button" data-page="prec">Page précédente</button><span></span><button type="button" data-page="suiv">Page suivante</button></div><img alt="Plan du logement"><a class="ouvrir-plan" target="_blank" rel="noopener" hidden>Ouvrir le plan</a></div></div></td>';
     return tr;
   }
@@ -152,13 +152,13 @@
   function chargerVisite(v, lot, jeton) {
     var relance = function () { ouvrirLot(lot, 'visite'); };
     v.libere(); v.ouvert = lot; v.lot = lot; var req = ++v.req; v.z.classList.remove('charge'); v.onglet(lot, 'visite');
-    v.message('Chargement de la visite 3D\u2026 (un peu long sur mobile)');
+    v.message('Chargement du plan 3D\u2026');
     var actuel = function () { return v.ouvert === lot && req === v.req; };
     aller(FN + '?p=' + encodeURIComponent(prog) + '&l=' + encodeURIComponent(lot) + '&t=' + encodeURIComponent(jeton), { headers: { accept: 'application/json' } })
       .then(function (r) {
         if (!actuel()) return null;
         if (r.status === 401) { expire(v, lot, 'visite'); return null; }
-        if (r.status === 404) { v.ouvert = null; v.message('Cette visite n\u2019est pas encore disponible.'); return null; }
+        if (r.status === 404) { v.ouvert = null; v.message('Ce plan 3D n\u2019est pas encore disponible.'); return null; }
         if (r.status === 503) { v.ouvert = null; v.message('Le serveur est occupé.', relance); return null; }
         if (r.status === 429) { v.ouvert = null; v.message('Trop de demandes d\u2019un coup.', relance); return null; }
         if (!r.ok) throw new Error('http');
@@ -171,7 +171,7 @@
         v.libere(); v.lienBlob = URL.createObjectURL(new Blob([b], { type: 'text/html;charset=utf-8' }));
         v.cadre.src = v.lienBlob; v.z.classList.add('charge'); v.message('');
       })
-      .catch(function () { if (actuel()) { v.ouvert = null; v.message('La visite n\u2019a pas pu se charger.', relance); } });
+      .catch(function () { if (actuel()) { v.ouvert = null; v.message('Le plan 3D n\u2019a pas pu se charger.', relance); } });
   }
   // Plan du promoteur : la fonction répond soit par le fichier lui-même (image ou PDF), soit par du JSON {url, expire, pages}
   // avec un lien signé vers une image (&page=n pour les plans de plusieurs pages) : les deux sont acceptés.

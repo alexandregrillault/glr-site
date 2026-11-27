@@ -142,6 +142,7 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .volet3d .onglets3d{padding:0;width:auto}
 .volet3d .ferme3d{margin:0 0 0 auto}
 .volet3d .etat3d{margin:14px 0}
+.volet3d iframe{height:min(62vh,560px);min-height:380px}
 .etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
 .volet3d .planbox img{max-width:100%}
 @media(max-width:700px){.volet3d{margin:0 4px}}
@@ -536,7 +537,7 @@ function pageProgramme(d, p) {
     </div>`;
   const tableau = t => `<section class="typo"><h3>${esc(t)} · ${pluriel(groupes[t].length, 'logement', 'logements')}</h3>
   <table class="lots"><thead><tr><th>Surface</th><th>Étage</th><th>Extérieur</th><th>Prix</th><th></th></tr></thead><tbody>
-  ${groupes[t].sort((a, b) => (a.surface || 0) - (b.surface || 0)).map(l => `<tr id="l-${esc(l.id == null ? '' : l.id)}"><td>${l.surface != null ? nb(l.surface) + '\u00a0m²' : '—'}</td><td>${etage(l.etage)}</td><td>${esc(l.exterieur || '—')}</td><td class="prix-lot" data-lot="${esc(l.id == null ? '' : l.id)}" data-s="${l.surface || ''}">…</td><td class="plan">${p.visite_3d && l.v3d && l.id && l.p2d ? `<button type="button" class="lien-visite" data-plan="${esc(l.id)}">Plan + 3D</button>` : p.visite_3d && l.v3d && l.id ? `<button type="button" class="lien-visite" data-3d="${esc(l.id)}">Visite 3D</button>` : l.p2d && l.id ? `<button type="button" class="lien-visite" data-plan="${esc(l.id)}">Plan</button>` : acces ? '' : '<a href="#compte"><span class="long">Voir le </span>plan</a>'}</td></tr>`).join('\n  ')}
+  ${groupes[t].sort((a, b) => (a.surface || 0) - (b.surface || 0)).map(l => `<tr id="l-${esc(l.id == null ? '' : l.id)}"><td>${l.surface != null ? nb(l.surface) + '\u00a0m²' : '—'}</td><td>${etage(l.etage)}</td><td>${esc(l.exterieur || '—')}</td><td class="prix-lot" data-lot="${esc(l.id == null ? '' : l.id)}" data-s="${l.surface || ''}">…</td><td class="plan">${p.visite_3d && l.v3d && l.id && l.p2d ? `<button type="button" class="lien-visite" data-plan="${esc(l.id)}">Plan + 3D</button>` : p.visite_3d && l.v3d && l.id ? `<button type="button" class="lien-visite" data-3d="${esc(l.id)}">Plan 3D</button>` : l.p2d && l.id ? `<button type="button" class="lien-visite" data-plan="${esc(l.id)}">Plan</button>` : acces ? '' : '<a href="#compte"><span class="long">Voir le </span>plan</a>'}</td></tr>`).join('\n  ')}
   </tbody></table></section>`;
   return `${tete({ titre, description, url, test: d.test })}
 <main class="page-prog">
@@ -560,7 +561,7 @@ function pageProgramme(d, p) {
   ${typos.length ? `<section class="immeuble" id="immeuble">
    ${p.visite_3d ? `<div class="vue vue3d">
     ${zoneDocs()}
-    <p class="note">Visite 3D réalisée à partir des plans du promoteur : touchez un étage, puis un logement pour le visiter. Les plans des logements demandent un compte, créé en une minute.</p>
+    <p class="note">Immeuble en 3D réalisé à partir des plans du promoteur : touchez un étage, puis un logement pour voir son plan 3D et le faire tourner. Le plan du promoteur de chaque logement s’ouvre avec un compte, créé en une minute.</p>
    </div>` : ''}
    ${p.visite_3d ? `   <div class="vue" id="secours3d" hidden>
     ${p.plan_masse ? `<figure class="plan-promoteur"><img src="${esc(p.plan_masse)}" alt="Plan de masse de ${esc(p.nom)}" loading="lazy"><figcaption>Plan de masse du promoteur, non contractuel.</figcaption></figure>` : ''}
@@ -599,8 +600,8 @@ function pageProgramme(d, p) {
   </section>
   ${p.image ? `<figure class="perspective"><img src="${esc(p.image)}" alt="Perspective de ${esc(p.nom)}" loading="lazy"><figcaption>Perspective du promoteur, non contractuelle.</figcaption></figure>` : ''}` : `<h2>Les logements</h2><p>La grille de ce programme est envoyée sur demande.</p>`}
 ${acces ? `<section class="appel" id="compte" data-p="${esc(p.pige_id || '')}" data-lots="${esc((p.logements || []).filter(l => l.v3d && l.id).map(l => l.id).join(','))}" data-plans="${esc(idsPlan)}">
-    <h2>${p.visite_3d ? 'Voir les plans et la visite 3D' : 'Voir les plans de ces logements'}</h2>
-    <p>Créez votre accès en une minute : ${p.visite_3d ? 'vous voyez les plans de ces logements et la visite en 3D' : 'vous voyez les plans de ces logements'}. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
+    <h2>${p.visite_3d ? 'Voir les plans des logements' : 'Voir les plans de ces logements'}</h2>
+    <p>Créez votre accès en une minute : ${p.visite_3d ? 'vous voyez le plan du promoteur et le plan 3D de chaque logement' : 'vous voyez les plans de ces logements'}. Un conseiller GLR Immobilier pourra vous rappeler pour vous aider.</p>
     <form id="f3d" class="form3d" novalidate data-prog="${esc(p.nom)}" data-ville="${esc(d.ville)}">
       <label>Prénom<input name="prenom" autocomplete="given-name" maxlength="80" required></label>
       <label>Téléphone<input name="telephone" type="tel" autocomplete="tel" maxlength="30" required></label>
@@ -609,7 +610,7 @@ ${acces ? `<section class="appel" id="compte" data-p="${esc(p.pige_id || '')}" d
       <p class="erreur3d" id="f3d-err" role="alert"></p>
       <button type="submit" class="plein">Créer mon accès</button>
     </form>
-    <div id="f3d-ok" class="ok3d" hidden>${p.visite_3d ? '<p>Votre accès est créé : vous pouvez voir les plans et la visite 3D de ce programme.</p><button type="button" class="plein" data-3d="immeuble">Voir l’immeuble en 3D</button>' : '<p>Votre accès est créé : touchez « Plan » sur un logement pour voir son plan.</p>'}</div>
+    <div id="f3d-ok" class="ok3d" hidden>${p.visite_3d ? '<p>Votre accès est créé : touchez un logement pour voir son plan et son plan 3D.</p><button type="button" class="plein" data-3d="immeuble">Voir l’immeuble en 3D</button>' : '<p>Votre accès est créé : touchez « Plan » sur un logement pour voir son plan.</p>'}</div>
     <div class="boutons"><a class="creux" href="tel:${CONTACT.tel}">Appeler le ${CONTACT.telAffiche}</a><a class="creux" href="mailto:${CONTACT.mail}?subject=${encodeURIComponent('Plans de ' + p.nom + ' à ' + d.ville)}">Écrire un e-mail</a></div>
   </section>` : `  <section class="appel" id="compte">
     <h2>Voir les plans de ces logements</h2>
