@@ -1,0 +1,72 @@
+{
+  "cp": "77410",
+  "maj": "2026-11-27",
+  "dept": "77",
+  "slug": "messy",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "77292",
+  "ville": "Messy",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 0,
+      "T3": 1,
+      "T4": 0,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 1
+  },
+  "dept_nom": "Seine-et-Marne",
+  "programmes": [
+    {
+      "nom": "Le Domaine Des Templiers",
+      "gare": null,
+      "slug": "le-domaine-des-templiers",
+      "image": null,
+      "picking": false,
+      "pige_id": "ae9921ac3a73",
+      "position": {
+        "approx": false,
+        "latitude": 48.968,
+        "longitude": 2.704
+      },
+      "quartier": null,
+      "livraison": "3e trimestre 2027",
+      "logements": [
+        {
+          "id": "b31bdba6e617",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61.7,
+          "exterieur": "Balcon"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2027-3",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": null
+    }
+  ]
+}

@@ -1,0 +1,361 @@
+{
+  "cp": "77200",
+  "maj": "2026-11-27",
+  "dept": "77",
+  "slug": "torcy",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "77468",
+  "ville": "Torcy",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2028": 1
+    },
+    "typologies": {
+      "T1": 1,
+      "T2": 8,
+      "T3": 13,
+      "T4": 3,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 2,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 25
+  },
+  "dept_nom": "Seine-et-Marne",
+  "programmes": [
+    {
+      "nom": "Reflet Marne",
+      "gare": "Torcy (RER A)",
+      "slug": "reflet-marne",
+      "image": null,
+      "picking": false,
+      "pige_id": "4e3a5d42499a",
+      "position": {
+        "approx": true,
+        "latitude": 48.853,
+        "longitude": 2.648
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "76d8f6bcb25a",
+          "typo": "T1",
+          "etage": 0,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 37.18,
+          "exterieur": null
+        },
+        {
+          "id": "7da033afbcc5",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 76.96,
+          "exterieur": "Balcon"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2026-3",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 21
+    },
+    {
+      "nom": "Marne & Sens",
+      "gare": "Vaires - Torcy (ligne P)",
+      "slug": "marne-sens",
+      "image": null,
+      "picking": false,
+      "pige_id": "0903e599fd8c",
+      "position": {
+        "approx": false,
+        "latitude": 48.859,
+        "longitude": 2.649
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2028",
+      "logements": [
+        {
+          "id": "9b6a02971242",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 39.02,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "acb32c299a3c",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 39.02,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "0471c5d29b97",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.67,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "4d8ace8a54cc",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.68,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "8ac17ba145df",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.68,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "f5418511f420",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.98,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "4a0bd6a5252b",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 42.51,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "8d16f5679b01",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.73,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "0eccfa022ae2",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 58.21,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "809008beb708",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 58.21,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "c01e387e185f",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 58.96,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "ed0f236883ba",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 59.96,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "490a8763e48a",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.51,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "d475c6da4938",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.51,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "7d8c316b3004",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.56,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "19aa0cf942c9",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.59,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "193370dd3533",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.1,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "f9d48d542d6c",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.1,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "825761f93a4c",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.56,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "109066e335d9",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.92,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "3bec972a82da",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.92,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "5f1020aea4a9",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 83.36,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "b07dda8dad4a",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 83.36,
+          "exterieur": "Balcon"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2028-4",
+      "nb_lots_libres": 23,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 26
+    },
+    {
+      "nom": "Les Jardins d'Aragon",
+      "gare": "Torcy (RER A)",
+      "slug": "les-jardins-d-aragon",
+      "image": null,
+      "picking": true,
+      "pige_id": "52adf3dd49a0",
+      "position": {
+        "approx": true,
+        "latitude": 48.853,
+        "longitude": 2.648
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 21
+    },
+    {
+      "nom": "Plaine Nature",
+      "gare": "Torcy (RER A)",
+      "slug": "plaine-nature",
+      "image": null,
+      "picking": true,
+      "pige_id": "2f06cf3542e5",
+      "position": {
+        "approx": true,
+        "latitude": 48.853,
+        "longitude": 2.648
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 21
+    }
+  ]
+}

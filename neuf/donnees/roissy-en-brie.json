@@ -1,0 +1,174 @@
+{
+  "cp": "77680",
+  "maj": "2026-11-27",
+  "dept": "77",
+  "slug": "roissy-en-brie",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": true
+  },
+  "insee": "77390",
+  "ville": "Roissy-en-Brie",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 2
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 6,
+      "T3": 2,
+      "T4": 1,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 9
+  },
+  "dept_nom": "Seine-et-Marne",
+  "programmes": [
+    {
+      "nom": "Synopsis",
+      "gare": "Roissy-en-Brie (RER E)",
+      "slug": "synopsis",
+      "image": null,
+      "picking": false,
+      "pige_id": "11f92e5627e7",
+      "position": {
+        "approx": false,
+        "latitude": 48.791,
+        "longitude": 2.656
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2027",
+      "logements": [
+        {
+          "id": "395f42edf2c6",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 38.62,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "4e09e764df86",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 38.62,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "8946b5fd2a59",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.26,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "54858185c528",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45.7,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "c084dc5a92b9",
+          "typo": "T2",
+          "etage": 4,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 47.52,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "1086051571fe",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.15,
+          "exterieur": null
+        },
+        {
+          "id": "001bc0b428ac",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.54,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "c5f1b8089554",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 83.39,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2027-2",
+      "nb_lots_libres": 8,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 9
+    },
+    {
+      "nom": "Nouveau Jour",
+      "gare": "Roissy-en-Brie (RER E)",
+      "slug": "nouveau-jour",
+      "image": null,
+      "picking": false,
+      "pige_id": "bb8a854511ca",
+      "position": {
+        "approx": false,
+        "latitude": 48.797,
+        "longitude": 2.656
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2027",
+      "logements": [
+        {
+          "id": "28dc46612fcd",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 40.32,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2"
+      ],
+      "dispositifs": [
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2027-4",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 5
+    }
+  ]
+}

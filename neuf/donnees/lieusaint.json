@@ -1,0 +1,767 @@
+{
+  "cp": "77127",
+  "maj": "2026-11-27",
+  "dept": "77",
+  "slug": "lieusaint",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "77251",
+  "ville": "Lieusaint",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2026": 1,
+      "2027": 2,
+      "2028": 1,
+      "2029": 1
+    },
+    "typologies": {
+      "T1": 3,
+      "T2": 13,
+      "T3": 24,
+      "T4": 21,
+      "T5+": 4
+    },
+    "prix_entree": null,
+    "nb_programmes": 5,
+    "nb_promoteurs": 5,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 65
+  },
+  "dept_nom": "Seine-et-Marne",
+  "programmes": [
+    {
+      "nom": "L'Oree Du Parc",
+      "gare": "Lieusaint - Moissy (RER D)",
+      "slug": "l-oree-du-parc",
+      "image": null,
+      "picking": false,
+      "pige_id": "cbafea98cbbb",
+      "position": {
+        "approx": false,
+        "latitude": 48.629,
+        "longitude": 2.551
+      },
+      "quartier": null,
+      "livraison": "2e semestre 2026",
+      "logements": [
+        {
+          "id": "677e41c21c10",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.12,
+          "exterieur": null
+        },
+        {
+          "id": "e290ce383273",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 86.88,
+          "exterieur": null
+        },
+        {
+          "id": "ecb957fc6b56",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 86.88,
+          "exterieur": null
+        },
+        {
+          "id": "7499f78bf6e9",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 87,
+          "exterieur": null
+        },
+        {
+          "id": "91e1d9079e26",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 87.09,
+          "exterieur": null
+        },
+        {
+          "id": "c5526763bba2",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 87.86,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2026-4",
+      "nb_lots_libres": 6,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 17
+    },
+    {
+      "nom": "Aqua Verde",
+      "gare": "Lieusaint - Moissy (RER D)",
+      "slug": "aqua-verde",
+      "image": null,
+      "picking": false,
+      "pige_id": "f67d2e3eba09",
+      "position": {
+        "approx": false,
+        "latitude": 48.632,
+        "longitude": 2.557
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "logements": [
+        {
+          "id": "2e4d9e9d0924",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 53.86,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "9f9e999d50f2",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 54.83,
+          "exterieur": null
+        },
+        {
+          "id": "f0426c941558",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 54.83,
+          "exterieur": null
+        },
+        {
+          "id": "4efcbc0e9f43",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.29,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "013be5ee2285",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 79.39,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "695abc194e74",
+          "typo": "T5+",
+          "etage": 3,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 92.77,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2027-1",
+      "nb_lots_libres": 6,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 13
+    },
+    {
+      "nom": "Qadence",
+      "gare": "Lieusaint - Moissy (RER D)",
+      "slug": "qadence",
+      "image": null,
+      "picking": false,
+      "pige_id": "237aa7a29672",
+      "position": {
+        "approx": false,
+        "latitude": 48.633,
+        "longitude": 2.561
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "logements": [
+        {
+          "id": "79677dcf3ab3",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 82.45,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "411ceba96e1d",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 90.59,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2027-1",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 11
+    },
+    {
+      "nom": "Azurea",
+      "gare": "Lieusaint - Moissy (RER D)",
+      "slug": "azurea",
+      "image": null,
+      "picking": false,
+      "pige_id": "41d322510d8d",
+      "position": {
+        "approx": false,
+        "latitude": 48.632,
+        "longitude": 2.563
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2028",
+      "logements": [
+        {
+          "id": "3a8dad8ed142",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.93,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "45db17fd4bcc",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.93,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "66d8dd2b7138",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.93,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "b0c659d3c841",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.93,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "eaf6d849d5aa",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.93,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "753fd10721ef",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.94,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "2bf48280e357",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.32,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "29d2145c5fa9",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 84.07,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "444d3646fb31",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 84.07,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "4fc627c9b155",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 84.07,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "617dc857d03f",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 84.07,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "e9c373ba1a4a",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 84.07,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "1405920d4f90",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 84.1,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "9b6fa6c02d45",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 84.1,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "d26722d50b2c",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 84.1,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "b6dc676ed68e",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 84.11,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "ee64a6f3394c",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 84.11,
+          "exterieur": "Balcon"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2028-1",
+      "nb_lots_libres": 17,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 8
+    },
+    {
+      "nom": "Le Colombier",
+      "gare": "Lieusaint - Moissy (RER D)",
+      "slug": "le-colombier",
+      "image": null,
+      "picking": false,
+      "pige_id": "0190ccad07d6",
+      "position": {
+        "approx": false,
+        "latitude": 48.632,
+        "longitude": 2.551
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2029",
+      "logements": [
+        {
+          "id": "fd49daf3f15b",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "option",
+          "surface": 24.43,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "00efc0a5422d",
+          "typo": "T1",
+          "etage": 0,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 32,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "d6eac1c6a7ba",
+          "typo": "T1",
+          "etage": 1,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 38.23,
+          "exterieur": null
+        },
+        {
+          "id": "945177adf041",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.31,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "c40373a811bd",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.31,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "de7c213c0a34",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.31,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "39f7848f939e",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.88,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "645f595beaa9",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.88,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "a559a236d3d4",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.98,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "32ae5a883747",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.07,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "4fdebbffcdd4",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.07,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "542f66dce55a",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 43.07,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "43ea27f7f64a",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.35,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "b89822aef410",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.35,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "c0f43ccc1a7f",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.35,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "a2ded75517d0",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 55.19,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "e14f3a288f7e",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 55.19,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "ffa613ca3af2",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 58.71,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "e5fe6ee6a904",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 59.1,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "105c7e53f99a",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.74,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "deaa005841ad",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.74,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "e5a219da4e85",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.74,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "c53f88cd8978",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "68596e63f35c",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.75,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "d07d74b42ba2",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.78,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "f4862a180ece",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.78,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "a9b87c052d0d",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 72.71,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "62e27e824c9e",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 72.78,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "95acb0aab254",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 71.51,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "98bbe244bf6b",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 76,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "edf69c445260",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 77.86,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "eb4169144da8",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 85.66,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "a1fbbf99f7e1",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 88,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "7c51e29c2cf6",
+          "typo": "T5+",
+          "etage": 3,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 106.93,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2029-1",
+      "nb_lots_libres": 34,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 18
+    }
+  ]
+}

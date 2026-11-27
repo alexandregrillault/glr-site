@@ -1,0 +1,171 @@
+{
+  "cp": "77400",
+  "maj": "2026-11-27",
+  "dept": "77",
+  "slug": "saint-thibault-des-vignes",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "77438",
+  "ville": "Saint-Thibault-des-Vignes",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 2
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 1,
+      "T3": 8,
+      "T4": 0,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 2,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 9
+  },
+  "dept_nom": "Seine-et-Marne",
+  "programmes": [
+    {
+      "nom": "Villas Flora",
+      "gare": "Lagny - Thorigny (ligne P)",
+      "slug": "villas-flora",
+      "image": null,
+      "picking": false,
+      "pige_id": "cd0a8c88a6b9",
+      "position": {
+        "approx": false,
+        "latitude": 48.867,
+        "longitude": 2.686
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2027",
+      "logements": [
+        {
+          "id": "ce00a2f79b5a",
+          "typo": "T2",
+          "etage": null,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.29,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "88c409a41658",
+          "typo": "T3",
+          "etage": null,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 71.69,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "4b861c888a8d",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 71.7,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-2",
+      "nb_lots_libres": 3,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 29
+    },
+    {
+      "nom": "Le Parc des Vignes",
+      "gare": "Lagny - Thorigny (ligne P)",
+      "slug": "le-parc-des-vignes",
+      "image": null,
+      "picking": false,
+      "pige_id": "ef3b515cddd3",
+      "position": {
+        "approx": false,
+        "latitude": 48.862,
+        "longitude": 2.691
+      },
+      "quartier": null,
+      "livraison": "3e trimestre 2027",
+      "logements": [
+        {
+          "id": "fbb06a0475a6",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 54.21,
+          "exterieur": null
+        },
+        {
+          "id": "ff99f57d595d",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 54.86,
+          "exterieur": null
+        },
+        {
+          "id": "e741104519b4",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 55.84,
+          "exterieur": null
+        },
+        {
+          "id": "124f3e51b2e3",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 56.24,
+          "exterieur": null
+        },
+        {
+          "id": "79312b4e6b81",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 56.41,
+          "exterieur": null
+        },
+        {
+          "id": "9cd618d6d2b8",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 59.26,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2027-3",
+      "nb_lots_libres": 6,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 32
+    }
+  ]
+}

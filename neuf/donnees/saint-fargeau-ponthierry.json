@@ -1,0 +1,100 @@
+{
+  "cp": "77310",
+  "maj": "2026-11-27",
+  "dept": "77",
+  "slug": "saint-fargeau-ponthierry",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "77407",
+  "ville": "Saint-Fargeau-Ponthierry",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2026": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 1,
+      "T3": 3,
+      "T4": 0,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 4
+  },
+  "dept_nom": "Seine-et-Marne",
+  "programmes": [
+    {
+      "nom": "Green Central",
+      "gare": "Ponthierry - Pringy (RER D)",
+      "slug": "green-central",
+      "image": null,
+      "picking": false,
+      "pige_id": "b5af648b8902",
+      "position": {
+        "approx": false,
+        "latitude": 48.529,
+        "longitude": 2.542
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2026",
+      "logements": [
+        {
+          "id": "9bd894cf9a6b",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 40.5,
+          "exterieur": null
+        },
+        {
+          "id": "653a47e95c7f",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.25,
+          "exterieur": null
+        },
+        {
+          "id": "901cbb5d31ce",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.25,
+          "exterieur": null
+        },
+        {
+          "id": "df6e893cccdb",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2026-4",
+      "nb_lots_libres": 4,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 9
+    }
+  ]
+}
