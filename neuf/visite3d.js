@@ -9,7 +9,10 @@
   var prog = zone.getAttribute('data-p'), clesOk = (zone.getAttribute('data-lots') || '').split(',');
   // Immeuble : appel sans le paramètre l ; logement : l = clé du lot (contrat de la fonction plans-3d, vérifié par CRM le 27/11/2026).
   var lienBlob = null, lotOuvert = null, attente = null;
-  function lireJeton() { try { return localStorage.getItem(CLE) || ''; } catch (e) { return ''; } }
+  function jetonValide(j) { return /^[0-9a-f]{48}$/.test(j || ''); }
+  // Un jeton qui n'a pas la bonne forme (48 caractères hexadécimaux) n'est jamais gardé : il est jeté, le formulaire redevient la porte d'entrée.
+  function lireJeton() { try { var j = localStorage.getItem(CLE) || ''; if (j && !jetonValide(j)) { localStorage.removeItem(CLE); return ''; } return j; } catch (e) { return ''; } }
+  function rouvrirFormulaire() { var f = document.getElementById('f3d'), ok = document.getElementById('f3d-ok'); if (f) f.hidden = false; if (ok) ok.hidden = true; }
   function ecrireJeton(j) { try { if (j) localStorage.setItem(CLE, j); else localStorage.removeItem(CLE); } catch (e) {} }
   function libere() { if (lienBlob) { URL.revokeObjectURL(lienBlob); lienBlob = null; } cadre.removeAttribute('src'); }
   function message(t) { etat.textContent = t || ''; etat.hidden = !t; }
@@ -41,7 +44,7 @@
     fetch(adresse, { headers: { accept: 'application/json' } })
       .then(function (r) {
         if (r.status === 401) {
-          if (jeton) { ecrireJeton(''); lotOuvert = null; if (immeuble) { ouvrir('immeuble', sansDefiler); return null; } attente = lot; message(''); versFormulaire('Votre accès a expiré : recréez-le en une minute.'); return null; }
+          if (jeton) { ecrireJeton(''); rouvrirFormulaire(); lotOuvert = null; if (immeuble) { ouvrir('immeuble', sansDefiler); return null; } attente = lot; message(''); versFormulaire('Votre accès a expiré : recréez-le en une minute.'); return null; }
           lotOuvert = null; if (immeuble) { secours(); return null; } message('Pour voir cette visite, créez votre accès : cela prend une minute.'); return null;
         }
         if (r.status === 404) { lotOuvert = null; if (immeuble) { secours(); return null; } message('Cette visite n\u2019est pas encore disponible.'); return null; }
@@ -88,14 +91,14 @@
     var err = document.getElementById('f3d-err'), go = f.querySelector('button[type=submit]');
     function v(n) { return (f.elements[n].value || '').trim(); }
     var d = { action: 'inscrire', prenom: v('prenom'), telephone: v('telephone'), email: v('email'), accord: f.elements.accord.checked, p: prog,
-      programme: f.getAttribute('data-prog') || '', ville: f.getAttribute('data-ville') || '', societe: v('societe') };
+      programme: f.getAttribute('data-prog') || '', ville: f.getAttribute('data-ville') || '', societe: '', hp_glr: v('hp_glr') };
     if (!d.prenom) { err.textContent = 'Indiquez votre prénom.'; return; }
     if (d.telephone.replace(/\D/g, '').length < 9) { err.textContent = 'Indiquez un numéro de téléphone valide.'; return; }
     if (!/^[^@\s]+@[^@\s.]+(\.[^@\s.]+)+$/.test(d.email)) { err.textContent = d.email ? 'L’adresse e-mail ne semble pas valide.' : 'Indiquez votre e-mail.'; return; }
     if (!d.accord) { err.textContent = 'Cochez la case pour que votre conseiller puisse vous recontacter.'; return; }
     err.textContent = ''; go.disabled = true; go.textContent = 'Envoi…';
     fetch(FN, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
-      .then(function (r) { if (r.status === 429) throw new Error('429'); return r.json().then(function (j) { if (!r.ok || !j || !j.jeton) throw new Error('x'); return j; }); })
+      .then(function (r) { if (r.status === 429) throw new Error('429'); return r.json().then(function (j) { if (!r.ok || !j || !jetonValide(j.jeton)) throw new Error('x'); return j; }); })
       .then(function (j) {
         ecrireJeton(j.jeton); go.disabled = false; go.textContent = 'Créer mon accès';
         document.getElementById('f3d-err').textContent = '';
