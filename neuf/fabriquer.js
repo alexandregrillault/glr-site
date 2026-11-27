@@ -148,10 +148,11 @@ table.lots tr.ouverte>td{background:var(--teinte)}
 .immeuble>.vue.vue-masse{display:none;margin:0}
 .immeuble.masse-on>.vue.vue-masse{display:block}
 .vue-masse .volet3d{margin:0}
-.volet3d iframe{height:min(62vh,560px);min-height:380px}
+.volet3d iframe{height:clamp(480px,62vh,560px)}
+@media(max-width:700px){.volet3d iframe{height:clamp(520px,62vh,640px)}}
 .etat3d .reessayer{margin-left:6px;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:6px 12px;font:inherit;font-weight:600;cursor:pointer}
 .volet3d .planbox img{max-width:100%}
-@media(max-width:700px){.volet3d{margin:0 4px}}
+@media(max-width:700px){.volet3d{margin:0;border-radius:6px}.volet td{padding:6px 0}}
 .immeuble3d .ferme3d{margin:10px 0;border:1px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
 button.bouton-plein{border:0;font:inherit;font-weight:600;cursor:pointer}
 .lien-visite{display:block;margin:6px 0 0 auto;white-space:nowrap;padding:4px 10px;border:1px solid var(--bleu);border-radius:6px;background:#fff;color:var(--bleu);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
