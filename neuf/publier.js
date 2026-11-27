@@ -108,7 +108,15 @@ function lire(f) { try { return fs.readFileSync(f, 'utf8'); } catch (e) { return
     controlerChamps(d, v.ville || v.slug);
     const f = path.join(DONNEES, v.slug + '.json');
     const avant = lire(f);
-    controlerChute(d, v.ville || v.slug, avant ? JSON.parse(avant) : null);
+    // Une ville qui chute trop d'un coup garde ses données d'hier (rien n'est publié pour elle) ; les autres villes se mettent à jour.
+    // Avant : le robot s'arrêtait pour TOUTES les villes (27/11/2026 : Bourg-la-Reine, 3 programmes → 2, a bloqué la mise à jour du jour).
+    try { controlerChute(d, v.ville || v.slug, avant ? JSON.parse(avant) : null); }
+    catch (e) {
+      if (!(e instanceof Arret)) throw e;
+      console.log('Ville gardée telle qu\'hier, à vérifier par Alex : ' + e.message);
+      if (avant) aEcrire.push({ f, nouveau: avant, avant, slug: v.slug });
+      continue;
+    }
     { const m = releveManquant(d, v.ville || v.slug); if (m) { console.log('Ville laissée de côté, relevé de cartes manquant : ' + (v.ville || v.slug) + ' (' + m + ')'); continue; } }
     // Le fichier de données est public (servi tel quel) : aucun nom de promoteur ni de commercialisateur n'y figure (décision d'Alex du 25/11/2026).
     // On garde le nombre de vrais promoteurs, compté avant d'effacer.
