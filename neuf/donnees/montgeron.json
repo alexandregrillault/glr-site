@@ -1,0 +1,89 @@
+{
+  "cp": "91230",
+  "maj": "2026-11-27",
+  "dept": "91",
+  "slug": "montgeron",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "91421",
+  "ville": "Montgeron",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2028": 1
+    },
+    "typologies": {
+      "T1": 1,
+      "T2": 0,
+      "T3": 2,
+      "T4": 0,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 3
+  },
+  "dept_nom": "Essonne",
+  "programmes": [
+    {
+      "nom": "Le Moulin De Senlis DF",
+      "gare": "Montgeron - Crosne (RER D)",
+      "slug": "le-moulin-de-senlis-df",
+      "image": null,
+      "picking": false,
+      "pige_id": "6711079c0663",
+      "position": {
+        "approx": false,
+        "latitude": 48.712,
+        "longitude": 2.457
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2028",
+      "logements": [
+        {
+          "id": "596b65c972a6",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "option",
+          "surface": 35.8,
+          "exterieur": null
+        },
+        {
+          "id": "9057c53dd219",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 57.6,
+          "exterieur": null
+        },
+        {
+          "id": "3d6c34c51dca",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 69.8,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T3"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2028-4",
+      "nb_lots_libres": 3,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 7
+    }
+  ]
+}

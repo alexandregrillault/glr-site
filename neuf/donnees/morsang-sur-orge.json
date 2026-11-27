@@ -1,0 +1,124 @@
+{
+  "cp": "91390",
+  "maj": "2026-11-27",
+  "dept": "91",
+  "slug": "morsang-sur-orge",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": true
+  },
+  "insee": "91434",
+  "ville": "Morsang-sur-Orge",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 1,
+      "T3": 3,
+      "T4": 0,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 4
+  },
+  "dept_nom": "Essonne",
+  "programmes": [
+    {
+      "nom": "Le Clos D'harnoncourt",
+      "gare": "Épinay-sur-Orge (RER C)",
+      "slug": "le-clos-d-harnoncourt",
+      "image": null,
+      "picking": false,
+      "pige_id": "92d7dd26b7a9",
+      "position": {
+        "approx": false,
+        "latitude": 48.661,
+        "longitude": 2.342
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2027",
+      "logements": [
+        {
+          "id": "7e21a298174f",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 47.02,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "8d6bd98ee0f2",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.76,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "c93459bc4c41",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.2,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "b081ac444049",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 67.4,
+          "exterieur": "Jardin"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3"
+      ],
+      "dispositifs": [
+        "PTZ",
+        "TVA 5,5 %"
+      ],
+      "livraison_cle": "2027-2",
+      "nb_lots_libres": 4,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 15
+    },
+    {
+      "nom": "Arborea",
+      "gare": "Coteaux de l'Orge (T12)",
+      "slug": "arborea",
+      "image": null,
+      "picking": true,
+      "pige_id": "200e790cfd55",
+      "position": {
+        "approx": true,
+        "latitude": 48.656,
+        "longitude": 2.351
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 17
+    }
+  ]
+}

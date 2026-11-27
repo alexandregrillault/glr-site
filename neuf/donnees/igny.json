@@ -1,0 +1,372 @@
+{
+  "cp": "91430",
+  "maj": "2026-11-27",
+  "dept": "91",
+  "slug": "igny",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "91312",
+  "ville": "Igny",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 2,
+      "2028": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 10,
+      "T3": 9,
+      "T4": 9,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 3,
+    "nb_promoteurs": 2,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 28
+  },
+  "dept_nom": "Essonne",
+  "programmes": [
+    {
+      "nom": "Villa Lescot",
+      "gare": "Igny (ligne V)",
+      "slug": "villa-lescot",
+      "image": null,
+      "picking": false,
+      "pige_id": "e50943ef753a",
+      "position": {
+        "approx": false,
+        "latitude": 48.733,
+        "longitude": 2.221
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2027",
+      "logements": [
+        {
+          "id": "d864b9c15c5d",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.13,
+          "exterieur": null
+        },
+        {
+          "id": "8acc50a3b665",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 69.37,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-2",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 14
+    },
+    {
+      "nom": "Résidence Saint-Honoré - Igny",
+      "gare": "Igny (ligne V)",
+      "slug": "residence-saint-honore-igny",
+      "image": null,
+      "picking": false,
+      "pige_id": "7b362b524597",
+      "position": {
+        "approx": false,
+        "latitude": 48.745,
+        "longitude": 2.223
+      },
+      "quartier": null,
+      "livraison": "3e trimestre 2027",
+      "logements": [
+        {
+          "id": "ea87d51cf627",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 41.47,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "829d631ded83",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 46.84,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "21dd8c09c28d",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 47.04,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "6d3ea81aa684",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 59.4,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "f36e8a472aee",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 60.15,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "5de4a7534741",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.37,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "16495a91a86e",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 62.77,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "c440bccbec76",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 76.37,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2027-3",
+      "nb_lots_libres": 8,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 10
+    },
+    {
+      "nom": "Hamo",
+      "gare": "Igny (ligne V)",
+      "slug": "hamo",
+      "image": null,
+      "picking": false,
+      "pige_id": "08c4c12bc351",
+      "position": {
+        "approx": false,
+        "latitude": 48.732,
+        "longitude": 2.232
+      },
+      "quartier": null,
+      "livraison": "2e trimestre 2028",
+      "logements": [
+        {
+          "id": "6dbac7283f2f",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.73,
+          "exterieur": null
+        },
+        {
+          "id": "e9306a1a8968",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.73,
+          "exterieur": null
+        },
+        {
+          "id": "713a24ddb18d",
+          "typo": "T2",
+          "etage": 2,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.61,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "d1b00ad43ef3",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.84,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "fd5bc1dd85d5",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 44.84,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "10b39b7cf427",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45.18,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "5e704d8e06c0",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 46.23,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "4ba7e24c3859",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61.24,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "f3ab66bdb3b2",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.1,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "6545e913da0a",
+          "typo": "T3",
+          "etage": 4,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.76,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "817fcdd2b768",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 77.48,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "e7e1a004e4df",
+          "typo": "T4",
+          "etage": 0,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 78.41,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "6753c2ef9fac",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 78.42,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "42614f30190c",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.55,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "71f2ad899f46",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.55,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "fe7d72299b46",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 82.47,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "7004ffc61eb8",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 83.86,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "cdd9c83e5016",
+          "typo": "T4",
+          "etage": 4,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 92.65,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2028-2",
+      "nb_lots_libres": 18,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 13
+    }
+  ]
+}

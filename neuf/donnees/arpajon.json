@@ -1,0 +1,756 @@
+{
+  "cp": "91290",
+  "maj": "2026-11-27",
+  "dept": "91",
+  "slug": "arpajon",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "91021",
+  "ville": "Arpajon",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 3,
+      "2028": 1
+    },
+    "typologies": {
+      "T1": 2,
+      "T2": 7,
+      "T3": 27,
+      "T4": 18,
+      "T5+": 4
+    },
+    "prix_entree": null,
+    "nb_programmes": 7,
+    "nb_promoteurs": 6,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 58
+  },
+  "dept_nom": "Essonne",
+  "programmes": [
+    {
+      "nom": "L’ Ecrin Du Parc",
+      "gare": "Arpajon (RER C)",
+      "slug": "l-ecrin-du-parc",
+      "image": null,
+      "picking": false,
+      "pige_id": "5486ff9da69a",
+      "position": {
+        "approx": false,
+        "latitude": 48.59,
+        "longitude": 2.247
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "9a3210c7abf7",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 37.6,
+          "exterieur": null
+        },
+        {
+          "id": "4d1193c91a98",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.65,
+          "exterieur": "Balcon"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2024-4",
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 8
+    },
+    {
+      "nom": "Belvedere",
+      "gare": "Arpajon (RER C)",
+      "slug": "belvedere",
+      "image": null,
+      "picking": false,
+      "pige_id": "dc227974865d",
+      "position": {
+        "approx": false,
+        "latitude": 48.599,
+        "longitude": 2.239
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "e2f3d7ee2b1b",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 36.71,
+          "exterieur": null
+        },
+        {
+          "id": "a9c406902823",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 42.76,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "6dad1c39eee5",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 45.04,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "4f5f71219951",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 60.87,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "7cda3465a16c",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "5a44eb719d86",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61.7,
+          "exterieur": "Loggia"
+        },
+        {
+          "id": "12fcc69303a5",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 61.76,
+          "exterieur": "Loggia"
+        },
+        {
+          "id": "1d68b9f05891",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.41,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "f9c9b1e469dc",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.01,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "16c87736498e",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 63.56,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "af4b49ea4bfb",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 64.21,
+          "exterieur": "Loggia"
+        },
+        {
+          "id": "8a2aa8777c10",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 78.58,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "9955c2306583",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 86.52,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "95baaf6cfbe8",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 86.67,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2025-4",
+      "nb_lots_libres": 14,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 18
+    },
+    {
+      "nom": "Belvedere Maisons",
+      "gare": "Arpajon (RER C)",
+      "slug": "belvedere-maisons",
+      "image": null,
+      "picking": false,
+      "pige_id": "8b171ab4aa50",
+      "position": {
+        "approx": false,
+        "latitude": 48.599,
+        "longitude": 2.239
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "fc917aee4345",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 114.17,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "e36408bb0b80",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 114.36,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "bead61787fb1",
+          "typo": "T5+",
+          "etage": 0,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 114.66,
+          "exterieur": "Jardin"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T5+"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2025-4",
+      "nb_lots_libres": 3,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 18
+    },
+    {
+      "nom": "Place Du Marche",
+      "gare": "Arpajon (RER C)",
+      "slug": "place-du-marche",
+      "image": null,
+      "picking": false,
+      "pige_id": "967cd298f75f",
+      "position": {
+        "approx": false,
+        "latitude": 48.589,
+        "longitude": 2.251
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "logements": [
+        {
+          "id": "23098833e690",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 49.35,
+          "exterieur": null
+        },
+        {
+          "id": "f58207a5e49b",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.8,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "ff0ff918709e",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.2,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "8623a0f5f60e",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.3,
+          "exterieur": "Jardin"
+        },
+        {
+          "id": "831f6c3e6940",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 65.8,
+          "exterieur": "Balcon"
+        },
+        {
+          "id": "ea9148f8d1bc",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 67.1,
+          "exterieur": null
+        },
+        {
+          "id": "4522ef6128d3",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 83.5,
+          "exterieur": "Balcon"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2027-1",
+      "nb_lots_libres": 7,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 10
+    },
+    {
+      "nom": "Essen'tiel",
+      "gare": "Arpajon (RER C)",
+      "slug": "essen-tiel",
+      "image": null,
+      "picking": false,
+      "pige_id": "e5aa164af90d",
+      "position": {
+        "approx": false,
+        "latitude": 48.598,
+        "longitude": 2.241
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2027",
+      "logements": [
+        {
+          "id": "355464a2ae75",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 38.8,
+          "exterieur": null
+        },
+        {
+          "id": "f34afb0b7b67",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 40.45,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "8733d8ff55de",
+          "typo": "T2",
+          "etage": 3,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 44.85,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "83009f0f84c8",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 47.4,
+          "exterieur": null
+        },
+        {
+          "id": "b854e05811da",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 60.81,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "ddd6c06ef32a",
+          "typo": "T3",
+          "etage": 3,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.76,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "556c4a0a8c4b",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.83,
+          "exterieur": null
+        },
+        {
+          "id": "7ae87fb92897",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.83,
+          "exterieur": null
+        },
+        {
+          "id": "1227e0828814",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.87,
+          "exterieur": null
+        },
+        {
+          "id": "611a0005334e",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 66.87,
+          "exterieur": null
+        },
+        {
+          "id": "8e91785601eb",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "option",
+          "surface": 76.92,
+          "exterieur": null
+        },
+        {
+          "id": "8beaaaf9b490",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.47,
+          "exterieur": null
+        },
+        {
+          "id": "e48d9ea1f302",
+          "typo": "T4",
+          "etage": 1,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.47,
+          "exterieur": null
+        },
+        {
+          "id": "996252fb22f9",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 84.41,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "99e44e8c3cb2",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 86.04,
+          "exterieur": null
+        },
+        {
+          "id": "2c97d7720021",
+          "typo": "T4",
+          "etage": 2,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 104.79,
+          "exterieur": null
+        },
+        {
+          "id": "cd48d4d7f508",
+          "typo": "T5+",
+          "etage": 3,
+          "pieces": 5,
+          "statut": "libre",
+          "surface": 96.31,
+          "exterieur": "Balcon"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5+"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-4",
+      "nb_lots_libres": 17,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 17
+    },
+    {
+      "nom": "Biosphere",
+      "gare": "Arpajon (RER C)",
+      "slug": "biosphere",
+      "image": null,
+      "picking": false,
+      "pige_id": "b4f1336693cd",
+      "position": {
+        "approx": false,
+        "latitude": 48.598,
+        "longitude": 2.24
+      },
+      "quartier": null,
+      "livraison": "2e semestre 2027",
+      "logements": [
+        {
+          "id": "205a71d349c6",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 59.9,
+          "exterieur": null
+        },
+        {
+          "id": "828c24ded2fb",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 59.9,
+          "exterieur": null
+        },
+        {
+          "id": "4e8f554fd7a3",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.26,
+          "exterieur": null
+        },
+        {
+          "id": "e348c6ebbde1",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.36,
+          "exterieur": null
+        },
+        {
+          "id": "4141f00b965b",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.63,
+          "exterieur": null
+        },
+        {
+          "id": "f33d1f0abd9c",
+          "typo": "T3",
+          "etage": 2,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 62.69,
+          "exterieur": null
+        },
+        {
+          "id": "10dfef8714b2",
+          "typo": "T3",
+          "etage": 1,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 63.32,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T3"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-4",
+      "nb_lots_libres": 7,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 17
+    },
+    {
+      "nom": "GAIA",
+      "gare": "Arpajon (RER C)",
+      "slug": "gaia",
+      "image": null,
+      "picking": false,
+      "pige_id": "654c0746c1bf",
+      "position": {
+        "approx": false,
+        "latitude": 48.597,
+        "longitude": 2.239
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2028",
+      "logements": [
+        {
+          "id": "09a9026e9170",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 80.4,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "a21745ad6b6e",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 80.4,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "157dcdcb9a1b",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 80.5,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "d32e508e397a",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 81.9,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "8ef813d07bc0",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 82,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "bcdfd515c678",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 82,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "d51089bb77de",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 82,
+          "exterieur": "Extérieur"
+        },
+        {
+          "id": "f07fcf8b3091",
+          "typo": "T4",
+          "etage": null,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 84.6,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2028-4",
+      "nb_lots_libres": 8,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 15
+    }
+  ]
+}

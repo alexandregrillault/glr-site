@@ -1,0 +1,70 @@
+{
+  "cp": "91320",
+  "maj": "2026-11-27",
+  "dept": "91",
+  "slug": "wissous",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "91689",
+  "ville": "Wissous",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {},
+    "typologies": {
+      "T1": 0,
+      "T2": 0,
+      "T3": 0,
+      "T4": 1,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 1,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 1
+  },
+  "dept_nom": "Essonne",
+  "programmes": [
+    {
+      "nom": "Unisson",
+      "gare": "Chemin d'Antony (RER C)",
+      "slug": "unisson",
+      "image": null,
+      "picking": false,
+      "pige_id": "7cbbae811079",
+      "position": {
+        "approx": false,
+        "latitude": 48.735,
+        "longitude": 2.324
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "4ce5df7828a0",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 85.39,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4"
+      ],
+      "dispositifs": [
+        "PTZ"
+      ],
+      "livraison_cle": "2026-1",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 21
+    }
+  ]
+}

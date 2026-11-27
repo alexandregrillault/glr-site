@@ -1,0 +1,197 @@
+{
+  "cp": "91120",
+  "maj": "2026-11-27",
+  "dept": "91",
+  "slug": "palaiseau",
+  "guide": {
+    "intro": null,
+    "zone_ptz": "A",
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "91477",
+  "ville": "Palaiseau",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2027": 1
+    },
+    "typologies": {
+      "T1": 2,
+      "T2": 1,
+      "T3": 4,
+      "T4": 0,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 1,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 7
+  },
+  "dept_nom": "Essonne",
+  "programmes": [
+    {
+      "nom": "Effervescence - Le Central",
+      "gare": "Le Guichet (RER B)",
+      "slug": "effervescence-le-central",
+      "image": null,
+      "picking": false,
+      "pige_id": "668fdd371893",
+      "position": {
+        "approx": false,
+        "latitude": 48.714,
+        "longitude": 2.194
+      },
+      "quartier": null,
+      "livraison": "1er trimestre 2027",
+      "logements": [
+        {
+          "id": "bf765658ceda",
+          "typo": "T2",
+          "etage": 1,
+          "pieces": 2,
+          "statut": "libre",
+          "surface": 49.9,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "40aac9fb86d1",
+          "typo": "T3",
+          "etage": 6,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 62.75,
+          "exterieur": "Loggia"
+        },
+        {
+          "id": "79142a5a3cb4",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "option",
+          "surface": 75.52,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "03ea31ab622c",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 86.65,
+          "exterieur": "Terrasse"
+        },
+        {
+          "id": "a2dbffaada51",
+          "typo": "T3",
+          "etage": 0,
+          "pieces": 3,
+          "statut": "libre",
+          "surface": 89.99,
+          "exterieur": "Terrasse"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2",
+        "T3"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2027-1",
+      "nb_lots_libres": 5,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 13
+    },
+    {
+      "nom": "Résidence Étudiante Studéa Palaiseau Centre",
+      "gare": "Palaiseau (RER B)",
+      "slug": "residence-etudiante-studea-palaiseau-centre",
+      "image": null,
+      "picking": false,
+      "pige_id": "708235adacfb",
+      "position": {
+        "approx": false,
+        "latitude": 48.717,
+        "longitude": 2.233
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "8608ac4068fa",
+          "typo": "T1",
+          "etage": 4,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 18.38,
+          "exterieur": null
+        },
+        {
+          "id": "dccf2fb40551",
+          "typo": "T1",
+          "etage": 2,
+          "pieces": 1,
+          "statut": "libre",
+          "surface": 19.62,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T1"
+      ],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": 2,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 12
+    },
+    {
+      "nom": "Emulation",
+      "gare": "Palaiseau - Villebon (RER B)",
+      "slug": "emulation",
+      "image": null,
+      "picking": true,
+      "pige_id": "d82b22cbb207",
+      "position": {
+        "approx": true,
+        "latitude": 48.716,
+        "longitude": 2.229
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 13
+    },
+    {
+      "nom": "Villa Guernesey",
+      "gare": "Palaiseau - Villebon (RER B)",
+      "slug": "villa-guernesey",
+      "image": null,
+      "picking": true,
+      "pige_id": "51dede987f02",
+      "position": {
+        "approx": true,
+        "latitude": 48.716,
+        "longitude": 2.229
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 13
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "cp": "91700",
+  "maj": "2026-11-27",
+  "dept": "91",
+  "slug": "sainte-genevieve-des-bois",
+  "guide": {
+    "intro": null,
+    "zone_ptz": null,
+    "transports": [],
+    "tva_reduite": false
+  },
+  "insee": "91549",
+  "ville": "Sainte-Geneviève-des-Bois",
+  "version": 1,
+  "chiffres": {
+    "livraisons": {
+      "2026": 1
+    },
+    "typologies": {
+      "T1": 0,
+      "T2": 1,
+      "T3": 0,
+      "T4": 1,
+      "T5+": 0
+    },
+    "prix_entree": null,
+    "nb_programmes": 2,
+    "nb_promoteurs": 2,
+    "prix_m2_moyen": null,
+    "nb_lots_libres": 2
+  },
+  "dept_nom": "Essonne",
+  "programmes": [
+    {
+      "nom": "L'Elegance Sainte Geneviève Des Bois",
+      "gare": "Sainte-Geneviève-des-Bois (RER C)",
+      "slug": "l-elegance-sainte-genevieve-des-bois",
+      "image": null,
+      "picking": false,
+      "pige_id": "6a67a7ab0cd2",
+      "position": {
+        "approx": false,
+        "latitude": 48.643,
+        "longitude": 2.334
+      },
+      "quartier": null,
+      "livraison": "Livré",
+      "logements": [
+        {
+          "id": "a79ee420223e",
+          "typo": "T4",
+          "etage": 3,
+          "pieces": 4,
+          "statut": "libre",
+          "surface": 84.5,
+          "exterieur": null
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T4"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2024-1",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 24
+    },
+    {
+      "nom": "Villas De Noailles",
+      "gare": "Saint-Michel-sur-Orge (RER C)",
+      "slug": "villas-de-noailles",
+      "image": null,
+      "picking": false,
+      "pige_id": "10a772d54b2c",
+      "position": {
+        "approx": false,
+        "latitude": 48.63,
+        "longitude": 2.327
+      },
+      "quartier": null,
+      "livraison": "4e trimestre 2026",
+      "logements": [
+        {
+          "id": "cd973f8c340a",
+          "typo": "T2",
+          "etage": 0,
+          "pieces": 2,
+          "statut": "option",
+          "surface": 36,
+          "exterieur": "Extérieur"
+        }
+      ],
+      "promoteur": "",
+      "typologies": [
+        "T2"
+      ],
+      "dispositifs": [],
+      "livraison_cle": "2026-4",
+      "nb_lots_libres": 1,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 21
+    },
+    {
+      "nom": "Prochainement à Sainte-Geneviève-des-Bois",
+      "gare": "Sainte-Geneviève-des-Bois (RER C)",
+      "slug": "prochainement-a-sainte-genevieve-des-bois",
+      "image": null,
+      "picking": true,
+      "pige_id": "44c4dd97666e",
+      "position": {
+        "approx": true,
+        "latitude": 48.643,
+        "longitude": 2.327
+      },
+      "quartier": null,
+      "livraison": null,
+      "logements": [],
+      "promoteur": "",
+      "typologies": [],
+      "dispositifs": [],
+      "livraison_cle": null,
+      "nb_lots_libres": null,
+      "prix_a_partir_de": null,
+      "gare_minutes_a_pied": 19
+    }
+  ]
+}
