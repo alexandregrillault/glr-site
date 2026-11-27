@@ -19,6 +19,15 @@
     var e = document.getElementById('f3d-err'); if (e && t) e.textContent = t;
     if (f) { var p = f.querySelector('input'); if (p) setTimeout(function () { try { p.focus({ preventScroll: true }); } catch (x) {} }, 400); }
   }
+  // Repli : si l'immeuble ne se charge pas (fonction indisponible, limite atteinte…), la maquette automatique prend sa place.
+  var secoursFait = false;
+  function secours() {
+    if (secoursFait) return; secoursFait = true;
+    var v = document.getElementById('secours3d'), z = document.querySelector('.vue3d');
+    if (!v) return;
+    if (z) z.hidden = true; v.hidden = false;
+    var sc = document.createElement('script'); sc.src = '/neuf/programme.js'; document.body.appendChild(sc);
+  }
   // L'immeuble s'ouvre SANS formulaire (et sans jeton s'il n'y en a pas) ; le formulaire n'est demandé que pour un logement.
   function ouvrir(lot, sansDefiler) {
     var jeton = lireJeton(), immeuble = lot === 'immeuble';
@@ -32,10 +41,10 @@
       .then(function (r) {
         if (r.status === 401) {
           if (jeton) { ecrireJeton(''); lotOuvert = null; if (immeuble) { ouvrir('immeuble', sansDefiler); return null; } attente = lot; message(''); versFormulaire('Votre accès a expiré : recréez-le en une minute.'); return null; }
-          lotOuvert = null; message('Pour voir cette visite, créez votre accès : cela prend une minute.'); return null;
+          lotOuvert = null; if (immeuble) { secours(); return null; } message('Pour voir cette visite, créez votre accès : cela prend une minute.'); return null;
         }
-        if (r.status === 404) { lotOuvert = null; message('Cette visite n\u2019est pas encore disponible.'); return null; }
-        if (r.status === 429) { lotOuvert = null; message('Trop de demandes d\u2019un coup : réessayez dans quelques minutes.'); return null; }
+        if (r.status === 404) { lotOuvert = null; if (immeuble) { secours(); return null; } message('Cette visite n\u2019est pas encore disponible.'); return null; }
+        if (r.status === 429) { lotOuvert = null; if (immeuble) { secours(); return null; } message('Trop de demandes d\u2019un coup : réessayez dans quelques minutes.'); return null; }
         if (!r.ok) throw new Error('http');
         return r.json();
       })
@@ -46,7 +55,7 @@
         libere(); lienBlob = URL.createObjectURL(new Blob([b], { type: 'text/html' }));
         cadre.src = lienBlob; zone.classList.add('charge'); message('');
       })
-      .catch(function () { if (lotOuvert === lot) { lotOuvert = null; message('La visite n\u2019a pas pu se charger. Réessayez, ou appelez-nous.'); } });
+      .catch(function () { if (lotOuvert === lot) { lotOuvert = null; if (immeuble) { secours(); return; } message('La visite n\u2019a pas pu se charger. Réessayez, ou appelez-nous.'); } });
   }
   // L'immeuble (1,4 Mo) n'est chargé que lorsqu'il arrive à l'écran, ou au toucher du bouton : jamais à l'ouverture de la page.
   if ('IntersectionObserver' in window) {

@@ -524,6 +524,21 @@ function pageProgramme(d, p) {
       <button type="button" class="charger3d" data-3d="immeuble">Voir l’immeuble en 3D</button>
     </div>
     <p class="note">Visite 3D réalisée à partir des plans du promoteur : touchez un étage, puis un logement pour le visiter. Les plans des logements demandent un compte, créé en une minute.</p>
+   </div>` : ''}
+   ${p.visite_3d ? `   <div class="vue" id="secours3d" hidden>
+    ${p.plan_masse ? `<figure class="plan-promoteur"><img src="${esc(p.plan_masse)}" alt="Plan de masse de ${esc(p.nom)}" loading="lazy"><figcaption>Plan de masse du promoteur, non contractuel.</figcaption></figure>` : ''}
+    <div class="plan-cadre">
+      <div class="etages" id="etages" role="group" aria-label="Choisir un étage"></div>
+      <div class="plan-dessin">
+        <p class="etage-titre" id="etage-titre"></p>
+        <div class="scene3d" id="imm3d" data-lat="${p.position ? ARRONDI(p.position.latitude) : ''}" data-lng="${p.position ? ARRONDI(p.position.longitude) : ''}" aria-label="L’immeuble sur son terrain : faites-le tourner, choisissez un étage, touchez un logement"><div class="geste" id="geste"><span class="main"></span>Glissez pour tourner</div>${BOUSSOLE('boussole-immeuble')}</div>
+        <svg id="plan" hidden role="img" aria-label="Plan de masse : l’immeuble sur son terrain, avec les logements disponibles de l’étage choisi"></svg>
+      </div>
+    </div>
+    <div class="vues" role="group" aria-label="Changer de vue"><button type="button" data-vue="ensemble">Vue d’ensemble</button><button type="button" data-vue="rue">Depuis la rue</button><button type="button" data-vue="arriere">Côté jardin</button><button type="button" data-vue="dessus">Du dessus</button><button type="button" data-vue="tour">Faire le tour</button></div>
+    <div class="coupe"><label for="heure">Soleil à</label><input type="range" id="heure" min="6" max="22" step="0.25" value="14"><output id="heure-val"></output></div>
+    <div class="fiche-lot" id="bulle" aria-live="polite">Choisissez un étage à gauche, touchez un logement, ou passez sur une ligne de la liste.</div>
+    <p class="note">Plan et maquette dessinés automatiquement à partir des logements disponibles : la forme réelle du bâtiment et la place exacte des logements sur l’étage peuvent différer.</p>
    </div>` : `   <div class="vue">
     ${p.plan_masse ? `<figure class="plan-promoteur"><img src="${esc(p.plan_masse)}" alt="Plan de masse de ${esc(p.nom)}" loading="lazy"><figcaption>Plan de masse du promoteur, non contractuel.</figcaption></figure>` : ''}
     <div class="plan-cadre">
@@ -569,8 +584,8 @@ ${p.visite_3d ? `<section class="appel" id="compte">
   <p class="note">Disponibilités et prix relevés le ${dateFr(d.maj)} ; ils changent chaque semaine et sont confirmés par votre conseiller.</p>
 </main>
 ${pied}
-${typos.length ? `${p.visite_3d ? '' : `<script type="application/json" id="logements-data">${JSON.stringify((p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? null : l.etage, x: l.exterieur || '' }))).replace(/</g, '\\u003c')}</script>`}
-${p.visite_3d ? '' : '<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>'}
+${typos.length ? `${`<script type="application/json" id="logements-data">${JSON.stringify((p.logements || []).map(l => ({ i: l.id == null ? '' : String(l.id), t: l.typo, s: l.surface, e: l.etage == null ? null : l.etage, x: l.exterieur || '' }))).replace(/</g, '\\u003c')}</script>`}
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 ${p.visite_3d ? '' : '<script src="/neuf/programme.js" defer></script>'}
 ${p.visite_3d ? '<script src="/neuf/visite3d.js" defer></script>' : ''}
 <script>
